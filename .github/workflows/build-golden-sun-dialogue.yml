@@ -39,7 +39,18 @@ jobs:
           path = Path('games/tbs/text/en.po')
           text = path.read_text(encoding='utf-8')
 
-          replacements = {}
+          # Keep this first pass deliberately small. Every entry below has a
+          # scene-specific context, short display lines, and its original control
+          # tokens. Do not rewrite generic message IDs in bulk.
+          replacements = {
+              "03675": r"{actor_name:1}, Dora, hurry!\\nThe Boulder is close to\\nbreaking loose!{end_wait}",
+              "03676": r"Kyle... Can they hold\\nthe Boulder back?{end_wait}",
+              "03685": r"You're a big boy now,\\n{actor_name:1}. Go on ahead.\\nPlease be careful!{end_now}",
+              "03686": r"You know the way{em_dash}go\\nsouth to the plaza.\\nPlease, hurry!{end_wait}",
+              "03687": r"Isaac? Sorry! I didn't\\nsee you there!{end_wait}",
+              "03707": r"We shouldn't go north...\\nMt. Aleph is that way.\\nWe need the plaza!{end_wait}",
+              "03709": r"That rock blocks the way!\\nWe can't get around it!{end_wait}",
+          }
 
           entries = re.split(r'(\n\s*\n)', text)
           found = set()
