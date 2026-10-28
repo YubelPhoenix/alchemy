@@ -860,13 +860,13 @@ static void ValeStormyNight_DoraSendsIsaacToThePlaza(void) {
   Actor_SetPosition(ACTOR_DORA, 0, 0);
   Actor_SetPosition(ACTOR_KYLE, 0, 0);
 
-  // Experimental placement: keep the figure farther up the scene than
-  // Isaac, so automatic sprite depth should place it behind him rather than
-  // over the doorway. It watches silently, then vanishes before control returns.
-  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(302), PIXELS(820));
+  // Second placement experiment: move the figure well above and left of
+  // Isaac, clear of the doorway. Its automatic depth should follow this
+  // higher ground position; keep the appearance brief and entirely silent.
+  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(260), PIXELS(770));
   Actor_FaceDirection(ACTOR_HOODED_FIGURE, FACING_SOUTH, 0);
   Import_ActorSetAnimation(ACTOR_HOODED_FIGURE, ANIM_STAND);
-  Event_WaitFrames(30);
+  Event_WaitFrames(24);
   Actor_SetPosition(ACTOR_HOODED_FIGURE, 0, 0);
 
   Import_ActorSetAnimation(ACTOR_KYLE, ANIM_STAND);
