@@ -1,0 +1,69 @@
+name: Build Golden Sun TBS English dialogue experiment
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'games/tbs/text/en.po'
+      - '.github/workflows/build-golden-sun-dialogue.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out source and pinned compiler submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential git curl patch binutils-arm-none-eabi \
+            pkg-config libpng-dev libutf8proc-dev
+
+      - name: Apply the experimental dialogue change
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('games/tbs/text/en.po')
+          text = p.read_text(encoding='utf-8')
+
+          old = '''msgctxt "MsgValeWake"
+          msgid "03666"
+          msgstr "{actor_name:1}, wake up!{end_wait}"'''
+
+          new = '''msgctxt "MsgValeWake"
+          msgid "03666"
+          msgstr "{actor_name:1}, wake up!\\nIt's time for a new adventure!{end_wait}"'''
+
+          count = text.count(old)
+          if count != 1:
+              raise SystemExit(
+                  f'Expected exactly one target entry; found {count}.'
+              )
+
+          p.write_text(text.replace(old, new, 1), encoding='utf-8')
+          print('Applied the two-line dialogue change.')
+
+      - name: Build pinned toolchain and host tools
+        run: make bootstrap
+
+      - name: Build English edition
+        run: make tbs-en
+
+      - name: Upload test ROM
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-sun-tbs-en-dialogue-test
+          path: out/tbs-en/tbs-en.gba
+          if-no-files-found: error
+          retention-days: 3
