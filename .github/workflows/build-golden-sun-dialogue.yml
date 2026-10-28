@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'games/tbs/text/en.po'
+      - 'games/tbs/src/scene/vale_stormy_night.c'
       - '.github/workflows/build-golden-sun-dialogue.yml'
 
 permissions:
