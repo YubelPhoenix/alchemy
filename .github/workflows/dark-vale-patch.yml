@@ -45,6 +45,7 @@ jobs:
           git worktree add --detach "$RUNNER_TEMP/alchemy-base" origin/main
           mkdir -p "$RUNNER_TEMP/alchemy-base/tools/out"
           cp -a tools/out/compilers "$RUNNER_TEMP/alchemy-base/tools/out/compilers"
+          cp -a tools/out/compiler-runtime "$RUNNER_TEMP/alchemy-base/tools/out/compiler-runtime"
           make -C "$RUNNER_TEMP/alchemy-base" compare-tbs-en CARGO=false \
             XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/"
 
