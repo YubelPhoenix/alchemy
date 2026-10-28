@@ -1,4 +1,4 @@
-name: Build Golden Sun TBS English dialogue experiment
+name: Validate Golden Sun dialogue build
 
 on:
   workflow_dispatch:
@@ -15,13 +15,13 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
-
     steps:
       - name: Check out source and pinned compiler submodules
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           submodules: recursive
           fetch-depth: 1
+          persist-credentials: false
 
       - name: Install build dependencies
         run: |
@@ -30,67 +30,11 @@ jobs:
             build-essential git curl patch binutils-arm-none-eabi \
             pkg-config libpng-dev libutf8proc-dev
 
-      - name: Apply the experimental Vale prologue dialogue rewrite
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import re
-
-          path = Path('games/tbs/text/en.po')
-          text = path.read_text(encoding='utf-8')
-
-          # Keep this first pass deliberately small. Every entry below has a
-          # scene-specific context, short display lines, and its original control
-          # tokens. Do not rewrite generic message IDs in bulk.
-          replacements = {
-              "03675": r"{actor_name:1}, Dora, hurry!\nThe Boulder is close to\nbreaking loose!{end_wait}",
-              "03676": r"Kyle... Can they hold\nthe Boulder back?{end_wait}",
-              "03685": r"You're a big boy now,\n{actor_name:1}. Go on ahead.\nPlease be careful!{end_now}",
-              "03686": r"You know the way{em_dash}go\nsouth to the plaza.\nPlease, hurry!{end_wait}",
-              "03687": r"Isaac? Sorry! I didn't\nsee you there!{end_wait}",
-              "03707": r"We shouldn't go north...\nMt. Aleph is that way.\nWe need the plaza!{end_wait}",
-              "03709": r"That rock blocks the way!\nWe can't get around it!{end_wait}",
-          }
-
-          entries = re.split(r'(\n\s*\n)', text)
-          found = set()
-          for i, entry in enumerate(entries):
-              match = re.search(r'^msgid "([0-9]{5})"$', entry, re.MULTILINE)
-              if not match or match.group(1) not in replacements:
-                  continue
-              msgid = match.group(1)
-              if msgid in found:
-                  raise SystemExit(f'Duplicate dialogue ID {msgid}.')
-              found.add(msgid)
-              # Replace the whole msgstr field, not just its first line. The
-              # previous approach left old continuation lines attached, which
-              # could render as jumbled text in-game.
-              entry_lines = entry.splitlines()
-              msgstr_index = next((j for j, line in enumerate(entry_lines) if line.startswith('msgstr ')), None)
-              if msgstr_index is None:
-                  raise SystemExit(f'Missing msgstr for {msgid}.')
-              entry_lines = entry_lines[:msgstr_index] + ['msgstr "' + replacements[msgid] + '"']
-              entries[i] = '\n'.join(entry_lines)
-
-          missing = sorted(set(replacements) - found)
-          if missing:
-              raise SystemExit(f'Missing expected dialogue IDs: {", ".join(missing)}')
-
-          updated = ''.join(entries)
-          path.write_text(updated, encoding='utf-8')
-          print(f'Updated {len(found)} dialogue entries across the storm prologue, Vale villagers, Garet, and Saturos/Menardi.')
-          PY
-
       - name: Build pinned toolchain and host tools
-        run: make bootstrap
+        run: make bootstrap CARGO=false
 
-      - name: Build English edition
-        run: make tbs-en
+      - name: Compile the modified English edition
+        run: make -j"$(nproc)" tbs-en CARGO=false
 
-      - name: Upload test ROM
-        uses: actions/upload-artifact@v4
-        with:
-          name: golden-sun-tbs-en-dialogue-test
-          path: out/tbs-en/tbs-en.gba
-          if-no-files-found: error
-          retention-days: 3
+      - name: Confirm the ROM was built without publishing it
+        run: test -s out/tbs-en/tbs-en.gba
