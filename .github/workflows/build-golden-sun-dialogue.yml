@@ -29,29 +29,66 @@ jobs:
             build-essential git curl patch binutils-arm-none-eabi \
             pkg-config libpng-dev libutf8proc-dev
 
-      - name: Apply the experimental dialogue change
+      - name: Apply the experimental Vale prologue dialogue rewrite
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
 
-          p = Path('games/tbs/text/en.po')
-          text = p.read_text(encoding='utf-8')
+          path = Path('games/tbs/text/en.po')
+          text = path.read_text(encoding='utf-8')
 
-          old = '''msgctxt "MsgValeWake"
-          msgid "03666"
-          msgstr "{actor_name:1}, wake up!{end_wait}"'''
-          new = '''msgctxt "MsgValeWake"
-          msgid "03666"
-          msgstr "{actor_name:1}... Wake up. Please, wake up.{end_wait}"'''
+          replacements = {
+              "03666": r"{actor_name:1}... Wake up. Please, wake up.{end_wait}",
+              "03667": r"Please, look at me. I need you awake. Right now!{end_wait}",
+              "03668": r"The Boulder is breaking loose\nfrom Mt. Aleph. If it falls,\nVale will be crushed.{end_wait}",
+              "03669": r"Come on, {actor_name:1}.\nStay close to me{em_dash}whatever\nyou hear, keep moving.{end_wait}",
+              "03670": r"{actor_name:1}! You left\nsomething behind!{end_wait}",
+              "03671": r"It's raining hard. Put on\nyour tunic before you go.\nI won't have you hurt too.{end_wait}",
+              "03672": r"Look at me. Is that\neverything? Don't guess.\nCheck now.{end_now}",
+              "03673": r"No. Leave it. I know it\nmatters to you, but we\ncannot trade time for things.{end_wait}",
+              "03674": r"You made the right choice,\n{actor_name:1}. We can mourn\nwhat we lose later. If we live.{end_wait}",
+              "03675": r"{actor_name:1}, Dora, move!\nThat Boulder is coming down\nand we have seconds left!{end_wait}",
+              "03676": r"Kyle... Please tell me\nthey can hold it back.\nTell me we still have time.{end_wait}",
+              "03677": r"I can't promise that.\nThey're buying us moments,\nnot safety.{end_wait}",
+              "03678": r"Get to the plaza. Keep\n{actor_name:1} beside you.\nDon't stop for anyone.{end_wait}",
+              "03679": r"And leave you here?{end_wait}",
+              "03680": r"Someone has to get the\nvillagers out. If I run now,\nthose people may die here.{end_wait}",
+              "03681": r"Then let me stay and help.\nI won't watch you go back\ninto that storm alone.{end_wait}",
+              "03682": r"No, Dora. I need you to\nget {actor_name:1} to safety.\nPlease. That's all I ask.{end_wait}",
+              "03683": r"{actor_name:1} can reach\nthe plaza alone. I know\nyou can, don't you?{end_wait}",
+              "03684": r"The plaza is south.\nKeep to the path, and don't\nturn back for anything.{end_now}",
+              "03685": r"You're old enough to do\nthis, {actor_name:1}. I need\nyou to be brave for me.{end_now}",
+              "03686": r"South to the plaza. Keep\ngoing, even if the noise\nmakes you want to run back.{end_wait}",
+          }
 
-          count = text.count(old)
-          if count != 1:
-              raise SystemExit(
-                  f'Expected exactly one target entry; found {count}.'
+          entries = re.split(r'(\n\s*\n)', text)
+          found = set()
+          for i, entry in enumerate(entries):
+              match = re.search(r'^msgid "([0-9]{5})"$', entry, re.MULTILINE)
+              if not match or match.group(1) not in replacements:
+                  continue
+              msgid = match.group(1)
+              if msgid in found:
+                  raise SystemExit(f'Duplicate dialogue ID {msgid}.')
+              found.add(msgid)
+              if not re.search(r'^msgstr ', entry, re.MULTILINE):
+                  raise SystemExit(f'Missing single-line msgstr for {msgid}.')
+              entries[i] = re.sub(
+                  r'^(msgstr )".*"$',
+                  lambda m: m.group(1) + '"' + replacements[msgid] + '"',
+                  entry,
+                  count=1,
+                  flags=re.MULTILINE,
               )
 
-          p.write_text(text.replace(old, new, 1), encoding='utf-8')
-          print('Applied the dialogue change to MsgValeWake.')
+          missing = sorted(set(replacements) - found)
+          if missing:
+              raise SystemExit(f'Missing expected dialogue IDs: {", ".join(missing)}')
+
+          updated = ''.join(entries)
+          path.write_text(updated, encoding='utf-8')
+          print(f'Updated existing Vale dialogue IDs {min(found)}–{max(found)} only.')
           PY
 
       - name: Build pinned toolchain and host tools
