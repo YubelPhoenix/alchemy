@@ -5,6 +5,8 @@ on:
     branches: [dark-vale-dialogue]
   workflow_dispatch:
 
+# Patch build rerun trigger after copying the pinned compiler runtime into baseline.
+
 permissions:
   contents: read
 
