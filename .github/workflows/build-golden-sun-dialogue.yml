@@ -37,12 +37,12 @@ jobs:
           p = Path('games/tbs/text/en.po')
           text = p.read_text(encoding='utf-8')
 
-          new = '''msgctxt "MsgValeWake"
-msgid "03666"
-msgstr "This was just an experiment with Alchemy and coding.\\nI'm just seeing how things go.\\nNow, Isaac, go back to bed!{end_wait}"'''
+          old = '''msgctxt "MsgValeWake"
+          msgid "03666"
+          msgstr "{actor_name:1}, wake up!{end_wait}"'''
           new = '''msgctxt "MsgValeWake"
           msgid "03666"
-          msgstr "{actor_name:1}, wake up!\\nIt's time for a new adventure!{end_wait}"'''
+          msgstr "{actor_name:1}... Wake up. Please, wake up.{end_wait}"'''
 
           count = text.count(old)
           if count != 1:
@@ -51,7 +51,8 @@ msgstr "This was just an experiment with Alchemy and coding.\\nI'm just seeing h
               )
 
           p.write_text(text.replace(old, new, 1), encoding='utf-8')
-          print('Applied the two-line dialogue change.')
+          print('Applied the dialogue change to MsgValeWake.')
+          PY
 
       - name: Build pinned toolchain and host tools
         run: make bootstrap
