@@ -1,0 +1,97 @@
+name: Build dark Vale test patch
+
+on:
+  push:
+    branches: [dark-vale-dialogue]
+  workflow_dispatch:
+
+# Patch build rerun trigger after copying the pinned compiler runtime into baseline.
+
+permissions:
+  contents: read
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
+      CCACHE_BASEDIR: ${{ github.workspace }}
+      CCACHE_COMPILERCHECK: content
+      CCACHE_MAXSIZE: 500M
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Fetch pinned compiler source
+        run: git submodule update --init --recursive --depth 1 alchemy-gcc
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq --no-install-recommends binutils-arm-none-eabi pkg-config libpng-dev libutf8proc-dev ccache
+
+      - name: Build pinned compiler
+        run: make bootstrap CARGO=false
+
+      - name: Build the modified English edition
+        run: |
+          make -j"$(nproc)" tbs-en CARGO=false \
+            XGCC="ccache $PWD/tools/out/compilers/xgcc -B$PWD/tools/out/compilers/"
+
+      - name: Build and verify an unmodified baseline
+        run: |
+          git fetch origin main
+          git worktree add --detach "$RUNNER_TEMP/alchemy-base" origin/main
+          mkdir -p "$RUNNER_TEMP/alchemy-base/tools/out"
+          cp -a tools/out/compilers "$RUNNER_TEMP/alchemy-base/tools/out/compilers"
+          cp -a tools/out/compiler-runtime "$RUNNER_TEMP/alchemy-base/tools/out/compiler-runtime"
+          make -C "$RUNNER_TEMP/alchemy-base" compare-tbs-en CARGO=false \
+            XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/"
+
+      - name: Create a patch, not a redistributable ROM
+        run: |
+          python3 - "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba" "out/tbs-en/tbs-en.gba" "$RUNNER_TEMP/dark-vale.ips" <<'PY'
+          import sys
+          from pathlib import Path
+
+          original = Path(sys.argv[1]).read_bytes()
+          modified = Path(sys.argv[2]).read_bytes()
+          output = Path(sys.argv[3])
+
+          if len(original) != len(modified):
+              raise SystemExit(f"ROM sizes differ: {len(original)} vs {len(modified)}")
+
+          patch = bytearray(b"PATCH")
+          i = 0
+          changes = 0
+          while i < len(original):
+              if original[i] == modified[i]:
+                  i += 1
+                  continue
+              start = i
+              data = bytearray()
+              while i < len(original) and original[i] != modified[i] and len(data) < 65535:
+                  data.append(modified[i])
+                  i += 1
+              if start > 0xFFFFFF:
+                  raise SystemExit("IPS offset limit exceeded")
+              patch.extend(start.to_bytes(3, "big"))
+              patch.extend(len(data).to_bytes(2, "big"))
+              patch.extend(data)
+              changes += len(data)
+          patch.extend(b"EOF")
+          output.write_bytes(patch)
+          if changes == 0:
+              raise SystemExit("No differences found; refusing to create an empty patch")
+          print(f"Created {output.name}: {changes} changed bytes across {len(patch)} patch bytes")
+          PY
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: dark-vale-ips-patch
+          path: ${{ runner.temp }}/dark-vale.ips
+          if-no-files-found: error
+          retention-days: 14
