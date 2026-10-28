@@ -860,13 +860,13 @@ static void ValeStormyNight_DoraSendsIsaacToThePlaza(void) {
   Actor_SetPosition(ACTOR_DORA, 0, 0);
   Actor_SetPosition(ACTOR_KYLE, 0, 0);
 
-  // A silent figure watches Isaac from the left side of the doorway, set back
-  // from him so it does not overlap the house entrance. It disappears before
-  // the player regains control.
-  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(270), PIXELS(865));
+  // Experimental placement: keep the figure farther up the scene than
+  // Isaac, so automatic sprite depth should place it behind him rather than
+  // over the doorway. It watches silently, then vanishes before control returns.
+  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(302), PIXELS(820));
   Actor_FaceDirection(ACTOR_HOODED_FIGURE, FACING_SOUTH, 0);
   Import_ActorSetAnimation(ACTOR_HOODED_FIGURE, ANIM_STAND);
-  Event_WaitFrames(45);
+  Event_WaitFrames(30);
   Actor_SetPosition(ACTOR_HOODED_FIGURE, 0, 0);
 
   Import_ActorSetAnimation(ACTOR_KYLE, ANIM_STAND);
