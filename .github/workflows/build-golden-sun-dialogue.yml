@@ -60,6 +60,44 @@ jobs:
               "03684": r"The plaza is south.\nKeep to the path, and don't\nturn back for anything.{end_now}",
               "03685": r"You're old enough to do\nthis, {actor_name:1}. I need\nyou to be brave for me.{end_now}",
               "03686": r"South to the plaza. Keep\ngoing, even if the noise\nmakes you want to run back.{end_wait}",
+              "03687": r"Isaac? Watch where you're going! Sorry{em_dash}the storm has everyone rushing about.{end_wait}",
+              "03694": r"You want me to abandon everything I've worked for?{page_break}...No. You're right. None of it matters if I'm buried under a rock.{end_wait}",
+              "03696": r"You're right. I'll leave the chest. Just don't expect me to be happy about it!{end_wait}",
+              "03697": r"Don't leave me out here alone, {actor_name:1}!{end_now}",
+              "03700": r"Isaac! Wait up! If we're going to survive this, we stick together!{end_wait}",
+              "03707": r"We shouldn't go north. That path leads toward Mt. Aleph, and the Boulder is coming from there!{end_wait}",
+              "03709": r"We can't get around this rock! The path's completely blocked!{end_wait}",
+              "03711": r"{text_effect:4}Look out! The Boulder! It's falling straight toward Vale!{end_wait}",
+              "03717": r"The rockslide smashed the fence... and now monsters are pouring in. What else can go wrong?{end_wait}",
+              "03723": r"I can't go any farther. Please... get the others to safety. Don't waste your life trying to save me.{end_wait}",
+              "03724": r"No... my brother! Someone, please tell me he's still alive!{end_wait}",
+              "03739": r"I'll check the northern path. You get to the plaza and warn everyone you can find.{end_wait}",
+              "03745": r"I hate asking children for help, but there isn't time to find anyone else. Could you two help me?{end_now}",
+              "03749": r"Your Psynergy isn't strong enough to save {actor_name:5}. Go and find someone who can help.{end_wait}",
+              "03750": r"Hold on, {actor_name:5}! Keep your grip! We're coming for you!{end_wait}",
+              "03751": r"Don't let go, {actor_name:5}! Look at me! Keep holding on!{end_wait}",
+              "03755": r"You want an old woman like me to use Psynergy?{page_break}I may be old, but I'm not a miracle worker!{end_wait}",
+              "03756": r"{text_effect:4}Ohhh...{reset_text_style} I have almost nothing left. I used my last strength to turn those falling rocks aside.{end_wait}",
+              "03758": r"I have a little Psynergy left. It may not be much, but I'll use every bit of it.{end_wait}",
+              "03760": r"Jenna went that way! Hurry, before the river carries them farther downstream!{end_wait}",
+              "03761": r"Please, find {actor_name:5}. His family is trying to reach him, but they can't do it alone.{end_wait}",
+              "03766": r"Help the elders! They're holding the Boulder back, but they cannot keep it up much longer!{end_wait}",
+              "03781": r"There's no time to lose! Every moment we spend here puts another villager in danger!{end_wait}",
+              "03782": r"Mom! Dad! We're back! Please, tell me Felix is safe!{end_wait}",
+              "03790": r"No... It can't be. Kyle... This can't be happening. Someone, please wake me from this nightmare...{end_wait}",
+              "03791": r"Mom... Dad... Felix...{pause_20_skippable} Please don't leave me here alone.{end_wait}",
+              "03792": r"{actor_name:1}... the Boulder... If we don't get help, the whole village will be swept away.{end_wait}",
+              "03793": r"{text_effect:4}I... I'll go!{end_wait}",
+              "03794": r"{text_effect:4}It's no use. I can't move...{pause_20_skippable} Please, {actor_name:1}, get help for us.{end_wait}",
+              "03798": r"Only the two of us survived... I keep thinking I should have done more.{end_wait}",
+              "03813": r"You want me to leave everything behind and save myself?{end_wait}",
+              "03814": r"If a rock hits me, I'll lose the chest and my life. ...Fine. The chest can be replaced. People can't.{end_wait}",
+              "03815": r"You're right. I'll leave it. I won't forgive myself if I let someone die over a pile of belongings.{end_wait}",
+              "03928": r"Those three travelers staying here... I don't think they're ordinary thieves. Something about them feels wrong.{end_wait}",
+              "03929": r"One of them wore a mask. I thought he was hiding scars, but now I wonder what else he was hiding.{end_wait}",
+              "03930": r"Two of the three guests have gone out. I hope they aren't heading toward Mt. Aleph in this weather.{end_wait}",
+              "03994": r"Are you certain, Saturos? If we go further, there may be no way back for any of us.{end_wait}",
+              "03995": r"Menardi, we've delayed long enough. Every moment we hesitate is another moment our people remain in danger.{end_wait}",
           }
 
           entries = re.split(r'(\n\s*\n)', text)
@@ -72,15 +110,15 @@ jobs:
               if msgid in found:
                   raise SystemExit(f'Duplicate dialogue ID {msgid}.')
               found.add(msgid)
-              if not re.search(r'^msgstr ', entry, re.MULTILINE):
-                  raise SystemExit(f'Missing single-line msgstr for {msgid}.')
-              entries[i] = re.sub(
-                  r'^(msgstr )".*"$',
-                  lambda m: m.group(1) + '"' + replacements[msgid] + '"',
-                  entry,
-                  count=1,
-                  flags=re.MULTILINE,
-              )
+              # Replace the whole msgstr field, not just its first line. The
+              # previous approach left old continuation lines attached, which
+              # could render as jumbled text in-game.
+              entry_lines = entry.splitlines()
+              msgstr_index = next((j for j, line in enumerate(entry_lines) if line.startswith('msgstr ')), None)
+              if msgstr_index is None:
+                  raise SystemExit(f'Missing msgstr for {msgid}.')
+              entry_lines = entry_lines[:msgstr_index] + ['msgstr "' + replacements[msgid] + '"']
+              entries[i] = '\n'.join(entry_lines)
 
           missing = sorted(set(replacements) - found)
           if missing:
@@ -88,7 +126,7 @@ jobs:
 
           updated = ''.join(entries)
           path.write_text(updated, encoding='utf-8')
-          print(f'Updated existing Vale dialogue IDs {min(found)}–{max(found)} only.')
+          print(f'Updated {len(found)} dialogue entries across the storm prologue, Vale villagers, Garet, and Saturos/Menardi.')
           PY
 
       - name: Build pinned toolchain and host tools
