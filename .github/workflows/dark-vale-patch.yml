@@ -2,10 +2,10 @@ name: Build dark Vale test patch
 
 on:
   push:
-    branches: [dark-vale-dialogue]
+    branches: [main, dark-vale-dialogue]
   workflow_dispatch:
 
-# Patch build rerun trigger after copying the pinned compiler runtime into baseline.
+# Build the modified fork against the upstream project as a clean baseline.
 
 permissions:
   contents: read
@@ -41,17 +41,17 @@ jobs:
           make -j"$(nproc)" tbs-en CARGO=false \
             XGCC="ccache $PWD/tools/out/compilers/xgcc -B$PWD/tools/out/compilers/"
 
-      - name: Build and verify an unmodified baseline
+      - name: Build and verify an unmodified upstream baseline
         run: |
-          git fetch origin main
-          git worktree add --detach "$RUNNER_TEMP/alchemy-base" origin/main
+          git fetch https://github.com/PascalPixel/alchemy.git main
+          git worktree add --detach "$RUNNER_TEMP/alchemy-base" FETCH_HEAD
           mkdir -p "$RUNNER_TEMP/alchemy-base/tools/out"
           cp -a tools/out/compilers "$RUNNER_TEMP/alchemy-base/tools/out/compilers"
           cp -a tools/out/compiler-runtime "$RUNNER_TEMP/alchemy-base/tools/out/compiler-runtime"
           make -C "$RUNNER_TEMP/alchemy-base" compare-tbs-en CARGO=false \
             XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/"
 
-      - name: Create a patch, not a redistributable ROM
+      - name: Create an IPS patch, not a redistributable ROM
         run: |
           python3 - "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba" "out/tbs-en/tbs-en.gba" "$RUNNER_TEMP/dark-vale.ips" <<'PY'
           import sys
