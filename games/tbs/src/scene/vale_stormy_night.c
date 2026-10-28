@@ -863,7 +863,7 @@ static void ValeStormyNight_DoraSendsIsaacToThePlaza(void) {
   // Second placement experiment: move the figure well above and left of
   // Isaac, clear of the doorway. Its automatic depth should follow this
   // higher ground position; keep the appearance brief and entirely silent.
-  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(260), PIXELS(770));
+  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(260), PIXELS(842));
   Actor_FaceDirection(ACTOR_HOODED_FIGURE, FACING_SOUTH, 0);
   Import_ActorSetAnimation(ACTOR_HOODED_FIGURE, ANIM_STAND);
   Event_WaitFrames(24);
