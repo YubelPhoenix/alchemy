@@ -170,6 +170,9 @@ enum StormNightActorId {
   /// ★ Named from what the player sees: a flickering black shadow under the
   /// Boulder, ValeStormyNight_BoulderSweepsThemAway.gif (its render)
   ACTOR_BOULDER_SHADOW,
+  /// A silent, hooded-looking figure that briefly appears behind Isaac before
+  /// vanishing as Dora and Kyle leave him alone.
+  ACTOR_HOODED_FIGURE,
   // The elders holding back the Boulder with their Psynergy ("Go aid the
   // elders!", vale_plaza.c), from gValeStormyNight_BoulderWatchers, which
   // ValeStormyNight_WatchBoulderFall places after the scene's own actors and
@@ -856,6 +859,15 @@ static void ValeStormyNight_DoraSendsIsaacToThePlaza(void) {
   Actor_WalkToAndWait(ACTOR_DORA, 297, 750);
   Actor_SetPosition(ACTOR_DORA, 0, 0);
   Actor_SetPosition(ACTOR_KYLE, 0, 0);
+
+  // A silent figure watches Isaac from the left side of the doorway, set back
+  // from him so it does not overlap the house entrance. It disappears before
+  // the player regains control.
+  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(270), PIXELS(865));
+  Actor_FaceDirection(ACTOR_HOODED_FIGURE, FACING_SOUTH, 0);
+  Import_ActorSetAnimation(ACTOR_HOODED_FIGURE, ANIM_STAND);
+  Event_WaitFrames(45);
+  Actor_SetPosition(ACTOR_HOODED_FIGURE, 0, 0);
 
   Import_ActorSetAnimation(ACTOR_KYLE, ANIM_STAND);
   Import_ActorSetAnimation(ACTOR_GARETS_CHEST, ANIM_WALK);
@@ -3415,6 +3427,8 @@ struct ActorTemplate gValeStormyNight_ActorTemplates[] = {
         0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { 0x120, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    { SPRITE_BEARDED_MAN_IN_LONG_ROBE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SCENE_TABLE_END },
 };
 
