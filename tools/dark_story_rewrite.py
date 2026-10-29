@@ -32,7 +32,7 @@ REPLACEMENTS = {
     "03781": r"There's no time! Hurry!\nEvery moment we waste,\nsomeone else may die!{end_wait}",
     "03782": r"Mom! Dad!{pause_20_skippable}\nWe're back! Please answer!{end_wait}",
     "03798": r"Only the two of us\nmade it out alive...{end_wait}",
-    "03928": r"Those three travelers\nmake me uneasy. They\nbarely speak to us.{page_break}\nThey watch the village\nas if searching for someone.\nI wish they'd leave...{end_wait}",
+    "03928": r"Those three travelers\nmake me uneasy. They\nbarely speak to us.{page_break}\nThey watch the village\nlooking for someone.\nI wish they'd leave...{end_wait}",
     "03929": r"One man in that group\nwears a mask. He never\nshows his face.{page_break}\nMaybe he hides some scars,\nbut something about him\nstill troubles me...{end_wait}",
     "03930": r"Two of those travelers\nwent out into the storm.\nWhy leave now?{end_wait}",
     "03975": r"Kraden...{pause_20_skippable}\nCould he be of use?{end_wait}",
@@ -113,6 +113,12 @@ def validate_replacements(entries: dict[str, str]) -> None:
         pages = re.split(r"\{page_break\}", replacement)
         for page_no, page in enumerate(pages, start=1):
             display_lines = page.split(r"\n")
+            while display_lines and not display_lines[0]:
+                display_lines.pop(0)
+            while display_lines and not display_lines[-1]:
+                display_lines.pop()
+            if not display_lines:
+                continue
             if len(display_lines) > 3:
                 raise SystemExit(
                     f"Dialogue {msgid}, page {page_no}: "
