@@ -12,6 +12,7 @@ on:
       - 'games/tbs/src/graphics/sprite/spr_407.tsv'
       - 'games/tbs/src/graphics/sprite/layout.tsv'
       - 'tools/dark_story_rewrite.py'
+      - 'tools/dark_story/**'
       - '.github/workflows/build-golden-sun-dialogue.yml'
 
 permissions:
