@@ -860,9 +860,9 @@ static void ValeStormyNight_DoraSendsIsaacToThePlaza(void) {
   Actor_SetPosition(ACTOR_DORA, 0, 0);
   Actor_SetPosition(ACTOR_KYLE, 0, 0);
 
-  // The Garoh hooded sprite appears directly behind Isaac, then vanishes.
-  // Keep Isaac's x coordinate and place the figure slightly farther north so
-  // the normal overworld depth sorting draws it behind him.
+  // The Garoh hooded sprite appears just behind Isaac's left shoulder, then
+  // vanishes. Its position overlaps Isaac's sprite but remains farther north,
+  // so normal overworld depth sorting draws it behind him.
   Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(310), PIXELS(889));
   Actor_FaceDirection(ACTOR_HOODED_FIGURE, FACING_SOUTH, 0);
   Import_ActorSetAnimation(ACTOR_HOODED_FIGURE, ANIM_STAND);
