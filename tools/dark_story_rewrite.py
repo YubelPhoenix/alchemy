@@ -132,97 +132,7 @@ def visible_line_length(line: str) -> int:
 def validate_contexts(source: str) -> None:
     for msgid, expected_context in EXPECTED_CONTEXTS.items():
         pattern = re.compile(
-            rf'^msgctxt "{re.escape(expected_context)}"\nmsgid "{re.escape(msgid)}"
-    missing = sorted(set(REPLACEMENTS) - set(entries))
-    if missing:
-        raise SystemExit("Missing expected dialogue IDs: " + ", ".join(missing))
-
-    for msgid, replacement in REPLACEMENTS.items():
-        original = entries[msgid]
-        original_controls = [
-            token for token in CONTROL_RE.findall(original)
-            if token.startswith(("{end_", "{pause_", "{text_effect:", "{reset_text_style}"))
-        ]
-        new_controls = [
-            token for token in CONTROL_RE.findall(replacement)
-            if token.startswith(("{end_", "{pause_", "{text_effect:", "{reset_text_style}"))
-        ]
-        for token in original_controls:
-            if token not in new_controls:
-                raise SystemExit(
-                    f"Dialogue {msgid} dropped required control code {token}."
-                )
-
-        # Validate each page independently. The GBA dialogue UI is narrow;
-        # reject overlong lines or more than three display lines per page.
-        pages = re.split(r"\{page_break\}", replacement)
-        for page_no, page in enumerate(pages, start=1):
-            display_lines = page.split(r"\n")
-            while display_lines and not display_lines[0]:
-                display_lines.pop(0)
-            while display_lines and not display_lines[-1]:
-                display_lines.pop()
-            if not display_lines:
-                continue
-            if len(display_lines) > 3:
-                raise SystemExit(
-                    f"Dialogue {msgid}, page {page_no}: "
-                    f"{len(display_lines)} display lines (maximum 3)."
-                )
-            for line_no, line in enumerate(display_lines, start=1):
-                width = visible_line_length(line)
-                if width > 27:
-                    raise SystemExit(
-                        f"Dialogue {msgid}, page {page_no}, line {line_no}: "
-                        f"{width} visible characters (maximum 27): {line}"
-                    )
-
-def main() -> None:
-    validate_contexts(text)
-    entries_by_id = parse_entries(text)
-    validate_replacements(entries_by_id)
-
-    # Keep all original metadata/context and replace only msgstr content.
-    entries = re.split(r"(\n\s*\n)", text)
-    found = set()
-    for index, entry in enumerate(entries):
-        match = re.search(r'^msgid "([0-9]{5})"$', entry, re.MULTILINE)
-        if not match:
-            continue
-        msgid = match.group(1)
-        if msgid not in REPLACEMENTS:
-            continue
-        if msgid in found:
-            raise SystemExit(f"Duplicate dialogue ID {msgid}.")
-        found.add(msgid)
-        lines = entry.splitlines()
-        msgstr_index = next(
-            (i for i, line in enumerate(lines) if line.startswith("msgstr ")),
-            None,
-        )
-        if msgstr_index is None:
-            raise SystemExit(f"Missing msgstr for {msgid}.")
-
-        # Preserve the project's PO convention: each quoted continuation is
-        # one displayed line; control codes stay in the text, not in Python's
-        # source-line layout.
-        display_lines = REPLACEMENTS[msgid].split(r"\n")
-        encoded_lines = ['msgstr ""']
-        for line_index, display_line in enumerate(display_lines):
-            suffix = r"\n" if line_index < len(display_lines) - 1 else ""
-            encoded_lines.append('"' + display_line + suffix + '"')
-        lines = lines[:msgstr_index] + encoded_lines
-        entries[index] = "\n".join(lines)
-
-    missing = sorted(set(REPLACEMENTS) - found)
-    if missing:
-        raise SystemExit("Missing expected dialogue IDs: " + ", ".join(missing))
-    path.write_text("".join(entries), encoding="utf-8")
-    print(f"Rewrote and validated {len(found)} scene-specific dialogue entries.")
-
-if __name__ == "__main__":
-    main()
-,
+            rf'^msgctxt "{re.escape(expected_context)}"\nmsgid "{re.escape(msgid)}"$',
             re.MULTILINE,
         )
         if not pattern.search(source):
@@ -230,6 +140,7 @@ if __name__ == "__main__":
                 f"Dialogue {msgid} has an unexpected context; "
                 f"expected {expected_context}."
             )
+
 
 def validate_replacements(entries: dict[str, str]) -> None:
     missing = sorted(set(REPLACEMENTS) - set(entries))
@@ -252,8 +163,6 @@ def validate_replacements(entries: dict[str, str]) -> None:
                     f"Dialogue {msgid} dropped required control code {token}."
                 )
 
-        # Validate each page independently. The GBA dialogue UI is narrow;
-        # reject overlong lines or more than three display lines per page.
         pages = re.split(r"\{page_break\}", replacement)
         for page_no, page in enumerate(pages, start=1):
             display_lines = page.split(r"\n")
@@ -276,11 +185,12 @@ def validate_replacements(entries: dict[str, str]) -> None:
                         f"{width} visible characters (maximum 27): {line}"
                     )
 
+
 def main() -> None:
+    validate_contexts(text)
     entries_by_id = parse_entries(text)
     validate_replacements(entries_by_id)
 
-    # Keep all original metadata/context and replace only msgstr content.
     entries = re.split(r"(\n\s*\n)", text)
     found = set()
     for index, entry in enumerate(entries):
@@ -301,9 +211,6 @@ def main() -> None:
         if msgstr_index is None:
             raise SystemExit(f"Missing msgstr for {msgid}.")
 
-        # Preserve the project's PO convention: each quoted continuation is
-        # one displayed line; control codes stay in the text, not in Python's
-        # source-line layout.
         display_lines = REPLACEMENTS[msgid].split(r"\n")
         encoded_lines = ['msgstr ""']
         for line_index, display_line in enumerate(display_lines):
@@ -317,6 +224,7 @@ def main() -> None:
         raise SystemExit("Missing expected dialogue IDs: " + ", ".join(missing))
     path.write_text("".join(entries), encoding="utf-8")
     print(f"Rewrote and validated {len(found)} scene-specific dialogue entries.")
+
 
 if __name__ == "__main__":
     main()
