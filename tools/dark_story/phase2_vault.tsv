@@ -1,0 +1,115 @@
+02387	MsgFieldDoorTightlyLocked	Locked tight. Nobody's\nanswering from inside.{end_wait}
+02388	message	The branches are bent\nlike they're praying.{end_wait}
+04642	MsgVaultWelcomeToVaultTheTownAt	Welcome to Vault. Don't\nmind the ash. It gets\neverywhere.{end_wait}
+04643	MsgVaultWasntEruptionMtAlephIncredible	Wasn't that eruption\nsomething to see?{end_now}
+04644	message	I haven't slept since.\nEvery night, I smell\nthe smoke.{end_wait}
+04645	message	Not even scared? Then\nyou're braver than me.\nOr you hide it well.{end_wait}
+04646	MsgVaultMasterHammetAWealthyLandownerAnd	Master Hammet, the rich\nmerchant from Kalay...\nhis rod was stolen.{page_break}He's not the only one\nwho lost something that\nnight. He's just loud.{end_wait}
+04647	MsgVaultGuessFolksGot	Some people used the\neruption to rob their\nneighbors. Vulture work.{end_wait}
+04648	MsgVaultMasterHammetsServantCantReturnTo	His servant can't go\nback to Kalay without\nthat rod. Poor kid.{end_wait}
+04649	MsgVaultThoseTravelersLeftInBig	Those travelers left in\nsuch a hurry.{page_break}Like they were running\nfrom something. Did you\nsee them come in?{end_now}
+04650	message	No, not Hammet's people.\nSix of them. Two women,\nfour men.{page_break}Strange lot. Dressed for\ntravel, but not like\nmerchants.{page_break}The girl and the old man\nwalked like prisoners.\nNobody said a word.{end_wait}
+04651	message	Oh... maybe they left\nbefore I thought.\nGood. I hope.{end_wait}
+04652	MsgVaultPoorGuyLeft	That poor boy, {actor_name:3}.{page_break}Left at the mayor's to\nlook for a stolen rod.\nHe's just a child.{end_wait}
+04653	MsgVaultMasterHammetsCaravan	Hammet's caravan packed\nup the second the ground\nstopped shaking...{page_break}Can't blame him. I'd run\ntoo, if I had a cart.{end_wait}
+04654	MsgVaultNobodysStealingAnything	Nobody here stole\nanything. I'd stake my\nlife on it.{page_break}It's strangers. Always\nstrangers. Look at who\ncame through town.{page_break}Not us. It can't be us.\nNot in Vault.{end_wait}
+04655	MsgVaultAccusingUsStealingHammetsTreasured	Are you accusing us of\ntaking Hammet's rod?\nChoose your words.{end_now}
+04656	message	Just because we're new\ndoesn't make us thieves!{page_break}You've got no proof.\nNone!{end_wait}
+04657	message	Ha! Knew you were too\nsmart for the rumors.{page_break}It wasn't us. We don't\neven know what was\ntaken, honest.{end_wait}
+04658	MsgVaultOffOnAdventure	An adventure, is it?\nWith the world like\nthis?{end_now}
+04659	message	Young ones like you,\nwalking into danger.\nI don't envy you.{end_wait}
+04660	message	Stop by our Sanctum\nbefore you go. Pray, if\nyou're the praying kind.{end_wait}
+04661	MsgVaultRuffRrruff	Ruff! Rrruff...{end_wait}
+04662	MsgVaultISupposeTheseChildrenCantGo	These{pause_20_skippable} children...\nstuck here till the\nmountain settles.{end_wait}
+04663	MsgVaultMtAlephsEruptionWasBeyondDescription	Aleph's eruption...\nthere are no words.{page_break}We lived. Why did we\nlive? Others didn't.{end_wait}
+04664	MsgVaultWhyDoesAWealthyManLike	Why's a rich man like\nHammet so frantic over\none rod?{page_break}He could buy ten more.\nUnless it's not just a\nrod...{end_wait}
+04665	MsgVaultManShouldStealFromAnother	Stealing while the sky\nwas on fire. A man who\ndoes that has no soul.{end_wait}
+04666	MsgVaultPoorIvanButTheRodMay	Poor {actor_name:3}...{pause_20_skippable}\nIf the rod never turns up,\nhe's stuck here for good.{end_wait}
+04667	MsgVaultGroupTravelersWasStrangeBunch	That group of travelers{pause_20_skippable}\nwas wrong somehow,\nwasn't it?{page_break}They looked headed for\nnortheast Goma Range.\nNobody goes there.{end_wait}
+04668	MsgVaultBetWasThoseThreeCreeps	I'd bet those three at\nthe inn took the rod.\nSomething's off with them.{end_wait}
+04669	MsgVaultSupposeDoesntMatterHowRich	Doesn't matter how rich\nyou are...{page_break}A volcano doesn't care\nabout your gold.{end_wait}
+04670	MsgVaultEveryoneKnowsThoseThreeAt	Everyone knows it was\nthose three at the inn.{page_break}And nobody does a thing!\nIt makes me sick!!{end_wait}
+04671	MsgVaultHmphItLooksLikeTheyreOnto	Tch. They're onto us.{page_break}Time to leave town.\nQuietly. Tonight.{end_wait}
+04672	MsgVaultIWasJustAboutToLeave	I was about to leave\nthis town for good when\nthe mountain blew.{end_wait}
+04673	MsgVaultStealingInMidstVolcanicEruption	Stealing while the\nmountain burned...{page_break}People love money more\nthan their own lives.{end_wait}
+04751	MsgVaultAFieryRockBurntAHole	A burning rock tore\nthrough the roof.{page_break}And who gets to patch\nit? Me. Always me.{end_wait}
+04757	MsgVaultFixTheRoofWhyPayFor	Fix the roof? Pay a\ncarpenter? Please.{page_break}A hammer and some nails.\nHow hard can it be?{end_wait}
+04800	MsgVaultFixingRoofCant	He should be fixing the\nroof, but he's nowhere.{page_break}Hiding in back, I'd bet.\nSlacking, while we sit\nunder a hole.{end_wait}
+04801	MsgVaultSneakWastingTime	That sneak! Off wasting\ntime while the roof\nstays open to the sky!{end_wait}
+04802	message	Whoa, {actor_name:1}'s Psynergy\nmoves things? Where\ndid you learn that?{end_wait}
+04903	MsgVaultLeavingImStillWorriedAbout	You're leaving? I still\nworry about the rod.{page_break}I'll wait here until\nyou two come back.{end_wait}
+04904	MsgVaultWelcomeBackTwo	You're back! Good.\nLet's find that rod.{end_wait}
+04905	message	It's still a crime,\neven if you return it.{page_break}Even if you're really,\nreally sorry.{end_wait}
+04906	MsgVaultWaitDontWantTakeYour	Oh... wait. I can't take\nyour Djinni with me.{page_break}I'll leave it with\n{actor_name:1}. Be quick.{end_wait}
+04912	MsgVaultYoureHittingRoadAgain	On the road again, are\nyou? Already?{end_now}
+04913	message	You'll always have a bed\nhere in Vault. Always.{end_wait}
+04914	message	You say that now...\nbut you'll leave anyway.\nThey all do.{end_wait}
+04915	MsgVaultSmokeIsStillRisingFromMt	Smoke's still coming off\nAleph. I think it's not\ndone with us yet.{end_wait}
+04916	MsgVaultMasterHammetTheWealthyMerchantI	Hammet, the merchant...\nthey say he never made it\nto Kalay.{end_wait}
+04917	MsgVaultGreatCaughtThieves	Thank the gods you got\nthose thieves.{end_wait}
+04918	MsgVaultTalkingAboutHammetsServantIvan	You mean {actor_name:3}, the\nservant? He went to Lunpa.\nAlone.{end_wait}
+04919	message	I see, {actor_name:3}... so\nHammet couldn't be saved.\nI'm sorry.{end_wait}
+04920	MsgVaultEruptionDevastatedRoads	The eruption wrecked the\nroads all over Angara.{page_break}When the southern bridge\nis mended, Kalay opens\nup again.{end_wait}
+04921	MsgVaultDidntGoLunpa	{actor_name:3} wouldn't go to\nLunpa alone. Would he?{end_wait}
+04922	message	Ha... I shouldn't have\nworried about {actor_name:3}.{page_break}When did he join you,\n{actor_name:1}?{end_wait}
+04923	MsgVaultEveryoneGratefulCaptured	Everyone's grateful you\ncaught the thieves.\nThey sleep easier now.{end_wait}
+04924	MsgVaultThoseMenCapturedTheyreIn	Those men you caught...\nthey're locked up now?{end_now}
+04925	message	Hasn't been used in\nyears, that jail. Feels\nwrong, somehow.{end_wait}
+04926	message	They're angry, saying\nawful things in there.\nIt's sad, really.{page_break}Maybe go talk to them.\nWhile you still can.{end_wait}
+04927	MsgVaultOnesWhoCapturedThieves	You... you caught those\nthieves, didn't you?{end_now}
+04928	message	I wish more young people\nhad your sense of honor.\nThe world needs it.{end_wait}
+04929	message	So brave, and so humble.{page_break}Young ones should learn\nfrom you. Before the\nworld teaches them.{end_wait}
+04930	MsgVaultRuffRrruff2	Ruff!{pause_20_skippable} Rrruff...{end_wait}
+04931	MsgVaultYouveMadeOurTownPeacefulAt	You've brought peace to\nVault, at last...{page_break}I wish you'd stay.\nI don't want to be alone.{end_wait}
+04932	MsgVaultNowMtAlephHasCalmedDown	Aleph's quieter now.\nI'm going up to the crater.\nI have to see it.{end_wait}
+04933	MsgVaultOfAllThePlacesWhyWould	Of all places... why'd\nHammet go to Lunpa?{page_break}I'll never understand\nrich people.{end_wait}
+04934	MsgVaultHowPunishPrisoners	How should we punish\nour prisoners?{page_break}Shame them in the\nsquare? Or something\nworse?{end_wait}
+04935	MsgVaultNobodyGetsIntoLunpaExceptFor	Nobody enters Lunpa but\nthieves and their victims.{page_break}Give up on Hammet.\nHe's gone.{end_wait}
+04936	MsgVaultWithRoadOutOnlyWay	With the road out, the\nonly way is the cave\nin the Goma Range.{end_wait}
+04937	MsgVaultWhereDidIvanGoBy	Where did {actor_name:3} go\nall alone? I'm sick\nwith worry.{end_wait}
+04938	message	Wait. When did they\nmeet up with {actor_name:3}?{end_wait}
+04939	MsgVaultMustStrongerThanLookHave	You must be stronger\nthan you look. Catching\nthose thieves...{end_wait}
+04940	MsgVaultFeelMuchBetter	I can breathe again.\nThose thieves are behind\nbars at last.{end_wait}
+04941	MsgVaultThereIsAlwaysAFightWhen	Catching thieves means\na fight. I can't stand\nthat kind of danger.{end_wait}
+04942	MsgVaultIfBringMeBoneIll	Bring me a bone.\nI know something useful.\nI'll trade.{end_wait}
+04943	message	Oh... oh!!{end_wait}
+04944	message	Ruff ruff ruff!!!{end_wait}
+04945	message	How did you know I\nwanted this? Thank you.{end_wait}
+04991	MsgVaultThankForOtherDayLeaving	Thank you for the other\nday. Leaving already?{page_break}I'll pray for your\nsafety. Every night.{end_wait}
+04995	MsgVaultSniffAhTheSmellOfCooking	Sniff... Cooking meat...{page_break}Nobody's looking. One\nbite won't hurt...{end_wait}
+05035	MsgVaultCarefulSearchWillRevealPassage	A careful search will\n{pause_20_skippable}reveal{pause_20_skippable} a passage leading\nunderground nearby.{page_break}There may be treasure\ndown there. Or not.{end_wait}
+05036	message	Bilibin is east of here.{end_wait}
+05037	message	Imil is far to the\nnorth. Cold up there.{end_wait}
+05416	MsgFieldFlippedSwitch	{protagonist_name} threw the\nswitch. Something clicked\nbeyond the wall.{end_wait}
+07339	MsgVaultWarriorsWhoCaptured	You! You're the ones who\ncaught the thieves, aren't\nyou?{page_break}You came back to Vault.\nThank the gods.{end_wait}
+07340	MsgVaultYouveProbablyAlreadyHeardButThe	You've probably heard.\nThe bridge to Kalay is\nfixed.{end_wait}
+07341	MsgVaultIWonderWhatHappenedToHammet	I keep wondering what\nhappened to Hammet in\nLunpa...{end_wait}
+07342	MsgVaultRumorsThievesLunpa	Rumors say thieves from\nLunpa are running wild,{page_break}but we've ignored them.\nIt's easier that way.{page_break}Why have they gone so\nquiet lately? That scares\nme more.{end_wait}
+07343	MsgVaultTalkingMayorStrong	Oh, it's you. I was just\ntalking about you with\nthe mayor.{page_break}You're strong. Let the\nthieves come. They'll\nregret it.{page_break}They won't get past you.\nI hope.{end_wait}
+07344	MsgVaultVolcanoStaysCalm	If the mountain stays\nquiet and the bridge\nholds,{page_break}we might finally stop\nbeing afraid.{end_wait}
+07345	MsgVaultWarriorGuy	Hey, it's that warrior!{end_wait}
+07346	message	Yeah. And {actor_name:3}, too.\nHe looks tired.{end_wait}
+07347	message	Glad you came back.\nVault feels safer with\nyou around.{end_wait}
+07348	MsgVaultWishVaultsElders	I wish Vault's elders\nhad half your courage.{end_wait}
+07349	MsgVaultGuysCheckJail	Did you check the jail?\nYou'll want to see it.{end_now}
+07350	message	How did those thugs break\nout? The bars are solid.{page_break}Someone helped them.\nI don't like it.{end_wait}
+07351	message	The thieves broke out\nand got away.{page_break}After everything you did\nto catch them...{end_wait}
+07352	MsgVaultTheThievesEscapedButIThink	The thieves escaped, but\nmaybe that's for the best.{page_break}Perhaps it's all part\nof a plan we can't see.{end_wait}
+07353	message	Bow wow wow wow!!{end_wait}
+07354	MsgVaultICantBelieveTheyreHereWhat	You're here! Thank the\ngods. Perfect timing.{end_wait}
+07355	MsgVaultWhenThoseGuysFromKalayCame	The men from Kalay who\nfixed the bridge looked{page_break}worried. Like they\nwere afraid of something.{end_wait}
+07356	MsgVaultYeahSomeWarriorsFromKalayCame	Warriors from Kalay came\nto Vault, asking after\nHammet.{page_break}Did something happen\nto him after all?{end_wait}
+07357	MsgVaultOnceDodonpaTook	Since Dodonpa took over,\nLunpa's outlaws are no\nbetter than thieves.{page_break}They're quiet for a\nreason. I'd bet on it.{end_wait}
+07358	MsgVaultThoseStupidThievesEscapedAndWe	Those fools escaped and\nwe don't know where.{page_break}They hate these kids for\ncatching them. I wonder\nif they'd...{end_wait}
+07359	MsgVaultGreatEverythingSolved	Winter's coming. I wish\nthis were all settled\nbefore it does.{end_wait}
+07360	MsgVaultWatchingGuysMakes	Watching you makes me\nfeel braver.{page_break}Tell me about your\ntravels, someday. If you\ncome back.{end_wait}
+07361	MsgVaultGrownUpsAlways	Grown-ups panic whenever\nsomething happens.{page_break}I'm so tired of it.\nI hate it.{end_wait}
+07362	MsgVaultNotLikeEasy	It isn't easy to get that\njail key.{page_break}They got it out, so they\nknew the lock's secret...{page_break}Somebody told them.\nSomebody here.{end_wait}
+07363	MsgVaultIKeepWonderingWasOurStatue	I keep wondering... was\nour statue taken because\nof something{pause_20_skippable}{pause_20_skippable} I did?{end_wait}
+07364	MsgVaultIfYouBringMeSomeBones	Bring me some bones and\nI'll tell you a secret.{end_wait}
+07365	message	Owwwoooooh...{end_wait}
+07366	message	Bow wow wow!{end_wait}
+07367	message	How did you know I\nwanted this? Thank you.{end_wait}
+07409	MsgVaultThereYouSeeTheRoofRepairs	There. The roof's done.\nNo more sky coming in.{end_wait}
+07413	MsgVaultThatsTheLastOfTheRoof	That's the last of the\nroof. What now? I don't\nlike being idle.{end_wait}
+10716	MsgVaultCanHearWaterRumblingDown	Water's rumbling down\nthere. Deep. Constant.{end_wait}
