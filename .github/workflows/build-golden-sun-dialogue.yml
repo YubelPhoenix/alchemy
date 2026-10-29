@@ -6,6 +6,8 @@ on:
     branches: [dark-vale-dialogue, dark-story-rewrite]
     paths:
       - 'games/tbs/text/en.po'
+      - 'games/tbs/src/**'
+      - 'games/tbs/include/**'
       - 'games/tbs/src/scene/vale_stormy_night.c'
       - 'games/tbs/include/sprite_ids.h'
       - 'games/tbs/src/graphics/sprite/spr_407.png'
