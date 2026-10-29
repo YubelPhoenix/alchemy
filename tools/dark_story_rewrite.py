@@ -65,8 +65,15 @@ def main() -> None:
         )
         if msgstr_index is None:
             raise SystemExit(f"Missing msgstr for {msgid}.")
-        # Replace the entire msgstr, including all old continuation lines.
-        lines = lines[:msgstr_index] + ['msgstr "' + REPLACEMENTS[msgid] + '"']
+        # Preserve the project's physical-line PO convention. The game text
+        # compiler treats each quoted continuation as a display line; keeping
+        # one display line per PO string also makes the generated file auditable.
+        display_lines = REPLACEMENTS[msgid].split(r"\n")
+        encoded_lines = ['msgstr ""']
+        for line_index, display_line in enumerate(display_lines):
+            suffix = r"\n" if line_index < len(display_lines) - 1 else ""
+            encoded_lines.append('"' + display_line + suffix + '"')
+        lines = lines[:msgstr_index] + encoded_lines
         entries[index] = "\n".join(lines)
 
     missing = sorted(set(REPLACEMENTS) - found)
