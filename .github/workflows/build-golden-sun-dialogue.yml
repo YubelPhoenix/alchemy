@@ -54,9 +54,8 @@ jobs:
         run: |
           git fetch origin main
           git worktree add --detach "$RUNNER_TEMP/alchemy-base" origin/main
-          mkdir -p "$RUNNER_TEMP/alchemy-base/tools/out"
-          cp -a tools/out/compilers "$RUNNER_TEMP/alchemy-base/tools/out/compilers"
-          cp -a tools/out/compiler-runtime "$RUNNER_TEMP/alchemy-base/tools/out/compiler-runtime"
+          git -C "$RUNNER_TEMP/alchemy-base" submodule update --init --recursive
+          make -C "$RUNNER_TEMP/alchemy-base" bootstrap CARGO=false
           make -C "$RUNNER_TEMP/alchemy-base" compare-tbs-en CARGO=false \
             XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/"
           test -s "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba"
