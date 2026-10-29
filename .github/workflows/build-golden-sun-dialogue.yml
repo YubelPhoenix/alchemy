@@ -7,6 +7,7 @@ on:
     paths:
       - 'games/tbs/text/en.po'
       - 'games/tbs/src/scene/vale_stormy_night.c'
+      - 'tools/dark_story_rewrite.py'
       - '.github/workflows/build-golden-sun-dialogue.yml'
 
 permissions:
@@ -35,7 +36,7 @@ jobs:
             build-essential git curl patch binutils-arm-none-eabi \
             pkg-config libpng-dev libutf8proc-dev ccache
 
-      - name: Apply the first dark-story dialogue pass
+      - name: Apply and validate the dark-story dialogue pass
         run: python3 tools/dark_story_rewrite.py
 
       - name: Build pinned toolchain and host tools
@@ -56,9 +57,9 @@ jobs:
           mkdir -p "$RUNNER_TEMP/alchemy-base/tools/out"
           cp -a tools/out/compilers "$RUNNER_TEMP/alchemy-base/tools/out/compilers"
           cp -a tools/out/compiler-runtime "$RUNNER_TEMP/alchemy-base/tools/out/compiler-runtime"
-          make -C "$RUNNER_TEMP/alchemy-base" tbs-en CARGO=false \
-            XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/" \
-            && test -s "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba"
+          make -C "$RUNNER_TEMP/alchemy-base" compare-tbs-en CARGO=false \
+            XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/"
+          test -s "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba"
 
       - name: Create an IPS patch (not a redistributable ROM)
         run: |
