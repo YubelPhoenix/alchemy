@@ -7,6 +7,9 @@ on:
     paths:
       - 'games/tbs/text/en.po'
       - 'games/tbs/src/scene/vale_stormy_night.c'
+      - 'games/tbs/include/sprite_ids.h'
+      - 'games/tbs/src/graphics/sprite/spr_407.png'
+      - 'games/tbs/src/graphics/sprite/spr_407.tsv'
       - 'tools/dark_story_rewrite.py'
       - '.github/workflows/build-golden-sun-dialogue.yml'
 

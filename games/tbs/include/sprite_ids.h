@@ -306,6 +306,9 @@ enum SpriteId {
   /// ★ Named from what the player sees: a young man with brown hair in a
   /// green cloak (spr_035.png)
   SPRITE_FELIX = 0x23,
+   /// A hooded villager from Garoh in The Lost Age, used for the silent figure
+   /// in Vale's storm-night prologue (spr_407.png).
+   SPRITE_GAROH_HOODED_FIGURE = 0x197,
   /// ★ Named from what the player sees: a small boy with spiky orange hair in
   /// a green shirt and shorts (spr_037.png)
   SPRITE_BOY_WITH_ORANGE_HAIR = 0x25,
