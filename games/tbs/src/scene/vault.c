@@ -145,7 +145,10 @@ enum {
   ACTOR_WOMAN_WANTING_THE_ROOF_FIXED = 21,
   /// Sap, a Venus Djinni, hiding until the bell calls it.
   /// ★ Named from the game: "Sap" (MsgDjinnName)
-  ACTOR_SAP = 23
+  ACTOR_SAP = 23,
+  /// The silent, cloaked watcher, placed off the map until her glimpse
+  /// (Vault_WatcherAppears).
+  ACTOR_VAULT_WATCHER = 24
 };
 
 static void Vault_ShowStandingActorMessage(s32 actorId);
@@ -1259,6 +1262,21 @@ s32 gVault_GirlRoundTheWellRoute[] = {
     SC_END,
 };
 
+/// Stepping onto the road just inside the south gate: for a moment a cloaked
+/// figure stands in the road a few steps north, at the edge of the screen,
+/// watching the party. She says nothing and is gone. It plays once
+/// (FLAG_DARK_WATCHER_VAULT).
+static void Vault_WatcherAppears(void) {
+  Event_Start();
+  GameFlag_Set(FLAG_DARK_WATCHER_VAULT);
+  Actor_SetPosition(ACTOR_VAULT_WATCHER, PIXELS(392), PIXELS(376));
+  Actor_FaceDirection(ACTOR_VAULT_WATCHER, FACING_SOUTH, 0);
+  Import_ActorSetAnimation(ACTOR_VAULT_WATCHER, ANIM_STAND);
+  Event_WaitFrames(100);
+  Actor_SetPosition(ACTOR_VAULT_WATCHER, 0, 0);
+  Event_End();
+}
+
 struct SceneEntrance gVault_Entrances[] = {
     {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 223, 0, 135, FACING_SOUTH, 0, -1, -1,
      -1, -1, 0},
@@ -1350,6 +1368,8 @@ struct ActorTemplate gVault_ActorTemplates[] = {
         0, 0, 0, FACING_NORTH, TALK_FACING_PARTY, 0 },
     { VENUS_DJINNI, FLAG_DJINNI(DJINNI_SAP), MOVEMENT_TYPE_STAND,
         PIXELS(344), 0, PIXELS(96), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    { SPRITE_GAROH_HOODED_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1386,6 +1406,8 @@ struct ActorTemplate gVault_ActorTemplatesAfterThieves[] = {
         0, 0, 0, FACING_NORTH, TALK_FACING_PARTY, 0 },
     { VENUS_DJINNI, FLAG_DJINNI(DJINNI_SAP), MOVEMENT_TYPE_STAND,
         PIXELS(344), 0, PIXELS(96), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    { SPRITE_GAROH_HOODED_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1434,6 +1456,7 @@ struct Trigger gVault_Triggers[] = {
     { EXAMINE_TRIGGER(EXAMINE_SILENT), MB_VAULT_BELL, CONDITION_ALWAYS, EVENT(Vault_RingBell) },
     { EXAMINE_TRIGGER(EXAMINE_SILENT), MB_VAULT_WELL, CONDITION_ALWAYS, EVENT(Vault_PeerIntoWell) },
     { EXAMINE_TRIGGER(EXAMINE_WOODEN_BOX), MB_VAULT_WOODEN_BOX, FLAG_VAULT_BOX_NUT, FIND_ITEM(ITEM_NUT) },
+    { TRIGGER_STEP, 3, FLAG_DARK_WATCHER_VAULT, EVENT(Vault_WatcherAppears) },
     { TRIGGERS_END },
 };
 
@@ -1479,6 +1502,7 @@ struct Trigger gVault_TriggersAfterThieves[] = {
     { EXAMINE_TRIGGER(EXAMINE_SILENT), MB_VAULT_WELL, CONDITION_ALWAYS, EVENT(Vault_PeerIntoWell) },
     { USE_ITEM_ON_ACTOR(ITEM_BONE), ACTOR_VAULT_DOG, FLAG_VAULT_DOG_SHOWN_PASSAGE, EVENT(Vault_GiveBoneToDog) },
     { EXAMINE_TRIGGER(EXAMINE_WOODEN_BOX), MB_VAULT_WOODEN_BOX, FLAG_VAULT_BOX_NUT, FIND_ITEM(ITEM_NUT) },
+    { TRIGGER_STEP, 3, FLAG_DARK_WATCHER_VAULT, EVENT(Vault_WatcherAppears) },
     { TRIGGERS_END },
 };
 // clang-format on
