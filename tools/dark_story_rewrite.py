@@ -132,7 +132,7 @@ def visible_line_length(line: str) -> int:
 def validate_contexts(source: str) -> None:
     for msgid, expected_context in EXPECTED_CONTEXTS.items():
         pattern = re.compile(
-            rf'^msgctxt "{re.escape(expected_context)}"\\nmsgid "{re.escape(msgid)}"
+            rf'^msgctxt "{re.escape(expected_context)}"\nmsgid "{re.escape(msgid)}"
     missing = sorted(set(REPLACEMENTS) - set(entries))
     if missing:
         raise SystemExit("Missing expected dialogue IDs: " + ", ".join(missing))
