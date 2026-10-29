@@ -220,7 +220,10 @@ enum SolSanctumStatueActorId {
   /// Stands in the hole in the floor once the centre statue has dropped in.
   /// ★ Named from the game: "And dropped the statue into it after that."
   /// (MsgSolSanctumKradenYouFoundIt)
-  ACTOR_MOVED_CENTER_STATUE
+  ACTOR_MOVED_CENTER_STATUE,
+  /// The cloaked figure (SolSanctumStatue_WatcherAppears), after the eleven
+  /// templates that come before it.
+  ACTOR_STATUE_WATCHER
 };
 
 /// The scene's bss, in this order; as commons of one object the linker would
@@ -1704,6 +1707,20 @@ static void SolSanctumStatue_SayThenWait(s32 speaker, s32 frames) {
   Event_WaitFrames(frames);
 }
 
+/// The cloaked figure stands in the dark corridor south of the statue hall as
+/// the party leaves it, watching them. She says nothing and is gone. It plays
+/// once (FLAG_DARK_WATCHER_SANCTUM_STATUE).
+static void SolSanctumStatue_WatcherAppears(void) {
+  Event_Start();
+  GameFlag_Set(FLAG_DARK_WATCHER_SANCTUM_STATUE);
+  Actor_SetPosition(ACTOR_STATUE_WATCHER, PIXELS(568), PIXELS(304));
+  Actor_FaceDirection(ACTOR_STATUE_WATCHER, FACING_NORTH, 0);
+  Import_ActorSetAnimation(ACTOR_STATUE_WATCHER, ANIM_STAND);
+  Event_WaitFrames(100);
+  Actor_SetPosition(ACTOR_STATUE_WATCHER, 0, 0);
+  Event_End();
+}
+
 struct SceneEntrance gSolSanctumStatue_Entrances[] = {
     {SOL_SANCTUM_STATUE_FROM_VALE_PLAZA, CONDITION_ALWAYS, 287, 0, 176,
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},
@@ -1773,6 +1790,8 @@ struct ActorTemplate gSolSanctumStatue_ActorTemplates[] = {
         PIXELS(288), 0, PIXELS(120), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SPRITE_SUN_DISC, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(1608), 0, PIXELS(1608), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    { SPRITE_GAROH_HOODED_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        0, 0, 0, FACING_NORTH, TALK_FACING_KEEP, 0 },
     { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(560), 0, PIXELS(136), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { ACTOR_GARET, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
@@ -1786,6 +1805,8 @@ struct Trigger gSolSanctumStatue_Triggers[] = {
      SOL_SANCTUM_STATUE_TO_SOL_SANCTUM_LUNA_SOL_ROOMS},
     {TRIGGER_EXIT, 2, CONDITION_ALWAYS,
      SOL_SANCTUM_STATUE_TO_SOL_SANCTUM_PSYNERGY_STONE},
+    {TRIGGER_STEP, 3, FLAG_DARK_WATCHER_SANCTUM_STATUE,
+     EVENT(SolSanctumStatue_WatcherAppears)},
     {STEP_TRIGGER_WALKING, MB_SOL_SANCTUM_STATUE_JUMP_NORTH, CONDITION_ALWAYS,
      EVENT(SolSanctumStatue_JumpNorth)},
     {STEP_TRIGGER_WALKING, MB_SOL_SANCTUM_STATUE_JUMP_SOUTH, CONDITION_ALWAYS,
