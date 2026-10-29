@@ -143,6 +143,15 @@ def validate_contexts(source: str) -> None:
 
 
 def validate_replacements(entries: dict[str, str]) -> None:
+    # Jenna's post-Boulder line is a crash-regression target. Keep it on one
+    # page until the in-game interaction has been verified; the general width
+    # checks below still enforce the game's three-line, 27-character limits.
+    jenna_aftermath = REPLACEMENTS["03791"]
+    if "{page_break}" in jenna_aftermath:
+        raise SystemExit("Dialogue 03791 must stay on one page during crash testing.")
+    if "{end_wait}" not in jenna_aftermath:
+        raise SystemExit("Dialogue 03791 is missing its required end_wait control.")
+
     missing = sorted(set(REPLACEMENTS) - set(entries))
     if missing:
         raise SystemExit("Missing expected dialogue IDs: " + ", ".join(missing))
