@@ -1,0 +1,354 @@
+00110	message	Save your adventure?{end_now}
+02389	MsgValeWoodenBoxEmpty	but found nothing.{end_wait}
+02390	message	Dust. Years and years.{end_wait}
+02391	message	Dry old tomes. Nothing that\nhelps anyone now.{end_wait}
+02392	message	A sarcophagus. Better not\nto wonder who's inside.{end_wait}
+02393	message	It's glowing hot. Don't\ntouch it.{end_wait}
+02394	message	The surface ripples, though\nthere's no wind.{end_wait}
+02395	message	Just a stone pillar. Cold\nand silent.{end_wait}
+02396	message	Cold. Colder than it\nshould be.{end_wait}
+02397	message	No way through here.\nNot by force.{end_wait}
+02398	message	There could be something\nhere. Look closer.{end_wait}
+02399	message	Pitch black inside. It\nfeels like it's listening.{end_wait}
+02400	message	Nothing unusual. Somehow\nthat's worse.{end_wait}
+02401	message	It looks ready to spring\nto life. Don't turn your\nback on it.{end_wait}
+02402	message	Words are carved into it,\nworn thin by time.{end_wait}
+02403	message	but found nothing.{end_wait}
+02404	message	but finds nothing.{end_wait}
+02405	message	but finds nothing.{end_wait}
+02406	message	Nothing new in these. Only\nold, tired ideas.{end_wait}
+02407	message	A long way down. Too far to\nsee the bottom.{end_wait}
+02420	MsgValePartyPpRestored	A little warmth returns.\nPP is fully restored.{end_wait}
+03692	MsgValeUghHrnghhh	{text_effect:4}Ngh... {pause_20_skippable}Hrrngh... {end_wait}
+03701	message	*Hah...* {pause_20_skippable}*Hah...*{end_wait}
+03727	message	{text_effect:4}No, no, nooo!{pause_20_skippable} {actor_name:5}!{end_wait}
+03741	message	{actor_name:1}!{end_wait}
+03759	message	There. That's all I had.{page_break}I hope it was enough.{end_wait}
+03770	message	Grandpa! {actor_name:6}!\nThank gods you're alive!{end_wait}
+03780	message	...Thank you, {actor_name:1}.\nI won't forget this.{end_wait}
+03784	message	Yes, ma'am... I'm trying.{end_wait}
+03795	MsgValeIsaac	{actor_name:1}...{end_wait}
+03806	message	{actor_name:1}! Wait! Don't!{end_wait}
+03808	message	{actor_name:1}... listen.{end_wait}
+03816	MsgValeRepairCaption	Three years later...{end_wait}
+03819	message	Hyah!{end_wait}
+03821	message	Hyaaaah!{end_wait}
+03831	message	What is it, {actor_name:2}?{end_wait}
+03834	message	Fine. Forget I said\nanything.{end_wait}
+03835	message	{actor_name:6},{pause_20_skippable} are you angry\nwith me?{end_wait}
+03836	message	Not now. I can't talk\nabout it.{end_wait}
+03837	message	Come on! Move it!{end_wait}
+03838	message	Huh?{pause_20_skippable} What?{end_wait}
+03839	message	{actor_name:1}'s waiting for us.\nWe shouldn't be late.{end_wait}
+03840	message	But, {actor_name:6}...!{end_wait}
+03842	message	{actor_name:6}...{end_wait}
+03844	message	You patched it well.\nKyle would've approved.{end_wait}
+03845	message	All right. That's the last\nof it. Good work.{end_wait}
+03848	message	I don't believe that for a\nsecond.{end_wait}
+03849	message	I thought so... {actor_name:1}.\nYou can't lie to me.{end_wait}
+03852	message	I thought as much.{end_wait}
+03853	message	Hmm...{pause_20_skippable} I wonder.\nI wonder about a lot.{end_wait}
+03860	message	MA'{pause_20_skippable}AAAAM!!!{end_wait}
+03861	message	Hello, {actor_name:6}. Did you\nsleep at all?{end_wait}
+03862	message	Morning, ma'am. I managed\nan hour or two.{end_wait}
+03863	message	Yes, yes... Good morning.\nIf you can call it that.{end_wait}
+03864	message	And {actor_name:2}, too.\nThe whole lot of you.{end_wait}
+03865	message	Where are you all headed\ntoday? Tell me honestly.{end_wait}
+03866	message	Up Mt. Aleph, with Kraden.\nIt's for our studies.{end_wait}
+03867	message	Climbing that mountain.\nWith Kraden, no less.{end_wait}
+03869	message	No! It's for our studies.\nHonest.{end_wait}
+03870	message	Ah. Alchemy. Of course.{end_wait}
+03871	message	Alchemy is where all\nPsynergy began, they say.{end_wait}
+03872	message	And Mt. Aleph is where it's\nstrongest. You know that.{end_wait}
+03873	message	They say Kraden's the best\nteacher anywhere. Wisdom\nhas its price.{end_wait}
+03882	message	{actor_name:2}, don't! Stop!{end_wait}
+03883	message	Oh! My heart nearly\nstopped!{end_wait}
+03884	message	I'm sorry. I didn't mean to\nstartle you.{end_wait}
+03885	message	Well!{end_wait}
+03886	message	I... I'm sorry, ma'am. I'll\nget out of your way.\nRight now!{end_wait}
+03887	message	Wait! Not there!{end_wait}
+03888	message	Huh?{pause_20_skippable} What's wrong with{em_dash}{end_wait}
+03889	message	Oh, never mind...{end_wait}
+03890	message	You'd better go. Now.\nBefore I think too hard.{end_wait}
+03892	message	I'll tidy this. You needn't\nstay and watch.{end_wait}
+03893	message	Thank you, ma'am.{end_wait}
+03894	message	Please, call me Dora.{end_wait}
+03895	message	We'll go now. Sorry again.{end_wait}
+03896	message	Wait, {actor_name:2}...{pause_20_skippable}{pause_20_skippable}\nPlease{pause_20_skippable} watch your step.{end_wait}
+03917	MsgValeRrruffRrrruff	Rrr... Rrruff!{end_wait}
+03918	message	Woof!{pause_20_skippable} Woof... woof.{end_wait}
+03939	MsgValeYouMakeMeSoMad	{actor_name:2}, you drive me\ncrazy sometimes!{end_wait}
+03941	message	You're in trouble tonight.\n{pause_20_skippable}Just {pause_20_skippable}wait {pause_20_skippable}and {pause_20_skippable}see.{end_wait}
+03980	message	You there.\nWhat are you doing here?{end_wait}
+03981	message	Us? We're just... walking.{end_wait}
+03985	MsgValeYoureTheOnesSneakingAround	You're the ones who were\nsneaking around earlier!{end_wait}
+03992	MsgValeSaturosGo	Go. Quickly.{end_wait}
+03993	message	You're... letting us go?{end_wait}
+03996	message	Let's... let's just go,\n{actor_name:1}. Now.{end_wait}
+04002	message	And all that about the\nelements... what was it?{end_wait}
+04006	MsgValeKradenOhIsaac	Oh. {protagonist_name}.\nCome in. Quickly.{end_wait}
+04007	message	You look troubled, my boy.\nWhat is it?{end_wait}
+04008	message	Me? Ah... well, yes.\nI suppose I am.{end_wait}
+04020	message	Wait, everyone. Think.{end_wait}
+04023	message	Then what do we do?{end_wait}
+04026	message	Isn't that impossible?\nIt's forbidden.{end_wait}
+04027	message	Why would it be? Because\nthey say so?{end_wait}
+04032	message	Right. We aren't doing\nanything wrong up there.{end_wait}
+04036	message	Then it's decided.{end_wait}
+04040	message	You don't have to be so\nharsh...{end_wait}
+04043	message	There's no need to be\ncruel...{end_wait}
+04045	message	All right.{pause_20_skippable} Let's go.{end_wait}
+04381	MsgValeItIsVeryDangerousToGo	Go no further. Mt. Aleph is\nawake and it is angry.{page_break}Turn back. Now.{end_wait}
+04382	MsgValeIAmAllAloneInThis	I'm alone out here, in the\nmiddle of all this.{page_break}Did the Great Healer\nforget about me...?{end_wait}
+04383	MsgValeCheckedThePsynergyStone	{protagonist_name} examined the\nPsynergy Stone.{end_wait}
+04384	MsgValeSChestValuables	It's {actor_name:2}'s chest of\nvaluables. He nearly died\nfor it.{end_wait}
+04385	MsgValeRockCannotBeMoved	A huge rock. {protagonist_name}\ncan't budge it. Not\nwith bare hands.{end_wait}
+04386	MsgValeMtAlephWasInactive	I thought Mt. Aleph had{pause_20_skippable}\ngone quiet for good...{end_wait}
+04387	message	My grandson... can {actor_name:2}\nsurvive this? Can any\nof them?{end_wait}
+04388	message	Grandpa, we don't know he's\nup there. Don't say that.{end_wait}
+04389	message	But, Sis,{pause_20_skippable} somebody saw\nthem heading up the\nmountain.{end_wait}
+04390	message	They were loitering here\nwhile I stood watch.\nI let them be.{end_wait}
+04391	message	{actor_name:1} and {actor_name:2} went\nto Kraden's house. Like\nalways.{end_wait}
+04392	message	Studying Alchemy, right?\nThat's what they told us.{end_wait}
+04393	message	Yes...{pause_20_skippable} but what does\nthat have to do with\nthe eruption?{end_wait}
+04394	message	Oh no.{pause_20_skippable} It's Grandpa.\nAnd the others.{end_wait}
+04395	message	What do we do,\n{actor_name:1}? Go back up?{end_now}
+04396	message	{actor_name:2}!{end_wait}
+04397	message	{actor_name:1}!{end_wait}
+04398	message	You're alive! Thank the\ngods!{end_wait}
+04399	message	Over here. Both of you.{end_wait}
+04400	message	Where were you?{end_wait}
+04401	message	What happened up there?{end_wait}
+04402	message	Weren't {actor_name:6} and Kraden\nwith you?{end_now}
+04403	message	Taken? Taken by whom?{end_wait}
+04404	message	What do you mean, taken?\nSpeak plainly, boy.{end_wait}
+04405	message	This is more tangled than\nI feared.{end_wait}
+04406	message	Tell us everything that\nhappened on the mountain.\nLeave nothing out.{end_wait}
+04407	message	Come into the Sanctum.\nBoth of you. Now.{end_wait}
+04408	MsgSanctumWeHadIdeaTrueSanctum	We never knew... the true\nSanctum was hidden all\nthis time.{end_wait}
+04409	message	And {actor_name:6} and Kraden...\nthey're prisoners?{end_now}
+04410	message	Taken against their will.\nGods, how cruel.{end_wait}
+04411	message	We can only hope they're\nalive. And unharmed.{end_wait}
+04412	message	Can they be saved? Truly?{end_now}
+04413	message	{actor_name:5} will protect them.\nHe's {actor_name:6}'s brother.\nHe has to.{end_wait}
+04414	message	Then our hope rests with\n{actor_name:5}. May he be strong.\n{end_wait}
+04415	message	Great Healer, you've said\nnothing. What troubles you?{end_wait}
+04416	message	You seem a thousand miles\naway.{end_wait}
+04417	message	That floating stone that\nappeared before {actor_name:1}...{end_wait}
+04418	message	What of it?{end_wait}
+04419	message	I've seen it before.{pause_20_skippable}\nIn dreams. For years.{end_wait}
+04420	message	It came again just now.\nBehind my eyes. And it\nspoke to me.{end_wait}
+04421	message	Just now? You saw it?{end_wait}
+04422	message	It must be the Wise One.\nGuardian of the Elemental\nStars.{end_wait}
+04423	message	It showed me what befell\nyou in Sol Sanctum.{end_wait}
+04424	message	And the eruption? What\ndoes the Wise One say?{end_wait}
+04425	message	Will the mountain take us?{end_wait}
+04426	message	The eruption can't be\nstopped. Not anymore.{end_wait}
+04427	message	Will Vale be...{pause_20_skippable} lost?{end_wait}
+04428	message	Vale will be spared. The\nWise One will turn the lava\naway from us.{end_wait}
+04429	message	Great Healer? Your face...{end_wait}
+04430	message	...There's more. Something\nyou're not telling us.{end_wait}
+04431	message	Something worse than Vale's\nruin is coming.{end_wait}
+04432	message	What could be worse than\nlosing Vale?{end_wait}
+04433	message	A terrible power.{end_wait}
+04434	message	The Elemental Stars hold\nenormous power.{end_wait}
+04435	message	...And Vale has guarded\nthem all this time?{end_wait}
+04436	message	The lighthouses, once lit,\nwill release that power\nupon the world.{end_wait}
+04437	message	And when that power\nis loosed, the whole\nworld will...{end_wait}
+04438	message	The Wise One wants the\nStars back, doesn't it?{end_wait}
+04439	message	This world is ours to save\nor to ruin.{page_break}If we do nothing, we\nruin it ourselves.{end_wait}
+04440	message	A cruel burden...{end_wait}
+04441	message	No salvation is coming.\nWe have to save ourselves.{end_wait}
+04442	message	Then what can we do?{end_wait}
+04443	message	Taking the Stars back is{pause_20_skippable}\ntheir burden alone.{end_wait}
+04444	message	You'd put the fate of the\nworld in the hands of\n{actor_name:1} and {actor_name:2}?{end_wait}
+04445	message	{actor_name:2} is a child. How\ncan he carry such a thing?{end_wait}
+04446	message	The Wise One has spoken.{end_wait}
+04447	message	We are all responsible\nfor this. Every one of us.{end_wait}
+04448	message	Now each of you must\nchoose for yourselves.{end_wait}
+04449	message	I don't know what to do.\n{actor_name:1}... you decide.{end_wait}
+04493	MsgValeTremorsSettled	You're {actor_name:1}, right?{page_break}The tremors have eased a\nlittle. That's something.\nIt won't last, though.{end_wait}
+04494	MsgValeRoadToVault	Lost? Try Vault.{page_break}East a little, then south.\nThey'll take in strangers.\nMaybe.{end_wait}
+04495	MsgValeRoadToGomaRange	East along the road, then\nnorth, and you'll reach the\nGoma Range. Bleak country.{end_wait}
+04496	MsgValePsynergyStonePowder	The air glitters since the\nmountain blew.{page_break}Is it ash... or crushed\nPsynergy Stones, falling\nlike snow?{end_wait}
+04497	MsgValeYouSawTheWiseOne	You saw the Wise One? The\none in the healers' tales?{end_now}
+04498	message	Then you've been blessed.{pause_20_skippable}\nOr cursed. Time will say.{end_wait}
+04499	message	The Wise One held back the\nlava, they say. I'd rather\nnot ask what it costs.{end_wait}
+04500	MsgValeLunpaFoundedNorthernTown	Lunpa, the righteous thief,\nfounded a town up north\nlong ago.{end_wait}
+04501	MsgValeDoraHasBeenCrying	{actor_name:1}... your mother has\nbeen crying since you left.\nShe thinks no one hears.{end_wait}
+04502	MsgValeStonesScatteredByEruption	If your Psynergy runs low,\ntouch a Psynergy Stone.{page_break}But the eruption flung\nthem everywhere. Who knows\nwhere they landed.{end_wait}
+04503	MsgValeArentWorriedCrossing	Only two of you out there?\nAren't you afraid?{end_now}
+04504	message	Three of you out there?\nAren't you afraid?{end_now}
+04505	message	Four of you, against all\nthat? Aren't you afraid?{end_now}
+04506	message	Don't wander into the\nunknown too deep.{page_break}Fighting hopeless odds\nisn't brave. It's a\nfuneral waiting to happen.{end_wait}
+04507	message	Courage isn't recklessness.\nKnow the difference.{page_break}True courage takes\ncaution. Sometimes it even\nlooks like cowardice.{end_wait}
+04508	MsgValeReplenishPsynergyBeforeDungeon	Restore Psynergy before you\ngo into any dungeon.{page_break}The ones who come back\nalways do.{end_wait}
+04530	MsgValeImProudOfYouGaretMy	I'm proud of you, {actor_name:2}.\nMy son... on a quest like\nthis. Come back to me.{end_wait}
+04532	MsgValeYouGuysAreSoLuckyGaret	You're lucky, {actor_name:2}.{page_break}I'd give anything to go\nwith you. Anything.{end_wait}
+04533	MsgValePleaseTakeCareOfMyBrother	Look after my brother,{pause_20_skippable}\n{actor_name:1}. Please.{end_wait}
+04534	MsgValeYouCantBeIsaac	Who are you?{pause_20_skippable}{pause_20_skippable} It can't\nbe... You aren't\n{actor_name:1}, are you?{end_now}
+04535	message	{actor_name:1}... No. A lie.{end_wait}
+04536	message	He swore he wouldn't come\nback until it was done.{page_break}My {actor_name:1} keeps his word.\n...Please. Go away.{end_wait}
+04537	message	I don't know who you are.{pause_20_skippable}\nI'm sorry. I can't see\nanyone today.{end_wait}
+04548	MsgValeIllClimbTheFenceSomeday	When I'm your age,\n{actor_name:1}, I'll climb\nthat fence...{page_break}and see the lands beyond.\nI swear it.{end_wait}
+04549	MsgValeSighNoLongerWillISee	*Sigh* No more seeing\n{actor_name:6} standing alone.\nI miss even that.{end_wait}
+04550	MsgValeIDontBlameFelixIfOnly	I don't blame {actor_name:5}.{page_break}We should've saved him that\nday. We should've.{end_wait}
+04551	MsgValeTheStoneFellOnThe	Look, {actor_name:1}.{pause_20_skippable} That huge\nPsynergy Stone came down\nright on the hut.{end_wait}
+04552	message	Something that big, falling\nout of the sky... it could\nhave been any of us.{end_wait}
+04553	MsgValeKradenHasntComeBack	Kraden hasn't come back.\nI doubt he will.{end_wait}
+04554	MsgValeValeIsSavedThanksToThe	Vale lives thanks to the\nWise One... if you believe\nthat.{end_wait}
+04555	MsgValeEverSinceTheTremorsStartedMt	Since the tremors started,\nno one can climb Mt. Aleph.\nNo one should.{end_wait}
+04556	MsgValeTheGroundStillShakes	The ground still shakes.\nEveryone says it's over.\nI don't think it is.{end_wait}
+04557	MsgValeTheMayorWasTooKindTo	The mayor was too kind to\nthose strangers...{page_break}If he'd driven them off,\nnone of this would have\nhappened.{end_wait}
+04558	MsgValeWorriedAboutAnotherEruption	It's quiet for now. But it\ncould blow again. I can't\nsleep.{end_wait}
+04559	MsgValeVaultUndergroundPath	Vault? That's the town with\nthe tunnel, isn't it?{end_wait}
+04560	MsgValeGomaWinterCold	Past the Goma Range, winter\nis brutal. People freeze.{page_break}I'm glad I don't have\nto go there.{end_wait}
+04561	MsgValeStonesPowerAleph	If this glitter is all\nthat remains of them...{page_break}then Mt. Aleph is in\nserious trouble.{page_break}They say the Stones feed\nall the mountain's power.{end_wait}
+04562	MsgValeProofOfWiseOne	I always believed the Wise\nOne was real...{page_break}Now that I have proof,\nI'm not sure I'm glad.{end_wait}
+04563	MsgValeLunpaThievesChanged	Even the righteous thieves\nrot with the generations.{page_break}They say Lunpa's thieves\nnow attack travelers.\nKill them, even.{end_wait}
+04564	MsgValeDoraMustBeLonely	No matter how well she\nhides it,{page_break}{protagonist_name}{possessive_suffix} mother must\nbe so lonely...{end_wait}
+04565	MsgValeLuckyToFindPsynergyStones	You'd be lucky to find a\nPsynergy Stone out there.\nI wouldn't count on it.{end_wait}
+04566	MsgValeComeBackAlive	I'm worried about you,\n{protagonist_name}. You two are like\nbrothers to me.{page_break}Promise you won't do\nanything foolish. Come back\nalive. Please.{end_wait}
+04567	MsgValeRecoverPsynergyByWalking	If Psynergy runs low in a\ndungeon, don't panic.{page_break}Just keep walking.\nIt comes back, slowly.{end_wait}
+04583	MsgValeGeeIWishICouldSee	I wish I could see new\nlands too. Even scary ones.{end_wait}
+04584	MsgValeMyBrothersStrengthIsHisBest	My brother's strength is\nhis best quality. Let him\ncarry what he can for you.{end_wait}
+04593	MsgValeCuriousBeyondFence	Why isn't anyone else\ncurious what's beyond this\nfence? Or just afraid?{end_wait}
+04594	MsgValeImGladThatFelixIsAlive	I'm glad {actor_name:5} is alive.\nI was so afraid for\n{actor_name:6}.{end_wait}
+04595	MsgValeFelixWasAGoodPersonI	{actor_name:5} was a good man.\nI still believe in him.\nSomeone has to.{end_wait}
+04596	MsgValeStonesReplenishPsynergy	If your Psynergy runs low,\nfind a Psynergy Stone.{page_break}It restores you at once.\nThey're rarer now.{end_wait}
+04597	MsgValePoorKradenWasTakenToSome	Poor Kraden... dragged off\nto some faraway place.{page_break}I liked that old coot.\nI hope he's still alive.{end_wait}
+04598	MsgValeValeWasSavedBecausePeopleLike	Vale survived because old\nwomen like me stood our\nground...{page_break}to shield those who\ncouldn't shield themselves.{end_wait}
+04599	MsgValeICantBelieveAnyoneWouldClimb	Who'd climb that mountain\nafter what it did to us?\nMadness.{end_wait}
+04600	MsgValeIJustDontFeelSafeKnowing	I won't feel safe again,\nknowing it could erupt\nany night.{end_wait}
+04601	MsgValeThePeopleOfValeWillNever	Vale will never trust\ntravelers again.{page_break}Not that I ever did.{end_wait}
+04602	MsgValeWhysEveryoneHanging	Why is everyone crowding\nthe town gate?{end_wait}
+04603	message	What, you haven't heard?{end_wait}
+04604	message	{actor_name:1} and {actor_name:2} are\nleaving Vale today. On a\njourney.{end_wait}
+04605	message	I'd go along if I could.{end_wait}
+04606	message	They say it's going to be\ndeadly dangerous.{end_wait}
+04607	message	So everyone's down there to\nsay good-bye. In case...{end_wait}
+04608	message	Hey, what's wrong?{end_wait}
+04609	message	Strange.\n{actor_name:1}'s mother isn't\nhere to see him off.{end_wait}
+04610	message	You're right. She isn't.{end_wait}
+04611	message	Should we go say good-bye\ntoo?{end_wait}
+04612	message	Yeah. Let's go.{end_wait}
+04613	message	We're counting on you,{pause_20_skippable}{pause_20_skippable}\n{actor_name:1}.{pause_20_skippable} And you, too,\n{actor_name:2}.{end_wait}
+04614	message	Don't drink the water if it\nsmells wrong.{page_break}And take this with you.\nPlease.{end_wait}
+04615	message	I know better than to drink\nbad water, Sis!{end_wait}
+04616	message	Don't listen to him,\n{actor_name:1}!{page_break}He's a pig. He'll eat\nanything not nailed down.{end_wait}
+04617	message	Dora's very late...{end_wait}
+04618	message	Oh!{pause_20_skippable} That's right!{end_wait}
+04619	message	Dora asked me to give\nthis to you, {actor_name:1}.\nShe couldn't come herself.{end_wait}
+04620	message	Guess that's everything,\n{actor_name:1}. Ready?{end_wait}
+04621	message	Think again, {actor_name:2}.{end_wait}
+04622	message	This must be so hard for\nDora...{end_wait}
+04623	message	As {actor_name:2}'s mother, I\nknow exactly how she feels.{end_wait}
+04624	message	But I still have {actor_name:2}'s\nfather. Dora only has\n{actor_name:1}.{end_wait}
+04625	message	She doesn't want you to go,\n{actor_name:1}.{page_break}She knows you must. That's\nwhat makes it unbearable.{end_wait}
+04626	message	If they stand here any\nlonger, they'll never\nleave.{end_wait}
+04627	message	So.{pause_20_skippable} One last farewell.{end_wait}
+04628	MsgValeFarewell	{text_effect:2}Farewell...{reset_text_style}{end_wait}
+06618	MsgMountainIsaacDidLiftBoulder	{actor_name:1}... was that you?\nDid you lift the boulder?{end_wait}
+06619	message	By the gods! The boulder\nis floating!{end_wait}
+06620	message	Quickly, Feizhi! Pull Hsu\nfree before it falls!{end_wait}
+06621	message	Brace yourself, Hsu.\nI'm pulling. On three.\nOne, two, three!{end_wait}
+06622	message	He's halfway out. A little\nfurther...{end_wait}
+06623	message	Can you hold it a moment\nlonger, {actor_name:1}?{end_now}
+06624	message	Thank you, {actor_name:1}.\nTruly.{end_wait}
+06625	message	You can't let go now!\nYou started this!{end_wait}
+06626	message	Ready? Pulling now!\nOne, two, three!{end_wait}
+06627	message	It worked! Master Hama,\nHsu is free!{end_wait}
+06628	message	We did it, Feizhi.{end_wait}
+06629	message	You saved him, {actor_name:1}.\nThank you.{end_wait}
+06630	message	Master Feh must tend to\nHsu's wounds. Send word.{end_wait}
+06631	message	I'll ask him to clear the\nrocks as well.{end_wait}
+06632	message	Good. If Silk Road stays\nblocked, folks will starve.{end_wait}
+07139	MsgValeYouCameBackHome	Well. {actor_name:1}.{pause_20_skippable} You came\nback. I'm... glad.{end_wait}
+07140	MsgValeThisIsVale	This is Vale.{pause_20_skippable}\n...You know that,\n{actor_name:1}. Of course you do.{end_wait}
+07141	MsgValeCameBackSooner	Back so soon, {actor_name:1}?\nThat can't be a good sign.{end_wait}
+07142	MsgValeMadeFriendsOnJourney	You've picked up company\non the road, {actor_name:1}.{page_break}Good. Nobody should\ntravel alone.{end_wait}
+07143	MsgValeRiverHeatedAndCooled	The river ran hot when\nAleph erupted. Scalding.{page_break}Folks thought hot springs.\nThen it ran cold again.{page_break}Rivers don't do that.\nNot on their own.{end_wait}
+07144	MsgValeAnythingInterestingOnYourTrip	What did you see out there,\n{actor_name:1}? Anything worth\nthe trouble?{end_now}
+07145	message	Nothing? Hm. Your eyes say\notherwise.{end_wait}
+07146	message	Oh? Must've been something.{page_break}Could I come along\nnext time?{end_now}
+07147	message	Ha. Really?{page_break}I was joking. You don't\nhave to be polite.{end_wait}
+07148	message	Yeah. I knew you'd say no.{end_wait}
+07149	MsgValeReturnHowHaveYouBeen	{actor_name:1}! You're alive.\nHow have you been?{end_wait}
+07150	MsgValeWelcomeHome	Welcome home, {actor_name:1}.\nIt's good to see you\nbreathing.{end_wait}
+07151	MsgValeWantToMakeFriends	You've made friends out\nthere. Good.{page_break}I wish I had your nerve,\n{actor_name:1}.{end_wait}
+07152	MsgValeEruptionMadeMess	Mt. Aleph's far side is a\nruin since the eruption.{end_wait}
+07153	MsgValeNorthwestCrack	A crack opened in Mt.\nAleph's northwest side.\nIt's deep. Too deep.{end_wait}
+07154	MsgValeSurprisedByEarlyReturn	{actor_name:1}! We didn't expect\nyou back so soon. Some\nsaid you wouldn't be.{end_wait}
+07155	MsgValeIsaacHasGrown	{actor_name:1} has grown so fast.\nHe looks so much like\nhis father now...{end_wait}
+07156	MsgValeNewFriendsAreAdepts	{actor_name:1}'s new friends...\nstrange. Are they Adepts?{page_break}Like us? Or something\nelse?{end_wait}
+07157	MsgValeEruptionHeatsRiver	To heat a whole river...\nthat's no ordinary\neruption.{end_wait}
+07158	MsgValeStrangeEventsElsewhere	I sense Mt. Aleph isn't the\nonly place strange things\nare happening.{page_break}Crossing the continent\nmust be harder than ever.{end_wait}
+07159	MsgValeWhenDidYouReturn	When did you get back,\n{actor_name:1}? Nobody told me.{end_wait}
+07160	MsgValePlayTogetherAgain	Do you think {actor_name:1} and\nhis friends could play with\nus again? Like before?{end_wait}
+07161	MsgValeWantToJourney	I want to see the world\nand make friends too!{end_wait}
+07162	MsgValeLavaBurntOtherSide	A river of lava burned\neverything on the far side\nof Mt. Aleph.{end_wait}
+07163	MsgValeCrackWidening	The crack in Aleph's\nnorthwest is widening.{page_break}At this rate the whole\ncontinent will split apart.{end_wait}
+07237	MsgValeAh	Oh!{end_wait}
+07238	message	It's been so long...{end_wait}
+07239	message	You came back?{end_wait}
+07240	message	Have you been home yet?\nDad's been waiting.{end_now}
+07241	message	Good. He must have been\nhappy.{page_break}He's been sick with\nworry for you.{end_wait}
+07242	message	You have to go see him.\nHe's been worried sick.{end_wait}
+07243	message	...So have I.{end_wait}
+07244	message	Sis...{end_wait}
+07245	message	Don't get me wrong.{pause_20_skippable} I...\nI just thought you'd get\nin trouble,{page_break}because, you know,\nyou're not the brightest...{end_wait}
+07246	message	Yeah, all right... Thanks,\nSis.{end_wait}
+07247	message	So,{pause_20_skippable}{pause_20_skippable} are you home for\ngood? Or...{end_wait}
+07248	message	Not yet...{end_wait}
+07249	message	You're leaving...{pause_20_skippable}\nagain?{end_wait}
+07250	message	Don't push yourself too\nhard,{pause_20_skippable} when you go back.{end_wait}
+07251	MsgValeHowHaveYouBeen	Hey. How have you been?\nReally.{end_wait}
+07252	message	Oh,{pause_20_skippable} {actor_name:2}!\nAnd {actor_name:1}.{end_wait}
+07253	message	What happened? You're back\nalready?{end_wait}
+07254	message	Already? Is that how you\ngreet us?{end_wait}
+07255	message	But{em_dash}But they said you\nmight never come back!{end_wait}
+07256	message	And you don't look like\nyou're back for good. Just\npassing through.{end_wait}
+07257	message	Really?{pause_20_skippable} Is it that obvious?{end_wait}
+07258	message	Yeah... You and your\nfriends... You all look\nready to leave.{end_wait}
+07259	message	Sharper than you look.{end_wait}
+07260	message	I'll have to toughen up\nwhile you're gone, right?\nOr else...{end_wait}
+07261	message	The family's fine while\nyou're here. Right?{end_now}
+07262	message	Look after our family while\nI'm gone. All right?{end_wait}
+07263	message	Hey! You're not helping!{end_wait}
+07264	MsgValeEverProtectFamily	WHAT{pause_20_skippable}EVER{pause_20_skippable} YOU{pause_20_skippable} DO{pause_20_skippable},\nguard them while I'm gone.{page_break}Promise me. I'm counting\non you.{end_wait}
+07265	message	Don't push yourself too\nhard,{pause_20_skippable}{pause_20_skippable} OK?{end_wait}
+07266	MsgValeICanTellJustByLooking	I can tell just by looking\nthat you've been through\na lot.{page_break}You look older now.\nMuch older.{end_wait}
+07267	MsgValeIWillDoMyBestTo	I'll show everyone I'm\nstrong enough{page_break}to protect our family\nand Vale. At any cost.{end_wait}
+07268	MsgValeYouGuysAreWorkingSoHard	You're working yourselves\nraw, and I'm worried.\nAre you really all right?{end_wait}
+07269	MsgValeICouldGoWithYouIf	I could go with you if I\nwere older. It's not fair.{end_wait}
+07308	MsgValeWonderBeyondFence	I can't stop wondering\nwhat's beyond this fence.{end_wait}
+07309	MsgValeIsJennaBackYet	Oh,{pause_20_skippable} is that {actor_name:1}?\nIs {actor_name:6}{pause_20_skippable} home yet?{page_break}Promise me, {actor_name:1}...\n{pause_20_skippable}Promise me you'll bring\n{actor_name:6} with you again.{end_wait}
+07310	MsgValePromiseMeIsaacPromiseMeYoull	Promise me, {actor_name:1}...\n{pause_20_skippable}Promise me you'll bring\n{actor_name:6} back home.{end_wait}
+07311	MsgValeYouDidntBringJennaWithYou	You came back without\n{actor_name:6}...?{end_wait}
+07312	MsgValeIUsedToPlayHere	I remember {actor_name:5} and me\nplaying here...\n*Sniff*{end_wait}
+07313	MsgValeFelixMustBeProtectingJennaIm	{actor_name:5} must be protecting\n{actor_name:6} somewhere. I know.\nI have to know.{end_wait}
+07314	message	I was trying to catch that\nfish and you killed it.\nWhy would you do that?{end_wait}
+07315	message	So there are monsters in\nthis river now?{end_wait}
+07316	MsgValeThePsynergyStoneIsGone	Hey!{pause_20_skippable} Where'd that Psynergy\nStone go? It's gone!{end_wait}
+07317	message	All that's left is a hole\nin my roof.{page_break}I can patch it. The memory\nof that night, though...\nnot so easy.{end_wait}
+07318	MsgValeMemoriesOfThisCottage	This cottage must hold a\nlot of memories for you,\ndoesn't it?{end_now}
+07319	message	I thought so. You were\nalways visiting Kraden,\n{actor_name:1}.{end_wait}
+07320	message	I understand. No time to\ndwell on old memories...{end_wait}
+07321	MsgValeMtAlephsEruptionWasSoPowerful	That eruption cracked the\nwhole continent. Think\nabout that.{end_wait}
+07322	MsgValeIFeltAnotherOne	Aghh!{pause_20_skippable} Another one!{end_wait}
+07323	message	They keep coming. I haven't\nslept a full night in\nweeks!{end_wait}
+07324	MsgValeTheySayTheDangerIsGone	They say the danger's over.\nThe earthquakes say\notherwise...{end_wait}
+07325	MsgValeNoTravelersSinceTheEruption	Why haven't any travelers\ncome since the eruption?{page_break}Do you know,\n{actor_name:1}?{end_now}
+07326	message	The southern bridge is\nruined? That explains it.{end_wait}
+07327	message	You don't know either?\nWe never turned anyone\naway. Not after that.{end_wait}
+07328	MsgValeAdventuresBeyondFence	I have a feeling my life\nstarts once I get past\nthis fence.{end_wait}
+07329	message	There are monster fish in\nthis river. I swear.{end_wait}
+07330	message	No ordinary fish makes a\nsplash like that!{page_break}It had to be a MONSTER\nFISH!{end_wait}
+07331	message	I wish I could show them\nthat fish...{page_break}Then they'd finally believe\nme.{end_wait}
+07332	message	It wasn't just big. It was\nan actual monster?{page_break}Wow. I knew it. I knew I\nwasn't going mad!{end_wait}
+07333	MsgValeEruptionTooMuchForPeople	The eruption broke\nsomething in Vale's people.{end_wait}
+07334	MsgValeLonelyWithoutKraden	Why do I feel so lonely\nwhenever I come here?{page_break}I wasn't even close\nto Kraden...{end_wait}
+07335	MsgValeTheEarthquakesArentCausedByEruptions	The quakes aren't from the\neruption.{page_break}I think the continent is\nsplitting in two.{end_wait}
+07336	MsgValeAhhICantStandTheseEarthquakes	I can't stand these quakes!\nMake them stop!{end_wait}
+07337	MsgValeTheSmokeFromMtAlephIsnt	The smoke from Mt. Aleph is\nthin now. It looks calm.\nToo calm.{end_wait}
+07338	MsgValeHavingNoTravelersIsNoFun	No travelers. No news.\nIt's too quiet here...{end_wait}
