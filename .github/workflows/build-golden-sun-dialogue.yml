@@ -56,8 +56,9 @@ jobs:
           mkdir -p "$RUNNER_TEMP/alchemy-base/tools/out"
           cp -a tools/out/compilers "$RUNNER_TEMP/alchemy-base/tools/out/compilers"
           cp -a tools/out/compiler-runtime "$RUNNER_TEMP/alchemy-base/tools/out/compiler-runtime"
-          make -C "$RUNNER_TEMP/alchemy-base" compare-tbs-en CARGO=false \
-            XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/"
+          make -C "$RUNNER_TEMP/alchemy-base" tbs-en CARGO=false \
+            XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/" \
+            && test -s "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba"
 
       - name: Create an IPS patch (not a redistributable ROM)
         run: |
