@@ -15,7 +15,7 @@ text = path.read_text(encoding="utf-8")
 # approximate 27-character text width and use {page_break} for a new page.
 REPLACEMENTS = {
     "03675": r"{actor_name:1}, Dora!\nThe Boulder is slipping!\nGet clear, now!{end_wait}",
-    "03676": r"Kyle... can they hold it?\nThe Boulder is moving.\nThey won't hold much longer.{end_wait}",
+    "03676": r"Kyle... can they hold it?\nThe Boulder is moving.\nThey're close to breaking.{end_wait}",
     "03685": r"You're old enough to run,\nIsaac. I wish you weren't.\nBut you must go.{end_wait}",
     "03686": r"South, to the plaza.\nDon't stop along the way.\nPlease, Isaac. Hurry.{end_wait}",
     "03687": r"Isaac? Sorry, I didn't\nsee you there.\nAre you hurt?{end_wait}",
