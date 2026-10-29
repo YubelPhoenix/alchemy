@@ -28,6 +28,10 @@
 #include "actor.h"
 
 #include "event_layer.h"
+#include "event_inline.h"
+#include "flags.h"
+#include "sprite_ids.h"
+#include "unit/import.h"
 
 const struct SceneEntrance *Scene_GetEntrances(void) {
   return gSolSanctumCorridorEntrances;
@@ -69,14 +73,38 @@ u32 gSolSanctumCorridorExits[] = {
     SCENE_EXITS_END,
 };
 
+/// The silent, cloaked watcher, placed off the map until her glimpse.
+enum SolSanctumCorridorActorId {
+  ACTOR_CORRIDOR_WATCHER = ACTOR_FIRST_PLACED,
+};
+
 struct ActorTemplate gSolSanctumCorridorActorTemplates[] = {
+    {SPRITE_GAROH_HOODED_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, 0, 0, 0,
+     FACING_SOUTH, TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
+
+/// Stepping onto the middle of the long north-south hall: for a moment a
+/// cloaked figure stands in the hall, a few steps ahead and just inside the
+/// edge of the screen, watching the party. She says nothing and is gone. It
+/// plays once (FLAG_DARK_WATCHER_SANCTUM_CORRIDOR).
+static void SolSanctumCorridor_WatcherAppears(void) {
+  Event_Start();
+  GameFlag_Set(FLAG_DARK_WATCHER_SANCTUM_CORRIDOR);
+  Actor_SetPosition(ACTOR_CORRIDOR_WATCHER, PIXELS(472), PIXELS(296));
+  Actor_FaceDirection(ACTOR_CORRIDOR_WATCHER, FACING_SOUTH, 0);
+  Import_ActorSetAnimation(ACTOR_CORRIDOR_WATCHER, ANIM_STAND);
+  Event_WaitFrames(100);
+  Actor_SetPosition(ACTOR_CORRIDOR_WATCHER, 0, 0);
+  Event_End();
+}
 
 struct Trigger gSolSanctumCorridorTriggers[] = {
     {TRIGGER_EXIT, 1, CONDITION_ALWAYS,
      SOL_SANCTUM_CORRIDOR_TO_SOL_SANCTUM_RELIEFS_EAST},
     {TRIGGER_EXIT, 2, CONDITION_ALWAYS,
      SOL_SANCTUM_CORRIDOR_TO_SOL_SANCTUM_RELIEFS_WEST},
+    {TRIGGER_STEP, 3, FLAG_DARK_WATCHER_SANCTUM_CORRIDOR,
+     EVENT(SolSanctumCorridor_WatcherAppears)},
     {TRIGGERS_END},
 };

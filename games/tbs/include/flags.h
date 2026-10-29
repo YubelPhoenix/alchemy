@@ -2695,4 +2695,16 @@
 #define FLAG_AREA_TEMP_FE 0x3fe
 #define FLAG_AREA_TEMP_FF 0x3ff
 
+// The dark story's silent watcher. Each flag is set once the party has seen
+// her at that place, so the glimpse plays a single time. Nothing else uses
+// these numbers.
+/// Sol Sanctum's long passage (SceneId_SolSanctumCorridor).
+#define FLAG_DARK_WATCHER_SANCTUM_CORRIDOR 0x884
+/// Vault's entrance.
+#define FLAG_DARK_WATCHER_VAULT 0x885
+/// Sol Sanctum's statue room.
+#define FLAG_DARK_WATCHER_SANCTUM_STATUE 0x886
+/// Sol Sanctum's eruption.
+#define FLAG_DARK_WATCHER_SANCTUM_ERUPTION 0x887
+
 #endif
