@@ -10,6 +10,7 @@ on:
       - 'games/tbs/include/sprite_ids.h'
       - 'games/tbs/src/graphics/sprite/spr_407.png'
       - 'games/tbs/src/graphics/sprite/spr_407.tsv'
+      - 'games/tbs/src/graphics/sprite/layout.tsv'
       - 'tools/dark_story_rewrite.py'
       - '.github/workflows/build-golden-sun-dialogue.yml'
 
