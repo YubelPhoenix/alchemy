@@ -31,7 +31,7 @@ REPLACEMENTS = {
     "03766": r"Go to the elders! They're\nholding the Boulder back.\nThey can't hold it forever.{end_wait}",
     "03781": r"Move! The elders are\nrunning out of strength.\nWe have no time to lose.{end_wait}",
     "03782": r"Mom? Dad? It's me!\nPlease, answer me!{pause_20_skippable}{page_break}\nWe're back. Please...{end_wait}",
-    "03791": r"Mom...? Dad...? Felix...?\nPlease... answer me.\nI couldn't save them.{end_wait}",
+    "03791": r"Mom...? Dad...?\n{actor_name:5}... please...\nDon't leave me here.{end_wait}",
     "03798": r"Only two of us survived.\nI still don't know how.{end_wait}",
     "03928": r"Those three travelers\ntroubled me from the start.\nThey watched everyone,{page_break}\nbut spoke to no one.\nI thought them rude.\nNow I wonder why.{end_wait}",
     "03929": r"The masked man never\nshowed his face. I thought\nhe was hiding a scar.{page_break}\nNow I wonder what he\nwas hiding from us.{end_wait}",
@@ -151,6 +151,8 @@ def validate_replacements(entries: dict[str, str]) -> None:
         raise SystemExit("Dialogue 03791 must stay on one page during crash testing.")
     if "{end_wait}" not in jenna_aftermath:
         raise SystemExit("Dialogue 03791 is missing its required end_wait control.")
+    if "{actor_name:5}" not in jenna_aftermath:
+        raise SystemExit("Dialogue 03791 must preserve Jenna\'s dynamic actor-name reference.")
 
     missing = sorted(set(REPLACEMENTS) - set(entries))
     if missing:
