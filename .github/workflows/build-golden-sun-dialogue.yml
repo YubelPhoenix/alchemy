@@ -52,8 +52,9 @@ jobs:
 
       - name: Build and verify an unmodified baseline
         run: |
-          git fetch origin main
-          git worktree add --detach "$RUNNER_TEMP/alchemy-base" origin/main
+          # Use the canonical upstream source as the checksum-verified ROM base.
+          git fetch https://github.com/PascalPixel/alchemy.git main
+          git worktree add --detach "$RUNNER_TEMP/alchemy-base" FETCH_HEAD
           git -C "$RUNNER_TEMP/alchemy-base" submodule update --init --recursive
           make -C "$RUNNER_TEMP/alchemy-base" bootstrap CARGO=false
           make -C "$RUNNER_TEMP/alchemy-base" compare-tbs-en CARGO=false \
