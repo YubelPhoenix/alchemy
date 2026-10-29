@@ -36,7 +36,8 @@ RUNTIME_RE = re.compile(
 
 def visible_width(line: str) -> int:
     # A dynamic character name can be longer than its token; reserve eight.
-    return len(CONTROL_RE.sub("", ACTOR_RE.sub("XXXXXXXX", line)))
+    line = ACTOR_RE.sub("XXXXXXXX", line).replace("{protagonist_name}", "XXXXXXXX")
+    return len(CONTROL_RE.sub("", line))
 
 
 def load_replacements(only=None) -> dict[str, tuple[str, str]]:
