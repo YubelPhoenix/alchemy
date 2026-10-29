@@ -5,7 +5,7 @@ on:
     branches: [main, dark-vale-dialogue]
   workflow_dispatch:
 
-# Build the modified fork against the upstream project as a clean baseline.
+# Always compile the intended dialogue branch, then compare it with a clean upstream baseline.
 
 permissions:
   contents: read
@@ -35,6 +35,11 @@ jobs:
 
       - name: Build pinned compiler
         run: make bootstrap CARGO=false
+
+      - name: Check out the intended dialogue revision
+        run: |
+          git fetch origin dark-vale-dialogue
+          git checkout --detach FETCH_HEAD
 
       - name: Build the modified English edition
         run: |
