@@ -26,6 +26,12 @@ CONTROL_RE = re.compile(r"\{[^{}]+\}")
 ACTOR_RE = re.compile(r"\{actor_name:\d+\}")
 END_RE = re.compile(r"\{end_[^{}]*\}\s*$")
 STYLE_RE = re.compile(r"\{(?:text_effect:\d+|reset_text_style)\}")
+# Tokens the engine fills in at run time. Dropping or changing one breaks the
+# line (a missing name, an item without its article), so they must survive.
+RUNTIME_RE = re.compile(
+    r"\{(?:actor_name:\d+|argument_actor_name(?::\d+)?|protagonist_name"
+    r"|article_class(?::\d+)?|possessive_suffix(?::\d+)?)\}"
+)
 
 
 def visible_width(line: str) -> int:
@@ -33,9 +39,9 @@ def visible_width(line: str) -> int:
     return len(CONTROL_RE.sub("", ACTOR_RE.sub("XXXXXXXX", line)))
 
 
-def load_replacements() -> dict[str, tuple[str, str]]:
+def load_replacements(only=None) -> dict[str, tuple[str, str]]:
     rows: dict[str, tuple[str, str]] = {}
-    files = sorted(DATA_DIR.glob("*.tsv"))
+    files = [Path(f) for f in only] if only else sorted(DATA_DIR.glob("*.tsv"))
     if not files:
         raise SystemExit(f"No dialogue files found in {DATA_DIR}/.")
     for file in files:
@@ -77,6 +83,11 @@ def validate(msgid: str, original: str, new: str) -> None:
         raise SystemExit(f"Dialogue {msgid} changed its ending control code.")
     if STYLE_RE.findall(original) != STYLE_RE.findall(new):
         raise SystemExit(f"Dialogue {msgid} changed its text-effect control codes.")
+    if sorted(RUNTIME_RE.findall(original)) != sorted(RUNTIME_RE.findall(new)):
+        raise SystemExit(
+            f"Dialogue {msgid} changed its run-time tokens (names, articles): "
+            f"{sorted(RUNTIME_RE.findall(original))} -> {sorted(RUNTIME_RE.findall(new))}"
+        )
     for page_no, page in enumerate(new.split("{page_break}"), start=1):
         lines = page.split(r"\n")
         while lines and not lines[0]:
@@ -95,7 +106,9 @@ def validate(msgid: str, original: str, new: str) -> None:
 
 
 def main() -> None:
-    replacements = load_replacements()
+    args = sys.argv[1:]
+    check_only = "--check" in args
+    replacements = load_replacements([a for a in args if a != "--check"] or None)
     text = PO_PATH.read_text(encoding="utf-8")
     entries = re.split(r"(\n\s*\n)", text)
     done = set()
@@ -120,6 +133,9 @@ def main() -> None:
     missing = sorted(set(replacements) - done)
     if missing:
         raise SystemExit("Dialogue IDs not found in the catalogue: " + ", ".join(missing))
+    if check_only:
+        print(f"Checked {len(done)} dialogue entries; en.po untouched.")
+        return
     PO_PATH.write_text("".join(entries), encoding="utf-8")
     print(f"Rewrote and validated {len(done)} dialogue entries.")
 
