@@ -484,7 +484,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Hexer
+    // Cursebound
     {
         .series = 6,
         .required = {0, 5},
@@ -512,7 +512,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 127, .level = 30},
         },
     },
-    // Witchblade
+    // Bloodwitch
     {
         .series = 6,
         .required = {0, 7},
@@ -540,7 +540,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 127, .level = 30},
         },
     },
-    // Bloodtide
+    // Soulreaper
     {
         .series = 6,
         .required = {0, 9},
@@ -569,7 +569,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 193, .level = 6},
         },
     },
-    // Tidereaper
+    // Doomsinger
     {
         .series = 6,
         .required = {0, 11},
@@ -598,7 +598,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 193, .level = 6},
         },
     },
-    // Abyssal
+    // Dread Queen
     {
         .series = 6,
         .required = {0, 13},
