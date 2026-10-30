@@ -82,19 +82,19 @@
 05037	message	Imil is far to the\nnorth. Cold up there.{end_wait}
 05416	MsgFieldFlippedSwitch	{protagonist_name} threw the\nswitch. Something clicked\nbeyond the wall.{end_wait}
 07339	MsgVaultWarriorsWhoCaptured	You! You're the ones who\ncaught the thieves, aren't\nyou?{page_break}You came back to Vault.\nThank the gods.{end_wait}
-07340	MsgVaultYouveProbablyAlreadyHeardButThe	You've probably heard.\nThe bridge to Kalay is\nfixed.{end_wait}
+07340	MsgVaultYouveProbablyAlreadyHeardButThe	The bridge to Kalay is\nfixed. Not that anyone\ntravels in this rain.{end_wait}
 07341	MsgVaultIWonderWhatHappenedToHammet	I keep wondering what\nhappened to Hammet in\nLunpa...{end_wait}
 07342	MsgVaultRumorsThievesLunpa	Rumors say thieves from\nLunpa are running wild,{page_break}but we've ignored them.\nIt's easier that way.{page_break}Why have they gone so\nquiet lately? That scares\nme more.{end_wait}
 07343	MsgVaultTalkingMayorStrong	Oh, it's you. I was just\ntalking about you with\nthe mayor.{page_break}You're strong. Let the\nthieves come. They'll\nregret it.{page_break}They won't get past you.\nI hope.{end_wait}
-07344	MsgVaultVolcanoStaysCalm	If the mountain stays\nquiet and the bridge\nholds,{page_break}we might finally stop\nbeing afraid.{end_wait}
+07344	MsgVaultVolcanoStaysCalm	It hasn't stopped raining\nsince the beacon lit.{page_break}The mountain is quiet,\nbut the sky isn't.{end_wait}
 07345	MsgVaultWarriorGuy	Hey, it's that warrior!{end_wait}
 07346	message	Yeah. And {actor_name:3}, too.\nHe looks tired.{end_wait}
 07347	message	Glad you came back.\nVault feels safer with\nyou around.{end_wait}
-07348	MsgVaultWishVaultsElders	I wish Vault's elders\nhad half your courage.{end_wait}
+07348	MsgVaultWishVaultsElders	Nights are longer now.\nI wish Vault's elders\nhad half your courage.{end_wait}
 07349	MsgVaultGuysCheckJail	Did you check the jail?\nYou'll want to see it.{end_now}
 07350	message	How did those thugs break\nout? The bars are solid.{page_break}Someone helped them.\nI don't like it.{end_wait}
 07351	message	The thieves broke out\nand got away.{page_break}After everything you did\nto catch them...{end_wait}
-07352	MsgVaultTheThievesEscapedButIThink	The thieves escaped, but\nmaybe that's for the best.{page_break}Perhaps it's all part\nof a plan we can't see.{end_wait}
+07352	MsgVaultTheThievesEscapedButIThink	The thieves escaped.\nThe rain will wash\nout their tracks.{page_break}Perhaps it's all part\nof a plan we can't see.{end_wait}
 07353	message	Bow wow wow wow!!{end_wait}
 07354	MsgVaultICantBelieveTheyreHereWhat	You're here! Thank the\ngods. Perfect timing.{end_wait}
 07355	MsgVaultWhenThoseGuysFromKalayCame	The men from Kalay who\nfixed the bridge looked{page_break}worried. Like they\nwere afraid of something.{end_wait}
@@ -110,6 +110,6 @@
 07365	message	Owwwoooooh...{end_wait}
 07366	message	Bow wow wow!{end_wait}
 07367	message	How did you know I\nwanted this? Thank you.{end_wait}
-07409	MsgVaultThereYouSeeTheRoofRepairs	There. The roof's done.\nNo more sky coming in.{end_wait}
+07409	MsgVaultThereYouSeeTheRoofRepairs	The roof is done.\nIt does not stop the\nrain from coming.{end_wait}
 07413	MsgVaultThatsTheLastOfTheRoof	That's the last of the\nroof. What now? I don't\nlike being idle.{end_wait}
 10716	MsgVaultCanHearWaterRumblingDown	Water's rumbling down\nthere. Deep. Constant.{end_wait}
