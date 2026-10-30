@@ -7,48 +7,52 @@
 
 // clang-format off
 const struct DjinnDefinition gDjinn_DefinitionTable[] = {
-    // Flint
+    // Grave
     {
         .abilityId = ABILITY_DJINNI_FIRST,
         .hp = 8,
         .pp = 4,
         .atk = 3,
+        .def = 1,
     },
-    // Granite
+    // Barrow
     {
         .abilityId = 301,
         .hp = 9,
-        .def = 2,
+        .def = 3,
         .agi = 2,
         .luck = 1,
     },
-    // Quartz
+    // Shard
     {
         .abilityId = 302,
         .hp = 10,
         .pp = 3,
+        .def = 1,
         .agi = 3,
     },
-    // Vine
+    // Briar
     {
         .abilityId = 303,
         .hp = 12,
         .pp = 4,
-        .def = 3,
+        .def = 4,
         .luck = 1,
     },
-    // Sap
+    // Blight
     {
         .abilityId = 304,
         .hp = 10,
         .atk = 3,
+        .def = 1,
         .luck = 1,
     },
-    // Ground
+    // Mire
     {
         .abilityId = 305,
         .hp = 9,
         .pp = 3,
+        .def = 1,
         .agi = 3,
     },
     // Bane
@@ -56,6 +60,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .abilityId = 306,
         .hp = 12,
         .atk = 4,
+        .def = 1,
     },
     // =
     {
@@ -109,53 +114,56 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     {
         .abilityId = 319,
     },
-    // Fizz
+    // Murk
     {
         .abilityId = 320,
         .hp = 9,
-        .pp = 4,
+        .pp = 5,
         .def = 3,
     },
     // Sleet
     {
         .abilityId = 321,
         .hp = 12,
+        .pp = 1,
         .atk = 3,
         .luck = 1,
     },
-    // Mist
+    // Pall
     {
         .abilityId = 322,
         .hp = 11,
+        .pp = 1,
         .atk = 4,
     },
-    // Spritz
+    // Leech
     {
         .abilityId = 323,
         .hp = 8,
-        .pp = 4,
+        .pp = 5,
         .agi = 3,
     },
     // Hail
     {
         .abilityId = 324,
         .hp = 9,
+        .pp = 1,
         .atk = 4,
         .luck = 1,
     },
-    // Tonic
+    // Venom
     {
         .abilityId = 325,
         .hp = 8,
-        .pp = 3,
+        .pp = 4,
         .def = 2,
         .luck = 2,
     },
-    // Dew
+    // Tears
     {
         .abilityId = 326,
         .hp = 13,
-        .pp = 4,
+        .pp = 5,
         .agi = 4,
     },
     // =
@@ -210,11 +218,11 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     {
         .abilityId = 339,
     },
-    // Forge
+    // Pyre
     {
         .abilityId = 340,
         .hp = 10,
-        .atk = 2,
+        .atk = 3,
         .agi = 2,
         .luck = 2,
     },
@@ -222,14 +230,15 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     {
         .abilityId = 341,
         .hp = 8,
-        .atk = 3,
+        .atk = 4,
         .agi = 2,
     },
-    // Corona
+    // Cinder
     {
         .abilityId = 342,
         .hp = 12,
         .pp = 3,
+        .atk = 1,
         .def = 3,
         .luck = 1,
     },
@@ -237,28 +246,30 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     {
         .abilityId = 343,
         .hp = 8,
-        .atk = 3,
+        .atk = 4,
     },
-    // Ember
+    // Ash
     {
         .abilityId = 344,
         .hp = 9,
         .pp = 4,
+        .atk = 1,
         .def = 2,
         .agi = 2,
     },
-    // Flash
+    // Flare
     {
         .abilityId = 345,
         .hp = 14,
         .pp = 3,
+        .atk = 1,
         .def = 2,
     },
-    // Torch
+    // Brand
     {
         .abilityId = 346,
         .hp = 9,
-        .atk = 3,
+        .atk = 4,
         .luck = 1,
     },
     // =
@@ -313,27 +324,28 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     {
         .abilityId = 359,
     },
-    // Gust
+    // Wail
     {
         .abilityId = 360,
         .hp = 9,
         .atk = 2,
-        .agi = 2,
+        .agi = 3,
     },
-    // Breeze
+    // Shriek
     {
         .abilityId = 361,
         .hp = 12,
         .pp = 5,
         .def = 2,
+        .agi = 1,
         .luck = 1,
     },
-    // Zephyr
+    // Specter
     {
         .abilityId = 362,
         .hp = 11,
         .pp = 3,
-        .agi = 2,
+        .agi = 3,
         .luck = 1,
     },
     // Smog
@@ -341,26 +353,29 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .abilityId = 363,
         .hp = 9,
         .atk = 3,
+        .agi = 1,
     },
-    // Kite
+    // Raven
     {
         .abilityId = 364,
         .hp = 8,
         .pp = 4,
-        .agi = 3,
+        .agi = 4,
     },
     // Squall
     {
         .abilityId = 365,
         .hp = 10,
         .atk = 5,
+        .agi = 1,
     },
-    // Luff
+    // Omen
     {
         .abilityId = 366,
         .hp = 11,
         .pp = 5,
         .def = 2,
+        .agi = 1,
         .luck = 1,
     },
     // =
