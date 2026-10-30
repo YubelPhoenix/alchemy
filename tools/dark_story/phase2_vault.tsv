@@ -110,6 +110,6 @@
 07365	message	Owwwoooooh...{end_wait}
 07366	message	Bow wow wow!{end_wait}
 07367	message	How did you know I\nwanted this? Thank you.{end_wait}
-07409	MsgVaultThereYouSeeTheRoofRepairs	The roof is done.\nIt does not stop the\nrain from coming.{end_wait}
+07409	MsgVaultThereYouSeeTheRoofRepairs	The roof is fixed, but\nit can't keep the rain\nout of our heads.{end_wait}
 07413	MsgVaultThatsTheLastOfTheRoof	That's the last of the\nroof. What now? I don't\nlike being idle.{end_wait}
 10716	MsgVaultCanHearWaterRumblingDown	Water's rumbling down\nthere. Deep. Constant.{end_wait}

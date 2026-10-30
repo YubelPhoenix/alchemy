@@ -191,7 +191,7 @@
 04536	message	He swore he wouldn't come\nback until it was done.{page_break}My {actor_name:1} keeps his word.\n...Please. Go away.{end_wait}
 04537	message	I don't know who you are.{pause_20_skippable}\nI'm sorry. I can't see\nanyone today.{end_wait}
 04548	MsgValeIllClimbTheFenceSomeday	When I'm your age,\n{actor_name:1}, I'll climb\nthat fence...{page_break}and see the lands beyond.\nI swear it.{end_wait}
-04549	MsgValeSighNoLongerWillISee	*Sigh* No more seeing\n{actor_name:6} standing alone.\nI miss even that.{end_wait}
+04549	MsgValeSighNoLongerWillISee	*Sigh* I even miss\nseeing {actor_name:6} standing\nalone.{end_wait}
 04550	MsgValeIDontBlameFelixIfOnly	I don't blame {actor_name:5}.{page_break}We should've saved him that\nday. We should've.{end_wait}
 04551	MsgValeTheStoneFellOnThe	Look, {actor_name:1}.{pause_20_skippable} That huge\nPsynergy Stone came down\nright on the hut.{end_wait}
 04552	message	Something that big, falling\nout of the sky... it could\nhave been any of us.{end_wait}

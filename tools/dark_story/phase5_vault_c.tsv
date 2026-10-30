@@ -75,7 +75,7 @@
 04992	MsgVaultWhoCouldHaveKnownTheyWere	Who could have known they\nwere thieves?{page_break}Well... they paid well.\nI won't pretend\nI'm sorry.{end_wait}
 04993	MsgVaultOfCourseIAlwaysSuspectedThey	Of course I suspected\nthey were up to no good.\nI just kept quiet.{end_wait}
 04994	MsgVaultGeeAlwaysGetHungryWhen	I get so hungry when\nI cook... There isn't\nenough to go around.{page_break}It wouldn't hurt to\ntaste just a little,\nwould it?{end_wait}
-04996	MsgVaultWowHaveManyThingsArent	You carry so much. Greedy,\nor just frightened?{end_wait}
+04996	MsgVaultWowHaveManyThingsArent	You carry so much. Do you\nneed it, or are you just\nafraid?{end_wait}
 04997	MsgVaultWantMoreBones	What? You want more\nbones?{end_now}
 04998	message	Go ahead... Take what\nyou need.{end_wait}
 04999	message	I don't blame you.{page_break}Only a dog would be\nhappy with nothing but\nbones.{end_wait}

@@ -191,7 +191,7 @@
 03914	message	Really? Fine, here's a\nlittle sample.{end_wait}
 03915	MsgValeBeholdPowerPsynergy	Behold! The power of\nPsynergy! Hah!{pause_20_skippable} ...Well? Not\nimpressed?{end_wait}
 03916	MsgValeWalkToRecoverPsynergy	If your Psynergy runs low,\nwalk. It comes back slowly.\nEverything does.{end_wait}
-03919	MsgValePuppiesPlayingOver	Puppies are playing over\nthere.{page_break}Let them. Something here\nshould get to play.{end_wait}
+03919	MsgValePuppiesPlayingOver	Puppies are playing over\nthere.{page_break}Let them play. Someone\nhere should get to.{end_wait}
 03920	message	Those who wield Psynergy\nare called Adepts.{page_break}We're supposed to be the\nservants of good. Never\nforget that, they say.{end_wait}
 03921	message	Our Psynergy came from Mt.\nAleph. A divine gift, they\nsay.{page_break}It's why wishes come true\nhere. When they come true.{end_wait}
 03922	message	Psynergy is for peace.\nIt must never be used for\nevil. Never.{end_wait}
@@ -236,7 +236,7 @@
 03965	message	You must be heading to\nKraden's cottage...\nWatch yourself.{end_wait}
 03966	MsgValeDontGoBeyondKradensCottage	Don't go beyond Kraden's\ncottage.{page_break}The monsters are thick out\nthere. They don't leave\nsurvivors.{end_wait}
 03967	MsgValeMtAlephLooksBeautifulTodayIts	Mt. Aleph looks peaceful\ntoday. Beautiful, even.\nThat's what scares me.{end_wait}
-03968	MsgValeValeStaysPristineBecauseOfMt	Vale stays pure because of\nMt. Aleph.{page_break}Taint that purity and the\nmountain will answer.{end_wait}
+03968	MsgValeValeStaysPristineBecauseOfMt	Vale stays pure because of\nMt. Aleph.{page_break}If we taint that purity,\nthe mountain will answer.{end_wait}
 03969	MsgValeYourGrandpaIsTheMayor	I envy you, {actor_name:2}. Your\ngrandpa's the mayor.{page_break}Do you envy him too,\n{actor_name:1}?{end_now}
 03970	message	Yeah... When travelers\ncome, he hears all about\nthe outside world.{end_wait}
 03971	message	Hmph. I can't believe you\ndon't envy him, {actor_name:1}.{page_break}I'd give anything to hear\na traveler's stories.{end_wait}
