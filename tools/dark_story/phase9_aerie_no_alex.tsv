@@ -3,7 +3,7 @@
 05597	message	The seals were broken\nwhen we arrived. Someone\nhad opened the way.{end_wait}
 05598	message	We only walked through.\nWater answers to the Star,\nnot to the hand.{end_wait}
 05599	message	Who? Who broke them?\nWhere is Alex?!{end_wait}
-05600	message	{actor_name:4}, your Alex is\ngone. Taken. Not by us.{end_wait}
+05600	message	{actor_name:4}, your Alex isn't\nhere. Don't ask me why.{end_wait}
 05601	message	The lighthouse lent you\nstrength in that fight.\nYou felt it, surely.{end_wait}
 05603	message	Don't you see?{page_break}It fed you limitless\nPsynergy, girl.{end_wait}
 05605	message	You and the boy they\ntook are Mercury Clan.{page_break}Masters of Water\nPsynergy.{end_wait}
