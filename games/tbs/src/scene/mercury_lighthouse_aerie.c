@@ -1126,7 +1126,7 @@ static void MercuryLighthouseAerie_AlexAppears(void) {
   Event_WaitFrames(20);
   Actor_WalkToAndWait(ACTOR_ALEX, 328, 176);
   Actor_FaceDirection(ACTOR_ALEX, FACING_SOUTHEAST + FACING_STEP, 20);
-  Import_ActorSetAnimation(ACTOR_ALEX, 7);
+  Import_ActorSetAnimation(ACTOR_ALEX, 5);
   Import_ActorSetAnimation(ACTOR_SATUROS, 7);
   Event_WaitFrames(20);
   Actor_RunRepeatedMotion(ACTOR_GARET, 1);
@@ -1242,7 +1242,7 @@ static void MercuryLighthouseAerie_AlexAppears(void) {
     FieldCamera_MoveTo(PIXELS(280), -1, PIXELS(216), 1);
     FieldCamera_WaitForArrival();
     Actor_FaceDirection(ACTOR_ALEX, FACING_SOUTHEAST + FACING_STEP, 20);
-    Import_ActorSetAnimation(ACTOR_ALEX, 7);
+    Import_ActorSetAnimation(ACTOR_ALEX, 5);
     FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 20);
     Actor_RunRepeatedMotion(ACTOR_IVAN, 2);
     Event_WaitFrames(20);
@@ -1912,10 +1912,7 @@ struct ActorTemplate gMercuryLighthouseAerieActorTemplates[] = {
         PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_MENARDI, FLAG_HOSTAGES_GONE, MOVEMENT_TYPE_STAND,
         PIXELS(104), 0, PIXELS(200), FACING_EAST, TALK_FACING_KEEP, 0 },
-    // Dark-story rewrite: Alex was taken by Tuaparang before the story began, so
-    // his place in these scenes is Menardi's (her own actor above stays for the
-    // hostage scene; this one is always present).
-    { SPRITE_MENARDI, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+    { SPRITE_ALEX, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(8), 0, PIXELS(8), FACING_EAST, TALK_FACING_KEEP, 0 },
     { SCENE_TABLE_END },
 };
