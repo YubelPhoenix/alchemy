@@ -87,7 +87,7 @@
 03996	message	Let's... let's just go,\n{actor_name:1}. Now.{end_wait}
 04002	message	And all that about the\nelements... what was it?{end_wait}
 04006	MsgValeKradenOhIsaac	Oh. {protagonist_name}.\nCome in. Quickly.{end_wait}
-04007	message	You look troubled, my boy.\nWhat is it?{end_wait}
+04007	message	You look troubled.\nWhat is on your mind?{end_wait}
 04008	message	Me? Ah... well, yes.\nI suppose I am.{end_wait}
 04020	message	Wait, everyone. Think.{end_wait}
 04023	message	Then what do we do?{end_wait}

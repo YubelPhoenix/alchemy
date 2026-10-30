@@ -1,4 +1,4 @@
-03666	MsgValeWake	{actor_name:1}... wake up.\nThe mountain is moving.{end_wait}
+03666	MsgValeWake	{actor_name:1}... wake up!\nThe mountain is shaking!{end_wait}
 03667	message	Please, sweetheart...\nwake up. Please.{end_wait}
 03668	message	The Boulder's coming down.\nGet him up. Now.{end_wait}
 03669	MsgValeComeOnHurry	Come on, {actor_name:1}.\nWe're leaving. Right now.{end_wait}
