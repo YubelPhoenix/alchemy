@@ -1,0 +1,38 @@
+05981	MsgBilibinMiladyWasVeryUpsetWhenShe	Milady left the room\nin tears.{pause_20_skippable}\nShe hasn't eaten in days.{end_wait}
+05982	MsgBilibinIFeelSorryForTheWarriors	I pity the warriors\nLord McCoy hired.{page_break}He's blaming them for\nthe gray sky. Soon he'll\nblame us all.{end_wait}
+05983	MsgBilibinIWonderWhatKindOfTreasure	What reward did Lord\nMcCoy give them?\nGold won't keep out ash.{end_wait}
+05984	MsgBilibinIWishShedJustStopWhining	I wish she'd stop\nwailing about the palace.{page_break}We've all lost something.\nMost of us lost more.{end_wait}
+05985	MsgBilibinTheydBeGuaranteedAGoodLife	They could have lived well\nin Bilibin, under Lord\nMcCoy's roof.{page_break}Why chase danger when\nthe world is dying\nanyway?{end_wait}
+05986	MsgBilibinICanTellWhenShesUpset	I can tell when she's\nupset{em_dash}the whole house\nshakes from her door.{end_wait}
+05987	MsgBilibinForOnceMilordDidntLetLady	For once, milord stood up\nto Lady McCoy.{page_break}He looks bolder. Or\nmaybe just more\ndesperate. Hee hee...{end_wait}
+05989	message	Oh!{pause_20_skippable} I thought you\nwere milady.{page_break}You startled me. Everyone\nis on edge lately.{end_wait}
+05990	MsgBilibinSometimesAMansJustGottaPut	Sometimes a man must\nput his foot down.\nLord McCoy finally did.{end_wait}
+05991	MsgBilibinTheHoleInThisNightgownIs	The hole in this\nnightgown keeps growing.{page_break}Has somebody been\nwearing it while I sleep?{end_wait}
+05992	MsgBilibinItsVeryRecklessForSuch	How reckless, sending\nyoung warriors against\nthe holy tree...{end_wait}
+05993	MsgBilibinWasWatchingFromHereAfter	I watched from here.\nAfter all that, you still\nwent to Kolima?{end_now}
+05994	message	I don't know how you broke\nthe curse, but thank\nthe stars you did.{end_wait}
+05995	message	Liar! I saw you walk\nthrough the barricade!{page_break}Then you came back after\nthe forest turned green.\nWhat did it cost you?{end_wait}
+05996	MsgBilibinLookedVeryCourageousWalkingToward	You looked brave walking\ntoward Kolima.\nOr just doomed.{end_wait}
+05997	MsgBilibinACourageousWarriorWouldntThinkTwice	A brave warrior wouldn't\nthink twice about\nbecoming a tree.{end_wait}
+05998	MsgBilibinRewardReceivedWasIndeedGreatest	The reward you got was\nthe greatest of treasures.{page_break}Brave people get the\nbest luck. Or die\nfirst.{end_wait}
+05999	MsgBilibinGotPrettyNiceRewardBut	That's a fine reward,\nbut I think you were\njust unlucky.{page_break}I don't want you to feel\nbad, so here's something\nthat may help.{end_wait}
+06000	MsgBilibinOhItLooksLikeSheIs	She seems okay.\nThank the stars.{end_wait}
+06002	MsgBilibinShellBeSweptDownstreamIfShe	The current will drag\nher under if no one\npulls her out!{end_wait}
+06003	MsgBilibinAhhhhPleaseAnyonePleaseHelp	AHHHH! Please! Anyone!\nHelp me!{end_wait}
+06004	MsgBilibinThankSavedMeFromBeing	Thank you! You pulled me\nout before the river took\nme!{end_wait}
+06006	message	Jill, are these the\nones who saved you?{end_wait}
+06008	message	The river would have\ncarried me away if it\nweren't for you.{end_wait}
+06011	message	I'll never forget what\nyou did for me.\nThank you.{end_wait}
+06013	MsgBilibinIReallyLikeThisSpotBy	I like this spot by the\nriverbank... The water\nstill sounds peaceful.{end_wait}
+06014	MsgBilibinIWillThinkOfYouWhenever	I will think of you\nwhenever I taste a\npersimmon.{end_wait}
+06017	MsgBilibinWhoseIdeaWasItToPick	Whose idea was it to\npick persimmons,\nanyway?{end_wait}
+06018	MsgBilibinWellItWasntMyIdeaTo	Don't look at me.\nIt wasn't my idea.{end_wait}
+06019	MsgBilibinThesePersimmonsAreJustLikeMy	These persimmons are\njust like my memories...\nSo{pause_20_skippable} bitter...{end_wait}
+06020	MsgBilibinWeWorkedSoHardIfOnly	We worked so hard...\nIf only we had been\nfaster...{end_wait}
+06021	MsgBilibinWhatACruelWorldWeJust	What a cruel world! We\nonly wanted to stand on\neach other's shoulders!{end_wait}
+06022	MsgKolimaGoingCrossBridge	Are you going to cross\nthe bridge?{end_wait}
+06024	MsgKolimaForAWhileIThoughtNo	I thought no one would\never cross this bridge\nagain.{page_break}Cross it slowly. It\ncould be your last time.{end_wait}
+06025	MsgKolimaYouWouldntUnderstandButItsTruly	You wouldn't understand,\nbut crossing this bridge\nstill feels like a gift.{end_wait}
+06026	MsgXianHowDidGetHereBridge	How did you get here?\nIs the bridge open again?{end_now}
+06027	message	Really?!{pause_20_skippable} Then I can\ngo home to Kolima?{page_break}I thought I'd never see\nhome again, with the\ncursed forest and all!{end_wait}
+06028	message	Oh... You came through\nthe forest? Then I'll\nstay put.{end_wait}
