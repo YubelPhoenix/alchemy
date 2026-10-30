@@ -2435,7 +2435,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_VENUS,
         .range = 1,
-        .power = 16,
+        .power = 20,
     },
     // Granite
     {
@@ -2468,7 +2468,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_VENUS,
         .effect = ABILITY_EFFECT_DRAIN_HALF_HP,
         .range = 1,
-        .power = 50,
+        .power = 60,
     },
     // Ground
     {
@@ -2485,7 +2485,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_VENUS,
         .effect = ABILITY_EFFECT_VENOM,
         .range = 1,
-        .power = 60,
+        .power = 75,
     },
     // =
     {
@@ -2593,7 +2593,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_MERCURY,
         .effect = ABILITY_EFFECT_ATTACK_DOWN_2,
         .range = 1,
-        .power = 30,
+        .power = 40,
     },
     // Mist
     {
@@ -2602,7 +2602,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_MERCURY,
         .effect = ABILITY_EFFECT_SLEEP,
         .range = 1,
-        .power = 13,
+        .power = 16,
     },
     // Spritz
     {
@@ -2619,7 +2619,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_MERCURY,
         .effect = ABILITY_EFFECT_DEFENSE_DOWN_2,
         .range = 1,
-        .power = 40,
+        .power = 50,
     },
     // Tonic
     {
@@ -2743,7 +2743,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_MARS,
         .effect = ABILITY_EFFECT_DELUSION,
         .range = 1,
-        .power = 30,
+        .power = 40,
     },
     // Corona
     {
@@ -2760,7 +2760,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_MARS,
         .effect = ABILITY_EFFECT_STUN,
         .range = 1,
-        .power = 50,
+        .power = 65,
     },
     // Ember
     {
@@ -2785,7 +2785,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_MARS,
         .effect = ABILITY_EFFECT_HALVE_DEFENSE,
         .range = 1,
-        .power = 30,
+        .power = 40,
     },
     // =
     {
@@ -2885,7 +2885,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_JUPITER,
         .effect = ABILITY_EFFECT_DOUBLE_BLOW_60,
         .range = 1,
-        .power = 10,
+        .power = 13,
     },
     // Breeze
     {
@@ -2910,7 +2910,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_JUPITER,
         .effect = ABILITY_EFFECT_DELUSION,
         .range = 1,
-        .power = 60,
+        .power = 75,
     },
     // Kite
     {
@@ -2927,7 +2927,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_JUPITER,
         .effect = ABILITY_EFFECT_STUN,
         .range = 1,
-        .power = 14,
+        .power = 17,
     },
     // Luff
     {
