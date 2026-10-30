@@ -112,6 +112,11 @@ enum {
   /// discarded and WORLD_MAP_TO_ROCK_ROOMS leads on.
   WORLD_MAP_AFTER_BLACK_ORB_DEFEAT = 78,
   WORLD_MAP_JENNA_AND_KRADEN_ADRIFT = 80,
+  /// Mia alone on the road south of Imil, where hired thieves find her
+  /// (Mia's first interlude), then back from the first and second fights.
+  WORLD_MAP_MIA_THIEVES = 81,
+  WORLD_MAP_MIA_THIEVES_AFTER_FIRST = 82,
+  WORLD_MAP_MIA_THIEVES_AFTER_SECOND = 83,
   WORLD_MAP_AFTER_MERCURY_LIGHTHOUSE_LIT =
       90, ///< WorldMap_Initialize plays WorldMap_PlayLighthouseTransition
           ///< here in Mercury Lighthouse's colours, then sends the party to the
@@ -203,6 +208,8 @@ enum {
       111, ///< ★ Named from what the player sees: Jenna and Kraden adrift on an
            ///< island in the ending (its render)
   WORLD_MAP_TO_ROCK_ROOMS = 112,
+  /// Out of Mia's interlude, back to the world map at Vault's south gate.
+  WORLD_MAP_TO_VAULT_AFTER_MIA_THIEVES = 113,
 };
 
 /// SceneId_ValeStormyNight's entrances.
