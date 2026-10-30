@@ -12,10 +12,13 @@
 #include "graphics/palbuf.h"
 #include "unit/overworld/event_commands.h"
 
-/// How far Alchemy has returned: 0 before any beacon is lit, 1 once Mercury
-/// Lighthouse is lit.
+/// How far Alchemy has returned: 0 until the Sol Sanctum erupts and the Stars
+/// are taken, 1 from then on, 2 once Mercury Lighthouse is lit.
 static inline s32 WorldState_GetStage(void) {
-  return GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0;
+  if (GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0) {
+    return 2;
+  }
+  return GameFlag_Get(FLAG_SOL_SANCTUM_ERUPTED) != 0;
 }
 
 /// Dulls and darkens every colour in the palette fade's source palette to
@@ -52,7 +55,7 @@ static inline void WorldState_ApplyTintOnly(void) {
   }
 }
 
-/// Starts the world's current weather: from stage 1 on, rain and the ash tint.
+/// Starts the world's current weather: from stage 1 on (the eruption), rain and the ash tint.
 static inline void WorldState_Apply(void) {
   if (WorldState_GetStage() >= 1) {
     Weather_StartRain();

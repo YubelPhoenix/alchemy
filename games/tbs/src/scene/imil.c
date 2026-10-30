@@ -835,7 +835,7 @@ s32 Imil_Initialize(void) {
   struct Actor *leader;
   s32 entrance;
 
-  // The snow turns grey once Mercury Lighthouse is lit.
+  // The snow turns grey once the Sol Sanctum has erupted.
   WorldState_ApplyTintOnly();
 
   if (gSaveBlock.sceneId == (s32)&SceneId_Imil) {
