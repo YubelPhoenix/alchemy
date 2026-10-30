@@ -226,23 +226,23 @@
 04275	message	{actor_name:2} took the Elemental\nStars.{end_wait}
 04276	MsgSolSanctumRightTake	Fine. I'll take them.{end_wait}
 04277	MsgSolSanctumWontLetGo	They won't release\n{actor_name:6} unless we hand\nthem over!{end_wait}
-04278	MsgSolSanctumPermitRelieveElemental	Allow me to relieve you\nof those Elemental\nStars.{end_wait}
-04279	message	Alex. You're late.{end_wait}
-04280	message	Alex is one of ours.\nGive the stones to him.{end_wait}
+04278	MsgSolSanctumPermitRelieveElemental	Give them to me.{pause_20_skippable}\nPlease.{end_wait}
+04279	message	Felix. Take them.{end_wait}
+04280	message	Felix will take them.\nGive him the stones.{end_wait}
 04281	message	Great. After all that\nwork...{end_wait}
 04282	message	{actor_name:2} gave him the\nElemental Stars.{end_wait}
-04283	message	I must apologize in\nadvance, I'm afraid...{end_wait}
-04284	message	You'll be bringing us the\nlast Elemental Star too.{end_wait}
+04283	message	I'm sorry. There is one\nmore thing.{end_wait}
+04284	message	You will bring us the\nlast Elemental Star too.{end_wait}
 04285	message	Wait. Just a second!{end_wait}
 04286	message	You want us to fetch the\nlast one too?{end_wait}
-04287	message	Oh.{pause_20_skippable} Was I unclear?{end_wait}
+04287	message	Yes.{pause_20_skippable} The last one too.{end_wait}
 04288	message	You said you'd free\n{actor_name:6} once we hand over\nthe Elemental Stars.{page_break}You promised.{end_wait}
 04289	message	No, friend. We want\nALL the Elemental Stars.{end_wait}
 04290	message	Stop complaining. Bring\nus the last Star.{end_now}
-04291	MsgSolSanctumDontWantAnything	You don't want any harm\nto come to your friends,\ndo you?{end_now}
-04292	MsgSolSanctumThankCooperation	We appreciate your help.{end_wait}
-04293	message	We'll wait for the rest.{end_wait}
-04294	MsgSolSanctumDoubtHowFeel	I doubt that's what you\nfeel. I'll ask again.{page_break}You don't want your\nfriends hurt, do you?{end_now}
+04291	MsgSolSanctumDontWantAnything	I don't want anyone hurt.\nDo you?{end_now}
+04292	MsgSolSanctumThankCooperation	Thank you.{end_wait}
+04293	message	We'll be waiting for the\nlast one.{end_wait}
+04294	MsgSolSanctumDoubtHowFeel	Think of Jenna and\nKraden. Please.{end_now}
 04295	MsgSolSanctumMenardiBringTheFinalGem	What are you waiting for?\nBring us the final gem!{end_wait}
 04296	MsgSolSanctumFelixSilence	......{end_wait}
 04297	MsgSolSanctumJennaMyBrotherIsAlive	My brother's alive...\nbut why didn't he tell\nme sooner?{end_wait}
@@ -275,7 +275,7 @@
 04324	message	Anything is possible.\nSo what do you suggest?{end_wait}
 04325	message	We take this \"{actor_name:6}\"\nwith us. If they live,\nthey'll want her back.{page_break}And if they want her back,\nthey'll bring us the Star.{end_wait}
 04326	message	Either way, Kraden comes\nwith us.{pause_20_skippable} He's tied to\nall of this.{end_wait}
-04327	message	Alex...{pause_20_skippable} are you breaking\nour promise?{end_wait}
+04327	message	Saturos...{pause_20_skippable} are you\nbreaking our promise?{end_wait}
 04328	message	Circumstances have\nchanged since that\npromise was made.{end_wait}
 04329	message	{actor_name:6} has no part in\nthis. I won't let you\nhurt her!{end_wait}
 04330	message	Do what you want with\nme. Just let {actor_name:6} go!{end_wait}

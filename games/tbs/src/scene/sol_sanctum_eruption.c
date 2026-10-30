@@ -159,14 +159,13 @@ const struct Trigger *SolSanctumEruption_GetTriggers(void) {
   return gSolSanctumEruption_Triggers;
 }
 
-/// Stages Saturos, Menardi, Alex and Felix around Jenna and Kraden.
+/// Stages Saturos, Menardi and Felix around Jenna and Kraden.
 static inline void SolSanctumEruption_PlaceHostageGroup(void) {
   Actor_SetPosition(ACTOR_JENNA, PIXELS(475), PIXELS(332));
   Actor_SetPosition(ACTOR_KRADEN, PIXELS(491), PIXELS(332));
   Actor_SetPosition(ACTOR_MENARDI, PIXELS(459), PIXELS(348));
   Actor_SetPosition(ACTOR_SATUROS, PIXELS(507), PIXELS(348));
   Actor_SetPosition(ACTOR_FELIX, PIXELS(471), PIXELS(306));
-  Actor_SetPosition(ACTOR_ALEX, PIXELS(479), PIXELS(362));
 }
 
 /// Elemental Star Room, collapsing: the Wise One stills the first quake,
@@ -245,7 +244,7 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Actor_Jump(ACTOR_PARTY_LEADER, 6, 0);
   Actor_Jump(ACTOR_GARET, 6, 20);
   // Off screen, Menardi: "What happened?" Saturos: "Not again!" Jenna: the
-  // water's gone. Alex: without the Elemental Stars the chamber is
+  // water's gone. Felix: without the Elemental Stars the chamber is
   // collapsing. Kraden: is this the "terrible retribution"?
   SolSanctumEruption_SetMaterializationTint(1, 20, 20);
   SolSanctumEruption_SetMaterializationTint(0, 20, 40);
@@ -255,7 +254,7 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   SolSanctumEruption_SetMaterializationTint(1, 20, 0);
   FieldEvent_ShowMessageThenWait(ACTOR_JENNA, 0, 20);
   SolSanctumEruption_SetMaterializationTint(0, 20, 0);
-  FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 20);
+  FieldEvent_ShowMessageThenWait(ACTOR_FELIX, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_KRADEN, 0, 20);
   Actor_LinkPair(ACTOR_PARTY_LEADER, ACTOR_GARET, 0);
   Event_WaitFrames(40);
@@ -323,8 +322,8 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   MapGrid_SetShake(-1, -1, 9 * Q16_ONE / 10);
   MapGrid_WaitForShakeToSettle();
   SolSanctumEruption_SetMaterializationTint(0, 20, 60);
-  // Alex: "Such power... Incredible!" Garet: "!!!" Jenna: "Wow..."
-  FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 30);
+  // Felix: "Such power... It's frightening." Garet: "!!!" Jenna: "Gods..."
+  FieldEvent_ShowMessageThenWait(ACTOR_FELIX, 0, 30);
   Actor_FaceDirection(ACTOR_WISE_ONE, FACING_NORTHWEST, 40);
   SolSanctumEruption_SetMaterializationTint(1, 20, 20);
   SolSanctumEruption_SetMaterializationTint(0, 20, 20);
@@ -347,7 +346,6 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Actor_FaceDirection(ACTOR_MENARDI, FACING_WEST, 0);
   Actor_FaceDirection(ACTOR_SATUROS, FACING_WEST, 0);
   Actor_FaceDirection(ACTOR_FELIX, FACING_WEST, 0);
-  Actor_FaceDirection(ACTOR_ALEX, FACING_WEST, 0);
   actor = Actor_GetById(ACTOR_JENNA);
   FieldCamera_MoveTo(actor->x.part.pixel * PIXELS(1), -1,
                      actor->z.part.pixel * PIXELS(1), 1);
@@ -356,14 +354,13 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Actor_RunRepeatedMotion(ACTOR_FELIX, 2);
   Event_WaitFrames(20);
   // Felix: they should escape while they can. Menardi: not without the Mars
-  // Star. Alex sides with Felix, and Saturos agrees to leave it.
+  // Star. Saturos sides with Felix and agrees to leave it.
   Event_ShowMessage(ACTOR_FELIX, 0);
   Actor_RunRepeatedMotion(ACTOR_MENARDI, 2);
   FieldEvent_ShowMessageThenWait(ACTOR_MENARDI, 0, 10);
-  Import_ActorSetAnimation(ACTOR_ALEX, ANIM_SHAKE_HEAD);
-  FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 20);
   Actor_LinkPair(ACTOR_SATUROS, ACTOR_MENARDI, 40);
   Import_ActorSetAnimation(ACTOR_SATUROS, ANIM_SHAKE_HEAD);
+  FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 10);
   // Jenna: "What about Isaac and Garet? You can't just leave them here!"
   Actor_ShowEmote(ACTOR_JENNA, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 0);
@@ -375,7 +372,7 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Actor_ShowEmote(ACTOR_SATUROS, EMOTE_IN_FRONT | EMOTE_ELLIPSIS, 40);
   Actor_FaceDirection(ACTOR_SATUROS, FACING_NORTHWEST + FACING_STEP, 10);
   // Saturos: "Forget about them." Menardi: they might survive. Saturos: "So
-  // what do you suggest we do?" Alex: take Jenna, and they will bring the
+  // what do you suggest we do?" Menardi: take Jenna, and they will bring the
   // Star to get her back.
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 10);
   Actor_FaceDirection(ACTOR_SATUROS, FACING_WEST, 10);
@@ -383,29 +380,26 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   FieldEvent_ShowMessageThenWait(ACTOR_MENARDI, 0, 10);
   Import_ActorSetAnimation(ACTOR_SATUROS, ANIM_NOD);
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 40);
-  Actor_FaceDirection(ACTOR_ALEX, FACING_NORTHWEST + FACING_STEP, 60);
-  Actor_SetAnimationAndWait(ACTOR_ALEX, ANIM_NOD);
-  FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 10);
+  Actor_SetAnimationAndWait(ACTOR_MENARDI, ANIM_NOD);
+  FieldEvent_ShowMessageThenWait(ACTOR_MENARDI, 0, 10);
   Actor_FaceDirection(ACTOR_FELIX, FACING_SOUTHEAST + FACING_STEP, 0);
   Actor_FaceDirection(ACTOR_JENNA, FACING_SOUTHEAST + FACING_STEP, 0);
   Actor_FaceDirection(ACTOR_KRADEN, FACING_SOUTH + FACING_STEP, 0);
   Actor_FaceDirection(ACTOR_MENARDI, FACING_SOUTHEAST + FACING_STEP, 0);
   Actor_FaceDirection(ACTOR_SATUROS, FACING_SOUTH + FACING_STEP, 20);
-  Actor_FaceDirection(ACTOR_ALEX, FACING_NORTH + FACING_STEP, 20);
-  // Alex: "Regardless, Kraden must come with us."
-  Actor_SetAnimationAndWait(ACTOR_ALEX, ANIM_SHAKE_HEAD);
-  FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 10);
+  // Saturos: "Either way, Kraden must come with us."
+  Actor_SetAnimationAndWait(ACTOR_SATUROS, ANIM_SHAKE_HEAD);
+  FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 10);
   Actor_ShowEmote(ACTOR_FELIX, EMOTE_IN_FRONT | EMOTE_ANGER_VEIN, 0);
-  // Felix steps forward: Alex is breaking their promise. Alex: conditions
+  // Felix steps forward: Saturos is breaking their promise. Saturos: conditions
   // have changed. Felix will not let them hurt Jenna; Kraden offers himself
   // in her place.
   Actor_SetSpeed(ACTOR_FELIX, PIXELS(1), PIXELS(1) / 2);
   Actor_WalkToAndWait(ACTOR_FELIX, 471, 314);
   Actor_StartRepeatedMotion(ACTOR_FELIX, 3);
   FieldEvent_ShowMessageThenWait(ACTOR_FELIX, 0, 10);
-  Actor_FaceDirection(ACTOR_ALEX, FACING_NORTHWEST + FACING_STEP, 10);
-  Import_ActorSetAnimation(ACTOR_ALEX, ANIM_SHAKE_HEAD);
-  FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 10);
+  Import_ActorSetAnimation(ACTOR_SATUROS, ANIM_SHAKE_HEAD);
+  FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 10);
   Actor_StartRepeatedMotion(ACTOR_FELIX, 3);
   FieldEvent_ShowMessageThenWait(ACTOR_FELIX, 0, 10);
   Actor_RunRepeatedMotion(ACTOR_KRADEN, 2);
@@ -439,12 +433,11 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Event_WaitFrames(40);
   Actor_ShowEmote(ACTOR_FELIX, EMOTE_IN_FRONT | EMOTE_WINCE, 0);
   Event_WaitFrames(60);
-  Actor_FaceDirection(ACTOR_ALEX, FACING_NORTHWEST + FACING_STEP, 0);
   Event_WaitFrames(30);
-  // Alex: "Perhaps we ought to continue this elsewhere, Felix." Jenna:
-  // "Felix..." Alex: "Please...can we go now?"
-  Actor_SetAnimationAndWait(ACTOR_ALEX, ANIM_SHAKE_HEAD);
-  FieldEvent_ShowMessageThenWait(SPEAKER_PORTRAIT_RIGHT | ACTOR_ALEX, 0, 30);
+  // Saturos: "Let's go, Felix. Something is watching us." Jenna:
+  // "Felix... please." Saturos: "Please... can we leave?"
+  Actor_SetAnimationAndWait(ACTOR_SATUROS, ANIM_SHAKE_HEAD);
+  FieldEvent_ShowMessageThenWait(SPEAKER_PORTRAIT_RIGHT | ACTOR_SATUROS, 0, 30);
   Actor_FaceDirection(ACTOR_KRADEN, FACING_NORTHWEST + FACING_STEP, 0);
   Actor_FaceDirection(ACTOR_JENNA, FACING_NORTHWEST + FACING_STEP, 0);
   Actor_FaceDirection(ACTOR_FELIX, FACING_SOUTHEAST + FACING_STEP, 20);
@@ -454,8 +447,8 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Actor_SetAnimationAndWait(ACTOR_FELIX, ANIM_NOD);
   Actor_ShowEmote(ACTOR_SATUROS, EMOTE_IN_FRONT | EMOTE_QUESTION, 0);
   Actor_ShowEmote(ACTOR_MENARDI, EMOTE_IN_FRONT | EMOTE_QUESTION, 60);
-  Actor_RunRepeatedMotion(ACTOR_ALEX, 2);
-  FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 60);
+  Actor_RunRepeatedMotion(ACTOR_SATUROS, 2);
+  FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 60);
   Actor_SetAnimationAndWait(ACTOR_FELIX, ANIM_NOD);
   Event_WaitFrames(40);
   Actor_ShowEmote(ACTOR_JENNA, EMOTE_IN_FRONT | EMOTE_WINCE, 0);
@@ -532,15 +525,12 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Actor_SetSpeed(ACTOR_SATUROS, PIXELS(1), PIXELS(1) / 2);
   Actor_SetSpeed(ACTOR_MENARDI, PIXELS(1), PIXELS(1) / 2);
   Actor_SetSpeed(ACTOR_FELIX, PIXELS(1), PIXELS(1) / 2);
-  Actor_SetSpeed(ACTOR_ALEX, PIXELS(1), PIXELS(1) / 2);
   Actor_WalkToAndWait(ACTOR_SATUROS, 471, 308);
   Actor_FaceDirection(ACTOR_SATUROS, FACING_SOUTH + FACING_STEP, 0);
   Actor_WalkToAndWait(ACTOR_MENARDI, 455, 308);
   Actor_FaceDirection(ACTOR_MENARDI, FACING_SOUTHEAST + FACING_STEP, 0);
-  Actor_WalkToAndWait(ACTOR_ALEX, 487, 308);
   Actor_FaceDirection(ACTOR_SATUROS, FACING_NORTH, 0);
   Actor_FaceDirection(ACTOR_MENARDI, FACING_NORTH + FACING_STEP, 0);
-  Actor_FaceDirection(ACTOR_ALEX, FACING_NORTHWEST + FACING_STEP, 0);
   Actor_FaceDirection(ACTOR_JENNA, FACING_NORTH + FACING_STEP, 0);
   Actor_FaceDirection(ACTOR_FELIX, FACING_NORTH + FACING_STEP, 0);
   FieldCamera_SetSpeed(PIXELS(1) / 2, PIXELS(1) / 16);
@@ -549,13 +539,10 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Event_WaitFrames(40);
   GameFlag_Set(FLAG_SOL_SANCTUM_ERUPTION_SATUROS_LEAVING);
   // One by one they rise out of the chamber: Saturos, Kraden, Menardi, then
-  // Jenna ("Isaac, Garet! Don't die!") and Felix, and last Alex, who regrets
-  // leaving the Mars Star.
+  // Jenna ("Isaac, Garet! Don't die!") and Felix, and last Saturos, who
+  // regrets leaving the Mars Star.
   Actor_SetSpeed(ACTOR_SATUROS, PIXELS(1) / 2, PIXELS(1) / 4);
   Actor_SetSpeed(ACTOR_MENARDI, PIXELS(1) / 2, PIXELS(1) / 4);
-  Actor_SetSpeed(ACTOR_ALEX, PIXELS(1) / 2, PIXELS(1) / 4);
-  Actor_SetAnimationAndWait(ACTOR_SATUROS, ANIM_NOD);
-  SolSanctumEruption_RaiseAndShrinkActor(ACTOR_SATUROS);
   Actor_RunRepeatedMotion(ACTOR_KRADEN, 2);
   SolSanctumEruption_RaiseAndShrinkActor(ACTOR_KRADEN);
   Actor_SetAnimationAndWait(ACTOR_MENARDI, ANIM_NOD);
@@ -568,12 +555,12 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Actor_FaceDirection(ACTOR_FELIX, FACING_NORTHEAST, 0);
   SolSanctumEruption_RaiseAndShrinkActor(ACTOR_JENNA);
   SolSanctumEruption_RaiseAndShrinkActor(ACTOR_FELIX);
-  Actor_FaceDirection(ACTOR_ALEX, FACING_SOUTHWEST + FACING_STEP, 40);
-  FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 30);
-  Actor_SetAnimationAndWait(ACTOR_ALEX, ANIM_SHAKE_HEAD);
+  Actor_FaceDirection(ACTOR_SATUROS, FACING_SOUTHWEST + FACING_STEP, 40);
+  FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 30);
+  Actor_SetAnimationAndWait(ACTOR_SATUROS, ANIM_SHAKE_HEAD);
   Event_WaitFrames(20);
-  FieldEvent_ShowMessageThenWait(ACTOR_ALEX, 0, 30);
-  SolSanctumEruption_RaiseAndShrinkActor(ACTOR_ALEX);
+  FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 30);
+  SolSanctumEruption_RaiseAndShrinkActor(ACTOR_SATUROS);
   SolSanctumEruption_PlayWiseOneRescue();
   Party_RemoveMemberRestored(JENNA);
 }
