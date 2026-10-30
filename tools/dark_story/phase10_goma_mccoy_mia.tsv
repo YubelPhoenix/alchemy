@@ -1,0 +1,25 @@
+05003	message	They got us this time.\nNext time they'll pay.\nI swear it.{end_wait}
+05029	message	We fled here from the\neruption of Mt. Aleph.{end_wait}
+05034	message	Tell me the truth.\nDid Alchemy cause the\neruption on Mt. Aleph?{end_wait}
+05044	message	That tree was a man. He\ncame to us already cursed.{page_break}His last words were that\nhe had wronged the sacred\ntree.{end_wait}
+05045	message	You missed the tree?\nLook around some more.{end_wait}
+05060	message	Yes, I had the tree cut\ndown for my palace!{page_break}And if anyone is a\nvictim here, it's me!\nI've waited months for it!{end_wait}
+05061	message	A tree spirit's curse?\nFoolish old superstition!{page_break}All I want is to live\nin a big palace!{end_wait}
+05153	message	I've lost count of the men\nLord McCoy has hired.{page_break}Not one has come back.{end_wait}
+05154	message	You don't look strong.\nMaybe that's for the best.{end_wait}
+05504	message	No. I saw it. That flow\nof force came from you.{end_wait}
+05505	message	I knew it. I saw a ghostly\nforce pushing that statue.{end_wait}
+05507	message	Psynergy? Is that what\nyou call it?{end_wait}
+05509	message	It is a gift of the\nMercury Clan, passed down\nthrough our blood.{end_wait}
+05510	message	We call it Ply. It is\ndrawn through meditation.{end_wait}
+05515	message	Whoever entered the\nlighthouse will answer\nto me.{end_wait}
+05522	message	Do you have business in\nmy lighthouse as well?{end_now}
+05523	message	Tell me the truth.{end_wait}
+05524	message	Strangers don't risk this\nmuch for a place they\ndon't know. Why?{end_wait}
+05525	message	You have an errand in my\nlighthouse. Don't you?{end_now}
+05526	message	The truth.{pause_20_skippable} Now.{end_now}
+05528	message	There may be places ahead\nthat I cannot pass alone.{end_wait}
+05529	message	Only the Mercury Clan may\nenter this place. Not you.{end_wait}
+05530	message	But I can't do this\nalone. Not now.{page_break}You will come with me.\nDon't mistake it for\ntrust.{end_wait}
+05547	message	Those children are still\nalive?{end_wait}
+05548	message	You came all this way\nfor {actor_name:6} and Kraden?{end_wait}
