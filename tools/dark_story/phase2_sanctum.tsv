@@ -60,7 +60,7 @@
 04109	message	I don't know who did\nit. But they're hiding\nsomething that matters.{end_wait}
 04110	message	Perhaps...{pause_20_skippable}the very key\nto Alchemy itself.{end_wait}
 04111	message	Shall I tell you more?{end_now}
-04112	MsgSolSanctumHonestlyDoubtUnderstand	Hmm. If I explained now,\nI doubt you'd follow.\nNot yet.{end_wait}
+04112	MsgSolSanctumHonestlyDoubtUnderstand	Hmm. If I explained it now,\nI doubt you would follow.\nNot yet.{end_wait}
 04113	MsgSolSanctumHmphWellTold	Hmph.{pause_20_skippable} Even if I told\nyou, you wouldn't get it.\nNot yet.{end_wait}
 04114	MsgSolSanctumTryFindSolution	We have to solve this.\nThere's no other way.{end_wait}
 04115	message	Heh. Another mystery.\nJust our luck.{end_wait}
@@ -109,8 +109,8 @@
 04158	message	No... it can't be.\nThe sea has waves.{end_wait}
 04159	message	The sea?\nWhat's that?{end_wait}
 04160	message	Endless water, at the\nedge of the world.\nThat's the sea.{end_wait}
-04161	message	You wouldn't understand.\nOne day I'll show you.\nIf we live that long.{end_wait}
-04162	message	The Elemental Stars.\nHere. After everything.{end_wait}
+04161	message	You wouldn't understand.\nI'll show you one day, if\nwe live that long.{end_wait}
+04162	message	The Elemental Stars are\nreally here, after all this\ntime.{end_wait}
 04163	message	They're real. The stars\nare real!{end_wait}
 04164	message	You taught us this...\nElements are what all\nmatter is made of.{end_wait}
 04165	message	Stone, wood... even us.\nAll of it, from four\nelements.{page_break}Did I get that right,\n{actor_name:1}?{end_now}
@@ -119,14 +119,14 @@
 04168	MsgSolSanctumKradenTheElementsAreThe	As I've told you often,\nthe elements are the root\nof all matter.{end_wait}
 04169	message	Earth,{pause_20_skippable} water,{pause_20_skippable} fire,{pause_20_skippable}\nand wind{pause_20_skippable}{em_dash}these are the\nfour.{end_wait}
 04170	message	Legend says the four\nElemental Stars hold{page_break}the purest essence of\neach element.{end_wait}
-04171	message	And here they are. The\nlegend, in front of us.{end_wait}
+04171	message	And here they are. The\nlegend itself, right in\nfront of us.{end_wait}
 04172	message	The Venus Star.\nThe stone of earth...{end_wait}
 04173	message	Mercury. The star of\nwater, in all its forms.{end_wait}
-04174	message	And Mars, glowing red.\nFire, shut up inside it.{end_wait}
+04174	message	And Mars, glowing red, with\nfire sealed inside it.{end_wait}
 04175	message	Jupiter, with the fury of\nthe wind bound in it!{end_wait}
 04176	message	Kraden...{pause_20_skippable} why are you\nso worked up?{end_wait}
 04177	message	How can you be so calm?\nLook at what's in front\nof us!{end_wait}
-04178	message	This is where Alchemy\nbegan. All of it.{end_wait}
+04178	message	This is where Alchemy\nbegan. All of it started\nhere.{end_wait}
 04179	message	...I've told you this\nbefore, haven't I?{end_now}
 04180	message	Huh? I must have dozed\noff,{page_break}because I haven't got a\nclue what he means.{end_wait}
 04181	message	Then this is a lot to\ntake in. I understand.{end_wait}
@@ -136,7 +136,7 @@
 04185	message	Alchemy began as a search\nfor this very stone.{end_wait}
 04186	message	Still not clear?{page_break}Alchemy exists because\nof the Elemental Stars.{end_wait}
 04187	MsgSolSanctumTheStarsHaveEnormousPower	I don't get how it works,\nbut they're strong.\nReally strong, right?{end_wait}
-04188	message	Beyond strong. One gem\ncould bring the whole\nworld to its knees.{end_wait}
+04188	message	Much stronger than that.\nOne gem could bring the\nwhole world to its knees.{end_wait}
 04189	message	Now, perhaps, you begin\nto see.{end_wait}
 04190	message	Don't joke like that,\nKraden. I thought you\nwere serious.{page_break}Heh... Conquering the\nworld... right.{end_wait}
 04191	message	Who can say what's true?{end_wait}
@@ -155,7 +155,7 @@
 04204	message	Your hands are full.\nSort out your items.{end_wait}
 04205	MsgSolSanctumTheBagsAreFromKradens	Those bags came from your\ncottage, didn't they,\nKraden?{end_wait}
 04206	message	Bags? What are they for?{end_wait}
-04207	message	Woven Mythril thread.\nNothing else will do.{end_wait}
+04207	message	They're woven from Mythril\nthread. Nothing else will\nwork.{end_wait}
 04208	message	I prepared them for\nexactly this occasion.{end_wait}
 04209	message	Now fetch the Elemental\nStars and seal each one\nin a bag.{end_wait}
 04210	MsgSolSanctumNoStarsOutThere	There's nothing out there.\nNo Elemental Stars!{end_wait}
@@ -176,7 +176,7 @@
 04225	message	You stole what we knew,\nKraden. Remember?{end_wait}
 04226	message	And what happens to us\nonce you hold the\nElemental Stars?{end_wait}
 04227	message	They'll kill us the moment\nthey don't need us!\nI know it!{end_wait}
-04228	message	Peace. No one needs to\nbe hurt.{end_wait}
+04228	message	Calm down. No one needs to\nbe hurt.{end_wait}
 04229	message	That was our{pause_20_skippable} agreement.\nWas it not?{end_wait}
 04230	message	That depends on how well\nthey cooperate.{end_wait}
 04231	message	They'll be safe, so long\nas the Elemental Stars\nare handed over.{end_wait}
@@ -309,7 +309,7 @@
 04358	message	This place has turned\ndangerous...{end_wait}
 04359	message	You're the danger here!{end_wait}
 04360	message	The mountain will erupt\nsoon...{pause_20_skippable} I cannot hold\nit for long.{end_wait}
-04361	message	Leave this place. Now.{end_wait}
+04361	message	Leave this place at once.{end_wait}
 04362	message	The Elemental Djinn...{pause_20_skippable}\nThey have come back...{end_wait}
 04363	message	Take out{pause_20_skippable} the Elemental\nStar...{end_now}
 04364	MsgSolSanctumCannotResist	{actor_name:1} cannot resist it.{end_wait}

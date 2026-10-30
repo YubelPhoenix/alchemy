@@ -1,23 +1,23 @@
 00110	message	Save your adventure?{end_now}
 02389	MsgValeWoodenBoxEmpty	but found nothing.{end_wait}
-02390	message	Dust. Years and years.{end_wait}
-02391	message	Dry old tomes. Nothing that\nhelps anyone now.{end_wait}
-02392	message	A sarcophagus. Better not\nto wonder who's inside.{end_wait}
+02390	message	There is nothing but years\nof dust.{end_wait}
+02391	message	Dry old books, nothing that\nhelps anyone now.{end_wait}
+02392	message	A sarcophagus. Better not\nto wonder who is inside.{end_wait}
 02393	message	It's glowing hot. Don't\ntouch it.{end_wait}
-02394	message	The surface ripples, though\nthere's no wind.{end_wait}
-02395	message	Just a stone pillar. Cold\nand silent.{end_wait}
-02396	message	Cold. Colder than it\nshould be.{end_wait}
-02397	message	No way through here.\nNot by force.{end_wait}
+02394	message	The surface ripples even\nthough there is no wind.{end_wait}
+02395	message	It's just a stone pillar,\ncold and silent.{end_wait}
+02396	message	It's colder than it\nshould be.{end_wait}
+02397	message	There's no way through here\nby force.{end_wait}
 02398	message	There could be something\nhere. Look closer.{end_wait}
-02399	message	Pitch black inside. It\nfeels like it's listening.{end_wait}
-02400	message	Nothing unusual. Somehow\nthat's worse.{end_wait}
-02401	message	It looks ready to spring\nto life. Don't turn your\nback on it.{end_wait}
+02399	message	It's pitch black inside.\nIt almost feels like it's\nlistening.{end_wait}
+02400	message	There's nothing unusual,\nwhich is somehow worse.{end_wait}
+02401	message	It looks ready to spring to\nlife. Don't turn your back\non it.{end_wait}
 02402	message	Words are carved into it,\nworn thin by time.{end_wait}
 02403	message	but found nothing.{end_wait}
 02404	message	but finds nothing.{end_wait}
 02405	message	but finds nothing.{end_wait}
-02406	message	Nothing new in these. Only\nold, tired ideas.{end_wait}
-02407	message	A long way down. Too far to\nsee the bottom.{end_wait}
+02406	message	Nothing new in these, only\nold and tired ideas.{end_wait}
+02407	message	It's a long way down, too\nfar to see the bottom.{end_wait}
 02420	MsgValePartyPpRestored	A little warmth returns.\nPP is fully restored.{end_wait}
 03692	MsgValeUghHrnghhh	{text_effect:4}Ngh... {pause_20_skippable}Hrrngh... {end_wait}
 03701	message	*Hah...* {pause_20_skippable}*Hah...*{end_wait}
@@ -69,7 +69,7 @@
 03887	message	Wait! Not there!{end_wait}
 03888	message	Huh?{pause_20_skippable} What's wrong with{em_dash}{end_wait}
 03889	message	Oh, never mind...{end_wait}
-03890	message	You'd better go. Now.\nBefore I think too hard.{end_wait}
+03890	message	You'd better go now, before\nI start thinking too hard\nabout it.{end_wait}
 03892	message	I'll tidy this. You needn't\nstay and watch.{end_wait}
 03893	message	Thank you, ma'am.{end_wait}
 03894	message	Please, call me Dora.{end_wait}
@@ -180,9 +180,9 @@
 04503	MsgValeArentWorriedCrossing	Only two of you out there?\nAren't you afraid?{end_now}
 04504	message	Three of you out there?\nAren't you afraid?{end_now}
 04505	message	Four of you, against all\nthat? Aren't you afraid?{end_now}
-04506	message	Don't wander into the\nunknown too deep.{page_break}Fighting hopeless odds\nisn't brave. It's a\nfuneral waiting to happen.{end_wait}
-04507	message	Courage isn't recklessness.\nKnow the difference.{page_break}True courage takes\ncaution. Sometimes it even\nlooks like cowardice.{end_wait}
-04508	MsgValeReplenishPsynergyBeforeDungeon	Restore Psynergy before you\ngo into any dungeon.{page_break}The ones who come back\nalways do.{end_wait}
+04506	message	Don't wander too deep into\nthe unknown.{page_break}Fighting hopeless odds is\nnot brave. It's foolish.{end_wait}
+04507	message	Courage isn't recklessness.\nKnow the difference.{page_break}True courage takes caution.\nSometimes it even looks\nlike cowardice.{end_wait}
+04508	MsgValeReplenishPsynergyBeforeDungeon	Restore your Psynergy\nbefore any dungeon.{page_break}The ones who come back\nalways do.{end_wait}
 04530	MsgValeImProudOfYouGaretMy	I'm proud of you, {actor_name:2}.\nMy son... on a quest like\nthis. Come back to me.{end_wait}
 04532	MsgValeYouGuysAreSoLuckyGaret	You're lucky, {actor_name:2}.{page_break}I'd give anything to go\nwith you. Anything.{end_wait}
 04533	MsgValePleaseTakeCareOfMyBrother	Look after my brother,{pause_20_skippable}\n{actor_name:1}. Please.{end_wait}
@@ -205,7 +205,7 @@
 04560	MsgValeGomaWinterCold	Past the Goma Range, winter\nis brutal. People freeze.{page_break}I'm glad I don't have\nto go there.{end_wait}
 04561	MsgValeStonesPowerAleph	If this glitter is all\nthat remains of them...{page_break}then Mt. Aleph is in\nserious trouble.{page_break}They say the Stones feed\nall the mountain's power.{end_wait}
 04562	MsgValeProofOfWiseOne	I always believed the Wise\nOne was real...{page_break}Now that I have proof,\nI'm not sure I'm glad.{end_wait}
-04563	MsgValeLunpaThievesChanged	Even the righteous thieves\nrot with the generations.{page_break}They say Lunpa's thieves\nnow attack travelers.\nKill them, even.{end_wait}
+04563	MsgValeLunpaThievesChanged	Even the righteous thieves\ngo bad after a few\ngenerations.{end_wait}
 04564	MsgValeDoraMustBeLonely	No matter how well she\nhides it,{page_break}{protagonist_name}{possessive_suffix} mother must\nbe so lonely...{end_wait}
 04565	MsgValeLuckyToFindPsynergyStones	You'd be lucky to find a\nPsynergy Stone out there.\nI wouldn't count on it.{end_wait}
 04566	MsgValeComeBackAlive	I'm worried about you,\n{protagonist_name}. You two are like\nbrothers to me.{page_break}Promise you won't do\nanything foolish. Come back\nalive. Please.{end_wait}
@@ -244,7 +244,7 @@
 04622	message	This must be so hard for\nDora...{end_wait}
 04623	message	As {actor_name:2}'s mother, I\nknow exactly how she feels.{end_wait}
 04624	message	But I still have {actor_name:2}'s\nfather. Dora only has\n{actor_name:1}.{end_wait}
-04625	message	She doesn't want you to go,\n{actor_name:1}.{page_break}She knows you must. That's\nwhat makes it unbearable.{end_wait}
+04625	message	She doesn't want you to go,\n{actor_name:1}, but she knows you\nmust. That's what hurts.{end_wait}
 04626	message	If they stand here any\nlonger, they'll never\nleave.{end_wait}
 04627	message	So.{pause_20_skippable} One last farewell.{end_wait}
 04628	MsgValeFarewell	{text_effect:2}Farewell...{reset_text_style}{end_wait}

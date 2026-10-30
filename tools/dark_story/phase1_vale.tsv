@@ -1,12 +1,12 @@
 03666	MsgValeWake	{actor_name:1}... wake up!\nThe mountain is shaking!{end_wait}
 03667	message	Please, sweetheart...\nwake up. Please.{end_wait}
-03668	message	The Boulder's coming down.\nGet him up. Now.{end_wait}
+03668	message	The Boulder is coming\ndown! Get him up, quickly!{end_wait}
 03669	MsgValeComeOnHurry	Come on, {actor_name:1}.\nWe're leaving. Right now.{end_wait}
 03670	message	{actor_name:1}, wait!\nYou forgot something.{end_wait}
 03671	message	It's pouring out there.\nPut your tunic on.{end_wait}
 03672	message	Do you have everything\nyou need? Think fast.{end_now}
-03673	message	I'm sorry. There's no time.\nLeave it. We'll replace it,\nif we're still alive.{end_wait}
-03674	message	Good. Stuff can be\nreplaced, {actor_name:1}.\nPeople can't.{end_wait}
+03673	message	I'm sorry, there's no time.\nLeave it. We can replace\nit later, if we survive.{end_wait}
+03674	message	Good. Things can be\nreplaced, {actor_name:1}.\nPeople can't.{end_wait}
 03675	MsgValeDoraHurryBoulder	{actor_name:1}, Dora, hurry!\nThe Boulder's going to\ndrop any second!{end_wait}
 03676	MsgValeKyleAbleStop	Kyle, can they hold it?{end_wait}
 03677	message	Not for long. Go. Now.{end_wait}
@@ -18,7 +18,7 @@
 03683	message	{actor_name:1} can make it to\nthe plaza on his own.\nHe's not a baby.{end_wait}
 03684	message	You know the way,\n{actor_name:1}. Don't you?{end_now}
 03685	MsgValeBigBoyWhy	You're old enough now,\n{actor_name:1}. Go on alone.\nPlease, honey.{end_now}
-03686	MsgValeKnowWayGo	South. Straight to the\nplaza. Don't stop for\nanyone. Be careful!{end_wait}
+03686	MsgValeKnowWayGo	Go south to the plaza and\ndon't stop for anyone.\nBe careful!{end_wait}
 03687	MsgValeHuh	Huh? {actor_name:1}?\nWhat are you doing here?{end_wait}
 03688	message	Did you come back for me?{end_now}
 03689	message	Sorry I shoved you. I've\njust got to get out of\nhere. Now.{end_wait}
@@ -36,14 +36,14 @@
 03703	message	Hmph. It's not like you to\nget caught off guard,\n{actor_name:1}.{end_wait}
 03704	message	Oh. You saw the elders go\nto help the others?\nGods keep them.{end_wait}
 03705	message	Thank goodness. Stay with\nme. I don't want to be\nalone out there.{end_wait}
-03706	message	Everyone's heading south,\nto the plaza. If it holds,\nthat's where we live.{end_wait}
-03707	MsgValeNorthLeadsToMtAleph	Not north. North is the\nmountain. That's where\nit's falling from.{end_wait}
+03706	message	Everyone is heading south\nto the plaza. If it holds,\nthat's where we'll be safe.{end_wait}
+03707	MsgValeNorthLeadsToMtAleph	Not north. The Boulder is\ncoming down from that\nway.{end_wait}
 03708	message	The plaza's that way.\nSouth. Come on.{end_wait}
 03709	MsgValeCantGetAroundThisRock	The rock blocks the path.\nWe can't get through!{end_wait}
 03710	message	Then we find another way.\nFast.{end_wait}
 03711	MsgValeTheBoulderIsFalling	{text_effect:4}The Boulder! It's\nfalling! Run! Run!{end_wait}
 03712	message	{text_effect:4}Ugh...{pause_20_skippable} Ughnn...{pause_20_skippable}{pause_20_skippable}\nIt's too heavy! We can't\nhold it much longer!{end_wait}
-03713	message	If our Psynergy gives out,\nVale dies with us!{end_wait}
+03713	message	If our Psynergy gives out,\nthe whole village is lost!{end_wait}
 03714	message	{text_effect:4}Hold... hold on! Until\nthe last of them is safe!{end_wait}
 03715	message	Hurry, boys! Run!!!\nDon't look back!{end_wait}
 03716	message	Run, {actor_name:1}!\nIt's right behind us!{end_wait}
@@ -126,16 +126,16 @@
 03800	message	It's a miracle we two\nwalked out of it alive.{end_wait}
 03801	message	That switch...\nIt was a trap. Had to be.{end_wait}
 03802	message	But a storm like this\nfrom one trap? Unreal.{end_wait}
-03803	message	...Alchemy shows its teeth\nagain. Beautiful.{pause_20_skippable} Terrible.{end_wait}
+03803	message	...That is the power of\nAlchemy. It's frightening.{end_wait}
 03804	message	We must not fail when we\nchallenge the Sanctum\nagain.{end_wait}
-03805	message	Next time...{pause_20_skippable} we have no\nchoice but to succeed.{end_wait}
+03805	message	Next time, we have no\nchoice but to succeed.{end_wait}
 03807	message	You were listening to us,\njust now...\nweren't you?{end_now}
 03809	message	{actor_name:1}... they look\nfrightening.{page_break}Are you sure you should\ntalk to them?{end_wait}
 03810	message	You must forget what you\nheard tonight. All of it.{end_wait}
-03811	message	Don't be afraid...\nWe'll help you forget.{end_wait}
+03811	message	Don't be afraid. We will\nhelp you forget.{end_wait}
 03812	MsgValeDoorWontOpen	The door won't open.{page_break}The impact must have torn\nit off its hinges. We're\ntrapped.{end_wait}
 03813	MsgValeThinkForgetThings	You think I should leave\neverything and just save\nmyself?{end_wait}
-03814	MsgValeRockHitsLose	If a rock hits now, I lose\nmy chest and my life both.\n...Stupid choice.{end_wait}
+03814	MsgValeRockHitsLose	If a rock hits now, I'll\nlose my chest and my life.\nThat would be stupid.{end_wait}
 03815	MsgValeRightDitchStuff	You're right. It's only\nstuff. Let's get out of\nhere.{end_wait}
 03817	message	{actor_name:1}! Is that roof\nfixed yet? The next storm\nwon't wait for us.{end_wait}
 03818	message	Almost done? Good.\nKeep at it.{end_wait}
@@ -153,17 +153,17 @@
 03833	message	Don't be weird, {actor_name:2}.{end_wait}
 03841	message	Keep up, or I'll leave you\nbehind.{end_wait}
 03843	MsgValeGoodJob	That's... good. Thank you,\n{actor_name:1}.{end_wait}
-03846	message	You're so dependable,\n{actor_name:1}. Just like your\nfather was.{end_wait}
+03846	message	You're so dependable,\n{actor_name:1}, just like your\nfather was.{end_wait}
 03847	message	What is it, {actor_name:1}?\nDo you still think about\nthat night?{end_now}
 03850	MsgValeWorkingYourselvesBone	You and {actor_name:2} work\nyourselves to the bone,\nchasing Psynergy.{end_wait}
-03851	message	Would anything have been\ndifferent if you'd been\nstronger? Be honest.{end_now}
+03851	message	Would anything have been\ndifferent if you had been\nstronger? Be honest.{end_now}
 03854	MsgValeDevastatedWhenKyle	When Kyle died, I thought\nI'd break in two.{end_wait}
-03855	message	I felt completely alone...\nlike I was underwater.{end_wait}
-03856	message	It's taken time. I'm\nbetter now. Mostly.{end_wait}
+03855	message	I felt completely alone,\nlike I was underwater.{end_wait}
+03856	message	It has taken time, but I'm\nbetter now. Mostly.{end_wait}
 03857	message	I still have you,{pause_20_skippable} {actor_name:1}.\nThat's enough to go on.{end_wait}
-03858	message	You're almost seventeen.\nYou're so like Kyle at that\nage. It hurts to see.{end_wait}
+03858	message	You're almost seventeen,\nand so like Kyle at that\nage. It hurts to see.{end_wait}
 03859	message	I want to see where life\ntakes you. I need to.{end_wait}
-03868	message	Kids and their games...\nas if it never happened.{end_wait}
+03868	message	Kids and their games.\nThey act as if it never\nhappened.{end_wait}
 03874	message	Alchemy... I wonder what\ngood it ever did us.{end_wait}
 03875	message	Your mother would rather\nsee you grow into a happy,\nordinary man.{end_wait}
 03876	message	But I suppose you'll go\nanyway...{end_now}
@@ -172,7 +172,7 @@
 03879	MsgValeAsStubbornAsYourFather	You're as stubborn as your\nfather was. God help me.{end_wait}
 03891	message	This old house is barely\nstanding. It won't take\nmuch more.{end_wait}
 03897	MsgValeKradenIsWaitingForUs	Kraden's waiting for us.\nLet's go to his house.\nBefore I change my mind.{end_wait}
-03898	MsgValeQuietDay	Well, if it isn't {actor_name:1}.\nAnother quiet day here...\nQuiet. Always quiet now.{end_wait}
+03898	MsgValeQuietDay	Well, if it isn't\n{actor_name:1}. Another quiet\nday. It's always quiet.{end_wait}
 03899	MsgValeKradenHadVisitors	Kraden had visitors this\nmorning. They didn't give\ntheir names.{page_break}I wonder where they went...\nI wonder what they want.{end_wait}
 03900	MsgValeMeditateOnMtAlephDaily	{protagonist_name}. Have you\nmeditated on Mt. Aleph\ntoday?{end_now}
 03901	message	Good. Meditation keeps the\npeace here, they say.{page_break}If everyone had prayed\nharder, maybe that night\nwould've gone differently.{end_wait}
@@ -197,7 +197,7 @@
 03922	message	Psynergy is for peace.\nIt must never be used for\nevil. Never.{end_wait}
 03923	MsgValeGoodWeaponsDrawOutStrength	A good blade isn't only\nsharp. It draws out the\nstrength of its wielder.{page_break}My father said that. I\nfinally understand what\nhe meant, {protagonist_name}.{end_wait}
 03924	MsgValeGoodArmorDrawsOutStrength	Good armor isn't only\nsturdy. It draws out the\nstrength of its wearer.{page_break}That's what they say. I\ndon't know what it means.{end_wait}
-03925	MsgValeAWiseManFleesWhen	A wise man flees a fight\nwhen he's hurt. Dead heroes\ndon't feed anyone.{end_wait}
+03925	MsgValeAWiseManFleesWhen	A wise man flees a fight\nwhen he's hurt. Dead heroes\nfeed no one.{end_wait}
 03926	MsgValeMyFatherAlsoDiedInThat	My father died in that\nstorm, too.{page_break}I'm sharpening my skills.\nNext time, I'll be ready.{end_wait}
 03927	MsgValeMySonIsStillYoungSo	My son's still young. I\ndon't work him too hard.{page_break}He's like his father. He'll\nbe fine. He has to be.{end_wait}
 03928	MsgValeTheThreeTravelersSeemOdd	Those three travelers I\nhave staying here...\nI doubt they're thieves.{page_break}But something's wrong with\nthem. I feel it.{end_wait}
@@ -211,7 +211,7 @@
 03938	MsgValeYouAndGaretAreOlderNow	You and {actor_name:2} are older.\nThere's no time to waste\nplaying around.{end_wait}
 03940	message	Your stone crushed my\nflowers! My mother's\nflowers!{end_wait}
 03942	MsgValeIllGetYouForMy	I'll get you for those\nflowers. Just see what\nhappens...{pause_20_skippable} tonight.{end_wait}
-03943	MsgValeYoureInTroubleNowGaretYour	You're in trouble now,\n{actor_name:2}.{page_break}Your sister's furious.{end_wait}
+03943	MsgValeYoureInTroubleNowGaretYour	You're in trouble now,\n{actor_name:2}.{page_break}Your sister is furious.{end_wait}
 03944	MsgValeIToldGaretItWas	I told that oaf {actor_name:2}\nit was fine.{page_break}But what do I do about\nthis hole?{end_wait}
 03945	MsgValeItWontRainForSome	No rain for a while,\nit seems.{page_break}So I'll have you fix it\nlater, {actor_name:1}.{end_wait}
 03946	MsgValeMyGranddaughterJennaIsFinallyHappy	My granddaughter {actor_name:6}\nsmiles again, finally.{page_break}I owe you and {actor_name:2}\nthat, {actor_name:1}.{end_wait}
@@ -226,27 +226,27 @@
 03955	MsgValeLetsScareKradensVisitors	Old man Kraden's got\nvisitors.{page_break}Let's scare 'em with some\nPsynergy. Want to?{end_now}
 03956	message	You're more of a prankster\nthan I thought...\nI like that.{end_wait}
 03957	message	You're too serious,\n{actor_name:1}.{page_break}Only someone with Psynergy\nwould guess it was us.{end_wait}
-03958	MsgValeHearAwfulGrowls	Do you hear those growls\npast the fence? Nothing\nnatural sounds like that.
+03958	MsgValeHearAwfulGrowls	Do you hear those growls\npast the fence? That\ndoesn't sound natural.
 03959	message	You hear it too, don't you?\n{text_effect:4}I... I'm scared...{end_wait}
-03960	message	Really? Only I can hear\nthem? Then maybe I'm\ngoing mad.{end_wait}
+03960	message	Really? Only I can hear\nthem? Maybe I'm going mad.{end_wait}
 03961	MsgValeThisPlaceLooksJustLikeIt	It looks just like it did\nthree years ago, after\nthe storm...{end_wait}
 03962	MsgValeIsaacWatchOutDontGetToo	{actor_name:1}, stay back from\nthe river! Please!{end_wait}
-03963	MsgValeFoodStoredForWinter	Food's stored in this hut,\nso winter isn't scary.{page_break}If only things had been\ndifferent three years\nago... if only.{end_wait}
+03963	MsgValeFoodStoredForWinter	Food is stored in this\nhut, so winter isn't scary.{page_break}If only things had been\ndifferent three years ago.{end_wait}
 03964	MsgValeDoYouNeedToGo	Do you need to go past\nhere?{end_now}
 03965	message	You must be heading to\nKraden's cottage...\nWatch yourself.{end_wait}
-03966	MsgValeDontGoBeyondKradensCottage	Don't go beyond Kraden's\ncottage.{page_break}The monsters are thick out\nthere. They don't leave\nsurvivors.{end_wait}
+03966	MsgValeDontGoBeyondKradensCottage	Don't go beyond Kraden's\ncottage.{page_break}The monsters out there\nshow no mercy.{end_wait}
 03967	MsgValeMtAlephLooksBeautifulTodayIts	Mt. Aleph looks peaceful\ntoday. Beautiful, even.\nThat's what scares me.{end_wait}
 03968	MsgValeValeStaysPristineBecauseOfMt	Vale stays pure because of\nMt. Aleph.{page_break}If we taint that purity,\nthe mountain will answer.{end_wait}
 03969	MsgValeYourGrandpaIsTheMayor	I envy you, {actor_name:2}. Your\ngrandpa's the mayor.{page_break}Do you envy him too,\n{actor_name:1}?{end_now}
 03970	message	Yeah... When travelers\ncome, he hears all about\nthe outside world.{end_wait}
 03971	message	Hmph. I can't believe you\ndon't envy him, {actor_name:1}.{page_break}I'd give anything to hear\na traveler's stories.{end_wait}
 03972	MsgValeValeMustRemainHiddenPsynergysSecrets	Vale must stay hidden.\nPsynergy's secrets can't\nreach the wrong hands.{page_break}That's our oldest law.\nHanded down for a reason.{end_wait}
-03973	MsgValeTheyKnowLittleOfThe	They know so little of\nthe Sanctum's mysteries.\nAlmost nothing.{end_wait}
-03974	message	The elders will let no one\ninside. Not even Kraden.\nNot even him.{end_wait}
+03973	MsgValeTheyKnowLittleOfThe	They know so little of the\nSanctum's mysteries.{end_wait}
+03974	message	The elders will let no one\ninside. Not even Kraden.{end_wait}
 03975	message	Kraden...{pause_20_skippable} Could he be of\nuse to us?{end_wait}
-03976	message	His knowledge is not small.\n...Yes. We can use him.{end_wait}
-03977	message	But he's more stubborn\nthan we hoped.{end_wait}
-03978	message	And clever, too...\nDangerously clever.{end_wait}
+03976	message	His knowledge is great.\nYes, we can use him.{end_wait}
+03977	message	But he is more stubborn\nthan we hoped.{end_wait}
+03978	message	And clever, too.\nDangerously clever.{end_wait}
 03979	message	If he won't come\nwillingly, we can always...{end_wait}
 03982	message	Were you listening to our\nconversation?{end_now}
 03983	message	Oh? Well... I can't let\nyou keep spying on us.{end_wait}
@@ -256,17 +256,17 @@
 03988	message	Yeah. We're going to him\nright now.{end_wait}
 03989	message	And this appointment is\nimportant enough to\ndrive us off?{end_now}
 03990	message	Pfeh. If your errand\noutweighs ours, then...\ngo.{end_wait}
-03991	message	Regardless, Kraden sent us\naway. He is waiting for\nyou.{end_wait}
+03991	message	Kraden has sent us away.\nHe is waiting for you.{end_wait}
 03994	message	Are you sure, Saturos?\nThey heard everything.{end_wait}
 03995	message	Menardi, they are children.\nWe have no reason to\nhold them.{end_wait}
 03997	MsgValeDoNotKeepKradenWaiting	Go on, children. Don't\nkeep Kraden waiting.{end_wait}
 03998	MsgValeLeaveBeforeWeChangeMinds	Leave. Before we change\nour minds.{end_wait}
-03999	MsgValeWho	Just... who were they?\nThey felt wrong.{end_wait}
-04000	message	They know too much about\nSol Sanctum...{end_wait}
-04001	message	...things even the elders\nof Vale don't know.{end_wait}
-04003	message	The elements of Alchemy:\nearth, water, fire, wind...{page_break}They mean to set them\nin motion?{end_wait}
-04004	message	And the four Elemental\nStars are the key?\nGods help us.{end_wait}
-04005	message	Even I, a trained sage,\ndo not know these things.{end_wait}
+03999	MsgValeWho	Who were they? Something\nabout them felt wrong.{end_wait}
+04000	message	They know too much about\nSol Sanctum.{end_wait}
+04001	message	They know things even the\nelders of Vale don't know.{end_wait}
+04003	message	The elements of Alchemy:\nearth, water, fire, wind.{page_break}They mean to set them in\nmotion?{end_wait}
+04004	message	And the four Elemental\nStars are the key? Gods\nhelp us.{end_wait}
+04005	message	Even I, a trained sage,\nknow nothing of this.{end_wait}
 04009	message	It's those two, isn't it?\nSaturos and Menardi,\nI believe.{end_wait}
 04010	message	Are they still out there?\nThey don't give up easily.{end_wait}
 04011	message	Did they want something\nfrom you, Kraden?{end_wait}
@@ -278,8 +278,8 @@
 04018	MsgValeJennaTheyMightBeThieves	And if they sneaked in,\nthey might be thieves!{end_wait}
 04019	message	We have to tell the high\nelders and the village!{end_wait}
 04021	message	I don't know how much of\nwhat they said is true.{end_wait}
-04022	message	We can't act until we have\nconfirmed what they said.{end_wait}
-04024	message	We confirm it ourselves.{end_wait}
+04022	message	We can't act until we've\nconfirmed what they said.{end_wait}
+04024	message	Then we confirm it\nourselves.{end_wait}
 04025	message	...You mean go into Sol\nSanctum? Ourselves?{end_wait}
 04028	message	Just because Mt. Aleph is\nforbidden?{end_now}
 04029	MsgValeKradenWeOnlyCheckThe	We only want to see if\nthey've been up there.{page_break}Surely that's acceptable...\nisn't it?{end_wait}

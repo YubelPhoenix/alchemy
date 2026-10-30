@@ -1,11 +1,11 @@
 N01	MsgDarkMenardiDuel01	You walk like you've\nalready lost someone.{end_wait}
 N02	MsgDarkMenardiDuel02	Good. Then you know what\nI'm about to ask of you.{end_wait}
-N03	MsgDarkMenardiDuel03	Saturos says you're only\nchildren. Let me see.{end_wait}
+N03	MsgDarkMenardiDuel03	Saturos says you're only\nchildren. Let me see for\nmyself.{end_wait}
 N04	MsgDarkMenardiDuel04	Show me what Vale taught\nyou. Show me you can\nhold a blade steady.{end_wait}
 N05	MsgDarkMenardiDuel05	Don't hold back.\nI won't.{end_wait}
-N06	MsgDarkMenardiDuel06	...There. That is the\nstrength I was hoping\nfor.{end_wait}
-N07	MsgDarkMenardiDuel07	Hold onto it. You will\nneed all of it.{end_wait}
-N08	MsgDarkMenardiDuel08	I did not want to be the\none who found out whether\nyou'd break.{end_wait}
+N06	MsgDarkMenardiDuel06	...There. That's the\nstrength I was hoping for.{end_wait}
+N07	MsgDarkMenardiDuel07	Hold on to it. You will\nneed all of it.{end_wait}
+N08	MsgDarkMenardiDuel08	I didn't want to be the\none to find out whether\nyou would break.{end_wait}
 N09	MsgDarkMenardiDuel09	Go on up. We'll be waiting\nabove, at the stars.{end_wait}
 N10	MsgDarkMenardiDuel10	And {protagonist_name}... when we\nmeet again, remember I let\nyou pass.{end_wait}
 N11	MsgDarkSaturosDuel01	Enough, Menardi.\nYou have made your point.{end_wait}

@@ -148,10 +148,11 @@ s32 BattleEnemy_RecordDefeat(s32 unitId, s32 djinnBonus) {
       spoils->coins += BattleEnemy_CalculateCoinReward(unit, &enemy->coins);
     if (enemy->experience != 0)
       spoils->experience +=
-          BattleEnemy_CalculateExperienceReward(unit, &enemy->experience);
+          BattleEnemy_CalculateExperienceReward(unit, &enemy->experience) * 3;
   } else {
     spoils->coins += enemy->coins;
-    spoils->experience += enemy->experience;
+    // Dark story: triple experience, so early fights are not worth 1 point.
+    spoils->experience += enemy->experience * 3;
   }
   if (enemy->item == 0 || enemy->itemChance == 0)
     return 0;
