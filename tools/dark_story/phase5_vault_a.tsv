@@ -1,0 +1,55 @@
+02377	MsgVaultButChestWasEmpty	but the chest was empty.\nSomeone had been here\nbefore us.{end_wait}
+02379	MsgVaultButDidntFindAnything	but found nothing.\nOnly dust and the smell\nof old smoke.{end_wait}
+02380	message	but there's nothing\nunusual about it.\nNothing you can see.{end_wait}
+04674	MsgVaultThisRockWasBlownHereAll	This rock was blown\nhere from the volcano!{page_break}It sparkles like a gem.\nMama says it's a piece\nof the burning mountain.{end_wait}
+04675	MsgVaultIfOnlyTheseRocksWere	If only these rocks were\ngems. We could finally\nleave this place.{end_wait}
+04676	MsgVaultTheOtherSparklingRocksAllCrumbled	The other sparkling\nrocks crumbled to ash.{page_break}But this one, from the\nroof, is still whole.\nI'm keeping it.{end_wait}
+04677	MsgVaultOkMisterLetMeSee	Fine, mister. Let me\nsee that rock. Don't\ndrop it.{end_wait}
+04678	MsgVaultMyNeighborCreepsMeOutHe	My neighbor's smirked\nsince the eruption, like\nhe knows something.{end_wait}
+04679	MsgVaultMisterFunSeeStrangeNew	Hey, mister. Is it\nworth it, leaving home\nto see the world?{end_now}
+04680	message	Then I'll go too\nsomeday. I'm not staying\nin a town that burns.{end_wait}
+04681	message	Oh... Then why would\nanyone leave at all?{end_wait}
+04682	MsgVaultHeyMaybeMyNeighborIsThe	Maybe my neighbor's the\nthief... He's always\nout after dark.{end_wait}
+04683	MsgVaultWonderOutsideWorldLike	I wonder{pause_20_skippable} what the\nworld looks like beyond\nthese burned hills.{end_wait}
+04684	MsgVaultJustMeOrAmMissing	Is it just me, or is\nsomething missing from\nmy house?{end_wait}
+04685	MsgVaultEverSinceTheEruptionGrandpaKeeps	Ever since the eruption,\nGrandpa keeps checking\nwhat was stolen.{page_break}He doesn't see that we\nhad nothing worth taking.\nNot anymore.{end_wait}
+04686	MsgVaultCouldTheyThievesGoodDont	Could they be thieves?\nGod, this is no good.{page_break}I don't know who I\ncan trust anymore.{end_wait}
+04687	MsgVaultYouNeverBoughtMeAnythingWorth	You never bought me a\nsingle thing worth\nstealing!{end_wait}
+04688	MsgVaultCouldSomeonePleaseHelpIvan	Someone has to help\n{actor_name:3}. He's just a boy,\nand he's alone out here.{end_wait}
+04689	MsgVaultMyHusbandTheMayorCantBelieve	My husband, the mayor,\nrefuses to believe a\nVaulter did this.{page_break}But until the rod turns\nup, {actor_name:3} can't go\nhome to Kalay.{end_wait}
+04690	MsgVaultICouldHelpIvanIfI	I'd help {actor_name:3} myself,\nbut I'm too old to chase\nthieves.{end_wait}
+04691	MsgVaultIvanHasGreatPowersWouldnt	{actor_name:3} has a gift.\nIt isn't a pleasant one.\nWant to know what it is?{end_now}
+04692	message	Then I'll keep it to\nmyself. Some things\nare better left unsaid.{end_wait}
+04693	message	Don't lie to {actor_name:3}. He\ncan hear what you really\nthink, and he will know.{end_wait}
+04694	MsgVaultDoPossessStrangePowers	Yes. I... I have strange\npowers. They have never\nmade me any friends.{end_wait}
+04695	message	You have them too,\ndon't you? I can feel it.{end_wait}
+04696	message	What? My power{pause_20_skippable}...\nIt's called Psynergy?\nI never knew it had a name.{end_wait}
+04697	message	We're alike, you and I...\nI think I can trust you\nwith this.{end_wait}
+04698	message	I am troubled. Master\nHammet's rod was stolen\nright out from under us.{end_wait}
+04699	message	Will you help me get my\nmaster's rod back? I\ncan't do it alone.{end_now}
+04700	message	I see. It is a lot to ask\nof a stranger. I\nunderstand.{end_wait}
+04701	MsgVaultWouldReallyWouldHelpMe	Truly? Will you help me\nfind the rod?{end_now}
+04702	message	Forgive me. I shouldn't\nhave asked.{end_wait}
+04703	MsgVaultThankHelpBelieve	Thank you. With you, I\nbelieve we can recover\nthe rod.{end_wait}
+04704	message	Your names are...?{end_wait}
+04705	message	{actor_name:1} and {actor_name:2}.\nI am {actor_name:3}. I'm\nglad you came.{end_wait}
+04706	message	My gift frightens you,\ndoesn't it? Everyone\nflinches when I look.{end_wait}
+04707	message	Am I really{pause_20_skippable}...\nthat frightening?\nTell me honestly.{end_now}
+04708	message	{actor_name:3} took\n{actor_name:1}'s hand and went\nvery still.{end_wait}
+04709	message	{text_effect:4}Ahh! Get out of my\nhead, {actor_name:3}!!\nStop it!{end_wait}
+04710	message	So, {actor_name:1}... what\nabout you? Could you read\n{actor_name:2}'s mind?{end_wait}
+04726	MsgVaultYoureGoingHelpIvan	Oh? You're going to help\n{actor_name:3}? Good. He needs\nit.{end_wait}
+04727	message	Thank you. Truly.{end_wait}
+04728	MsgVaultPleaseLookAfterIvan	Please look after\n{actor_name:3}. The world isn't\nkind to boys like him.{end_wait}
+04729	MsgVaultReallyYoureGoingToHelpIvan	Really? You'll help\n{actor_name:3} find the rod?{page_break}I'm so relieved. Thank\nyou.{end_wait}
+04730	MsgVaultYoureHelpingIvanYouDontLook	You're helping {actor_name:3}?{page_break}You don't look like much,\nbut at least he won't\nbe alone.{end_wait}
+04731	MsgVaultSinceYoureHelpingIvanIllTell	Since you're helping\n{actor_name:3}, I'll tell you\nsomething.{page_break}{actor_name:3} can talk with\nanimals. They don't\nfrighten him like we do.{end_wait}
+04732	MsgVaultTicklesBeingTickledByBoy	Hey! I felt that...\nSomething crawling around\nin my head. Stop it.{end_wait}
+04733	MsgVaultMaybeTheyllFindOurStolenFamily	Maybe they'll find our\nfamily urn while they\nlook.{page_break}It held my mother's\nashes. Thieves have no\nshame.{end_wait}
+04734	MsgVaultTheseGuysLookReliableIGuess	They look dependable,\nI suppose. {actor_name:3} is\nlucky to have them.{end_wait}
+04735	MsgVaultIWonderWhatSortOfThing	I wonder what animals say\nwhen nobody's around.\nMaybe they know who did it.{end_wait}
+04736	MsgVaultMasterHammetIsntOnlyOne	Master Hammet isn't the\nonly one they robbed.{page_break}We lost everything worth\nselling, in the middle\nof a disaster.{end_wait}
+04737	MsgVaultAllOurBestWeaponsWereStolen	They took our best\nblades while the mountain\nburned.{page_break}All I have left is\nscrap. I'm sorry.{end_wait}
+04738	MsgVaultThievesDidntHitOurHouse	They didn't touch our\nhouse, but I'm still\nfurious.{page_break}When we find them, they\nwill pay for every\nstolen thing.{end_wait}
+04739	MsgVaultIWonderIfTheyLeftUs	Maybe they spared us\nbecause we had nothing\nworth carrying off.{end_wait}
+04740	MsgVaultDidJustArriveInTown	You came in today, did\nyou? Be honest with me.{end_now}

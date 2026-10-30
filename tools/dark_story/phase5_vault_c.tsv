@@ -1,0 +1,85 @@
+04830	message	{text_effect:4}Uhnn... Ohh...{end_wait}
+04831	message	You'll stay here. You're\nour hostages now.{end_wait}
+04832	message	Keep your mouth shut, or\nhe pays for it!{end_wait}
+04833	MsgVaultWontGoAway	They just won't die,\nwill they? They're back!{end_wait}
+04834	message	Then we'll just have to\nbeat them down again!{end_wait}
+04835	message	We'll make you sorry\nyou were born! Get 'em!!{end_wait}
+04836	MsgVaultTheyTheyGotUs	They...{pause_20_skippable} They got us...{end_wait}
+04837	message	For a second there, I\nthought we were dead.{end_wait}
+04838	message	We... we won.{end_wait}
+04839	message	I'll get the mayor.\nDon't let them move.{end_wait}
+04840	message	After all we went through\nto steal this much...{end_wait}
+04841	message	Stealing from the dead\nand the dying? That's a\nspecial kind of low.{end_wait}
+04842	message	Damn it! I told you we\nshould have left town\nafter the first night...{end_wait}
+04843	message	You didn't get away with\nit. Nobody does.{end_wait}
+04850	MsgVaultSeeThatsHappened	I see... So that is what\nhappened here...{end_wait}
+04851	message	These are the thieves,\nMayor...{end_wait}
+04852	message	What you did is vile.\nStealing, while we were\nburying our neighbors!?{end_wait}
+04853	message	You people left your\ndoors wide open!{page_break}You were practically\nbegging us to{em_dash}OUCH!{end_wait}
+04854	message	Sorry... I was hungry.\nI couldn't help myself...{end_wait}
+04855	message	What should we do with\nthem?{end_wait}
+04856	message	We'll lock them away for\na long, long time. Maybe\nforever.{end_wait}
+04857	message	Hey! Wake up!{end_wait}
+04860	MsgVaultYouIsaacRightWontForget	Hey, you! {actor_name:1}, right?\nYou'll regret this!{end_wait}
+04861	message	Take them away!{end_wait}
+04862	message	Thank you for catching\nthem. Vault owes you a\ndebt it can't repay.{end_wait}
+04863	message	We needed this. Truly.{end_wait}
+04864	message	Let's see what they took.{end_wait}
+04865	message	The mayor's urn. They took\neven that.{end_wait}
+04866	message	Mayor... isn't that your\nfamily's urn?{end_wait}
+04867	message	My family's ashes are\nhome again. Thank you.{end_wait}
+04900	MsgVaultIvanGotShamansRod	{actor_name:3} took back the\nShaman's Rod.{end_wait}
+04901	message	I will not forget this\ntown's kindness... or its\nfear. Go well.{end_wait}
+04902	message	We should go. Whatever's\ncoming won't wait.{end_wait}
+04946	MsgVaultICanSleepWellNowThat	I can sleep now that\nthe thieves are locked up.{page_break}I kept thinking they'd\ncome for my gem in the\ndark.{end_wait}
+04947	MsgVaultThankGoodnessThoseThievesWere	Thank the gods they were\ncaught before they took\nour gem.{end_wait}
+04948	MsgVaultEverybodysAfterMyRockTheyWant	Everybody wants my rock!\nThey'd take it from me!{page_break}I can't let my guard\ndown for a second!{end_wait}
+04949	MsgVaultIfRockWorthlessMaybeThats	What if the rock is\nworthless? Maybe that's why\nthey left it alone.{end_wait}
+04950	MsgVaultDidThoseThievesComeFrom	Did those thieves come\nfrom Lunpa?{end_now}
+04951	message	Lunpa's master is\nDodonpa, grandson of old\nLunpa himself.{page_break}He's a cruel man. Jailing\nhis thieves means\ntrouble.{end_wait}
+04952	message	The Lunpans were noble\nthieves under Lunpa's son,\nDonpa.{page_break}Dodonpa made them what\nthey are. Cruel, and\nhungry.{end_wait}
+04953	MsgVaultMyFatherWorriedAboutThose	My father fears for those\nprisoners from Lunpa.{page_break}You'll protect us if\nDodonpa's men come, won't\nyou?{end_wait}
+04954	MsgVaultTheReasonLunpaTurnedBadIs	Lunpa went rotten because\nDonpa spoiled his son,\nDodonpa.{end_wait}
+04955	MsgVaultFatherLooksSadWorryingLike	Father looks so tired,\nworrying like that.{end_wait}
+04956	MsgVaultThievesHidStolenTreasureIn	The thieves stashed the\nloot in the hotel's loft...{page_break}and in the cemetery.\nAmong the graves.{end_wait}
+04957	MsgVaultJustAsIThoughtNothingWas	As I thought, nothing\nwas taken from our house.{end_wait}
+04958	MsgVaultGuessNothingInOurHouse	I suppose nothing we own\nwas worth stealing.{page_break}I'm not sure whether\nto laugh or cry.{end_wait}
+04959	MsgVaultIWishIHadSomethingWorth	I wish I owned something\nworth stealing.{end_wait}
+04960	MsgVaultYouWereSuchGreatHelp	You were a great help,\n{actor_name:1}.{end_wait}
+04961	message	Allow us to repay you,\nas we promised.{end_wait}
+04962	message	Received {argument_item_name:2}.{end_wait}
+04963	message	You're carrying too much,\n{actor_name:1}.{page_break}Come back when you've\nmade room.{end_wait}
+04964	MsgVaultHeadingOutBeyondGomaRange	Are you heading beyond\nthe Goma Range?{end_now}
+04965	message	Look for a cave in the\nGoma Range, northeast\nof here.{page_break}Beyond it lies Bilibin.\nIf you survive the cave.{end_wait}
+04966	message	There's no other way\nout of here right now.{end_wait}
+04967	MsgVaultYoureThePersonWhoGotOur	You're the one who got\nour urn back, aren't you?{page_break}Thank you. Truly.{end_wait}
+04968	MsgVaultHeardDefeatedThoseThieves	I heard you beat those\nthieves!{end_now}
+04969	message	I suppose you can't judge\npeople by their looks...{end_wait}
+04970	message	Really? My father said you\ncaught the thieves...{end_wait}
+04971	MsgVaultIvanLearnedALotByTalking	{actor_name:3} hears what\nanimals say. He learned\nmore than he wanted to.{end_wait}
+04972	MsgVaultCaveInGomaRangeDangerous	The Goma cave is\ndangerous. Be careful.{end_wait}
+04973	MsgVaultImSoRelievedNowThatWe	I'm so relieved to have\nour family urn back,\nsafe and sound.{end_wait}
+04974	MsgVaultWhenIGrowUpIWant	When I grow up, I want\nto be strong like you.\nStrong enough to survive.{end_wait}
+04975	MsgVaultIWishIHadWingsLike	...I wish I had wings\nlike a bird...{page_break}I want to be free...\nto fly away from here,\nfrom all of this.{end_wait}
+04976	MsgVaultWeFoundOurStolenWeapons	Our stolen weapons turned\nup in the cemetery,\nrusted through.{page_break}We have to rework them\nbefore anyone will buy.{end_wait}
+04977	MsgVaultMyWeaponsWereFoundInThe	They left my weapons in\nthe cemetery. What's that\nsupposed to mean?{page_break}Someone telling me\nmy steel belongs with\nthe dead?{end_wait}
+04978	MsgVaultIfYoureGonnaHeadInto	If you're heading into the\nGoma cave, be ready.{end_wait}
+04979	MsgVaultItMustBeSnowingUpIn	It must be snowing in Imil,\nnorth of the Goma Range.{end_wait}
+04980	MsgVaultWithBridgeOutWillQuite	With the bridge out, it\nwill be a long time\nbefore anyone sees Kalay.{end_wait}
+04981	MsgVaultWhyAreThesePeopleSoAnxious	Why is everyone so\neager to leave?{end_wait}
+04986	MsgVaultImShockedThoseGuestsOfOurs	I'm shaken. Those guests\nof ours were thieves.{end_wait}
+04987	MsgVaultTheyHidThoseStolenGoods	They hid all that in our\nloft, under our own roof?{page_break}At least they're caught.\nThe town can breathe again.{end_wait}
+04988	MsgVaultHaveLotLeftoverBonesFrom	I have bones left from\ndinner. Nothing else to\nspare. Want some?{end_now}
+04989	message	Really? Take what you\nwant.{end_wait}
+04990	message	I don't blame you. Nobody\nlives on bones alone.{end_wait}
+04992	MsgVaultWhoCouldHaveKnownTheyWere	Who could have known they\nwere thieves?{page_break}Well... they paid well.\nI won't pretend\nI'm sorry.{end_wait}
+04993	MsgVaultOfCourseIAlwaysSuspectedThey	Of course I suspected\nthey were up to no good.\nI just kept quiet.{end_wait}
+04994	MsgVaultGeeAlwaysGetHungryWhen	I get so hungry when\nI cook... There isn't\nenough to go around.{page_break}It wouldn't hurt to\ntaste just a little,\nwould it?{end_wait}
+04996	MsgVaultWowHaveManyThingsArent	You carry so much. Greedy,\nor just frightened?{end_wait}
+04997	MsgVaultWantMoreBones	What? You want more\nbones?{end_now}
+04998	message	Go ahead... Take what\nyou need.{end_wait}
+04999	message	I don't blame you.{page_break}Only a dog would be\nhappy with nothing but\nbones.{end_wait}
+07371	MsgVaultMyHusbandSaysMyCatAte	My husband says the cat\nate the treasure. I don't\nbelieve him anymore.{end_wait}
+07412	MsgVaultHeReallyLikesBonesWonder	He really likes bones.\nHmm... I wonder what he's\nbeen eating before this.{end_wait}
+10705	MsgVaultTheresABookEntitledHistoryOf	There's a book entitled\n\"History of Vault, Vol 1\"{page_break}The book says Vault was\nnamed for what it was:\na place to hide.{end_wait}
+10706	MsgVaultTheresABookEntitledGemsOf	There's a book entitled\n\"Gems of Angara.\"{page_break}It says nothing about\nthe rock on the table.\nMaybe it's better so.{end_wait}
