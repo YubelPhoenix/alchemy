@@ -18,7 +18,10 @@ enum SolSanctumLunaSolRoomsActorId {
   ACTOR_KRADEN = ACTOR_FIRST_STATUE + 8,
   /// Menardi, who waits for the party at the floor symbol
   /// (SolSanctumLunaSolRooms_MenardiDuelBegins).
-  ACTOR_DUEL_MENARDI
+  ACTOR_DUEL_MENARDI,
+  /// Saturos, who steps out behind her after the duel
+  /// (SolSanctumLunaSolRooms_MenardiDuelEnds).
+  ACTOR_DUEL_SATUROS
 };
 
 extern u16 gSolSanctumLunaSolRooms_Light1Timer;

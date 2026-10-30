@@ -1281,6 +1281,24 @@ static void SolSanctumLunaSolRooms_MenardiDuelEnds(void) {
   SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
   Event_SetMessageId(MsgDarkMenardiDuel10);
   SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 30);
+  // Saturos steps out of the dark behind her.
+  if (leader != 0) {
+    Import_ActorSetPosition(ACTOR_DUEL_SATUROS, leader->x.fixed,
+                            leader->z.fixed - PIXELS(72));
+  }
+  Actor_FaceDirection(ACTOR_DUEL_SATUROS, FACING_SOUTH, 0);
+  Import_ActorSetAnimation(ACTOR_DUEL_SATUROS, ANIM_STAND);
+  Event_WaitFrames(30);
+  Event_SetMessageId(MsgDarkSaturosDuel01);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_SATUROS, 10);
+  Actor_FaceDirection(ACTOR_DUEL_MENARDI, FACING_NORTH, 20);
+  Event_SetMessageId(MsgDarkSaturosDuel02);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
+  Event_SetMessageId(MsgDarkSaturosDuel03);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_SATUROS, 10);
+  Event_SetMessageId(MsgDarkSaturosDuel04);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_SATUROS, 30);
+  Import_ActorSetPosition(ACTOR_DUEL_SATUROS, PIXELS(1608), PIXELS(1608));
   Import_ActorSetPosition(ACTOR_DUEL_MENARDI, PIXELS(1608), PIXELS(1608));
   GameFlag_Set(FLAG_DARK_MENARDI_DUEL_DONE);
   Event_End();
@@ -1846,6 +1864,8 @@ struct ActorTemplate gSolSanctumLunaSolRoomsActorTemplates[] = {
     { SPRITE_KRADEN, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(1608), 0, PIXELS(1608), FACING_NORTH, TALK_FACING_PARTY, 0 },
     { SPRITE_MENARDI, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        PIXELS(1608), 0, PIXELS(1608), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    { SPRITE_SATUROS, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(1608), 0, PIXELS(1608), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(1608), 0, PIXELS(1608), FACING_NORTH, TALK_FACING_PARTY, 0 },
