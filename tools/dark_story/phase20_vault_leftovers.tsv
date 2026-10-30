@@ -1,0 +1,50 @@
+07368	MsgVaultWaahACatAteMyPrecious	{text_effect:4}Waah! {reset_text_style}{pause_20_skippable}\nThe ash got into the\nurn and ruined it!{page_break}Three generations of\nour family's dead...\nswept into the gutter.{end_wait}
+07369	MsgVaultThoughtSawCatGetUp	I tried to brush it clean.\nThe gray just kept coming\nback.{page_break}It's in the water. It's\nin the bread. It's in\neverything.{end_wait}
+07370	MsgVaultIfIdKnownThisWasGoing	If I'd known the sky\nwould turn on us, I'd\nhave buried it years ago.{end_wait}
+07372	MsgVaultThePrisonersSaidTheyWantedTo	The prisoners kept begging\nto be let out before the\nwar in Tolbi started.{page_break}Colosso is a pit of\nblood these days. People\nbet on who survives.{end_wait}
+07373	MsgVaultDodonpasHenchmenNeverAttackedUs	Nobody came for the\nthieves. Nobody came\nfor anyone.{page_break}Maybe the world's too\nbusy ending to bother.{end_wait}
+07374	MsgVaultWhyDoYouSupposeThoseThieves	Why would anyone want\nto be in Colosso now?\nThe dying don't need it.{end_wait}
+07375	MsgVaultDaddyHasntBeenPayingAttentionSince	Daddy stopped watching\nthe road. There's nobody\nleft to watch for.{end_wait}
+07376	MsgVaultItsNearTimeForColosso	They say Colosso runs\nunder the ash now.\nI'd still like to see it.{page_break}Once more before I\ndie. It won't be long.{end_wait}
+07377	MsgVaultTheWarriorsISawFightingAt	The warriors I saw at\nColosso were so strong.\nWhere are they now?{page_break}Dead, I'd guess. The\nstrong always go first.{end_wait}
+07378	MsgVaultWheneverMyWifeUsedToGo	My wife used to love\nwatching the gladiators.{page_break}Now I won't take her.\nI won't watch her see\nthem bleed.{end_wait}
+07379	MsgVaultLatelyMyHusbandsBeenGoingOn	My husband talks about\nColosso all night.{page_break}I think it's the only\nthing keeping him\nfrom going mad.{end_wait}
+07380	MsgVaultIsaacYouveComeBackVault	{actor_name:1}!\nYou came back to Vault...\nI'm not sure why.{end_wait}
+07381	message	Since you left, the\nrain hasn't stopped and\nthe nights keep growing.{end_wait}
+07382	message	The thieves you caught\nbroke out of jail.\nNo one saw how.{end_wait}
+07383	message	We feared they'd hunt\nyou down. Have you seen\nthem?{end_now}
+07384	message	If a shadow moves where\nnothing should be there,\nit might be them. Run.{end_wait}
+07385	message	Good... But stay careful.\nSomething is watching\nthis town. I can feel it.{end_wait}
+07386	MsgVaultThoseGuysReallyWantedRevenge	Those men wanted you\ndead. Keep your eyes open.{end_wait}
+07387	MsgVaultTheMayorsFamilyUrnIsOn	The mayor's family urn\nis on display. Go see it\nbefore the damp takes it.{end_wait}
+07388	MsgVaultThoseThievesYouGoToAll	You catch the thieves,\nand we let them walk\nright out the door.{page_break}We're a joke, and we\nknow it.{end_wait}
+07389	MsgVaultIHearThatABigFestival	There's a festival in\nsome far-off town, they\nsay. In times like this?{page_break}People will cheer at\nanything, if it keeps\nthem from the rain.{end_wait}
+07390	MsgVaultAsLongAsWeStayAlert	If we stay alert, they\nwon't surprise us.\n...I keep telling myself.{end_wait}
+07391	MsgVaultWellBeSecuringItInA	We'll lock it away soon.\nSome things are better\nhidden from the gray.{end_wait}
+07392	MsgVaultItsJustEmbarrassingThatWeLet	It's humiliating that the\nthieves slipped away.\nWe can't even guard a cell.{end_wait}
+07393	MsgVaultILoveFestivalsIllBetColosso	I used to love festivals.\nColosso must be a\nnightmare now.{end_wait}
+07394	MsgVaultTheresRiverFireOnOther	There's a river of fire\non the far side of\nMt. Aleph.{page_break}Something broke open\nthere. Something that\nwon't close.{end_wait}
+07395	MsgVaultJustImagineHowTerribleItWould	Imagine if it had\nhappened here. Maybe\nit's only a matter of time.{end_wait}
+07396	MsgVaultTheySayVolcanoOnMt	They say the volcano tore\nour continent in two.{page_break}The Sol Sanctum's gone.\nSo is everyone who\nwas near it.{end_wait}
+07397	MsgVaultItsAGoodThingThatGiant	That crevasse split the\nland, and kept the lava\nfrom reaching us.{page_break}A mercy, if you can\ncall it that. The ash\ncame anyway.{end_wait}
+07398	MsgVaultWeHaventBeenGettingMany	No customers lately.\nNo one wants to buy\nanything in the dark.{page_break}Maybe I'll close early\nand sit with the lamp.{end_wait}
+07399	MsgVaultWhyKeepTheStoreOpenIf	Why keep the store open?\nThe only thing I sell\nis candles.{end_wait}
+07404	MsgVaultMmmmNothingDoNothingDo	Nothing to do. Nothing\nto do. I hate it!{page_break}No one comes to the\nvillage since the volcano.\nJust gray and quiet.{end_wait}
+07405	MsgVaultWeDontGetALotOf	We never get travelers\nin winter, and this one\nnever seems to end.{page_break}Spring feels like a\nstory they tell\nchildren now.{end_wait}
+07406	MsgVaultDidSomeCookingNowIve	I made soup, so now I\nhave all these bones.{page_break}...You want some?{end_now}
+07407	message	You do? Really?\nTake as many as you like.\nThere's plenty left.{end_wait}
+07408	message	Right. Nobody can live\non bones alone, can they?{end_wait}
+07410	MsgVaultWontAnyoneComeStayTheNight	Won't anyone stay the\nnight? A thief would do.\nAnyone with a heartbeat.{end_wait}
+07411	MsgVaultAfterYouveBeenInThisBusiness	After years in this trade\nI used to believe good\ntimes follow bad ones.{page_break}I'd like to believe it\nagain. It's hard now.{end_wait}
+07414	MsgVaultPrisonerRegretsFight	I hit a man in a rage\nand they locked me up.\nIt was stupid of me.{end_wait}
+07415	MsgVaultPrisonerThoughts	I need to master my\ntemper. It's the only\nthing I can still control.{end_wait}
+07417	message	The Silk Road's closed.\nNothing gets through.{page_break}If you're going to Tolbi,\nyou'll have to cross\nthe Karagol Sea.{end_wait}
+07419	MsgKalayTolbiDocksWeCantTakeSilkRoadSo	With Silk Road shut,\neveryone's stranded.{page_break}Ship tickets cost more\nthan most of us have.{end_wait}
+07420	MsgKalayTolbiDocksYouCantTakeSilkRoadMuch	The road ends not far\nfrom here. The ones who\ngo look come back silent.{page_break}They won't say what\nthey saw.{end_wait}
+07424	MsgKalayTolbiDocksWithSilkRoadClosedEveryoneWill	With Silk Road closed,\neveryone must go by ship.{page_break}The captain's getting\nrich off our fear.{end_wait}
+07426	MsgKalayTolbiDocksWellIsntThisGreatWeCant	Silk Road's shut, and\nColosso's started.{page_break}My daughter left Tolbi\nto meet us at the docks.\nI have a bad feeling.{end_wait}
+07427	MsgKalayTolbiDocksWeveSpentAYearPlanningThis	We planned this trip for\na year. Then the world\nfell apart around it.{end_wait}
+07438	MsgKalayTolbiDocksIFeelSortOfBadThat	I hate charging this\nmuch for tickets. But\neveryone's desperate.{end_wait}
+07444	MsgKalayTolbiDocksTheCaptainsInAGoodMood	The captain's in a good\nmood. Frightened people\npay well.{end_wait}
+07453	MsgKalayTolbiDocksSilkRoadIsBlockedSoThe	Silk Road is blocked, so\nthe ship is packed with\nfrightened people.{end_wait}
+07460	MsgTolbiShipDeckThereAreALotOfPassengers	So many passengers...\nI wonder if the ship will\nsurvive the crossing.{page_break}The sea looks wrong\nthese days.{end_wait}
