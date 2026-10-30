@@ -860,11 +860,13 @@ static void ValeStormyNight_DoraSendsIsaacToThePlaza(void) {
   Actor_SetPosition(ACTOR_DORA, 0, 0);
   Actor_SetPosition(ACTOR_KYLE, 0, 0);
 
-  // Isaac is at (302, 905) here, facing north after Kyle and Dora. The figure
-  // stands on the path behind him, 37 pixels south (60 fell off the screen), facing his back, and
-  // watches him from there for a few seconds before it is gone.
-  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(302), PIXELS(942));
-  Actor_FaceDirection(ACTOR_HOODED_FIGURE, FACING_NORTH, 0);
+  // Isaac is at (302, 905) here. He turns south toward the plaza, and the
+  // figure stands on the open path 60 pixels north of him, so it is behind
+  // him as he faces away. (South of him is a cliff face; a figure there never
+  // showed.)
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_SOUTH, 0);
+  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(302), PIXELS(845));
+  Actor_FaceDirection(ACTOR_HOODED_FIGURE, FACING_SOUTH, 0);
   Import_ActorSetAnimation(ACTOR_HOODED_FIGURE, ANIM_STAND);
   Event_WaitFrames(110);
   Actor_SetPosition(ACTOR_HOODED_FIGURE, 0, 0);
