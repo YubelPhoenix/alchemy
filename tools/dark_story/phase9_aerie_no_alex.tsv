@@ -1,12 +1,12 @@
 05592	message	I will tell you what he\nmeant.{end_wait}
-05596	message	Someone opened our\nclan's seals before you.\nWho helped you?{end_wait}
-05597	message	The seals were broken\nwhen we arrived. Someone\nhad opened the way.{end_wait}
-05598	message	We only walked through.\nWater answers to the Star,\nnot to the hand.{end_wait}
-05599	message	Who? Who broke them?\nWhere is Alex?!{end_wait}
-05600	message	{actor_name:4}, your Alex isn't\nhere. Don't ask me why.{end_wait}
+05596	message	Only Alex could open\nthose seals. Where is he?{end_wait}
+05597	message	He opened the way for\nus, then went missing. We\ndon't know where he went.{end_wait}
+05598	message	We needed no more than the\nopen door. Water answers\nto the Star, not the hand.{end_wait}
+05599	message	Missing? Alex would never\nvanish! What did you do?!{end_wait}
+05600	message	{actor_name:4}, we did nothing.\nWe don't know where he is.{end_wait}
 05601	message	The lighthouse lent you\nstrength in that fight.\nYou felt it, surely.{end_wait}
 05603	message	Don't you see?{page_break}It fed you limitless\nPsynergy, girl.{end_wait}
-05605	message	You and the boy they\ntook are Mercury Clan.{page_break}Masters of Water\nPsynergy.{end_wait}
+05605	message	You and Alex are both\nMercury Clan.{page_break}Masters of Water\nPsynergy.{end_wait}
 05609	message	Tell me why Saturos\ncouldn't use his full\npower.{end_wait}
 05610	message	Ah, yes... I will explain.{end_wait}
 05611	message	Saturos is of Mars,\nthe Adepts of fire.\nSo am I.{end_wait}
