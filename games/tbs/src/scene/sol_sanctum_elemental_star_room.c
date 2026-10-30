@@ -581,20 +581,12 @@ static void SolSanctumElementalStarRoom_DemandElementalStars(void) {
   Actor_RunRepeatedMotion(ACTOR_KRADEN, 2);
   Import_ActorSetAnimation(ACTOR_KRADEN, ANIM_SHAKE_HEAD);
   SolSanctumElementalStarRoom_ShowMessageAndWait(ACTOR_KRADEN, 10);
+  // Felix is no Adept of the air: he stands in the dark beyond the others and
+  // walks in, rather than dropping from above.
   felix = Actor_GetById(ACTOR_FELIX_MASKED);
-  shadow = Actor_GetById(ACTOR_PLATFORM_SHADOW);
-  spriteFlags = &felix->sprite->flags;
   zero = 0;
-  *spriteFlags = zero;
-  felix->scaleX = Q16_ONE / 10;
-  felix->scaleY = Q16_ONE / 10;
-  shadow->scaleX = Q16_ONE / 10;
-  shadow->scaleY = Q16_ONE / 10;
-  Actor_SetSpriteColorById(ACTOR_FELIX_MASKED, SPRITE_COLOR_BLINK);
-  Actor_SetPosition(ACTOR_FELIX_MASKED, PIXELS(471), PIXELS(290));
-  motionFlags = &felix->motionFlags;
-  *motionFlags = zero;
-  felix->y.fixed = PIXELS(40);
+  Actor_SetPosition(ACTOR_FELIX_MASKED, PIXELS(471), PIXELS(270));
+  Actor_FaceDirection(ACTOR_FELIX_MASKED, FACING_SOUTH, 0);
   Event_WaitFrames(1);
   SolSanctumElementalStarRoom_ShowMessageAndWait(ACTOR_FELIX_MASKED, 10);
   Actor_ShowEmote(ACTOR_JENNA, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 0);
@@ -606,39 +598,6 @@ static void SolSanctumElementalStarRoom_DemandElementalStars(void) {
   FieldCamera_SetSpeed(PIXELS(2), PIXELS(1) / 4);
   FieldCamera_MoveTo(PIXELS(471), -1, PIXELS(309), 1);
   FieldCamera_WaitForArrival();
-  Import_ActorSetPosition(ACTOR_PLATFORM_SHADOW, PIXELS(471), PIXELS(290));
-  Event_PlaySong(SE_WARP);
-  Actor_SetSpritePriority(ACTOR_FELIX_MASKED, 2);
-  for (i = 0; i != 90; i++) {
-    felix->y.fixed -= PIXELS(1) / 10;
-    felix->scaleX += Q16_ONE / 100;
-    felix->scaleY += Q16_ONE / 100;
-    shadow->scaleX += Q16_ONE / 100;
-    shadow->scaleY += Q16_ONE / 100;
-    Event_WaitFrames(1);
-  }
-  *motionFlags = 5;
-  Event_WaitFrames(80);
-  for (i = 0; i != 60; i++) {
-    felix->y.fixed -= PIXELS(1) / 2;
-    Event_WaitFrames(1);
-  }
-  *motionFlags = ACTOR_FOLLOWS_TERRAIN | ACTOR_FALLS;
-  Event_WaitFrames(30);
-  *spriteFlags = 1;
-  Import_ActorSetPosition(ACTOR_PLATFORM_SHADOW, 0, 0);
-  Actor_SetSpritePriority(ACTOR_FELIX_MASKED, 1);
-  {
-    u8 *flags = &Actor_GetById(ACTOR_FELIX_MASKED)->priorityFlags;
-
-    /* FAKEMATCH(temporary): the loop counter i takes the 1 afresh, so the store
-     * to *spriteFlags does not keep it in r5; as *flags |=
-     * ACTOR_PRIORITY_AUTOMATIC, 6 of 464 instructions differ in tbs-en. */
-    i = ACTOR_PRIORITY_AUTOMATIC;
-    i |= *flags;
-    *flags = i;
-  }
-  Actor_ConfigureSpriteColor(ACTOR_FELIX_MASKED, SPRITE_COLOR_NORMAL);
   Actor_SetSpeed(ACTOR_FELIX_MASKED, PIXELS(1) / 2, PIXELS(1) / 4);
   Actor_WalkToAndWait(ACTOR_FELIX_MASKED, 471, 306);
   Event_WaitFrames(40);
@@ -1017,11 +976,9 @@ static void SolSanctumElementalStarRoom_FelixTakesStars(void) {
   Actor_RunRepeatedMotion(ACTOR_GARET, 3);
   Event_WaitFrames(10);
   Actor_FaceDirection(ACTOR_GARET, FACING_SOUTHEAST + FACING_STEP, 0);
-  felix = Actor_Get(ACTOR_FELIX);
-  Actor_SetSpriteFlags(felix, 0);
-  Actor_SetSpriteColorById(ACTOR_FELIX, SPRITE_COLOR_HIDDEN);
-  Actor_SetPosition(ACTOR_FELIX, PIXELS(392), PIXELS(454));
-  SolSanctumElementalStarRoom_AnimateFelixReappearing();
+  // Felix walks over from where he stood; he does not warp.
+  Actor_SetSpeed(ACTOR_FELIX, PIXELS(1) / 2, PIXELS(1) / 4);
+  Actor_WalkToAndWait(ACTOR_FELIX, 392, 454);
   Actor_FaceDirection(ACTOR_GARET, FACING_NORTH + FACING_STEP, 10);
   Actor_StartRepeatedMotion(ACTOR_GARET, 2);
   Actor_ShowEmote(ACTOR_GARET, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 40);
@@ -1064,17 +1021,7 @@ static void SolSanctumElementalStarRoom_FelixTakesStars(void) {
   Actor_SetAnimationAndWait(ACTOR_FELIX, ANIM_NOD);
   Event_WaitFrames(20);
   Actor_FaceDirection(ACTOR_FELIX, FACING_NORTH, 20);
-  Actor_SetSpriteColorById(ACTOR_FELIX, SPRITE_COLOR_BLINK);
-  felix = Actor_Get(ACTOR_FELIX);
-  Actor_SetSpriteFlags(felix, 0);
   actor = Actor_GetById(ACTOR_FELIX);
-  actor->motionFlags = none;
-  Event_PlaySong(SE_SHIMMER);
-  for (i = 0; i != 30; i++) {
-    actor->y.fixed += PIXELS(1);
-    Event_WaitFrames(1);
-  }
-  actor->motionFlags = 5;
   Actor_StartRepeatedMotion(ACTOR_GARET, 2);
   SolSanctumElementalStarRoom_ShowMessageAndWait(ACTOR_GARET, 10);
   Actor_ShowEmote(ACTOR_FELIX, EMOTE_IN_FRONT | EMOTE_QUESTION, 60);
@@ -1127,13 +1074,8 @@ static void SolSanctumElementalStarRoom_FelixTakesStars(void) {
   Actor_SetAnimationAndWait(ACTOR_FELIX, ANIM_NOD);
   Event_WaitFrames(10);
   SolSanctumElementalStarRoom_ShowMessageAndWait(ACTOR_FELIX, 30);
-  actor->motionFlags = 0;
-  Actor_SetSpeed(ACTOR_FELIX, PIXELS(12) / 5, PIXELS(6) / 5);
-  FieldActor_SetMoveTarget(actor, PIXELS(460), 0, PIXELS(360));
-  Actor_WaitForMoveById(ACTOR_FELIX);
-  Actor_SetSpriteColorById(ACTOR_FELIX, SPRITE_COLOR_NORMAL);
-  felix = Actor_Get(ACTOR_FELIX);
-  Actor_SetSpriteFlags(felix, SPRITE_FLAG_SHADOW);
+  Actor_SetSpeed(ACTOR_FELIX, PIXELS(1) / 2, PIXELS(1) / 4);
+  Actor_WalkToAndWait(ACTOR_FELIX, 460, 360);
   Event_WaitFrames(30);
   FieldCamera_FollowActor(ACTOR_GARET, 1);
   FieldCamera_WaitForArrival();
