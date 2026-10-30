@@ -73,6 +73,7 @@
 /// cycling its colour modes too, and sheds sparkles.
 
 #include "save_block.h"
+#include "world_state.h"
 #include "vram_cache.h"
 #include "unit/import.h"
 #include "unit/scene/vale.h"
@@ -1551,9 +1552,7 @@ s32 Vale_Initialize(void) {
   s32 set;
 
   // Once Mercury Lighthouse is lit, ash-grey rain falls on the village.
-  if (GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0) {
-    Weather_StartRain();
-  }
+  WorldState_Apply();
   if (gSaveBlock.entrance == VALE_FROM_TITLE) {
     WindowColor_Apply(((u8 *)&gSaveBlock)[517], ((u8 *)&gSaveBlock)[518]);
     Vale_MendingTheRoof();
