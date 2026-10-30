@@ -1,0 +1,100 @@
+07174	MsgValeYouCameBack	Oh.{pause_20_skippable} It's you, {actor_name:1}.\nYou came back?{end_now}
+07175	message	Vale isn't quiet anymore.\nThe rain sees to that.{page_break}Still, I'm glad. Your\nmother, Dora, will be too.{end_wait}
+07176	message	Not for good? No.\nI suppose nobody stays.{end_wait}
+07177	MsgValeTheRumorWasTrue	I heard you were back.\nI hoped the rumor was\nwrong.{page_break}Will you tell us what\nyou saw out there?{end_wait}
+07178	MsgValeWhenDidYouComeBack	{actor_name:1}! When did you\ncome back? After the\nway you left,{page_break}I thought I'd never\nsee you again.{page_break}I'm glad. Truly.{end_wait}
+07179	MsgValeOwItsGonnaBeYearsBefore	Ow!{pause_20_skippable} It'll be years\nbefore I'm grown up!\n{actor_name:1}'s back already!{page_break}Oh... only visiting?\nI thought the bad\nthings were over.{end_wait}
+07180	MsgValeWelcomeHomeIsaacOhWhatHappened	Welcome home, {actor_name:1}.\nOh...{pause_20_skippable} ...\nWhat happened?{page_break}Why are you walking\nwith a girl who is not\n{actor_name:6}?{end_wait}
+07181	MsgValeWeveSeenManyMonstersLatelyAnd	Monsters have crowded\nthe roads since the\nmountain burned.{page_break}The ash drives them\nclose to the village.\nWeapons sell well.{page_break}If only our smiths\ncould make them\nbetter...{end_wait}
+07182	MsgValeIWishICouldLearnThe	I wish I knew the secret\nof good weapons. Then\nI might be of use.{end_wait}
+07183	MsgValeIGaveHimAFarewellGift	I gave him a farewell\ngift, thinking I'd\nnever see him again.{page_break}But here he is...{page_break}Where is {actor_name:6}? Wasn't\nhe to bring her back\nwith him?{end_wait}
+07184	MsgValeIPromisedIdBecomeAGreat	I promised I'd be a\ngreat blacksmith before\n{actor_name:1} came back.{page_break}It's a man's promise.\nI'm still working on\nit.{end_wait}
+07185	MsgValeThatShyGirlWithIsaacSure	That quiet girl with\n{actor_name:1}{pause_20_skippable} looks kind.\nI hope she is.{end_wait}
+07186	MsgValeWhatHappenedToJennaHaventYou	What happened to {actor_name:6}?\nHaven't you found\nher yet?{end_wait}
+07187	MsgValeYouveGrownSoMuch	{actor_name:1}!{page_break}You've grown thin.\nI almost didn't\nrecognize you.{end_wait}
+07188	MsgValeCameBack2	Oh. It's you, {actor_name:1}.\nYou came back.{end_wait}
+07189	MsgValeHomeJustToStay	You've come all the way\nhome to stay?\nAre you sure?{end_now}
+07190	message	Ah. You don't want to\nsettle into comfort.{page_break}Then you're welcome\nhere, for as long as\nyou stay.{end_wait}
+07191	message	Good. You've come a long\nway. Now go home\nand rest.{end_wait}
+07192	MsgValeYouTraveledAroundTheEasternEdge	You went around the\neastern edge of the\ncontinent?{page_break}You must be\nexhausted.{end_wait}
+07193	MsgValeArentYouGladToSeeThe	At least the village\nhasn't changed. Be\nglad of that.{end_wait}
+07194	MsgValeDoraWasStruckWithIllness	Does {actor_name:1} know that\nDora has fallen ill?{end_wait}
+07195	MsgValeDoraWouldntLetHimStay	Maybe {actor_name:1} came back\nbecause Dora can't hide\nit anymore.{page_break}Only the mayor knows.\nShe asked us all not\nto say.{end_wait}
+07196	MsgValeIWonderIfIsaacWillContinue	Will {actor_name:1} go on\nwith the journey?\nIt must be hard.{end_wait}
+07197	MsgValeValeWillNeverChangeSoYou	Vale will wait.\nCome home whenever\nyou can.{end_wait}
+07198	MsgValeHey2	Hey...{end_wait}
+07199	message	What?{end_wait}
+07200	message	Shouldn't we look\nfor {actor_name:2}?{end_wait}
+07201	message	Why?{end_wait}
+07202	message	{actor_name:1} still doesn't know\nabout Dora...{pause_20_skippable}right?\nSomeone should tell him.{end_wait}
+07203	message	You miss {actor_name:2}, don't\nyou? You're looking for\nan excuse to find him.{end_wait}
+07204	message	What? No! I just...{end_wait}
+07205	message	{text_effect:4}Guh...{pause_20_skippable}{pause_20_skippable} Gah...{pause_20_skippable} Ugh...{end_wait}
+07206	message	Grandma! What's the\nmatter? Are you\nchoking?{end_wait}
+07207	message	It's... It's {actor_name:2}!{end_wait}
+07208	message	She must miss\n{actor_name:2}, too...{end_wait}
+07209	message	No, it's really {actor_name:2}!\nLook, look!{end_wait}
+07210	message	{actor_name:2}!{end_now}
+07211	message	Oh, {actor_name:2}...!{end_now}
+07212	message	Mom, Dad...{pause_20_skippable} I'm home...{end_wait}
+07213	message	What,{pause_20_skippable} {actor_name:2}?{end_wait}
+07214	message	Oh, {actor_name:2}...!{end_wait}
+07215	message	Grandpa,\nI'm home...{end_wait}
+07216	message	Yes, yes...{pause_20_skippable} Did you\ncomplete your mission\nfor the Wise One?{end_now}
+07217	message	It is going well?\nThen you must go on\nsoon, I suppose.{end_wait}
+07218	message	Not yet? Then I'm glad\nyou're home, even for\na little while...{end_wait}
+07219	MsgValeYoureLeavingAgainSoon	You're leaving again\nsoon...aren't you?{end_wait}
+07220	message	I'm just glad to see\nyou alive.{end_wait}
+07221	message	That's right.{end_wait}
+07222	message	Let me introduce you\nto my new friends.{end_wait}
+07223	message	Umm...{pause_20_skippable} I am {actor_name:3}.\nPleased to meet you.{end_wait}
+07224	message	I am {actor_name:4}, from Imil.\nI'm sorry we meet\nlike this.{end_wait}
+07225	message	Nice to meet you.\nPlease look after\nyoung {actor_name:2} for us.{end_wait}
+07226	message	Well{pause_20_skippable}, enough talk.\nRest. The roads are\nbad tonight.{end_wait}
+07227	MsgValeMiaIsSuchANiceGirl	{actor_name:4} seems kind, but\nshe watches everyone.{page_break}I wonder who {actor_name:2}\nlikes more, {actor_name:4} or\n{actor_name:6}...{end_wait}
+07228	MsgValeThatIvanSeemsToBeA	That {actor_name:3} seems to be\na careful boy...{page_break}I wish you could be more\nlike {actor_name:3}, {actor_name:2}.{end_wait}
+07229	MsgValeDidYouHearAboutDora	Did you hear us talking\nabout Dora just now?{end_now}
+07230	message	Dora told us not to\nworry...that it's just\na fever.{page_break}Don't worry too much,\n{actor_name:1}.{end_wait}
+07231	message	You didn't hear? But you\nlook worried.{page_break}We'll look after your\nmother. Go on, rest.{end_wait}
+07232	MsgValeHopeDidntGet	I hope the road didn't\nmake you sick.{page_break}{actor_name:2} never eats enough\nnow. His mother worries.{end_wait}
+07233	MsgValeItMustBeNiceToBe	Young, with lovely\ngirls on the road...\nit must be nice.{end_wait}
+07234	MsgValeHisNewFriendsAreAllSo	His new friends are\npolite. That is the\nonly good news.{end_wait}
+07235	MsgValeItWasntTooSmartToTalk	We shouldn't have talked\nabout Dora without\nchecking for {actor_name:1}.{page_break}I wish we could tell\nhim the truth.{end_wait}
+07236	MsgValeGaretSeemsToHaveGrownUp	{actor_name:2} has grown up\nfast on this road.\nToo fast.{end_wait}
+07270	MsgValeCoughCoughWho	{text_effect:4}Cough, cough{pause_20_skippable}{pause_20_skippable}! {reset_text_style}Who is it?{pause_20_skippable}\nIs it the innkeeper?{pause_20_skippable}{pause_20_skippable}\nIs it time to eat?{end_wait}
+07271	message	No? {text_effect:4}Cough...{reset_text_style}{pause_20_skippable}{pause_20_skippable}\nThen who{em_dash}{end_wait}
+07272	message	{actor_name:1}...{end_wait}
+07273	message	Are you finally home?\nHave you finished your\nmission!?{end_wait}
+07274	message	You haven't, have you?{end_wait}
+07275	message	Have you forgotten your\npromise, {actor_name:1}?{end_wait}
+07276	message	You promised you wouldn't\ncome back until your\nquest was done, right?{end_now}
+07277	message	You broke your promise\nbecause you were worried\nabout me?{end_wait}
+07278	message	You were more worried\nabout me than about\nyour promise?{end_wait}
+07279	MsgValeWhoToldIll	Who told you I was ill?\nThe mayor? Or {text_effect:4}cough{reset_text_style}\n...was it the innkeeper?{end_now}
+07280	message	So you came because\nyou heard I was ill.{end_wait}
+07281	message	Are you telling me\nyou were shocked to\nsee me in bed?{end_wait}
+07282	message	You can't excuse a broken\npromise with worry for me.{page_break}{text_effect:4}Cough...{reset_text_style}{end_wait}
+07283	message	I... {text_effect:4}Cough...{reset_text_style}{pause_20_skippable}\nI just caught a\ncold. That's all.{end_wait}
+07284	message	But I'm fine now. {pause_20_skippable}{pause_20_skippable}\n{text_effect:4}Cough...{reset_text_style}{pause_20_skippable} Look!{end_wait}
+07285	message	See?{pause_20_skippable} I'm fine!{end_wait}
+07286	message	Don't worry about me.\nGo on. Finish your\nquest.{pause_20_skippable}{pause_20_skippable} Promise me.{end_wait}
+07287	MsgValeDontWorryBest	Don't you worry about\nme. Finish your\nquest and come home.{page_break}{text_effect:4}Cough cough...{reset_text_style}{end_wait}
+07288	MsgValeImSorryISeemedSoHarsh	I'm sorry I was so\nharsh, {actor_name:1}...{page_break}I'm so happy to see you.\nCome home for good, when\nyou can...{end_wait}
+07289	MsgValeUnnOhhKyle	{text_effect:4}Unn...{pause_20_skippable} Ohh...{pause_20_skippable}{pause_20_skippable}\nKyle...{pause_20_skippable} Don't go...{end_wait}
+07290	message	I think Dora\nis dreaming.{end_wait}
+07291	MsgValeKyleWatchOutTheBoulderThe	Kyle, watch out!{pause_20_skippable}{pause_20_skippable}\nThe boulder!!!{pause_20_skippable}\nThe boulder...{end_wait}
+07292	MsgValeOhSoYouStillHaventRescued	So you still haven't\nbrought {actor_name:6} home...{end_wait}
+07293	MsgValeIGetOverColdsQuicklyBut	I recover from colds fast.{page_break}But Dora has been ill\na long time. That is not\na cold.{end_wait}
+07294	MsgValeAColdIsGoingAroundI	A sickness is going\naround. I should be\ncareful.{end_wait}
+07295	MsgValeWillIEverSeeJennaAnd	Will I see {actor_name:6}\nand {actor_name:5} again\nbefore I die?{end_wait}
+07296	MsgValeDoraSaysItsJustACold	Dora says it's a cold,\nbut she's been like this\never since...{page_break}{actor_name:1} left...\nShe isn't getting\nbetter...{end_wait}
+07297	MsgValeIKnowThatThereAreAlways	Winter always brings\nsickness...{page_break}But this winter feels\nlonger than the others.{end_wait}
+07298	MsgValeWhatWasThatAlchemyThatKraden	What was that "Alchemy"\nthat Kraden researched?{page_break}Perhaps it was\nsomething better left\nalone...{end_wait}
+07299	MsgValeEarthquakesStillStrikeOnceInA	Earthquakes still strike\nonce in a while...{page_break}Every time, it gives me\nthe chills.{end_wait}
+07300	MsgValeEvenIfTheEruptionHadNo	Even if the eruption\nwasn't Alchemy...{page_break}I don't want Kraden\nback in this village.{end_wait}
+07301	MsgValeEveryTimeTheGroundShakesI	Every time the ground\nshakes, I think it's\nthe mountain again.{end_wait}
+07302	MsgValeTheMountainIsApparentlyStillCasting	The mountain is still\nthrowing Psynergy\nStones about.{page_break}Travelers past the gate\nsay they've seen them\n{page_break}by the roadside, under\nthe ash.{end_wait}
+07303	MsgValeIfThePsynergyStonesInThe	If the stones keep\nscattering...{page_break}Mt. Aleph will have\nnone left someday.{end_wait}
+07304	MsgValeTheNorthwestFaceOfMtAleph	The northwest face of Mt.\nAleph was scorched by a\nriver of lava.{end_wait}
+07305	MsgValeTheySayTheLavaLookedLike	They say the lava looked\nlike the earth's insides\nhad spilled out.{end_wait}
+07306	MsgValeTheGreatHealersAreTooAfraid	The Great Healers are\ntoo afraid to go to Sol\nSanctum anymore.{page_break}They have nothing to fear.\nTheir Psynergy should\nprotect them.{end_wait}
