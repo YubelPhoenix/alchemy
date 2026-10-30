@@ -1,0 +1,10 @@
+03361	MsgSanctumWelcome	Welcome. You look like\nyou've been through\nsomething. What now?{end_now}
+03362	MsgSanctumMoreAid	Is there anything else\nyou need?{end_now}
+03363	MsgSanctumFarewell	Go carefully. Come back\nif you need healing.{end_wait}
+04511	MsgSanctumDoFeelAnyChangeIn	Do you feel any change\nin your Psynergy?
+05000	MsgVaultLeftThiefRegretsEscape	We should've run for the\ncave northeast of Goma\nRange. Too late now.{end_wait}
+05001	MsgVaultRightThiefRegretsStaying	Damn it. I said we should\nhave left town sooner.{end_wait}
+05002	MsgVaultThiefLeaderSilencesThieves	Shut your mouths, both\nof you!{end_wait}
+05004	MsgVaultLeftThiefThoughts	...Will I ever walk free\nagain?{end_wait}
+05005	MsgVaultRightThiefThoughts	Maybe this is what we get\nfor stealing Hammet's\nShaman's Rod.{end_wait}
+05006	MsgVaultThiefLeaderThoughts	I'll be out of this cell\nbefore you know it.\nJust you wait.{end_wait}
