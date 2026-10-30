@@ -1,7 +1,7 @@
 02378	MsgValeJarEmpty	but found nothing.\nJust broken glass and\nash.{end_wait}
 03931	MsgValeHeyBoy	Hey...{pause_20_skippable} Boy...\nCome closer.{end_wait}
 03932	message	You have business with\nme, or are you lost?{end_now}
-04514	MsgValeValeFeelsEmpty	Vale has been so quiet\nsince you two left. Too\nquiet. It's unsettling.{end_wait}
+04514	MsgValeValeFeelsEmpty	Vale has been so quiet\nsince you two left. Even\nthe sky looks gray.{end_wait}
 04515	MsgValeImNotSadJustGo	Sniff... I...{pause_20_skippable} I'm not\nafraid at all... Go.\n{pause_20_skippable}Just go!{end_wait}
 04516	MsgValeThisIsMyFarewellGift	Take this. It may be the\nlast thing I give you.{end_wait}
 04517	message	{actor_name:1} took\nthe Herb.{end_wait}
@@ -14,7 +14,7 @@
 04524	message	What?{pause_20_skippable} But didn't {actor_name:6}\nsee his face?{end_now}
 04525	message	If he's her brother, we\nshouldn't trust\n{actor_name:6} too much.{end_wait}
 04526	message	What? That's not what you\ntold the elders.{end_wait}
-04527	MsgValeWereASmallHotelAndWe	We're a small hotel, and\nwe get few guests...{page_break}We keep the place clean\nanyway. Someone might\nstill come.{end_wait}
+04527	MsgValeWereASmallHotelAndWe	We're a small hotel, and\nwe get few guests...{page_break}We sweep out the ash\nevery morning. Someone\nmight still come.{end_wait}
 04528	MsgValeIsaacPleaseTakeCareOfMy	{actor_name:1}, please bring my\ngrandson {actor_name:2} home\nalive.{end_wait}
 04529	MsgValeReceivingAQuestDirectlyFromThe	A quest from the Wise One.\nHonor... or a sentence.\nI can't tell.{end_wait}
 04531	MsgValeAsMothersDoraAndIWill	As mothers{pause_20_skippable}, Dora and I\nwill never stop worrying\nabout you.{page_break}No matter how old you\nget, you'll be our\nbabies. Come back.{end_wait}
@@ -47,7 +47,7 @@
 04589	MsgValeIdLikeToBelieveThatOnly	I'd like to believe only\nValeans can use Psynergy.\nI'd like to believe a lot.{end_wait}
 04590	MsgValeIfOnlyIdGoneToSol	If only I'd gone to Sol\nSanctum with {protagonist_name}\nand the others...{page_break}It should be me going\non this quest. Not\nthem.{end_wait}
 04591	MsgValeValesLawsStateThatYouCannot	Vale's laws forbid Psynergy\nin front of outsiders.{page_break}You know that,\ndon't you, {protagonist_name}?{end_wait}
-04592	MsgValeIWishIWereTheOne	I wish I'd solved the\nmystery of Sol Sanctum\nbefore it burned.{end_wait}
+04592	MsgValeIWishIWereTheOne	I wish I'd solved the\nmystery of Sol Sanctum\nbefore the sky went gray.{end_wait}
 10692	MsgValeBooksAboutContinents	There are books entitled\n\"Journey to the Northern\nContinent of Angara\"{page_break}and \"All About the\nSouthern Continent of\nGondowan.\"{page_break}{actor_name:1} learned that Mt.\nAleph sits at Angara's\nwestern edge. It burned.{end_wait}
 10693	MsgValeBookLawsOfVale	There is a book entitled\n\"The Laws of Vale,\" which\ndescribes Vale's customs.{page_break}\"Never leave the village\nwithout permission.{page_break}Never show Psynergy to\noutsiders. Never speak of\nthe Sanctum...\"{end_wait}
 10694	MsgValeBookPowerOfNature	There is a book entitled\n\"The Mighty Power of\nNature.\"{page_break}\"Beyond human reason,\nnature shows its power in\neruptions{page_break}and floods. It does not\nspare the innocent...\"{end_wait}

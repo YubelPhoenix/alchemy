@@ -2,7 +2,7 @@
 02379	MsgVaultButDidntFindAnything	but found nothing.\nOnly dust and the smell\nof old smoke.{end_wait}
 02380	message	but there's nothing\nunusual about it.\nNothing you can see.{end_wait}
 04674	MsgVaultThisRockWasBlownHereAll	This rock was blown\nhere from the volcano!{page_break}It sparkles like a gem.\nMama says it's a piece\nof the burning mountain.{end_wait}
-04675	MsgVaultIfOnlyTheseRocksWere	If only these rocks were\ngems. We could finally\nleave this place.{end_wait}
+04675	MsgVaultIfOnlyTheseRocksWere	If only these rocks were\ngems. We could leave this\ngray place.{end_wait}
 04676	MsgVaultTheOtherSparklingRocksAllCrumbled	The other sparkling\nrocks crumbled to ash.{page_break}But this one, from the\nroof, is still whole.\nI'm keeping it.{end_wait}
 04677	MsgVaultOkMisterLetMeSee	Fine, mister. Let me\nsee that rock. Don't\ndrop it.{end_wait}
 04678	MsgVaultMyNeighborCreepsMeOutHe	My neighbor's smirked\nsince the eruption, like\nhe knows something.{end_wait}
@@ -10,7 +10,7 @@
 04680	message	Then I'll go too\nsomeday. I'm not staying\nin a town that burns.{end_wait}
 04681	message	Oh... Then why would\nanyone leave at all?{end_wait}
 04682	MsgVaultHeyMaybeMyNeighborIsThe	Maybe my neighbor's the\nthief... He's always\nout after dark.{end_wait}
-04683	MsgVaultWonderOutsideWorldLike	I wonder{pause_20_skippable} what the\nworld looks like beyond\nthese burned hills.{end_wait}
+04683	MsgVaultWonderOutsideWorldLike	I wonder{pause_20_skippable} what the\nworld looks like beyond\nthese gray, ash-lit hills.{end_wait}
 04684	MsgVaultJustMeOrAmMissing	Is it just me, or is\nsomething missing from\nmy house?{end_wait}
 04685	MsgVaultEverSinceTheEruptionGrandpaKeeps	Ever since the eruption,\nGrandpa keeps checking\nwhat was stolen.{page_break}He doesn't see that we\nhad nothing worth taking.\nNot anymore.{end_wait}
 04686	MsgVaultCouldTheyThievesGoodDont	Could they be thieves?\nGod, this is no good.{page_break}I don't know who I\ncan trust anymore.{end_wait}
