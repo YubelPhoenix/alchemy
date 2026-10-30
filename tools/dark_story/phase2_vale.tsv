@@ -267,7 +267,7 @@
 07140	MsgValeThisIsVale	This is Vale.{pause_20_skippable}\n...You know that,\n{actor_name:1}. Of course you do.{end_wait}
 07141	MsgValeCameBackSooner	Back so soon, {actor_name:1}?\nThat can't be a good sign.{end_wait}
 07142	MsgValeMadeFriendsOnJourney	You've picked up company\non the road, {actor_name:1}.{page_break}Good. Nobody should\ntravel alone.{end_wait}
-07143	MsgValeRiverHeatedAndCooled	The river ran hot when\nAleph erupted. Scalding.{page_break}Folks thought hot springs.\nThen it ran cold again.{page_break}Rivers don't do that.\nNot on their own.{end_wait}
+07143	MsgValeRiverHeatedAndCooled	The river ran scalding hot\nwhen Aleph erupted. People\nthought it was a spring.{page_break}Then it ran cold again.\nRivers don't do that on\ntheir own.{end_wait}
 07144	MsgValeAnythingInterestingOnYourTrip	What did you see out there,\n{actor_name:1}? Anything worth\nthe trouble?{end_now}
 07145	message	Nothing? Hm. Your eyes say\notherwise.{end_wait}
 07146	message	Oh? Must've been something.{page_break}Could I come along\nnext time?{end_now}
@@ -277,7 +277,7 @@
 07150	MsgValeWelcomeHome	Welcome home, {actor_name:1}.\nIt's good to see you\nbreathing.{end_wait}
 07151	MsgValeWantToMakeFriends	You've made friends out\nthere. Good.{page_break}I wish I had your nerve,\n{actor_name:1}.{end_wait}
 07152	MsgValeEruptionMadeMess	Mt. Aleph's far side is a\nruin since the eruption.{end_wait}
-07153	MsgValeNorthwestCrack	A crack opened in Mt.\nAleph's northwest side.\nIt's deep. Too deep.{end_wait}
+07153	MsgValeNorthwestCrack	A crack opened in Mt.\nAleph's northwest side.\nIt's very deep.{end_wait}
 07154	MsgValeSurprisedByEarlyReturn	{actor_name:1}! We didn't expect\nyou back so soon. Some\nsaid you wouldn't be.{end_wait}
 07155	MsgValeIsaacHasGrown	{actor_name:1} has grown so fast.\nHe looks so much like\nhis father now...{end_wait}
 07156	MsgValeNewFriendsAreAdepts	{actor_name:1}'s new friends...\nstrange. Are they Adepts?{page_break}Like us? Or something\nelse?{end_wait}

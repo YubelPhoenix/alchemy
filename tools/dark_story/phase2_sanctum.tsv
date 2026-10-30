@@ -410,7 +410,7 @@
 07172	MsgSanctumISeeABeautifulGirlHas	I see a girl has joined\n{actor_name:1} on his journey.{page_break}I wonder what {actor_name:6} will\nthink when she sees this.{end_wait}
 07173	MsgSanctumItsNotFairIWantTo	It isn't fair! I want\nstrong Psynergy, but I\nhate working for it.{end_wait}
 07307	MsgValeTheHealersAreSupposedToGuard	The healers are meant to\nguard Sol Sanctum. How\ncan they not go in?{end_wait}
-07400	MsgSanctumMayWrongButLatelyThere	I may be wrong, but lately\nMt. Aleph keeps shaking.\nToo often. Too hard.{end_wait}
+07400	MsgSanctumMayWrongButLatelyThere	I may be wrong, but lately\nMt. Aleph keeps shaking\ntoo often, and too hard.{end_wait}
 07401	MsgSanctumPolishedGoldStatueReturnedUs	I polished the gold statue\nyou brought back.{page_break}It shines so brightly you\nwon't recognize it!{end_wait}
 07402	MsgSanctumIHopeTheEarthquakesArentA	I hope the tremors aren't\na sign of worse to come...{end_wait}
 07403	MsgSanctumDirtyGoldenStatueCleanedUp	That filthy golden statue\ncleaned up nicely. It\nmakes me feel better.{end_wait}

@@ -75,7 +75,7 @@
 03744	message	{actor_name:5} fell in the river.\nI need someone with\nPsynergy. Please!{end_wait}
 03745	MsgValeDontSupposeTwo	I don't suppose... could\nyou two help me? Please.\nI can't do this alone.{end_now}
 03746	message	{actor_name:6} went to the plaza\nfor help. Go to her.{end_wait}
-03747	message	You don't have to help.\nJust get yourselves to the\nplaza. Live.{end_wait}
+03747	message	You don't have to help.\nJust get yourselves to the\nplaza and stay alive.{end_wait}
 03748	MsgValeOh	Oh, {actor_name:1}... thank\ngoodness. Thank goodness.{end_wait}
 03749	MsgValeTwoDontEnough	You two can't save {actor_name:5}\nwith what we have left.\nFind help. Hurry.{end_wait}
 03750	MsgValeHangOnFelixHelpIsOn	Hang on, {actor_name:5}! Help is\ncoming! Don't let go!{end_wait}
@@ -125,7 +125,7 @@
 03799	message	We never imagined the\nSanctum would answer like\nthat.{end_wait}
 03800	message	It's a miracle we two\nwalked out of it alive.{end_wait}
 03801	message	That switch...\nIt was a trap. Had to be.{end_wait}
-03802	message	But a storm like this\nfrom one trap? Unreal.{end_wait}
+03802	message	But could a single trap\nreally cause a storm like\nthis?{end_wait}
 03803	message	...That is the power of\nAlchemy. It's frightening.{end_wait}
 03804	message	We must not fail when we\nchallenge the Sanctum\nagain.{end_wait}
 03805	message	Next time, we have no\nchoice but to succeed.{end_wait}

@@ -6,7 +6,7 @@
 05047	MsgBilibinHaveTriedHeadingSoutheastFrom	Ever tried heading\nsoutheast from here?{end_now}
 05050	MsgBilibinTheRoadToKolimaIsBlocked	The Kolima road is shut.\nLord McCoy's orders.\nNo one gets through.{end_wait}
 05051	MsgBilibinEverSinceThatManTurnedInto	Ever since that man\nturned into a tree,\nnobody sleeps well.{page_break}Folks avoid the town\ngate. Some swear the\ntree whispers at night.{end_wait}
-05052	MsgBilibinIsItTrueThatAMountain	Is it true a mountain\nblew itself apart beyond\nthe Goma Range?{page_break}The sky burned red all\nnight. It was beautiful.\nGods forgive me.{end_wait}
+05052	MsgBilibinIsItTrueThatAMountain	Is it true a mountain\nblew itself apart beyond\nthe Goma Range?{page_break}The sky burned red all\nnight. It was beautiful,\nand I feel guilty for it.{end_wait}
 05053	MsgBilibinTheresATowerAtTheTip	There's a tower at Imil's\nfar tip. Folks say gods\nbuilt it.{page_break}The locals call it the\nlighthouse. No one I\nknow has seen inside.{end_wait}
 05054	MsgBilibinSomethingChangedInTheEruptionNow	Something{pause_20_skippable} changed\nwhen that mountain blew.{page_break}Now there are things in\nevery forest and cave.\nThings that hunt.{end_wait}
 05055	MsgBilibinTheLumberIOrderedFromKolima	My lumber from Kolima\nnever arrived. Nobody\nfrom Kolima did,{pause_20_skippable} after.{end_wait}
@@ -29,7 +29,7 @@
 05076	MsgBilibinMccoyHadTheTreesCutDown	McCoy cut down the trees\nto build his wife a\nbigger, grander palace.{end_wait}
 05077	MsgBilibinThisIsAllLordMccoysFault	This is Lord McCoy's\nfault. But who here would\nsay it to his face?{page_break}He's our lord. We keep\nour mouths shut.{end_wait}
 05078	MsgBilibinAhLadyMccoyIWouldJust	Lady McCoy... I'd give\nanything to be her.{page_break}Will I ever live in a\npalace of my own? Hah.\nNot in this life.{end_wait}
-05079	MsgBilibinTheSnowIsAlreadyPilingUp	Snow's already piling up\nin Imil. It's freezing.{page_break}If I were you, I'd wait\nfor spring. People die\nout there.{end_wait}
+05079	MsgBilibinTheSnowIsAlreadyPilingUp	Snow is already piling up\nin Imil, and it's freezing.{page_break}If I were you, I'd wait for\nspring. People die there.{end_wait}
 05080	MsgBilibinWeRarelySeeAnySnowAround	We hardly ever get snow\nin Bilibin.{end_wait}
 05081	MsgBilibinWhenSpringComesWantGo	When spring comes, I'm\ngoing to see that angel\n{actor_name:4} again.{end_wait}
 05082	MsgBilibinItMustBeDifficultToLive	Living in a snowbound\ntown must be hard.{page_break}I think I'll stay right\nhere, where it's warm.{end_wait}

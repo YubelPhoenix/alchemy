@@ -32,7 +32,7 @@
 04671	MsgVaultHmphItLooksLikeTheyreOnto	Tch. They're onto us.{page_break}Time to leave town.\nQuietly. Tonight.{end_wait}
 04672	MsgVaultIWasJustAboutToLeave	I was about to leave\nthis town for good when\nthe mountain blew.{end_wait}
 04673	MsgVaultStealingInMidstVolcanicEruption	Stealing while the\nmountain burned...{page_break}People love money more\nthan their own lives.{end_wait}
-04751	MsgVaultAFieryRockBurntAHole	A burning rock tore\nthrough the roof.{page_break}And who gets to patch\nit? Me. Always me.{end_wait}
+04751	MsgVaultAFieryRockBurntAHole	A burning rock tore\nthrough the roof.{page_break}And who has to patch it?\nMe, as always.{end_wait}
 04757	MsgVaultFixTheRoofWhyPayFor	Fix the roof? Pay a\ncarpenter? Please.{page_break}A hammer and some nails.\nHow hard can it be?{end_wait}
 04800	MsgVaultFixingRoofCant	He should be fixing the\nroof, but he's nowhere.{page_break}Hiding in back, I'd bet.\nSlacking, while we sit\nunder a hole.{end_wait}
 04801	MsgVaultSneakWastingTime	That sneak! Off wasting\ntime while the roof\nstays open to the sky!{end_wait}
@@ -112,4 +112,4 @@
 07367	message	How did you know I\nwanted this? Thank you.{end_wait}
 07409	MsgVaultThereYouSeeTheRoofRepairs	The roof is fixed, but\nit can't keep the rain\nout of our heads.{end_wait}
 07413	MsgVaultThatsTheLastOfTheRoof	That's the last of the\nroof. What now? I don't\nlike being idle.{end_wait}
-10716	MsgVaultCanHearWaterRumblingDown	Water's rumbling down\nthere. Deep. Constant.{end_wait}
+10716	MsgVaultCanHearWaterRumblingDown	Water is rumbling far down\nbelow, deep and constant.{end_wait}

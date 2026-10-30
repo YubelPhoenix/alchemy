@@ -12,7 +12,7 @@
 04758	MsgVaultWant	What do you want, kid?{end_wait}
 04759	message	That strange boy is with\nthem!{end_wait}
 04760	message	Don't let him near me!\nHe looks inside people!{end_wait}
-04761	MsgVaultTheyreActingSuspiciousSomethingsNot	They're edgy. Too edgy.\nSomething's not right.{end_wait}
+04761	MsgVaultTheyreActingSuspiciousSomethingsNot	They're very edgy.\nSomething isn't right.{end_wait}
 04762	message	You can't read them if\nthey keep running, can\nyou?{end_now}
 04763	message	Is there any way to\ncorner them?{end_wait}
 04764	message	There has to be a way\nto get close enough, but\nhow?{end_wait}
