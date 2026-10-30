@@ -6,8 +6,8 @@ N05	MsgDarkMenardiDuel05	Don't hold back.\nI won't.{end_wait}
 N06	MsgDarkMenardiDuel06	...There. That is the\nstrength I was hoping\nfor.{end_wait}
 N07	MsgDarkMenardiDuel07	Hold onto it. You will\nneed all of it.{end_wait}
 N08	MsgDarkMenardiDuel08	I did not want to be the\none who found out whether\nyou'd break.{end_wait}
-N09	MsgDarkMenardiDuel09	Go on. Saturos is\nwaiting above. He is not\nas patient as I am.{end_wait}
-N10	MsgDarkMenardiDuel10	And {protagonist_name}... when it\nends, remember I let you\npass.{end_wait}
+N09	MsgDarkMenardiDuel09	Go on up. We'll be waiting\nabove, at the stars.{end_wait}
+N10	MsgDarkMenardiDuel10	And {protagonist_name}... when we\nmeet again, remember I let\nyou pass.{end_wait}
 N11	MsgDarkSaturosDuel01	Enough, Menardi.\nYou have made your point.{end_wait}
 N12	MsgDarkSaturosDuel02	Saturos... they are only\nchildren.{end_wait}
 N13	MsgDarkSaturosDuel03	So were we, once.\nNo one spared us either.{end_wait}
