@@ -1272,6 +1272,15 @@ static void SolSanctumLunaSolRooms_MenardiDuelEnds(void) {
   Actor_FaceDirection(ACTOR_DUEL_MENARDI, FACING_SOUTH, 0);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
   Import_ActorSetAnimation(ACTOR_DUEL_MENARDI, ANIM_STAND);
+  // This runs as the scene loads, so open the screen before anyone speaks;
+  // otherwise the boxes show over black without their portraits.
+  Actor_SetPosition(ACTOR_DUEL_SATUROS, PIXELS(1608), PIXELS(1608));
+  FieldCamera_MoveTo(PIXELS(288), -1, PIXELS(140), 0);
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  gFieldWork->transitionFrames = 32;
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkMenardiDuel06);
   SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);

@@ -3,6 +3,7 @@
 // Part of overworld.c.
 
 #include "../overworld_internal.h"
+#include "world_state.h"
 
 /// The actor system's work (struct ActorSystemWork, gActorSystemWork in
 /// HEAP_SLOT_ACTOR_SYSTEM), seen as the flag that suspends sprite projection
@@ -79,6 +80,11 @@ s32 SceneManager_Run(s32 entrance) {
   Field_PlaceTreasureSpots();
   PaletteFade_Initialize();
   PaletteFade_SetTarget(PALETTE_TINT_NONE, 0);
+  // Ash greys every scene once the Sol Sanctum has erupted.
+  if (GameFlag_GetFar(FLAG_SOL_SANCTUM_ERUPTED) != 0 ||
+      GameFlag_GetFar(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0) {
+    WorldState_TintPalettes();
+  }
   // The default fade is from the backdrop colour over 16 frames; the scene's
   // initialization may choose another.
   work->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
