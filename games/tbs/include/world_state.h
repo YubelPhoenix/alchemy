@@ -44,6 +44,14 @@ static inline void WorldState_TintPalettes(void) {
   PaletteFade_SetTarget(PALETTE_TINT_NONE, PALETTES_ALL);
 }
 
+/// Like WorldState_Apply, but without rain, for scenes that already have
+/// their own weather (Imil's snow).
+static inline void WorldState_ApplyTintOnly(void) {
+  if (WorldState_GetStage() >= 1) {
+    WorldState_TintPalettes();
+  }
+}
+
 /// Starts the world's current weather: from stage 1 on, rain and the ash tint.
 static inline void WorldState_Apply(void) {
   if (WorldState_GetStage() >= 1) {

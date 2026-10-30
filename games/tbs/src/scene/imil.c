@@ -68,6 +68,7 @@
 #include "animspr.h"
 #include "version.h"
 #include "save_block.h"
+#include "world_state.h"
 #include "keystate.h"
 #include "scene_ids.h"
 #include "unit/scene/imil.h"
@@ -833,6 +834,9 @@ static void Imil_TalkToJustin(void) {
 s32 Imil_Initialize(void) {
   struct Actor *leader;
   s32 entrance;
+
+  // The snow turns grey once Mercury Lighthouse is lit.
+  WorldState_ApplyTintOnly();
 
   if (gSaveBlock.sceneId == (s32)&SceneId_Imil) {
     leader = Actor_GetById(ACTOR_PARTY_LEADER);
