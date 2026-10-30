@@ -1979,10 +1979,17 @@ enum {
   MERCURY_LIGHTHOUSE_AERIE_AFTER_SATUROS_BATTLE =
       2, ///< MercuryLighthouseAerie_ConfrontSaturos
   MERCURY_LIGHTHOUSE_AERIE_FROM_MERCURY_LIGHTHOUSE_EXTERIOR = 5,
+  /// Mia, alone, reaches the beacon ledge where Menardi holds the captives
+  /// (MercuryLighthouseAerie_MiaFacesMenardi).
+  MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE = 20,
+  /// Mia has beaten Menardi (MercuryLighthouseAerie_MiaBeatsMenardi).
+  MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT = 21,
 };
 /// SceneId_MercuryLighthouseAerie's exits.
 enum {
   MERCURY_LIGHTHOUSE_AERIE_TO_MERCURY_LIGHTHOUSE_EXTERIOR = 1,
+  /// The aerie again, as Mia runs ahead alone.
+  MERCURY_LIGHTHOUSE_AERIE_TO_MIA_CHASE = 2,
 };
 
 /// SceneId_FuchinTempleGrounds's entrances.
