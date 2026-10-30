@@ -484,7 +484,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Cutthroat
+    // Imp
     {
         .series = 6,
         .required = {0, 5},
@@ -512,7 +512,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 127, .level = 30},
         },
     },
-    // Plaguewitch
+    // Succubus
     {
         .series = 6,
         .required = {0, 7},
@@ -540,7 +540,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 127, .level = 30},
         },
     },
-    // Soulrender
+    // Hellspawn
     {
         .series = 6,
         .required = {0, 9},
@@ -569,7 +569,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 193, .level = 6},
         },
     },
-    // Hellcaller
+    // Archfiend
     {
         .series = 6,
         .required = {0, 11},
@@ -598,7 +598,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 193, .level = 6},
         },
     },
-    // Death Queen
+    // Demon Queen
     {
         .series = 6,
         .required = {0, 13},
