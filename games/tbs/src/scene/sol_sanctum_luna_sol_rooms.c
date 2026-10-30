@@ -1229,9 +1229,10 @@ static void SolSanctumLunaSolRooms_MenardiDuelBegins(void) {
   Event_Start();
   leader = Actor_GetById(ACTOR_PARTY_LEADER);
   if (leader != 0) {
-    // Stand on the floor symbol itself (288, 120): the cell the leader
-    // walks to in the original scene, so it is always open floor.
-    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, PIXELS(280), PIXELS(120));
+    // Stand a full body's length north of wherever the leader searched, so the
+    // two sprites never overlap.
+    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, leader->x.fixed - PIXELS(4),
+                            leader->z.fixed - PIXELS(32));
   }
   Actor_FaceDirection(ACTOR_DUEL_MENARDI, FACING_SOUTH, 0);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
