@@ -1,0 +1,25 @@
+05592	message	I will tell you what he\nmeant.{end_wait}
+05596	message	Someone opened our\nclan's seals before you.\nWho helped you?{end_wait}
+05597	message	The seals were broken\nwhen we arrived. Someone\nhad opened the way.{end_wait}
+05598	message	We only walked through.\nWater answers to the Star,\nnot to the hand.{end_wait}
+05599	message	Who? Who broke them?\nWhere is Alex?!{end_wait}
+05600	message	{actor_name:4}, your Alex is\ngone. Taken. Not by us.{end_wait}
+05601	message	The lighthouse lent you\nstrength in that fight.\nYou felt it, surely.{end_wait}
+05603	message	Don't you see?{page_break}It fed you limitless\nPsynergy, girl.{end_wait}
+05605	message	You and the boy they\ntook are Mercury Clan.{page_break}Masters of Water\nPsynergy.{end_wait}
+05609	message	Tell me why Saturos\ncouldn't use his full\npower.{end_wait}
+05610	message	Ah, yes... I will explain.{end_wait}
+05611	message	Saturos is of Mars,\nthe Adepts of fire.\nSo am I.{end_wait}
+05615	message	He knew. He failed to\nappreciate this lighthouse.{end_wait}
+05619	message	I watched your battle\nfrom the shadows...{end_wait}
+05621	message	I did not help Saturos.\nI was certain he'd win.{end_wait}
+05622	message	I was wrong. You have\nbecome fighters in a very\nshort time.{end_wait}
+05625	message	I was only keeping you\ntalking until Saturos\nrecovered.{end_wait}
+05626	message	You were stalling!\nThat's a trick!{end_wait}
+05637	message	No, it's impossible.\nNo Adept of our clan\nhas this kind of power.{end_wait}
+05638	message	Perhaps your clan never\nknew what it guarded.{end_wait}
+05639	message	It seems our way has\nreturned while we talked.{end_wait}
+05643	message	Oh? You mean to take the\nStars from Saturos?{end_now}
+05644	message	Ha! Too bad. I carry them\nnow. Come and take them!{end_wait}
+05645	message	Ha! You're right... I carry\nthe Elemental Stars!{end_wait}
+05665	message	Yes. We won't let them\nget away with this...{end_wait}
