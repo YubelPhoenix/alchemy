@@ -7,10 +7,10 @@ N42	MsgDarkAerieMiaGoing	The beacon. I'm going\nahead.{end_wait}
 N43	MsgDarkAerieIvanAlone	Mia, wait! Alone? Menardi\nwill...!{end_wait}
 N44	MsgDarkAerieMiaFollow	Heal up and follow me.\nI won't wait.{end_wait}
 N45	MsgDarkAerieGaretAfterHer	She's gone. We have to go\nafter her!{end_wait}
-N46	MsgDarkAerieMiaJenna	Jenna...?{pause_20_skippable} But I already\nsaw you. You were...{end_wait}
-N47	MsgDarkAerieMenardiWhichReal	Her? She is right here,\nshaking. So which one is\nreal, healer?{end_wait}
-N48	MsgDarkAerieJennaScared	Mia, please... I'm so\nscared. Get us out of\nhere!{end_wait}
-N49	MsgDarkAerieMiaFear	That fear is real. The\nother one never had any.{end_wait}
+N46	MsgDarkAerieMiaJenna	You.{pause_20_skippable} I knew you would\nfollow me here.{end_wait}
+N47	MsgDarkAerieMenardiWhichReal	Yes. Her. Finish what\nyou started, healer. We\nwould not stop you.{end_wait}
+N48	MsgDarkAerieJennaScared	Who are you? I don't\nknow you! Please, don't!{end_wait}
+N49	MsgDarkAerieMiaFear	...She doesn't know me.\nThe other one would have\nlaughed.{end_wait}
 N50	MsgDarkAerieMiaGiveBack	Menardi. Give them back.{end_wait}
 N51	MsgDarkAerieMenardiAlone	Alone, in this light? You\nare either brave, or lost.{end_wait}
 N52	MsgDarkAerieMiaAngry	Neither. I'm angry.{end_wait}

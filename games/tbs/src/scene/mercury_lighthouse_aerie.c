@@ -1033,12 +1033,13 @@ static void MercuryLighthouseAerie_SetUpMiaAlone(void) {
 }
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE: Mia reaches the
-/// beacon ledge alone. Menardi has Jenna, Kraden and Felix there, and Jenna
-/// looks exactly like the one Mia has already met, so Mia hesitates until the
-/// captive's fear tells her which one is real. She asks for them back and
-/// Menardi, weakened by the light but sure of herself, takes her on; winning
-/// brings Mia back at MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT, losing replays
-/// this.
+/// beacon ledge alone. Menardi has Jenna, Kraden and Felix there. The captive
+/// Jenna looks exactly like the one Mia has already met, but has never met
+/// Mia, so Mia takes her for the other and turns hostile; Menardi urges her
+/// on until the captive's fear and blank stare tell Mia she is wrong. Mia asks
+/// for them back and Menardi, weakened by the light but sure of herself,
+/// takes her on; winning brings Mia back at
+/// MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT, losing replays this.
 static void MercuryLighthouseAerie_MiaFacesMenardi(void) {
   Event_Start();
   MercuryLighthouseAerie_SetUpMiaAlone();
