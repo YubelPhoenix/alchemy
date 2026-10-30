@@ -106,19 +106,19 @@ const struct Formation gFormations[] = {
         .maximumCounts = {3},
     },
     {
-        .memberIds = {5},
-        .minimumCounts = {1},
-        .maximumCounts = {3},
+        .memberIds = {5, 18},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
-        .memberIds = {8},
-        .minimumCounts = {1},
-        .maximumCounts = {3},
+        .memberIds = {8, 11},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
-        .memberIds = {11},
-        .minimumCounts = {1},
-        .maximumCounts = {3},
+        .memberIds = {11, 5},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
         .memberIds = {106},

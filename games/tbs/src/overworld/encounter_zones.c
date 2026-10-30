@@ -55,7 +55,7 @@ const struct EncounterZone gEncounterZones[] = {
         .rate = 25,
         .level = 3,
         .enemies = {20, 21, 22, 23, 24, 25, 26, 27},
-        .weights = {4, 4, 4, 4, 2, 2, 2, 2},
+        .weights = {2, 2, 3, 3, 4, 4, 4, 3},
     },
     // World Map: terrain kind 1, forest
     {
@@ -241,14 +241,14 @@ const struct EncounterZone gEncounterZones[] = {
     {
         .rate = 40,
         .level = 11,
-        .enemies = {97, 98, 99, 100, 101, 102, 103, 104},
+        .enemies = {97, 106, 99, 100, 101, 102, 103, 104},
         .weights = {1, 1, 1, 2, 2, 2, 4, 4},
     },
     // MercuryLighthouseExterior (entrances 3, 4)
     {
         .rate = 40,
         .level = 11,
-        .enemies = {97, 98, 99, 100, 101, 102, 103, 104},
+        .enemies = {97, 106, 99, 100, 101, 102, 103, 104},
         .weights = {1, 1, 1, 2, 2, 2, 4, 4},
     },
     // Event battles: Tret Tree, Mercury Lighthouse
