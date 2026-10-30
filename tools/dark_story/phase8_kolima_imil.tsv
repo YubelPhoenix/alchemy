@@ -1,0 +1,46 @@
+04911	MsgGomaGotWowThatsPrettyImpressive	You found it? Impressive.{page_break}Keep looking. There may\nbe more like it.{end_wait}
+05007	MsgGomaNoUsePsynergy	No luck. Our Psynergy\nisn't strong enough to\nmove that stump.{end_wait}
+05244	MsgKolimaSparklyStuffOnGround	That glittering dust on\nthe ground. What is it?{end_wait}
+05256	MsgKolimaKnowThoseFieldsWere	Do you know what those\nfields used to be?{end_wait}
+05277	MsgKolimaWatchOutItsHappeningAgain	Back! It's happening\nagain!{end_wait}
+05300	MsgKolimaHesAsStumpedAsWe	He's as lost as we are{pause_20_skippable},\nbut he says he'll help.{end_wait}
+05302	MsgKolimaYoureIsaacThereIsntMuch	You're right,\n{actor_name:1}. There's nothing\nmore we can do.{end_wait}
+05311	MsgKolimaThatsReliefIsaacThoughtYoud	Thank goodness,\n{actor_name:1}.{pause_20_skippable} I thought you'd\nabandoned Kolima.{end_wait}
+05320	MsgKolimaHealingWatersMercuryLighthouseMight	Mercury Lighthouse's\nhealing waters might\nsave Tret...{page_break}But that fountain ran\ndry long ago.{end_wait}
+05324	MsgKolimaControlTretsHeartShallNot	I hold Tret's heart!\nI won't let you touch\nhim!{end_wait}
+05341	MsgTretDoingNowsNot	What are you doing,\n{actor_name:1}?! This is no time\nto fool around!{end_wait}
+05371	MsgKolimaShouldDoPeopleKolimaCursed	That should do it.{pause_20_skippable}\nKolima is cursed no\nmore.{end_wait}
+05377	MsgKolimaWasIndeedAngryPeopleHad	Yes, I was angry. You\nlaid waste to my forest.{page_break}You even raised your\naxes against me!{end_wait}
+05401	MsgKolimaOweGreatDebtHaveSaved	I owe you a debt. You\nsaved Kolima, the forest,\nand me.{end_wait}
+05404	MsgKolimaNowHaveSuchPowerAxe	With this power, no axe\nwill ever touch me again.{page_break}Go in peace. You have\nnothing to fear.{end_wait}
+05405	MsgKolimaForestKolimaAlive	Kolima's forest lives\nagain, thanks to you.{page_break}We will guard it from\nnow on.{end_wait}
+05406	MsgKolimaKnowCannotStopButPlease	I can't stop you. But be\ncareful beyond the river.{end_wait}
+05407	MsgKolimaMustHorribleBeyondRiverAm	It must be terrible\nbeyond the river...{page_break}I worry about you and\nyour friends,\n{actor_name:1}.{end_wait}
+05413	MsgKolimaLeaveBeforeForest	Leave, before this forest\nis destroyed...{end_wait}
+05749	MsgKolimaIfICouldSpeakIdTell	If I could speak, I'd\nwarn them. This is\nKolima... or it was.{end_wait}
+05750	MsgKolimaHowCouldAnyoneTurnAGirl	How could anyone turn a\ngirl like me into a tree?{page_break}...I do make a rather\nlovely tree, though.{end_wait}
+05751	MsgKolimaThisIsADreamItHas	This is a dream. It has\nto be a dream.{end_wait}
+05752	MsgKolimaBeingUnableToMoveIsSo	Not being able to move\nis worse than I thought.{end_wait}
+05753	MsgKolimaIAmOldIveLivedA	I'm old. I've lived a\nfull life. Being a tree\ndoesn't trouble me.{page_break}It's the children I\npity. They were turned\ntoo.{end_wait}
+05754	MsgKolimaItsTheSacredTreesCurseWhy	The sacred tree's curse!\nWhy did they try to cut\ndown Tret?{end_wait}
+05756	MsgKolimaIfICantMoveThenMom	If I can't move, Mom\ncan't make me go to bed.{page_break}...I want my mom.{end_wait}
+05757	MsgKolimaInteriorsWhatAreTheyStaringAtThey	Why are they staring?\nThey look so young...{page_break}They won't survive Tret.{end_wait}
+05760	MsgKolimaInteriorsSoonAllOfKolimaWillBe	Soon all of Kolima will\nbe forest. Nothing else.{end_wait}
+05762	MsgKolimaInteriorsMaybeWeTurnedIntoTreesBecause	Maybe this is payment\nfor all the trees we cut.{page_break}We were only doing our\njobs. Weren't we?{end_wait}
+05765	MsgKolimaInteriorsIUsedToCarveWeaponsOut	I used to carve weapons\nout of wood. Now I am\nwood.{page_break}Life has a cruel sense\nof humor.{end_wait}
+05767	MsgKolimaInteriorsNoIDontWantToBe	No! I don't want to be\na tree forever!{end_wait}
+05775	MsgKolimaYouKnowBeingATreeGives	Being a tree gives you a\ngreat deal of time to\nthink. Too much.{end_wait}
+05776	MsgKolimaITurnedIntoATreeRight	I turned the moment the\nsparkles fell from the\nsky. It didn't hurt.{end_wait}
+05424	MsgImilWeveHadALotOfStrangers	We've had too many\nstrangers lately.{page_break}Are you after the\nlighthouse? Mia won't\nlike that.{end_wait}
+05425	MsgImilPeopleGetSickBecauseTheyStay	People get sick from\nhiding indoors all day.{page_break}Keep moving, keep warm.\nThat's what keeps you\nalive here.{end_wait}
+05426	MsgImilTheresBeenAnEpidemicGoingAround	There's a sickness in\nImil. It's spreading.{page_break}If you value your life,\nleave now.{end_wait}
+05427	MsgImilMiaRunningAroundTownCaring	{actor_name:4} never rests,\ncaring for the sick.{page_break}I don't want to be\nanother burden to her.{end_wait}
+05435	MsgImilHesAlwaysExaggeratingThingsBut	He always exaggerates.\nThis time I'm not sure he\nis.{end_wait}
+05442	MsgImilWhoAreThesePeopleTheyMust	Who are these people?\nOnly a fool or a fighter\ncrosses to Imil in winter.{end_wait}
+05449	MsgImilIWonderIfTheyAreHeaded	Are they headed for the\nlighthouse, too?{page_break}They'll never get in\nwithout {actor_name:4}.{end_wait}
+05451	MsgImilWhyHaveTwoGroupsTravelers	Two groups of travelers\nin this snow. Why?{page_break}The first group already\nheaded off somewhere.{end_wait}
+05459	MsgImilMayOnlyStudentButCan	I'm only a student, but\nI can heal you if you\nneed it.{end_wait}
+05466	MsgImilTheseFolkOkayTheyDont	These folk seem all right.\nThey don't look dangerous.{end_wait}
+05467	MsgImilMiaWasSayingSheHas	{actor_name:4} said she had a bad\nfeeling about something.{page_break}Could she have meant\nthese people?{end_wait}
+05486	MsgImilMiaIsAGoodGirlI	{actor_name:4} is a good girl.\nShe works herself ragged.{page_break}She teaches Megan and\nJustin, and no one else\nin all this time.{page_break}Her last apprentice\nvanished. She doesn't\ntalk about it.{end_wait}
+05487	MsgImilMiaClanOnceLivedHere	{actor_name:4}'s clan guarded the\nlighthouse to the east.{page_break}Now only she remains.{end_wait}

@@ -1,0 +1,122 @@
+05038	MsgBilibinItsTreeButAlmostLooks	That's no ordinary tree.\nLook at the arms.\nThe face. A man...?{end_wait}
+05041	MsgBilibinWelcomeToBilibinPleaseJustIgnore	Welcome to Bilibin.\nIgnore the tree out front.\nEveryone else does.{page_break}Warriors have been sent\nto Kolima. Don't ask how\nmany have come back.{end_wait}
+05042	MsgBilibinIHearALargeGroupCrossed	A big group crossed the\nGoma Range. Heading for\nImil, last I heard.{end_wait}
+05043	MsgBilibinDidSeeTreeAtEntrance	You saw the tree at the\nentrance, didn't you?{end_now}
+05046	MsgBilibinLordMccoyHasBeenQuiteFrightened	Lord McCoy hasn't left\nhis palace since the\nincident. He's terrified.{end_wait}
+05047	MsgBilibinHaveTriedHeadingSoutheastFrom	Ever tried heading\nsoutheast from here?{end_now}
+05050	MsgBilibinTheRoadToKolimaIsBlocked	The Kolima road is shut.\nLord McCoy's orders.\nNo one gets through.{end_wait}
+05051	MsgBilibinEverSinceThatManTurnedInto	Ever since that man\nturned into a tree,\nnobody sleeps well.{page_break}Folks avoid the town\ngate. Some swear the\ntree whispers at night.{end_wait}
+05052	MsgBilibinIsItTrueThatAMountain	Is it true a mountain\nblew itself apart beyond\nthe Goma Range?{page_break}The sky burned red all\nnight. It was beautiful.\nGods forgive me.{end_wait}
+05053	MsgBilibinTheresATowerAtTheTip	There's a tower at Imil's\nfar tip. Folks say gods\nbuilt it.{page_break}The locals call it the\nlighthouse. No one I\nknow has seen inside.{end_wait}
+05054	MsgBilibinSomethingChangedInTheEruptionNow	Something{pause_20_skippable} changed\nwhen that mountain blew.{page_break}Now there are things in\nevery forest and cave.\nThings that hunt.{end_wait}
+05055	MsgBilibinTheLumberIOrderedFromKolima	My lumber from Kolima\nnever arrived. Nobody\nfrom Kolima did,{pause_20_skippable} after.{end_wait}
+05056	MsgBilibinHaveYouSeenBarricadeWe	You've seen the barricade\nwe put up on the Kolima\nroad?{end_now}
+05059	MsgBilibinTellingMeImResponsibleFor	So you're saying this\nis my fault?{end_now}
+05062	MsgBilibinYouGuysAreSoUnluckyArriving	Rotten luck, coming to\nBilibin now. We're not\nat our best.{end_wait}
+05063	MsgBilibinYouMustBeMadItsAlmost	Imil? In winter? Are you\nout of your minds?{end_wait}
+05064	MsgBilibinWeEndedUpLikeThisBecause	This is Lady McCoy's\ndoing, plain and simple.{page_break}All she wanted was a\npalace. Look what that\ncost us.{end_wait}
+05065	MsgBilibinEveryoneGetsWorriedWhenTownLeaders	When a lord hides, the\nrest of us start to\nworry.{page_break}Can we still count on\nhim? I'm not sure\nanymore.{end_wait}
+05066	MsgBilibinWhereDidTheseKidsComeFrom	Who let these children\nin here?{end_wait}
+05067	MsgBilibinNoOneWouldDareGoAfter	After last time, no one\nwill dare go after it\nagain.{end_wait}
+05068	MsgBilibinHeBeggedForHelpAsHe	He begged for help while\nhe changed. We all just\nstood and watched.{page_break}Is that what grown-ups\nare? Cowards?{end_wait}
+05069	MsgBilibinIWantToSeeThatPretty	I keep thinking about\nthat red sky.\nI want to see it again.{end_wait}
+05070	MsgBilibinOnlyGreatAdeptsCanEnterThe	Only great Adepts may\nenter Imil's lighthouse.\nThe rest are turned away.{end_wait}
+05071	MsgBilibinThatExplosionMustHaveBeenA	That blast was an omen.\nSomething terrible is\ncoming.{page_break}I can feel it. I'm\nso scared.{end_wait}
+05072	MsgBilibinIfThingsLikeThisAreGoing	If this keeps up, maybe\nwe should stop building\nthat palace.{page_break}The gods are telling us\nsomething.{end_wait}
+05073	MsgBilibinIAmGladIDidntKnow	I'm glad I never knew\nKolima was tied up in\nthis...{page_break}If I had, I'd never have\ntaken the job. Not for\nany price.{end_wait}
+05074	MsgBilibinIfAllThisTroubleWasCaused	If that sacred tree\ncaused all this,\nthen cut it down!{page_break}Burn it, if we have to.\nEnd it.{end_wait}
+05075	MsgBilibinThatTreeAtTheEntranceIs	That tree at the gate was\na man. The sacred tree\ncursed him.{page_break}It's because McCoy had\nthe forest cut down for\nhis wife's palace.{end_wait}
+05076	MsgBilibinMccoyHadTheTreesCutDown	McCoy cut down the trees\nto build his wife a\nbigger, grander palace.{end_wait}
+05077	MsgBilibinThisIsAllLordMccoysFault	This is Lord McCoy's\nfault. But who here would\nsay it to his face?{page_break}He's our lord. We keep\nour mouths shut.{end_wait}
+05078	MsgBilibinAhLadyMccoyIWouldJust	Lady McCoy... I'd give\nanything to be her.{page_break}Will I ever live in a\npalace of my own? Hah.\nNot in this life.{end_wait}
+05079	MsgBilibinTheSnowIsAlreadyPilingUp	Snow's already piling up\nin Imil. It's freezing.{page_break}If I were you, I'd wait\nfor spring. People die\nout there.{end_wait}
+05080	MsgBilibinWeRarelySeeAnySnowAround	We hardly ever get snow\nin Bilibin.{end_wait}
+05081	MsgBilibinWhenSpringComesWantGo	When spring comes, I'm\ngoing to see that angel\n{actor_name:4} again.{end_wait}
+05082	MsgBilibinItMustBeDifficultToLive	Living in a snowbound\ntown must be hard.{page_break}I think I'll stay right\nhere, where it's warm.{end_wait}
+05083	MsgBilibinHowArePeopleDoingInKolima	Has anyone heard from\nKolima? I've been sick\nwith worry.{end_wait}
+05084	MsgBilibinIKnowThatGuyWhoTurned	I know that man by the\ngate. I'd know those\nclothes anywhere.{end_wait}
+05085	MsgBilibinICantImagineThatEveryoneIn	I can't believe all of\nKolima is trees now.\nBut what if it is?{end_wait}
+05086	MsgBilibinHeSeemedSoHappyAndThen	He was laughing just a\nday before. Then he was\nbark and root.{page_break}What if it happens to\nme? Just like that?{end_wait}
+05087	MsgBilibinLongAgoTheLighthouseNearImil	Long ago, the Imil\nlighthouse held the Water\nof Hermes.{page_break}They say it could heal\nany wound. Any wound at\nall.{end_wait}
+05088	MsgBilibinButEvenTheLegendaryWaterOf	But not even Hermes'\nwater can turn back time.{page_break}I'd give my last coin\nfor a potion to make me\nyoung again.{end_wait}
+05089	MsgBilibinCouldTheWaterOfHermesSave	Could the Water of Hermes\nsave a man who turned\ninto a tree?{end_wait}
+05090	MsgBilibinTheWaterOfHermesVanishedLong	The Water of Hermes is\nlong gone.{page_break}Nothing good lasts.\nThat's just how it is.{end_wait}
+05091	MsgBilibinThereWasAbleHealerIn	There was a healer in\nVale. A gifted one.\nHe's gone now.{end_wait}
+05092	MsgBilibinTheWorldWillNeverSeeSuch	We'll never see a healer\nlike him again. The\nworld's poorer for it.{end_wait}
+05093	MsgBilibinHaveEverHeardOcean	Have you ever heard of\nthe ocean?{end_now}
+05096	MsgBilibinIWishICouldSeeAnother	I'd love to see what's\nbeyond this world.\nIf only I were younger.{end_wait}
+05097	MsgBilibinMustUsedTypesDangerBeing	You look like you've seen\ntrouble. Plenty of it.{page_break}Lord McCoy could use\nsomeone like you.{end_wait}
+05098	MsgBilibinOnlySomeoneReallyBraveWouldGo	Only a brave man\nwould walk into a place\nlike that.{end_wait}
+05099	MsgBilibinCurseOnKolimaScaryDevelopment	A curse on Kolima...\nWhere does it end?{end_wait}
+05100	MsgBilibinYouCantReachKolimaNoMatter	Kolima's cut off. Don't\nbother trying.{end_wait}
+05101	MsgBilibinImReallyWorriedAboutKolima	I was born in Kolima.\nI can't stop thinking\nabout my family.{page_break}My hands shake. I can't\nfocus on the cooking.{end_wait}
+05102	MsgBilibinHeyMisterHeadChefAreYou	Hey, Chef! Are you going\nto cook, or what?{page_break}The customers are\nwaiting!{end_wait}
+05103	MsgBilibinStartCookingAlready	Cook something already!{end_wait}
+05108	MsgBilibinWeCameHereBecauseLordMccoy	We came because Lord\nMcCoy was building a\npalace for his wife.{page_break}Did they stop because\nof the curse?{end_wait}
+05109	MsgBilibinIThinkThatBigTreeDeep	That big tree deep in\nthe forest. Something's\nwrong with it.{end_wait}
+05110	MsgBilibinDoBelieveTreeSpiritCan	Do you think a tree\nspirit can curse a man?{end_now}
+05113	MsgBilibinICantWaitToSeeTodays	I can't wait for today's\nspecial! Smells great.{end_wait}
+05114	MsgBilibinIWentToLordMccoyLooking	I went to Lord McCoy for\nwork...{page_break}But I'm too scared to\ntake the job alone.{end_wait}
+05115	MsgBilibinIveHeardSongsThatTellOf	Old songs say ancient\ntrees can grow strange\npowers.{page_break}Maybe that power is what\ncaused{pause_20_skippable} the {text_effect:4}curse{reset_text_style}.{end_wait}
+05116	MsgBilibinIDontBelieveInCursesFrom	I don't believe a tree\ncan curse anyone.{end_wait}
+05117	MsgBilibinAnyTravelersHeadingEastAreStuck	Travelers heading east are\nstuck until the road\nreopens.{page_break}Fine by me. They have\nto sleep somewhere.{end_wait}
+05118	MsgBilibinFatherMotherIHopeTheyreAll	Mother... Father... I\nhope you're safe.{page_break}I'd run home right now\nif I could.{end_wait}
+05119	MsgBilibinShouldIJustForgetThatIm	Should I forget I'm the\nnew one and just start\ncooking?{end_wait}
+05120	MsgBilibinIveHadAllTheCustomerComplaints	I've heard every\ncomplaint I can stand!{end_wait}
+05121	MsgBilibinArghhhThatsItIJustWant	Argh! I could scream,\nI'm so hungry!{page_break}But I have to smile.\nBeing a businessman\nis hard.{end_wait}
+05122	MsgBilibinICameToBilibinHopingTo	I came to Bilibin to sell\nfurniture. All I got was{page_break}a palace nobody's\nbuilding and a kitchen\nthat won't feed me.{end_wait}
+05123	MsgBilibinISeeWhyTheyCallThat	Now I see why they call\nthe big tree in Kolima\nForest sacred.{end_wait}
+05124	MsgBilibinIDontCareWhoDoesIt	I don't care who does it.\nJust lift this curse!{end_wait}
+05125	MsgBilibinYippeeIsItReadyYetMy	Is it ready yet? I'm\nstarving.{end_wait}
+05126	MsgBilibinImGettingALittleScaredHearing	All these stories are\nstarting to scare me.{end_wait}
+05127	MsgBilibinItHasBeenSaidThatA	They say a spirit named\nTret lives inside the\nholy tree.{end_wait}
+05132	MsgBilibinLordMccoyIsSoUpsetAbout	Lord McCoy is so shaken\nby the curse that he\ncan't eat.{end_wait}
+05133	MsgBilibinLordOnlyMeet	The lord only sees brave,\nmighty warriors.{page_break}You don't look the part.\nDo you think you can do\nthe job?{end_now}
+05139	MsgBilibinLordMccoyDifficult	Lord McCoy is a hard\nman. Watch what you say\naround him.{end_wait}
+05142	MsgBilibinMasterQuiteCranky	The master's temper is\nshort. Don't keep him\nwaiting.{end_wait}
+05143	MsgBilibinNoOneBelievedTheyWouldTurn	Nobody believed it could\nhappen. Then they all\nturned to wood.{end_wait}
+05144	MsgBilibinIsThereNoOneWhoCan	Is there no one who can\nhelp us?{end_wait}
+05145	MsgBilibinLordMccoyWouldNeverHireAnyone	Lord McCoy won't hire\nsome scrawny kids.{end_wait}
+05150	MsgBilibinIfYouWantToSeeLord	To see Lord McCoy,\nfollow the red carpet.{end_wait}
+05151	MsgBilibinMakeSureYouDontOffendLord	Don't offend Lord McCoy.\nI'm warning you.{end_wait}
+05152	MsgBilibinYouWillingGoKolimaForest	You'd really go into\nKolima Forest?{end_now}
+05155	MsgBilibinIAlwaysBelievedThatTheOld	I always said the old\ntree in Kolima Forest\nshould be left alone.{end_wait}
+05156	MsgBilibinThisIsLadyMccoysRoomSo	This is Lady McCoy's\nroom. Touch nothing.{end_wait}
+05157	MsgBilibinHowManyTimesDoIHave	How many times must I\ntell them? Why won't they\nleave me be?{end_wait}
+05158	MsgBilibinTheyShouldNeverHaveLetSuch	Children shouldn't be\nallowed in the palace!{page_break}If they break an urn,\nI'm the one who gets\nthe blame!{end_wait}
+05159	MsgBilibinSendingTheseChildrenToKolimaForest	Sending children into\nKolima Forest?{page_break}Do they want more\npeople cursed?{end_wait}
+05160	MsgBilibinIShouldntHaveSaidAnythingWhen	I should've kept quiet\nwhen they planned the\nnew palace.{page_break}Maybe I'm the reason\nthey cut down the\nholy tree...{end_wait}
+05161	MsgBilibinOfAllTheNerveComingInto	The nerve! Walking into\nthe palace unescorted!{end_wait}
+05162	MsgBilibinMiladyWasRenownedFarAndWide	Milady was famous for her\nbeauty, far and wide.{page_break}That's why milord will\npay any price to please\nher.{end_wait}
+05163	MsgBilibinOhSomedayIWantToSleep	Someday I'll sleep in a\nsilk nightgown like this.{end_wait}
+05164	MsgBilibinWillIEverFindSomeoneTo	Will anyone ever make my\ndreams come true, like\nmilady's did?{end_wait}
+05165	MsgBilibinOhNoThisNightgownHasA	Oh no. A hole in the\nnightgown. Milady will\nbe furious!{end_wait}
+05166	MsgBilibinYouCanSeeKolimaPrettyWell	You can see Kolima from\nhere.{page_break}On sunny days, Lord\nMcCoy came to admire\nthe view.{end_wait}
+05167	MsgBilibinHmmItSeemsTheCurseOf	The curse hasn't reached\nBilibin yet.\nNot yet.{end_wait}
+05168	MsgBilibinLordMccoyHasntComeHereFor	Lord McCoy hasn't been\nhere in a long while.{page_break}It's the curse. What\nelse would keep him away?{end_wait}
+05169	MsgBilibinKolimaForestUsedToBeSo	Kolima Forest used to be\nso green. After they cut\nthe holy tree,{page_break}everything turned brown.\nIs the forest dying...?{end_wait}
+05170	MsgBilibinDoThinkTheseBilibinsGreat	Well? These are Bilibin's\ngreat treasures.{page_break}Whoever ends the curse\nmay claim them as his\nown.{end_wait}
+05172	MsgBilibinWeReallyGivingOurTreasure	We're giving our\ntreasure to these\nweaklings?{end_wait}
+05174	MsgBilibinGoodTreasureIfGetTurned	What use is treasure to\na man who's turned to\nwood?{end_wait}
+05184	MsgBilibinTooYoungForTheJob	Bah! Yeh're too young.\nYeh cannae handle this.{end_wait}
+05191	MsgBilibinSeriousDoesntBother	Are you serious,\n{actor_name:1}? That didn't\nbother you at all?{end_now}
+05192	MsgBilibinWellDontLet	Don't let him get to you.{page_break}We'll prove we can\nhandle this job, whatever\nit is.{end_wait}
+05223	MsgBilibinHeyIfYouCantDoThe	Hey! No job done,\nno reward!{end_wait}
+05224	MsgBilibinICantTellYouAnythingElse	That's all I know.\nDon't ask again.{end_wait}
+05225	MsgBilibinWhatAShameHuhIGuess	Shame. Come back when\nyou've grown a bit.{end_wait}
+05226	MsgBilibinThereIsNothingMoreToTalk	There's nothing more to\ndiscuss!{page_break}Send them away. I don't\ncare how many times they\ncome back!{end_wait}
+05227	MsgBilibinItsAToughThingBeingSo	It's hard, being that\nyoung.{page_break}They dinnae ken what\nit means to be afraid.{end_wait}
+05228	MsgBilibinThatBarricadeIsPrettyShabbyIt	That barricade's shoddy.\nWe built it in a rush.{page_break}The hinges are noisy\nand weak. A good push\nmight break them.{end_wait}
+05229	MsgBilibinIDidntThinkTheydLetYou	I can't believe they let\nyou go. You're too young!{end_wait}
+05231	MsgBilibinEvenFrozenImilMustFeel	Even frozen Imil must\nfeel warm with {actor_name:4}\nthere.{end_wait}
+05232	MsgBilibinThereTreeLooksLikePerson	A tree... shaped like\na person. Disturbing.{end_wait}
+05823	MsgBilibinWasTurnedIntoTreeFor	I was a tree for a\nwhile. Can you believe\nthat?{end_now}
+05826	MsgBilibinWelcomeToBilibinWellForgetThat	Welcome to Bilibin.{pause_20_skippable}\nWe'll forget this curse\nbusiness soon enough.{end_wait}
+05827	MsgBilibinIfYoureTalkingAboutTheTravelers	The travelers from Imil?\nThey crossed the river.{end_wait}
+05828	MsgBilibinYoureWonderingAboutTheTreeNear	The tree by the gate?\nIt's a man again.{page_break}Thank the gods. I\nthought it'd stay that\nway forever.{end_wait}
+05829	MsgBilibinISawLordMccoyTheChief	I saw Lord McCoy walking\nthe streets today,\nfirst time in ages.{page_break}He must be relieved\nthe curse is broken.{end_wait}
+05830	MsgBilibinIHearTheBarricadeGateThat	The barricade on the\nKolima road is open\nagain, I hear.{end_wait}
+05831	MsgBilibinThoseThreeKidsVanishedDuringAll	Those three kids\ndisappeared in the middle\nof all that trouble.{end_wait}
+05832	MsgBilibinCurseWasBrokenThanksEfforts	Three young warriors\nbroke the curse.{page_break}Say... you wouldn't be\nthose warriors, would\nyou?{end_now}
+05835	MsgBilibinLordMccoysMenSaidTheySaw	McCoy's men say they saw\nthe ones who saved us.{end_wait}
+05836	MsgBilibinHaveEverBeenVillageImil	Ever been to Imil, up\nnorth?{end_now}
