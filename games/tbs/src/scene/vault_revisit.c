@@ -653,11 +653,12 @@ static inline s32 VaultRevisit_ShouldKeepBellDjinniPosition(void) {
 /// FLAG_ARRIVAL_STAIRS_UP, so the leader's arrival animation does not
 /// play.
 s32 Scene_Initialize(void) {
-  // Ash greys the town after the Sol Sanctum erupts; rain follows once Mercury Lighthouse is lit.
-  WorldState_Apply();
-
   struct Actor *actor;
   s32 mode;
+
+  // Ash greys the town after the Sol Sanctum erupts; rain follows once
+  // Mercury Lighthouse is lit.
+  WorldState_Apply();
 
   // Keep the bridge deck after a battle, and mend the inn's roof.
   if (GameFlag_Get(FLAG_VAULT_ON_BRIDGE))
