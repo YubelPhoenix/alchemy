@@ -1542,6 +1542,12 @@ const struct Formation gFormations[] = {
         .minimumCounts = {1, 1},
         .maximumCounts = {1, 1},
     },
+    // Mia alone against Menardi on the Mercury Lighthouse.
+    {
+        .memberIds = {132},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
 };
 
 /// The 20 enemies whose defeated flags a monster battle clears before it

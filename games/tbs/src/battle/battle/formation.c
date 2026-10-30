@@ -10,7 +10,7 @@
 extern u16 gBattleFormation_LevelMatchedEnemies[];
 
 /// The rows of gFormations.
-#define FORMATION_COUNT 382 // includes the two scripted thief fights (380, 381)
+#define FORMATION_COUNT 383 // includes the scripted Mia fights (380 to 382)
 
 // How many name letters tell the enemies of one class apart: 26 in Japanese,
 // 9 in the localizations.

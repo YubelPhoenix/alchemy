@@ -713,5 +713,10 @@ const struct EncounterZone gEncounterZones[] = {
         .enemies = {380, 381, 380, 380, 380, 380, 380, 380},
         .weights = {10, 10, 10, 10, 10, 10, 10, 10},
     },
+    // Mia alone against Menardi on the Mercury Lighthouse
+    {
+        .enemies = {382, 382, 382, 382, 382, 382, 382, 382},
+        .weights = {10, 10, 10, 10, 10, 10, 10, 10},
+    },
 };
 // clang-format on
