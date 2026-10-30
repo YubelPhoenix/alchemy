@@ -50,7 +50,7 @@ def load_replacements(only=None) -> dict[str, tuple[str, str]]:
             if not line.strip() or line.startswith("#"):
                 continue
             parts = line.split("\t")
-            if len(parts) != 3 or not re.fullmatch(r"[0-9]{5}", parts[0]):
+            if len(parts) != 3 or not re.fullmatch(r"[0-9]{5}|N[0-9]{2}", parts[0]):
                 raise SystemExit(f"{file}:{number}: expected ID<TAB>CONTEXT<TAB>TEXT.")
             msgid, context, text = parts
             if msgid in rows:
@@ -113,6 +113,10 @@ def main() -> None:
     text = PO_PATH.read_text(encoding="utf-8")
     entries = re.split(r"(\n\s*\n)", text)
     done = set()
+    new_rows = {k: v for k, v in replacements.items() if k.startswith("N")}
+    for msgid, (context, new) in sorted(new_rows.items()):
+        validate(msgid, new, new)
+        done.add(msgid)
     for index, entry in enumerate(entries):
         match = re.search(r'^msgctxt "(.*?)"\nmsgid "([0-9]{5})"$', entry, re.MULTILINE)
         if not match or match.group(2) not in replacements:
@@ -134,6 +138,21 @@ def main() -> None:
     missing = sorted(set(replacements) - done)
     if missing:
         raise SystemExit("Dialogue IDs not found in the catalogue: " + ", ".join(missing))
+    if new_rows and not check_only:
+        # New messages go in front of the catalogue's final null entry, which
+        # moves up to the next free number.
+        last = max(i for i, e in enumerate(entries) if "alchemy-null" in e)
+        first_id = int(re.search(r'msgid "([0-9]{5})"', entries[last]).group(1))
+        added = []
+        for offset, (key, (context, new)) in enumerate(sorted(new_rows.items())):
+            body = ['msgstr ""']
+            display_lines = new.split(r"\n")
+            for i, display_line in enumerate(display_lines):
+                suffix = r"\n" if i < len(display_lines) - 1 else ""
+                body.append('"' + display_line + suffix + '"')
+            added.append(f'msgctxt "{context}"\nmsgid "{first_id + offset:05d}"\n' + "\n".join(body))
+        terminator = re.sub(r'msgid "[0-9]{5}"', f'msgid "{first_id + len(added):05d}"', entries[last])
+        entries[last:last + 1] = ["\n\n".join(added), "\n\n", terminator]
     if check_only:
         print(f"Checked {len(done)} dialogue entries; en.po untouched.")
         return

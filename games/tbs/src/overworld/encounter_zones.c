@@ -87,8 +87,8 @@ const struct EncounterZone gEncounterZones[] = {
     },
     // Event battles: Vale, Vault, World Map
     {
-        .enemies = {1, 2, 3, 4, 5, 29, 28},
-        .weights = {10, 10, 10, 10, 10, 10, 1},
+        .enemies = {1, 2, 3, 4, 5, 29, 28, 6},
+        .weights = {10, 10, 10, 10, 10, 10, 1, 1},
     },
     // World Map: terrain kind 2, grassland and beach
     {

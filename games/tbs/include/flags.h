@@ -2707,4 +2707,7 @@
 /// Sol Sanctum's eruption.
 #define FLAG_DARK_WATCHER_SANCTUM_ERUPTION 0x887
 
+/// The Menardi duel in the Luna and Sol rooms is over.
+#define FLAG_DARK_MENARDI_DUEL_DONE 0x888
+
 #endif

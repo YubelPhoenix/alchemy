@@ -80,6 +80,7 @@
 #include "songs.h"
 #include "audio_engine_symbols.h"
 #include "item_ids.h"
+#include "scene_ids.h"
 
 /// The rooms of Sol and Luna show their plain colours (PALETTE_TINT_NONE), so a
 /// return after a battle keeps them.
@@ -1217,6 +1218,74 @@ static void SolSanctumLunaSolRooms_DiscussFloorSymbolChangingToLuna(void) {
   GameFlag_Set(FLAG_SOL_SANCTUM_FLOOR_SYMBOL_SEEN);
 }
 
+/// Menardi's duel. The first time the floor symbol is searched she steps out
+/// in front of the party, says her piece and fights them alone: the first
+/// battle of the zone of the Vale, Vault and World Map scripted battles that
+/// is not used elsewhere (slot 7). The party comes back by
+/// SOL_SANCTUM_LUNA_SOL_ROOMS_AFTER_DUEL (SolSanctumLunaSolRooms_MenardiDuelEnds).
+static void SolSanctumLunaSolRooms_MenardiDuelBegins(void) {
+  struct Actor *leader;
+
+  Event_Start();
+  leader = Actor_GetById(ACTOR_PARTY_LEADER);
+  if (leader != 0) {
+    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, leader->x.fixed,
+                            leader->z.fixed - PIXELS(40));
+  }
+  Actor_FaceDirection(ACTOR_DUEL_MENARDI, FACING_SOUTH, 0);
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Import_ActorSetAnimation(ACTOR_DUEL_MENARDI, ANIM_STAND);
+  Actor_ShowEmote(ACTOR_PARTY_LEADER, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 0);
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkMenardiDuel01);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
+  Event_SetMessageId(MsgDarkMenardiDuel02);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
+  Event_SetMessageId(MsgDarkMenardiDuel03);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
+  Event_SetMessageId(MsgDarkMenardiDuel04);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
+  Event_SetMessageId(MsgDarkMenardiDuel05);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 20);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Event_SetAfterBattleDestination(
+      (s32)&SceneId_SolSanctumLunaSolRooms,
+      SOL_SANCTUM_LUNA_SOL_ROOMS_AFTER_DUEL);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_VALE_VAULT, 7);
+  Event_End();
+}
+
+/// The party is back from the duel and has won: Menardi says what she came to
+/// say and is gone (FLAG_DARK_MENARDI_DUEL_DONE). Searching the floor symbol
+/// then opens the way up as before.
+static void SolSanctumLunaSolRooms_MenardiDuelEnds(void) {
+  struct Actor *leader;
+
+  Event_Start();
+  leader = Actor_GetById(ACTOR_PARTY_LEADER);
+  if (leader != 0) {
+    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, leader->x.fixed,
+                            leader->z.fixed - PIXELS(32));
+  }
+  Actor_FaceDirection(ACTOR_DUEL_MENARDI, FACING_SOUTH, 0);
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Import_ActorSetAnimation(ACTOR_DUEL_MENARDI, ANIM_STAND);
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkMenardiDuel06);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
+  Event_SetMessageId(MsgDarkMenardiDuel07);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
+  Event_SetMessageId(MsgDarkMenardiDuel08);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
+  Event_SetMessageId(MsgDarkMenardiDuel09);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
+  Event_SetMessageId(MsgDarkMenardiDuel10);
+  SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 30);
+  Import_ActorSetPosition(ACTOR_DUEL_MENARDI, PIXELS(1608), PIXELS(1608));
+  GameFlag_Set(FLAG_DARK_MENARDI_DUEL_DONE);
+  Event_End();
+}
+
 /// Sol Sanctum: searching the floor symbol once Kraden has seen
 /// it change. The floor opens, and Isaac, then Kraden ("Wait for me, Isaac...
 /// I'm on my way!"), rise through it. Does nothing until
@@ -1230,6 +1299,8 @@ static void SolSanctumLunaSolRooms_RiseToElementalStarRoom(void) {
   struct Sprite *sprite;
 
   if (GameFlag_Get(FLAG_SOL_SANCTUM_FLOOR_SYMBOL_SEEN) == 0) {
+  } else if (GameFlag_Get(FLAG_DARK_MENARDI_DUEL_DONE) == 0) {
+    SolSanctumLunaSolRooms_MenardiDuelBegins();
   } else {
     Event_Start();
     // Isaac steps onto the symbol and Kraden comes out beside him.
@@ -1527,6 +1598,11 @@ s32 SolSanctumLunaSolRooms_Initialize(void) {
       MapGrid_CopyCellAttributes(15, 6, 2, 1, 17, 6);
     }
   }
+  // Back from Menardi's duel.
+  if (GameFlag_Get(FLAG_DARK_MENARDI_DUEL_DONE) == 0 &&
+      gSaveBlock.entrance == SOL_SANCTUM_LUNA_SOL_ROOMS_AFTER_DUEL) {
+    SolSanctumLunaSolRooms_MenardiDuelEnds();
+  }
   // The arrival after the Wise One's rescue plays only once.
   if (Event_GetFlag(FLAG_SOL_SANCTUM_RESCUE_ARRIVAL_SEEN) == 0 &&
       gSaveBlock.entrance ==
@@ -1715,6 +1791,8 @@ struct SceneEntrance gSolSanctumLunaSolRoomsEntrances[] = {
      CONDITION_ALWAYS, 576, 0, 8, FACING_SOUTH, 0, 0, 0, 752, 496, 0},
     {SOL_SANCTUM_LUNA_SOL_ROOMS_FROM_SOL_SANCTUM_ERUPTION, CONDITION_ALWAYS,
      297, 0, 119, FACING_NORTHWEST, 0, 0, 0, 752, 496, 0},
+    {SOL_SANCTUM_LUNA_SOL_ROOMS_AFTER_DUEL, CONDITION_ALWAYS, 288, 0, 157,
+     FACING_NORTH, 0, 0, 0, 752, 496, 0},
     {SCENE_TABLE_END},
 };
 
@@ -1767,6 +1845,8 @@ struct ActorTemplate gSolSanctumLunaSolRoomsActorTemplates[] = {
         PIXELS(504), 0, PIXELS(152), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY, 0 },
     { SPRITE_KRADEN, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(1608), 0, PIXELS(1608), FACING_NORTH, TALK_FACING_PARTY, 0 },
+    { SPRITE_MENARDI, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        PIXELS(1608), 0, PIXELS(1608), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(1608), 0, PIXELS(1608), FACING_NORTH, TALK_FACING_PARTY, 0 },
     { ACTOR_GARET, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,

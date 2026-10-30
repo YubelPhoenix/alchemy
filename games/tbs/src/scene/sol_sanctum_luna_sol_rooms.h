@@ -15,7 +15,10 @@ enum SolSanctumLunaSolRoomsActorId {
   /// corners of each room's floor (its render)
   ACTOR_FIRST_STATUE = ACTOR_FIRST_PLACED,
   /// ★ Named from the game: "What's wrong, Kraden?" (MsgSolSanctumWrongKraden)
-  ACTOR_KRADEN = ACTOR_FIRST_STATUE + 8
+  ACTOR_KRADEN = ACTOR_FIRST_STATUE + 8,
+  /// Menardi, who waits for the party at the floor symbol
+  /// (SolSanctumLunaSolRooms_MenardiDuelBegins).
+  ACTOR_DUEL_MENARDI
 };
 
 extern u16 gSolSanctumLunaSolRooms_Light1Timer;

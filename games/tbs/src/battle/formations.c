@@ -34,7 +34,11 @@ const struct Formation gFormations[] = {
         .minimumCounts = {1, 1},
         .maximumCounts = {1, 1},
     },
-    {0},
+    {
+        .memberIds = {118},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
     {
         .memberIds = {1},
         .minimumCounts = {2},
