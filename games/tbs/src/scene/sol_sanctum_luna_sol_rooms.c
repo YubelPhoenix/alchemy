@@ -1229,9 +1229,10 @@ static void SolSanctumLunaSolRooms_MenardiDuelBegins(void) {
   Event_Start();
   leader = Actor_GetById(ACTOR_PARTY_LEADER);
   if (leader != 0) {
-    // Stand on the floor symbol itself (288, 120): the cell the leader
-    // walks to in the original scene, so it is always open floor.
-    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, PIXELS(280), PIXELS(120));
+    // Stand a full body's length north of wherever the leader searched, so the
+    // two sprites never overlap.
+    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, leader->x.fixed - PIXELS(4),
+                            leader->z.fixed - PIXELS(32));
   }
   Actor_FaceDirection(ACTOR_DUEL_MENARDI, FACING_SOUTH, 0);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
@@ -1272,6 +1273,15 @@ static void SolSanctumLunaSolRooms_MenardiDuelEnds(void) {
   Actor_FaceDirection(ACTOR_DUEL_MENARDI, FACING_SOUTH, 0);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
   Import_ActorSetAnimation(ACTOR_DUEL_MENARDI, ANIM_STAND);
+  // This runs as the scene loads, so open the screen before anyone speaks;
+  // otherwise the boxes show over black without their portraits.
+  Actor_SetPosition(ACTOR_DUEL_SATUROS, PIXELS(1608), PIXELS(1608));
+  FieldCamera_MoveTo(PIXELS(288), -1, PIXELS(140), 0);
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  gFieldWork->transitionFrames = 32;
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkMenardiDuel06);
   SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 10);
