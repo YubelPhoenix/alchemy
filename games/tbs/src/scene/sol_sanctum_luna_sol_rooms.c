@@ -1229,8 +1229,9 @@ static void SolSanctumLunaSolRooms_MenardiDuelBegins(void) {
   Event_Start();
   leader = Actor_GetById(ACTOR_PARTY_LEADER);
   if (leader != 0) {
-    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, leader->x.fixed,
-                            leader->z.fixed - PIXELS(40));
+    // Stand on the floor symbol itself (288, 120): the cell the leader
+    // walks to in the original scene, so it is always open floor.
+    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, PIXELS(280), PIXELS(120));
   }
   Actor_FaceDirection(ACTOR_DUEL_MENARDI, FACING_SOUTH, 0);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
@@ -1264,8 +1265,9 @@ static void SolSanctumLunaSolRooms_MenardiDuelEnds(void) {
   Event_Start();
   leader = Actor_GetById(ACTOR_PARTY_LEADER);
   if (leader != 0) {
-    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, leader->x.fixed,
-                            leader->z.fixed - PIXELS(32));
+    // Stand on the floor symbol itself (288, 120): the cell the leader
+    // walks to in the original scene, so it is always open floor.
+    Import_ActorSetPosition(ACTOR_DUEL_MENARDI, PIXELS(280), PIXELS(120));
   }
   Actor_FaceDirection(ACTOR_DUEL_MENARDI, FACING_SOUTH, 0);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
@@ -1283,8 +1285,7 @@ static void SolSanctumLunaSolRooms_MenardiDuelEnds(void) {
   SolSanctumLunaSolRooms_ShowMessageAndWait(ACTOR_DUEL_MENARDI, 30);
   // Saturos steps out of the dark behind her.
   if (leader != 0) {
-    Import_ActorSetPosition(ACTOR_DUEL_SATUROS, leader->x.fixed,
-                            leader->z.fixed - PIXELS(72));
+    Import_ActorSetPosition(ACTOR_DUEL_SATUROS, PIXELS(296), PIXELS(120));
   }
   Actor_FaceDirection(ACTOR_DUEL_SATUROS, FACING_SOUTH, 0);
   Import_ActorSetAnimation(ACTOR_DUEL_SATUROS, ANIM_STAND);
