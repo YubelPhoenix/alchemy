@@ -1,0 +1,38 @@
+05240	message	Why did this happen?\nDo you know?{end_now}
+05241	message	I see...{pause_20_skippable} So it's because\nthey hurt the holy tree?{end_wait}
+05242	message	I see...\nNo one could have known.{end_wait}
+05280	message	Who are these people?\nTret's glamour doesn't\ntouch them.{end_wait}
+05281	message	Have they come to save\nthe village with those\nstrange powers?{end_wait}
+05282	message	It won't be enough{pause_20_skippable}\nto save the people\nof Kolima.{end_wait}
+05283	message	They earned this fate.{page_break}Kolima raised axes to\nme. Now I raise mine\nto them!{end_wait}
+05284	message	You children don't know\nthis, but we are{pause_20_skippable} dying.{end_wait}
+05285	message	When we are gone,\nKolima Forest dies with\nus.{end_wait}
+05286	message	We won't die alone,\nLaurel.{page_break}When we go, they go\nwith us!{end_wait}
+05287	message	Tret was once a gentle\nking of the forest.{end_wait}
+05288	message	But he is dying. His\nheart has torn in two...{end_wait}
+05289	message	His wrath turned the\npeople of Kolima into\ntrees.{end_wait}
+05290	message	The gentle Tret no\nlonger speaks.{end_wait}
+05291	message	Hroom!{pause_20_skippable} Kindness invites\ndestruction...{pause_20_skippable}{pause_20_skippable}\nI need none of it!{end_wait}
+05292	message	To save those he turned\ninto trees,{page_break}you must reawaken his\ngentle side.{end_wait}
+05293	message	But if you cannot stop\nTret from withering,\nwe all will...{end_wait}
+05294	message	Find Tret, deep in\nthe forest.{end_wait}
+05295	message	It's no use, Laurel.{pause_20_skippable}\nHumans can't be trusted!{page_break}I will die, and the\nforest will die with me!{end_wait}
+05304	message	I expected more from you,\n{actor_name:1}...{pause_20_skippable} How can you\ngive up so easily?{end_wait}
+05318	message	It's you...{pause_20_skippable} Soon we all\nwither with Tret.{page_break}The forest is no place\nfor you now. Leave.{end_wait}
+05319	message	Go now... before the\nforest dies.{end_wait}
+05323	message	All in Tret's realm\nanswers to me!{end_wait}
+05325	message	Tret, the forest, Kolima:\nall of it withers with\nme!{end_wait}
+05327	message	You hoped to find my\nkinder self?{end_wait}
+05328	message	Fools!{pause_20_skippable}{page_break}You should never have\ncome. Now you will never\nleave!{end_wait}
+05329	message	Your power shielded you\nin the forest,{page_break}but here you stand in\nthe heart of mine!{end_wait}
+05330	message	Here you will all become\ntrees, and wither with\nthe rest of us!{end_wait}
+05333	message	Was I...{pause_20_skippable} I see...{pause_20_skippable}\nMy heart was nearly\nlost to rage.{end_wait}
+05335	message	I thank you.{pause_20_skippable} I could not\nleave this world with so\nmuch hatred in my heart.{end_wait}
+05336	message	Now I can leave this\nworld without regret.{pause_20_skippable}\nFarewell, warriors.{end_wait}
+05340	message	Why not leave me to die?\nDo you need something\nfrom me?{end_now}
+05344	message	Hroom! I must free them\nbefore they die with the\nforest!{end_wait}
+05345	message	I can't...{pause_20_skippable} My power no\nlonger reaches Kolima...{end_wait}
+05361	message	As you recovered, so did\nour forest...{end_wait}
+05419	message	Fair warning: there's a\nbad sickness going around.{page_break}Keep your hood up and\nyour hands clean.{end_wait}
+05420	message	I don't know you. Are\nyou sure you're not\nlying to me?{end_wait}
+05462	message	{actor_name:4} is a gifted\nhealer.{page_break}I'm one of her\napprentices. She teaches\nme everything.{page_break}She can be stern. But\nshe means well.{end_wait}
