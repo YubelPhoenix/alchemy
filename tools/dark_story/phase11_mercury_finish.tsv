@@ -1,0 +1,7 @@
+05581	message	Match me?{pause_20_skippable} You cannot even\nimagine what I carry.{end_now}
+05583	message	You still want to fight?\nThen you are fools, and\nI am sorry for it.{end_wait}
+05584	message	Then so be it. Come, and\nlearn what I must do!{end_wait}
+05587	message	I must finish this\nquickly... Come at me!{end_wait}
+05732	message	I'll be leaving with\n{actor_name:1}. Not by choice.{end_wait}
+05733	message	It is hard to leave you.\nBut the lighthouse is my\nduty.{end_wait}
+05742	message	Very well. Imil is in your\nhands, Megan, Justin.{end_wait}
