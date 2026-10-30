@@ -233,10 +233,6 @@ static void Vault_IvanStaysBehind(void) {
   if (GameFlag_Get(FLAG_VAULT_THIEVES_JAILED) != 0 &&
       GameFlag_Get(FLAG_DARK_MIA_THIEVES_DONE) == 0 &&
       GameFlag_Get(FLAG_DARK_MIA_SOLO) == 0) {
-    Party_RemoveMember(ISAAC);
-    Party_RemoveMember(GARET);
-    Party_RemoveMember(IVAN);
-    Party_AddMember(MIA);
     GameFlag_Set(FLAG_DARK_MIA_SOLO);
     GameFlag_Set(FLAG_DARK_MIA_THIEVES_ACTIVE);
     Import_EventSetExitRequest(VAULT_TO_IMIL_MIA_THIEVES);

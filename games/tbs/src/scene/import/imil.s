@@ -87,4 +87,5 @@
 	.set import.Party_RemoveMember, 1
 	.set import.Party_RestoreHpPp, 1
 	.set import.GameFlag_Set, 1
+	.set import.FieldCamera_FollowActor, 1
 	.include "games/tbs/src/system/overlay.inc"

@@ -271,6 +271,7 @@ static void Imil_SpawnAmbientEffects(void);
 static void Imil_UpdateFootprints(void);
 static void Imil_PlaceMovedSnowman(void);
 static void Imil_ArriveFromFallsCave(void);
+static void Imil_PlayAsMiaAlone(void);
 static void Imil_MiaThievesBegin(void);
 static void Imil_MiaThievesSecondFight(void);
 static void Imil_MiaThievesInterrogation(void);
@@ -853,6 +854,7 @@ s32 Imil_Initialize(void) {
     // Mia's first interlude: Mia alone near the village, and the thieves.
     if (GameFlag_Get(FLAG_DARK_MIA_SOLO) != 0 &&
         GameFlag_Get(FLAG_DARK_MIA_THIEVES_DONE) == 0) {
+      Imil_PlayAsMiaAlone();
       if (gSaveBlock.entrance == IMIL_MIA_THIEVES) {
         Imil_MiaThievesBegin();
       } else if (gSaveBlock.entrance == IMIL_MIA_THIEVES_AFTER_FIRST) {
@@ -1399,6 +1401,35 @@ static void Imil_ArriveFromFallsCave(void) {
   Event_End();
 }
 
+/// Makes Mia the only party member and the one the player moves, as the
+/// Colosseum's finals do for each friend in turn (Colosso_ControlCharacterAlone):
+/// the party is emptied and Mia added, she becomes the leader and the
+/// camera follows her, with full HP and PP. Isaac's and Garet's actors are
+/// parked out of sight and Mia stands at the village's south edge.
+static void Imil_PlayAsMiaAlone(void) {
+  struct Actor *parked;
+
+  Party_RemoveMember(ISAAC);
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
+  Party_RemoveMember(JENNA);
+  Party_AddMember(MIA);
+  gSaveBlock.leaderActorId = MIA;
+  Party_RestoreHpPp(1);
+  parked = Actor_GetById(ACTOR_PARTY_LEADER);
+  if (parked != 0) {
+    Import_ActorSetPosition(ACTOR_PARTY_LEADER, PIXELS(8), PIXELS(8));
+  }
+  parked = Actor_GetById(ACTOR_GARET);
+  if (parked != 0) {
+    Import_ActorSetPosition(ACTOR_GARET, PIXELS(8), PIXELS(8));
+  }
+  Import_ActorSetPosition(ACTOR_MIA, PIXELS(380), PIXELS(433));
+  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
+  FieldCamera_FollowActor(ACTOR_MIA, 0);
+}
+
 /// Shows the message already set on `actorId`, then waits `frames`.
 static void Imil_MiaSayAndWait(s32 actorId, s32 frames) {
   Event_ShowMessageAndWait(actorId, 0);
@@ -1413,12 +1444,12 @@ static void Imil_MiaThievesBegin(void) {
   Event_Start();
   // The boy who wanders here is out of the way for the scene.
   Import_ActorSetPosition(ACTOR_GREETING_BOY, PIXELS(8), PIXELS(8));
-  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
   Event_WaitFrames(60);
   Event_SetMessageId(MsgDarkMiaThievesQuiet);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 20);
+  Imil_MiaSayAndWait(ACTOR_MIA, 20);
   Event_SetMessageId(MsgDarkMiaThievesAir);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 40);
+  Imil_MiaSayAndWait(ACTOR_MIA, 40);
   // The thieves step out around her on ground the village already uses.
   Import_ActorSetPosition(ACTOR_HIRED_THIEF_WEST, PIXELS(316), PIXELS(424));
   Actor_FaceDirection(ACTOR_HIRED_THIEF_WEST, FACING_EAST, 0);
@@ -1426,16 +1457,16 @@ static void Imil_MiaThievesBegin(void) {
   Actor_FaceDirection(ACTOR_HIRED_THIEF_EAST, FACING_SOUTHWEST, 0);
   Import_ActorSetPosition(ACTOR_HIRED_THIEF_MIDDLE, PIXELS(376), PIXELS(408));
   Actor_FaceDirection(ACTOR_HIRED_THIEF_MIDDLE, FACING_SOUTH, 0);
-  Actor_ShowEmote(ACTOR_PARTY_LEADER, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 0);
+  Actor_ShowEmote(ACTOR_MIA, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 0);
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkMiaThievesThiefA);
   Imil_MiaSayAndWait(ACTOR_HIRED_THIEF_MIDDLE, 10);
   Event_SetMessageId(MsgDarkMiaThievesSoftHello);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Imil_MiaSayAndWait(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesThiefB);
   Imil_MiaSayAndWait(ACTOR_HIRED_THIEF_WEST, 20);
   Event_SetMessageId(MsgDarkMiaThievesSerious);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 20);
+  Imil_MiaSayAndWait(ACTOR_MIA, 20);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Event_SetAfterBattleDestination((s32)&SceneId_Imil,
                                   IMIL_MIA_THIEVES_AFTER_FIRST);
@@ -1449,9 +1480,8 @@ static void Imil_MiaThievesBegin(void) {
 /// IMIL_MIA_THIEVES_AFTER_SECOND.
 static void Imil_MiaThievesSecondFight(void) {
   Event_Start();
-  Party_RestoreHpPp(1);
   Import_ActorSetPosition(ACTOR_GREETING_BOY, PIXELS(8), PIXELS(8));
-  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
   Import_ActorSetPosition(ACTOR_THIEF_CHIEF, PIXELS(424), PIXELS(392));
   Actor_FaceDirection(ACTOR_THIEF_CHIEF, FACING_SOUTHWEST, 0);
   Import_ActorSetPosition(ACTOR_FOURTH_THIEF, PIXELS(316), PIXELS(424));
@@ -1462,7 +1492,7 @@ static void Imil_MiaThievesSecondFight(void) {
   Event_SetMessageId(MsgDarkMiaThievesChiefWarning);
   Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
   Event_SetMessageId(MsgDarkMiaThievesWalkAway);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Imil_MiaSayAndWait(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesChiefRefuses);
   Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 20);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
@@ -1480,43 +1510,47 @@ static void Imil_MiaThievesSecondFight(void) {
 static void Imil_MiaThievesInterrogation(void) {
   Event_Start();
   Import_ActorSetPosition(ACTOR_GREETING_BOY, PIXELS(8), PIXELS(8));
-  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
   Import_ActorSetPosition(ACTOR_THIEF_CHIEF, PIXELS(424), PIXELS(392));
   Actor_FaceDirection(ACTOR_THIEF_CHIEF, FACING_SOUTHWEST, 0);
   Import_ActorSetPosition(ACTOR_FOURTH_THIEF, PIXELS(376), PIXELS(408));
   Actor_FaceDirection(ACTOR_FOURTH_THIEF, FACING_SOUTH, 0);
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkMiaThievesWhoSent);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Imil_MiaSayAndWait(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesChiefLies);
   Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
   Event_SetMessageId(MsgDarkMiaThievesNotBuying);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 20);
+  Imil_MiaSayAndWait(ACTOR_MIA, 20);
   Event_SetMessageId(MsgDarkMiaThievesChiefSlips);
   Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
   Event_SetMessageId(MsgDarkMiaThievesGold);
   Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
   Event_SetMessageId(MsgDarkMiaThievesWhatLook);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Imil_MiaSayAndWait(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesRedHair);
   Imil_MiaSayAndWait(ACTOR_FOURTH_THIEF, 10);
   Event_SetMessageId(MsgDarkMiaThievesColdEyes);
   Imil_MiaSayAndWait(ACTOR_FOURTH_THIEF, 30);
   Event_SetMessageId(MsgDarkMiaThievesNotFromImil);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 30);
+  Imil_MiaSayAndWait(ACTOR_MIA, 30);
   Event_SetMessageId(MsgDarkMiaThievesLeave);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Imil_MiaSayAndWait(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesChiefAgrees);
   Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 30);
   Import_ActorSetPosition(ACTOR_THIEF_CHIEF, PIXELS(8), PIXELS(8));
   Import_ActorSetPosition(ACTOR_FOURTH_THIEF, PIXELS(8), PIXELS(8));
   Event_WaitFrames(30);
   Event_SetMessageId(MsgDarkMiaThievesNotAWord);
-  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 40);
-  // Back to Isaac's party: Mia leaves it, Isaac and Garet return.
+  Imil_MiaSayAndWait(ACTOR_MIA, 40);
+  // Back to Isaac's party behind a fade: Mia leaves it, Isaac and Garet
+  // return and Isaac leads again.
+  Event_FinishScreenTransition();
+  Event_WaitTransitionFrames();
   Party_RemoveMember(MIA);
   Party_AddMember(ISAAC);
   Party_AddMember(GARET);
+  gSaveBlock.leaderActorId = ISAAC;
   GameFlag_Clear(FLAG_DARK_MIA_SOLO);
   GameFlag_Clear(FLAG_DARK_MIA_THIEVES_ACTIVE);
   GameFlag_Set(FLAG_DARK_MIA_THIEVES_DONE);
@@ -2007,6 +2041,8 @@ struct ActorTemplate gImil_TownActorTemplates[] = {
         PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_BURLY_MAN_WITH_GREY_HAIR, IF_FLAG_SET(FLAG_DARK_MIA_THIEVES_ACTIVE), MOVEMENT_TYPE_STAND,
         PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { ACTOR_MIA, IF_FLAG_SET(FLAG_DARK_MIA_SOLO), MOVEMENT_TYPE_STAND,
+        0, 0, 0, FACING_NORTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
