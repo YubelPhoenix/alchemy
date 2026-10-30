@@ -10,7 +10,7 @@
 extern u16 gBattleFormation_LevelMatchedEnemies[];
 
 /// The rows of gFormations.
-#define FORMATION_COUNT 380
+#define FORMATION_COUNT 382 // includes the two scripted thief fights (380, 381)
 
 // How many name letters tell the enemies of one class apart: 26 in Japanese,
 // 9 in the localizations.
@@ -155,7 +155,7 @@ s32 BattleFormation_SelectLevelMatchedCandidate(s32 *outMargin) {
 
   // Each qualifying formation replaces the pool's lowest entry; empty
   // entries score -1, so the pool fills first.
-  for (candidateOrUnitIndex = 0; (u32)candidateOrUnitIndex < FORMATION_COUNT;
+  for (candidateOrUnitIndex = 0; (u32)candidateOrUnitIndex < 380;
        candidateOrUnitIndex++) {
     s32 score = BattleFormation_AverageLevel(candidateOrUnitIndex);
 

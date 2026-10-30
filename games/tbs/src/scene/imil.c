@@ -1445,6 +1445,10 @@ static void Imil_MiaThievesBegin(void) {
   // The boy who wanders here is out of the way for the scene.
   Import_ActorSetPosition(ACTOR_GREETING_BOY, PIXELS(8), PIXELS(8));
   Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
+  // The scene arrives black; fade it in once everyone is in place.
+  gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   Event_WaitFrames(60);
   Event_SetMessageId(MsgDarkMiaThievesQuiet);
   Imil_MiaSayAndWait(ACTOR_MIA, 20);
@@ -1486,6 +1490,10 @@ static void Imil_MiaThievesSecondFight(void) {
   Actor_FaceDirection(ACTOR_THIEF_CHIEF, FACING_SOUTHWEST, 0);
   Import_ActorSetPosition(ACTOR_FOURTH_THIEF, PIXELS(316), PIXELS(424));
   Actor_FaceDirection(ACTOR_FOURTH_THIEF, FACING_EAST, 0);
+  // The scene arrives black; fade it in once everyone is in place.
+  gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkMiaThievesChiefArrives);
   Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
@@ -1515,6 +1523,10 @@ static void Imil_MiaThievesInterrogation(void) {
   Actor_FaceDirection(ACTOR_THIEF_CHIEF, FACING_SOUTHWEST, 0);
   Import_ActorSetPosition(ACTOR_FOURTH_THIEF, PIXELS(376), PIXELS(408));
   Actor_FaceDirection(ACTOR_FOURTH_THIEF, FACING_SOUTH, 0);
+  // The scene arrives black; fade it in once everyone is in place.
+  gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkMiaThievesWhoSent);
   Imil_MiaSayAndWait(ACTOR_MIA, 10);

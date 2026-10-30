@@ -26,6 +26,8 @@
 	.set import.Event_End, 1
 	.set import.Event_PrepareActorAndApplyValue, 1
 	.set import.Party_RemoveMemberRestored, 1
+	.set import.Party_AddMember, 1
+	.set import.Party_RemoveMember, 1
 	.set import.Event_AskYesNoWithActorAnimation, 1
 	.set import.Actor_GetById, 1
 	.set import.Actor_SetSpeedParameters, 1

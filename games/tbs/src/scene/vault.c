@@ -233,6 +233,15 @@ static void Vault_IvanStaysBehind(void) {
   if (GameFlag_Get(FLAG_VAULT_THIEVES_JAILED) != 0 &&
       GameFlag_Get(FLAG_DARK_MIA_THIEVES_DONE) == 0 &&
       GameFlag_Get(FLAG_DARK_MIA_SOLO) == 0) {
+    // Mia becomes the only party member and the leader before the village
+    // is built, so her actor exists there (as the Colosseum's solo matches do).
+    Party_RemoveMember(ISAAC);
+    Party_RemoveMember(GARET);
+    Party_RemoveMember(IVAN);
+    Party_RemoveMember(MIA);
+    Party_RemoveMember(JENNA);
+    Party_AddMember(MIA);
+    gSaveBlock.leaderActorId = MIA;
     GameFlag_Set(FLAG_DARK_MIA_SOLO);
     GameFlag_Set(FLAG_DARK_MIA_THIEVES_ACTIVE);
     Import_EventSetExitRequest(VAULT_TO_IMIL_MIA_THIEVES);
