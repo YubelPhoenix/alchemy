@@ -40,19 +40,19 @@ const struct Formation gFormations[] = {
         .maximumCounts = {1},
     },
     {
-        .memberIds = {1},
-        .minimumCounts = {2},
-        .maximumCounts = {3},
+        .memberIds = {1, 4},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
-        .memberIds = {4},
-        .minimumCounts = {2},
-        .maximumCounts = {3},
+        .memberIds = {4, 7},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
-        .memberIds = {7},
-        .minimumCounts = {1},
-        .maximumCounts = {3},
+        .memberIds = {7, 1},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
         .memberIds = {1, 7, 4},
@@ -314,9 +314,9 @@ const struct Formation gFormations[] = {
         .maximumCounts = {1, 1, 1},
     },
     {
-        .memberIds = {107},
-        .minimumCounts = {2},
-        .maximumCounts = {3},
+        .memberIds = {107, 42},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
         .memberIds = {42, 39},
@@ -337,9 +337,9 @@ const struct Formation gFormations[] = {
     },
     {0},
     {
-        .memberIds = {12},
-        .minimumCounts = {2},
-        .maximumCounts = {2},
+        .memberIds = {12, 45},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {1, 1},
     },
     {
         .memberIds = {48},
@@ -378,14 +378,14 @@ const struct Formation gFormations[] = {
     },
     {0},
     {
-        .memberIds = {45},
-        .minimumCounts = {1},
-        .maximumCounts = {3},
+        .memberIds = {45, 51},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
-        .memberIds = {12},
-        .minimumCounts = {2},
-        .maximumCounts = {4},
+        .memberIds = {12, 48},
+        .minimumCounts = {2, 1},
+        .maximumCounts = {3, 1},
     },
     {
         .memberIds = {51, 12},
