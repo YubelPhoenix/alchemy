@@ -6,17 +6,17 @@
 03671	message	It's pouring out there.\nPut your tunic on.{end_wait}
 03672	message	Do you have everything\nyou need? Think fast.{end_now}
 03673	message	I'm sorry. There's no time.\nLeave it. We'll replace it,\nif we're still alive.{end_wait}
-03674	message	Good. Things can be\nreplaced, {actor_name:1}.\nPeople can't.{end_wait}
+03674	message	Good. Stuff can be\nreplaced, {actor_name:1}.\nPeople can't.{end_wait}
 03675	MsgValeDoraHurryBoulder	{actor_name:1}, Dora, hurry!\nThe Boulder's going to\ndrop any second!{end_wait}
-03676	MsgValeKyleAbleStop	Kyle... can they hold it?\nTell me they can hold it.{end_wait}
-03677	message	No. Not for long.\nI won't lie to you.{end_wait}
+03676	MsgValeKyleAbleStop	Kyle, can they hold it?{end_wait}
+03677	message	Not for long. Go. Now.{end_wait}
 03678	message	Get to the plaza, both of\nyou. I'll catch up.{end_wait}
-03679	message	You're coming too.\nAren't you?{end_wait}
+03679	message	You're coming too,\nright?{end_wait}
 03680	message	Not yet. People are still\ntrapped in their homes.{end_wait}
-03681	message	Then let me help you!\nI'm not leaving you!{end_wait}
+03681	message	Then let me help!\nI'm not leaving you!{end_wait}
 03682	message	No. It's too dangerous.\nDora, please. Take care\nof {actor_name:1}.{end_wait}
-03683	message	{actor_name:1} can reach the\nplaza alone. He's not a\nbaby anymore.{end_wait}
-03684	message	You know the way, don't\nyou, {actor_name:1}? Tell me\nyou do.{end_now}
+03683	message	{actor_name:1} can make it to\nthe plaza on his own.\nHe's not a baby.{end_wait}
+03684	message	You know the way,\n{actor_name:1}. Don't you?{end_now}
 03685	MsgValeBigBoyWhy	You're old enough now,\n{actor_name:1}. Go on alone.\nPlease, honey.{end_now}
 03686	MsgValeKnowWayGo	South. Straight to the\nplaza. Don't stop for\nanyone. Be careful!{end_wait}
 03687	MsgValeHuh	Huh? {actor_name:1}?\nWhat are you doing here?{end_wait}

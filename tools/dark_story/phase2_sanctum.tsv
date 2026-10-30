@@ -97,9 +97,9 @@
 04146	MsgSolSanctumSetSmallGem	{protagonist_name} set the small\ngem in the empty socket.{end_wait}
 04147	message	Stone grinds against\nstone somewhere nearby.{end_wait}
 04148	MsgSolSanctumMinotaurReliefBothEyes	The minotaur relief.\nBoth eyes burn bright\nnow.{end_wait}
-04149	MsgSanctumWieldersPsynergyCalledAdeptsAdepts	Those who wield Psynergy\nare called Adepts.{page_break}We were meant to be\nmessengers of good.\nDo not forget that.{end_wait}
+04149	MsgSanctumWieldersPsynergyCalledAdeptsAdepts	People who use Psynergy\nare called Adepts.{page_break}We were supposed to help\npeople. Don't forget it.{end_wait}
 04150	MsgSanctumOurPsynergyWasGivenToUs	Mt. Aleph gave us our\nPsynergy. It's a sacred\ngift, not a weapon.{page_break}It answers the wishes\nof the chosen... and it\ncan be taken away.{end_wait}
-04151	MsgSanctumPsynergyIsAPowerThatShould	Psynergy is meant for good.\nNever for evil. Never.\nI beg you to remember.{end_wait}
+04151	MsgSanctumPsynergyIsAPowerThatShould	Psynergy is for helping\npeople. Never for harm.\nRemember that.{end_wait}
 04152	MsgSolSanctumSomethingClicked	A click.{pause_20_skippable} Something gave\nway!{end_wait}
 04153	message	We found the passage...\nthe hidden one.{page_break}It only gets worse from\nhere. Watch every step.{end_wait}
 04154	MsgSolSanctumMoreStatuesOutOfReach	More statues...{pause_20_skippable} Hmm...\nWe can't reach them\nfrom here.{end_wait}
