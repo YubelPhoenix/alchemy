@@ -1,0 +1,130 @@
+05428	MsgMercuryOoohHelpMe	{text_effect:4}Oooh...{pause_20_skippable} Help me...{end_wait}
+05429	message	Grandpa!{pause_20_skippable} Grandpa!\nStay with me!{end_wait}
+05430	message	Oh, no!{pause_20_skippable} Not again!{end_wait}
+05431	message	Get {actor_name:4}...{pause_20_skippable}\nPlease, get {actor_name:4}!{end_wait}
+05432	MsgImilItHurts	{text_effect:4}It hurts...{end_wait}
+05433	MsgImilGetMiaHurry	Get {actor_name:4}... Hurry!{end_wait}
+05434	MsgImilOoohIDontFeelSoGood	{text_effect:4}Oooh...{pause_20_skippable}{pause_20_skippable} I don't feel well\n{pause_20_skippable}... Am I going to die?{end_wait}
+05436	MsgImilCoughTheEpidemicHasHitAlmost	{text_effect:4}Cough...{pause_20_skippable}{reset_text_style}\nThe sickness has hit\nalmost everyone in Imil.{page_break}I'm sick, too. {text_effect:4}Cough!{reset_text_style}{page_break}What would happen to us\nif we didn't have {actor_name:4}?\n{text_effect:4}Cough{reset_text_style}!{end_wait}
+05437	MsgImilHerPalmsShineWithABlue	Her palms shine with\na blue light...\nIs she{pause_20_skippable} an angel?{end_wait}
+05438	MsgMercuryStoreClosedUntilWell	Our store is closed\nuntil we get well.\nIf we get well...{end_wait}
+05439	MsgImilDoWantWeapons	Do you want weapons?{end_now}
+05440	message	I can't sell weapons\nuntil I am cured. {text_effect:4}Ohh...{pause_20_skippable}{reset_text_style}\nChills... {text_effect:4}Cough!{reset_text_style}{end_wait}
+05441	message	Travelers from the\nsouth brought this\nsickness to our village.{page_break}{reset_text_style}Are you from the south,\ntoo? If you have no\nbusiness here,{page_break}then leave... {text_effect:4}Cough!{reset_text_style}{end_wait}
+05443	MsgMercuryTooSickBusiness	Sorry. Too sick for\nbusiness today.\nTry again tomorrow...{end_wait}
+05444	MsgImilWereClosedSorryIGetA	We're closed!!!\nSorry... I snap at\neveryone when I'm sick. {page_break}I'll open when I'm\nbetter.{end_wait}
+05445	MsgImilWhyDoTheyAlwaysComeWhen	Why do they always\ncome when I'm sick?{end_wait}
+05446	MsgMercuryMomsSickGetWhatever	Mom's sick, but I can\nget you whatever you\nneed...{end_wait}
+05447	MsgMercuryDadLumberjack	My dad is a lumberjack.\nHe's down south in\nKolima. No word lately.{end_wait}
+05448	MsgImilIfYouWantToBuyAnything	If you want to buy\nanything, please talk to\nmy daughter.{end_wait}
+05450	MsgImilIfOnlyWeHadSomeOf	If only we had that\nspring water of legend.\nThat would heal us.{end_wait}
+05452	MsgImilWereTheOnlyInnThatStays	We're the only inn that\nstays open in winter.\nGuests are few.{page_break}We'll wait on you hand\nand foot, so please\nstay a while.{end_wait}
+05453	MsgImilDoWantSeeRestaurantMenu	Do you want to see\nthe restaurant menu?{end_now}
+05454	message	Here you go.{pause_20_skippable} We're small,\nso the selection isn't\ngreat.{end_wait}
+05455	message	Tonight's dinner is stew\nand rye bread. A feast,\nthese days.{pause_20_skippable} Hm.{end_wait}
+05456	MsgImilSoManyCustomersItJustGoes	So many customers.\nIt's been a good week,\nfor a bad winter.{page_break}I'll hold on to\nthat.{end_wait}
+05457	MsgImilWintersAreToughHereSoIm	Winters are hard here,\nso I'm glad for\nguests to talk to.{page_break}I'll give them the\nbest service I can.{end_wait}
+05458	MsgImilWeDontGetToEatMany	We don't eat many fancy\nmeals in winter.{page_break}A hot stew would be\na real treat.{end_wait}
+05460	MsgImilLookingForMia	Looking for {actor_name:4}?{end_now}
+05461	message	{actor_name:4} just left.{page_break}The sickness is spreading\nthrough the village, so\n{actor_name:4} is run ragged.{end_wait}
+05463	MsgImilHaveVisitedOldCoupleWho	Have you visited the\nold couple near the\nentrance of town?{end_now}
+05464	message	Oh. {pause_20_skippable} That's too bad.\nThat's where {actor_name:4}\nwas headed.{page_break}You probably just missed\nher if you didn't see\nher on the way.{end_wait}
+05465	message	{actor_name:4} went to their\nhouse. You might have seen\nher if you stopped...{end_wait}
+05468	MsgImilHowFeeling	How are you feeling?{end_wait}
+05469	message	{text_effect:4} Cough...{pause_20_skippable} Cough...{end_wait}
+05470	message	He's been coughing\nfor a long while now...{end_wait}
+05471	message	You'll feel better soon.{end_wait}
+05472	message	{text_effect:4}Cough{pause_20_skippable} cough...{pause_20_skippable}{pause_20_skippable}\nCough{pause_20_skippable}{pause_20_skippable}... {pause_20_skippable}{pause_20_skippable}\nCough... {pause_20_skippable}{pause_20_skippable}{pause_20_skippable}Cough...{end_wait}
+05473	message	How do you feel now?{end_wait}
+05474	message	Much{pause_20_skippable} better...{end_wait}
+05475	message	No, Grandpa.{pause_20_skippable} You mustn't\npush yourself too hard.{end_wait}
+05476	message	Thank you, {actor_name:4}...{page_break}I don't know how this\nvillage would survive\nwithout you...{page_break}{text_effect:4}Cough{reset_text_style}...{end_wait}
+05477	message	Don't mention it...\nYou should rest in bed,\ntoo, ma'am.{end_wait}
+05478	message	Who are you?{end_wait}
+05479	message	Can I help you?{end_wait}
+05480	message	Was that{pause_20_skippable}{pause_20_skippable}{pause_20_skippable} the lighthouse?{end_wait}
+05481	message	It can't be...{end_wait}
+05482	message	Only I can...{end_wait}
+05483	message	Oh, no...{pause_20_skippable} Alex!!!{end_wait}
+05484	MsgMercuryFeelMuchBetter	I feel much better,\nthanks to {actor_name:4}.\nI should be fine now.{end_wait}
+05485	MsgImilHappenedInLighthouseNortheast	What happened in the\nlighthouse to the\nnortheast?{end_wait}
+05488	MsgImilEvenIfMiaHealsUs	Even if {actor_name:4} heals us,\nthe sickness comes back\nevery winter. {text_effect:4}Brr...{end_wait}
+05489	MsgImilCantUnderstandWhyAnyOne	I can't understand why\nanyone would exercise\nin this cold.{end_wait}
+05490	MsgImilAmHealerWhileMiaOut	I'm the healer while\n{actor_name:4} is out. Tell me\nif you need anything.{end_wait}
+05491	MsgImilFeelLikeGrownUpWhen	I feel grown-up when\nI heal people.\nI wish it were easier.{end_wait}
+05492	MsgImilEveryoneCountsOnMiaThats	Everyone needs {actor_name:4}.\nThat's why she is always\nso busy.{end_wait}
+05493	MsgImilWeHaveDoWhateverWe	We have to help {actor_name:4}\nany way we can.\nShe's stretched thin.{end_wait}
+05494	MsgImilHermesHealingWaterFountain	Fountain of Healing{page_break}Water of Hermes:\nIt brings rejuvenation\nto all that lives.{end_wait}
+05495	MsgImilSomebodyHere	Somebody...is here.{end_wait}
+05496	message	Someone is here...{end_wait}
+05497	message	Can you hear it, too?{end_now}
+05498	message	Alex is the only one\nother than I who can\nenter Mercury Lighthouse.{end_wait}
+05499	message	You can't hear it? Well,\nI can. {page_break}Alex is the only one\nother than I who can\nenter Mercury Lighthouse.{end_wait}
+05500	message	But this statue is\nblocking my way...{end_wait}
+05501	MsgImilStatueBlocksEntrance	This statue is blocking\nthe entrance.{end_wait}
+05502	MsgMercuryLighthouseSomeoneDoesntWantMeToGet	Someone doesn't want\nme to get inside.{end_wait}
+05503	MsgMercuryDidThat	Did you do that?{end_now}
+05506	message	You{pause_20_skippable}...{pause_20_skippable} You could\nsee our Psynergy?{end_wait}
+05508	message	We thought you used\nPsynergy when you healed\nthat old man, {actor_name:4}.{end_wait}
+05511	message	It was once\nmuch stronger...{end_wait}
+05512	message	The Mercury Clan sounds\nlike the people of Vale.\nDon't you think?{end_now}
+05513	message	Sure... They guard a\nspecial power, just\nlike us.{end_wait}
+05514	message	Oh, come on! Both are\nprotectors of a special\npower.{page_break}Only the names are\ndifferent.{end_wait}
+05516	message	{actor_name:4} used Ply.{end_wait}
+05517	MsgMercuryMonsterInsideTower	A monster inside\nMercury Lighthouse?\nHow can this be!?{end_wait}
+05518	MsgMercuryLetMePass	I have to get\npast him!{end_wait}
+05519	MsgMercuryLighthouseThePathIsBlockedAgainWhat	The path is blocked again.{pause_20_skippable}\nWhat do I do now?{end_wait}
+05520	MsgMercuryLighthouseThisStatueWasntHereBeforeI	This statue wasn't\nhere before. Alex...{page_break}No, Alex wouldn't...\nbut what if he's\nnot alone?{end_wait}
+05521	MsgMercurySavedMeAgain	You saved me again,\nhaven't you!{end_wait}
+05527	MsgMercuryThoughtSo	I thought so...{end_wait}
+05531	message	The Adept {actor_name:4} joined\nyour party!{end_wait}
+05532	MsgMercuryLighthouseAlreadyLit	It's too late! The\nlighthouse has already\nbeen lit!{end_wait}
+05533	message	It...{pause_20_skippable} It can't be!{end_wait}
+05534	message	The beacon can't be lit\nwithout the Mercury\nStar...{end_wait}
+05535	message	...The Elemental Stars\nwere stolen from Sol\nSanctum, on Mt. Aleph.{end_wait}
+05536	message	Mt. Aleph... Sol Sanctum...{pause_20_skippable}\nAre you healers from\nSol Sanctum?{end_now}
+05537	message	We came from Vale to\nrecover the three\nElemental Stars.{end_wait}
+05538	message	But unlike you, we are\nnot healers.{end_wait}
+05539	message	We came from Mt. Aleph,\nbut we're not healers.{end_wait}
+05540	message	We came from Vale to\nrecover the three\nElemental Stars.{end_wait}
+05541	message	Did you say{pause_20_skippable} Vale?{end_wait}
+05542	message	Our village was there to\nguard Sol Sanctum, but\nthe Stars were stolen.{end_wait}
+05543	message	That sounds just like\nmy clan...{end_wait}
+05544	message	I have failed in the\none duty placed upon me...{pause_20_skippable}{page_break}This is terrible.{end_wait}
+05545	message	{actor_name:1}! {actor_name:2}!{end_wait}
+05546	message	So it's you, {actor_name:1}!{end_wait}
+05549	message	That's not all...\nWe're after the\nElemental Stars!{end_wait}
+05550	message	In other words,{pause_20_skippable} they've\ncome to stop us.{end_wait}
+05551	message	Then we have no choice...{page_break}We deal with them\nnow, before they do\nany harm!{end_wait}
+05552	message	Menardi... {pause_20_skippable}Wait!{end_wait}
+05553	message	Oh, Saturos...\nThey want to...{end_wait}
+05554	message	I heard everything.{end_wait}
+05555	message	They survived the\neruption of Mt. Aleph.\nLucky.{end_wait}
+05556	message	You've endured so much,\nand now you want to\nthrow your lives away?{end_wait}
+05557	message	Fine. If that is your\nwish, prepare to have\nit granted.{end_wait}
+05558	message	Saturos... Are you going\nto fight them alone?{end_wait}
+05559	message	Menardi, I can't ask you\nto leave our hostages\nand help me, can I?{end_wait}
+05560	message	Umm...{pause_20_skippable} That's true...{end_wait}
+05561	message	Besides, I want to see\nhow far their powers\nhave grown.{end_wait}
+05562	message	Are you sure about this,\nSaturos?{end_wait}
+05563	message	Leave me be!{pause_20_skippable} Head for the\nnext lighthouse{em_dash}now!{end_wait}
+05564	message	Come here, child...{end_wait}
+05565	message	Do you mean to\ndefy me?{end_wait}
+05566	message	I should teach you a\nlesson, child, but...{end_wait}
+05567	message	{actor_name:5}, make your sister\nobey me, if you hope\nto keep her from harm.{end_wait}
+05568	message	{actor_name:6}{pause_20_skippable}, please...\nDo as she says\nfor now.{end_wait}
+05569	message	{actor_name:5}{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}.{end_wait}
+05570	message	It's all right, {actor_name:6}.{end_wait}
+05571	message	{actor_name:1} and {actor_name:2}\nshouldn't have come after\nus...{end_wait}
+05572	message	I'm sorry, {actor_name:1},\n{actor_name:2}...{end_wait}
+05573	message	I'm counting on you!{end_wait}
+05574	message	{actor_name:1}! {actor_name:2}!\nDon't{pause_20_skippable} die!{end_wait}
+05575	message	{actor_name:6}... \nKraden!{end_wait}
+05576	message	If you want to save\nthem, you'll have to\nbeat me, first!{end_wait}
+05577	message	No! Get back!{end_wait}
+05578	message	What's the matter!{end_wait}
+05579	message	Saturos is extremely\npowerful. I felt it\nwhen I faced him.{end_wait}
+05580	message	Be very careful when\nyou fight him...{page_break}We have to match\nhis strength...{end_wait}
+05582	message	You overestimate\nyour chances.{end_wait}
+05585	message	What's happening?\nSaturos is moving\nstrangely.{end_wait}
+05586	message	What's this!? The light of\nMercury... It's\nweakening my Psynergy!{end_wait}

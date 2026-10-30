@@ -1,0 +1,61 @@
+05588	MsgMercuryGot	{actor_name:1}, we got him!{end_wait}
+05589	message	Who would have thought\nMercury Lighthouse held\nsuch great power?{page_break}If only my Psynergy had\nbeen at full strength...{end_wait}
+05590	message	Saturos... You said you\nwere weakened.\nWhat did you mean?{end_wait}
+05591	message	I{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable} I meant nothing...{end_wait}
+05671	message	"The fountain shall be\nfilled as long as light\nfills the lighthouse."{page_break}An old saying. The\nfountain runs over with\nhealing water now.{end_wait}
+05672	message	I'm torn about leaving,\nbut Imil will be fine as\nlong as{page_break}the fountain keeps\nflowing with the Water\nof Hermes.{end_wait}
+05673	message	We should hurry if we're\ngoing to follow them.{end_wait}
+05674	MsgMercuryLighthouseTheLegendsSaidThatIfThe	The legend said the\nfountain would fill when\nthe lighthouse was lit.{page_break}The legend was true.\nI wish I knew the price.{end_wait}
+05675	MsgMercuryLighthouseOurFountainIsBackTheySay	Our fountain is back.\nThey say these waters\nheal all that lives.{end_wait}
+05676	MsgMercuryLighthouseIDrankTheHealingWaterAnd	I drank the healing\nwater, and I feel\nstrong again.{page_break}I'll take a bottle\nhome. Just in case.{end_wait}
+05677	MsgMercuryLighthouseWeDontHaveToFearAny	We need not fear\nsickness while we have\nour fountain.{end_wait}
+05678	MsgMercuryLighthouseHowDidTheFountainKnowThat	How did the fountain\nknow the beacon\nwas lit?{end_wait}
+05679	MsgMercuryLighthouseAllThatLivesThatMeansIt	All that lives... It must\nwork on plants and\nanimals, too.{end_wait}
+05680	MsgMercuryLighthouseIKnewItWouldWorkBut	I knew it would work,\nbut not this well.{page_break}I feel ten years\nyounger. Why does that\nfrighten me?{end_wait}
+05681	MsgMercuryLighthouseINeverBelievedThoseStoriesBut	I never believed those\nstories, but there's\nthe proof.{end_wait}
+05682	MsgMercuryWhoHonorsHeart	He who honors the heart\nof the goddess shall stand\nat the center of all,{page_break}like a swan in the\ncenter of a rippling\npond.{end_wait}
+05683	MsgMercuryHonorsGoddessRainbows	He who honors the\ngoddess of rainbows shall{page_break}be guided to the heavens\nupon wings of fluid grace.{end_wait}
+05684	message	The door is shut tight.{end_wait}
+05685	MsgMercuryLighthouseFountainFlowsWithWater	The fountain is flowing\nwith water.{end_wait}
+05686	MsgMercuryLighthouseFountainSeemsDry	The fountain seems dry.{end_wait}
+05687	MsgMercuryLighthouseStrangeForcesBlockWay	Strange forces are at\nwork... It seems\nimpossible to proceed.{end_wait}
+05692	MsgImilCountingAfterDeparture	One,{pause_20_skippable} two,{pause_20_skippable} three,{pause_20_skippable} four...{end_wait}
+05693	message	I trained hard to\nwithstand any disease...{page_break}And now the fountain\nis back?{end_now}
+05694	message	What did I train\nso hard for all this time?{end_wait}
+05695	message	No, it can't be! Everyone\nis in perfect health!{end_wait}
+05697	MsgImilDontWorryAboutUsMiaWell	Don't worry about us,\n{actor_name:4}. We'll protect\nthe village now.{end_wait}
+05698	MsgImilNowThatIveLetMyGuard	Now that I've let my\nguard down, I'm getting\nchills.{page_break}Maybe I should drink\nsome fountain water.{end_wait}
+05699	MsgImilThatFountainWaterReallyMadeGrandpa	That fountain water\nmade Grandpa healthy\nagain.{end_wait}
+05700	MsgMercuryReallySayDie	Did I really say\nI was going to die\nfrom that sickness?{end_now}
+05701	message	Ha ha ha! I must have\nfelt terrible to say\nthat!{page_break}I'm good for another 30\nyears!{pause_20_skippable} ...Back to work!{end_wait}
+05702	message	That's right!\nThe strong old man of\nImil, that's me!{end_wait}
+05703	MsgImilGrandpasAllBetterNowThanksTo	Grandpa's all better\nnow, thanks to the\nfountain water.{end_wait}
+05706	MsgImilThatBlueLightFromHerHands	That blue light from her\nhands... Is she an angel,\nor something else?{end_wait}
+05707	MsgMercuryCatchUpLostOpportunity	I have to catch up\non lost time.\nBack to business.{end_wait}
+05708	MsgImilCustomersAreHardToComeBy	Customers are rare, and\nI can't afford to lose\neven one.{end_wait}
+05709	MsgMercuryShameStoreClosed	A shame the store was\nclosed for something\nas small as a cold.{end_wait}
+05710	MsgImilTheCustomersAreBackIThought	The customers are back.\nI thought I'd lost my\nbusiness for good.{end_wait}
+05711	MsgMercuryRecoveredThanksFountain	I'm fully recovered,\nthanks to the fountain.\nBack to work.{end_wait}
+05712	MsgImilImSoHappyThatMommyIs	I'm so happy Mommy\nis well again!{end_wait}
+05714	MsgImilMyDaddysStillInKolimaIll	My daddy's still in\nKolima. I'll be so happy\nif he comes home soon.{end_wait}
+05715	MsgImilItsAlmostTimeForLeave	It's almost time for you\nto leave, isn't it?{end_now}
+05716	message	Just like the legend,\nthe fountain began to\nflow when the light lit.{page_break}Imil need never fear\nsickness again.{end_wait}
+05717	message	I'll cook a feast\nfor you tonight.{end_wait}
+05722	MsgImilINeverToldMiaThatI	I never told {actor_name:4}\nthat I liked her...{page_break}Maybe it's for\nthe best.{end_wait}
+05723	MsgImilMia	{actor_name:4}...{end_wait}
+05724	message	We were worried you\nwouldn't come back!{end_wait}
+05725	message	I'm so sorry,\nyou two...{end_wait}
+05726	message	{actor_name:4}, it's bad!\nThe Mercury Lighthouse...\nIt's been lit!{end_wait}
+05727	message	{actor_name:4}, you already knew?{end_wait}
+05728	message	What's the matter?{pause_20_skippable}\nYou look strange\ntoday, {actor_name:4}.{end_wait}
+05729	message	I...{pause_20_skippable}\nHow do I tell you?{end_wait}
+05730	message	You have something to\nsay? What is it?{end_wait}
+05731	message	Well, {pause_20_skippable}I... Uh...{end_wait}
+05734	message	You said the world would\nbe in danger if the\nlighthouse was lit, right?{end_wait}
+05735	message	Is that why you're\nleaving? To protect the\nworld?{end_wait}
+05736	message	Yes.{pause_20_skippable} That's right...{end_wait}
+05737	message	Then there's nothing\nwe can do...{end_wait}
+05738	message	We won't try\nto stop you, then.{page_break}After all, you're\ntrying to protect the\nMercury Clan.{end_wait}
+05739	message	Yes.{pause_20_skippable} I am...{end_wait}
+05740	message	We're Mercury Clan\ntoo...we'll protect Imil\nourselves.{page_break}So don't worry, OK?{end_wait}
+05741	message	I'll work hard and\nlearn to heal as well\nas you, {actor_name:4}!{end_wait}
