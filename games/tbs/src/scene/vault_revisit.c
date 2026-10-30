@@ -653,7 +653,7 @@ static inline s32 VaultRevisit_ShouldKeepBellDjinniPosition(void) {
 /// FLAG_ARRIVAL_STAIRS_UP, so the leader's arrival animation does not
 /// play.
 s32 Scene_Initialize(void) {
-  // Ash-grey rain falls on the town once the Sol Sanctum has erupted.
+  // Ash greys the town after the Sol Sanctum erupts; rain follows once Mercury Lighthouse is lit.
   WorldState_Apply();
 
   struct Actor *actor;

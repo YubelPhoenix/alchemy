@@ -47,18 +47,21 @@ static inline void WorldState_TintPalettes(void) {
   PaletteFade_SetTarget(PALETTE_TINT_NONE, PALETTES_ALL);
 }
 
-/// Like WorldState_Apply, but without rain, for scenes that already have
-/// their own weather (Imil's snow).
+/// Like WorldState_Apply, but never rain, for scenes that already have their
+/// own weather (Imil's snow).
 static inline void WorldState_ApplyTintOnly(void) {
   if (WorldState_GetStage() >= 1) {
     WorldState_TintPalettes();
   }
 }
 
-/// Starts the world's current weather: from stage 1 on (the eruption), rain and the ash tint.
+/// Starts the world's current weather: from stage 1 (the eruption) the ash
+/// tint, and from stage 2 (Mercury Lighthouse lit) the endless rain as well.
 static inline void WorldState_Apply(void) {
-  if (WorldState_GetStage() >= 1) {
+  if (WorldState_GetStage() >= 2) {
     Weather_StartRain();
+  }
+  if (WorldState_GetStage() >= 1) {
     WorldState_TintPalettes();
   }
 }
