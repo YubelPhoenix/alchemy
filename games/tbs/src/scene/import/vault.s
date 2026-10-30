@@ -57,4 +57,6 @@
 	.set import.Event_WaitTransitionFrames, 1
 	.set import.DjinnRecovery_TickTwenty, 1
 	.set import.Sound_PlaySong, 1
+	.set import.Party_AddMember, 1
+	.set import.Party_RemoveMember, 1
 	.include "games/tbs/src/system/overlay.inc"

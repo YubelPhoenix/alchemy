@@ -1530,6 +1530,18 @@ const struct Formation gFormations[] = {
         .minimumCounts = {1},
         .maximumCounts = {1},
     },
+    // Mia's first interlude near Imil: three hired thieves.
+    {
+        .memberIds = {110, 112},
+        .minimumCounts = {2, 1},
+        .maximumCounts = {2, 1},
+    },
+    // Mia's first interlude near Imil: the Thief Chief and a hired thief.
+    {
+        .memberIds = {111, 110},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {1, 1},
+    },
 };
 
 /// The 20 enemies whose defeated flags a monster battle clears before it

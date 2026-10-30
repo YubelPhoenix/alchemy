@@ -88,6 +88,9 @@ enum EncounterZoneId {
   /// The battles that end the Colosso finals' matches, the slot chosen by
   /// how the match went.
   ENCOUNTER_ZONE_COLOSSO = 72,
+  /// The battles of Mia's first interlude near Imil: slot 0 three hired
+  /// thieves, slot 1 the Thief Chief and a hired thief.
+  ENCOUNTER_ZONE_SCRIPTED_MIA_THIEVES = 104,
   /// The monsters behind the east doors of Crossbone Isle Cave's next five
   /// floors, one slot a floor, then Deadbeard on the Pirate Ship.
   ENCOUNTER_ZONE_CROSSBONE_ISLE_LAST_GUARDS = 84,

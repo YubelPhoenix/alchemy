@@ -80,4 +80,11 @@
 	.set import.Sanctum_Run, 1
 	.set import.Inn_CheckIn, 1
 	.set import.Sound_PlaySong, 1
+	.set import.Event_SetAfterBattleDestination, 1
+	.set import.Event_SetDefeatDestination, 1
+	.set import.Field_RequestBattleFromEncounterTable, 1
+	.set import.Party_AddMember, 1
+	.set import.Party_RemoveMember, 1
+	.set import.Party_RestoreHpPp, 1
+	.set import.GameFlag_Set, 1
 	.include "games/tbs/src/system/overlay.inc"

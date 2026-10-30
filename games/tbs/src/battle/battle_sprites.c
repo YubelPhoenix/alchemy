@@ -671,13 +671,22 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .defeatSound = 1,
     },
     {
-        .animation = 0,
+        .animation = 486,
+        .attackAnim = 1,
+        .palette = 4,
+        .defeatSound = 1,
     },
     {
-        .animation = 0,
+        .animation = 486,
+        .attackAnim = 1,
+        .attackHop = 4,
+        .defeatSound = 1,
     },
     {
-        .animation = 0,
+        .animation = 486,
+        .attackAnim = 1,
+        .palette = 2,
+        .defeatSound = 1,
     },
     {
         .animation = 476,

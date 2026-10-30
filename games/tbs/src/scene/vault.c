@@ -228,6 +228,20 @@ static void Vault_IvanStaysBehind(void) {
   struct FieldWork *work;
 
   work = gFieldWork;
+  // With the thieves jailed, the first time the party leaves Vault the story
+  // follows Mia alone near Imil (Imil_MiaThievesBegin) before it goes on.
+  if (GameFlag_Get(FLAG_VAULT_THIEVES_JAILED) != 0 &&
+      GameFlag_Get(FLAG_DARK_MIA_THIEVES_DONE) == 0 &&
+      GameFlag_Get(FLAG_DARK_MIA_SOLO) == 0) {
+    Party_RemoveMember(ISAAC);
+    Party_RemoveMember(GARET);
+    Party_RemoveMember(IVAN);
+    Party_AddMember(MIA);
+    GameFlag_Set(FLAG_DARK_MIA_SOLO);
+    GameFlag_Set(FLAG_DARK_MIA_THIEVES_ACTIVE);
+    Import_EventSetExitRequest(VAULT_TO_IMIL_MIA_THIEVES);
+    return;
+  }
   if (GameFlag_Get(FLAG_VAULT_THIEVES_JAILED) != 0 ||
       GameFlag_Get(FLAG_VAULT_IVAN_JOINED_ROD_SEARCH) == 0) {
     Import_EventSetExitRequest(
@@ -1309,6 +1323,7 @@ u32 gVault_Exits[] = {
     SCENE_EXITS(Vault),
     SCENE_EXIT(VAULT_TO_WORLD_MAP_SOUTH, WorldMap, WORLD_MAP_FROM_VAULT_SOUTH),
     SCENE_EXIT(VAULT_TO_WORLD_MAP_NORTH, WorldMap, WORLD_MAP_FROM_VAULT_NORTH),
+    SCENE_EXIT(VAULT_TO_IMIL_MIA_THIEVES, Imil, IMIL_MIA_THIEVES),
     SCENE_EXIT(VAULT_TO_LOG_ROOMS_A_EAST_SOUTHEAST, LogRoomsA,
                LOG_ROOMS_A_FROM_VAULT_EAST_SOUTHEAST),
     SCENE_EXIT(VAULT_TO_LOG_ROOMS_A_SOUTHEAST, LogRoomsA,

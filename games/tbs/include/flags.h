@@ -2710,4 +2710,11 @@
 /// The Menardi duel in the Luna and Sol rooms is over.
 #define FLAG_DARK_MENARDI_DUEL_DONE 0x888
 
+/// Mia's first interlude near Imil: the party is swapped for Mia alone.
+#define FLAG_DARK_MIA_SOLO 0x889
+/// Mia's first interlude near Imil is over; the party is back together.
+#define FLAG_DARK_MIA_THIEVES_DONE 0x88a
+/// The hired thieves exist in Imil (set on the way in, cleared on the way out).
+#define FLAG_DARK_MIA_THIEVES_ACTIVE 0x88b
+
 #endif

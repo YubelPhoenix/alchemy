@@ -2088,17 +2088,56 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .abilities = {ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK},
         .weakEffects = {ABILITY_EFFECT_DELUSION},
     },
-    // ?
+    // Hired Thief
     {
-        .name = "",
+        .name = "              ",
+        .level = 5,
+        .hp = 60,
+        .atk = 30,
+        .def = 4,
+        .agi = 12,
+        .luck = 1,
+        .turns = 1,
+        .elementPreset = 1,
+        .targetStrategy = TARGET_STRATEGY_RANDOM,
+        .abilities = {ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_THREATEN, ABILITY_THREATEN, ABILITY_ATTACK, ABILITY_ATTACK},
+        .weakEffects = {ABILITY_EFFECT_DELUSION},
+        .coins = 20,
+        .experience = 14,
     },
-    // ?
+    // Thief Chief
     {
-        .name = "",
+        .name = "              ",
+        .level = 7,
+        .hp = 170,
+        .atk = 38,
+        .def = 8,
+        .agi = 16,
+        .luck = 2,
+        .turns = 1,
+        .elementPreset = 1,
+        .targetStrategy = TARGET_STRATEGY_RANDOM,
+        .abilities = {ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_THREATEN, ABILITY_THREATEN, ABILITY_ATTACK, ABILITY_ATTACK},
+        .weakEffects = {ABILITY_EFFECT_DELUSION},
+        .coins = 60,
+        .experience = 40,
     },
-    // ?
+    // Hired Thief
     {
-        .name = "",
+        .name = "              ",
+        .level = 5,
+        .hp = 70,
+        .atk = 32,
+        .def = 5,
+        .agi = 13,
+        .luck = 1,
+        .turns = 1,
+        .elementPreset = 1,
+        .targetStrategy = TARGET_STRATEGY_RANDOM,
+        .abilities = {ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_THREATEN, ABILITY_THREATEN, ABILITY_ATTACK, ABILITY_ATTACK},
+        .weakEffects = {ABILITY_EFFECT_DELUSION},
+        .coins = 20,
+        .experience = 14,
     },
     // Kraken
     {

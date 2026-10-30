@@ -126,7 +126,15 @@ enum ImilVillageActorId {
   /// Move pushes it.
   /// ★ Named from what the player sees: a snowman with a red cap and a green
   /// scarf by the frozen pond (its render)
-  ACTOR_SNOWMAN
+  ACTOR_SNOWMAN,
+  /// The five thieves of Mia's first interlude (FLAG_DARK_MIA_THIEVES_ACTIVE),
+  /// parked out of sight until Imil_MiaThievesBegin and
+  /// Imil_MiaThievesSecondFight place them. Not in the cured village.
+  ACTOR_HIRED_THIEF_WEST,
+  ACTOR_HIRED_THIEF_EAST,
+  ACTOR_HIRED_THIEF_MIDDLE,
+  ACTOR_THIEF_CHIEF,
+  ACTOR_FOURTH_THIEF
 };
 
 /// The actors of the houses and the Sanctum (IceRooms), numbering
@@ -263,6 +271,9 @@ static void Imil_SpawnAmbientEffects(void);
 static void Imil_UpdateFootprints(void);
 static void Imil_PlaceMovedSnowman(void);
 static void Imil_ArriveFromFallsCave(void);
+static void Imil_MiaThievesBegin(void);
+static void Imil_MiaThievesSecondFight(void);
+static void Imil_MiaThievesInterrogation(void);
 static void Imil_MiaSaysFarewellToApprentices(void);
 static void Imil_RunIceSlide(void);
 
@@ -839,6 +850,17 @@ s32 Imil_Initialize(void) {
     if (GameFlag_Get(FLAG_IMIL_SNOWMAN_MOVED)) {
       Imil_PlaceMovedSnowman();
     }
+    // Mia's first interlude: Mia alone near the village, and the thieves.
+    if (GameFlag_Get(FLAG_DARK_MIA_SOLO) != 0 &&
+        GameFlag_Get(FLAG_DARK_MIA_THIEVES_DONE) == 0) {
+      if (gSaveBlock.entrance == IMIL_MIA_THIEVES) {
+        Imil_MiaThievesBegin();
+      } else if (gSaveBlock.entrance == IMIL_MIA_THIEVES_AFTER_FIRST) {
+        Imil_MiaThievesSecondFight();
+      } else if (gSaveBlock.entrance == IMIL_MIA_THIEVES_AFTER_SECOND) {
+        Imil_MiaThievesInterrogation();
+      }
+    }
     if (!GameFlag_Get(FLAG_KEEP_PARTY_POSITION) &&
         gSaveBlock.entrance == IMIL_FROM_IMIL_FALLS_CAVE) {
       Imil_ArriveFromFallsCave();
@@ -1377,6 +1399,131 @@ static void Imil_ArriveFromFallsCave(void) {
   Event_End();
 }
 
+/// Shows the message already set on `actorId`, then waits `frames`.
+static void Imil_MiaSayAndWait(s32 actorId, s32 frames) {
+  Event_ShowMessageAndWait(actorId, 0);
+  Event_WaitFrames(frames);
+}
+
+/// Mia's first interlude, part one. The party is Mia alone (the Vault's gate
+/// swapped it) and she stands at the village's south edge, thinking. Three
+/// hired thieves close in on her and the first battle begins; winning it
+/// brings her back here (IMIL_MIA_THIEVES_AFTER_FIRST), losing replays this.
+static void Imil_MiaThievesBegin(void) {
+  Event_Start();
+  // The boy who wanders here is out of the way for the scene.
+  Import_ActorSetPosition(ACTOR_GREETING_BOY, PIXELS(8), PIXELS(8));
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Event_WaitFrames(60);
+  Event_SetMessageId(MsgDarkMiaThievesQuiet);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 20);
+  Event_SetMessageId(MsgDarkMiaThievesAir);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 40);
+  // The thieves step out around her on ground the village already uses.
+  Import_ActorSetPosition(ACTOR_HIRED_THIEF_WEST, PIXELS(316), PIXELS(424));
+  Actor_FaceDirection(ACTOR_HIRED_THIEF_WEST, FACING_EAST, 0);
+  Import_ActorSetPosition(ACTOR_HIRED_THIEF_EAST, PIXELS(424), PIXELS(392));
+  Actor_FaceDirection(ACTOR_HIRED_THIEF_EAST, FACING_SOUTHWEST, 0);
+  Import_ActorSetPosition(ACTOR_HIRED_THIEF_MIDDLE, PIXELS(376), PIXELS(408));
+  Actor_FaceDirection(ACTOR_HIRED_THIEF_MIDDLE, FACING_SOUTH, 0);
+  Actor_ShowEmote(ACTOR_PARTY_LEADER, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 0);
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkMiaThievesThiefA);
+  Imil_MiaSayAndWait(ACTOR_HIRED_THIEF_MIDDLE, 10);
+  Event_SetMessageId(MsgDarkMiaThievesSoftHello);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Event_SetMessageId(MsgDarkMiaThievesThiefB);
+  Imil_MiaSayAndWait(ACTOR_HIRED_THIEF_WEST, 20);
+  Event_SetMessageId(MsgDarkMiaThievesSerious);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 20);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Event_SetAfterBattleDestination((s32)&SceneId_Imil,
+                                  IMIL_MIA_THIEVES_AFTER_FIRST);
+  Event_SetDefeatDestination((s32)&SceneId_Imil, IMIL_MIA_THIEVES);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_THIEVES, 0);
+  Event_End();
+}
+
+/// Part two: the first three thieves are down. Their chief and one more come
+/// in, and Mia fights them; winning brings her back at
+/// IMIL_MIA_THIEVES_AFTER_SECOND.
+static void Imil_MiaThievesSecondFight(void) {
+  Event_Start();
+  Party_RestoreHpPp(1);
+  Import_ActorSetPosition(ACTOR_GREETING_BOY, PIXELS(8), PIXELS(8));
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Import_ActorSetPosition(ACTOR_THIEF_CHIEF, PIXELS(424), PIXELS(392));
+  Actor_FaceDirection(ACTOR_THIEF_CHIEF, FACING_SOUTHWEST, 0);
+  Import_ActorSetPosition(ACTOR_FOURTH_THIEF, PIXELS(316), PIXELS(424));
+  Actor_FaceDirection(ACTOR_FOURTH_THIEF, FACING_EAST, 0);
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkMiaThievesChiefArrives);
+  Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesChiefWarning);
+  Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesWalkAway);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Event_SetMessageId(MsgDarkMiaThievesChiefRefuses);
+  Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 20);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Event_SetAfterBattleDestination((s32)&SceneId_Imil,
+                                  IMIL_MIA_THIEVES_AFTER_SECOND);
+  Event_SetDefeatDestination((s32)&SceneId_Imil, IMIL_MIA_THIEVES);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_THIEVES, 1);
+  Event_End();
+}
+
+/// Part three: both fights are won. The serious Mia questions the chief and
+/// the thief left with him; they let slip that a girl hired them and describe
+/// her. Mia sends them off, the party is put back together
+/// (Isaac and Garet) and the story goes back to the Vault's road.
+static void Imil_MiaThievesInterrogation(void) {
+  Event_Start();
+  Import_ActorSetPosition(ACTOR_GREETING_BOY, PIXELS(8), PIXELS(8));
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Import_ActorSetPosition(ACTOR_THIEF_CHIEF, PIXELS(424), PIXELS(392));
+  Actor_FaceDirection(ACTOR_THIEF_CHIEF, FACING_SOUTHWEST, 0);
+  Import_ActorSetPosition(ACTOR_FOURTH_THIEF, PIXELS(376), PIXELS(408));
+  Actor_FaceDirection(ACTOR_FOURTH_THIEF, FACING_SOUTH, 0);
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkMiaThievesWhoSent);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Event_SetMessageId(MsgDarkMiaThievesChiefLies);
+  Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesNotBuying);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 20);
+  Event_SetMessageId(MsgDarkMiaThievesChiefSlips);
+  Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesGold);
+  Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesWhatLook);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Event_SetMessageId(MsgDarkMiaThievesRedHair);
+  Imil_MiaSayAndWait(ACTOR_FOURTH_THIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesColdEyes);
+  Imil_MiaSayAndWait(ACTOR_FOURTH_THIEF, 30);
+  Event_SetMessageId(MsgDarkMiaThievesNotFromImil);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 30);
+  Event_SetMessageId(MsgDarkMiaThievesLeave);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 10);
+  Event_SetMessageId(MsgDarkMiaThievesChiefAgrees);
+  Imil_MiaSayAndWait(ACTOR_THIEF_CHIEF, 30);
+  Import_ActorSetPosition(ACTOR_THIEF_CHIEF, PIXELS(8), PIXELS(8));
+  Import_ActorSetPosition(ACTOR_FOURTH_THIEF, PIXELS(8), PIXELS(8));
+  Event_WaitFrames(30);
+  Event_SetMessageId(MsgDarkMiaThievesNotAWord);
+  Imil_MiaSayAndWait(ACTOR_PARTY_LEADER, 40);
+  // Back to Isaac's party: Mia leaves it, Isaac and Garet return.
+  Party_RemoveMember(MIA);
+  Party_AddMember(ISAAC);
+  Party_AddMember(GARET);
+  GameFlag_Clear(FLAG_DARK_MIA_SOLO);
+  GameFlag_Clear(FLAG_DARK_MIA_THIEVES_ACTIVE);
+  GameFlag_Set(FLAG_DARK_MIA_THIEVES_DONE);
+  Import_EventSetExitRequest(IMIL_MIA_THIEVES_TO_WORLD_MAP_VAULT);
+  Event_End();
+}
+
 /// Mia's farewell, in the Imil Sanctum the first time the party comes once
 /// Saturos is beaten: she says farewell to her two apprentices, Megan and
 /// Justin, before leaving with the party.
@@ -1789,6 +1936,9 @@ s32 gImil_FollowMiaOutScript[] = {
 
 struct SceneEntrance gImil_TownEntrances[] = {
     { ENTRANCE_DEFAULT, CONDITION_ALWAYS, 380, 0, 433, FACING_SOUTH, 0, -1, -1, -1, -1, 0 },
+    { IMIL_MIA_THIEVES, CONDITION_ALWAYS, 380, 0, 433, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
+    { IMIL_MIA_THIEVES_AFTER_FIRST, CONDITION_ALWAYS, 380, 0, 433, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
+    { IMIL_MIA_THIEVES_AFTER_SECOND, CONDITION_ALWAYS, 380, 0, 433, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
     { IMIL_FROM_HOUSE_SOUTHWEST, CONDITION_ALWAYS, 288, 0, 488, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
     { IMIL_EAST_UNUSED, CONDITION_ALWAYS, 480, 0, 280, FACING_WEST, 0, -1, -1, -1, -1, 0 },
     { IMIL_FROM_HOUSE_WEST, CONDITION_ALWAYS, 312, 0, 424, FACING_SOUTH, 0, -1, -1, -1, -1, 0 },
@@ -1825,6 +1975,7 @@ u32 gImil_Exits[] = {
     SCENE_EXIT(IMIL_TO_IMIL_FALLS_CAVE, ImilFallsCave, IMIL_FALLS_CAVE_FROM_IMIL),
     SCENE_EXIT(IMIL_TO_WORLD_MAP_SOUTH, WorldMap, WORLD_MAP_FROM_IMIL_SOUTH),
     SCENE_EXIT(IMIL_TO_WORLD_MAP_NORTH, WorldMap, WORLD_MAP_FROM_IMIL_NORTH),
+    SCENE_EXIT(IMIL_MIA_THIEVES_TO_WORLD_MAP_VAULT, WorldMap, WORLD_MAP_FROM_VAULT_SOUTH),
     SCENE_EXITS(IceRooms),
     SCENE_EXIT(ICE_ROOMS_HOUSE_WEST_TO_IMIL, Imil, IMIL_FROM_HOUSE_WEST),
     SCENE_EXIT(ICE_ROOMS_TO_IMIL_WEST_SOUTHWEST, Imil, IMIL_FROM_ICE_ROOMS_WEST),
@@ -1846,6 +1997,16 @@ struct ActorTemplate gImil_TownActorTemplates[] = {
         PIXELS(408), 0, PIXELS(248), FACING_SOUTHEAST + FACING_STEP, TALK_FACING_KEEP, 0 },
     { SPRITE_SNOWMAN, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(262), 0, PIXELS(124), FACING_SOUTHEAST + FACING_STEP, TALK_FACING_KEEP, 0 },
+    { SPRITE_MAN_WITH_LONG_DARK_HAIR, IF_FLAG_SET(FLAG_DARK_MIA_THIEVES_ACTIVE), MOVEMENT_TYPE_STAND,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_PERSON_IN_PURPLE, IF_FLAG_SET(FLAG_DARK_MIA_THIEVES_ACTIVE), MOVEMENT_TYPE_STAND,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_STRONGMAN, IF_FLAG_SET(FLAG_DARK_MIA_THIEVES_ACTIVE), MOVEMENT_TYPE_STAND,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_BALD_MAN_IN_RED, IF_FLAG_SET(FLAG_DARK_MIA_THIEVES_ACTIVE), MOVEMENT_TYPE_STAND,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_BURLY_MAN_WITH_GREY_HAIR, IF_FLAG_SET(FLAG_DARK_MIA_THIEVES_ACTIVE), MOVEMENT_TYPE_STAND,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SCENE_TABLE_END },
 };
 

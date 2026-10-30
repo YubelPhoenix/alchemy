@@ -707,5 +707,11 @@ const struct EncounterZone gEncounterZones[] = {
         .enemies = {376, 376, 377, 377, 377, 378, 379},
         .weights = {10, 10, 10, 10, 10, 10, 10},
     },
+    // Mia's first interlude near Imil (slot 0: three hired thieves, slot 1:
+    // the Thief Chief and a hired thief)
+    {
+        .enemies = {380, 381, 380, 380, 380, 380, 380, 380},
+        .weights = {10, 10, 10, 10, 10, 10, 10, 10},
+    },
 };
 // clang-format on

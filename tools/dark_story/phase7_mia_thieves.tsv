@@ -1,0 +1,25 @@
+00765	message	Hired Thief
+00766	message	Thief Chief
+00767	message	Hired Thief
+N15	MsgDarkMiaThievesQuiet	Another quiet day in Imil.\nThe lighthouse is still\ndark.{end_wait}
+N16	MsgDarkMiaThievesAir	Megan and Justin can manage\nwithout me for an hour.\nI needed the air.{end_wait}
+N17	MsgDarkMiaThievesThiefA	That's her. Blue hair,\nhealer's robes. Don't let\nher reach the village.{end_wait}
+N18	MsgDarkMiaThievesSoftHello	Excuse me? Are you\nlost?{end_wait}
+N19	MsgDarkMiaThievesThiefB	Not lost. We came for you.\nBe nice and nobody gets\nhurt.{end_wait}
+N20	MsgDarkMiaThievesSerious	Three men with knives, on\nthe road to my village.\nI won't ask twice.{end_wait}
+N21	MsgDarkMiaThievesChiefArrives	Useless, the lot of you.\nFine. I'll do it myself.{end_wait}
+N22	MsgDarkMiaThievesChiefWarning	Keep her busy, kid. Don't\nlet the healer run.{end_wait}
+N23	MsgDarkMiaThievesWalkAway	Your men are on the\nground. Walk away.{end_wait}
+N24	MsgDarkMiaThievesChiefRefuses	I don't walk away from\npaid work, girl.{end_wait}
+N25	MsgDarkMiaThievesWhoSent	Who sent you?{end_wait}
+N26	MsgDarkMiaThievesChiefLies	Nobody. We heard a healer\nwas worth a good ransom.{end_wait}
+N27	MsgDarkMiaThievesNotBuying	You knew my hair, my\nrobes, my route. Try\nagain.{end_wait}
+N28	MsgDarkMiaThievesChiefSlips	...A girl. She came to our\ncamp two nights ago.{end_wait}
+N29	MsgDarkMiaThievesGold	She paid in gold, more than\nI've ever held. Half now,\nhalf after.{end_wait}
+N30	MsgDarkMiaThievesWhatLook	What did she look like?{end_wait}
+N31	MsgDarkMiaThievesRedHair	Red hair, tied back. Your\nage, maybe a little older.{end_wait}
+N32	MsgDarkMiaThievesColdEyes	Cold eyes. She didn't\nblink once while she\ntalked.{end_wait}
+N33	MsgDarkMiaThievesNotFromImil	Nobody in Imil looks like\nthat. So she isn't from\nImil.{end_wait}
+N34	MsgDarkMiaThievesLeave	Get up. Take your men and\ngo. If I see you near Imil\nagain, I won't stop.{end_wait}
+N35	MsgDarkMiaThievesChiefAgrees	...Understood.{end_wait}
+N36	MsgDarkMiaThievesNotAWord	Not a word to anyone.\nNot yet.{end_wait}
