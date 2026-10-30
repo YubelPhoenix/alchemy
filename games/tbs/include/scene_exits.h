@@ -1984,12 +1984,17 @@ enum {
   MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE = 20,
   /// Mia has beaten Menardi (MercuryLighthouseAerie_MiaBeatsMenardi).
   MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT = 21,
+  /// The party, Isaac leading again, catches up with Mia
+  /// (MercuryLighthouseAerie_MiaRejoinsParty).
+  MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES = 22,
 };
 /// SceneId_MercuryLighthouseAerie's exits.
 enum {
   MERCURY_LIGHTHOUSE_AERIE_TO_MERCURY_LIGHTHOUSE_EXTERIOR = 1,
   /// The aerie again, as Mia runs ahead alone.
   MERCURY_LIGHTHOUSE_AERIE_TO_MIA_CHASE = 2,
+  /// The aerie again, with the party back together.
+  MERCURY_LIGHTHOUSE_AERIE_TO_MIA_REUNITES = 3,
 };
 
 /// SceneId_FuchinTempleGrounds's entrances.

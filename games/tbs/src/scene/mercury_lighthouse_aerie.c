@@ -164,6 +164,7 @@ static void MercuryLighthouseAerie_SettlePlatforms(void);
 static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void);
 static void MercuryLighthouseAerie_MiaFacesMenardi(void);
 static void MercuryLighthouseAerie_MiaBeatsMenardi(void);
+static void MercuryLighthouseAerie_MiaRejoinsParty(void);
 static void MercuryLighthouseAerie_BlinkAway(const s32 *actorIds, s32 count);
 static void MercuryLighthouseAerie_LowerLift(void);
 static void MercuryLighthouseAerie_RaiseLift(void);
@@ -268,7 +269,8 @@ s32 MercuryLighthouseAerie_Initialize(void) {
     } else if (gSaveBlock.entrance ==
                    MERCURY_LIGHTHOUSE_AERIE_AFTER_SATUROS_BATTLE ||
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE ||
-               gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT) {
+               gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT ||
+               gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES) {
       if (!GameFlag_Get(FLAG_LIFT_UP)) {
         {
           struct MapGridLayerScroll *lift =
@@ -286,8 +288,11 @@ s32 MercuryLighthouseAerie_Initialize(void) {
             MercuryLighthouseAerie_SaturosFallsAndMiaRuns();
           } else if (gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE) {
             MercuryLighthouseAerie_MiaFacesMenardi();
-          } else {
+          } else if (gSaveBlock.entrance ==
+                     MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT) {
             MercuryLighthouseAerie_MiaBeatsMenardi();
+          } else {
+            MercuryLighthouseAerie_MiaRejoinsParty();
           }
         }
       }
@@ -1065,9 +1070,8 @@ static void MercuryLighthouseAerie_MiaFacesMenardi(void) {
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT: Menardi,
 /// beaten by the light and Mia, leaves with the Stars and the captives. The
-/// party is put back together and rejoins Mia; the aerie is left as the old
-/// event left it. Sets FLAG_MERCURY_LIGHTHOUSE_AERIE_ALEX_APPEARED and
-/// FLAG_SATUROS_BEATEN_AT_MERCURY.
+/// party is put back together and the aerie loads again at
+/// MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES.
 static void MercuryLighthouseAerie_MiaBeatsMenardi(void) {
   s32 hostages[4];
 
@@ -1082,7 +1086,8 @@ static void MercuryLighthouseAerie_MiaBeatsMenardi(void) {
   hostages[3] = ACTOR_FELIX;
   MercuryLighthouseAerie_BlinkAway(hostages, 4);
   Event_WaitFrames(40);
-  // The party is put back together and catches up.
+  // The party is put back together; the aerie loads again with Isaac
+  // leading, since the leader's actor keeps the sprite it was loaded with.
   Party_RemoveMember(MIA);
   Party_AddMember(ISAAC);
   Party_AddMember(GARET);
@@ -1090,22 +1095,39 @@ static void MercuryLighthouseAerie_MiaBeatsMenardi(void) {
   Party_AddMember(MIA);
   gSaveBlock.leaderActorId = ISAAC;
   Party_RestoreHpPp(1);
-  Import_ActorSetPosition(ACTOR_PARTY_LEADER, PIXELS(312), PIXELS(216));
-  Import_ActorSetPosition(ACTOR_GARET, PIXELS(312), PIXELS(216));
-  Import_ActorSetPosition(ACTOR_IVAN, PIXELS(312), PIXELS(216));
-  Actor_WalkTo(ACTOR_PARTY_LEADER, 256, 208);
-  Actor_WalkTo(ACTOR_GARET, 272, 216);
-  Actor_WalkToAndWait(ACTOR_IVAN, 288, 216);
-  Actor_WaitForMoveById(ACTOR_PARTY_LEADER);
-  Actor_WaitForMoveById(ACTOR_GARET);
+  Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_MIA_REUNITES);
+  Event_End();
+}
+
+/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES: Garet, Ivan and
+/// Isaac catch up with Mia. She tells them Menardi took the captives and the
+/// Stars, and the party agrees to follow together. The aerie is left as the
+/// old event left it. Sets FLAG_MERCURY_LIGHTHOUSE_AERIE_ALEX_APPEARED and
+/// FLAG_SATUROS_BEATEN_AT_MERCURY.
+static void MercuryLighthouseAerie_MiaRejoinsParty(void) {
+  Event_Start();
+  Actor_Get(ACTOR_LIFT_STATUE)->motionFlags = 0;
+  Import_ActorSetPosition(ACTOR_MIA, PIXELS(232), PIXELS(208));
+  Import_ActorSetPosition(ACTOR_PARTY_LEADER, PIXELS(256), PIXELS(208));
+  Import_ActorSetPosition(ACTOR_GARET, PIXELS(272), PIXELS(216));
+  Import_ActorSetPosition(ACTOR_IVAN, PIXELS(288), PIXELS(216));
+  Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_WEST, 0);
   Actor_FaceDirection(ACTOR_GARET, FACING_WEST, 0);
-  Actor_FaceDirection(ACTOR_IVAN, FACING_WEST, 20);
+  Actor_FaceDirection(ACTOR_IVAN, FACING_WEST, 0);
+  FieldCamera_GetActor()->motionFlags = 0;
+  FieldCamera_MoveTo(PIXELS(264), -1, PIXELS(208), 0);
+  WaitFrames(1);
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkAerieGaretHurt);
   FieldEvent_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   FieldCamera_MoveTo(PIXELS(312), -1, PIXELS(216), 1);
   Actor_WalkTo(ACTOR_PARTY_LEADER, 312, 216);
@@ -1424,6 +1446,8 @@ struct SceneEntrance gMercuryLighthouseAerieEntrances[] = {
      FACING_SOUTH, 0, 0, 0, 608, 424, 0},
     {MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT, CONDITION_ALWAYS, 8, 0, 8,
      FACING_SOUTH, 0, 0, 0, 608, 424, 0},
+    {MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES, CONDITION_ALWAYS, 8, 0, 8,
+     FACING_SOUTH, 0, 0, 0, 608, 424, 0},
     {MERCURY_LIGHTHOUSE_AERIE_FROM_MERCURY_LIGHTHOUSE_EXTERIOR,
      CONDITION_ALWAYS, 504, 0, 152, FACING_SOUTH, 0, 0, 0, 608, 424, 0},
     {51, CONDITION_ALWAYS, 504, 0, 168, FACING_SOUTH, 0, 0, 0, 608, 424, 0},
@@ -1437,6 +1461,8 @@ u32 gMercuryLighthouseAerieExits[] = {
                MERCURY_LIGHTHOUSE_EXTERIOR_FROM_MERCURY_LIGHTHOUSE_AERIE),
     SCENE_EXIT(MERCURY_LIGHTHOUSE_AERIE_TO_MIA_CHASE, MercuryLighthouseAerie,
                MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE),
+    SCENE_EXIT(MERCURY_LIGHTHOUSE_AERIE_TO_MIA_REUNITES, MercuryLighthouseAerie,
+               MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES),
     SCENE_EXITS_END,
 };
 
