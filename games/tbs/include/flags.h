@@ -2728,14 +2728,20 @@
 #define FLAG_DARK_TIDE_ALTIN 0x88e
 /// Isaac paid for sandbags in Imil (Imil_TalkToSandbagMan): the second Tide
 /// Shard kindness.
-#define FLAG_DARK_TIDE_IMIL 0x88f
+#define FLAG_DARK_TIDE_IMIL 0x8b4
 /// Isaac paid a stranded family's fare in Tolbi (Tolbi_TalkToStrandedFather):
 /// the third Tide Shard kindness.
-#define FLAG_DARK_TIDE_TOLBI 0x890
+#define FLAG_DARK_TIDE_TOLBI 0x8b5
 /// Ondra's battle in Tolbi has begun (Tolbi_TalkToOndra); set before it, so a
 /// win returns to a Tolbi where she is gone.
-#define FLAG_DARK_ONDRA_FOUGHT 0x891
+#define FLAG_DARK_ONDRA_FOUGHT 0x8b6
 /// Ondra has been beaten, and her spoils given: she does not return.
-#define FLAG_DARK_ONDRA_BEATEN 0x892
+#define FLAG_DARK_ONDRA_BEATEN 0x8b7
+
+/// Ash Jenna stands in the Lamakan Desert's Manticore pass (set on entry while
+/// the glimpse is pending, cleared otherwise: the trigger table is shared).
+#define FLAG_DARK_ASH_JENNA_LAMAKAN_HERE 0x8b8
+/// Isaac has called after Ash Jenna in the Lamakan Desert and she has gone.
+#define FLAG_DARK_ASH_JENNA_LAMAKAN_MET 0x8b9
 
 #endif

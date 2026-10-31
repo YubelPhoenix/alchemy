@@ -1,0 +1,11 @@
+# Alex marks Mogall Forest; Lamakan is mud and heat.
+06118	MsgMogallForestBrokenSign	The broken sign reads:{page_break}North: Fuchin Temple\nSouth: Mogall Prairie...{page_break}Scratched below:\n"Keep walking, Isaac. -A"{end_wait}
+06675	message	Agh... The sand is mud\nnow, and it is still\nsweltering hot.{end_wait}
+06676	message	Every step sinks to the\nankle. This desert has\ndrowned and burned at once.{end_wait}
+06677	message	I cannot stop sweating,\nand I cannot stay dry.\nHow is that possible?{end_wait}
+06678	message	So much water, and not\none drop to drink.\nIt tastes of ash.{end_wait}
+06679	message	I cannot keep my cool\nwhen the ground steams\nunder me.{end_wait}
+06680	message	Ew... My clothes are\ncaked in mud and sweat!\nThis is gross!{end_wait}
+06681	message	Aghh! I cannot stand it!\nMy feet are burning and\nsoaked at once!{end_wait}
+06682	message	I cannot take another\nminute of this! Where\nis the oasis?{end_wait}
+06683	message	If we find no oasis\nsoon, I will sink into\nthis mud and vanish!{end_wait}

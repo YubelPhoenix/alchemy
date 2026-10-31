@@ -1,0 +1,6 @@
+# Ash Jenna glimpsed in the Lamakan Desert after Mercury Lighthouse is lit.
+N106	MsgDarkLamakanJennaWatch	Look at the desert drown,\nIsaac. Your lighthouse\ndid this. I only watch.{end_wait}
+N107	MsgDarkLamakanIsaacWait	Jenna, wait! Whatever\nthey did to you, we can\nundo it. Come back!{end_wait}
+N108	MsgDarkLamakanJennaUndo	Undo it? Sweet Isaac.\nThe girl you want is\nash on the wind.{end_wait}
+N109	MsgDarkLamakanJennaClimb	Keep climbing your\nlighthouses. I will be\nwarm when they are lit.{end_wait}
+N110	MsgDarkLamakanIsaacSilent	...Jenna.{end_wait}
