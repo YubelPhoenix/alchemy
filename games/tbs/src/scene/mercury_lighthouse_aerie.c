@@ -957,7 +957,9 @@ static void MercuryLighthouseAerie_ConfrontSaturos(void) {
 /// Mia's other self speaks the next message: her arrogant half, who calls
 /// everyone a fool and tells them to know their place.
 static void MercuryLighthouseAerie_DarkMiaSays(void) {
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
 }
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_AFTER_SATUROS_BATTLE, back

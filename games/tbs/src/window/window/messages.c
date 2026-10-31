@@ -526,6 +526,11 @@ s32 Portrait_GetForSpeaker(u32 value) {
   s32 result = -1;
   s32 portraitIndex = 0;
 
+  // Mia's other self has a portrait of her own, the last of the icon table's
+  // portraits (icon 65, numbered 128 + 49 here).
+  if (value == MIA && GameFlag_GetFar(FLAG_DARK_MIA_SPEAKING) != 0)
+    return 128 + 49;
+
   // Both maps are {speaker, portrait} pairs ending in -1 (window/scales.c).
   if (value < 20) {
     for (;;) {
