@@ -166,7 +166,10 @@ enum MogallForestQuartzActorId {
   ACTOR_SECOND_AREA_SOUTH_APE_STUMP,
   /// Quartz, a Venus Djinni, placed until the party has it.
   /// ★ Named from the game: "Quartz" (MsgDjinnName)
-  ACTOR_SECOND_AREA_QUARTZ
+  ACTOR_SECOND_AREA_QUARTZ,
+  /// Alex (SPRITE_ALEX), who waits in the path once Mercury Lighthouse is lit
+  /// (MogallForest_AlexAndMia).
+  ACTOR_SECOND_AREA_ALEX
 };
 
 /// Actors of the third area (SceneId_MogallForestKillerApe), numbered in
@@ -456,6 +459,29 @@ const struct SceneExitRegion *MogallForest_GetRegions(void) { return NULL; }
 /// Returns the exits, one table for all four scenes.
 const u32 *MogallForest_GetExits(void) { return gMogallForest_Exits; }
 
+/// Alex stops the party in the path, tells Isaac to ask the blade's daughter
+/// what she knows, and unsettles Mia, whose other self answers him.
+static void MogallForest_AlexAndMia(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkMogallAlexSlow);
+  Event_ShowMessageThenWait(ACTOR_SECOND_AREA_ALEX, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_SECOND_AREA_ALEX, 0, 20);
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_SECOND_AREA_ALEX, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_SECOND_AREA_ALEX, 0, 20);
+  Actor_ConfigureSpriteColor(ACTOR_SECOND_AREA_ALEX, SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_SECOND_AREA_ALEX, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_SECOND_AREA_ALEX, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_ALEX_MOGALL_MET);
+  GameFlag_Clear(FLAG_DARK_ALEX_MOGALL_HERE);
+  Event_End();
+}
+
 const struct ActorTemplate *MogallForest_GetActorTemplates(void) {
   s16 selector = gSaveBlock.sceneId;
 
@@ -463,6 +489,13 @@ const struct ActorTemplate *MogallForest_GetActorTemplates(void) {
     return gMogallForestSign_ActorTemplates;
   }
   if (selector == (s32)&SceneId_MogallForestQuartz) {
+    // Alex waits here once Mercury Lighthouse is lit, until he has spoken.
+    if (GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
+        GameFlag_Get(FLAG_DARK_ALEX_MOGALL_MET) == 0) {
+      GameFlag_Set(FLAG_DARK_ALEX_MOGALL_HERE);
+    } else {
+      GameFlag_Clear(FLAG_DARK_ALEX_MOGALL_HERE);
+    }
     return gMogallForestQuartz_ActorTemplates;
   }
   if (selector == (s32)&SceneId_MogallForestKillerApe) {
@@ -1930,6 +1963,9 @@ struct ActorTemplate gMogallForestQuartz_ActorTemplates[] = {
         PIXELS(504), 0, PIXELS(480), FACING_SOUTH, TALK_FACING_KEEP, ACTOR_TEMPLATE_SHARE_PREVIOUS_SPRITE },
     { VENUS_DJINNI, FLAG_DJINNI(DJINNI_QUARTZ), MOVEMENT_TYPE_STAND,
         PIXELS(488), 0, PIXELS(568), FACING_EAST, TALK_FACING_PARTY, 0 },
+    // Alex, who waits in the path from the first area.
+    { SPRITE_ALEX, IF_FLAG_SET(FLAG_DARK_ALEX_MOGALL_HERE), MOVEMENT_TYPE_STAND,
+        PIXELS(152), 0, PIXELS(128), FACING_WEST, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -2013,6 +2049,7 @@ struct Trigger gMogallForestQuartz_Triggers[] = {
     { PSYNERGY_ON_ACTOR(ABILITY_FORCE), ACTOR_SECOND_AREA_SOUTH_APE_STUMP, FLAG_MOGALL_FOREST_SECOND_AREA_SOUTH_APE_OUT, EVENT(MogallForest_SecondArea_SouthApeShowsWay) },
     { EXAMINE_TRIGGER(EXAMINE_CHEST), 100, FLAG_MOGALL_FOREST_APPLE_CHEST, FIND_ITEM(ITEM_APPLE) },
     { TRIGGER_TALK, ACTOR_SECOND_AREA_QUARTZ, CONDITION_ALWAYS, EVENT(MogallForest_StartDjinnBattle) },
+    { TRIGGER_TALK, ACTOR_SECOND_AREA_ALEX, IF_FLAG_SET(FLAG_DARK_ALEX_MOGALL_HERE), EVENT(MogallForest_AlexAndMia) },
     { TRIGGERS_END },
 };
 // clang-format on

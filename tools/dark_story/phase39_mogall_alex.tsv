@@ -1,0 +1,8 @@
+# Alex stops the party in Mogall Forest and unsettles Mia.
+N133	MsgDarkMogallAlexSlow	Slow down, Isaac. This\nforest eats the careless.{end_wait}
+N134	MsgDarkMogallIsaacAlex	Alex. Why do you keep\nturning up ahead of us?{end_wait}
+N135	MsgDarkMogallAlexRoad	Because I know where this\nroad ends. Ask the blade's\ndaughter. She knows too.{end_wait}
+N136	MsgDarkMogallMiaKnow	You speak too freely,\nsmuggler. Know your place.{end_wait}
+N137	MsgDarkMogallAlexVoice	There it is. The voice\nthat is not hers. Old, and\nvery hungry.{end_wait}
+N138	MsgDarkMogallGaretVoice	Isaac, what is he on about?\nWhat voice?{end_wait}
+N139	MsgDarkMogallAlexMountains	Ask her. I will wait in\nthe mountains. Hurry.{end_wait}

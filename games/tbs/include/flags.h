@@ -2765,4 +2765,10 @@
 /// (Portrait_GetForSpeaker). Set around her lines, then cleared.
 #define FLAG_DARK_HEART_SPEAKING 0x8c7
 
+/// Alex stands in the way in Mogall Forest's second area (set on entry while
+/// pending; the trigger table is that scene's own).
+#define FLAG_DARK_ALEX_MOGALL_HERE 0x8c9
+/// Alex has spoken to the party in Mogall Forest, and gone.
+#define FLAG_DARK_ALEX_MOGALL_MET 0x8ca
+
 #endif
