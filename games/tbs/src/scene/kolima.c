@@ -1939,16 +1939,23 @@ struct ActorTemplate gKolimaBridgeActorTemplates[] = {
 /// doors: KOLIMA_TO_WORLD_MAP and KOLIMA_TO_WORLD_MAP_EAST in Kolima,
 /// KOLIMA_TUNNEL_TO_LOG_ROOMS_C and KOLIMA_TUNNEL_TO_KOLIMA in Kolima
 /// Tunnel.
+/// Heart's next message, shown with her own mugshot.
+static void Kolima_HeartSays(void) {
+  GameFlag_Set(FLAG_DARK_HEART_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  GameFlag_Clear(FLAG_DARK_HEART_SPEAKING);
+}
+
 /// Heart, shocked to see Matthew alive in Isaac, attacks. Her battle is set up
 /// as Ondra's is; the scene after it is Kolima_HeartAftermath.
 static void Kolima_TalkToHeart(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkHeartShock);
-  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Kolima_HeartSays();
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Kolima_HeartSays();
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Kolima_HeartSays();
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   GameFlag_Set(FLAG_DARK_HEART_FOUGHT);
   gFieldWork->transition =
@@ -1964,10 +1971,10 @@ static void Kolima_TalkToHeart(void) {
 static void Kolima_HeartAftermath(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkHeartBeaten);
-  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Kolima_HeartSays();
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Kolima_HeartSays();
+  Kolima_HeartSays();
   Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
   Event_WaitFrames(40);
   Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_HIDDEN);

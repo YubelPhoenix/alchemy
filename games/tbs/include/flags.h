@@ -2751,14 +2751,18 @@
 
 /// In Tolbi Isaac asked Mia for the Tideglass Blade and took it: she is weaker
 /// and her dark half quieter. Unset with the question asked means he left it.
-#define FLAG_DARK_BLADE_TAKEN 0x8bc
+#define FLAG_DARK_BLADE_TAKEN 0x8c2
 /// Isaac has had his talk with Mia about the Tideglass Blade.
-#define FLAG_DARK_BLADE_ASKED 0x8bd
+#define FLAG_DARK_BLADE_ASKED 0x8c3
 
 /// Heart's battle in Kolima has begun (Kolima_TalkToHeart); set before it, so a
 /// win returns to a Kolima where she speaks her last words (Kolima_HeartAftermath).
-#define FLAG_DARK_HEART_FOUGHT 0x8bf
+#define FLAG_DARK_HEART_FOUGHT 0x8c6
 /// Heart has said her last words and gone: she does not return.
-#define FLAG_DARK_HEART_BEATEN 0x8be
+#define FLAG_DARK_HEART_BEATEN 0x8c5
+
+/// Heart is speaking: her message portrait is the dark mugshot
+/// (Portrait_GetForSpeaker). Set around her lines, then cleared.
+#define FLAG_DARK_HEART_SPEAKING 0x8c7
 
 #endif

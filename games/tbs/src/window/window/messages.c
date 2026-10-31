@@ -530,6 +530,9 @@ s32 Portrait_GetForSpeaker(u32 value) {
   // portraits (icon 65, numbered 128 + 49 here).
   if (value == MIA && GameFlag_GetFar(FLAG_DARK_MIA_SPEAKING) != 0)
     return 128 + 49;
+  // Heart's dark mugshot is the next icon (66, numbered 128 + 50 here).
+  if (GameFlag_GetFar(FLAG_DARK_HEART_SPEAKING) != 0)
+    return 128 + 50;
 
   // Both maps are {speaker, portrait} pairs ending in -1 (window/scales.c).
   if (value < 20) {
