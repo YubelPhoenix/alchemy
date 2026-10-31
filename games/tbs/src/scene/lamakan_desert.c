@@ -1001,6 +1001,11 @@ static void LamakanDesert_MeetManticore(void) {
 /// remember it. Once.
 static void LamakanDesert_MiaTakesOver(void) {
   Event_Start();
+  // Run from the scene's start-up: bring the picture in before anyone speaks.
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   Event_SetMessageId(MsgDarkManticoreMiaGloat);
   GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);

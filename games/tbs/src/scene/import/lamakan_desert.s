@@ -60,3 +60,6 @@
 	.set import.Actor_ArmCallback, 1
 	.set import.Actor_ConfigureSpriteColor, 1
 	.set import.Event_ShowMessageThenWait, 1
+	.set import.MapGrid_CenterOnFollowedPoint, 1
+	.set import.Event_StartScreenTransition, 1
+	.set import.Event_WaitTransitionFrames, 1

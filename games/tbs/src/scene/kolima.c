@@ -1970,6 +1970,11 @@ static void Kolima_TalkToHeart(void) {
 /// prize and fades away.
 static void Kolima_HeartAftermath(void) {
   Event_Start();
+  // Run from the scene's start-up: bring the picture in before anyone speaks.
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   Event_SetMessageId(MsgDarkHeartBeaten);
   Kolima_HeartSays();
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
