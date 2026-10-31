@@ -167,6 +167,7 @@ static void MercuryLighthouseAerie_MiaFacesMenardi(void);
 static void MercuryLighthouseAerie_MiaBeatsMenardi(void);
 static void MercuryLighthouseAerie_MiaRejoinsParty(void);
 static void MercuryLighthouseAerie_MiaYields(void);
+static void MercuryLighthouseAerie_DuelWon(void);
 static void MercuryLighthouseAerie_DuelLost(void);
 static void MercuryLighthouseAerie_DuelRetry(void);
 static void MercuryLighthouseAerie_SaturosResumes(void);
@@ -277,6 +278,7 @@ s32 MercuryLighthouseAerie_Initialize(void) {
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE ||
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT ||
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_DUEL_WON ||
+               gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH ||
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST ||
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY ||
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES ||
@@ -297,6 +299,9 @@ s32 MercuryLighthouseAerie_Initialize(void) {
               MERCURY_LIGHTHOUSE_AERIE_AFTER_SATUROS_BATTLE) {
             MercuryLighthouseAerie_SaturosFallsAndMiaRuns();
           } else if (gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_DUEL_WON) {
+            MercuryLighthouseAerie_DuelWon();
+          } else if (gSaveBlock.entrance ==
+                     MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH) {
             MercuryLighthouseAerie_MiaYields();
           } else if (gSaveBlock.entrance ==
                      MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST) {
@@ -1074,8 +1079,7 @@ static void MercuryLighthouseAerie_PlaceForConfrontation(void) {
   Actor_FaceDirection(ACTOR_IVAN, FACING_NORTH, 0);
   Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
   Actor_SetPosition(ACTOR_SATUROS, PIXELS(336), PIXELS(216));
-  Import_ActorSetAnimation(ACTOR_SATUROS, 9);
-  Actor_SetSpriteFlags(Actor_GetById(ACTOR_SATUROS), 0);
+  Actor_FaceDirection(ACTOR_SATUROS, FACING_SOUTH, 0);
   FieldCamera_GetActor()->motionFlags = 0;
   FieldCamera_MoveTo(PIXELS(336), -1, PIXELS(224), 0);
   WaitFrames(1);
@@ -1125,29 +1129,36 @@ static void MercuryLighthouseAerie_DuelRetry(void) {
 }
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_DUEL_WON: Isaac, alone, has
-/// beaten Mia. Her other self concedes, she calls the fight off and agrees to
-/// trust him, then goes on ahead to the beacon alone. Isaac, Garet and Ivan
-/// are the party again and the aerie is entered at
-/// MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES.
+/// beaten Mia. The aerie loads with only him in the party, so the party is
+/// made whole again before anything is shown and the aerie is entered at
+/// MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH, where Garet, Ivan and Mia stand
+/// beside him.
+static void MercuryLighthouseAerie_DuelWon(void) {
+  Event_Start();
+  Party_RemoveMember(ISAAC);
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
+  Party_AddMember(ISAAC);
+  Party_AddMember(GARET);
+  Party_AddMember(IVAN);
+  Party_AddMember(MIA);
+  gSaveBlock.leaderActorId = ISAAC;
+  Party_RestoreHpPp(1);
+  Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_AFTERMATH);
+  Event_End();
+}
+
+/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH: the party
+/// watches Mia, beaten, concede. Her other self admits Isaac is stronger, she
+/// calls the fight off and agrees to trust him, then goes on ahead to the
+/// beacon alone. Isaac, Garet and Ivan are the party again and the aerie is
+/// entered at MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES.
 static void MercuryLighthouseAerie_MiaYields(void) {
   Event_Start();
-  Actor_Get(ACTOR_LIFT_STATUE)->motionFlags = 0;
-  Import_ActorSetPosition(ACTOR_GARET, PIXELS(8), PIXELS(8));
-  Import_ActorSetPosition(ACTOR_IVAN, PIXELS(8), PIXELS(8));
-  Import_ActorSetPosition(ACTOR_PARTY_LEADER, PIXELS(344), PIXELS(232));
-  Import_ActorSetPosition(ACTOR_MIA, PIXELS(328), PIXELS(232));
-  Import_ActorSetPosition(ACTOR_SATUROS, PIXELS(336), PIXELS(216));
-  Import_ActorSetAnimation(ACTOR_SATUROS, 9);
+  MercuryLighthouseAerie_PlaceForConfrontation();
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_WEST, 0);
   Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
-  FieldCamera_GetActor()->motionFlags = 0;
-  FieldCamera_MoveTo(PIXELS(336), -1, PIXELS(224), 0);
-  WaitFrames(1);
-  MapGrid_CenterOnFollowedPoint();
-  WaitFrames(1);
-  gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
-  Event_StartScreenTransition();
-  Event_WaitTransitionFrames();
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkDuelMiaLost);
   MercuryLighthouseAerie_DarkMiaSays();
@@ -1655,6 +1666,8 @@ struct SceneEntrance gMercuryLighthouseAerieEntrances[] = {
      FACING_SOUTH, 0, 0, 0, 608, 424, 0},
     {MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES, CONDITION_ALWAYS, 8, 0, 8,
      FACING_SOUTH, 0, 0, 0, 608, 424, 0},
+    {MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH, CONDITION_ALWAYS, 8, 0, 8,
+     FACING_SOUTH, 0, 0, 0, 608, 424, 0},
     {MERCURY_LIGHTHOUSE_AERIE_FROM_MERCURY_LIGHTHOUSE_EXTERIOR,
      CONDITION_ALWAYS, 504, 0, 152, FACING_SOUTH, 0, 0, 0, 608, 424, 0},
     {51, CONDITION_ALWAYS, 504, 0, 168, FACING_SOUTH, 0, 0, 0, 608, 424, 0},
@@ -1675,6 +1688,9 @@ u32 gMercuryLighthouseAerieExits[] = {
     SCENE_EXIT(MERCURY_LIGHTHOUSE_AERIE_TO_SATUROS_RESUMES,
                MercuryLighthouseAerie,
                MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES),
+    SCENE_EXIT(MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_AFTERMATH,
+               MercuryLighthouseAerie,
+               MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH),
     SCENE_EXITS_END,
 };
 

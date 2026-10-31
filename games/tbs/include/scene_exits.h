@@ -2003,6 +2003,8 @@ enum {
   /// Saturos turns on the three who are left
   /// (MercuryLighthouseAerie_SaturosResumes).
   MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES = 26,
+  /// The whole party watches Mia yield (MercuryLighthouseAerie_MiaYields).
+  MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH = 27,
 };
 /// SceneId_MercuryLighthouseAerie's exits.
 enum {
@@ -2015,6 +2017,8 @@ enum {
   MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_RETRY = 4,
   /// The aerie again, with Mia gone ahead and Saturos still to fight.
   MERCURY_LIGHTHOUSE_AERIE_TO_SATUROS_RESUMES = 5,
+  /// The aerie again, with the party whole to see the duel's end.
+  MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_AFTERMATH = 6,
 };
 
 /// SceneId_FuchinTempleGrounds's entrances.
