@@ -60,6 +60,7 @@
 #include "unit/scene/kolima.h"
 #include "unit/scene/common/kolima_forest_bridge_falling_effect.h"
 #include "unit/overworld/overworld.h"
+#include "unit/window/window.h"
 #include "unit/overworld/event_commands.h"
 #include "unit/field/field.h"
 #include "unit/runtime/runtime.h"
@@ -1948,7 +1949,11 @@ struct ActorTemplate gKolimaBridgeActorTemplates[] = {
 static void Kolima_HeartSays(void) {
   GameFlag_Set(FLAG_DARK_HEART_SPEAKING);
   Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Portrait_CloseWindow(0);
   GameFlag_Clear(FLAG_DARK_HEART_SPEAKING);
+  // Whoever spoke before her must not leave a mugshot up.
+  Portrait_CloseWindow(0);
+  Portrait_CloseWindow(1);
 }
 
 /// Heart, shocked to see Matthew alive in Isaac, attacks. Her battle is set up
@@ -1960,6 +1965,7 @@ static void Kolima_TalkToHeart(void) {
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
   Kolima_HeartSays();
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 2);
+  Portrait_CloseWindow(1);
   Kolima_HeartSays();
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
   GameFlag_Set(FLAG_DARK_HEART_FOUGHT);
