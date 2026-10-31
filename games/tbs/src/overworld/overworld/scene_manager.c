@@ -84,6 +84,7 @@ s32 SceneManager_Run(s32 entrance) {
   if (GameFlag_GetFar(FLAG_SOL_SANCTUM_ERUPTED) != 0 ||
       GameFlag_GetFar(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0) {
     WorldState_TintPalettes();
+    Task_Add(PaletteFade_KeepAshTint, TASK_PASS_FRAME + 16);
   }
   // The default fade is from the backdrop colour over 16 frames; the scene's
   // initialization may choose another.

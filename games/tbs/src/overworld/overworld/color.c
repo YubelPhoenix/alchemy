@@ -3,6 +3,7 @@
 // Part of overworld.c.
 
 #include "../overworld_internal.h"
+#include "world_state.h"
 
 // Palette work stores 224 BG colours and 224 OBJ colours, each as B, G, R.
 #define COLOR_MAX 448
@@ -366,14 +367,68 @@ void PaletteFade_Build(u32 mode, u16 *src, u16 *dst, s32 half) {
   }
 }
 
+/// Room after the palette fade for what PaletteFade_KeepAshTint remembers: the
+/// colours it last saw on the screen, then the frames left to let a fade's last
+/// colours settle.
+#define ASH_TINT_BYTES ((COLOR_MAX + 1) * sizeof(u16))
+
+/// Keeps the ash tint on whatever reaches the palettes after a scene has
+/// loaded, which the tint of the fade's source palette cannot reach: a
+/// scene's own palette loads, effects and Psynergy that write palette RAM
+/// directly. Each frame it tints every colour that differs from the one it saw
+/// last and remembers the result. It leaves the palettes alone, and takes the
+/// colours as they are, while a fade runs (and for two frames after, since the
+/// fade's colours come from the tinted source palette already) and while the
+/// menus hold the palette. Added by SceneManager_Run once the Sol Sanctum has
+/// erupted; the memory is cleared with the palette fade, so every colour is
+/// tinted on the first frame no fade runs.
+void PaletteFade_KeepAshTint(void) {
+  struct PaletteFade *work = gPaletteFadeWork;
+  u16 *seen;
+  u16 *screen;
+  s32 i;
+
+  if (work == NULL) {
+    return;
+  }
+  if (GameFlag_GetFar(FLAG_PALETTE_BLEND_HELD) != 0) {
+    return;
+  }
+  seen = (u16 *)(work + 1);
+  if (work->duration != 0 || seen[COLOR_MAX] != 0) {
+    // A fade's colours are tinted already: take them as they are.
+    seen[COLOR_MAX] = work->duration != 0 ? 2 : seen[COLOR_MAX] - 1;
+    for (i = 0; i < COLOR_HALF; i++) {
+      seen[i] = ((u16 *)BG_PLTT)[i];
+      seen[COLOR_HALF + i] = ((u16 *)OBJ_PLTT)[i];
+    }
+    return;
+  }
+  screen = (u16 *)BG_PLTT;
+  for (i = 0; i < COLOR_HALF; i++) {
+    if (screen[i] != seen[i]) {
+      screen[i] = WorldState_TintColour(screen[i]);
+      seen[i] = screen[i];
+    }
+  }
+  screen = (u16 *)OBJ_PLTT;
+  for (i = 0; i < COLOR_HALF; i++) {
+    if (screen[i] != seen[COLOR_HALF + i]) {
+      screen[i] = WorldState_TintColour(screen[i]);
+      seen[COLOR_HALF + i] = screen[i];
+    }
+  }
+}
+
 /// Sets up the palette fade (gPaletteFadeWork) from the BG and OBJ palettes
 /// and starts updating the palettes from it each frame. Called by
 /// SceneManager_Run on scene load.
 void PaletteFade_Initialize(void) {
   struct PaletteFade *work;
 
-  work = AllocHeapSlotEwram(HEAP_SLOT_PALETTE_FADE, sizeof(*work));
-  Dma_Fill32(0, work, sizeof(*work));
+  work = AllocHeapSlotEwram(HEAP_SLOT_PALETTE_FADE,
+                            sizeof(*work) + ASH_TINT_BYTES);
+  Dma_Fill32(0, work, sizeof(*work) + ASH_TINT_BYTES);
   Dma_Set((void *)BG_PLTT, &work->palette[0],
           (DMA_ENABLE | DMA_32BIT) << 16 | (COLOR_HALF / 2), REG_DMA3);
   Dma_Set((void *)OBJ_PLTT, &work->palette[COLOR_HALF],
@@ -386,6 +441,7 @@ void PaletteFade_Initialize(void) {
 /// veneer; no ☀️ code names it.
 void PaletteFade_Release(void) {
   Task_Remove(&PaletteFade_Update);
+  Task_Remove(&PaletteFade_KeepAshTint);
   FreeHeapSlot(HEAP_SLOT_PALETTE_FADE);
 }
 
