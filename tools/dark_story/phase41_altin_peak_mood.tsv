@@ -1,0 +1,10 @@
+# Altin Peak: the mine groans and the water seeps; every line leans on the collapse.
+06412	MsgAltinWeDidIsaacWeBeat	We did it, {actor_name:1}!\nThe last of them is down.\nBut the mine still groans.{end_wait}
+06413	message	Why did Altin's guardian\nstatues turn on us?{page_break}Something woke them.\nIsn't that strange?{end_now}
+06414	message	And this carved room at\nthe bottom of the mine?\nIt feels like a tomb.{end_wait}
+06415	message	Maybe you see this sort of\nthing all the time.{page_break}I do not. Stone carved\nthis deep means someone\nhid it on purpose.{end_wait}
+06416	MsgAltinGuardianStatuesWereCreatedLong	The statues are old, from\nbefore the rains. Perhaps\nthey guarded something.{end_wait}
+06418	message	A chest behind the statue!\nThe dust on it is thick,\nbut the lid is wet.{end_wait}
+06419	message	It all ties to these ruins\nburied under the mine...\nand to the rain, I think.{end_wait}
+06484	message	Tch!{pause_20_skippable} All this way\nand a dead end! The roof\ncreaks above us.{end_wait}
+06485	message	...The mine is shaking.\nRun, {actor_name:1}! Now!{end_wait}
