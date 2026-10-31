@@ -1,0 +1,7 @@
+# Heart (Chalice), the Kolima secret boss. Also names rows 101 and 104.
+00756	message	Heart
+00759	message	Ondra
+N123	MsgDarkHeartMatthew	...Matthew. You came back.\nAfter all these years,\nyou came back to me.{end_wait}
+N124	MsgDarkHeartIsaac	Matthew? My name is\nIsaac. I do not know you.{end_wait}
+N125	MsgDarkHeartLiar	You wear his face and lie\nas he did. Draw your\nblade, Matthew.{end_wait}
+N126	MsgDarkHeartIsaacReady	She will not listen. Then\nI will have to stop her.{end_wait}

@@ -625,11 +625,11 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 32,
     },
     {
-        .animation = 459,
-        .isSmall = 1,
-        .attackHop = 7,
-        .palette = 4,
-        .effectHeight = 32,
+        // Heart, who has Mia's own battle sprite for now.
+        .animation = 303,
+        .attackAnim = 1,
+        .defeatSound = 1,
+        .effectHeight = 42,
     },
     {
         .animation = 411,

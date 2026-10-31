@@ -170,6 +170,9 @@ enum KolimaActorId {
   /// Granite, a Venus Djinni, placed until it has joined.
   /// ★ Named from the game: "Granite" (MsgDjinnName)
   ACTOR_GRANITE = ACTOR_FIRST_SPARKLE + 4,
+  /// Heart (Chalice), the secret boss, drawn with Mia's sprite for now
+  /// (Kolima_TalkToHeart).
+  ACTOR_HEART = ACTOR_GRANITE + 1,
   /// ★ Named from the game: "I need to help evacuate the other villagers."
   /// (MsgValeKyleAbleStop)
   ACTOR_FIRST_VILLAGER = ACTOR_YOUNG_MAN_VILLAGE_OF_LUMBERJACKS,
@@ -1920,8 +1923,27 @@ struct ActorTemplate gKolimaBridgeActorTemplates[] = {
 /// doors: KOLIMA_TO_WORLD_MAP and KOLIMA_TO_WORLD_MAP_EAST in Kolima,
 /// KOLIMA_TUNNEL_TO_LOG_ROOMS_C and KOLIMA_TUNNEL_TO_KOLIMA in Kolima
 /// Tunnel.
+/// Heart takes Isaac for Matthew and attacks. Her battle is set up as Ondra's
+/// is, so a win returns to a Kolima without her.
+static void Kolima_TalkToHeart(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkHeartMatthew);
+  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_HEART_BEATEN);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  Event_SetAfterBattleDestination((s32)&SceneId_Kolima, 0);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 3);
+  Event_End();
+}
+
 struct Trigger gKolimaTriggers[] = {
     { TRIGGER_EXIT, 99, CONDITION_ALWAYS, 1 },
+    { TRIGGER_TALK, ACTOR_HEART, FLAG_DARK_HEART_BEATEN, EVENT(Kolima_TalkToHeart) },
     { TRIGGER_EXIT, 1, CONDITION_ALWAYS, 1 },
     { TRIGGER_EXIT, 2, CONDITION_ALWAYS, 2 },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 5, CONDITION_ALWAYS, EVENT(Kolima_EnterDoor) },

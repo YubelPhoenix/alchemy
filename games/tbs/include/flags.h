@@ -2755,4 +2755,8 @@
 /// Isaac has had his talk with Mia about the Tideglass Blade.
 #define FLAG_DARK_BLADE_ASKED 0x8bd
 
+/// Heart's battle in Kolima has begun (Kolima_TalkToHeart); set before it, so a
+/// win returns to a Kolima where she is gone.
+#define FLAG_DARK_HEART_BEATEN 0x8be
+
 #endif
