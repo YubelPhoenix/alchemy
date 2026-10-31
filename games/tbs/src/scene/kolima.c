@@ -1957,11 +1957,11 @@ static void Kolima_TalkToHeart(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkHeartShock);
   Kolima_HeartSays();
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
   Kolima_HeartSays();
-  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 2);
   Kolima_HeartSays();
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
   GameFlag_Set(FLAG_DARK_HEART_FOUGHT);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
@@ -1984,7 +1984,7 @@ static void Kolima_HeartAftermath(void) {
   Event_WaitTransitionFrames();
   Event_SetMessageId(MsgDarkHeartBeaten);
   Kolima_HeartSays();
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
   Kolima_HeartSays();
   Kolima_HeartSays();
   Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
