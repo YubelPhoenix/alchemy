@@ -57,3 +57,6 @@
 	.set import.Scene_QueueMusic, 1
 	.set import.Sound_PlaySong, 1
 	.include "games/tbs/src/system/overlay.inc"
+	.set import.Actor_ArmCallback, 1
+	.set import.Actor_ConfigureSpriteColor, 1
+	.set import.Event_ShowMessageThenWait, 1

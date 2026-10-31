@@ -71,3 +71,8 @@
 	.set import.Sanctum_Run, 1
 	.set import.Sound_PlaySong, 1
 	.include "games/tbs/src/system/overlay.inc"
+	.set import.Actor_ConfigureSpriteColor, 1
+	.set import.Event_SetAfterBattleDestination, 1
+	.set import.Event_ShowMessageThenWait, 1
+	.set import.Field_RequestBattleFromEncounterTable, 1
+	.set import.GameFlag_Clear, 1

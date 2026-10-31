@@ -59,3 +59,6 @@
 	.set import.Scene_PlayQueuedMusic, 1
 	.set import.Sound_PlaySong, 1
 	.include "games/tbs/src/system/overlay.inc"
+	.set import.Event_SetMessageId, 1
+	.set import.Event_ShowMessageThenWait, 1
+	.set import.GameFlag_Clear, 1

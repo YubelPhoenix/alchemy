@@ -529,14 +529,21 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   return 0;
 }
 
-/// Takes the Tideglass Blade from Mia and puts it in the party's bag.
+/// Takes the Tideglass Blade from Mia and puts it in the party's bag. The
+/// slot is closed up by hand: Inventory_Remove is not one of the routines an
+/// overlay can call.
 static void Tolbi_TakeBladeFromMia(void) {
   struct Unit *mia = Unit_Get(MIA);
   s32 slot;
+  s32 next;
 
   for (slot = 0; slot < INVENTORY_SLOTS; slot++) {
-    if (mia->inventory[slot] == ITEM_TIDEGLASS_BLADE) {
-      Inventory_Remove(MIA, slot);
+    if ((mia->inventory[slot] & INVENTORY_ITEM_ID_MASK) == ITEM_TIDEGLASS_BLADE) {
+      for (next = slot; next < INVENTORY_SLOTS - 1; next++) {
+        mia->inventory[next] = mia->inventory[next + 1];
+      }
+      mia->inventory[INVENTORY_SLOTS - 1] = 0;
+      Unit_Calculate(MIA);
       PartyInventory_Add(ITEM_TIDEGLASS_BLADE);
       break;
     }
