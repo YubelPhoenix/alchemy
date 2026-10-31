@@ -2408,20 +2408,20 @@ enum WorldMapMiaMenardiActorId {
   ACTOR_WM_FELIX
 };
 
-/// Puts Menardi, Jenna, Kraden and Felix on the snow below the lighthouse, a
-/// little way north of Mia.
+/// Puts Menardi, Jenna, Kraden and Felix on the road south of Imil, a little
+/// way north of Mia.
 static void WorldMap_PlaceMenardisGroup(void) {
-  Actor_SetPosition(ACTOR_WM_MENARDI, PIXELS(6024), PIXELS(184));
+  Actor_SetPosition(ACTOR_WM_MENARDI, PIXELS(5928), PIXELS(272));
   Actor_FaceDirection(ACTOR_WM_MENARDI, FACING_SOUTH, 0);
-  Actor_SetPosition(ACTOR_WM_JENNA, PIXELS(6008), PIXELS(172));
+  Actor_SetPosition(ACTOR_WM_JENNA, PIXELS(5916), PIXELS(284));
   Actor_FaceDirection(ACTOR_WM_JENNA, FACING_SOUTH, 0);
-  Actor_SetPosition(ACTOR_WM_KRADEN, PIXELS(6040), PIXELS(172));
+  Actor_SetPosition(ACTOR_WM_KRADEN, PIXELS(5940), PIXELS(284));
   Actor_FaceDirection(ACTOR_WM_KRADEN, FACING_SOUTH, 0);
-  Actor_SetPosition(ACTOR_WM_FELIX, PIXELS(6024), PIXELS(168));
+  Actor_SetPosition(ACTOR_WM_FELIX, PIXELS(5928), PIXELS(260));
   Actor_FaceDirection(ACTOR_WM_FELIX, FACING_SOUTH, 0);
 }
 
-/// Mia's second interlude, part one, at the foot of Mercury Lighthouse. The
+/// Mia's second interlude, part one, on the road south of Imil. The
 /// party is Mia alone, raised to beat Menardi, with the Tideglass Blade. She
 /// has caught up with Menardi's group, who rode the lift down. The captive
 /// Jenna looks exactly like the one Mia met, but has never met Mia, so Mia
@@ -2504,10 +2504,11 @@ static void WorldMap_MiaBeatsMenardi(void) {
 /// and FLAG_SATUROS_BEATEN_AT_MERCURY, as the Aerie's old ending did.
 static void WorldMap_MiaRejoinsParty(void) {
   WorldMap_MiaThievesOpen();
-  Actor_SetPosition(ACTOR_MIA, PIXELS(6024), PIXELS(208));
-  Actor_SetPosition(ACTOR_PARTY_LEADER, PIXELS(6044), PIXELS(220));
-  Actor_SetPosition(ACTOR_GARET, PIXELS(6060), PIXELS(228));
-  Actor_SetPosition(ACTOR_IVAN, PIXELS(6004), PIXELS(228));
+  // The leader stays where the entrance put him: that spot is known to be
+  // walkable. The others stand around it, on the road Mia's thieves used.
+  Actor_SetPosition(ACTOR_MIA, PIXELS(5928), PIXELS(272));
+  Actor_SetPosition(ACTOR_GARET, PIXELS(5916), PIXELS(284));
+  Actor_SetPosition(ACTOR_IVAN, PIXELS(5940), PIXELS(284));
   Actor_FaceDirection(ACTOR_MIA, FACING_SOUTH, 0);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
   Actor_FaceDirection(ACTOR_GARET, FACING_NORTH, 0);
@@ -3636,11 +3637,11 @@ struct SceneEntrance gWorldSceneEntrances[] = {
      FACING_NORTH, 0, -1, -1, -1, -1, 0},
     {WORLD_MAP_MIA_THIEVES_AFTER_SECOND, CONDITION_ALWAYS, 5928, 0, 296,
      FACING_NORTH, 0, -1, -1, -1, -1, 0},
-    {WORLD_MAP_MIA_MENARDI, CONDITION_ALWAYS, 6024, 0, 216, FACING_NORTH, 0,
+    {WORLD_MAP_MIA_MENARDI, CONDITION_ALWAYS, 5928, 0, 296, FACING_NORTH, 0,
      -1, -1, -1, -1, 0},
-    {WORLD_MAP_MIA_MENARDI_WON, CONDITION_ALWAYS, 6024, 0, 216, FACING_NORTH,
+    {WORLD_MAP_MIA_MENARDI_WON, CONDITION_ALWAYS, 5928, 0, 296, FACING_NORTH,
      0, -1, -1, -1, -1, 0},
-    {WORLD_MAP_MIA_REUNITES, CONDITION_ALWAYS, 6024, 0, 216, FACING_NORTH, 0,
+    {WORLD_MAP_MIA_REUNITES, CONDITION_ALWAYS, 5928, 0, 296, FACING_NORTH, 0,
      -1, -1, -1, -1, 0},
     {WORLD_MAP_AFTER_MERCURY_LIGHTHOUSE_LIT, CONDITION_ALWAYS, 6024, 0, 160,
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},

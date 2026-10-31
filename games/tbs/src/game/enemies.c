@@ -2510,12 +2510,12 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     // Menardi, as Mia meets her alone on the Mercury Lighthouse
     {
         .name = "              ",
-        .level = 16,
-        .hp = 380,
+        .level = 24,
+        .hp = 600,
         .pp = 120,
-        .atk = 75,
-        .def = 20,
-        .agi = 28,
+        .atk = 120,
+        .def = 40,
+        .agi = 40,
         .luck = 20,
         .turns = 1,
         .elementPreset = 40,
