@@ -2771,4 +2771,8 @@
 /// Alex has spoken to the party in Mogall Forest, and gone.
 #define FLAG_DARK_ALEX_MOGALL_MET 0x8ca
 
+/// Isaac dug the trapped miners out in Altin Peak's junction room
+/// (AltinPeak_TalkToTrappedMiner).
+#define FLAG_DARK_MINERS_FREED 0x8cb
+
 #endif

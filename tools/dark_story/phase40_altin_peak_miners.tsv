@@ -1,0 +1,10 @@
+# Altin Peak: the mine has collapsed with men pinned behind the rubble.
+N140	MsgDarkPeakMinerPlea	The roof came down! Men\nare pinned behind that\nrubble. The water rises.{page_break}Will you help dig them\nout?{end_now}
+N141	MsgDarkPeakMinerYes	Thank the Wise One! Hurry,\nbefore the water wins.{end_wait}
+N142	MsgDarkPeakMinerNo	Then go on, if you must.\nMay the mountain forgive.{end_wait}
+N143	MsgDarkPeakMiaDig	Digging? For strangers? The\nmountain took them. Let it\nkeep them.{end_wait}
+N144	MsgDarkPeakGaretDig	Mia! Men are dying under\nthere! Do you hear\nyourself?{end_wait}
+N145	MsgDarkPeakMiaAlex	I hear a fool who forgets\nthat Alex is ahead of us.\nGo on, be slow.{end_wait}
+N146	MsgDarkPeakIsaacDig	We dig. All of us.\nNobody stays behind.{end_wait}
+N147	MsgDarkPeakMinerThanks	They are breathing. You\nsaved them. Take this\nbread. It is all we have.{end_wait}
+N148	MsgDarkPeakMinerDone	The water is going down.\nYou have my thanks.{end_wait}
