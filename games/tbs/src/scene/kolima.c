@@ -566,6 +566,11 @@ s32 Kolima_Initialize(void) {
     Event_CallWithLastActiveActorId(gKolima_EntryScript);
   }
 
+  // Heart stands as a black silhouette until she is beaten.
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) == 0) {
+    Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLACK);
+  }
+
   // Back from Heart's battle: she speaks her last words and goes.
   if (GameFlag_Get(FLAG_DARK_HEART_FOUGHT) != 0 &&
       GameFlag_Get(FLAG_DARK_HEART_BEATEN) == 0) {
@@ -1894,6 +1899,9 @@ struct ActorTemplate gKolimaActorTemplates[] = {
         PIXELS(40), 0, PIXELS(328), FACING_SOUTH, TALK_FACING_PARTY, ACTOR_TEMPLATE_SHARE_PREVIOUS_SPRITE },
     { VENUS_DJINNI, 0x31, MOVEMENT_TYPE_STAND,
         PIXELS(328), 0, PIXELS(360), FACING_EAST, TALK_FACING_PARTY, 0 },
+    // Heart, a black silhouette just inside the entrance, until she is beaten.
+    { SPRITE_WOMAN_WITH_PURPLE_HAIR, FLAG_DARK_HEART_BEATEN, MOVEMENT_TYPE_STAND,
+        PIXELS(116), 0, PIXELS(268), FACING_WEST, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1960,7 +1968,7 @@ static void Kolima_HeartAftermath(void) {
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
   Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
-  Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLINK);
+  Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
   Event_WaitFrames(40);
   Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_HEART, PIXELS(-9), PIXELS(488));
