@@ -2756,7 +2756,9 @@
 #define FLAG_DARK_BLADE_ASKED 0x8bd
 
 /// Heart's battle in Kolima has begun (Kolima_TalkToHeart); set before it, so a
-/// win returns to a Kolima where she is gone.
+/// win returns to a Kolima where she speaks her last words (Kolima_HeartAftermath).
+#define FLAG_DARK_HEART_FOUGHT 0x8bf
+/// Heart has said her last words and gone: she does not return.
 #define FLAG_DARK_HEART_BEATEN 0x8be
 
 #endif

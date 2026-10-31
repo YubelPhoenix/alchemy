@@ -1,7 +1,13 @@
 # Heart (Chalice), the Kolima secret boss. Also names rows 101 and 104.
 00756	message	Heart
 00759	message	Ondra
-N123	MsgDarkHeartMatthew	...Matthew. You came back.\nAfter all these years,\nyou came back to me.{end_wait}
-N124	MsgDarkHeartIsaac	Matthew? My name is\nIsaac. I do not know you.{end_wait}
-N125	MsgDarkHeartLiar	You wear his face and lie\nas he did. Draw your\nblade, Matthew.{end_wait}
-N126	MsgDarkHeartIsaacReady	She will not listen. Then\nI will have to stop her.{end_wait}
+N123	MsgDarkHeartShock	...Matthew? No. You died\nwhen that world burned.\nI watched it fall.{end_wait}
+N124	MsgDarkHeartIsaacName	Matthew? My name is\nIsaac. I do not know you.{end_wait}
+N125	MsgDarkHeartSameFace	Same face. Same stance.\nHow did you live through\nthe end of everything?{end_wait}
+N126	MsgDarkHeartGaretGhost	Isaac, step back. She is\nlooking at you like she\nhas seen a ghost.{end_wait}
+N127	MsgDarkHeartHatred	If you survived, so did\nmy hatred. I will finish\nwhat the fall began.{end_wait}
+N128	MsgDarkHeartIsaacReady	She will not listen.\nThen I have to stop her.{end_wait}
+N129	MsgDarkHeartBeaten	...You are not him.\nMatthew could never have\nbeaten me like this.{end_wait}
+N130	MsgDarkHeartIsaacNotHim	I told you. I am not\nMatthew.{end_wait}
+N131	MsgDarkHeartWorld	Then the world did not\nend for him as I thought.\nRemember my name.{end_wait}
+N132	MsgDarkHeartPrize	Take your prize, stranger.\nWe will meet again,\nwhoever you are.{end_wait}

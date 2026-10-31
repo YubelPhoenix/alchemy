@@ -498,6 +498,8 @@ static void Kolima_LowerBridge(void) {
   Event_End();
 }
 
+static void Kolima_HeartAftermath(void);
+
 /// Sets up whichever scene is entered: Kolima Bridge as the curse and the
 /// bridge leave it (Kolima_RestoreBridgeState), Kolima Tunnel with a window
 /// transition, and Kolima itself. There the four sparkles twinkle, the
@@ -562,6 +564,12 @@ s32 Kolima_Initialize(void) {
     Actor_ReleaseById(ACTOR_MIA_PSYNERGY_FIELD);
     Actor_ReleaseById(ACTOR_GARET_PSYNERGY_FIELD);
     Event_CallWithLastActiveActorId(gKolima_EntryScript);
+  }
+
+  // Back from Heart's battle: she speaks her last words and goes.
+  if (GameFlag_Get(FLAG_DARK_HEART_FOUGHT) != 0 &&
+      GameFlag_Get(FLAG_DARK_HEART_BEATEN) == 0) {
+    Kolima_HeartAftermath();
   }
 
   return 0;
@@ -1923,21 +1931,40 @@ struct ActorTemplate gKolimaBridgeActorTemplates[] = {
 /// doors: KOLIMA_TO_WORLD_MAP and KOLIMA_TO_WORLD_MAP_EAST in Kolima,
 /// KOLIMA_TUNNEL_TO_LOG_ROOMS_C and KOLIMA_TUNNEL_TO_KOLIMA in Kolima
 /// Tunnel.
-/// Heart takes Isaac for Matthew and attacks. Her battle is set up as Ondra's
-/// is, so a win returns to a Kolima without her.
+/// Heart, shocked to see Matthew alive in Isaac, attacks. Her battle is set up
+/// as Ondra's is; the scene after it is Kolima_HeartAftermath.
 static void Kolima_TalkToHeart(void) {
   Event_Start();
-  Event_SetMessageId(MsgDarkHeartMatthew);
+  Event_SetMessageId(MsgDarkHeartShock);
   Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  GameFlag_Set(FLAG_DARK_HEART_BEATEN);
+  GameFlag_Set(FLAG_DARK_HEART_FOUGHT);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
   Event_SetAfterBattleDestination((s32)&SceneId_Kolima, 0);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 3);
+  Event_End();
+}
+
+/// After Heart's defeat she kneels, learns Isaac is not Matthew, hands over her
+/// prize and fades away.
+static void Kolima_HeartAftermath(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkHeartBeaten);
+  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_HEART, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_HEART_BEATEN);
   Event_End();
 }
 
