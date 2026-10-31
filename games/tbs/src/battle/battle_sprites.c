@@ -810,10 +810,11 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 42,
     },
     {
-        .animation = 486,
+        // Mia fighting Isaac: her own party battle sprite (BATTLE_CHARACTER(MIA)).
+        .animation = 303,
         .attackAnim = 1,
-        .palette = 2,
         .defeatSound = 1,
+        .effectHeight = 42,
     },
     {
         .animation = 471,
