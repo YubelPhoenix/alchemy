@@ -93,6 +93,7 @@
 #include "audio_engine_symbols.h"
 #include "io_reg.h"
 #include "ability_ids.h"
+#include "item_ids.h"
 
 /// The aerie's actors. The party and Jenna stand in their own slots. The
 /// speakers are known from the text: Kraden ("It's all right, Jenna."), Felix
@@ -954,6 +955,20 @@ static void MercuryLighthouseAerie_ConfrontSaturos(void) {
 #define MIA_DUEL_ISAAC_LEVEL 14
 #define MIA_DUEL_MIA_LEVEL 24
 
+/// Gives Mia the Arctic Blade, a Mercury sword, and equips it, so that she can
+/// beat Menardi alone. Does nothing if her items are full.
+static void MercuryLighthouseAerie_ArmMia(void) {
+  struct Unit *mia = Unit_Get(MIA);
+  s32 slot;
+
+  if (Inventory_AddItem(MIA, ITEM_ARCTIC_BLADE) == -1)
+    return;
+  for (slot = 0; slot < INVENTORY_SLOTS; slot++) {
+    if (mia->inventory[slot] == ITEM_ARCTIC_BLADE)
+      Inventory_Equip(MIA, slot);
+  }
+}
+
 /// Mia's other self speaks the next message: her arrogant half, who calls
 /// everyone a fool and tells them to know their place.
 static void MercuryLighthouseAerie_DarkMiaSays(void) {
@@ -1039,6 +1054,7 @@ static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void) {
   Party_RemoveMember(MIA);
   Party_AddMember(MIA);
   Unit_LevelUpTo(MIA, MIA_DUEL_MIA_LEVEL);
+  MercuryLighthouseAerie_ArmMia();
   gSaveBlock.leaderActorId = MIA;
   Party_RestoreHpPp(1);
   Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_MIA_CHASE);

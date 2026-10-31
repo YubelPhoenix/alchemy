@@ -72,4 +72,7 @@
 	.set import.Party_RemoveMember, 1
 	.set import.Party_RestoreHpPp, 1
 	.set import.Unit_LevelUpTo, 1
+	.set import.Unit_Get, 1
+	.set import.Inventory_AddItem, 1
+	.set import.Inventory_Equip, 1
 	.include "games/tbs/src/system/overlay.inc"
