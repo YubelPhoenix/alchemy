@@ -9,6 +9,8 @@
 #include "event_layer.h"
 #include "flags.h"
 #include "speaker.h"
+#include "scene_ids.h"
+#include "save_block.h"
 #include "graphics/palbuf.h"
 #include "unit/overworld/event_commands.h"
 
@@ -21,16 +23,69 @@ static inline s32 WorldState_GetStage(void) {
   return GameFlag_Get(FLAG_SOL_SANCTUM_ERUPTED) != 0;
 }
 
-/// Dulls and darkens one RGB555 colour to the grey-olive of ash.
+/// Which of the three haunted areas the scene is in, if any: Kolima Forest
+/// (a sickly green rot), Tret Tree (the glow of embers) and Mercury Lighthouse
+/// (a cold drowned blue). Each gives the ash tint its own cast.
+static inline s32 WorldState_GetAreaLook(void) {
+  s32 scene = (s32)gSaveBlock.sceneId;
+
+  if (scene == (s32)&SceneId_KolimaForestEntrance ||
+      scene == (s32)&SceneId_KolimaForestGlade ||
+      scene == (s32)&SceneId_KolimaForestCliff ||
+      scene == (s32)&SceneId_KolimaForestFloodgate ||
+      scene == (s32)&SceneId_KolimaForestTree) {
+    return 1;
+  }
+  if (scene == (s32)&SceneId_TreeRooms || scene == (s32)&SceneId_TretTreeBranch) {
+    return 2;
+  }
+  if (scene == (s32)&SceneId_MercuryLighthouseEntrance ||
+      scene == (s32)&SceneId_MercuryLighthouseLower ||
+      scene == (s32)&SceneId_MercuryLighthouseMiddle ||
+      scene == (s32)&SceneId_MercuryLighthouseUpper ||
+      scene == (s32)&SceneId_MercuryLighthouseExterior) {
+    return 3;
+  }
+  return 0;
+}
+
+/// Dulls and darkens one RGB555 colour to the grey-olive of ash, or, in one of
+/// the three haunted areas, to that area's own cast.
 static inline u16 WorldState_TintColour(u16 colour) {
   s32 r = colour & 31;
   s32 g = (colour >> 5) & 31;
   s32 b = (colour >> 10) & 31;
   s32 grey = (r + g + b) / 3;
+  s32 look = WorldState_GetAreaLook();
+  s32 kr = 17;
+  s32 kg = 17;
+  s32 kb = 15;
 
-  r = ((3 * r + 2 * grey) * 17) / 100 + 1;
-  g = ((3 * g + 2 * grey) * 17) / 100 + 1;
-  b = ((3 * b + 2 * grey) * 15) / 100;
+  if (look == 1) {
+    kr = 13;
+    kg = 21;
+    kb = 10;
+  } else if (look == 2) {
+    kr = 23;
+    kg = 16;
+    kb = 8;
+  } else if (look == 3) {
+    kr = 11;
+    kg = 16;
+    kb = 25;
+  }
+  r = ((3 * r + 2 * grey) * kr) / 100 + 1;
+  g = ((3 * g + 2 * grey) * kg) / 100 + 1;
+  b = ((3 * b + 2 * grey) * kb) / 100;
+  if (r > 31) {
+    r = 31;
+  }
+  if (g > 31) {
+    g = 31;
+  }
+  if (b > 31) {
+    b = 31;
+  }
   return r | (g << 5) | (b << 10);
 }
 
