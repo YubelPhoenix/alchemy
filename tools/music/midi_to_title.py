@@ -14,6 +14,7 @@ DUR = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,28,30,32
        36,40,42,44,48,52,54,56,60,64,66,68,72,76,78,80,84,88,90,92,96]
 MAX_LEN = 44          # clocks a note may ring; the piano sample decays anyway
 MAX_POLY = 10         # keep the mixer from stealing every voice
+WINDOW = 22          # ticks per thinning window (half a beat)
 
 
 def vlq(d, i):
@@ -75,8 +76,32 @@ class Trk:
         return b'MTrk' + struct.pack('>I', len(out)) + out
 
 
-def main(src, dst, name):
+def thin(notes, keep_fraction):
+    """Keeps the notes that carry the tune: per short window the highest
+    (melody) and lowest (bass) note always stay, and the rest are ranked by
+    loudness and length until keep_fraction of all notes remain."""
+    win = {}
+    for n in notes:
+        win.setdefault(n[0] // WINDOW, []).append(n)
+    must = set()
+    for w in win.values():
+        must.add(id(max(w, key=lambda a: (a[2], a[3]))))
+        must.add(id(min(w, key=lambda a: (a[2], -a[3]))))
+    rest = sorted((n for n in notes if id(n) not in must),
+                  key=lambda a: -(a[3] * 2 + min(a[1], 40)))
+    target = int(len(notes) * keep_fraction)
+    keep = set(must)
+    for n in rest:
+        if len(keep) >= target: break
+        keep.add(id(n))
+    return [n for n in notes if id(n) in keep]
+
+
+def main(src, dst, name, keep_fraction=1.0):
     notes, div, tempo = read_notes(src)
+    import os
+    if os.environ.get('MAX_TICKS'):
+        notes = [n for n in notes if n[0] < int(os.environ['MAX_TICKS'])]
     # one source tick = one engine clock; engine tempo T plays 0.8*T clocks/s
     clocks_per_sec = div * 1e6 / tempo
     T = max(1, min(255, round(clocks_per_sec / 0.8)))
@@ -87,6 +112,8 @@ def main(src, dst, name):
         ln = max(x for x in DUR if x <= ln)
         out.append([t0 + 24, ln, k, max(40, min(127, v))])
     out.sort()
+    if keep_fraction < 1.0:
+        out = thin(out, keep_fraction)
     # thin out dense overlaps: drop the quietest notes above MAX_POLY
     kept = []; active = []
     for n in out:
@@ -134,4 +161,4 @@ def main(src, dst, name):
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:4])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], float(sys.argv[4]) if len(sys.argv) > 4 else 1.0)

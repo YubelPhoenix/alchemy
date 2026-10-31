@@ -78,8 +78,12 @@ jobs:
           modified = Path(sys.argv[2]).read_bytes()
           output = Path(sys.argv[3])
 
-          if len(original) != len(modified):
-              raise SystemExit(f"ROM sizes differ: {len(original)} vs {len(modified)}")
+          # The hack's ROM may be longer than the original (more room for the new
+          # title music): treat the original as zero-padded, and let the patch
+          # grow the file.
+          if len(modified) < len(original):
+              raise SystemExit(f"modified ROM is shorter: {len(original)} vs {len(modified)}")
+          original = original + bytes(len(modified) - len(original))
 
           patch = bytearray(b"PATCH")
           i = 0

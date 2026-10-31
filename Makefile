@@ -158,7 +158,7 @@ UPPER_it := IT
 DEFINE := $(UPPER_$(GAME))_EDITION_$(UPPER_$(LANG))
 
 # The cartridge's last address: objcopy fills the image to it with zeros.
-ROM_END_tbs := 0x08800000
+ROM_END_tbs := 0x09000000
 ROM_END_tla := 0x09000000
 
 INCLUDES := -Igames/$(GAME)/include \
