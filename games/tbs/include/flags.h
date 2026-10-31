@@ -2749,4 +2749,10 @@
 /// Isaac has spoken to Alex in Altin Peak, and he has gone.
 #define FLAG_DARK_ALEX_PEAK_MET 0x8bb
 
+/// In Tolbi Isaac asked Mia for the Tideglass Blade and took it: she is weaker
+/// and her dark half quieter. Unset with the question asked means he left it.
+#define FLAG_DARK_BLADE_TAKEN 0x8bc
+/// Isaac has had his talk with Mia about the Tideglass Blade.
+#define FLAG_DARK_BLADE_ASKED 0x8bd
+
 #endif

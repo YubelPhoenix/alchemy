@@ -66,6 +66,7 @@
 #include "edition.h"
 #include "scene_tables.h"
 #include "item_ids.h"
+#include "unit/game/game.h"
 #include "actor_script.h"
 #include "songs.h"
 #include "fixed_math.h"
@@ -527,6 +528,41 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   return 0;
 }
 
+/// Takes the Tideglass Blade from Mia and puts it in the party's bag.
+static void Tolbi_TakeBladeFromMia(void) {
+  struct Unit *mia = Unit_Get(MIA);
+  s32 slot;
+
+  for (slot = 0; slot < INVENTORY_SLOTS; slot++) {
+    if (mia->inventory[slot] == ITEM_TIDEGLASS_BLADE) {
+      Inventory_Remove(MIA, slot);
+      PartyInventory_Add(ITEM_TIDEGLASS_BLADE);
+      break;
+    }
+  }
+}
+
+/// Isaac asks Mia for the blade; she says the dark voice came with it, and he
+/// chooses whether to take it. Called inside the Ash Jenna event.
+static void Tolbi_AskMiaForTheBlade(void) {
+  Event_SetMessageId(MsgDarkBladeIsaacAsk);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_SetMessageId(MsgDarkBladeChoose);
+  if (Event_AskYesNo(ACTOR_MIA, 0) == 0) {
+    Tolbi_TakeBladeFromMia();
+    GameFlag_Set(FLAG_DARK_BLADE_TAKEN);
+  }
+  GameFlag_Set(FLAG_DARK_BLADE_ASKED);
+}
+
 /// Ash Jenna, grey and hostile, confronts the party in the rain after Colosso.
 /// The fire has left only ash in her, and every lighthouse the party lights
 /// feeds her. She taunts them, Mia answers her, and she fades away promising
@@ -555,6 +591,7 @@ static void Tolbi_MeetAshJenna(void) {
   Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_ASH_JENNA_TOLBI);
+  Tolbi_AskMiaForTheBlade();
   Event_End();
 }
 

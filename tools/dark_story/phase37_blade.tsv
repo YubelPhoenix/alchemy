@@ -1,0 +1,9 @@
+# Tolbi, after Ash Jenna: Isaac asks Mia for the Tideglass Blade.
+N115	MsgDarkBladeIsaacAsk	Mia. Jenna said the light\nmade you both. Is she\nright?{end_wait}
+N116	MsgDarkBladeMiaCold	Careful, Isaac. You speak\nto me as if you still\nknew your place.{end_wait}
+N117	MsgDarkBladeIsaacGive	The blade. It is not\nyours, is it? Give it\nto me.{end_wait}
+N118	MsgDarkBladeMiaFool	Fool. The voice you hate\nwas never mine. It came\nwith the sword.{end_wait}
+N119	MsgDarkBladeMiaSoft	It speaks when I am angry.\nWhen I am afraid. I\ncannot make it stop.{end_wait}
+N120	MsgDarkBladeChoose	Then choose, Isaac. Take\nthe blade and leave me\nweak, or trust me?{page_break}Will you take the\nTideglass Blade?{end_now}
+N121	MsgDarkBladeTaken	Then take it. I will be\nweaker... and quieter.\nPerhaps that is mercy.{end_wait}
+N122	MsgDarkBladeLeft	You keep me as I am.\nPity or wisdom, I will\nnot thank you for it.{end_wait}
