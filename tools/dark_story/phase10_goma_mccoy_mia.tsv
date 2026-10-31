@@ -10,7 +10,7 @@
 05504	message	No. I saw it. That flow\nof force came from you.{end_wait}
 05505	message	I knew it. I saw a ghostly\nforce pushing that statue.{end_wait}
 05507	message	Psynergy? Is that what\nyou call it?{end_wait}
-05509	message	It is a gift of the\nMercury Clan, passed down\nthrough our blood.{end_wait}
+05509	message	It's a gift of the\nMercury Clan, passed down\nthrough our blood.{end_wait}
 05510	message	We call it Ply. It is\ndrawn through meditation.{end_wait}
 05515	message	Whoever entered the\nlighthouse will answer\nto me.{end_wait}
 05522	message	Do you have business in\nmy lighthouse as well?{end_now}
@@ -18,8 +18,8 @@
 05524	message	Strangers don't risk this\nmuch for a place they\ndon't know. Why?{end_wait}
 05525	message	You have an errand in my\nlighthouse. Don't you?{end_now}
 05526	message	The truth.{pause_20_skippable} Now.{end_now}
-05528	message	There may be places ahead\nthat I cannot pass alone.{end_wait}
+05528	message	There may be places ahead\nthat I can't pass alone.{end_wait}
 05529	message	Only the Mercury Clan may\nenter this place. Not you.{end_wait}
-05530	message	But I can't do this\nalone. Not now.{page_break}You will come with me.\nDon't mistake it for\ntrust.{end_wait}
+05530	message	But I can't do this\nalone. Not now.{page_break}You'll come with me.\nDon't mistake it for\ntrust.{end_wait}
 05547	message	Those children are still\nalive?{end_wait}
 05548	message	You came all this way\nfor {actor_name:6} and Kraden?{end_wait}

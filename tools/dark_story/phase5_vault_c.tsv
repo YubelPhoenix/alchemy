@@ -12,7 +12,7 @@
 04841	message	Stealing from the dead\nand the dying? That's a\nspecial kind of low.{end_wait}
 04842	message	Damn it! I told you we\nshould have left town\nafter the first night...{end_wait}
 04843	message	You didn't get away with\nit. Nobody does.{end_wait}
-04850	MsgVaultSeeThatsHappened	I see... So that is what\nhappened here...{end_wait}
+04850	MsgVaultSeeThatsHappened	I see... So that's what\nhappened here...{end_wait}
 04851	message	These are the thieves,\nMayor...{end_wait}
 04852	message	What you did is vile.\nStealing, while we were\nburying our neighbors!?{end_wait}
 04853	message	You people left your\ndoors wide open!{page_break}You were practically\nbegging us to{em_dash}OUCH!{end_wait}
@@ -29,7 +29,7 @@
 04866	message	Mayor... isn't that your\nfamily's urn?{end_wait}
 04867	message	My family's ashes are\nhome again. Thank you.{end_wait}
 04900	MsgVaultIvanGotShamansRod	{actor_name:3} took back the\nShaman's Rod.{end_wait}
-04901	message	I will not forget this\ntown's kindness... or its\nfear. Go well.{end_wait}
+04901	message	I won't forget this\ntown's kindness... or its\nfear. Go well.{end_wait}
 04902	message	We should go. Whatever's\ncoming won't wait.{end_wait}
 04946	MsgVaultICanSleepWellNowThat	I can sleep now that\nthe thieves are locked up.{page_break}I kept thinking they'd\ncome for my gem in the\ndark.{end_wait}
 04947	MsgVaultThankGoodnessThoseThievesWere	Thank the gods they were\ncaught before they took\nour gem.{end_wait}

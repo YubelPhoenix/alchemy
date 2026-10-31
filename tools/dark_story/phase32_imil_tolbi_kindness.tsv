@@ -1,13 +1,13 @@
 # Imil and Tolbi kindness choices.
-N90	MsgDarkImilSandbags	The meltwater is rising\nand the sandbags are gone.{page_break}Could you spare 150 coins\nfor more?{end_now}
+N90	MsgDarkImilSandbags	The meltwater is rising and\nour sandbags are gone.{page_break}Could you spare 150 coins\nfor more?{end_now}
 N91	MsgDarkImilBlessing	Thank you. The lower\nstreets will hold a while\nlonger.{end_wait}
-N92	MsgDarkImilRefusal	I understand. We will\nkeep stacking what we\nhave.{end_wait}
+N92	MsgDarkImilRefusal	I understand. We'll keep\nstacking what we have.{end_wait}
 N93	MsgDarkImilHeld	The new bags are holding.\nThank you, stranger.{end_wait}
-N94	MsgDarkImilPoor	No coins to spare?\nNeither have we. Stay safe.{end_wait}
-N95	MsgDarkImilIsaacGives	Take it. Keep the water\nout of the houses.{end_wait}
-N96	MsgDarkTolbiFare	We came for the festival.\nNow no ship will sail and\nour money is gone.{page_break}Could you lend 400 coins\nfor our road home?{end_now}
-N97	MsgDarkTolbiBlessing	You are kind. We will\nnever forget it.{end_wait}
-N98	MsgDarkTolbiRefusal	I understand. Everyone\nis short of coins now.{end_wait}
-N99	MsgDarkTolbiHome	We are leaving at dawn.\nBless you, young warrior.{end_wait}
-N100	MsgDarkTolbiPoor	You have no coins to\nspare? Neither do we.\nGo safely, warrior.{end_wait}
-N101	MsgDarkTolbiIsaacGives	Take it. Get your family\nhome.{end_wait}
+N94	MsgDarkImilPoor	No coins to spare? Neither\ndo we. Stay safe.{end_wait}
+N95	MsgDarkImilIsaacGives	Take it, and keep the water\nout of the houses.{end_wait}
+N96	MsgDarkTolbiFare	We came for the festival,\nbut now no ship will sail\nand our money's gone.{page_break}Could you lend us 400 coins\nto get home?{end_now}
+N97	MsgDarkTolbiBlessing	You're kind. We'll never\nforget it.{end_wait}
+N98	MsgDarkTolbiRefusal	I understand. Everyone's\nshort on coins now.{end_wait}
+N99	MsgDarkTolbiHome	We're leaving at dawn.\nBless you, young warrior.{end_wait}
+N100	MsgDarkTolbiPoor	No coins to spare? Neither\ndo we. Safe travels,\nwarrior.{end_wait}
+N101	MsgDarkTolbiIsaacGives	Take it, and get your\nfamily home.{end_wait}

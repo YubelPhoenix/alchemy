@@ -126,7 +126,7 @@
 03800	message	It's a miracle we two\nwalked out of it alive.{end_wait}
 03801	message	That switch...\nIt was a trap. Had to be.{end_wait}
 03802	message	But could a single trap\nreally cause a storm like\nthis?{end_wait}
-03803	message	...That is the power of\nAlchemy. It's frightening.{end_wait}
+03803	message	...That's the power of\nAlchemy. It's frightening.{end_wait}
 03804	message	We must not fail when we\nchallenge the Sanctum\nagain.{end_wait}
 03805	message	Next time, we have no\nchoice but to succeed.{end_wait}
 03807	message	You were listening to us,\njust now...\nweren't you?{end_now}
@@ -154,7 +154,7 @@
 03841	message	Keep up, or I'll leave you\nbehind.{end_wait}
 03843	MsgValeGoodJob	That's... good. Thank you,\n{actor_name:1}.{end_wait}
 03846	message	You're so dependable,\n{actor_name:1}, just like your\nfather was.{end_wait}
-03847	message	What is it, {actor_name:1}?\nDo you still think about\nthat night?{end_now}
+03847	message	What's it, {actor_name:1}?\nDo you still think about\nthat night?{end_now}
 03850	MsgValeWorkingYourselvesBone	You and {actor_name:2} work\nyourselves to the bone,\nchasing Psynergy.{end_wait}
 03851	message	Would anything have been\ndifferent if you had been\nstronger? Be honest.{end_now}
 03854	MsgValeDevastatedWhenKyle	When Kyle died, I thought\nI'd break in two.{end_wait}
@@ -245,7 +245,7 @@
 03974	message	The elders will let no one\ninside. Not even Kraden.{end_wait}
 03975	message	Kraden...{pause_20_skippable} Could he be of\nuse to us?{end_wait}
 03976	message	His knowledge is great.\nYes, we can use him.{end_wait}
-03977	message	But he is more stubborn\nthan we hoped.{end_wait}
+03977	message	But he's more stubborn\nthan we hoped.{end_wait}
 03978	message	And clever, too.\nDangerously clever.{end_wait}
 03979	message	If he won't come\nwillingly, we can always...{end_wait}
 03982	message	Were you listening to our\nconversation?{end_now}
@@ -258,7 +258,7 @@
 03990	message	Pfeh. If your errand\noutweighs ours, then...\ngo.{end_wait}
 03991	message	Kraden has sent us away.\nHe is waiting for you.{end_wait}
 03994	message	Are you sure, Saturos?\nThey heard everything.{end_wait}
-03995	message	Menardi, they are children.\nWe have no reason to\nhold them.{end_wait}
+03995	message	Menardi, they're children.\nWe have no reason to\nhold them.{end_wait}
 03997	MsgValeDoNotKeepKradenWaiting	Go on, children. Don't\nkeep Kraden waiting.{end_wait}
 03998	MsgValeLeaveBeforeWeChangeMinds	Leave. Before we change\nour minds.{end_wait}
 03999	MsgValeWho	Who were they? Something\nabout them felt wrong.{end_wait}

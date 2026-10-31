@@ -1,13 +1,13 @@
 00790	message	Mia
-N59	MsgDarkDuelMiaStops	Enough. Vale lost the\nStars, and now Vale would\nfight my battle for me?{end_wait}
-N60	MsgDarkDuelIsaacNoTime	Mia, Jenna and Kraden are\nhis hostages. Fight with\nus, not against us.{end_wait}
-N61	MsgDarkDuelMiaPlace	Excuses. You could not\nguard one sanctum, and\nyou ask me to trust you?{end_wait}
-N62	MsgDarkDuelIsaacRefuse	I'm asking you to move.\nI won't stand aside while\nJenna is up there.{end_wait}
-N63	MsgDarkDuelMiaDraw	Then prove you are worth\nstanding beside. Draw your\nblade, Isaac. Alone.{end_wait}
-N64	MsgDarkDuelSaturosAmused	Settle it, then. I can\nwait. It shows me what\nyou are made of.{end_wait}
-N65	MsgDarkDuelMiaLost	Tch... You are stronger\nthan a fool has any right\nto be.{end_wait}
-N66	MsgDarkDuelMiaStop	That is enough. He held\nback. I could feel it in\nevery blow.{end_wait}
-N67	MsgDarkDuelIsaacNotEnemy	We aren't your enemy, Mia.\nWe want Jenna and the\nStars back, same as you.{end_wait}
-N68	MsgDarkDuelMiaTrust	...Then I will trust you.\nA little. Hold Saturos.\nI go after Menardi.{end_wait}
-N69	MsgDarkDuelMiaKeepUp	Keep him busy, fools. I\nwill bring the captives\nback myself.{end_wait}
-N70	MsgDarkDuelSaturosResumes	The healer has gone ahead.\nNow, Adepts. It is your\nturn.{end_wait}
+N59	MsgDarkDuelMiaStops	Enough. Vale lost the\nStars, and now Vale wants\nto fight my battle for me?{end_wait}
+N60	MsgDarkDuelIsaacNoTime	Mia, Jenna and Kraden are\nhis hostages. We need to\nfight with you, not against{page_break}you.{end_wait}
+N61	MsgDarkDuelMiaPlace	Excuses. You couldn't guard\none sanctum, and now you\nwant my trust?{end_wait}
+N62	MsgDarkDuelIsaacRefuse	I'm asking you to move. I\nwon't stand aside while\nJenna's up there.{end_wait}
+N63	MsgDarkDuelMiaDraw	Then prove you're worth\nstanding beside. Draw your\nblade, Isaac, and face me{page_break}alone.{end_wait}
+N64	MsgDarkDuelSaturosAmused	Settle it, then. I can\nwait, and it'll show me\nwhat you're made of.{end_wait}
+N65	MsgDarkDuelMiaLost	Tch... You're stronger than\na fool has any right to be.{end_wait}
+N66	MsgDarkDuelMiaStop	That's enough. He held\nback, and I could feel it\nin every blow.{end_wait}
+N67	MsgDarkDuelIsaacNotEnemy	We're not your enemy, Mia.\nWe want Jenna and the Stars\nback just like you do.{end_wait}
+N68	MsgDarkDuelMiaTrust	...Then I'll trust you, a\nlittle. Keep Saturos busy\nwhile I go after Menardi.{end_wait}
+N69	MsgDarkDuelMiaKeepUp	Keep him busy, fools. I'll\nbring the captives back\nmyself.{end_wait}
+N70	MsgDarkDuelSaturosResumes	The healer has gone ahead.\nNow it's your turn, Adepts.{end_wait}

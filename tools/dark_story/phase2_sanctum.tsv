@@ -22,7 +22,7 @@
 04071	message	Thieves. They came to\nrob this place, didn't\nthey?{end_wait}
 04072	message	Then we go back. Now.\nThe village has to know.{end_wait}
 04073	message	Kraden? Why aren't you\nmoving?{end_wait}
-04074	message	We are so close. So\nclose...{end_wait}
+04074	message	We're so close. So\nclose...{end_wait}
 04075	message	Close to what, exactly?{end_wait}
 04076	message	We've come all the way\nto the heart of the\nSanctum.{page_break}And you'd turn your back\non it? Leave it all\nbehind?{end_wait}
 04077	message	And that's a problem?\nSounds sensible to me.{end_wait}
@@ -34,11 +34,11 @@
 04083	message	...I want to see it too.\nI'm sorry. I do.{end_wait}
 04084	message	Really?{pause_20_skippable} Only a little\nfarther. I promise.{end_wait}
 04085	message	Then it's settled.\nStay close, all of you.{end_wait}
-04086	MsgSolSanctumWhRoom	Wh{pause_20_skippable}-What is this place?{end_wait}
+04086	MsgSolSanctumWhRoom	Wh{pause_20_skippable}-What's this place?{end_wait}
 04087	message	A moon, there in the\ncenter. Luna, carved\nin stone.{end_wait}
 04088	message	Night. It has to mean\nnight.{end_wait}
 04089	message	These rooms are linked,\naren't they? Somehow?{end_now}
-04090	MsgSolSanctumLunaSolRooms	Luna and Sol.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}\nTwo rooms. One secret.{page_break}But what is it hiding?{end_wait}
+04090	MsgSolSanctumLunaSolRooms	Luna and Sol.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}\nTwo rooms. One secret.{page_break}But what's it hiding?{end_wait}
 04091	MsgSolSanctumRoomLunaOne	A room for Luna, one for\nSol. That's no accident.{end_wait}
 04092	MsgSolSanctumMeanLookFarther	I don't understand it.\n{actor_name:1}, look farther up\nthe passage. Please?{end_now}
 04093	MsgSolSanctumKradenLetMeKnowWhat	Tell me what you find.{end_wait}
@@ -49,7 +49,7 @@
 04098	message	{actor_name:1} found something.\nI can feel it.{end_wait}
 04099	message	{actor_name:1}! Stop! Don't!\nYou're about to make a\nterrible mistake!{end_wait}
 04100	MsgSolSanctumWait	{actor_name:1}, wait!{end_wait}
-04101	message	Kraden? What is it?{end_wait}
+04101	message	Kraden? What's it?{end_wait}
 04102	message	A remarkable mechanism,\n{actor_name:1}. Truly remarkable.{end_wait}
 04103	message	But{pause_20_skippable} look closer. This is\nclearly a trap of some\nkind.{end_wait}
 04104	message	A trap? Here?{end_wait}
@@ -231,8 +231,8 @@
 04280	message	Felix will take them.\nGive him the stones.{end_wait}
 04281	message	Great. After all that\nwork...{end_wait}
 04282	message	{actor_name:2} gave him the\nElemental Stars.{end_wait}
-04283	message	I'm sorry. There is one\nmore thing.{end_wait}
-04284	message	You will bring us the\nlast Elemental Star too.{end_wait}
+04283	message	I'm sorry. There's one\nmore thing.{end_wait}
+04284	message	You'll bring us the\nlast Elemental Star too.{end_wait}
 04285	message	Wait. Just a second!{end_wait}
 04286	message	You want us to fetch the\nlast one too?{end_wait}
 04287	message	Yes.{pause_20_skippable} The last one too.{end_wait}
@@ -249,7 +249,7 @@
 04298	MsgSolSanctumSaturosBringTheFinalStar	If you want to save them,\nbring us the final\nElemental Star.{end_wait}
 04299	MsgSolSanctumKradenIAmResponsible	I'm sorry, everyone.\nThis is my doing. All\nof it.{end_wait}
 04300	MsgSolSanctumAlexOnlyOneLeft	Only one remains. You're\nalmost finished.{end_wait}
-04301	MsgSolSanctumJennaWhatHappened	What is it?{pause_20_skippable}\nWhat happened?{end_wait}
+04301	MsgSolSanctumJennaWhatHappened	What's it?{pause_20_skippable}\nWhat happened?{end_wait}
 04302	message	No...{pause_20_skippable} not again!{end_wait}
 04303	message	The water... it's drained!{end_wait}
 04304	message	Without the Elemental\nStars' energy, the whole\nchamber is collapsing!{end_wait}
@@ -308,23 +308,23 @@
 04357	message	What are you doing, just\nstanding there?{end_wait}
 04358	message	This place has turned\ndangerous...{end_wait}
 04359	message	You're the danger here!{end_wait}
-04360	message	The mountain will erupt\nsoon...{pause_20_skippable} I cannot hold\nit for long.{end_wait}
+04360	message	The mountain will erupt\nsoon...{pause_20_skippable} I can't hold\nit for long.{end_wait}
 04361	message	Leave this place at once.{end_wait}
 04362	message	The Elemental Djinn...{pause_20_skippable}\nThey have come back...{end_wait}
 04363	message	Take out{pause_20_skippable} the Elemental\nStar...{end_now}
-04364	MsgSolSanctumCannotResist	{actor_name:1} cannot resist it.{end_wait}
+04364	MsgSolSanctumCannotResist	{actor_name:1} can't resist it.{end_wait}
 04365	MsgSolSanctumReturnStarToBag	Put it back in its bag.{end_wait}
 04366	message	The Elemental Stars...{pause_20_skippable}{pause_20_skippable}\nthey're leaving here...{end_wait}
 04367	message	Without the Elemental\nStars to hold it back,{page_break}the magma runs free\nagain. This chamber is\ncollapsing.{end_wait}
 04368	message	There will be no chamber\nleft for the Stars to\nreturn to...{end_wait}
 04369	message	And the world will be\nopen to the threat of\nAlchemy.{end_wait}
 04370	message	A threat? Alchemy?{end_wait}
-04371	message	It is dangerous power\nin the wrong hands...{end_wait}
+04371	message	It's dangerous power\nin the wrong hands...{end_wait}
 04372	message	If the Elemental Stars\nlight the flames of the\nfour lighthouses,{page_break}that power will be\nreleased.{end_wait}
 04373	message	So long as the four\nlighthouses stay dark...{end_wait}
 04374	message	The mountain... it's\nerupting... Flee, now!{end_wait}
 04375	message	But how can we...{end_wait}
-04376	message	Ah.{pause_20_skippable} I see. I will help\nyou escape.{end_wait}
+04376	message	Ah.{pause_20_skippable} I see. I'll help\nyou escape.{end_wait}
 04377	MsgSolSanctumFloatingEyeThing	Did that floating eye\nthing just save us?{end_now}
 04378	message	Sure, why not. Let's go\nbefore it changes its\nmind.{end_wait}
 04379	MsgSolSanctumGotFourMythrilBags	{protagonist_name} took four\nMythril Bags.{end_wait}
@@ -348,7 +348,7 @@
 04466	message	You left the choice to\n{actor_name:1}.{page_break}Then there will be no\nfurther discussion.{end_wait}
 04467	message	O Wise One, these two\nhave taken up your quest.{page_break}Give us your next\ncommand.{end_wait}
 04468	message	You two are brave, taking\non this quest.{end_wait}
-04469	message	I will be watching you.\nChoose your fate with\ncare, young ones.{end_wait}
+04469	message	I'll be watching you.\nChoose your fate with\ncare, young ones.{end_wait}
 04470	message	So that was the Wise\nOne...{end_wait}
 04471	message	What did the Wise One\nsay to you?{end_wait}
 04472	message	{actor_name:5} must unlock the\npower. That was all.{end_wait}
@@ -359,7 +359,7 @@
 04477	message	Look for the elementals.\nThe Djinn...{end_wait}
 04478	message	They will serve you well.{end_wait}
 04479	message	Is there nothing more?{end_wait}
-04480	message	That is all there is.{end_wait}
+04480	message	That's all there is.{end_wait}
 04481	message	That's it?! Nothing\nmore you can tell them?{end_wait}
 04482	message	No more, Mayor.{end_wait}
 04483	message	It's up to you now,\n{actor_name:1}...{pause_20_skippable}{actor_name:2}.{end_wait}
@@ -379,7 +379,7 @@
 04568	MsgSanctumThePowerOfMyPsynergyHas	My Psynergy has grown so\nmuch, and I don't know\nwhy.{page_break}I'd like to try it on\nsomething. Anything.{end_wait}
 04569	MsgSanctumTheAngaranContinentWillCertainlySee	The Angaran continent\nwill see trouble from\nthese Psynergy Stones...{page_break}Leaving Vale has become\nall the more dangerous.{end_wait}
 04570	MsgSanctumMyPsynergyHasntChangedAtAll	My Psynergy hasn't\nchanged at all.{pause_20_skippable} It isn't\nfair.{end_wait}
-04744	MsgSanctumWeWillHelpAnytimeAs	We will help you at any\ntime, so long as your\nheart is pure.{end_wait}
+04744	MsgSanctumWeWillHelpAnytimeAs	We'll help you at any\ntime, so long as your\nheart is pure.{end_wait}
 04745	MsgSanctumHealerMustWorriedAboutNever	The healer must be\nworried about...{page_break}Oh, never mind. It's not\nyour burden.{end_wait}
 04746	message	If that eases your mind,\nthen go ahead...{end_wait}
 04747	MsgSanctumWonderIfEverSeeOur	Will we ever see our\nstolen gold statue again?{end_wait}

@@ -24,7 +24,7 @@
 06008	message	The river would have\ncarried me away if it\nweren't for you.{end_wait}
 06011	message	I'll never forget what\nyou did for me.\nThank you.{end_wait}
 06013	MsgBilibinIReallyLikeThisSpotBy	I like this spot by the\nriverbank... The water\nstill sounds peaceful.{end_wait}
-06014	MsgBilibinIWillThinkOfYouWhenever	I will think of you\nwhenever I taste a\npersimmon.{end_wait}
+06014	MsgBilibinIWillThinkOfYouWhenever	I'll think of you\nwhenever I taste a\npersimmon.{end_wait}
 06017	MsgBilibinWhoseIdeaWasItToPick	Whose idea was it to\npick persimmons,\nanyway?{end_wait}
 06018	MsgBilibinWellItWasntMyIdeaTo	Don't look at me.\nIt wasn't my idea.{end_wait}
 06019	MsgBilibinThesePersimmonsAreJustLikeMy	These persimmons are\njust like my memories...\nSo{pause_20_skippable} bitter...{end_wait}

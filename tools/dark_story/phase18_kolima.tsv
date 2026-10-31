@@ -24,13 +24,13 @@
 05306	message	But{pause_20_skippable} how do we bring\nback the gentle Tret\nand save the village?{end_wait}
 05307	message	I really don't know\nwhat to do.{end_wait}
 05308	message	{actor_name:3}, you can't give\nup!{pause_20_skippable} Please,{pause_20_skippable} convince him\nto help!{end_wait}
-05310	message	Promise{pause_20_skippable} you will do\neverything in your power\nto save Kolima.{end_wait}
+05310	message	Promise{pause_20_skippable} you'll do\neverything in your power\nto save Kolima.{end_wait}
 05312	message	I was beginning to lose\nfaith in you, {actor_name:1}.{end_wait}
 05313	message	But how do we bring\nback the good Tret{page_break}and save Kolima?{end_wait}
 05314	message	I really have no\nidea right now...{end_wait}
 05316	message	I don't know yet...\nBut we have to\nthink of something.{end_wait}
 05317	message	Well,{pause_20_skippable} let's go.{end_wait}
-05322	message	Hroooom! He will not\nspeak to you, child!{end_wait}
+05322	message	Hroooom! He won't\nspeak to you, child!{end_wait}
 05337	message	Wait!\nWe can't let Tret\ndie like this!{end_wait}
 05338	message	That's right, {actor_name:1}.\nWe still need his help!{end_wait}
 05342	message	That's right, {actor_name:1}...{pause_20_skippable}{page_break}We have to save\neveryone in Kolima.{end_wait}
@@ -42,13 +42,13 @@
 05352	message	Try the water!{end_wait}
 05353	message	Surely that will\nrevive Tret.{end_wait}
 05359	message	Hroooom...{pause_20_skippable} Life flows\nwithin me again.{end_wait}
-05362	message	I am sorry to have\nworried you, Laurel.{end_wait}
+05362	message	I'm sorry to have\nworried you, Laurel.{end_wait}
 05363	message	And you, young ones...\nDid you not have a\nfavor to ask of me?{end_now}
 05366	message	{actor_name:1}! Did you forget?\nWe have to save\nthe people of Kolima!{end_wait}
 05367	message	Tret should be able to\ndo it now that his\nstrength is back.{end_wait}
 05368	message	Ask him to save\neveryone he turned\ninto a tree.{end_wait}
 05369	message	Please, Tret... You must\nsave those you turned\ninto trees.{end_wait}
-05372	message	Tret did not always\nhave this terrible\npower.{end_wait}
+05372	message	Tret didn't always\nhave this terrible\npower.{end_wait}
 05373	message	It began when strange\ngems fell from the sky.{end_wait}
 05374	message	Gems from the sky...\nDo you think he means\nthe Psynergy Stones?{end_now}
 05375	message	You really think the\nPsynergy Stones caused\nall of this?{end_wait}
@@ -67,7 +67,7 @@
 05390	message	Oh! Laurel, you were\ngiven powers, too?{end_wait}
 05391	message	Different from mine,\nbut from the same\nsource.{end_wait}
 05392	message	Laurel! What are\nyou doing?{end_wait}
-05393	message	Wait. You will soon see.{end_wait}
+05393	message	Wait. You'll soon see.{end_wait}
 05394	message	What did you see, Laurel?{end_wait}
 05395	message	It's true{em_dash}even the\nanimals have become\nmonsters.{page_break}And beyond the river...{end_wait}
 05397	message	Yes... An evil forest\nhas risen south of\nthe river.{end_wait}
@@ -75,7 +75,7 @@
 05400	message	Good... It would be\nfoolish to risk your\nlives further.{end_wait}
 05402	message	May your roots go deep\nand your branches\nreach high.{end_wait}
 05403	message	Were you surprised,\n{actor_name:1}? We trees have\ngrown strong.{end_wait}
-05409	message	Oh!{pause_20_skippable} You are the ones who\nresisted Tret's glamour?{end_wait}
+05409	message	Oh!{pause_20_skippable} You're the ones who\nresisted Tret's glamour?{end_wait}
 05410	message	I sense a great warmth\nwithin you...{end_wait}
-05411	message	If you came to rescue\nTret, you are already\ntoo late.{end_wait}
+05411	message	If you came to rescue\nTret, you're already\ntoo late.{end_wait}
 05412	message	Soon, Tret will die,\nand we shall wither\naway without him.{page_break}Leave now, before this\nforest is destroyed...{end_wait}

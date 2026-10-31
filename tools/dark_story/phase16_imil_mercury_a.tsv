@@ -9,7 +9,7 @@
 05437	MsgImilHerPalmsShineWithABlue	Her palms shine with\na blue light...\nIs she{pause_20_skippable} an angel?{end_wait}
 05438	MsgMercuryStoreClosedUntilWell	Our store is closed\nuntil we get well.\nIf we get well...{end_wait}
 05439	MsgImilDoWantWeapons	Do you want weapons?{end_now}
-05440	message	I can't sell weapons\nuntil I am cured. {text_effect:4}Ohh...{pause_20_skippable}{reset_text_style}\nChills... {text_effect:4}Cough!{reset_text_style}{end_wait}
+05440	message	I can't sell weapons\nuntil I'm cured. {text_effect:4}Ohh...{pause_20_skippable}{reset_text_style}\nChills... {text_effect:4}Cough!{reset_text_style}{end_wait}
 05441	message	Travelers from the\nsouth brought this\nsickness to our village.{page_break}{reset_text_style}Are you from the south,\ntoo? If you have no\nbusiness here,{page_break}then leave... {text_effect:4}Cough!{reset_text_style}{end_wait}
 05443	MsgMercuryTooSickBusiness	Sorry. Too sick for\nbusiness today.\nTry again tomorrow...{end_wait}
 05444	MsgImilWereClosedSorryIGetA	We're closed!!!\nSorry... I snap at\neveryone when I'm sick. {page_break}I'll open when I'm\nbetter.{end_wait}
@@ -52,7 +52,7 @@
 05489	MsgImilCantUnderstandWhyAnyOne	I can't understand why\nanyone would exercise\nin this cold.{end_wait}
 05490	MsgImilAmHealerWhileMiaOut	I'm the healer while\n{actor_name:4} is out. Tell me\nif you need anything.{end_wait}
 05491	MsgImilFeelLikeGrownUpWhen	I feel grown-up when\nI heal people.\nI wish it were easier.{end_wait}
-05492	MsgImilEveryoneCountsOnMiaThats	Everyone needs {actor_name:4}.\nThat's why she is always\nso busy.{end_wait}
+05492	MsgImilEveryoneCountsOnMiaThats	Everyone needs {actor_name:4}.\nThat's why she's always\nso busy.{end_wait}
 05493	MsgImilWeHaveDoWhateverWe	We have to help {actor_name:4}\nany way we can.\nShe's stretched thin.{end_wait}
 05494	MsgImilHermesHealingWaterFountain	Fountain of Healing{page_break}Water of Hermes:\nIt brings rejuvenation\nto all that lives.{end_wait}
 05495	MsgImilSomebodyHere	Somebody...is here.{end_wait}
@@ -101,7 +101,7 @@
 05554	message	I heard everything.{end_wait}
 05555	message	They survived the\neruption of Mt. Aleph.\nLucky.{end_wait}
 05556	message	You've endured so much,\nand now you want to\nthrow your lives away?{end_wait}
-05557	message	Fine. If that is your\nwish, prepare to have\nit granted.{end_wait}
+05557	message	Fine. If that's your\nwish, prepare to have\nit granted.{end_wait}
 05558	message	Saturos... Are you going\nto fight them alone?{end_wait}
 05559	message	Menardi, I can't ask you\nto leave our hostages\nand help me, can I?{end_wait}
 05560	message	Umm...{pause_20_skippable} That's true...{end_wait}

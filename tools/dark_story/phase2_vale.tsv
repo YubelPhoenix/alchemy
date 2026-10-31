@@ -1,10 +1,10 @@
 00110	message	Save your adventure?{end_now}
 02389	MsgValeWoodenBoxEmpty	but found nothing.{end_wait}
-02390	message	There is nothing but years\nof dust.{end_wait}
+02390	message	There's nothing but years\nof dust.{end_wait}
 02391	message	Dry old books, nothing that\nhelps anyone now.{end_wait}
 02392	message	A sarcophagus. Better not\nto wonder who is inside.{end_wait}
 02393	message	It's glowing hot. Don't\ntouch it.{end_wait}
-02394	message	The surface ripples even\nthough there is no wind.{end_wait}
+02394	message	The surface ripples even\nthough there's no wind.{end_wait}
 02395	message	It's just a stone pillar,\ncold and silent.{end_wait}
 02396	message	It's colder than it\nshould be.{end_wait}
 02397	message	There's no way through here\nby force.{end_wait}
@@ -33,7 +33,7 @@
 03816	MsgValeRepairCaption	Three years later...{end_wait}
 03819	message	Hyah!{end_wait}
 03821	message	Hyaaaah!{end_wait}
-03831	message	What is it, {actor_name:2}?{end_wait}
+03831	message	What's it, {actor_name:2}?{end_wait}
 03834	message	Fine. Forget I said\nanything.{end_wait}
 03835	message	{actor_name:6},{pause_20_skippable} are you angry\nwith me?{end_wait}
 03836	message	Not now. I can't talk\nabout it.{end_wait}
@@ -98,7 +98,7 @@
 04040	message	You don't have to be so\nharsh...{end_wait}
 04043	message	There's no need to be\ncruel...{end_wait}
 04045	message	All right.{pause_20_skippable} Let's go.{end_wait}
-04381	MsgValeItIsVeryDangerousToGo	Go no further. Mt. Aleph is\nawake and it is angry.{page_break}Turn back. Now.{end_wait}
+04381	MsgValeItIsVeryDangerousToGo	Go no further. Mt. Aleph is\nawake and it's angry.{page_break}Turn back. Now.{end_wait}
 04382	MsgValeIAmAllAloneInThis	I'm alone out here, in the\nmiddle of all this.{page_break}Did the Great Healer\nforget about me...?{end_wait}
 04383	MsgValeCheckedThePsynergyStone	{protagonist_name} examined the\nPsynergy Stone.{end_wait}
 04384	MsgValeSChestValuables	It's {actor_name:2}'s chest of\nvaluables. He nearly died\nfor it.{end_wait}
@@ -164,7 +164,7 @@
 04444	message	You'd put the fate of the\nworld in the hands of\n{actor_name:1} and {actor_name:2}?{end_wait}
 04445	message	{actor_name:2} is a child. How\ncan he carry such a thing?{end_wait}
 04446	message	The Wise One has spoken.{end_wait}
-04447	message	We are all responsible\nfor this. Every one of us.{end_wait}
+04447	message	We're all responsible\nfor this. Every one of us.{end_wait}
 04448	message	Now each of you must\nchoose for yourselves.{end_wait}
 04449	message	I don't know what to do.\n{actor_name:1}... you decide.{end_wait}
 04493	MsgValeTremorsSettled	You're {actor_name:1}, right?{page_break}The tremors have eased a\nlittle. That's something.\nIt won't last, though.{end_wait}

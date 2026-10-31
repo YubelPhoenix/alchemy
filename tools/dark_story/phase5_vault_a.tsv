@@ -25,9 +25,9 @@
 04695	message	You have them too,\ndon't you? I can feel it.{end_wait}
 04696	message	What? My power{pause_20_skippable}...\nIt's called Psynergy?\nI never knew it had a name.{end_wait}
 04697	message	We're alike, you and I...\nI think I can trust you\nwith this.{end_wait}
-04698	message	I am troubled. Master\nHammet's rod was stolen\nright out from under us.{end_wait}
+04698	message	I'm troubled. Master\nHammet's rod was stolen\nright out from under us.{end_wait}
 04699	message	Will you help me get my\nmaster's rod back? I\ncan't do it alone.{end_now}
-04700	message	I see. It is a lot to ask\nof a stranger. I\nunderstand.{end_wait}
+04700	message	I see. It's a lot to ask\nof a stranger. I\nunderstand.{end_wait}
 04701	MsgVaultWouldReallyWouldHelpMe	Truly? Will you help me\nfind the rod?{end_now}
 04702	message	Forgive me. I shouldn't\nhave asked.{end_wait}
 04703	MsgVaultThankHelpBelieve	Thank you. With you, I\nbelieve we can recover\nthe rod.{end_wait}

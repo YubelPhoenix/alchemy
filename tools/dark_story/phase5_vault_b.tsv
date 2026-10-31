@@ -26,7 +26,7 @@
 04772	MsgVaultImSurrounded	Damn! I'm surrounded!{end_wait}
 04773	MsgVaultNowIvan	Now, {actor_name:3}! Do it!{end_wait}
 04774	message	A-All right...!{end_wait}
-04775	message	Wh-what is this? What's\nhe doing to me?!{end_wait}
+04775	message	Wh-what's this? What's\nhe doing to me?!{end_wait}
 04776	message	His eyes are shut...\nWhat is he doing?{end_wait}
 04777	message	Are you done, {actor_name:3}?\nBe quick.{end_wait}
 04778	message	You freaks... Stay away\nfrom me! All of you!{end_wait}

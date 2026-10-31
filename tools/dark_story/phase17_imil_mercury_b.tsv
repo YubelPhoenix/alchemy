@@ -49,7 +49,7 @@
 05727	message	{actor_name:4}, you already knew?{end_wait}
 05728	message	What's the matter?{pause_20_skippable}\nYou look strange\ntoday, {actor_name:4}.{end_wait}
 05729	message	I...{pause_20_skippable}\nHow do I tell you?{end_wait}
-05730	message	You have something to\nsay? What is it?{end_wait}
+05730	message	You have something to\nsay? What's it?{end_wait}
 05731	message	Well, {pause_20_skippable}I... Uh...{end_wait}
 05734	message	You said the world would\nbe in danger if the\nlighthouse was lit, right?{end_wait}
 05735	message	Is that why you're\nleaving? To protect the\nworld?{end_wait}

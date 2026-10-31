@@ -4,7 +4,7 @@
 07177	MsgValeTheRumorWasTrue	I heard you were back.\nI hoped the rumor was\nwrong.{page_break}Will you tell us what\nyou saw out there?{end_wait}
 07178	MsgValeWhenDidYouComeBack	{actor_name:1}! When did you\ncome back? After the\nway you left,{page_break}I thought I'd never\nsee you again.{page_break}I'm glad. Truly.{end_wait}
 07179	MsgValeOwItsGonnaBeYearsBefore	Ow!{pause_20_skippable} It'll be years\nbefore I'm grown up!\n{actor_name:1}'s back already!{page_break}Oh... only visiting?\nI thought the bad\nthings were over.{end_wait}
-07180	MsgValeWelcomeHomeIsaacOhWhatHappened	Welcome home, {actor_name:1}.\nOh...{pause_20_skippable} ...\nWhat happened?{page_break}Why are you walking\nwith a girl who is not\n{actor_name:6}?{end_wait}
+07180	MsgValeWelcomeHomeIsaacOhWhatHappened	Welcome home, {actor_name:1}.\nOh...{pause_20_skippable} ...\nWhat happened?{page_break}Why are you walking\nwith a girl who isn't\n{actor_name:6}?{end_wait}
 07181	MsgValeWeveSeenManyMonstersLatelyAnd	Monsters have crowded\nthe roads since the\nmountain burned.{page_break}The ash drives them\nclose to the village.\nWeapons sell well.{page_break}If only our smiths\ncould make them\nbetter...{end_wait}
 07182	MsgValeIWishICouldLearnThe	I wish I knew the secret\nof good weapons. Then\nI might be of use.{end_wait}
 07183	MsgValeIGaveHimAFarewellGift	I gave him a farewell\ngift, thinking I'd\nnever see him again.{page_break}But here he is...{page_break}Where is {actor_name:6}? Wasn't\nhe to bring her back\nwith him?{end_wait}
@@ -41,7 +41,7 @@
 07214	message	Oh, {actor_name:2}...!{end_wait}
 07215	message	Grandpa,\nI'm home...{end_wait}
 07216	message	Yes, yes...{pause_20_skippable} Did you\ncomplete your mission\nfor the Wise One?{end_now}
-07217	message	It is going well?\nThen you must go on\nsoon, I suppose.{end_wait}
+07217	message	It's going well?\nThen you must go on\nsoon, I suppose.{end_wait}
 07218	message	Not yet? Then I'm glad\nyou're home, even for\na little while...{end_wait}
 07219	MsgValeYoureLeavingAgainSoon	You're leaving again\nsoon...aren't you?{end_wait}
 07220	message	I'm just glad to see\nyou alive.{end_wait}
@@ -58,7 +58,7 @@
 07231	message	You didn't hear? But you\nlook worried.{page_break}We'll look after your\nmother. Go on, rest.{end_wait}
 07232	MsgValeHopeDidntGet	I hope the road didn't\nmake you sick.{page_break}{actor_name:2} never eats enough\nnow. His mother worries.{end_wait}
 07233	MsgValeItMustBeNiceToBe	Young, with lovely\ngirls on the road...\nit must be nice.{end_wait}
-07234	MsgValeHisNewFriendsAreAllSo	His new friends are\npolite. That is the\nonly good news.{end_wait}
+07234	MsgValeHisNewFriendsAreAllSo	His new friends are\npolite. That's the\nonly good news.{end_wait}
 07235	MsgValeItWasntTooSmartToTalk	We shouldn't have talked\nabout Dora without\nchecking for {actor_name:1}.{page_break}I wish we could tell\nhim the truth.{end_wait}
 07236	MsgValeGaretSeemsToHaveGrownUp	{actor_name:2} has grown up\nfast on this road.\nToo fast.{end_wait}
 07270	MsgValeCoughCoughWho	{text_effect:4}Cough, cough{pause_20_skippable}{pause_20_skippable}! {reset_text_style}Who is it?{pause_20_skippable}\nIs it the innkeeper?{pause_20_skippable}{pause_20_skippable}\nIs it time to eat?{end_wait}
@@ -84,7 +84,7 @@
 07290	message	I think Dora\nis dreaming.{end_wait}
 07291	MsgValeKyleWatchOutTheBoulderThe	Kyle, watch out!{pause_20_skippable}{pause_20_skippable}\nThe boulder!!!{pause_20_skippable}\nThe boulder...{end_wait}
 07292	MsgValeOhSoYouStillHaventRescued	So you still haven't\nbrought {actor_name:6} home...{end_wait}
-07293	MsgValeIGetOverColdsQuicklyBut	I recover from colds fast.{page_break}But Dora has been ill\na long time. That is not\na cold.{end_wait}
+07293	MsgValeIGetOverColdsQuicklyBut	I recover from colds fast.{page_break}But Dora has been ill\na long time. That isn't\na cold.{end_wait}
 07294	MsgValeAColdIsGoingAroundI	A sickness is going\naround. I should be\ncareful.{end_wait}
 07295	MsgValeWillIEverSeeJennaAnd	Will I see {actor_name:6}\nand {actor_name:5} again\nbefore I die?{end_wait}
 07296	MsgValeDoraSaysItsJustACold	Dora says it's a cold,\nbut she's been like this\never since...{page_break}{actor_name:1} left...\nShe isn't getting\nbetter...{end_wait}

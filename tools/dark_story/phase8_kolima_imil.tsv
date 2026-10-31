@@ -1,6 +1,6 @@
 04911	MsgGomaGotWowThatsPrettyImpressive	You found it? Impressive.{page_break}Keep looking. There may\nbe more like it.{end_wait}
 05007	MsgGomaNoUsePsynergy	No luck. Our Psynergy\nisn't strong enough to\nmove that stump.{end_wait}
-05244	MsgKolimaSparklyStuffOnGround	That glittering dust on\nthe ground. What is it?{end_wait}
+05244	MsgKolimaSparklyStuffOnGround	That glittering dust on\nthe ground. What's it?{end_wait}
 05256	MsgKolimaKnowThoseFieldsWere	Do you know what those\nfields used to be?{end_wait}
 05277	MsgKolimaWatchOutItsHappeningAgain	Back! It's happening\nagain!{end_wait}
 05300	MsgKolimaHesAsStumpedAsWe	He's as lost as we are{pause_20_skippable},\nbut he says he'll help.{end_wait}
@@ -13,7 +13,7 @@
 05377	MsgKolimaWasIndeedAngryPeopleHad	Yes, I was angry. You\nlaid waste to my forest.{page_break}You even raised your\naxes against me!{end_wait}
 05401	MsgKolimaOweGreatDebtHaveSaved	I owe you a debt. You\nsaved Kolima, the forest,\nand me.{end_wait}
 05404	MsgKolimaNowHaveSuchPowerAxe	With this power, no axe\nwill ever touch me again.{page_break}Go in peace. You have\nnothing to fear.{end_wait}
-05405	MsgKolimaForestKolimaAlive	Kolima's forest lives\nagain, thanks to you.{page_break}We will guard it from\nnow on.{end_wait}
+05405	MsgKolimaForestKolimaAlive	Kolima's forest lives\nagain, thanks to you.{page_break}We'll guard it from\nnow on.{end_wait}
 05406	MsgKolimaKnowCannotStopButPlease	I can't stop you. But be\ncareful beyond the river.{end_wait}
 05407	MsgKolimaMustHorribleBeyondRiverAm	It must be terrible\nbeyond the river...{page_break}I worry about you and\nyour friends,\n{actor_name:1}.{end_wait}
 05413	MsgKolimaLeaveBeforeForest	Leave, before this forest\nis destroyed...{end_wait}

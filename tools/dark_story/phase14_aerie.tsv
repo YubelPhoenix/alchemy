@@ -1,22 +1,22 @@
-N37	MsgDarkAerieSaturosStars	Menardi has the Stars and\nyour friends. She waits on\nthe road below Imil.{end_wait}
+N37	MsgDarkAerieSaturosStars	Menardi has the Stars and\nyour friends. She's waiting\non the road below Imil.{end_wait}
 N38	MsgDarkAerieGaretWhere	Where? Where is Jenna!?{end_wait}
-N39	MsgDarkAerieSaturosSorry	Out of your reach, until\nit is finished. I am sorry\nfor that.{end_wait}
-N40	MsgDarkAerieMiaSorry	Sorry changes nothing.\nYou took her from us.{end_wait}
-N41	MsgDarkAerieSaturosGo	Then follow. I will not\nstop you again.{end_wait}
-N42	MsgDarkAerieMiaGoing	Wait. Where is Mia? She\nwent after Menardi alone!{end_wait}
-N43	MsgDarkAerieIvanAlone	Then we hurry. She cannot\nface Menardi alone!{end_wait}
+N39	MsgDarkAerieSaturosSorry	Out of your reach until\nthis is finished, and I'm\nsorry for that.{end_wait}
+N40	MsgDarkAerieMiaSorry	Sorry doesn't change\nanything. You took her from\nus.{end_wait}
+N41	MsgDarkAerieSaturosGo	Then follow us. I won't\nstop you again.{end_wait}
+N42	MsgDarkAerieMiaGoing	Wait, where's Mia? She went\nafter Menardi alone!{end_wait}
+N43	MsgDarkAerieIvanAlone	Then we'd better hurry. She\ncan't take on Menardi by\nherself!{end_wait}
 N44	MsgDarkAerieMiaFollow	...{end_wait}
-N45	MsgDarkAerieGaretAfterHer	She's gone ahead. Come\non, we have to catch up!{end_wait}
-N46	MsgDarkAerieMiaJenna	Menardi. I have followed\nyou a long way. Stop.{end_wait}
-N47	MsgDarkAerieMenardiWhichReal	The healer, and alone.\nYour friends could not\nkeep pace?{end_wait}
-N48	MsgDarkAerieJennaScared	Whoever you are, please!\nHelp us!{end_wait}
-N49	MsgDarkAerieMiaFear	I will. Stay close to me.{end_wait}
-N50	MsgDarkAerieMiaGiveBack	The beacon you lit is mine\nto guard. Give them back,\nor I take them.{end_wait}
-N51	MsgDarkAerieMenardiAlone	I do not want this fight,\nhealer. But I cannot give\nthem back.{end_wait}
-N52	MsgDarkAerieMiaAngry	Then you leave me no\nchoice.{end_wait}
-N53	MsgDarkAerieMenardiRetreat	Enough... You are stronger\nthan I thought. I will not\nthrow my life away here.{end_wait}
-N54	MsgDarkAerieMenardiTakes	The Stars and the captives\ncome with me. Follow, if\nyou are willing.{end_wait}
+N45	MsgDarkAerieGaretAfterHer	She's already gone ahead.\nCome on, we have to catch\nup!{end_wait}
+N46	MsgDarkAerieMiaJenna	Menardi, I've followed you\na long way. Stop right\nthere.{end_wait}
+N47	MsgDarkAerieMenardiWhichReal	The healer, all alone.\nCouldn't your friends keep\nup?{end_wait}
+N48	MsgDarkAerieJennaScared	Whoever you are, please\nhelp us!{end_wait}
+N49	MsgDarkAerieMiaFear	I will. Just stay close to\nme.{end_wait}
+N50	MsgDarkAerieMiaGiveBack	You lit the beacon I'm\nmeant to guard. Give them\nback, or I'll take them.{end_wait}
+N51	MsgDarkAerieMenardiAlone	I don't want this fight,\nhealer, but I can't give\nthem back.{end_wait}
+N52	MsgDarkAerieMiaAngry	Then you've left me no\nchoice.{end_wait}
+N53	MsgDarkAerieMenardiRetreat	Enough. You're stronger\nthan I thought, and I won't\nthrow my life away here.{end_wait}
+N54	MsgDarkAerieMenardiTakes	The Stars and the captives\nare coming with me. Follow\nus if you're willing.{end_wait}
 N55	MsgDarkAerieGaretHurt	Mia! Are you hurt?{end_wait}
-N56	MsgDarkAerieMiaTookThem	Menardi took them all:\nJenna, Kraden, Felix, and\nthe Stars.{end_wait}
-N57	MsgDarkAerieIvanTogether	Then we follow. Together\nthis time.{end_wait}
-N58	MsgDarkAerieMiaTogether	...Together. Fine. Keep up.{end_wait}
+N56	MsgDarkAerieMiaTookThem	Menardi took them all:\nJenna, Kraden, Felix and\nthe Stars.{end_wait}
+N57	MsgDarkAerieIvanTogether	Then we follow her, and\nthis time we do it\ntogether.{end_wait}
+N58	MsgDarkAerieMiaTogether	...Together, then. Just try\nto keep up.{end_wait}
