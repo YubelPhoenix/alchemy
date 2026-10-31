@@ -2775,4 +2775,8 @@
 /// (AltinPeak_TalkToTrappedMiner).
 #define FLAG_DARK_MINERS_FREED 0x8cb
 
+/// Mia's other self took over after the Manticore fell and the party saw it
+/// (LamakanDesert_MiaTakesOver).
+#define FLAG_DARK_MIA_MANTICORE_SEEN 0x8cc
+
 #endif

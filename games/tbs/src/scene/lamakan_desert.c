@@ -996,6 +996,25 @@ static void LamakanDesert_MeetManticore(void) {
   }
 }
 
+/// Back from the Manticore's battle once Mercury Lighthouse is lit: Mia's
+/// other self gloats over the beast, Garet sees her smiling and she does not
+/// remember it. Once.
+static void LamakanDesert_MiaTakesOver(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkManticoreMiaGloat);
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_MIA_MANTICORE_SEEN);
+  Event_End();
+}
+
 /// Entering Lamakan Desert: the heat gauge (600 steps) starts on all but
 /// LamakanDesertCave, the patches Reveal uncovers are saved to the spare cells
 /// at 64, 126 or 64, 124, and the secrets are hidden.
@@ -1040,6 +1059,12 @@ s32 LamakanDesert_Initialize(void) {
       MapGrid_CopyCells(10, 21, 4, 4, 72, spareRow);
     }
     Reveal_HideSecrets();
+  }
+  if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
+      gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE &&
+      GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
+      GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) == 0) {
+    LamakanDesert_MiaTakesOver();
   }
   return 0;
 }

@@ -1,0 +1,6 @@
+# Lamakan Desert: Mia's other self takes over after the Manticore falls.
+N149	MsgDarkManticoreMiaGloat	Is that all it had? How\ndisappointing. Beasts\nshould kneel.{end_wait}
+N150	MsgDarkManticoreGaretSmile	Mia... you were smiling.\nWhile it screamed.{end_wait}
+N151	MsgDarkManticoreMiaPlace	And? Know your place,\nGaret. It is not beside me.{end_wait}
+N152	MsgDarkManticoreMiaSoft	...Did I say that? I do\nnot remember drawing\nthe blade.{end_wait}
+N153	MsgDarkManticoreIsaacBlade	That voice again. Mia, we\nneed to talk about that\nblade.{end_wait}
