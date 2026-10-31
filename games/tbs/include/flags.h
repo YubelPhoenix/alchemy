@@ -2732,5 +2732,10 @@
 /// Isaac paid a stranded family's fare in Tolbi (Tolbi_TalkToStrandedFather):
 /// the third Tide Shard kindness.
 #define FLAG_DARK_TIDE_TOLBI 0x890
+/// Ondra's battle in Tolbi has begun (Tolbi_TalkToOndra); set before it, so a
+/// win returns to a Tolbi where she is gone.
+#define FLAG_DARK_ONDRA_FOUGHT 0x891
+/// Ondra has been beaten, and her spoils given: she does not return.
+#define FLAG_DARK_ONDRA_BEATEN 0x892
 
 #endif

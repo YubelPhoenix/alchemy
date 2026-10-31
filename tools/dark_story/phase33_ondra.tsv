@@ -1,0 +1,5 @@
+# Ondra, the Tideglass Queen, in Tolbi.
+N102	MsgDarkOndraRise	Three kind hands, three\nshards of tide. Who wakes\nthe Queen of the Deep?{end_wait}
+N103	MsgDarkOndraIsaac	Who are you? You look\nlike Mia.{end_wait}
+N104	MsgDarkOndraName	I am Ondra. I drowned a\nkingdom to keep it safe.{page_break}The blade remembers me.\nShow me you are not\nfools.{end_wait}
+N105	MsgDarkOndraIsaacReady	I did not come to fight\nyou. But I will not run.{end_wait}

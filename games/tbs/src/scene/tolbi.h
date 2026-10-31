@@ -145,6 +145,9 @@ enum TolbiActorId {
   /// A stranded farmer (SPRITE_MAN_CARRYING_A_PACK) whose family cannot get
   /// home (Tolbi_TalkToStrandedFather).
   ACTOR_TOLBI_STRANDED_FATHER = 34,
+  /// Ondra, the Tideglass Queen (ACTOR_MIA, drawn grey): the secret boss, who
+  /// rises once all three Tide Shard kindnesses are done (Tolbi_TalkToOndra).
+  ACTOR_TOLBI_ONDRA = 35,
 };
 
 /// The metatile behaviors Tolbi's coord and examine triggers answer besides the

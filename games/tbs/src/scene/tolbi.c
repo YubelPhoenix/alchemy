@@ -513,6 +513,17 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
     Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
     Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_GREY);
   }
+  // Ondra rises once all three kindnesses are done, until she is beaten. A
+  // return from her battle means she has been beaten.
+  if (GameFlag_Get(FLAG_DARK_ONDRA_FOUGHT) != 0) {
+    GameFlag_Set(FLAG_DARK_ONDRA_BEATEN);
+  } else if (GameFlag_Get(FLAG_DARK_TIDE_ALTIN) != 0 &&
+             GameFlag_Get(FLAG_DARK_TIDE_IMIL) != 0 &&
+             GameFlag_Get(FLAG_DARK_TIDE_TOLBI) != 0) {
+    Actor_SetPosition(ACTOR_TOLBI_ONDRA, PIXELS(284), PIXELS(344));
+    Actor_FaceDirection(ACTOR_TOLBI_ONDRA, FACING_NORTH, 0);
+    Actor_ConfigureSpriteColor(ACTOR_TOLBI_ONDRA, SPRITE_COLOR_GREY);
+  }
   return 0;
 }
 
@@ -566,6 +577,25 @@ static void Tolbi_TalkToStrandedFather(void) {
       Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
     }
   }
+  Event_End();
+}
+
+/// Ondra, the Tideglass Queen, woken by three kindnesses, challenges Isaac.
+/// Her battle is slot 2 of ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI; a win returns
+/// to Tolbi with FLAG_DARK_ONDRA_FOUGHT set, and she is gone.
+static void Tolbi_TalkToOndra(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkOndraRise);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ONDRA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ONDRA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_ONDRA_FOUGHT);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  Event_SetAfterBattleDestination((s32)&SceneId_Tolbi, 0);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 2);
   Event_End();
 }
 
@@ -913,11 +943,15 @@ struct ActorTemplate gTolbiActorTemplates[] = {
     // The stranded farmer who asks for his family's fare.
     { SPRITE_MAN_CARRYING_A_PACK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(232), 0, PIXELS(296), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
+    // Ondra, parked until Tolbi_ApplyEntryState brings her out.
+    { ACTOR_MIA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     { SCENE_TABLE_END },
 };
 
 /// During the festival, before the finals.
 struct Trigger gTolbiTriggersFestival[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToOndra) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -988,6 +1022,7 @@ struct Trigger gTolbiTriggersFestival[] = {
 
 /// On finals day.
 struct Trigger gTolbiTriggersFinalsDay[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToOndra) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -1060,6 +1095,7 @@ struct Trigger gTolbiTriggersFinalsDay[] = {
 
 /// After Colosso has ended.
 struct Trigger gTolbiTriggersAfterColosso[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToOndra) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { TRIGGER_TALK, ACTOR_TOLBI_ASH_JENNA, CONDITION_ALWAYS, EVENT(Tolbi_MeetAshJenna) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
