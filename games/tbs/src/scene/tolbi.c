@@ -67,6 +67,7 @@
 #include "scene_tables.h"
 #include "item_ids.h"
 #include "unit/game/game.h"
+#include "game.h"
 #include "actor_script.h"
 #include "songs.h"
 #include "fixed_math.h"
