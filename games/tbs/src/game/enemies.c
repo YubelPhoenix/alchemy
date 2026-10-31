@@ -2501,9 +2501,9 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     {
         .name = "              ",
         .level = 16,
-        .hp = 300,
+        .hp = 380,
         .pp = 120,
-        .atk = 40,
+        .atk = 75,
         .def = 20,
         .agi = 28,
         .luck = 20,
