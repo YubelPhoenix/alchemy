@@ -117,6 +117,12 @@ enum {
   WORLD_MAP_MIA_THIEVES = 81,
   WORLD_MAP_MIA_THIEVES_AFTER_FIRST = 82,
   WORLD_MAP_MIA_THIEVES_AFTER_SECOND = 83,
+  /// Mia alone below Mercury Lighthouse, where she catches Menardi's group
+  /// after it rode the lift down, then back from the fight and with the party
+  /// whole again (Mia's second interlude).
+  WORLD_MAP_MIA_MENARDI = 84,
+  WORLD_MAP_MIA_MENARDI_WON = 85,
+  WORLD_MAP_MIA_REUNITES = 86,
   WORLD_MAP_AFTER_MERCURY_LIGHTHOUSE_LIT =
       90, ///< WorldMap_Initialize plays WorldMap_PlayLighthouseTransition
           ///< here in Mercury Lighthouse's colours, then sends the party to the
@@ -210,6 +216,8 @@ enum {
   WORLD_MAP_TO_ROCK_ROOMS = 112,
   /// Out of Mia's interlude, back to the world map at Vault's south gate.
   WORLD_MAP_TO_VAULT_AFTER_MIA_THIEVES = 113,
+  /// Mia's second interlude, with the party whole again at its end.
+  WORLD_MAP_TO_MIA_REUNITES = 114,
 };
 
 /// SceneId_ValeStormyNight's entrances.
@@ -2019,6 +2027,8 @@ enum {
   MERCURY_LIGHTHOUSE_AERIE_TO_SATUROS_RESUMES = 5,
   /// The aerie again, with the party whole to see the duel's end.
   MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_AFTERMATH = 6,
+  /// Down to the world map, where Mia catches Menardi's group.
+  MERCURY_LIGHTHOUSE_AERIE_TO_WORLD_MAP_MIA_MENARDI = 7,
 };
 
 /// SceneId_FuchinTempleGrounds's entrances.

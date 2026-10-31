@@ -1062,7 +1062,8 @@ static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void) {
   MercuryLighthouseAerie_ArmMia();
   gSaveBlock.leaderActorId = MIA;
   Party_RestoreHpPp(1);
-  Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_MIA_CHASE);
+  Import_EventSetExitRequest(
+      MERCURY_LIGHTHOUSE_AERIE_TO_WORLD_MAP_MIA_MENARDI);
   Event_End();
 }
 
@@ -1691,6 +1692,8 @@ u32 gMercuryLighthouseAerieExits[] = {
     SCENE_EXIT(MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_AFTERMATH,
                MercuryLighthouseAerie,
                MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH),
+    SCENE_EXIT(MERCURY_LIGHTHOUSE_AERIE_TO_WORLD_MAP_MIA_MENARDI, WorldMap,
+               WORLD_MAP_MIA_MENARDI),
     SCENE_EXITS_END,
 };
 
