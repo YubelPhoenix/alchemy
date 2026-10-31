@@ -303,6 +303,7 @@ enum {
 #endif
 
 #include "common/staged_actor.h"
+#include "world_state.h"
 
 #include "common/effect_create.h"
 #include "common/effect_spawn.h"
@@ -1415,6 +1416,8 @@ s32 MogallForest_Initialize(void) {
   s32 entrance;
   s32 column;
   s32 fixedZ;
+
+  WorldState_Apply();
 
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_INTERLACED_WIPE);

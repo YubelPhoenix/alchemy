@@ -1,6 +1,7 @@
 	.set overlay_imports, 1
 	.set import.__divsi3, 1
 	.set import.WaitFrames, 1
+	.set import.Weather_StartRain, 1
 	.set import.Import_RandomNext, 1
 	.set import.Trig_Sin, 1
 	.set import.Trig_Cos, 1

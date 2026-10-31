@@ -74,6 +74,7 @@
 #include "scene_ids.h"
 #include "iwram_call.h"
 #include "event_inline.h"
+#include "world_state.h"
 #include "field_effect.h"
 #include "save_block.h"
 #include "task.h"
@@ -1031,6 +1032,7 @@ s32 LamakanDesert_Initialize(void) {
   gSaveBlock.hazardDamage = HAZARD_DAMAGE_PERCENT | 25;
   if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertCave) {
   } else {
+    WorldState_Apply();
     gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
     HeatGauge_Start();
     Task_AddFrame(HeatGauge_RaiseQuarterTriggers, TASK_PASS_FRAME);

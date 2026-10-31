@@ -76,6 +76,7 @@
 #include "types.h"
 #include "event_layer.h"
 #include "event_inline.h"
+#include "world_state.h"
 #include "scene_tables.h"
 #include "kolima.h"
 #include "actor.h"
@@ -527,6 +528,7 @@ s32 Kolima_Initialize(void) {
     return 0;
   }
 
+  WorldState_Apply();
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_FIRST_SPARKLE), 0);
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_FIRST_SPARKLE + 1), 0);
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_FIRST_SPARKLE + 2), 0);

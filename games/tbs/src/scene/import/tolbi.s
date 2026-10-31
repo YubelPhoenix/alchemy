@@ -1,5 +1,6 @@
 	.set overlay_imports, 1
 	.set import.WaitFrames, 1
+	.set import.Weather_StartRain, 1
 	.set import.ArcTan2, 1
 	.set import.Actor_SelectAnimation, 1
 	.set import.MapGrid_PlayMetatileCopySequence, 1

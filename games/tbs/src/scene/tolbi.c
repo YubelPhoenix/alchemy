@@ -60,6 +60,7 @@
 #include "call.h"
 #include "event_layer.h"
 #include "event_inline.h"
+#include "world_state.h"
 #include "text/msg_ids.h"
 #include "types.h"
 #include "ability_ids.h"
@@ -453,6 +454,7 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   void (*kidUpdate)(struct Actor *);
   s32 clearFlags;
 
+  WorldState_Apply();
   gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
 
   // The two children run their loop south-east of the fountain.
