@@ -1,0 +1,5 @@
+# Alex waits in the Altin Peak west exit after Mercury Lighthouse is lit.
+N111	MsgDarkPeakAlexRoads	Isaac. You walk many roads\nfor a man who hates\nwhere they all lead.{end_wait}
+N112	MsgDarkPeakIsaacAlex	Alex? Where were you when\nVale drowned? What do\nyou want from me?{end_wait}
+N113	MsgDarkPeakAlexCount	Not every friend you keep\nis a friend. Count your\nparty twice, Isaac.{end_wait}
+N114	MsgDarkPeakAlexGone	The rain will tell you\nthe rest. It always\ndoes, in the end.{end_wait}

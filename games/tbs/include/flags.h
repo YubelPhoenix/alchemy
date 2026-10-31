@@ -2744,4 +2744,9 @@
 /// Isaac has called after Ash Jenna in the Lamakan Desert and she has gone.
 #define FLAG_DARK_ASH_JENNA_LAMAKAN_MET 0x8b9
 
+/// Alex stands in Altin Peak's west exit room (set on entry while pending).
+#define FLAG_DARK_ALEX_PEAK_HERE 0x8ba
+/// Isaac has spoken to Alex in Altin Peak, and he has gone.
+#define FLAG_DARK_ALEX_PEAK_MET 0x8bb
+
 #endif
