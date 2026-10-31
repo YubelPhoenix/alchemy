@@ -1,0 +1,106 @@
+# Tolbi in the rain: the festival goes on while the city strains.
+03638	MsgTolbiFaceAwayTolbi	Turn your back on the\nSpring and toss a coin.{page_break}People say it grants\nwishes. Lately it only\ntakes them.{end_wait}
+03639	MsgTolbiTossLuckyMedal	A Lucky Medal is worth\nmore than a coin...{page_break}but nobody has had\nluck in this rain.{end_wait}
+03648	MsgTolbiAhIGuessIJustDont	Ah... I suppose luck\nwent out with the sun.\nHow about you?{end_wait}
+03649	MsgTolbiIKeepLosingCoinsButI	I keep losing coins,\nbut I can't stop!\nWhat is wrong with me?{end_wait}
+08077	MsgTolbiTolbisAlwaysReallyBustlingDuringColosso	The festival goes on,\nrain or no rain.{page_break}Babi's soldiers say\nstopping it would\ncause panic.{end_wait}
+08078	MsgTolbiColossoIsHeldInTheColosseum	Colosso is held in the\ncolosseum, where the\ncrowd is driest.{page_break}Get there early.\nThe rain has people\nfighting for a seat.{end_wait}
+08079	MsgTolbiTryoutsStartedAtTheColosseumToday	Tryouts started at the\ncolosseum today.{page_break}I'll watch the finals,\nif the roof holds up.{end_wait}
+08080	MsgTolbiColossoShouldHaveStartedTodayWhat	Colosso should have\nstarted today. Where\nis everyone?{page_break}I saw Babi's bodyguards\nwandering the streets.{page_break}If our leader has\nfallen ill, nobody\nwill say so.{end_wait}
+08081	MsgTolbiBabiWasAlreadyPrettyOldBack	Babi was old when I\nwas born. I am 65\nnow.{page_break}A man cannot live\nthat long. Something\nis not right.{end_wait}
+08082	MsgTolbiSomeoneLiveMore	Can anyone live to be\nmore than 100 years old?{end_now}
+08083	message	Hmm. Babi is a lot\nolder than 100.\nThat is what worries me.{end_wait}
+08084	message	Perhaps. Then what\nabout Tolbi's ruler,\nBabi?{page_break}He is at least 50\nyears older than I am!{end_wait}
+08085	MsgTolbiWheeFestivalColosso	Whee! The festival!\nIt does not stop for\nthe rain!{page_break}What will I buy with\nMama's money? Not\nbread. Bread is gone.{end_wait}
+08086	MsgTolbiWaahSaidMoney	Waah! She said that money\nwas for both of us!{end_wait}
+08087	MsgTolbiGetYourColossoSouvenirsTheyMake	Colosso souvenirs!\nSomething to remember\nthe flood by!{end_wait}
+08088	MsgTolbiGetYourSnacksAndDrinksBefore	Snacks and drinks, double\nprice! The rain ruined\nhalf the stock!{end_wait}
+08089	MsgTolbiIveDecidedNotToFightAt	I decided not to fight\nin Colosso after all.{page_break}The contestants are\nhuge, and they look\nhungry.{end_wait}
+08090	MsgTolbiWowTolbisFestivalIsHumongousJust	Tolbi's festival is\nhuge! If you ignore\nthe rain, it is lovely.{end_wait}
+08091	MsgTolbiRatsWeOversleptAndNowThe	We came a day too late\nand now the colosseum\nis full.{page_break}Nowhere to go but\nthe street, and the\nstreet is a river.{end_wait}
+08093	MsgTolbiChildrenLoveSouvenirs	Children love\nsouvenirs, don't they?{end_now}
+08094	message	You like them too.\nDon't hide it! I\nused to buy them all.{page_break}Now the wife says\nwe cannot afford it.{end_wait}
+08095	message	Hmph! You say that\nbecause your parents\nnever bought you any!{end_wait}
+08096	MsgTolbiPatientLittleGuy	Be patient, little one.{end_wait}
+08097	message	I will buy you\nsomething better later.{end_wait}
+08098	MsgTolbiWaahBuySweets	{text_effect:4}Waah!{reset_text_style} I am hungry!\nBuy me sweets! Please\nbuy me sweets!{end_wait}
+08099	MsgTolbiInnsFullStaying	Every inn is full, so I\nsleep here.{page_break}This archway keeps\nthe rain off me. It is\nalmost a bed.{end_wait}
+08100	MsgTolbiTouristsArentTheOnlyOnesWho	Tourists are not the\nonly ones who love\nColosso. We need it!{end_wait}
+08101	MsgTolbiTheTrialsAreStartingAtThe	The trials start at the\ncolosseum today.{page_break}Win and you eat well\nuntil the finals.{end_wait}
+08102	MsgTolbiTheTrialsAreOkayButThe	The trials are fine,\nbut the finals are\nwhat everyone needs.{end_wait}
+08103	MsgTolbiItsNotLikeThereHaveBeen	There have not been\nany problems lately...{page_break}so why do Babi's\nsoldiers look so\nscared?{end_wait}
+08104	MsgTolbiEveryYearIGetOlderAnd	Every year I get older\nwhile Babi stays the\nsame.{end_wait}
+08105	MsgTolbiWhatIfBabiIsActuallyA	What if Babi is a\ndifferent man now,{page_break}and no one has dared\nto tell us?{end_wait}
+08106	MsgTolbiOldestShouldntShare	I'm the oldest, so I\nshould keep the\nallowance.{end_wait}
+08107	MsgTolbiMamaToldShare	Mama told us to share.\nDoes my brother not\nremember?{end_wait}
+08108	MsgTolbiWeHaveToSellAllOf	We have to sell these\nsouvenirs before the\nrain washes us out.{end_wait}
+08109	MsgTolbiTheyreSellingTheseAtTheColosseum	They sell these at the\ncolosseum too, but\nhere they are dry!{end_wait}
+08110	MsgTolbiISawThePeopleWhoAre	I saw the people who\nwill fight. They look\nhungry and angry.{end_wait}
+08111	MsgTolbiTolbiIsNotLikeXianIt	Tolbi is not like Xian.\nHere, even the rain\nis loud.{end_wait}
+08112	MsgTolbiICantSayAnythingCauseIt	I should not say this,\nbut I grew afraid to\nwatch Colosso,{page_break}so I overslept\non purpose.{end_wait}
+08114	MsgTolbiTheStuffTheyreSellingAtThe	The stalls along the\nstreet smell wonderful.{page_break}If my children\nbuy some, I will get\na bite too.{end_wait}
+08115	MsgTolbiWhyDoKidsWantSuchAwful	Why do children want\nsuch terrible food?{page_break}I am not buying that!\nNo matter what!{end_wait}
+08116	MsgTolbiThoseSweetsSmellGreatImNot	Those sweets smell great.\nI am not moving until\nyou buy me some.{end_wait}
+08117	MsgTolbiIveBeenGuardingOurSpotBut	I have guarded our\nspot, but it is hardly\nworth it.{page_break}I hope my friends get\nhere before the water\ndoes.{end_wait}
+08118	MsgTolbiSeenAnyoneWho	Hey, have you seen\nanyone who looks like\nthis?{end_now}
+08119	message	Babi must be nearby!!!{end_wait}
+08120	message	Where is Babi? He\nis not here. Let's\nlook over there.{end_wait}
+08668	MsgTolbiColossoWillReachItsApexAny	Colosso reaches its\npeak any minute now.{page_break}Hurry to the colosseum\nbefore the crowd turns\nugly!{end_wait}
+08669	MsgTolbiAreYouPlanningToWatchThe	Are you watching the\nfinals? They may have\nstarted already!{end_wait}
+08670	MsgTolbiMyFamilySavedMeASeat	My family saved me a\nseat at the colosseum.{page_break}Still, we should go.\nThe streets are not\nsafe after dark.{end_wait}
+08671	MsgTolbiIThoughtSomethingHappenedToBabi	I thought something had\nhappened to Babi...{page_break}He appeared at the\nfinals, so it was\nnothing. Probably.{end_wait}
+08672	MsgTolbiTheColosseumWasSoFullThat	The colosseum was too\nfull to get in. I only\ndid the Lucky Guess.{end_wait}
+08673	MsgTolbiNobodyElseHasNoticedButThis	Nobody has noticed,\nbut this year's festival\nhas gone on too long.{end_wait}
+08674	MsgTolbiHoorayFinalsSeven	It's the finals!\nSeven warriors remain!\nOnly one will live!{end_wait}
+08675	MsgTolbiWaahBigBrother	Waah! My brother spent\nall our money on the\nLucky Guess!{end_wait}
+08676	MsgTolbiHowAboutSomeColossoSouvenirsThis	Colosso souvenirs!\nLast chance! Thirty\npercent off!{end_wait}
+08677	MsgTolbiTheFinalsAreSoLongIts	The finals are long.\nBuy food now, before\nit runs out!{end_wait}
+08678	MsgTolbiTheTrialsWereSoRivetingThe	The trials were\ngripping.{page_break}The finals will be\nbetter. I cannot wait.{end_wait}
+08679	MsgTolbiIHaveSeatsToTheFinals	I have seats to the\nfinals. They cost far\ntoo much.{end_wait}
+08680	MsgTolbiIOversleptAgainSoICant	I overslept again and\nthe colosseum is full!{page_break}Maybe I should buy\nseats from a scalper...{end_wait}
+08681	MsgTolbiSpringOhThereAreAlwaysScalpersAt	There are always\nscalpers at the finals.{page_break}They only cheat people\nwho come in from the\ncountryside.{end_wait}
+08682	message	The finals are about\nto start. It is\nkind of sad.{end_wait}
+08683	message	Wait until Colosso\nends, like a good\nchild.{end_wait}
+08684	message	Prices drop when Colosso\nends, so buying now\nis foolish!{end_wait}
+08685	message	They said they would\nbuy it after Colosso.\nI doubt it.{end_wait}
+08686	MsgTolbiTheFinalsStartTodayIWonder	The finals start today.\nI hope my buddy is\nall right.{page_break}If you need a seat,\nbuy a ticket from\nhim.{end_wait}
+08687	MsgTolbiIveGotToGetToThe	I have to get to the\ncolosseum...{page_break}What if I miss the\nheight of the battle?{end_wait}
+08688	MsgTolbiABattleToTheDeathWith	A battle to the death\nwith 7 strong warriors.\nHow exciting!{end_wait}
+08689	MsgTolbiTheFinalsStartOnBabisSignal	The finals start on\nBabi's signal.\nI love that part!{end_wait}
+08690	MsgTolbiSoWhyWereTheSoldiersAll	If nothing is wrong\nwith Babi, why were\nthe soldiers so upset?{end_wait}
+08691	MsgTolbiICouldStillBuySeatsFrom	I could still buy a\nseat from a scalper,\nbut I hate that.{end_wait}
+08692	MsgTolbiNoMatterHowIAddIt	However I add it up,\nthis festival is longer\nthan last year's!{end_wait}
+08693	MsgTolbiWinBigUsed	We could win big if we\nspent our rent on the\nLucky Guess.{end_wait}
+08694	MsgTolbiMamaWhyListen	Mama, why did you\nlisten to my brother?{end_wait}
+08695	MsgTolbiWeCantSellAnythingOnceThe	We cannot sell anything\nonce the finals end.\nSell it now!{end_wait}
+08696	MsgTolbiThisIsTheFinalPushAnything	The final push!\nWhatever does not sell\nwill rot in the rain!{end_wait}
+08697	MsgTolbiFightingInColossoRequiresALot	Fighting in Colosso\ntakes real power.\nI could never do it.{end_wait}
+08698	MsgTolbiTheyreSellingFinalsSeatsRightAt	They sell finals seats\nat the entrance.\nIt is robbery!{end_wait}
+08699	MsgTolbiItsSupposedToBeFreeHaving	It is supposed to be\nfree. Buying seats from\nscalpers is a shame.{end_wait}
+08701	MsgTolbiOnceColossoEndsOurLivesCan	When Colosso ends, our\nlives can go back to\nnormal. If they can.{end_wait}
+08702	MsgTolbiFestivalsAreSoExpensiveMyWallets	Festivals are so\nexpensive. My purse is\nempty!{end_wait}
+08703	MsgTolbiMomYouSaidYouWereAll	Mom, you said you were\nout of money, but\nyou are not!{end_wait}
+08704	MsgTolbiTodayIsABigDayFor	Today is a big day for\nus scalpers. Right,\nbuddy?{end_wait}
+09053	MsgTolbiWellThisYearsColossoHasEnded	This year's Colosso\nhas ended.{page_break}Come back next year,\nif Tolbi is still\nhere.{end_wait}
+09054	MsgTolbiItsBackToOurNormalQuiet	Back to our quiet lives\nnow that Colosso is\nover?{page_break}Quiet, and wet, and\nhungry.{end_wait}
+09055	MsgTolbiFinalsWerent	You were in the finals,\nweren't you?{end_now}
+09056	message	I was moved by how\ndetermined you were,\ndespite your size.{end_wait}
+09057	message	You weren't? You look\njust like that warrior.{end_wait}
+09058	MsgTolbiWithAllThoseRevelersGoneThe	With the revelers gone\nthe town feels empty.{page_break}The days after the\nfestival are lonely.\nRainier, too.{end_wait}
+09059	MsgTolbiIHadNoLuckInThe	I had no luck in the\nLucky Guess. Maybe the\nrain will ease next year.{end_wait}
+09060	MsgTolbiItsSoQuietTheHustleAnd	It is so quiet! The\nnoise of Colosso\nfeels like a dream!{end_wait}
+09061	MsgTolbiYayEasyRun	Yay! It's easy to run\nwith no one around.\nExcept for the puddles.{end_wait}
+09062	MsgTolbiHaHaHa	Ha ha! This is fun! My\nbig brother is being\nnice to me again!{end_wait}
+09063	MsgTolbiIllBeBackToDoBusiness	I will be back to do\nbusiness next year,\nif there is a next year.{end_wait}
+09064	MsgTolbiLeftovers	These are leftovers,\nbut have some. Nobody\nelse wants them!{end_wait}
+09066	MsgTolbiFestivalLongerUsual	The festival ran longer\nthis year, so I made\nmore money.{page_break}I would rather have\nhad the sun.{end_wait}
+09067	MsgTolbiTheSpectatorsHaveAllLeftSo	The spectators have gone,\nso we have to clean up.\nWhat a mess!{end_wait}
+09068	MsgTolbiThinkHowFunItWouldBe	Imagine having Colosso\nall year long!{page_break}Whew. That would be\na lot of work for us.{end_wait}
+09069	MsgTolbiAllTheWarriorsWhoGainFame	All the warriors who\nwin fame in the finals\nbecome Babi's soldiers.{page_break}That is why his\nsoldiers are so\nstrong.{end_wait}
+09070	MsgTolbiComeToThinkOfItNo	No ships are sailing\nthe Karagol, are they?{page_break}How will the tourists\nget home in this\nweather?{end_wait}
+09071	MsgTolbiHmmSinceColossoEndedSoDramatically	Since Colosso ended so\ndramatically, the Lucky\nGuess goes to...{page_break}Dang. A little more\nluck and I would have\nbeen rich.{end_wait}
+09072	MsgTolbiTheCalmAfterTheStormIs	The calm after the\nstorm is nice too.\nOnly this storm stays.{end_wait}
+09073	MsgTolbiMainStreetTolbi	Tolbi's main street\nis so wide open!{end_wait}
+09074	MsgTolbiBrotherMeanDuring	My brother was mean to\nme during the festival.\nHe changed completely!{end_wait}
+09075	MsgTolbiEveryYearITryToSell	Every year I try to sell\neverything and fail.{page_break}How do I carry all\nthis home in the rain?{end_wait}
+09076	MsgTolbiHowCanWeGetHomeIf	How can we get home if\nsea monsters block the\ncrossing?{end_wait}
