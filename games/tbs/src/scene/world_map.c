@@ -1011,7 +1011,9 @@ s32 WorldMap_Initialize(void) {
       WorldMap_MiaBeatsMenardi();
       break;
     case WORLD_MAP_MIA_REUNITES:
-      WorldMap_MiaRejoinsParty();
+      if (GameFlag_Get(FLAG_DARK_MIA_REUNITED) == 0) {
+        WorldMap_MiaRejoinsParty();
+      }
       break;
     default:
       Actor_GetById(ACTOR_TOLBI_SHIP)->scaleX = 5 * Q16_ONE / 4;
@@ -2521,6 +2523,12 @@ static void WorldMap_MiaRejoinsParty(void) {
   WorldMap_MiaSay(ACTOR_MIA, 20);
   GameFlag_Set(FLAG_MERCURY_LIGHTHOUSE_AERIE_ALEX_APPEARED);
   GameFlag_Set(FLAG_SATUROS_BEATEN_AT_MERCURY);
+  // Hand the world map back: it was frozen and zoomed in for the scene.
+  WorldMap_Unfreeze();
+  FieldEffect_ScheduleRatioTransition(Q16_ONE, 10);
+  Event_WaitFrames(20);
+  // Played once: a battle on the road reloads this entrance.
+  GameFlag_Set(FLAG_DARK_MIA_REUNITED);
   Event_End();
 }
 

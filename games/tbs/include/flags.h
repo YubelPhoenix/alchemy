@@ -2779,4 +2779,9 @@
 /// (LamakanDesert_MiaTakesOver).
 #define FLAG_DARK_MIA_MANTICORE_SEEN 0x8cc
 
+/// Mia rejoined the party on the road south of Imil after Menardi's defeat
+/// (WorldMap_MiaRejoinsParty), so a battle that reloads the entrance does not
+/// replay it.
+#define FLAG_DARK_MIA_REUNITED 0x8cd
+
 #endif
