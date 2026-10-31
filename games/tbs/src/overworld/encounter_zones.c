@@ -113,63 +113,63 @@ const struct EncounterZone gEncounterZones[] = {
     },
     // Kolima Forest Bridge
     {
-        .rate = 48,
+        .rate = 40,
         .level = 6,
         .enemies = {59, 60, 61, 62, 63, 64, 65, 66},
         .weights = {10, 8, 6, 4, 2, 1, 1, 1},
     },
     // Kolima Forest Clearing
     {
-        .rate = 48,
+        .rate = 40,
         .level = 7,
         .enemies = {59, 60, 61, 62, 63, 64, 65, 66},
         .weights = {4, 8, 6, 6, 4, 2, 1, 1},
     },
     // Kolima Forest River
     {
-        .rate = 48,
+        .rate = 40,
         .level = 7,
         .enemies = {59, 60, 61, 62, 63, 64, 65, 66},
         .weights = {2, 4, 6, 6, 8, 6, 2, 1},
     },
     // Kolima Forest Tree
     {
-        .rate = 48,
+        .rate = 40,
         .level = 7,
         .enemies = {59, 60, 61, 62, 63, 64, 65, 66},
         .weights = {1, 2, 4, 6, 8, 8, 4, 2},
     },
     // Tret Tree Branch (entrances 1 to 3)
     {
-        .rate = 34,
+        .rate = 45,
         .level = 7,
         .enemies = {68, 69, 70, 71, 72, 73, 74, 75},
         .weights = {2, 2, 6, 2, 4, 6, 3, 1},
     },
     // Tret Tree Interiors (entrances 1, 11, 16, 21 to 29)
     {
-        .rate = 34,
+        .rate = 45,
         .level = 7,
         .enemies = {68, 69, 70, 71, 72, 73, 74, 75},
         .weights = {1, 2, 6, 5, 5, 4, 2, 1},
     },
     // Tret Tree Interiors (entrances 2 to 5, 12, 13, 31, 32)
     {
-        .rate = 34,
+        .rate = 45,
         .level = 8,
         .enemies = {68, 69, 70, 71, 72, 73, 74, 75},
         .weights = {1, 2, 4, 6, 6, 4, 3, 2},
     },
     // Tret Tree Branch (any entrance)
     {
-        .rate = 34,
+        .rate = 45,
         .level = 8,
         .enemies = {68, 69, 70, 71, 72, 73, 74, 75},
         .weights = {1, 1, 4, 6, 3, 6, 4, 4},
     },
     // Tret Tree Interiors (entrances 6 to 9, 14, 51 to 59)
     {
-        .rate = 34,
+        .rate = 45,
         .level = 8,
         .enemies = {68, 69, 70, 71, 72, 73, 74, 75},
         .weights = {1, 1, 2, 3, 4, 6, 10, 8},
@@ -232,21 +232,21 @@ const struct EncounterZone gEncounterZones[] = {
     },
     // MercuryLighthouseMiddle and MercuryLighthouseUpper
     {
-        .rate = 44,
+        .rate = 40,
         .level = 10,
         .enemies = {97, 98, 99, 100, 101, 102, 103, 104},
         .weights = {1, 1, 2, 2, 3, 4, 8, 8},
     },
     // MercuryLighthouseUpper and MercuryLighthouseExterior
     {
-        .rate = 44,
+        .rate = 40,
         .level = 11,
         .enemies = {97, 106, 99, 100, 101, 102, 103, 104},
         .weights = {1, 2, 2, 1, 2, 4, 8, 8},
     },
     // MercuryLighthouseExterior (entrances 3, 4)
     {
-        .rate = 44,
+        .rate = 40,
         .level = 11,
         .enemies = {97, 106, 99, 100, 101, 102, 103, 104},
         .weights = {1, 2, 2, 1, 2, 4, 8, 8},
