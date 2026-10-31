@@ -504,7 +504,46 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
       Import_ActorSetAnimation(ACTOR_TOLBI_SCALPER, ANIM_STAND);
     }
   }
+  // Ash Jenna waits in the rain once Colosso is over and Mercury Lighthouse
+  // is lit, until she has spoken to the party.
+  if (GameFlag_Get(FLAG_COLOSSO_OVER) != 0 &&
+      GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
+      GameFlag_Get(FLAG_DARK_ASH_JENNA_TOLBI) == 0) {
+    Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(232), PIXELS(256));
+    Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
+    Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_GREY);
+  }
   return 0;
+}
+
+/// Ash Jenna, grey and flaking, reaches the party in the rain after Colosso:
+/// the lit lighthouse is burning her down. She begs them to stop lighting the
+/// lighthouses, Mia mocks her, and she slips away before Menardi misses her.
+static void Tolbi_MeetAshJenna(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkTolbiJennaFound);
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Event_WaitFrames(30);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  // She turns and fades into the rain.
+  Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_EAST, 0);
+  Event_WaitFrames(20);
+  Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA,
+                             SPRITE_COLOR_GREY | SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_ASH_JENNA_TOLBI);
+  Event_End();
 }
 
 /// The visitor at the spring's gate asks whether the party wants to test its
@@ -845,6 +884,9 @@ struct ActorTemplate gTolbiActorTemplates[] = {
         PIXELS(584), 0, PIXELS(136), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SPRITE_BABI, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
+    // Ash Jenna, parked until Tolbi_ApplyEntryState brings her out.
+    { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -990,6 +1032,7 @@ struct Trigger gTolbiTriggersFinalsDay[] = {
 
 /// After Colosso has ended.
 struct Trigger gTolbiTriggersAfterColosso[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_ASH_JENNA, CONDITION_ALWAYS, EVENT(Tolbi_MeetAshJenna) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_NORTHWEST, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },

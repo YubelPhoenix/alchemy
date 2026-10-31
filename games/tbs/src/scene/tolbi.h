@@ -139,6 +139,9 @@ enum TolbiActorId {
   /// The "Missing Person" poster, placed with Babi's sprite (SPRITE_BABI).
   /// ★ Named from the game: "Missing Person" (MsgTolbiSeenAnyoneWho)
   ACTOR_TOLBI_MISSING_PERSON_POSTER = 32,
+  /// Ash Jenna (ACTOR_JENNA, drawn grey), who waits in the rain after Colosso
+  /// once Mercury Lighthouse is lit (Tolbi_MeetAshJenna).
+  ACTOR_TOLBI_ASH_JENNA = 33,
 };
 
 /// The metatile behaviors Tolbi's coord and examine triggers answer besides the

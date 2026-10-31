@@ -2720,4 +2720,7 @@
 /// (Portrait_GetForSpeaker). Set around a message, then cleared.
 #define FLAG_DARK_MIA_SPEAKING 0x88c
 
+/// Ash Jenna has spoken to the party in Tolbi after Colosso, and slipped away.
+#define FLAG_DARK_ASH_JENNA_TOLBI 0x88d
+
 #endif
