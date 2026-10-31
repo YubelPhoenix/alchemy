@@ -1,0 +1,13 @@
+00790	message	Mia
+N59	MsgDarkDuelMiaStops	Enough. This lighthouse is\nmine to guard, and you\nare trespassers.{end_wait}
+N60	MsgDarkDuelIsaacNoTime	Mia, Saturos is right\nthere. Jenna and Kraden are\nin danger. Not now.{end_wait}
+N61	MsgDarkDuelMiaPlace	Know your place, fool.\nYou walk into my home and\ngive me orders?{end_wait}
+N62	MsgDarkDuelIsaacRefuse	I won't stand aside. Not\nwhile Jenna is up there.{end_wait}
+N63	MsgDarkDuelMiaDraw	Fools, all of you. Then\nprove it. Draw your weapon,\nboy.{end_wait}
+N64	MsgDarkDuelSaturosAmused	Let the healer have her\nturn. I can wait. For now.{end_wait}
+N65	MsgDarkDuelMiaLost	Tch... You are stronger\nthan a fool has any right\nto be.{end_wait}
+N66	MsgDarkDuelMiaStop	Stop. That's enough.\nHe held back. I felt it.{end_wait}
+N67	MsgDarkDuelIsaacNotEnemy	We aren't your enemy.\nWe want the same thing.{end_wait}
+N68	MsgDarkDuelMiaTrust	...I believe you. A little.\nI'm going to the beacon.{end_wait}
+N69	MsgDarkDuelMiaKeepUp	Keep up, fools. Or stay\nbehind and be forgotten.{end_wait}
+N70	MsgDarkDuelSaturosResumes	The healer has gone ahead.\nNow, Adepts. It is your\nturn.{end_wait}

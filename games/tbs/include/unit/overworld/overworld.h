@@ -91,7 +91,8 @@ enum EncounterZoneId {
   /// The battles of Mia's first interlude near Imil: slot 0 three hired
   /// thieves, slot 1 the Thief Chief and a hired thief.
   ENCOUNTER_ZONE_SCRIPTED_MIA_THIEVES = 104,
-  /// Mia alone against Menardi on the Mercury Lighthouse (slot 0).
+  /// Mia alone against Menardi on the Mercury Lighthouse (slot 0), and Isaac
+  /// alone against Mia there (slot 1).
   ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI = 105,
   /// The monsters behind the east doors of Crossbone Isle Cave's next five
   /// floors, one slot a floor, then Deadbeard on the Pirate Ship.

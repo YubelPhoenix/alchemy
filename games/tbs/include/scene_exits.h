@@ -1994,6 +1994,15 @@ enum {
   /// The party, Isaac leading again, catches up with Mia
   /// (MercuryLighthouseAerie_MiaRejoinsParty).
   MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES = 22,
+  /// Isaac, alone, has beaten Mia (MercuryLighthouseAerie_MiaYields).
+  MERCURY_LIGHTHOUSE_AERIE_DUEL_WON = 23,
+  /// Isaac, alone, fell to Mia (MercuryLighthouseAerie_DuelLost).
+  MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST = 24,
+  /// The quarrel with Mia plays again (MercuryLighthouseAerie_DuelRetry).
+  MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY = 25,
+  /// Saturos turns on the three who are left
+  /// (MercuryLighthouseAerie_SaturosResumes).
+  MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES = 26,
 };
 /// SceneId_MercuryLighthouseAerie's exits.
 enum {
@@ -2002,6 +2011,10 @@ enum {
   MERCURY_LIGHTHOUSE_AERIE_TO_MIA_CHASE = 2,
   /// The aerie again, with the party back together.
   MERCURY_LIGHTHOUSE_AERIE_TO_MIA_REUNITES = 3,
+  /// The aerie again, to play the quarrel with Mia once more.
+  MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_RETRY = 4,
+  /// The aerie again, with Mia gone ahead and Saturos still to fight.
+  MERCURY_LIGHTHOUSE_AERIE_TO_SATUROS_RESUMES = 5,
 };
 
 /// SceneId_FuchinTempleGrounds's entrances.

@@ -165,6 +165,11 @@ static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void);
 static void MercuryLighthouseAerie_MiaFacesMenardi(void);
 static void MercuryLighthouseAerie_MiaBeatsMenardi(void);
 static void MercuryLighthouseAerie_MiaRejoinsParty(void);
+static void MercuryLighthouseAerie_MiaYields(void);
+static void MercuryLighthouseAerie_DuelLost(void);
+static void MercuryLighthouseAerie_DuelRetry(void);
+static void MercuryLighthouseAerie_SaturosResumes(void);
+static void MercuryLighthouseAerie_MiaInterrupts(void);
 static void MercuryLighthouseAerie_BlinkAway(const s32 *actorIds, s32 count);
 static void MercuryLighthouseAerie_LowerLift(void);
 static void MercuryLighthouseAerie_RaiseLift(void);
@@ -270,6 +275,10 @@ s32 MercuryLighthouseAerie_Initialize(void) {
                    MERCURY_LIGHTHOUSE_AERIE_AFTER_SATUROS_BATTLE ||
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE ||
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT ||
+               gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_DUEL_WON ||
+               gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST ||
+               gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY ||
+               gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES ||
                gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES) {
       if (!GameFlag_Get(FLAG_LIFT_UP)) {
         {
@@ -286,6 +295,17 @@ s32 MercuryLighthouseAerie_Initialize(void) {
           if (gSaveBlock.entrance ==
               MERCURY_LIGHTHOUSE_AERIE_AFTER_SATUROS_BATTLE) {
             MercuryLighthouseAerie_SaturosFallsAndMiaRuns();
+          } else if (gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_DUEL_WON) {
+            MercuryLighthouseAerie_MiaYields();
+          } else if (gSaveBlock.entrance ==
+                     MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST) {
+            MercuryLighthouseAerie_DuelLost();
+          } else if (gSaveBlock.entrance ==
+                     MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY) {
+            MercuryLighthouseAerie_DuelRetry();
+          } else if (gSaveBlock.entrance ==
+                     MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES) {
+            MercuryLighthouseAerie_SaturosResumes();
           } else if (gSaveBlock.entrance == MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE) {
             MercuryLighthouseAerie_MiaFacesMenardi();
           } else if (gSaveBlock.entrance ==
@@ -925,21 +945,28 @@ static void MercuryLighthouseAerie_ConfrontSaturos(void) {
   Event_WaitFrames(20);
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 20);
   Actor_WalkToAndWait(ACTOR_SATUROS, 336, 216);
-  Event_SetAfterBattleDestination((s32)&SceneId_MercuryLighthouseAerie, 2);
-  Battle_SetType(BATTLE_TYPE_SCRIPTED);
-  // Saturos: ENCOUNTER_ZONE_SCRIPTED_TRET_MERCURY, slot 2.
-  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_TRET_MERCURY,
-                                        2);
-  Event_End();
+  // Mia stops the fight before it begins; Saturos is fought after her duel.
+  MercuryLighthouseAerie_MiaInterrupts();
+}
+
+/// The levels the duel is balanced for: Isaac is raised to the first so that
+/// he can win alone, and Mia to the second so that she can beat Menardi alone.
+#define MIA_DUEL_ISAAC_LEVEL 14
+#define MIA_DUEL_MIA_LEVEL 20
+
+/// Mia's other self speaks the next message: her arrogant half, who calls
+/// everyone a fool and tells them to know their place.
+static void MercuryLighthouseAerie_DarkMiaSays(void) {
+  FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
 }
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_AFTER_SATUROS_BATTLE, back
 /// from the battle, unless returning after another: Saturos is beaten and
 /// can barely stand. "Isaac, we got him!" Saturos admits he was weakened and
 /// that Menardi already waits at the beacon with the Elemental Stars and
-/// the captives. He warps away. Mia, hearing enough, tells the others to
-/// follow and runs ahead alone: the party becomes Mia and the aerie is
-/// entered again at MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE.
+/// the captives. He warps away. Mia, who went ahead after her duel with Isaac,
+/// is the party alone from here and the aerie is entered again at
+/// MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE.
 static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void) {
 
   Event_Start();
@@ -947,11 +974,11 @@ static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void) {
   Actor_SetPosition(ACTOR_PARTY_LEADER, PIXELS(344), PIXELS(224));
   Actor_SetPosition(ACTOR_GARET, PIXELS(328), PIXELS(224));
   Actor_SetPosition(ACTOR_IVAN, PIXELS(344), PIXELS(232));
-  Actor_SetPosition(ACTOR_MIA, PIXELS(328), PIXELS(232));
+  // Mia went on ahead during the duel and is not here.
+  Actor_SetPosition(ACTOR_MIA, PIXELS(8), PIXELS(8));
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTHWEST, 0);
   Actor_FaceDirection(ACTOR_GARET, FACING_NORTH, 0);
   Actor_FaceDirection(ACTOR_IVAN, FACING_NORTH, 0);
-  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
   Actor_SetPosition(ACTOR_SATUROS, PIXELS(336), PIXELS(176));
   Import_ActorSetAnimation(ACTOR_SATUROS, 9);
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_SATUROS), 0);
@@ -987,9 +1014,8 @@ static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void) {
   Actor_ShowEmote(ACTOR_GARET, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 60);
   FieldEvent_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 20);
-  Actor_RunRepeatedMotion(ACTOR_MIA, 2);
-  Event_WaitFrames(20);
-  FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  // Isaac: "Sorry won't bring Jenna back."
+  FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 30);
   {
     s32 saturos = ACTOR_SATUROS;
@@ -997,23 +1023,172 @@ static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void) {
     MercuryLighthouseAerie_BlinkAway(&saturos, 1);
   }
   Event_WaitFrames(30);
-  FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   Actor_ShowEmote(ACTOR_IVAN, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 60);
   FieldEvent_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  Actor_SetSpeed(ACTOR_MIA, PIXELS(4) / 5, PIXELS(2) / 5);
-  Actor_WalkToAndWait(ACTOR_MIA, 328, 216);
-  Actor_WalkToAndWait(ACTOR_MIA, 280, 216);
+  FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  // Skips the message left over from before the duel.
+  gFieldWork->message++;
   FieldEvent_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-  // Mia alone is the party from here until she has dealt with Menardi.
+  // Mia alone is the party from here until she has dealt with Menardi. She
+  // is raised first so that she can win.
   Party_RemoveMember(ISAAC);
   Party_RemoveMember(GARET);
   Party_RemoveMember(IVAN);
   Party_RemoveMember(MIA);
   Party_AddMember(MIA);
+  Unit_LevelUpTo(MIA, MIA_DUEL_MIA_LEVEL);
   gSaveBlock.leaderActorId = MIA;
   Party_RestoreHpPp(1);
   Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_MIA_CHASE);
+  Event_End();
+}
+
+/// Where each of the party stands, and Saturos in front of them, when Mia
+/// stops the fight. Used again whenever the argument is replayed.
+static void MercuryLighthouseAerie_PlaceForConfrontation(void) {
+  Actor_Get(ACTOR_LIFT_STATUE)->motionFlags = 0;
+  Actor_SetPosition(ACTOR_PARTY_LEADER, PIXELS(344), PIXELS(232));
+  Actor_SetPosition(ACTOR_GARET, PIXELS(328), PIXELS(216));
+  Actor_SetPosition(ACTOR_IVAN, PIXELS(336), PIXELS(248));
+  Actor_SetPosition(ACTOR_MIA, PIXELS(328), PIXELS(232));
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTHWEST, 0);
+  Actor_FaceDirection(ACTOR_GARET, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_IVAN, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
+  Actor_SetPosition(ACTOR_SATUROS, PIXELS(336), PIXELS(216));
+  Import_ActorSetAnimation(ACTOR_SATUROS, 9);
+  Actor_SetSpriteFlags(Actor_GetById(ACTOR_SATUROS), 0);
+  FieldCamera_GetActor()->motionFlags = 0;
+  FieldCamera_MoveTo(PIXELS(336), -1, PIXELS(224), 0);
+  WaitFrames(1);
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_WaitFrames(40);
+}
+
+/// Mia stops the fight with Saturos before it begins: she tells Isaac the
+/// lighthouse is hers to guard and that his party are trespassers, and they
+/// quarrel until she challenges him. Isaac fights her alone: Garet, Ivan and
+/// Mia leave the party for the duel (ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI,
+/// slot 1). Reached at the end of ConfrontSaturos and from
+/// MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY.
+static void MercuryLighthouseAerie_MiaInterrupts(void) {
+  Actor_ShowEmote(ACTOR_MIA, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 60);
+  Event_SetMessageId(MsgDarkDuelMiaStops);
+  MercuryLighthouseAerie_DarkMiaSays();
+  FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  MercuryLighthouseAerie_DarkMiaSays();
+  FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  MercuryLighthouseAerie_DarkMiaSays();
+  FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 20);
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
+  Unit_LevelUpTo(ISAAC, MIA_DUEL_ISAAC_LEVEL);
+  Party_RestoreHpPp(1);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Event_SetAfterBattleDestination((s32)&SceneId_MercuryLighthouseAerie,
+                                  MERCURY_LIGHTHOUSE_AERIE_DUEL_WON);
+  Event_SetDefeatDestination((s32)&SceneId_MercuryLighthouseAerie,
+                             MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 1);
+  Event_End();
+}
+
+/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY: Isaac fell to
+/// Mia, the party is whole again and the quarrel plays again.
+static void MercuryLighthouseAerie_DuelRetry(void) {
+  Event_Start();
+  MercuryLighthouseAerie_PlaceForConfrontation();
+  MercuryLighthouseAerie_MiaInterrupts();
+}
+
+/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_DUEL_WON: Isaac, alone, has
+/// beaten Mia. Her other self concedes, she calls the fight off and agrees to
+/// trust him, then goes on ahead to the beacon alone. Isaac, Garet and Ivan
+/// are the party again and the aerie is entered at
+/// MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES.
+static void MercuryLighthouseAerie_MiaYields(void) {
+  Event_Start();
+  Actor_Get(ACTOR_LIFT_STATUE)->motionFlags = 0;
+  Import_ActorSetPosition(ACTOR_GARET, PIXELS(8), PIXELS(8));
+  Import_ActorSetPosition(ACTOR_IVAN, PIXELS(8), PIXELS(8));
+  Import_ActorSetPosition(ACTOR_PARTY_LEADER, PIXELS(344), PIXELS(232));
+  Import_ActorSetPosition(ACTOR_MIA, PIXELS(328), PIXELS(232));
+  Import_ActorSetPosition(ACTOR_SATUROS, PIXELS(336), PIXELS(216));
+  Import_ActorSetAnimation(ACTOR_SATUROS, 9);
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_WEST, 0);
+  Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
+  FieldCamera_GetActor()->motionFlags = 0;
+  FieldCamera_MoveTo(PIXELS(336), -1, PIXELS(224), 0);
+  WaitFrames(1);
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkDuelMiaLost);
+  MercuryLighthouseAerie_DarkMiaSays();
+  FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_WaitFrames(20);
+  MercuryLighthouseAerie_DarkMiaSays();
+  Actor_SetSpeed(ACTOR_MIA, PIXELS(4) / 5, PIXELS(2) / 5);
+  Actor_WalkToAndWait(ACTOR_MIA, 328, 216);
+  Actor_WalkToAndWait(ACTOR_MIA, 280, 216);
+  Import_ActorSetPosition(ACTOR_MIA, PIXELS(8), PIXELS(8));
+  // Without Mia, who is on her way to the beacon.
+  Party_RemoveMember(ISAAC);
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
+  Party_AddMember(ISAAC);
+  Party_AddMember(GARET);
+  Party_AddMember(IVAN);
+  gSaveBlock.leaderActorId = ISAAC;
+  Party_RestoreHpPp(1);
+  Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_SATUROS_RESUMES);
+  Event_End();
+}
+
+/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES: Mia has
+/// gone ahead and Saturos turns to the three who are left. He is fought
+/// proper (ENCOUNTER_ZONE_SCRIPTED_TRET_MERCURY, slot 2); beating him leads
+/// to MercuryLighthouseAerie_SaturosFallsAndMiaRuns.
+static void MercuryLighthouseAerie_SaturosResumes(void) {
+  Event_Start();
+  MercuryLighthouseAerie_PlaceForConfrontation();
+  Import_ActorSetPosition(ACTOR_MIA, PIXELS(8), PIXELS(8));
+  Event_SetMessageId(MsgDarkDuelSaturosResumes);
+  FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 20);
+  Event_SetAfterBattleDestination((s32)&SceneId_MercuryLighthouseAerie, 2);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_TRET_MERCURY,
+                                        2);
+  Event_End();
+}
+
+/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST: Isaac fell to
+/// Mia. The party is put back together and the aerie is entered at
+/// MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY.
+static void MercuryLighthouseAerie_DuelLost(void) {
+  Event_Start();
+  Party_RemoveMember(ISAAC);
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
+  Party_AddMember(ISAAC);
+  Party_AddMember(GARET);
+  Party_AddMember(IVAN);
+  Party_AddMember(MIA);
+  gSaveBlock.leaderActorId = ISAAC;
+  Party_RestoreHpPp(1);
+  Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_RETRY);
   Event_End();
 }
 
@@ -1448,6 +1623,14 @@ struct SceneEntrance gMercuryLighthouseAerieEntrances[] = {
      FACING_SOUTH, 0, 0, 0, 608, 424, 0},
     {MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES, CONDITION_ALWAYS, 8, 0, 8,
      FACING_SOUTH, 0, 0, 0, 608, 424, 0},
+    {MERCURY_LIGHTHOUSE_AERIE_DUEL_WON, CONDITION_ALWAYS, 8, 0, 8,
+     FACING_SOUTH, 0, 0, 0, 608, 424, 0},
+    {MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST, CONDITION_ALWAYS, 8, 0, 8,
+     FACING_SOUTH, 0, 0, 0, 608, 424, 0},
+    {MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY, CONDITION_ALWAYS, 8, 0, 8,
+     FACING_SOUTH, 0, 0, 0, 608, 424, 0},
+    {MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES, CONDITION_ALWAYS, 8, 0, 8,
+     FACING_SOUTH, 0, 0, 0, 608, 424, 0},
     {MERCURY_LIGHTHOUSE_AERIE_FROM_MERCURY_LIGHTHOUSE_EXTERIOR,
      CONDITION_ALWAYS, 504, 0, 152, FACING_SOUTH, 0, 0, 0, 608, 424, 0},
     {51, CONDITION_ALWAYS, 504, 0, 168, FACING_SOUTH, 0, 0, 0, 608, 424, 0},
@@ -1463,6 +1646,11 @@ u32 gMercuryLighthouseAerieExits[] = {
                MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE),
     SCENE_EXIT(MERCURY_LIGHTHOUSE_AERIE_TO_MIA_REUNITES, MercuryLighthouseAerie,
                MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES),
+    SCENE_EXIT(MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_RETRY, MercuryLighthouseAerie,
+               MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY),
+    SCENE_EXIT(MERCURY_LIGHTHOUSE_AERIE_TO_SATUROS_RESUMES,
+               MercuryLighthouseAerie,
+               MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES),
     SCENE_EXITS_END,
 };
 

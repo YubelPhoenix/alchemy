@@ -1,11 +1,11 @@
 N37	MsgDarkAerieSaturosStars	Menardi is at the beacon\nwith the Stars. And with\nyour friends.{end_wait}
 N38	MsgDarkAerieGaretWhere	Where? Where is Jenna!?{end_wait}
 N39	MsgDarkAerieSaturosSorry	Where you cannot follow\nbefore it is finished.\nI am sorry for that.{end_wait}
-N40	MsgDarkAerieMiaSorry	Sorry.{pause_20_skippable} You are always\nsorry afterwards.{end_wait}
-N41	MsgDarkAerieSaturosGo	Go, if you wish. I will\nnot stop you again.{end_wait}
-N42	MsgDarkAerieMiaGoing	The beacon. I'm going\nahead.{end_wait}
-N43	MsgDarkAerieIvanAlone	Mia, wait! Alone? Menardi\nwill...!{end_wait}
-N44	MsgDarkAerieMiaFollow	Heal up and follow me.\nI won't wait.{end_wait}
+N40	MsgDarkAerieMiaSorry	Sorry will not bring Jenna\nback. Nothing will.{end_wait}
+N41	MsgDarkAerieSaturosGo	Then try to follow. I will\nnot stop you again.{end_wait}
+N42	MsgDarkAerieMiaGoing	Mia went ahead alone!\nMenardi will cut her down.{end_wait}
+N43	MsgDarkAerieIvanAlone	Then she will not face her\nalone. Move!{end_wait}
+N44	MsgDarkAerieMiaFollow	...{end_wait}
 N45	MsgDarkAerieGaretAfterHer	She's gone. We have to go\nafter her!{end_wait}
 N46	MsgDarkAerieMiaJenna	You.{pause_20_skippable} I knew you would\nfollow me here.{end_wait}
 N47	MsgDarkAerieMenardiWhichReal	Yes. Her. Finish what\nyou started, healer. We\nwould not stop you.{end_wait}

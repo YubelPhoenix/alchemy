@@ -810,11 +810,10 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 42,
     },
     {
-        .animation = 474,
-        .attackHop = 5,
-        .palette = 5,
+        .animation = 486,
+        .attackAnim = 1,
+        .palette = 2,
         .defeatSound = 1,
-        .effectHeight = 42,
     },
     {
         .animation = 471,
