@@ -1,1 +1,4 @@
 00398	message	Tideglass Blade
+N71	MsgDarkMiaBladeForged	The clan forged this blade\nto end the defilers of this\nlighthouse.{end_wait}
+N72	MsgDarkMiaBladeSworn	She swore never to draw it.\nSo it stays sheathed.\nWeak.{end_wait}
+N73	MsgDarkMiaBladeDraw	But for those I wish dead,\nI draw it. Menardi...\nyou are first.{end_wait}

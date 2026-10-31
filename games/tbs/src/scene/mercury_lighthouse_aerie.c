@@ -1252,6 +1252,12 @@ static void MercuryLighthouseAerie_MiaFacesMenardi(void) {
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_MENARDI, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  // Her other self draws the Tideglass Blade, which the healer swore never to
+  // draw: it is for those she wishes dead.
+  Event_SetMessageId(MsgDarkMiaBladeForged);
+  MercuryLighthouseAerie_DarkMiaSays();
+  MercuryLighthouseAerie_DarkMiaSays();
+  MercuryLighthouseAerie_DarkMiaSays();
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Event_SetAfterBattleDestination((s32)&SceneId_MercuryLighthouseAerie,
                                   MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT);
