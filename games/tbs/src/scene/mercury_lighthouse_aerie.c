@@ -955,16 +955,16 @@ static void MercuryLighthouseAerie_ConfrontSaturos(void) {
 #define MIA_DUEL_ISAAC_LEVEL 14
 #define MIA_DUEL_MIA_LEVEL 24
 
-/// Gives Mia the Arctic Blade, a Mercury sword, and equips it, so that she can
+/// Gives Mia the Tideglass Blade, a Mercury sword only she can use, and equips it, so that she can
 /// beat Menardi alone. Does nothing if her items are full.
 static void MercuryLighthouseAerie_ArmMia(void) {
   struct Unit *mia = Unit_Get(MIA);
   s32 slot;
 
-  if (Inventory_AddItem(MIA, ITEM_ARCTIC_BLADE) == -1)
+  if (Inventory_AddItem(MIA, ITEM_TIDEGLASS_BLADE) == -1)
     return;
   for (slot = 0; slot < INVENTORY_SLOTS; slot++) {
-    if (mia->inventory[slot] == ITEM_ARCTIC_BLADE)
+    if (mia->inventory[slot] == ITEM_TIDEGLASS_BLADE)
       Inventory_Equip(MIA, slot);
   }
 }

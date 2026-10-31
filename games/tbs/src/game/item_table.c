@@ -130,8 +130,18 @@ const struct ItemDefinition gItem_DefinitionTable[] = {
         .unleashAbility = 226,
         .element = ELEMENT_NONE,
     },
-    // ?
-    {0},
+    // Tideglass Blade
+    {
+        .price = 0,
+        .type = ITEM_TYPE_WEAPON,
+        .flags = ITEM_RARE,
+        .equipMask = 0x08,
+        .icon = 8,
+        .primaryBonus = 55,
+        .unleashChance = 3,
+        .unleashAbility = 218,
+        .element = ELEMENT_MERCURY,
+    },
     // ?
     {0},
     // ?
