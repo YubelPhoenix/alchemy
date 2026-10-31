@@ -38,9 +38,9 @@ static inline void WorldState_TintPalettes(void) {
     s32 b = (colour >> 10) & 31;
     s32 grey = (r + g + b) / 3;
 
-    r = ((2 * r + 3 * grey) * 13) / 100 + 2;
-    g = ((2 * g + 3 * grey) * 12) / 100 + 1;
-    b = ((2 * b + 3 * grey) * 12) / 100;
+    r = ((3 * r + 2 * grey) * 17) / 100 + 1;
+    g = ((3 * g + 2 * grey) * 17) / 100 + 1;
+    b = ((3 * b + 2 * grey) * 15) / 100;
     work->palette[i] = r | (g << 5) | (b << 10);
   }
   PaletteFade_SetSource(PALETTE_TINT_NONE, PALETTES_ALL);
