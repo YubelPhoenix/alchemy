@@ -625,8 +625,9 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 32,
     },
     {
-        // Heart, who has Mia's own battle sprite for now.
-        .animation = 303,
+        // Heart, drawn in the Purple Beast's unused sprite slot (her own art
+        // in games/tbs/src/graphics/monster/purple_beast.png).
+        .animation = 484,
         .attackAnim = 1,
         .defeatSound = 1,
         .effectHeight = 42,
