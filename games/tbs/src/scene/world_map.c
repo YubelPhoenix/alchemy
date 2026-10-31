@@ -110,6 +110,7 @@
 #include "event_inline.h"
 #include "iwram_call.h"
 #include "scene_ids.h"
+#include "resource_ids.h"
 #include "call.h"
 #include "text/msg_ids.h"
 #include "edition.h"
@@ -2248,7 +2249,7 @@ enum WorldMapMiaThievesActorId {
 static void WorldMap_MiaThievesOpen(void) {
   WindowColor_Apply(gSaveBlock.windowColor[0], gSaveBlock.windowColor[1]);
   Event_Start();
-  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
   FieldEffect_ScheduleRatioTransition(3 * Q16_ONE / 2, 16);
   gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
   gFieldWork->transitionFrames = 16;
@@ -2270,31 +2271,33 @@ static void WorldMap_MiaThievesBegin(void) {
   WorldMap_MiaThievesOpen();
   Event_WaitFrames(60);
   Event_SetMessageId(MsgDarkMiaThievesQuiet);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 20);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
   Event_SetMessageId(MsgDarkMiaThievesAir);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 40);
+  WorldMap_MiaSay(ACTOR_MIA, 40);
   // The thieves step out of the snow around her.
-  Actor_SetPosition(ACTOR_MIA_THIEF_WEST, PIXELS(5908), PIXELS(338));
-  Actor_FaceDirection(ACTOR_MIA_THIEF_WEST, FACING_EAST, 0);
-  Actor_SetPosition(ACTOR_MIA_THIEF_EAST, PIXELS(5948), PIXELS(328));
+  Actor_SetPosition(ACTOR_MIA_THIEF_WEST, PIXELS(5916), PIXELS(284));
+  Actor_FaceDirection(ACTOR_MIA_THIEF_WEST, FACING_SOUTHEAST, 0);
+  Actor_SetPosition(ACTOR_MIA_THIEF_EAST, PIXELS(5940), PIXELS(284));
   Actor_FaceDirection(ACTOR_MIA_THIEF_EAST, FACING_SOUTHWEST, 0);
-  Actor_SetPosition(ACTOR_MIA_THIEF_MIDDLE, PIXELS(5928), PIXELS(316));
+  Actor_SetPosition(ACTOR_MIA_THIEF_MIDDLE, PIXELS(5928), PIXELS(272));
   Actor_FaceDirection(ACTOR_MIA_THIEF_MIDDLE, FACING_SOUTH, 0);
-  Actor_ShowEmote(ACTOR_PARTY_LEADER, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 0);
+  Actor_ShowEmote(ACTOR_MIA, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 0);
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkMiaThievesThiefA);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_MIDDLE, 10);
   Event_SetMessageId(MsgDarkMiaThievesSoftHello);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 10);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesThiefB);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_WEST, 20);
   Event_SetMessageId(MsgDarkMiaThievesSerious);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 20);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Event_SetAfterBattleDestination((s32)&SceneId_WorldMap,
                                   WORLD_MAP_MIA_THIEVES_AFTER_FIRST);
   Event_SetDefeatDestination((s32)&SceneId_WorldMap, WORLD_MAP_MIA_THIEVES);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_THIEVES, 0);
+  // The road by Imil is snow, whatever the map under the party says.
+  gSaveBlock.special = (u16)(u32)&ResourceId_SnowfieldBackdrop;
   Event_End();
 }
 
@@ -2302,10 +2305,10 @@ static void WorldMap_MiaThievesBegin(void) {
 /// in, and Mia fights them; winning brings her back at
 /// WORLD_MAP_MIA_THIEVES_AFTER_SECOND.
 static void WorldMap_MiaThievesSecondFight(void) {
-  Actor_SetPosition(ACTOR_MIA_THIEF_CHIEF, PIXELS(5948), PIXELS(328));
+  Actor_SetPosition(ACTOR_MIA_THIEF_CHIEF, PIXELS(5940), PIXELS(284));
   Actor_FaceDirection(ACTOR_MIA_THIEF_CHIEF, FACING_SOUTHWEST, 0);
-  Actor_SetPosition(ACTOR_MIA_THIEF_FOURTH, PIXELS(5908), PIXELS(338));
-  Actor_FaceDirection(ACTOR_MIA_THIEF_FOURTH, FACING_EAST, 0);
+  Actor_SetPosition(ACTOR_MIA_THIEF_FOURTH, PIXELS(5916), PIXELS(284));
+  Actor_FaceDirection(ACTOR_MIA_THIEF_FOURTH, FACING_SOUTHEAST, 0);
   WorldMap_MiaThievesOpen();
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkMiaThievesChiefArrives);
@@ -2313,7 +2316,7 @@ static void WorldMap_MiaThievesSecondFight(void) {
   Event_SetMessageId(MsgDarkMiaThievesChiefWarning);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 10);
   Event_SetMessageId(MsgDarkMiaThievesWalkAway);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 10);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesChiefRefuses);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 20);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
@@ -2321,6 +2324,8 @@ static void WorldMap_MiaThievesSecondFight(void) {
                                   WORLD_MAP_MIA_THIEVES_AFTER_SECOND);
   Event_SetDefeatDestination((s32)&SceneId_WorldMap, WORLD_MAP_MIA_THIEVES);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_THIEVES, 1);
+  // The road by Imil is snow, whatever the map under the party says.
+  gSaveBlock.special = (u16)(u32)&ResourceId_SnowfieldBackdrop;
   Event_End();
 }
 
@@ -2329,39 +2334,39 @@ static void WorldMap_MiaThievesSecondFight(void) {
 /// them off, the party is put back together (Isaac and Garet) and the story
 /// goes back to the Vault's road.
 static void WorldMap_MiaThievesInterrogation(void) {
-  Actor_SetPosition(ACTOR_MIA_THIEF_CHIEF, PIXELS(5948), PIXELS(328));
+  Actor_SetPosition(ACTOR_MIA_THIEF_CHIEF, PIXELS(5940), PIXELS(284));
   Actor_FaceDirection(ACTOR_MIA_THIEF_CHIEF, FACING_SOUTHWEST, 0);
-  Actor_SetPosition(ACTOR_MIA_THIEF_FOURTH, PIXELS(5928), PIXELS(316));
+  Actor_SetPosition(ACTOR_MIA_THIEF_FOURTH, PIXELS(5928), PIXELS(272));
   Actor_FaceDirection(ACTOR_MIA_THIEF_FOURTH, FACING_SOUTH, 0);
   WorldMap_MiaThievesOpen();
   Event_WaitFrames(40);
   Event_SetMessageId(MsgDarkMiaThievesWhoSent);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 10);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesChiefLies);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 10);
   Event_SetMessageId(MsgDarkMiaThievesNotBuying);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 20);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
   Event_SetMessageId(MsgDarkMiaThievesChiefSlips);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 10);
   Event_SetMessageId(MsgDarkMiaThievesGold);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 10);
   Event_SetMessageId(MsgDarkMiaThievesWhatLook);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 10);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesRedHair);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_FOURTH, 10);
   Event_SetMessageId(MsgDarkMiaThievesColdEyes);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_FOURTH, 30);
   Event_SetMessageId(MsgDarkMiaThievesNotFromImil);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 30);
+  WorldMap_MiaSay(ACTOR_MIA, 30);
   Event_SetMessageId(MsgDarkMiaThievesLeave);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 10);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
   Event_SetMessageId(MsgDarkMiaThievesChiefAgrees);
   WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 30);
   Actor_SetPosition(ACTOR_MIA_THIEF_CHIEF, PIXELS(8), PIXELS(8));
   Actor_SetPosition(ACTOR_MIA_THIEF_FOURTH, PIXELS(8), PIXELS(8));
   Event_WaitFrames(30);
   Event_SetMessageId(MsgDarkMiaThievesNotAWord);
-  WorldMap_MiaSay(ACTOR_PARTY_LEADER, 40);
+  WorldMap_MiaSay(ACTOR_MIA, 40);
   // Back to Isaac's party behind a fade: Mia leaves it, Isaac and Garet
   // return and Isaac leads again.
   Event_FinishScreenTransition();
@@ -3484,11 +3489,11 @@ struct SceneEntrance gWorldSceneEntrances[] = {
      0, -1, -1, -1, -1, 0},
     {WORLD_MAP_JENNA_AND_KRADEN_ADRIFT, CONDITION_ALWAYS, 7552, 0, 3504,
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},
-    {WORLD_MAP_MIA_THIEVES, CONDITION_ALWAYS, 5928, 0, 336, FACING_NORTH, 0,
+    {WORLD_MAP_MIA_THIEVES, CONDITION_ALWAYS, 5928, 0, 296, FACING_NORTH, 0,
      -1, -1, -1, -1, 0},
-    {WORLD_MAP_MIA_THIEVES_AFTER_FIRST, CONDITION_ALWAYS, 5928, 0, 336,
+    {WORLD_MAP_MIA_THIEVES_AFTER_FIRST, CONDITION_ALWAYS, 5928, 0, 296,
      FACING_NORTH, 0, -1, -1, -1, -1, 0},
-    {WORLD_MAP_MIA_THIEVES_AFTER_SECOND, CONDITION_ALWAYS, 5928, 0, 336,
+    {WORLD_MAP_MIA_THIEVES_AFTER_SECOND, CONDITION_ALWAYS, 5928, 0, 296,
      FACING_NORTH, 0, -1, -1, -1, -1, 0},
     {WORLD_MAP_AFTER_MERCURY_LIGHTHOUSE_LIT, CONDITION_ALWAYS, 6024, 0, 160,
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},
