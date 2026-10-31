@@ -547,6 +547,28 @@ static void Tolbi_MeetAshJenna(void) {
   Event_End();
 }
 
+/// A stranded farmer asks Isaac for 400 coins to get his family home, since no
+/// ships sail. Paying earns Tolbi's Tide Shard (FLAG_DARK_TIDE_TOLBI).
+static void Tolbi_TalkToStrandedFather(void) {
+  Event_Start();
+  if (GameFlag_Get(FLAG_DARK_TIDE_TOLBI) != 0) {
+    Event_SetMessageId(MsgDarkTolbiHome);
+    Event_ShowMessageAndWait(ACTOR_TOLBI_STRANDED_FATHER, 0);
+  } else if (gSaveBlock.coins < 400) {
+    Event_SetMessageId(MsgDarkTolbiPoor);
+    Event_ShowMessageAndWait(ACTOR_TOLBI_STRANDED_FATHER, 0);
+  } else {
+    Event_SetMessageId(MsgDarkTolbiFare);
+    if (Event_AskYesNo(ACTOR_TOLBI_STRANDED_FATHER, 0) == 0) {
+      gSaveBlock.coins -= 400;
+      GameFlag_Set(FLAG_DARK_TIDE_TOLBI);
+      Event_SetMessageId(MsgDarkTolbiIsaacGives);
+      Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
+    }
+  }
+  Event_End();
+}
+
 /// The visitor at the spring's gate asks whether the party wants to test its
 /// luck. On yes he steps aside for good and the way to Tolbi Spring opens.
 static void Tolbi_TalkToSpringVisitor(void) {
@@ -888,11 +910,15 @@ struct ActorTemplate gTolbiActorTemplates[] = {
     // Ash Jenna, parked until Tolbi_ApplyEntryState brings her out.
     { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
+    // The stranded farmer who asks for his family's fare.
+    { SPRITE_MAN_CARRYING_A_PACK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        PIXELS(232), 0, PIXELS(296), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     { SCENE_TABLE_END },
 };
 
 /// During the festival, before the finals.
 struct Trigger gTolbiTriggersFestival[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_NORTHWEST, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -962,6 +988,7 @@ struct Trigger gTolbiTriggersFestival[] = {
 
 /// On finals day.
 struct Trigger gTolbiTriggersFinalsDay[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_NORTHWEST, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -1033,6 +1060,7 @@ struct Trigger gTolbiTriggersFinalsDay[] = {
 
 /// After Colosso has ended.
 struct Trigger gTolbiTriggersAfterColosso[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { TRIGGER_TALK, ACTOR_TOLBI_ASH_JENNA, CONDITION_ALWAYS, EVENT(Tolbi_MeetAshJenna) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },

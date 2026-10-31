@@ -163,7 +163,11 @@ enum AltinVillageActorId {
   ACTOR_SECOND_CRATE,
   /// ★ Named from the game: "Strange... I don't remember all these crates being
   /// up here before!" (MsgVaultVaultCutFree)
-  ACTOR_THIRD_CRATE
+  ACTOR_THIRD_CRATE,
+  /// A mother (SPRITE_WOMAN_WITH_FAIR_HAIR) whose family is starving in the
+  /// rain; Isaac can pay for bread (Altin_TalkToHungryMother).
+  /// ★ Named from the dark story: MsgDarkAltinBread
+  ACTOR_HUNGRY_MOTHER
 };
 
 /// The houses' actors, numbering the rows of
@@ -348,6 +352,28 @@ const struct Trigger *Scene_GetTriggers(void) {
     return gCottageRoomsD_Triggers;
   }
   return gAltin_NoTriggers;
+}
+
+/// A mother in the rain asks Isaac for 250 coins to buy bread for twelve
+/// hungry families. Paying earns Altin's Tide Shard (FLAG_DARK_TIDE_ALTIN).
+static void Altin_TalkToHungryMother(void) {
+  Event_Start();
+  if (GameFlag_Get(FLAG_DARK_TIDE_ALTIN) != 0) {
+    Event_SetMessageId(MsgDarkAltinFed);
+    Event_ShowMessageAndWait(ACTOR_HUNGRY_MOTHER, 0);
+  } else if (gSaveBlock.coins < 250) {
+    Event_SetMessageId(MsgDarkAltinPoor);
+    Event_ShowMessageAndWait(ACTOR_HUNGRY_MOTHER, 0);
+  } else {
+    Event_SetMessageId(MsgDarkAltinBread);
+    if (Event_AskYesNo(ACTOR_HUNGRY_MOTHER, 0) == 0) {
+      gSaveBlock.coins -= 250;
+      GameFlag_Set(FLAG_DARK_TIDE_ALTIN);
+      Event_SetMessageId(MsgDarkAltinIsaacGives);
+      Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
+    }
+  }
+  Event_End();
 }
 
 /// A bald strong man asks whether this is the party's first visit. He's in
@@ -1213,6 +1239,7 @@ struct Trigger gAltin_NoTriggers[] = {
 };
 
 struct Trigger gAltin_Triggers[] = {
+    {TRIGGER_TALK, ACTOR_HUNGRY_MOTHER, CONDITION_ALWAYS, EVENT(Altin_TalkToHungryMother)},
     {STEP_TRIGGER_FACING(FACING_NORTH), 10, CONDITION_ALWAYS, EVENT(Altin_WalkThroughDoorway)},
     {STEP_TRIGGER_FACING(FACING_NORTH), 11, CONDITION_ALWAYS, EVENT(Altin_WalkThroughDoorway)},
     {STEP_TRIGGER_FACING(FACING_NORTH), 12, CONDITION_ALWAYS, EVENT(Altin_WalkThroughDoorway)},

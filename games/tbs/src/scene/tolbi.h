@@ -142,6 +142,9 @@ enum TolbiActorId {
   /// Ash Jenna (ACTOR_JENNA, drawn grey), who waits in the rain after Colosso
   /// once Mercury Lighthouse is lit (Tolbi_MeetAshJenna).
   ACTOR_TOLBI_ASH_JENNA = 33,
+  /// A stranded farmer (SPRITE_MAN_CARRYING_A_PACK) whose family cannot get
+  /// home (Tolbi_TalkToStrandedFather).
+  ACTOR_TOLBI_STRANDED_FATHER = 34,
 };
 
 /// The metatile behaviors Tolbi's coord and examine triggers answer besides the

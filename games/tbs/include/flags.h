@@ -2723,4 +2723,14 @@
 /// Ash Jenna has spoken to the party in Tolbi after Colosso, and slipped away.
 #define FLAG_DARK_ASH_JENNA_TOLBI 0x88d
 
+/// Isaac paid for bread in Altin (Altin_TalkToHungryMother): the first of the
+/// three kindnesses that earn a Tide Shard.
+#define FLAG_DARK_TIDE_ALTIN 0x88e
+/// Isaac paid for sandbags in Imil (Imil_TalkToSandbagMan): the second Tide
+/// Shard kindness.
+#define FLAG_DARK_TIDE_IMIL 0x88f
+/// Isaac paid a stranded family's fare in Tolbi (Tolbi_TalkToStrandedFather):
+/// the third Tide Shard kindness.
+#define FLAG_DARK_TIDE_TOLBI 0x890
+
 #endif

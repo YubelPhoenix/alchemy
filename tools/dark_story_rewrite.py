@@ -50,7 +50,7 @@ def load_replacements(only=None) -> dict[str, tuple[str, str]]:
             if not line.strip() or line.startswith("#"):
                 continue
             parts = line.split("\t")
-            if len(parts) != 3 or not re.fullmatch(r"[0-9]{5}|N[0-9]{2}", parts[0]):
+            if len(parts) != 3 or not re.fullmatch(r"[0-9]{5}|N[0-9]{2,3}", parts[0]):
                 raise SystemExit(f"{file}:{number}: expected ID<TAB>CONTEXT<TAB>TEXT.")
             msgid, context, text = parts
             if msgid in rows:
@@ -144,7 +144,7 @@ def main() -> None:
         last = max(i for i, e in enumerate(entries) if "alchemy-null" in e)
         first_id = int(re.search(r'msgid "([0-9]{5})"', entries[last]).group(1))
         added = []
-        for offset, (key, (context, new)) in enumerate(sorted(new_rows.items())):
+        for offset, (key, (context, new)) in enumerate(sorted(new_rows.items(), key=lambda kv: int(kv[0][1:]))):
             body = ['msgstr ""']
             display_lines = new.split(r"\n")
             for i, display_line in enumerate(display_lines):

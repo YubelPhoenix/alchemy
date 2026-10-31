@@ -1,0 +1,7 @@
+# Isaac can buy bread for Altin.
+N84	MsgDarkAltinBread	Please, warriors. The rain\nspoiled our grain and\ntwelve families are hungry.{page_break}Could you spare 250 coins\nfor bread?{end_now}
+N85	MsgDarkAltinBlessing	Bless you. We will not\nforget this.{end_wait}
+N86	MsgDarkAltinRefusal	I understand. Everyone is\nhungry. Everyone is\nafraid.{end_wait}
+N87	MsgDarkAltinFed	The children are eating\nbecause of you. Go well.{end_wait}
+N88	MsgDarkAltinPoor	You have no coins to\nspare? Neither do we.\nGo well, warrior.{end_wait}
+N89	MsgDarkAltinIsaacGives	It is not much. Tell\nthem to eat.{end_wait}

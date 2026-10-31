@@ -138,6 +138,10 @@ enum ImilVillageActorId {
   ACTOR_FOURTH_THIEF
 };
 
+/// The man hauling sandbags once Saturos is beaten, the town actor after the
+/// four everyone keeps (gImil_TownActorTemplatesCured).
+enum { ACTOR_IMIL_SANDBAG_MAN = ACTOR_FIRST_PLACED + 4 };
+
 /// The actors of the houses and the Sanctum (IceRooms), numbering
 /// gImil_InteriorActorTemplates' rows from ACTOR_FIRST_PLACED; the rows
 /// of Garet, Ivan and Mia take those characters' own slots.
@@ -355,6 +359,28 @@ const struct ActorTemplate *Imil_GetActorTemplates(void) {
     return gImil_TownActorTemplatesCured;
   }
   return gImil_TownActorTemplates;
+}
+
+/// A man hauling sandbags against the rising meltwater asks Isaac for 150
+/// coins for more. Paying earns Imil's Tide Shard (FLAG_DARK_TIDE_IMIL).
+static void Imil_TalkToSandbagMan(void) {
+  Event_Start();
+  if (GameFlag_Get(FLAG_DARK_TIDE_IMIL) != 0) {
+    Event_SetMessageId(MsgDarkImilHeld);
+    Event_ShowMessageAndWait(ACTOR_IMIL_SANDBAG_MAN, 0);
+  } else if (gSaveBlock.coins < 150) {
+    Event_SetMessageId(MsgDarkImilPoor);
+    Event_ShowMessageAndWait(ACTOR_IMIL_SANDBAG_MAN, 0);
+  } else {
+    Event_SetMessageId(MsgDarkImilSandbags);
+    if (Event_AskYesNo(ACTOR_IMIL_SANDBAG_MAN, 0) == 0) {
+      gSaveBlock.coins -= 150;
+      GameFlag_Set(FLAG_DARK_TIDE_IMIL);
+      Event_SetMessageId(MsgDarkImilIsaacGives);
+      Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
+    }
+  }
+  Event_End();
 }
 
 /// Stepping onto the ice in Imil (metatile behavior 90) starts a slide.
