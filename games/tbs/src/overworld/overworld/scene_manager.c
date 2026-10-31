@@ -80,12 +80,7 @@ s32 SceneManager_Run(s32 entrance) {
   Field_PlaceTreasureSpots();
   PaletteFade_Initialize();
   PaletteFade_SetTarget(PALETTE_TINT_NONE, 0);
-  // Ash greys every scene once the Sol Sanctum has erupted.
-  if (GameFlag_GetFar(FLAG_SOL_SANCTUM_ERUPTED) != 0 ||
-      GameFlag_GetFar(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0) {
-    WorldState_TintPalettes();
-    Task_Add(PaletteFade_KeepAshTint, TASK_PASS_FRAME + 16);
-  }
+  // (The ash tint that once greyed every scene here is switched off.)
   // The default fade is from the backdrop colour over 16 frames; the scene's
   // initialization may choose another.
   work->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
