@@ -574,7 +574,12 @@ s32 Kolima_Initialize(void) {
   // Back from Heart's battle: she speaks her last words and goes.
   if (GameFlag_Get(FLAG_DARK_HEART_FOUGHT) != 0 &&
       GameFlag_Get(FLAG_DARK_HEART_BEATEN) == 0) {
-    Kolima_HeartAftermath();
+    if (gSaveBlock.sequenceResult == -1) {
+      // The party lost: she is still waiting, and the fight can be tried again.
+      GameFlag_Clear(FLAG_DARK_HEART_FOUGHT);
+    } else {
+      Kolima_HeartAftermath();
+    }
   }
 
   return 0;
@@ -1961,6 +1966,8 @@ static void Kolima_TalkToHeart(void) {
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
   Event_SetAfterBattleDestination((s32)&SceneId_Kolima, 0);
+  // A defeat comes back here too (the leader revived), and not as a win.
+  Event_SetDefeatDestination((s32)&SceneId_Kolima, 0);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 3);
   Event_End();

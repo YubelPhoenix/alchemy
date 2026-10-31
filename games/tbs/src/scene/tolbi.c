@@ -517,7 +517,11 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   }
   // Ondra rises once all three kindnesses are done, until she is beaten. A
   // return from her battle means she has been beaten.
-  if (GameFlag_Get(FLAG_DARK_ONDRA_FOUGHT) != 0) {
+  if (GameFlag_Get(FLAG_DARK_ONDRA_FOUGHT) != 0 &&
+      gSaveBlock.sequenceResult == -1) {
+    // The party lost: she is still waiting, and the fight can be tried again.
+    GameFlag_Clear(FLAG_DARK_ONDRA_FOUGHT);
+  } else if (GameFlag_Get(FLAG_DARK_ONDRA_FOUGHT) != 0) {
     GameFlag_Set(FLAG_DARK_ONDRA_BEATEN);
   } else if (GameFlag_Get(FLAG_DARK_TIDE_ALTIN) != 0 &&
              GameFlag_Get(FLAG_DARK_TIDE_IMIL) != 0 &&
@@ -639,6 +643,7 @@ static void Tolbi_TalkToOndra(void) {
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
   Event_SetAfterBattleDestination((s32)&SceneId_Tolbi, 0);
+  Event_SetDefeatDestination((s32)&SceneId_Tolbi, 0);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 2);
   Event_End();
