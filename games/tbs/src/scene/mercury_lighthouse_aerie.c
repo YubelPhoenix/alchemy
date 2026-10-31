@@ -952,7 +952,7 @@ static void MercuryLighthouseAerie_ConfrontSaturos(void) {
 /// The levels the duel is balanced for: Isaac is raised to the first so that
 /// he can win alone, and Mia to the second so that she can beat Menardi alone.
 #define MIA_DUEL_ISAAC_LEVEL 14
-#define MIA_DUEL_MIA_LEVEL 20
+#define MIA_DUEL_MIA_LEVEL 24
 
 /// Mia's other self speaks the next message: her arrogant half, who calls
 /// everyone a fool and tells them to know their place.
