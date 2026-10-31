@@ -516,9 +516,10 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   return 0;
 }
 
-/// Ash Jenna, grey and flaking, reaches the party in the rain after Colosso:
-/// the lit lighthouse is burning her down. She begs them to stop lighting the
-/// lighthouses, Mia mocks her, and she slips away before Menardi misses her.
+/// Ash Jenna, grey and hostile, confronts the party in the rain after Colosso.
+/// The fire has left only ash in her, and every lighthouse the party lights
+/// feeds her. She taunts them, Mia answers her, and she fades away promising
+/// to wait at Venus Lighthouse.
 static void Tolbi_MeetAshJenna(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkTolbiJennaFound);
@@ -534,7 +535,7 @@ static void Tolbi_MeetAshJenna(void) {
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  // She turns and fades into the rain.
+  // She turns away and fades into the rain.
   Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_EAST, 0);
   Event_WaitFrames(20);
   Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA,

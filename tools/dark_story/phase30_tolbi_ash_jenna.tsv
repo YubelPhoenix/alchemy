@@ -1,11 +1,11 @@
-# Ash Jenna reaches the party in Tolbi after Colosso.
-N74	MsgDarkTolbiJennaFound	Isaac. I found you at\nlast.{end_wait}
-N75	MsgDarkTolbiIsaacGrey	Jenna! Your hands...\nYou are turning grey.{end_wait}
-N76	MsgDarkTolbiJennaAsh	It is the light. Since\nthe lighthouse lit, I have\nbeen burning down.{page_break}What is left of the fire\nis ash.{end_wait}
-N77	MsgDarkTolbiGaretFire	Fire is our element. It\nshould never burn us\nlike this.{end_wait}
-N78	MsgDarkTolbiJennaPlease	Menardi never wanted\nthis. It is breaking her\ntoo.{page_break}Please stop lighting\nthe lighthouses.{end_wait}
-N79	MsgDarkTolbiMiaSneer	Stop? How sweet. The ash\ngirl wants us to kneel\nin the rain.{end_wait}
-N80	MsgDarkTolbiJennaMia	Mia, you know what a\nlight costs. You carry\nit in your hand.{end_wait}
-N81	MsgDarkTolbiMiaPlace	...Know your place.{end_wait}
-N82	MsgDarkTolbiJennaGoing	If Venus Lighthouse is\nlit, nothing will be left\nof me.{page_break}Do not follow. I will\nslip back before they\nnotice I am gone.{end_wait}
+# Ash Jenna, an antagonist, confronts the party in Tolbi after Colosso.
+N74	MsgDarkTolbiJennaFound	There you are, Isaac.\nI was starting to think\nyou would never come.{end_wait}
+N75	MsgDarkTolbiIsaacGrey	Jenna? What happened to\nyou? You are grey...\nCome back with us.{end_wait}
+N76	MsgDarkTolbiJennaAsh	Come back? The fire took\neverything soft in me.{page_break}What is left is ash,\nand ash remembers.{end_wait}
+N77	MsgDarkTolbiGaretFire	Jenna, this is not you!\nSnap out of it!{end_wait}
+N78	MsgDarkTolbiJennaPlease	Poor Garet. Always the\nloud one.{page_break}Be quiet. Burn quietly.{end_wait}
+N79	MsgDarkTolbiMiaSneer	An ash girl with a\ngrudge. How tedious.\nKnow your place.{end_wait}
+N80	MsgDarkTolbiJennaMia	Mia. The blade's\ndaughter. We are the same.{page_break}The light made us\nboth.{end_wait}
+N81	MsgDarkTolbiMiaPlace	...We are nothing alike.{end_wait}
+N82	MsgDarkTolbiJennaGoing	Light the next one,\nIsaac. Every flame you\nkindle feeds me.{page_break}I will be waiting at the\ntop. All of you will\nbe dust.{end_wait}
 N83	MsgDarkTolbiIsaacWait	Jenna, wait!{end_wait}
