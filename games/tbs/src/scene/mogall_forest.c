@@ -478,6 +478,12 @@ static void MogallForest_AlexAndMia(void) {
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0) {
+    Event_SetMessageId(MsgDarkMogallBloomSheltered);
+  } else {
+    Event_SetMessageId(MsgDarkMogallBloomLeft);
+  }
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Actor_ConfigureSpriteColor(ACTOR_SECOND_AREA_ALEX, SPRITE_COLOR_BLINK);
   Event_WaitFrames(40);
   Actor_ConfigureSpriteColor(ACTOR_SECOND_AREA_ALEX, SPRITE_COLOR_HIDDEN);

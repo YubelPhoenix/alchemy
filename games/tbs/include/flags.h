@@ -2783,5 +2783,6 @@
 /// (WorldMap_MiaRejoinsParty), so a battle that reloads the entrance does not
 /// replay it.
 #define FLAG_DARK_MIA_REUNITED 0x8cd
+#define FLAG_DARK_HARBOR_SHELTERED 0x8ce
 
 #endif

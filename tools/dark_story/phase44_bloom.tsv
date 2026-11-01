@@ -1,0 +1,18 @@
+# Bloom scenes: Tolbi harbour, Altin Peak miner, Mogall aftermath.
+N160	MsgDarkHarborIvan	Isaac, the harbor. Someone\nis screaming down there.{end_wait}
+N161	MsgDarkHarborGaret	It's a little boy, out on\nthe pier. He's alone.{end_wait}
+N162	MsgDarkHarborMia	Leave it. The water takes\nwhat it takes.{end_wait}
+N163	MsgDarkHarborAsk	Go down to the harbor?{end_now}
+N164	MsgDarkHarborYesIsaac	Come on. Quickly.{end_wait}
+N165	MsgDarkHarborYesIvan	He's not screaming at the\nwater. He's screaming at\nwhat he's hearing.{end_wait}
+N166	MsgDarkHarborYesGaret	He woke up, Isaac. His\neyes are grey. We got him\nunder cover. It's not much.{end_wait}
+N167	MsgDarkHarborNoIsaac	We can't carry every\nchild in this town.{end_wait}
+N168	MsgDarkHarborNoIvan	The screaming stopped.\nI wish I'd never heard\nit stop.{end_wait}
+N169	MsgDarkPeakMinerWakes	Why did you pull me out?\nIt's so loud in the light.{end_wait}
+N170	MsgDarkPeakBloomIvan	His thoughts went quiet\nall at once, Isaac.{end_wait}
+N171	MsgDarkPeakBloomGaret	Look at his eyes, Isaac.\nThey're grey.{end_wait}
+N172	MsgDarkPeakBloomAsk	Stay with him until it\npasses?{end_now}
+N173	MsgDarkPeakBloomStay	Thank you. Don't go yet.\nI don't want to be alone\nwhen it takes me.{end_wait}
+N174	MsgDarkPeakBloomLeave	He's not in there anymore.\nDon't watch him, Isaac.{end_wait}
+N175	MsgDarkMogallBloomSheltered	The boy in Tolbi is still\nbreathing. That counts.{end_wait}
+N176	MsgDarkMogallBloomLeft	I keep seeing that pier,\nIvan. I can't stop.{end_wait}
