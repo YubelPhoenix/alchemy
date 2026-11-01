@@ -1,28 +1,28 @@
 # Lamakan finale: Ash Jenna's reveal, the echoes, the choice and three endings.
-N195	MsgDarkFinaleJenna1	You kept walking, and that\nearns you an answer. I'll\ntell you what I am.{end_wait}
-N196	MsgDarkFinaleIsaac1	You aren't our Jenna. Then\nwho are you?{end_wait}
-N197	MsgDarkFinaleJenna2	A Jenna from a world the\nWise One burned.{page_break}I'm the one he couldn't\nkill. The fire I took from\nhis ruin is mine now.{end_wait}
-N198	MsgDarkFinaleGaret	Then what do you want with\nus? With Isaac?{end_wait}
-N199	MsgDarkFinaleJenna3	Your lighthouses are doors.\nEach one wakes the sleepers\nand feeds the flame.{page_break}Kill the awakened and the\ndoor closes. Quick, clean.\nI only need you to choose.{end_wait}
-N200	MsgDarkFinaleIvan	She's telling the truth,\nIsaac. And she's afraid. I\ncan hear it.{end_wait}
-N201	MsgDarkFinaleMia	Do it. Then it ends.{end_wait}
-N202	MsgDarkEchoHarbor	You went down to the pier.\nThat child is still\nbreathing, Isaac.{end_wait}
-N203	MsgDarkEchoMiner	You stayed with that miner\nuntil it passed. I saw.{end_wait}
-N204	MsgDarkEchoDoor	You opened the door. I can\nstill hear her humming.{end_wait}
-N205	MsgDarkEchoCaravan	Forty of them were awake,\nand you walked in without\na weapon drawn.{end_wait}
-N206	MsgDarkEchoBlade	You left the blade with me.\nI haven't decided if that\nwas kind.{end_wait}
-N207	MsgDarkEchoNone	Not one mercy, Isaac. You\nand I are the same\nalready.{end_wait}
+N195	MsgDarkFinaleJenna1	You kept walking, so you\nhave earned an answer. I'll\ntell you what I am.{end_wait}
+N196	MsgDarkFinaleIsaac1	You aren't our Jenna. So\nwho are you?{end_wait}
+N197	MsgDarkFinaleJenna2	I am a Jenna from a world\nthe Wise One burned.{page_break}I'm the one he couldn't\nkill. The fire I took from\nhis ruin belongs to me now.{end_wait}
+N198	MsgDarkFinaleGaret	Then what do you want from\nus? From Isaac?{end_wait}
+N199	MsgDarkFinaleJenna3	Your lighthouses are doors.\nEach one wakes the sleepers\nand feeds the flame.{page_break}Kill the awakened and the\ndoor will close, quickly\nand cleanly. Just choose.{end_wait}
+N200	MsgDarkFinaleIvan	She's telling the truth,\nIsaac, and she's afraid.\nI can hear it in her.{end_wait}
+N201	MsgDarkFinaleMia	Do it, Isaac. Then all of\nthis will be over.{end_wait}
+N202	MsgDarkEchoHarbor	You went down to the docks\nfor that boy. He's still\nbreathing, Isaac.{end_wait}
+N203	MsgDarkEchoMiner	You stayed with that miner\nuntil the end. I saw you.{end_wait}
+N204	MsgDarkEchoDoor	You opened that door. I can\nstill hear her humming.{end_wait}
+N205	MsgDarkEchoCaravan	Forty of them were awake,\nand you walked in without\ndrawing a weapon.{end_wait}
+N206	MsgDarkEchoBlade	You let me keep the blade.\nI haven't decided yet if\nthat was kind of you.{end_wait}
+N207	MsgDarkEchoNone	You showed no mercy at all,\nIsaac. You and I are\nalready the same.{end_wait}
 N208	MsgDarkFinaleAsk	Take her offer?{end_now}
-N209	MsgDarkFinaleYesIsaac	Do it. End it quickly.{end_wait}
-N210	MsgDarkFinaleYesJenna	Good. Close your eyes,\nIsaac. It's faster that\nway.{end_wait}
-N211	MsgDarkFinaleYesIvan	They've gone quiet. All of\nthem. Isaac, what did you\ndo?{end_wait}
+N209	MsgDarkFinaleYesIsaac	All right. Do it, and make\nit quick.{end_wait}
+N210	MsgDarkFinaleYesJenna	Good. Close your eyes,\nIsaac. It will be faster\nthat way.{end_wait}
+N211	MsgDarkFinaleYesIvan	They've all gone quiet.\nIsaac, what did you do?{end_wait}
 N212	MsgDarkFinaleYesJenna2	He did what I asked.\nWelcome, Isaac.{end_wait}
-N213	MsgDarkFinaleNoIsaac	No. We'll find another\nway, and I'll carry what\nit costs.{end_wait}
-N214	MsgDarkFinaleMercyJenna	Then carry it. The sleepers\nwill still wake. Remember\nthat I offered.{end_wait}
-N215	MsgDarkFinaleMercyIvan	I'll hear every one of\nthem, Isaac. I'm staying.{end_wait}
+N213	MsgDarkFinaleNoIsaac	No. We'll find another\nway, and I'll carry\nwhatever it costs.{end_wait}
+N214	MsgDarkFinaleMercyJenna	Then carry it. The sleepers\nwill still wake, and\nremember that I offered.{end_wait}
+N215	MsgDarkFinaleMercyIvan	I'll hear every one of\nthem, Isaac, but I'm\nstaying with you.{end_wait}
 N216	MsgDarkFinaleMercyMia	Fine. The blade stays quiet\nfor now, but I'm watching\nyou, Isaac.{end_wait}
-N217	MsgDarkFinaleDivIsaac	I won't do it. Not that.{end_wait}
-N218	MsgDarkFinaleDivJenna	Then I'll wait. People like\nyou always come around.{end_wait}
-N219	MsgDarkFinaleDivMia	He's soft and you know it.\nI'm done waiting on him.{end_wait}
-N220	MsgDarkFinaleDivGaret	Mia, don't do this! Come\nback!{end_wait}
-N221	MsgDarkFinaleHook	Your Jenna, Kraden and\nFelix are still Menardi's.{page_break}The Wise One has noticed\nyou now. Hurry to Kalay.{end_wait}
+N217	MsgDarkFinaleDivIsaac	I won't do that, not even\nto stop all of this.{end_wait}
+N218	MsgDarkFinaleDivJenna	Then I'll wait. People like\nyou always come around in\nthe end.{end_wait}
+N219	MsgDarkFinaleDivMia	He's too soft, and you know\nit. I'm done waiting for\nhim.{end_wait}
+N220	MsgDarkFinaleDivGaret	Mia, don't do this! Please\ncome back!{end_wait}
+N221	MsgDarkFinaleHook	Your Jenna, Kraden and\nFelix are still Menardi's\nprisoners.{page_break}The Wise One has noticed\nyou now, so hurry to Kalay.{end_wait}

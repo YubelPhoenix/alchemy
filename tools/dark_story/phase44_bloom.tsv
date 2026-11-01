@@ -8,11 +8,11 @@ N165	MsgDarkHarborYesIvan	He's calmer already. The\nvoices fade when someone\nli
 N166	MsgDarkHarborYesGaret	I'll get him settled at the\ninn first. It's the least\nwe can do.{end_wait}
 N167	MsgDarkHarborNoIsaac	I'm sorry. We can't carry\nevery child in this town.{end_wait}
 N168	MsgDarkHarborNoIvan	He was still crying as we\nleft. I'll hear it for a\nlong time, Isaac.{end_wait}
-N169	MsgDarkPeakMinerWakes	Why did you pull me out?\nIt's so loud in the light.{end_wait}
-N170	MsgDarkPeakBloomIvan	His thoughts went quiet\nall at once, Isaac.{end_wait}
-N171	MsgDarkPeakBloomGaret	Look at his eyes, Isaac.\nThey're grey.{end_wait}
-N172	MsgDarkPeakBloomAsk	Stay with him until it\npasses?{end_now}
-N173	MsgDarkPeakBloomStay	Thank you. Don't go yet.\nI don't want to be alone\nwhen it takes me.{end_wait}
-N174	MsgDarkPeakBloomLeave	He's not in there anymore.\nDon't watch him, Isaac.{end_wait}
-N175	MsgDarkMogallBloomSheltered	The boy in Tolbi is still\nbreathing. That counts.{end_wait}
-N176	MsgDarkMogallBloomLeft	I keep seeing that pier,\nIvan. I can't stop.{end_wait}
+N169	MsgDarkPeakMinerWakes	Why did you pull me out?\nThe light is so loud, and\nit hurts to look at it.{end_wait}
+N170	MsgDarkPeakBloomIvan	His thoughts just went\nquiet, Isaac. All of them,\nall at once.{end_wait}
+N171	MsgDarkPeakBloomGaret	Look at his eyes, Isaac.\nThey've turned grey.{end_wait}
+N172	MsgDarkPeakBloomAsk	Will you stay with him\nuntil it passes?{end_now}
+N173	MsgDarkPeakBloomStay	Thank you. Please don't go\nyet. I don't want to be\nalone when it takes me.{end_wait}
+N174	MsgDarkPeakBloomLeave	He's gone, Isaac. There's\nnothing left in there to\nsave, so don't watch him.{end_wait}
+N175	MsgDarkMogallBloomSheltered	At least that boy in Tolbi\nis safe now. That has to\ncount for something.{end_wait}
+N176	MsgDarkMogallBloomLeft	I keep thinking about that\nboy on the docks, Ivan. I\ncan't stop hearing him.{end_wait}
