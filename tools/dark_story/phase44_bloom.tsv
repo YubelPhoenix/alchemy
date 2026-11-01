@@ -1,13 +1,13 @@
 # Bloom scenes: Tolbi harbour, Altin Peak miner, Mogall aftermath.
-N160	MsgDarkHarborIvan	Isaac, the harbor. Someone\nis screaming down there.{end_wait}
-N161	MsgDarkHarborGaret	It's a little boy, out on\nthe pier. He's alone.{end_wait}
-N162	MsgDarkHarborMia	Leave it. The water takes\nwhat it takes.{end_wait}
-N163	MsgDarkHarborAsk	Go down to the harbor?{end_now}
-N164	MsgDarkHarborYesIsaac	Come on. Quickly.{end_wait}
-N165	MsgDarkHarborYesIvan	He's not screaming at the\nwater. He's screaming at\nwhat he's hearing.{end_wait}
-N166	MsgDarkHarborYesGaret	He woke up, Isaac. His\neyes are grey. We got him\nunder cover. It's not much.{end_wait}
-N167	MsgDarkHarborNoIsaac	We can't carry every\nchild in this town.{end_wait}
-N168	MsgDarkHarborNoIvan	The screaming stopped.\nI wish I'd never heard\nit stop.{end_wait}
+N160	MsgDarkHarborIvan	Isaac, someone is crying\ndown at the docks. It\nsounds like a child.{end_wait}
+N161	MsgDarkHarborGaret	That's a boy's voice. We\nshould go and find out\nwhat happened to him.{end_wait}
+N162	MsgDarkHarborMia	Go if you like. The water\ntakes what it takes, and\nthe sea doesn't care.{end_wait}
+N163	MsgDarkHarborAsk	Take the boy to shelter?{end_now}
+N164	MsgDarkHarborYesIsaac	Come with me. We'll find\nyou somewhere warm and\nsafe, I promise.{end_wait}
+N165	MsgDarkHarborYesIvan	He's calmer already. The\nvoices fade when someone\nlistens to him.{end_wait}
+N166	MsgDarkHarborYesGaret	I'll get him settled at the\ninn first. It's the least\nwe can do.{end_wait}
+N167	MsgDarkHarborNoIsaac	I'm sorry. We can't carry\nevery child in this town.{end_wait}
+N168	MsgDarkHarborNoIvan	He was still crying as we\nleft. I'll hear it for a\nlong time, Isaac.{end_wait}
 N169	MsgDarkPeakMinerWakes	Why did you pull me out?\nIt's so loud in the light.{end_wait}
 N170	MsgDarkPeakBloomIvan	His thoughts went quiet\nall at once, Isaac.{end_wait}
 N171	MsgDarkPeakBloomGaret	Look at his eyes, Isaac.\nThey're grey.{end_wait}

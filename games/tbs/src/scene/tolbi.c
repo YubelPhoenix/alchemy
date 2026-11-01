@@ -608,25 +608,15 @@ static void Tolbi_MeetAshJenna(void) {
   Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_ASH_JENNA_TOLBI);
-  // The harbour: a woken child, and a choice about whether to go.
+  // The harbour: Ivan hears a child crying at the docks. The boy waits there;
+  // the choice about him is made in KalayTolbiDocks_TalkToHarborChild.
   Event_SetMessageId(MsgDarkHarborIvan);
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  Event_SetMessageId(MsgDarkHarborAsk);
-  if (Event_AskYesNo(ACTOR_PARTY_LEADER, 0) == 0) {
-    Event_SetMessageId(MsgDarkHarborYesIsaac);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-    GameFlag_Set(FLAG_DARK_HARBOR_SHELTERED);
-  } else {
-    Event_SetMessageId(MsgDarkHarborNoIsaac);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  }
+  GameFlag_Set(FLAG_DARK_HARBOR_CALLED);
   Tolbi_AskMiaForTheBlade();
   Event_End();
 }

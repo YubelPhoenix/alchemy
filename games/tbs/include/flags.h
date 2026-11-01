@@ -2792,5 +2792,8 @@
 #define FLAG_DARK_COMPLICIT 0x8d6
 #define FLAG_DARK_MERCY_ENDING 0x8d7
 #define FLAG_DARK_CARAVAN_DONE 0x8d8
+/// Ivan heard a child crying at Tolbi's docks; the boy waits there until
+/// the party finds him.
+#define FLAG_DARK_HARBOR_CALLED 0x8d9
 
 #endif
