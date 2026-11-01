@@ -262,9 +262,10 @@ const struct ActorTemplate *LamakanDesert_GetActorTemplates(void) {
   // table is shared, so the flag is cleared in the other scenes.
   if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
+      GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0 &&
       (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0 ||
-       (GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) != 0 &&
-        GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0))) {
+       GameFlag_Get(FLAG_DARK_CARAVAN_DONE) != 0 ||
+       gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE)) {
     GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
   } else {
     GameFlag_Clear(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
@@ -407,8 +408,7 @@ static void LamakanDesert_AshJennaFinale(void) {
 /// Ash Jenna, grey, watches the drowned desert and slips away from Isaac. Back
 /// from the Manticore, she gives the finale instead.
 static void LamakanDesert_MeetAshJenna(void) {
-  if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0 &&
-      GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) != 0) {
+  if (GameFlag_Get(FLAG_DARK_CARAVAN_DONE) != 0) {
     LamakanDesert_AshJennaFinale();
     return;
   }
@@ -1112,19 +1112,22 @@ static void LamakanDesert_MiaTakesOver(void) {
   WaitFrames(1);
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
-  Event_SetMessageId(MsgDarkManticoreMiaGloat);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  Event_SetMessageId(MsgDarkManticoreIvanBlade);
-  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  if (GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) == 0) {
+    Event_SetMessageId(MsgDarkManticoreMiaGloat);
+    GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+    GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+    GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+    GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    Event_SetMessageId(MsgDarkManticoreIvanBlade);
+    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  }
   // The caravan wakes. Isaac chooses; Mia walks on alone either way.
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
   Event_SetMessageId(MsgDarkAwakenIvan);
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
@@ -1154,6 +1157,7 @@ static void LamakanDesert_MiaTakesOver(void) {
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   GameFlag_Set(FLAG_DARK_MIA_MANTICORE_SEEN);
+  GameFlag_Set(FLAG_DARK_CARAVAN_DONE);
   Event_End();
 }
 
@@ -1206,7 +1210,7 @@ s32 LamakanDesert_Initialize(void) {
   if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
       gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE &&
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
-      GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) == 0) {
+      GameFlag_Get(FLAG_DARK_CARAVAN_DONE) == 0) {
     LamakanDesert_MiaTakesOver();
   }
   return 0;
