@@ -438,6 +438,9 @@ static void AltinPeak_TalkToTrappedMiner(void) {
       GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
       Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
       GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+      Event_SetMessageId(MsgDarkPeakIvanHears);
+      Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+      Event_SetMessageId(MsgDarkPeakIsaacDig);
       Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
       Event_WaitFrames(60);
       Event_SetMessageId(MsgDarkPeakMinerThanks);

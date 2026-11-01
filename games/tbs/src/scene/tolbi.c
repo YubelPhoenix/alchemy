@@ -596,6 +596,8 @@ static void Tolbi_MeetAshJenna(void) {
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkTolbiIvanJenna);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   // She turns away and fades into the rain.
   Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_EAST, 0);
   Event_WaitFrames(20);

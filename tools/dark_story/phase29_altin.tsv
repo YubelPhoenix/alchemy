@@ -1,12 +1,12 @@
 # Altin: the water beasts and the rain that does not stop.
 06333	MsgAltinYourFirstTimeVisitAltin	Is this your first time\nto visit Altin?{end_now}
-06334	message	Look at what has become\nof Altin.{page_break}Nothing can be done\nhere until the water\ngoes down.{end_wait}
+06334	message	Look at what's left of\nAltin.{page_break}The water is one thing.\nThe men who came up from\nthe mine are another.{end_wait}
 06335	message	We look like a coastal\ntown now, don't we?{end_now}
-06336	message	Nothing gets by you.\nAltin never even had a\nwell in the old days.{page_break}Now the water-spewing\nbeasts and the rain\nhave drowned us.{end_wait}
-06337	message	The day the gems fell\nfrom the sky{pause_20_skippable}, these\nwater beasts appeared.{page_break}Then the rain started\nand never stopped.\nWe are finished.{end_wait}
+06336	message	Nothing gets by you.\nWe never had a well in the\nold days.{page_break}Now the water beasts and\nthe rain have drowned us.\nThen the waking started.{end_wait}
+06337	message	The day the gems fell from\nthe sky{pause_20_skippable}, the water\nbeasts appeared.{page_break}Then the rain started.\nThen the men in the mine\nwoke up different.{end_wait}
 06338	MsgAltinHowCanThoseCreaturesSpitUp	How can those creatures\nspit up so much water?{end_wait}
 06339	MsgAltinHowHorribleMyHouseIsTotally	My house is soaked\nthrough. The monsters\nand the rain did it.{end_wait}
-06340	MsgAltinEvenTheMineIsSubmergedNo	Even the mine is\nsubmerged. No one can\nwork. No one can eat.{end_wait}
+06340	MsgAltinEvenTheMineIsSubmergedNo	The mine is flooded. No one\ncan work, no one can eat,\nand nobody goes below.{end_wait}
 06341	MsgAltinIfWeCouldJustDestroyThe	If someone destroyed\nthe monsters, the water\nmight drain away.{end_wait}
 06342	MsgAltinAltinAlwaysUsedToRunShort	Altin always ran short\nof water. Now we drown.{page_break}We have bad luck\nwith water, one way\nor the other.{end_wait}
 06343	MsgAltinWeCantDrinkWaterMonsters	We can't drink what the\nmonsters spew, or the\nrain. It's all foul.{page_break}Will no one slay\nthose beasts?{end_wait}
@@ -16,7 +16,7 @@
 06347	MsgAltinYouCameToAltinAtA	You came to Altin at\na bad time. Terrible\nluck, you strangers.{end_wait}
 06348	MsgAltinItsAlmostLikeTheyreTurningThe	It's as if they turn\nthe air itself into\nwater!{end_wait}
 06349	MsgAltinImGladISavedMyVery	I saved my first love\nletter, but what about\neverything else?{end_wait}
-06350	MsgAltinEvenTheToughestOfMinersCant	Even our toughest miners\ncannot work in this\nwater.{end_wait}
+06350	MsgAltinEvenTheToughestOfMinersCant	Even our toughest miners\nwon't go down there now.\nThey say the walls hum.{end_wait}
 06351	MsgAltinIfTheWaterBeastsContinueTo	If the water beasts\nkeep flooding us,{page_break}the whole village\nwill go under.{end_wait}
 06352	MsgAltinWaterIsNiceButNotWhen	Water is nice, but not\nwhen it takes your home.{end_wait}
 06353	MsgAltinUghTheMonstersSpewedOutAll	Ugh. The monsters\nspewed all this water.\nIt smells foul...{end_wait}
@@ -30,7 +30,7 @@
 06361	MsgAltinTryingFindYourWayWest	Are you trying to find\nyour way west through\nthe mountains?{end_now}
 06362	message	There should be a\npassage at the bottom\nof the mine.{end_wait}
 06363	message	I don't know what you\ndid, but thank you for\ndefeating the beasts.{end_wait}
-06364	MsgAltinDontBeTooHarshOnThose	Don't be too harsh on\nthose beasts.{end_wait}
+06364	MsgAltinDontBeTooHarshOnThose	Don't judge those beasts\ntoo hard. Something woke\nthem, same as the men.{end_wait}
 06365	MsgAltinIThoughtTheVillageWasDone	I thought the village was\ndone for. I'm glad we\ndid not give up hope.{end_wait}
 06366	MsgAltinImJustGladToGetMy	I'm just glad to\nhave my house back.{end_wait}
 06367	MsgAltinIDidntWantToLeaveMy	I didn't want to leave\nmy hometown...\nThat is why I came back.{end_wait}
@@ -56,21 +56,21 @@
 06387	MsgAltinIfMyGoodsAreWetIll	If my goods are wet, I\nhave to dry them out\nbefore I can sell them.{end_wait}
 06388	MsgAltinAFewThingsGotDampBut	A few things got damp...{page_break}It shouldn't affect\nthe quality, so you can\nuse them safely.{page_break}...Maybe I should put\nup a sign to say so.{end_wait}
 06389	MsgAltinWeGotLittleDampBut	We got a little damp, but\nwe are doing okay. We\nmust count our blessings.{end_now}
-06390	message	After all, many good\npeople were hurt in\nthis flood.{end_wait}
-06391	message	Remember, many people\nlost everything they\nown.{page_break}It's sad, when you\nthink about it.{end_wait}
-06392	MsgAltinIdGiveAnythingForSomeoneTo	I would give anything\nfor someone to return\nAltin to what it was.{page_break}You look young, but if\nyou are true warriors,\nplease help us.{end_wait}
+06390	message	After all, many good men\ncame up from the mine and\nnever spoke again.{end_wait}
+06391	message	Remember, many lost\neverything they own.{page_break}And some lost someone\nwho's still standing right\nin front of them.{end_wait}
+06392	MsgAltinIdGiveAnythingForSomeoneTo	I'd give anything to have\nAltin back the way it was.{page_break}You look young, but if\nyou can fight, please help.\nWe can't do it alone.{end_wait}
 06393	MsgAltinICameFromXianICook	I came from Xian.\nI cook good food.\nEat up!{end_wait}
 06394	MsgAltinNoneOfUsCanGoHome	None of us can go\nhome until the\nwater subsides.{end_wait}
 06395	MsgAltinTheGuestsInRoomOneMoved	The guests in Room One\nwent home when the\nwaters receded.{end_wait}
 06396	MsgAltinTheGuestsInRoomTwoAlso	The guests in Room Two\nalso went home when the\nwaters receded.{end_wait}
-06397	MsgAltinWellComeThroughThisAllRight	We'll get through\nthis, but I fear the\nvillage is done for.{end_wait}
+06397	MsgAltinWellComeThroughThisAllRight	We'll get through this. I\nhave to believe that. But\nthe village is done for.{end_wait}
 06398	MsgAltinIKnowTheyDontLookSo	I know they don't look\ntough, but they are\nwarriors,{page_break}so maybe they can\nhelp us.{end_wait}
 06399	MsgAltinIBecameACookAfterI	I became a cook after\nI came to Altin, but I\nstill cook well.{end_wait}
 06400	MsgAltinMostOfTheVillageIsStill	Most of the village is\nstill submerged...{page_break}It will be a long time\nbefore Altin is what\nit was.{end_wait}
 06401	MsgAltinItLooksLikeTheWaterHas	The water has receded\na little,{page_break}but it will be a long\ntime before Altin is\nwhat it was.{end_wait}
 06402	MsgAltinNoMatterWhatHappensIdNever	No matter what happens,\nI will never abandon\nAltin.{end_wait}
-06403	MsgAltinOfCourseOurHouseWillBe	Our house is ruined\nnow, of course.{page_break}I wish I could\nmove away...{end_wait}
-06404	MsgAltinLeavingAltinForTolbiWellThats	Leaving Altin for Tolbi?\nThat is just crazy.\nThe whole world is wet.{end_wait}
+06403	MsgAltinOfCourseOurHouseWillBe	Our house is ruined, of\ncourse.{page_break}My husband won't speak\nof what he saw below.\nI wish we could leave.{end_wait}
+06404	MsgAltinLeavingAltinForTolbiWellThats	Leaving Altin for Tolbi?\nThat's crazy. They're\ndrowning people there.{end_wait}
 06405	MsgAltinNowIFinallyHaveAnExcuse	Now I finally have an\nexcuse to move to my\nfavorite town{em_dash}Tolbi!{end_wait}
 06406	MsgAltinNotManyPeopleComeUpSilk	Few people come up\nSilk Road to Altin.\nYou are an odd lot.{end_wait}
 06407	MsgAltinItsBeenALongTimeSince	It has been a long time\nsince I got a break from\nhousework. Funny.{end_wait}
@@ -81,7 +81,7 @@
 06425	message	I see... So the water\nmonsters were like\ngiant water tanks...{end_wait}
 06426	message	Really... Then how did\nthey carry all that\nwater?{end_wait}
 06427	MsgAltinOnceTheMineOpensAgainWell	Once the mine opens\nagain, we'll get back\non our feet.{end_wait}
-06428	MsgAltinTheyAlreadyStartedMiningTheUpper	They have started mining\nthe upper parts of the\nmountain.{page_break}People are still afraid\nto go down to the\nlower depths.{end_wait}
+06428	MsgAltinTheyAlreadyStartedMiningTheUpper	They have started mining\nthe upper parts of the\nmountain.{page_break}People still won't go\ndown to the lower depths.\nThey say it's still awake.{end_wait}
 06429	MsgAltinTheWaterDrainedOutOfThe	The water drained out\nthrough the cracks,\nas I expected.{page_break}The rain still falls,\nand the remaining water\nwill sit for a while.{end_wait}
 06430	MsgAltinThankGoodnessTheVillageIsFree	Thank goodness the\nvillage is free of\nthe monsters' water.{end_wait}
 06431	MsgAltinOnesWhoDefeatedWaterBeasts	Are you the ones who\ndefeated the water\nbeasts?{end_now}
@@ -97,7 +97,7 @@
 06441	MsgAltinIHopeAltinMineWillThrive	I hope Altin Mine\nthrives again soon,\nlike it once did.{end_wait}
 06442	MsgAltinTheWaterSeepedIntoTheMine	The water seeped into\nthe mine shafts.{page_break}I bet the rock is\nvery soft now.{end_wait}
 06443	MsgAltinItsSoHumidInsideThatCave	It's so humid inside\nthat cave. It feels\nawful and sticky!{end_wait}
-06444	MsgAltinThatStrangeChamberInTheMines	That strange chamber in\nthe mines creeps me out.{end_wait}
+06444	MsgAltinThatStrangeChamberInTheMines	That strange chamber below\nthe mine hums at night.\nIt creeps me out.{end_wait}
 06445	MsgAltinYouFoughtPrettyWellDespiteAll	You fought well despite\nall the foul water\nthe beasts spewed.{end_wait}
 06446	MsgAltinThatMineIsFullOfHoles	That mine is full of\nholes and chasms.\nThat is why it drained.{end_wait}
 06447	MsgAltinTheOldGuardianStatuesAlwaysCreeped	The old guardian statues\nalways creeped me out.\nI am glad they're gone.{end_wait}
@@ -114,7 +114,7 @@
 06458	MsgAltinHowCanITrulyBeHappy	How can I be happy when\nall those cute monsters\nare gone?{end_wait}
 06459	MsgAltinReallyAncientRuinsAtTheBottom	Really? Ancient ruins at\nthe bottom of the mine?\nYou don't say...{end_wait}
 06460	MsgAltinThereProbablyIsntMuchTreasureIn	There's probably not\nmuch treasure in the\nruins beneath the mine.{page_break}Why not forget the\ntreasure and continue\nyour journey?{end_wait}
-06461	MsgAltinSomethingsWrongWithMomAndPop	Something is wrong with\nMom and Pop. They have\nbeen acting strange{page_break}ever since the ruins\nwere found in the mine.{end_wait}
+06461	MsgAltinSomethingsWrongWithMomAndPop	Something is wrong with\nMom and Pop. They've been\nacting strange{page_break}ever since the ruins\nwere found in the mine.\nThey whisper at night.{end_wait}
 06462	MsgAltinCripesAncientRuinsDownInThe	Cripes. Ancient ruins\ndown in the mine...{page_break}We have to go get that\ntreasure right away.{end_wait}
 06463	MsgAltinIHadNoIdeaThereWere	I had no idea there were\nruins beneath the mine.{end_wait}
 06464	MsgAltinIWonderIfMomAndPop	I wonder if Mom and Pop\nknew about the monument\nin the mine.{end_wait}

@@ -474,6 +474,10 @@ static void MogallForest_AlexAndMia(void) {
   Event_ShowMessageThenWait(ACTOR_SECOND_AREA_ALEX, 0, 20);
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   Event_ShowMessageThenWait(ACTOR_SECOND_AREA_ALEX, 0, 20);
+  Event_SetMessageId(MsgDarkMogallIvanHears);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   Actor_ConfigureSpriteColor(ACTOR_SECOND_AREA_ALEX, SPRITE_COLOR_BLINK);
   Event_WaitFrames(40);
   Actor_ConfigureSpriteColor(ACTOR_SECOND_AREA_ALEX, SPRITE_COLOR_HIDDEN);
