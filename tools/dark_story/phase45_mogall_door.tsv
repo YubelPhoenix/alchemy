@@ -4,4 +4,4 @@ N178	MsgDarkMogallDoorYesIsaac	Open it. They're scared,\nnot monsters.{end_wait}
 N179	MsgDarkMogallDoorYesKeeper	Then you'll bury what comes\nout. I buried the rest.{end_wait}
 N180	MsgDarkMogallDoorYesGaret	One of them is humming a\nlullaby, Isaac. She won't\nstop.{end_wait}
 N181	MsgDarkMogallDoorNoIsaac	We can't save them all.\nI'm sorry.{end_wait}
-N182	MsgDarkMogallDoorNoMia	Honest, at least. Keep\nwalking, Isaac.{end_wait}
+N182	MsgDarkMogallDoorNoMia	That was honest, at least.\nNow keep walking, Isaac.{end_wait}

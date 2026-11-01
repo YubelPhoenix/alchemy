@@ -1,5 +1,5 @@
 # Ondra, the Tideglass Queen, in Tolbi.
 N102	MsgDarkOndraRise	You went down to the pier\nfor a stranger's child.\nThe tide noticed.{page_break}Who wakes the Queen of\nthe Deep?{end_wait}
 N103	MsgDarkOndraIsaac	You look like Mia... Who\nare you?{end_wait}
-N104	MsgDarkOndraName	Ondra. Mia's tide runs from\nmine, so we share a face.{page_break}When the waking took my\nkingdom, I drowned it\nmyself. Show me your mercy.{end_wait}
+N104	MsgDarkOndraName	I am Ondra. Mia descends\nfrom my tide, so we share\na face.{page_break}When the waking took my\nkingdom, I drowned it\nmyself. Show me your mercy.{end_wait}
 N105	MsgDarkOndraIsaacReady	I didn't come to fight you,\nbut I won't walk away.{end_wait}

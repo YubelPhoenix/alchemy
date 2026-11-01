@@ -8,6 +8,6 @@ N188	MsgDarkAwakenYesIvan	They aren't afraid of us.\nThey're afraid of what's\ni
 N189	MsgDarkAwakenYesMia	Then you'll die calming\nthem. I won't watch.{end_wait}
 N190	MsgDarkAwakenNoIsaac	We leave them. Keep\nmoving.{end_wait}
 N191	MsgDarkAwakenNoGaret	Isaac... they're calling\nyour name.{end_wait}
-N192	MsgDarkAwakenNoMia	Good. Let them. We walk.{end_wait}
+N192	MsgDarkAwakenNoMia	Good. Let them call. We are\nstill walking.{end_wait}
 N193	MsgDarkAwakenMiaGoes	Keep up, Isaac. I'll walk\npoint. Kalay won't wait.{end_wait}
 N194	MsgDarkAwakenGaretLeft	She won't look back at us,\nIsaac. Not once.{end_wait}
