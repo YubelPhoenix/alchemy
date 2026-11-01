@@ -484,6 +484,21 @@ static void MogallForest_AlexAndMia(void) {
     Event_SetMessageId(MsgDarkMogallBloomLeft);
   }
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  // The keeper's door: either choice costs something.
+  Event_SetMessageId(MsgDarkMogallDoorAsk);
+  if (Event_AskYesNo(ACTOR_PARTY_LEADER, 0) == 0) {
+    Event_SetMessageId(MsgDarkMogallDoorYesIsaac);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_SECOND_AREA_ALEX, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+    GameFlag_Set(FLAG_DARK_MOGALL_DOOR_OPENED);
+  } else {
+    Event_SetMessageId(MsgDarkMogallDoorNoIsaac);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+    GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  }
   Actor_ConfigureSpriteColor(ACTOR_SECOND_AREA_ALEX, SPRITE_COLOR_BLINK);
   Event_WaitFrames(40);
   Actor_ConfigureSpriteColor(ACTOR_SECOND_AREA_ALEX, SPRITE_COLOR_HIDDEN);
@@ -1977,7 +1992,7 @@ struct ActorTemplate gMogallForestQuartz_ActorTemplates[] = {
     { VENUS_DJINNI, FLAG_DJINNI(DJINNI_QUARTZ), MOVEMENT_TYPE_STAND,
         PIXELS(488), 0, PIXELS(568), FACING_EAST, TALK_FACING_PARTY, 0 },
     // Alex, who waits in the path from the first area.
-    { SPRITE_ALEX, IF_FLAG_SET(FLAG_DARK_ALEX_MOGALL_HERE), MOVEMENT_TYPE_STAND,
+    { SPRITE_BURLY_MAN_WITH_GREY_HAIR, IF_FLAG_SET(FLAG_DARK_ALEX_MOGALL_HERE), MOVEMENT_TYPE_STAND,
         PIXELS(152), 0, PIXELS(128), FACING_WEST, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };

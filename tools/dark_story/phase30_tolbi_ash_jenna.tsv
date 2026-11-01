@@ -1,10 +1,10 @@
 # Ash Jenna, an antagonist, confronts the party in Tolbi after Colosso.
 N74	MsgDarkTolbiJennaFound	There you are, Isaac. I've\nwatched Tolbi's harbor for\nthree nights.{page_break}Do you know what the\nfishermen keep pulling out?{end_wait}
-N75	MsgDarkTolbiIsaacGrey	Jenna? You're grey, and\nyou're shaking. Please come\nback with us.{end_wait}
-N76	MsgDarkTolbiJennaAsh	Shaking? No. That's the\nfire finally leaving.{page_break}What's left of me is cold,\nand it doesn't forget.{end_wait}
-N77	MsgDarkTolbiGaretFire	Jenna, stop this! The girl\nI know wouldn't talk like\nthat!{end_wait}
+N75	MsgDarkTolbiIsaacGrey	That's Jenna's face. But\nshe's Menardi's prisoner.\nWho are you?{end_wait}
+N76	MsgDarkTolbiJennaAsh	Who? A Jenna who stopped\nwaiting to be saved.{page_break}The fire is leaving me.\nWhat's left is cold, and\nit doesn't forget.{end_wait}
+N77	MsgDarkTolbiGaretFire	You wear her face, but\nJenna would never talk\nlike this!{end_wait}
 N78	MsgDarkTolbiJennaPlease	She wouldn't. She also\nwouldn't have lasted this\nlong.{page_break}Be quiet, Garet. You're\nmaking a scene.{end_wait}
-N79	MsgDarkTolbiMiaSneer	Another one with ash in her\nveins. Let the harbor have\nher too.{end_wait}
+N79	MsgDarkTolbiMiaSneer	That isn't your Jenna.\nIt wears her face. Let the\nharbor have it.{end_wait}
 N80	MsgDarkTolbiJennaMia	Mia. You hear it too, don't\nyou? That voice in the\nblade.{page_break}It's the same hunger that\nwoke in me.{end_wait}
 N81	MsgDarkTolbiMiaPlace	...Don't you dare compare\nus.{end_wait}
 N82	MsgDarkTolbiJennaGoing	Light the next one, Isaac.\nMore will wake, and Tolbi\nwill drown every one.{page_break}Or you can be kind and\nend it quickly. I'll be\nwatching either way.{end_wait}

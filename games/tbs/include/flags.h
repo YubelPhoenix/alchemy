@@ -2784,5 +2784,6 @@
 /// replay it.
 #define FLAG_DARK_MIA_REUNITED 0x8cd
 #define FLAG_DARK_HARBOR_SHELTERED 0x8ce
+#define FLAG_DARK_MOGALL_DOOR_OPENED 0x8cf
 
 #endif
