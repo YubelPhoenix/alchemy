@@ -1,8 +1,8 @@
 # Alex stops the party in Mogall Forest and unsettles Mia.
-N133	MsgDarkMogallAlexSlow	Slow down, Isaac. This\nforest eats the careless.{end_wait}
-N134	MsgDarkMogallIsaacAlex	Alex, why do you keep\nturning up ahead of us?{end_wait}
-N135	MsgDarkMogallAlexRoad	Because I know where this\nroad ends. Ask the blade's\ndaughter, since she knows{page_break}too.{end_wait}
-N136	MsgDarkMogallMiaKnow	You speak too freely,\nsmuggler. Know your place.{end_wait}
-N137	MsgDarkMogallAlexVoice	There it is, the voice that\nisn't hers. It's old and\nvery hungry.{end_wait}
-N138	MsgDarkMogallGaretVoice	Isaac, what's he talking\nabout? What voice?{end_wait}
-N139	MsgDarkMogallAlexMountains	Ask her. I'll be waiting in\nthe mountains, so hurry.{end_wait}
+N133	MsgDarkMogallAlexSlow	Easy. Don't go in loud.\nThey sleep in those trees,\nand they wake badly.{end_wait}
+N134	MsgDarkMogallIsaacAlex	Who sleeps? What are you\nhiding in the forest?{end_wait}
+N135	MsgDarkMogallAlexRoad	People who woke wrong. We\nkeep them quiet and alive.{page_break}Don't judge how. There\nare worse ways.{end_wait}
+N136	MsgDarkMogallMiaKnow	Chains and gags. How\ncharming. A mercy?{end_wait}
+N137	MsgDarkMogallAlexVoice	It works. Say what you like\nabout the method. You\nwould have done the same.{end_wait}
+N138	MsgDarkMogallGaretVoice	Isaac, there are kids in\nthere. I can hear them.{end_wait}
+N139	MsgDarkMogallAlexMountains	Then you understand why we\ndon't open the door.\nChoose carefully.{end_wait}

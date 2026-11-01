@@ -1,11 +1,11 @@
 # Ash Jenna, an antagonist, confronts the party in Tolbi after Colosso.
-N74	MsgDarkTolbiJennaFound	There you are, Isaac. I was\nstarting to think you'd\nnever come.{end_wait}
-N75	MsgDarkTolbiIsaacGrey	Jenna? What happened to\nyou? You're grey... Come\nback with us.{end_wait}
-N76	MsgDarkTolbiJennaAsh	Come back? The fire took\neverything soft in me.{page_break}What's left is ash, and ash\nremembers.{end_wait}
-N77	MsgDarkTolbiGaretFire	Jenna, this isn't you! Snap\nout of it!{end_wait}
-N78	MsgDarkTolbiJennaPlease	Poor Garet, always the loud\none.{page_break}Be quiet and burn quietly.{end_wait}
-N79	MsgDarkTolbiMiaSneer	An ash girl with a grudge.\nHow tedious. Know your\nplace.{end_wait}
-N80	MsgDarkTolbiJennaMia	Mia, the blade's daughter.\nWe're the same, you and I.{page_break}The light made us both.{end_wait}
-N81	MsgDarkTolbiMiaPlace	...We're nothing alike.{end_wait}
-N82	MsgDarkTolbiJennaGoing	Light the next one, Isaac.\nEvery flame you kindle\nfeeds me.{page_break}I'll be waiting at the top,\nand all of you will be\ndust.{end_wait}
+N74	MsgDarkTolbiJennaFound	There you are, Isaac. I've\nwatched Tolbi's harbor for\nthree nights.{page_break}Do you know what the\nfishermen keep pulling out?{end_wait}
+N75	MsgDarkTolbiIsaacGrey	Jenna? You're grey, and\nyou're shaking. Please come\nback with us.{end_wait}
+N76	MsgDarkTolbiJennaAsh	Shaking? No. That's the\nfire finally leaving.{page_break}What's left of me is cold,\nand it doesn't forget.{end_wait}
+N77	MsgDarkTolbiGaretFire	Jenna, stop this! The girl\nI know wouldn't talk like\nthat!{end_wait}
+N78	MsgDarkTolbiJennaPlease	She wouldn't. She also\nwouldn't have lasted this\nlong.{page_break}Be quiet, Garet. You're\nmaking a scene.{end_wait}
+N79	MsgDarkTolbiMiaSneer	Another one with ash in her\nveins. Let the harbor have\nher too.{end_wait}
+N80	MsgDarkTolbiJennaMia	Mia. You hear it too, don't\nyou? That voice in the\nblade.{page_break}It's the same hunger that\nwoke in me.{end_wait}
+N81	MsgDarkTolbiMiaPlace	...Don't you dare compare\nus.{end_wait}
+N82	MsgDarkTolbiJennaGoing	Light the next one, Isaac.\nMore will wake, and Tolbi\nwill drown every one.{page_break}Or you can be kind and\nend it quickly. I'll be\nwatching either way.{end_wait}
 N83	MsgDarkTolbiIsaacWait	Jenna, wait!{end_wait}
