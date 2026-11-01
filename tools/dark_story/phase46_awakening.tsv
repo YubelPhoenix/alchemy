@@ -9,5 +9,5 @@ N189	MsgDarkAwakenYesMia	Then you'll die calming\nthem. I won't watch.{end_wait}
 N190	MsgDarkAwakenNoIsaac	We leave them. Keep\nmoving.{end_wait}
 N191	MsgDarkAwakenNoGaret	Isaac... they're calling\nyour name.{end_wait}
 N192	MsgDarkAwakenNoMia	Good. Let them. We walk.{end_wait}
-N193	MsgDarkAwakenMiaGoes	Do what you like. I'm going\nahead. Kalay won't wait.{end_wait}
-N194	MsgDarkAwakenGaretLeft	She's walking away from\nus, Isaac. And she isn't\nlooking back.{end_wait}
+N193	MsgDarkAwakenMiaGoes	Keep up, Isaac. I'll walk\npoint. Kalay won't wait.{end_wait}
+N194	MsgDarkAwakenGaretLeft	She won't look back at us,\nIsaac. Not once.{end_wait}

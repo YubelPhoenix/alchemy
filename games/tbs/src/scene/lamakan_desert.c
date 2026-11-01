@@ -262,7 +262,9 @@ const struct ActorTemplate *LamakanDesert_GetActorTemplates(void) {
   // table is shared, so the flag is cleared in the other scenes.
   if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
-      GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0) {
+      (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0 ||
+       (GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) != 0 &&
+        GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0))) {
     GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
   } else {
     GameFlag_Clear(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
@@ -305,8 +307,111 @@ static void LamakanDesert_LeaveForTheWorldMap(void) {
   Event_End();
 }
 
-/// Ash Jenna, grey, watches the drowned desert and slips away from Isaac.
+static void LamakanDesert_SayMia(void) {
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+}
+
+/// After the Manticore and the caravan, Ash Jenna names herself and offers to
+/// close the Lighthouse door by killing the awakened. The mercy count (harbour
+/// child, the miner, the Mogall door, the caravan, the blade left with Mia)
+/// colours the three endings. Once.
+static void LamakanDesert_AshJennaFinale(void) {
+  s32 mercy;
+
+  mercy = 0;
+  if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0) mercy++;
+  if (GameFlag_Get(FLAG_DARK_MINER_STAYED) != 0) mercy++;
+  if (GameFlag_Get(FLAG_DARK_MOGALL_DOOR_OPENED) != 0) mercy++;
+  if (GameFlag_Get(FLAG_DARK_CARAVAN_CALMED) != 0) mercy++;
+  if (GameFlag_Get(FLAG_DARK_BLADE_ASKED) != 0 &&
+      GameFlag_Get(FLAG_DARK_BLADE_TAKEN) == 0) mercy++;
+
+  Event_Start();
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
+  Event_SetMessageId(MsgDarkFinaleJenna1);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  LamakanDesert_SayMia();
+  // What the party remembers of Isaac's choices.
+  if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0) {
+    Event_SetMessageId(MsgDarkEchoHarbor);
+    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  }
+  if (GameFlag_Get(FLAG_DARK_MINER_STAYED) != 0) {
+    Event_SetMessageId(MsgDarkEchoMiner);
+    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  }
+  if (GameFlag_Get(FLAG_DARK_MOGALL_DOOR_OPENED) != 0) {
+    Event_SetMessageId(MsgDarkEchoDoor);
+    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  }
+  if (GameFlag_Get(FLAG_DARK_CARAVAN_CALMED) != 0) {
+    Event_SetMessageId(MsgDarkEchoCaravan);
+    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  }
+  if (GameFlag_Get(FLAG_DARK_BLADE_ASKED) != 0 &&
+      GameFlag_Get(FLAG_DARK_BLADE_TAKEN) == 0) {
+    Event_SetMessageId(MsgDarkEchoBlade);
+    LamakanDesert_SayMia();
+  }
+  if (mercy == 0) {
+    Event_SetMessageId(MsgDarkEchoNone);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  }
+  Event_SetMessageId(MsgDarkFinaleAsk);
+  if (Event_AskYesNo(ACTOR_PARTY_LEADER, 0) == 0) {
+    // The Complicit ending.
+    Event_SetMessageId(MsgDarkFinaleYesIsaac);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    GameFlag_Set(FLAG_DARK_COMPLICIT);
+  } else if (mercy >= 3) {
+    // The Mercy ending.
+    Event_SetMessageId(MsgDarkFinaleNoIsaac);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+    LamakanDesert_SayMia();
+    GameFlag_Set(FLAG_DARK_MERCY_ENDING);
+  } else {
+    // The Divided ending.
+    Event_SetMessageId(MsgDarkFinaleDivIsaac);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    LamakanDesert_SayMia();
+    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+    GameFlag_Set(FLAG_DARK_MIA_LEFT);
+  }
+  Event_SetMessageId(MsgDarkFinaleHook);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_EAST, 0);
+  Event_WaitFrames(20);
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA,
+                             SPRITE_COLOR_GREY | SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_FINALE_DONE);
+  GameFlag_Clear(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
+  Event_End();
+}
+
+/// Ash Jenna, grey, watches the drowned desert and slips away from Isaac. Back
+/// from the Manticore, she gives the finale instead.
 static void LamakanDesert_MeetAshJenna(void) {
+  if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0 &&
+      GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) != 0) {
+    LamakanDesert_AshJennaFinale();
+    return;
+  }
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
   Event_SetMessageId(MsgDarkLamakanJennaWatch);

@@ -525,9 +525,10 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
     GameFlag_Clear(FLAG_DARK_ONDRA_FOUGHT);
   } else if (GameFlag_Get(FLAG_DARK_ONDRA_FOUGHT) != 0) {
     GameFlag_Set(FLAG_DARK_ONDRA_BEATEN);
-  } else if (GameFlag_Get(FLAG_DARK_TIDE_ALTIN) != 0 &&
-             GameFlag_Get(FLAG_DARK_TIDE_IMIL) != 0 &&
-             GameFlag_Get(FLAG_DARK_TIDE_TOLBI) != 0) {
+  } else if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0 ||
+             (GameFlag_Get(FLAG_DARK_TIDE_ALTIN) != 0 &&
+              GameFlag_Get(FLAG_DARK_TIDE_IMIL) != 0 &&
+              GameFlag_Get(FLAG_DARK_TIDE_TOLBI) != 0)) {
     Actor_SetPosition(ACTOR_TOLBI_ONDRA, PIXELS(284), PIXELS(344));
     Actor_FaceDirection(ACTOR_TOLBI_ONDRA, FACING_NORTH, 0);
     Actor_ConfigureSpriteColor(ACTOR_TOLBI_ONDRA, SPRITE_COLOR_GREY);

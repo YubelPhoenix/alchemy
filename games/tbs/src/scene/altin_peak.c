@@ -455,6 +455,7 @@ static void AltinPeak_TalkToTrappedMiner(void) {
       Event_SetMessageId(MsgDarkPeakBloomAsk);
       if (Event_AskYesNo(ACTOR_JUNCTION_ROOM_MINER, 0) == 0) {
         Event_SetMessageId(MsgDarkPeakBloomStay);
+        GameFlag_Set(FLAG_DARK_MINER_STAYED);
         Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
       } else {
         Event_SetMessageId(MsgDarkPeakBloomLeave);
