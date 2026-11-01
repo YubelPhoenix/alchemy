@@ -265,6 +265,7 @@ const struct ActorTemplate *LamakanDesert_GetActorTemplates(void) {
       GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0 &&
       (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0 ||
        GameFlag_Get(FLAG_DARK_CARAVAN_DONE) != 0 ||
+       GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0 ||
        gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE)) {
     GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
   } else {
@@ -1208,7 +1209,8 @@ s32 LamakanDesert_Initialize(void) {
     Reveal_HideSecrets();
   }
   if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
-      gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE &&
+      (gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE ||
+       GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) &&
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
       GameFlag_Get(FLAG_DARK_CARAVAN_DONE) == 0) {
     LamakanDesert_MiaTakesOver();
