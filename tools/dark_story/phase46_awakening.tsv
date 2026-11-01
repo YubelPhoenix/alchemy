@@ -1,13 +1,13 @@
 # Lamakan: the caravan wakes and the party splits.
-N183	MsgDarkAwakenIvan	Isaac, the caravan. Forty\nof them, all waking at\nonce.{end_wait}
-N184	MsgDarkAwakenGaret	They're coming for the\nlight, Isaac. We should\nturn back.{end_wait}
-N185	MsgDarkAwakenMia	Turn back? Burn them where\nthey stand. It's cleaner.{end_wait}
+N183	MsgDarkAwakenIvan	Isaac, look at the caravan.\nThere must be forty of\nthem, and they're waking.{end_wait}
+N184	MsgDarkAwakenGaret	They're after the light,\nIsaac. We should turn back\nbefore they reach us.{end_wait}
+N185	MsgDarkAwakenMia	Turn back? Why? We could\njust burn them where they\nstand. It would be cleaner.{end_wait}
 N186	MsgDarkAwakenAsk	Try to calm the caravan?{end_now}
-N187	MsgDarkAwakenYesIsaac	Nobody burns anyone. Stay\nbehind me.{end_wait}
-N188	MsgDarkAwakenYesIvan	They aren't afraid of us.\nThey're afraid of what's\nin their own heads.{end_wait}
-N189	MsgDarkAwakenYesMia	Then you'll die calming\nthem. I won't watch.{end_wait}
-N190	MsgDarkAwakenNoIsaac	We leave them. Keep\nmoving.{end_wait}
-N191	MsgDarkAwakenNoGaret	Isaac... they're calling\nyour name.{end_wait}
-N192	MsgDarkAwakenNoMia	Good. Let them call. We are\nstill walking.{end_wait}
-N193	MsgDarkAwakenMiaGoes	Keep up, Isaac. I'll walk\npoint. Kalay won't wait.{end_wait}
-N194	MsgDarkAwakenGaretLeft	She won't look back at us,\nIsaac. Not once.{end_wait}
+N187	MsgDarkAwakenYesIsaac	Nobody is burning anyone.\nStay behind me, and let me\ntry to talk to them.{end_wait}
+N188	MsgDarkAwakenYesIvan	They aren't afraid of us.\nThey're afraid of whatever\nis in their own heads.{end_wait}
+N189	MsgDarkAwakenYesMia	Then you'll get yourself\nkilled trying. I won't\nstand here and watch.{end_wait}
+N190	MsgDarkAwakenNoIsaac	We can't help them. Keep\nmoving, and don't look\nback.{end_wait}
+N191	MsgDarkAwakenNoGaret	Isaac, they're calling your\nname. How do they know it?{end_wait}
+N192	MsgDarkAwakenNoMia	Good. Let them call. We're\nnot stopping for ghosts.{end_wait}
+N193	MsgDarkAwakenMiaGoes	Keep up, Isaac. I'll walk\npoint from here, because\nKalay won't wait for us.{end_wait}
+N194	MsgDarkAwakenGaretLeft	She didn't look back once,\nIsaac. Not at us, and not\nat them.{end_wait}

@@ -1,6 +1,6 @@
 # Lamakan Desert: Mia's other self takes over after the Manticore falls.
-N149	MsgDarkManticoreMiaGloat	Is that all it had? It only\nwoke up hungry. Pathetic.{end_wait}
-N150	MsgDarkManticoreGaretSmile	Mia, it was one of the\nawakened. You enjoyed that.{end_wait}
-N151	MsgDarkManticoreMiaPlace	And? They all end the same.\nKnow your place, Garet.{end_wait}
-N152	MsgDarkManticoreMiaSoft	...Did I say that? I don't\nremember drawing the blade.{end_wait}
-N153	MsgDarkManticoreIsaacBlade	That voice again. Mia, the\nblade keeps choosing for\nyou. We need to talk.{end_wait}
+N149	MsgDarkManticoreMiaGloat	That's all it had? It was\nbarely awake. Honestly,\nI'm a little insulted.{end_wait}
+N150	MsgDarkManticoreGaretSmile	Mia, that thing was one of\nthe awakened. You enjoyed\nkilling it.{end_wait}
+N151	MsgDarkManticoreMiaPlace	Of course I did. They all\nend up the same way, so\nknow your place, Garet.{end_wait}
+N152	MsgDarkManticoreMiaSoft	Wait... did I say that?\nI don't remember drawing\nthe blade.{end_wait}
+N153	MsgDarkManticoreIsaacBlade	That voice again. Mia, the\nblade is choosing for you,\nand we need to talk.{end_wait}
