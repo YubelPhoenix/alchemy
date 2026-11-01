@@ -1,0 +1,3 @@
+# Temporary: Manticore pass diagnostic.
+N222	MsgDarkDiagNotLit	Check: Mercury Lighthouse is\nnot marked as lit.{end_wait}
+N223	MsgDarkDiagNotBeaten	Check: the Manticore is not\nmarked as beaten.{end_wait}
