@@ -75,6 +75,8 @@
 	.set import.Actor_ConfigureSpriteColor, 1
 	.set import.Event_SetAfterBattleDestination, 1
 	.set import.Event_SetDefeatDestination, 1
+	.set import.ItemDisplay_ShowItem, 1
+	.set import.PartyInventory_GiveItem, 1
 	.set import.Portrait_CloseWindow, 1
 	.set import.Event_ShowMessageThenWait, 1
 	.set import.Field_RequestBattleFromEncounterTable, 1

@@ -1995,6 +1995,9 @@ static void Kolima_HeartAftermath(void) {
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
   Kolima_HeartSays();
   Kolima_HeartSays();
+  // Her prize: the Masamune, a blade the original game never gave out.
+  ItemDisplay_ShowItem(ITEM_MASAMUNE, 3);
+  PartyInventory_GiveItem(ITEM_MASAMUNE, 0);
   Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
   Event_WaitFrames(40);
   Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_HIDDEN);

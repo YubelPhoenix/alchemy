@@ -2569,7 +2569,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     {
         .name = "              ",
         .level = 12,
-        .hp = 140,
+        .hp = 230,
         .pp = 60,
         .atk = 42,
         .def = 18,
