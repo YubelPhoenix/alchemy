@@ -63,3 +63,4 @@
 	.set import.Event_SetMessageId, 1
 	.set import.Event_ShowMessageThenWait, 1
 	.set import.GameFlag_Clear, 1
+	.set import.Event_AskYesNoAndShowResponse, 1

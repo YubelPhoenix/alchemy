@@ -64,3 +64,4 @@
 	.set import.MapGrid_CenterOnFollowedPoint, 1
 	.set import.Event_StartScreenTransition, 1
 	.set import.Event_WaitTransitionFrames, 1
+	.set import.Event_AskYesNoAndShowResponse, 1
