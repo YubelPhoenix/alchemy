@@ -1019,6 +1019,35 @@ static void LamakanDesert_MiaTakesOver(void) {
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_SetMessageId(MsgDarkManticoreIvanBlade);
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  // The caravan wakes. Isaac chooses; Mia walks on alone either way.
+  Event_SetMessageId(MsgDarkAwakenIvan);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  Event_SetMessageId(MsgDarkAwakenAsk);
+  if (Event_AskYesNo(ACTOR_PARTY_LEADER, 0) == 0) {
+    Event_SetMessageId(MsgDarkAwakenYesIsaac);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+    GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+    GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+    GameFlag_Set(FLAG_DARK_CARAVAN_CALMED);
+  } else {
+    Event_SetMessageId(MsgDarkAwakenNoIsaac);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+    GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+    GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  }
+  Event_SetMessageId(MsgDarkAwakenMiaGoes);
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   GameFlag_Set(FLAG_DARK_MIA_MANTICORE_SEEN);
   Event_End();
 }

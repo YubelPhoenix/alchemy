@@ -1,0 +1,13 @@
+# Lamakan: the caravan wakes and the party splits.
+N183	MsgDarkAwakenIvan	Isaac, the caravan. Forty\nof them, all waking at\nonce.{end_wait}
+N184	MsgDarkAwakenGaret	They're coming for the\nlight, Isaac. We should\nturn back.{end_wait}
+N185	MsgDarkAwakenMia	Turn back? Burn them where\nthey stand. It's cleaner.{end_wait}
+N186	MsgDarkAwakenAsk	Try to calm the caravan?{end_now}
+N187	MsgDarkAwakenYesIsaac	Nobody burns anyone. Stay\nbehind me.{end_wait}
+N188	MsgDarkAwakenYesIvan	They aren't afraid of us.\nThey're afraid of what's\nin their own heads.{end_wait}
+N189	MsgDarkAwakenYesMia	Then you'll die calming\nthem. I won't watch.{end_wait}
+N190	MsgDarkAwakenNoIsaac	We leave them. Keep\nmoving.{end_wait}
+N191	MsgDarkAwakenNoGaret	Isaac... they're calling\nyour name.{end_wait}
+N192	MsgDarkAwakenNoMia	Good. Let them. We walk.{end_wait}
+N193	MsgDarkAwakenMiaGoes	Do what you like. I'm going\nahead. Kalay won't wait.{end_wait}
+N194	MsgDarkAwakenGaretLeft	She's walking away from\nus, Isaac. And she isn't\nlooking back.{end_wait}
