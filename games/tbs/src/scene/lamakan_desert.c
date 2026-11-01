@@ -1162,22 +1162,6 @@ static void LamakanDesert_MiaTakesOver(void) {
   Event_End();
 }
 
-/// Temporary: says which condition keeps the caravan scene from playing.
-static void LamakanDesert_Diagnose(void) {
-  Event_Start();
-  MapGrid_CenterOnFollowedPoint();
-  WaitFrames(1);
-  Event_StartScreenTransition();
-  Event_WaitTransitionFrames();
-  if (GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) == 0) {
-    Event_SetMessageId(MsgDarkDiagNotLit);
-  } else {
-    Event_SetMessageId(MsgDarkDiagNotBeaten);
-  }
-  Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
-  Event_End();
-}
-
 /// Entering Lamakan Desert: the heat gauge (600 steps) starts on all but
 /// LamakanDesertCave, the patches Reveal uncovers are saved to the spare cells
 /// at 64, 126 or 64, 124, and the secrets are hidden.
@@ -1230,9 +1214,13 @@ s32 LamakanDesert_Initialize(void) {
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
       GameFlag_Get(FLAG_DARK_CARAVAN_DONE) == 0) {
     LamakanDesert_MiaTakesOver();
-  } else if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
-             GameFlag_Get(FLAG_DARK_CARAVAN_DONE) == 0) {
-    LamakanDesert_Diagnose();
+    // Ash Jenna steps out of the haze right away, so the finale does not
+    // depend on the party finding her further down the pass.
+    if (GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0) {
+      Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(167), PIXELS(184));
+      Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_NORTH, 0);
+      LamakanDesert_AshJennaFinale();
+    }
   }
   return 0;
 }
