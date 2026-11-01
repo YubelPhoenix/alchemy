@@ -693,8 +693,10 @@ const struct ActorTemplate *WorldMap_GetActorTemplates(void) {
     return gWorldMapActorTemplatesMiaThieves;
   case WORLD_MAP_MIA_MENARDI:
   case WORLD_MAP_MIA_MENARDI_WON:
-  case WORLD_MAP_MIA_REUNITES:
     return gWorldMapActorTemplatesMiaMenardi;
+  // WORLD_MAP_MIA_REUNITES takes the ordinary actors: the party plays on from
+  // here, and the towns and lighthouses must be on the map (and stay after a
+  // battle reloads this entrance).
   default:
     break;
   }
