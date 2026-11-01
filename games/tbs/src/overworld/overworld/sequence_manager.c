@@ -345,7 +345,7 @@ void Scene_Arrive(s32 unused, s32 keep) {
       gSaveBlock.encounterSteps = 0;
       gSaveBlock.hazardSteps = 0;
       GameFlag_ClearFar(FLAG_VENUS_LIGHTHOUSE_LIT);
-      GameFlag_ClearFar(FLAG_MERCURY_LIGHTHOUSE_LIT);
+      // Ashfall: Mercury stays lit once the party has been inside (see below).
       GameFlag_ClearFar(FLAG_MARS_LIGHTHOUSE_LIT);
       GameFlag_ClearFar(FLAG_JUPITER_LIGHTHOUSE_LIT);
       gSaveBlock.retreatScene = gSaveBlock.sceneId;
@@ -366,6 +366,10 @@ void Scene_Arrive(s32 unused, s32 keep) {
   }
   gSaveBlock.area = area;
   GameFlag_SetFar(FLAG_AREA_VISITED(area & 0x7f));
+  // Ashfall: Mercury Lighthouse (area 0x13) stays lit after the first visit,
+  // so the world state and later scenes can rely on it, even in old saves.
+  if (GameFlag_GetFar(FLAG_AREA_VISITED(0x13)) != 0)
+    GameFlag_SetFar(FLAG_MERCURY_LIGHTHOUSE_LIT);
   gSaveBlock.sceneType = MAP_HEADER(gSaveBlock.sceneId)->sceneType;
   if (gSaveBlock.sceneType == SCENE_TYPE_TOWN)
     GameFlag_SetFar(FLAG_IN_TOWN);
