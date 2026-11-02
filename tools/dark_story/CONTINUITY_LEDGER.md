@@ -74,7 +74,7 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase28_tolbi.tsv` | Tolbi dialogue coverage. Verify each message against its actual pre-Colosso, Colosso, or post-Colosso state. |
 | `phase29_altin.tsv`, `phase31_altin_bread.tsv` | Altin-related material. Do not assume these files represent the first visit merely because of their names. |
 | `phase30_tolbi_ash_jenna.tsv` | Later Tolbi Ash Jenna encounter; its event condition places it after Colosso and after Mercury Lighthouse is lit. |
-| `phase32_imil_tolbi_kindness.tsv`, `phase33_ondra.tsv` | Kindness / Ondra branch material. Preserve the underlying decision flags and conditional availability. |
+| `phase32_imil_tolbi_kindness.tsv`, `phase33_kegare.tsv` | Kindness / Ondra branch material. Preserve the underlying decision flags and conditional availability. |
 | `phase34_mogall_lamakan.tsv`, `phase35_lamakan_jenna.tsv` | Mogall and Lamakan custom material. Verify each encounter's trigger and ensure Ash Jenna's later appearance acknowledges the earlier meeting. |
 | `phase36_peak_alex.tsv`, `phase39_mogall_alex.tsv` | Alex's separate encounters. His knowledge and warnings must develop between appearances rather than repeat. |
 | `phase37_blade.tsv`, `phase38_heart.tsv` | Tideglass Blade / Mia storyline. Track the blade's influence and Mia's memory of each episode. |
@@ -224,7 +224,7 @@ This pass confirms the event order and the existence of the branch/state distinc
 
 A source-backed audit now records the specific narrative failures reported during play. The normal post-Manticore return runs Mia's takeover and caravan choice from `LamakanDesert_Initialize`, then immediately runs Ash Jenna's full revelation/finale before the party proceeds to Kalay. The later Tolbi encounter occurs only after Colosso and currently repeats a first-meeting exchange, despite the party already knowing who Ash Jenna claims to be. The shorter N106–N110 Lamakan watch exchange is not the normal post-battle scene and requires reachability verification.
 
-The audit also confirms two Ondra activation routes: sheltering the harbor child, or completing all three Altin/Imil/Tolbi kindness payments. Ondra's current N102 introduction always claims Isaac went to the docks for a child, which is false on the three-payment route. The fishermen question in the Tolbi Ash Jenna scene is not resolved by the child scene; the child's voices, the awakened, the Tideglass Blade, Mia's altered behavior, and Ondra's relationship to Mia have not yet been joined into one causal explanation. Lamakan NPC text describing mud and standing water also needs reconciliation with the desert's source-defined sand/heat mechanics.
+The audit also confirms two Ondra activation routes: sheltering the harbor child, or completing all three Altin/Imil/Tolbi kindness payments. Ondra's current N102 introduction always claims Isaac went to the docks for a child, which is false on the three-payment route. The fishermen question in the Tolbi Ash Jenna scene is not resolved by the child scene; the child's voices, the awakened, the Tideglass Blade, Mia's altered behavior, and Ondra's relationship to Mia have not yet been joined into one causal explanation. Lamakan NPC text describing mud and standing water has since been corrected to match the desert's source-defined sand/heat mechanics.
 
 See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the verified event order, trigger behavior, concrete dialogue contradictions, and the repair sequence. No dialogue or event logic was changed in this audit; the next step is to settle the causal chain before rewriting those scenes.
 
@@ -266,7 +266,16 @@ The first numerical rebalance is in place, pending encounter testing:
 | Heart | 38 | 3,600 | 240 | 300 | 130 | 140 | 1 |
 | Kegare | 33 | 4,200 | 300 | 285 | 125 | 145 | 2 |
 
-Kegare's current enemy ability set includes high-tier Mercury-element attacks and ABILITY_PLY. Her role is a Water Adept: pressure through powerful water/ice Psynergy and measured healing, not an endless recovery loop. Heart keeps her own ability identity but no longer has 9,999 HP, 999 PP, 520 attack, 190 defense, 200 agility, or two actions every turn.
+Kegare's current enemy ability set uses Ice Missile, Freeze Prism, Deluge, and Froth Spiral as her strongest varied Mercury-element attacks, supported by Water Blessing and Ice Blessing, plus Ply and Pure Ply. Her role is a Water Adept: pressure through powerful water/ice Psynergy and measured healing, not an endless recovery loop. Heart keeps her own ability identity but no longer has 9,999 HP, 999 PP, 520 attack, 190 defense, 200 agility, or two actions every turn.
 
 These values are a first balance target, not a claim that the fights are fully validated. The encounter unlock points and realistic party levels/equipment must be used for testing. Adjust further if either fight proves unfair or trivial in play.
 
+
+
+### Current continuity repair pass — November 2026
+
+The post-Lamakan Tolbi encounter has now been revised in `phase30_tolbi_ash_jenna.tsv`. Ash Jenna recognizes that the party has already met her in Lamakan; Isaac no longer asks who she is, and the exchange advances the established sleeper / lighthouse threat. The dangling fishermen question has been removed. Her warning about the harbor now leads directly into Ivan hearing the child at the docks, making that transition intentional rather than an unrelated sound cue. Mia acknowledges her anger in the desert without accepting Ash Jenna's attempt to define her by it. The event sequence and flags in `Tolbi_MeetAshJenna` were not changed.
+
+The contradictory mud / flood wording in `phase34_mogall_lamakan.tsv` has also been removed. The dialogue now describes the actual source-defined sand, heat, dust, and ash-thick air of Lamakan; no environmental or heat-hazard logic was changed.
+
+Kegare's former Ondra source identifiers and dialogue filename have been renamed to Kegare. Her encounter-access conditions remain unchanged and are not presented as the source of her origin or motive. Her current moveset now contains the four highest-power appropriate Mercury Psynergy attacks in the table (Ice Missile, Freeze Prism, Deluge, Froth Spiral), both Water/Ice Blessings, Ply, and Pure Ply. Her two-action turn structure remains unchanged. The latest successful build at this point is run 351, which included the Kegare rename and first moveset pass; the revised Tolbi/Lamakan dialogue and final Ice Missile selection are under subsequent CI validation. A code build alone does not constitute balance testing or in-game progression verification.
