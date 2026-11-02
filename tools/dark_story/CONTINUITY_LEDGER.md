@@ -74,16 +74,16 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase28_tolbi.tsv` | Tolbi dialogue coverage. Verify each message against its actual pre-Colosso, Colosso, or post-Colosso state. |
 | `phase29_altin.tsv`, `phase31_altin_bread.tsv` | Altin-related material. Do not assume these files represent the first visit merely because of their names. |
 | `phase30_tolbi_ash_jenna.tsv` | Later Tolbi Ash Jenna encounter; its event condition places it after Colosso and after Mercury Lighthouse is lit. |
-| `phase32_imil_tolbi_kindness.tsv`, `phase33_kegare.tsv` | Kindness / Ondra branch material. Preserve the underlying decision flags and conditional availability. |
+| `phase32_imil_tolbi_kindness.tsv`, `phase33_kegare.tsv` | Optional kindness route and Kegare encounter-access gates. Preserve the underlying decision flags and conditional availability. |
 | `phase34_mogall_lamakan.tsv`, `phase35_lamakan_jenna.tsv` | Mogall and Lamakan custom material. Verify each encounter's trigger and ensure Ash Jenna's later appearance acknowledges the earlier meeting. |
 | `phase36_peak_alex.tsv`, `phase39_mogall_alex.tsv` | Alex's separate encounters. His knowledge and warnings must develop between appearances rather than repeat. |
-| `phase37_blade.tsv`, `phase38_heart.tsv` | Tideglass Blade / Mia storyline. Track the blade's influence and Mia's memory of each episode. |
+| `phase37_mia_tolbi.tsv`, `phase38_heart.tsv` | Mia's post-Tolbi recovery scene and the separate Heart cameo dialogue. Keep Heart and Kegare distinct. |
 | `phase40_altin_peak_miners.tsv`, `phase41_altin_peak_mood.tsv` | Altin Peak rescue and aftermath. Preserve the rescue choice and the miner's subsequent condition. |
 | `phase42_manticore_mia.tsv` | Mia's post-Manticore episode. This must follow the Manticore encounter and be reflected in later party dialogue. |
-| `phase43_ivan.tsv` | Ivan's developing sensitivity to the awakened and the blade. His observations must match what he has actually heard. |
+| `phase43_ivan.tsv` | Ivan's developing sensitivity to the awakened and their voices. His observations must match what he has actually heard. |
 | `phase44_bloom.tsv` | Branching kindness material involving the harbor child and miner, with later callbacks. |
 | `phase45_mogall_door.tsv` | Mogall camp-door decision. Keep the yes/no outcomes distinct and preserve the humming-girl callback. |
-| `phase46_awakening.tsv` | Caravan awakening and the party's response. The choice must be carried into the finale. |
+| `phase46_awakening.tsv` | Caravan awakening and Mia taking point after the party's response. The choice must be carried into the finale. |
 | `phase47_finale.tsv` | Lamakan finale and Ash Jenna's major revelation. This is not the overall Golden Sun ending; it directs the party onward to Kalay. |
 | `phase48_docks.tsv` | Tolbi harbor child material. Its placement and dialogue state must be checked against the post-Colosso Tolbi return. |
 | `phase49_babi_palace.tsv` | 89 non-empty Babi's Palace message entries rewritten across pre-Colosso, Colosso, and post-Colosso states, including residents, Sheba-related dialogue, Mind Read, examinations, and event prompts. |
@@ -92,15 +92,19 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase52_suhalla_interiors.tsv` | 44 Suhalla interior messages rewritten, including merchants, travelers, wounded soldiers, Mind Read, and environmental examinations. |
 | `phase53_babi_lighthouse.tsv` | 38 Babi Lighthouse messages rewritten, covering workers, injured guards, Faran's pursuit, Sheba's rescue, the sealed door, and the ruins clue. |
 | `phase54_lalivero.tsv` | 51 Lalivero town-map messages rewritten, covering Sheba's absence, the soldiers, the aftermath of Venus Lighthouse, and the wharf. |
-| `phase55_lalivero_interiors.tsv` | 95 interior messages rewritten, including Sheba's family, town residents, Mind Read, wounded soldiers, Iodem, and the ship. |
+| `phase55_lalivero_interiors.tsv` | 99 interior messages rewritten, including Sheba's family, town residents, Mind Read, wounded soldiers, Iodem, and the ship. |
 | `phase56_black_orb.tsv` | 3 world-map messages rewritten for the Black Orb / Babi's ship interaction and optional shipwreck inspection. |
 | `phase57_lemurian_ship.tsv` | 16 messages rewritten for the departure from Gondowan and the voyage toward Lemuria. |
 | `phase58_true_ending.tsv` | 13 non-empty messages rewritten for the post-game drifting-island scene with Jenna, Kraden, and Alex. |
 | `phase59_tunnel_ruins.tsv` | 8 Tunnel Ruins statue messages rewritten, preserving the lady/statue riddle and the four directional pillar clues. |
 | `phase60_venus_lighthouse.tsv` | 25 Venus Lighthouse messages rewritten, including scholars, guards, relief inscriptions, statue dialogue, and the route clue. |
-| `phase61_aerie_first_battle.tsv` | 100 Aerie messages rewritten for the first confrontation, Sheba's captivity, the Shaman's Rod bargain, and the first battle. |
-| `phase62_aerie_beacon_fusion.tsv` | 57 Aerie messages rewritten for Felix's decision, beacon activation, Saturos and Menardi's return, and the fusion battle. |
-| `phase63_aerie_fall_aftermath.tsv` | 52 Aerie messages rewritten for the collapse, Sheba's fall, Felix's sacrifice, and the party's return. |
+| `phase61_aerie_first_battle.tsv` | 121 Aerie messages rewritten for the first confrontation, Sheba's captivity, the Shaman's Rod bargain, and the first battle. |
+| `phase62_aerie_beacon_fusion.tsv` | 64 Aerie messages rewritten for Felix's decision, beacon activation, Saturos and Menardi's return, and the fusion battle. |
+| `phase63_aerie_fall_aftermath.tsv` | 64 Aerie messages rewritten for the collapse, Sheba's fall, Felix's sacrifice, and the party's return. |
+| `phase64_babi_palace_small_sequences.tsv` | 48 sequential Babi Palace messages for Colosso prompts, rest scenes, and post-audience exchanges. |
+| `phase65_babi_palace_iode_search.tsv` | 36 sequential messages for Iodem's account of the search for Babi at Altmiller Cave. |
+| `phase66_babi_audience_part1.tsv` | 41 sequential messages for the audience, Colosso's reward, and the first Lemuria revelations. |
+| `phase67_babi_audience_part2.tsv` | 40 sequential messages for the Draught of Lemuria and Babi's request to find the lost city. |
 
 
 
@@ -127,16 +131,16 @@ Heart is Chalice from *Golden Sun: Dark Dawn*, using her Japanese name as in the
 
 ## Current rewrite batch summary
 
-Phases 49–63 contain **640 rewritten source-message entries**: Babi's Palace and scholars (108), Suhalla and its interiors (74), Babi Lighthouse (38), Lalivero and its interiors (146), Black Orb interactions (3), Lemurian ship departure (16), post-game ending (13), Tunnel Ruins (8), Venus Lighthouse (25), and the Aerie (209). All 640 drafted rows passed a manual source-catalog check for message ID/context, runtime placeholders, ending controls, pause/style controls, text-box width, and page-line limits. No duplicate message IDs were found within these phases or against the prior phase files listed in this ledger. **This is not yet complete scene coverage:** a deeper source audit found sequential event-message blocks that are not represented by the named-message inventory. These still need to be rewritten and added before any location is marked complete. The repository's full validator/build and in-game checks also remain pending.
+Phases 49–67 now contain **849 rewritten source-message entries**: Babi's Palace and scholars plus the sequential audience/search blocks (273), Suhalla and its interiors (74), Babi Lighthouse (38), Lalivero and its interiors (150), Black Orb interactions (3), Lemurian ship departure (16), post-game ending (13), Tunnel Ruins (8), Venus Lighthouse (25), and the Aerie (249). The 165 entries in phases 64–67 restore sequential Babi Palace dialogue; the expanded Aerie files now include the previously omitted exchange lines. These rows have passed the repository dialogue validator and the modified-edition build. **This is not yet complete scene coverage:** remaining NPC, Mind Read, examination, conditional, and sequential branches still require source-to-phase review before any location is marked complete. In-game progression checks also remain pending.
 
 ### Important custom-state observations
 
 - Ash Jenna has at least two distinct encounters: the Lamakan revelation and the later Tolbi confrontation. Dialogue must acknowledge the earlier meeting.
 - Alex appears in separate Mogall and Altin Peak encounters. His information and urgency must progress.
 - The post-Mercury custom events are gated by story conditions; their phase numbers do not mean they occur before the original Altin or Lamakan visits.
-- The Lamakan finale recalls earlier choices involving the harbor child, miner, camp, caravan, and Tideglass Blade. Those callbacks must agree with the actual flags and with the player's route.
+- The Lamakan finale recalls earlier choices involving the harbor child, miner, camp, and caravan. Those callbacks must agree with the actual flags and with the player's route.
 - The Tolbi Ash Jenna encounter is a later event, gated by Colosso being over and Mercury Lighthouse being lit.
-- Ondra's appearance is conditional. Do not write her as a guaranteed encounter for every playthrough.
+- Kegare's appearance is conditional. Do not write her as a guaranteed encounter for every playthrough.
 
 ## State-dependent original scenes that must remain distinct
 
@@ -222,11 +226,11 @@ This pass confirms the event order and the existence of the branch/state distinc
 
 ### Lamakan-to-Tolbi continuity failure audit
 
-A source-backed audit now records the specific narrative failures reported during play. The normal post-Manticore return runs Mia's takeover and caravan choice from `LamakanDesert_Initialize`, then immediately runs Ash Jenna's full revelation/finale before the party proceeds to Kalay. The later Tolbi encounter occurs only after Colosso and currently repeats a first-meeting exchange, despite the party already knowing who Ash Jenna claims to be. The shorter N106–N110 Lamakan watch exchange is not the normal post-battle scene and requires reachability verification.
+A source-backed audit records the pre-repair continuity failures. The normal post-Manticore return runs Mia's emotional aftermath and caravan choice from `LamakanDesert_Initialize`, then immediately runs Ash Jenna's full revelation/finale before the party proceeds to Kalay. The shorter N106–N110 Lamakan watch exchange is an optional conversation on the Manticore pass, distinct from that automatic return sequence. The later Tolbi encounter follows the guaranteed Lamakan revelation and has now been rewritten as a continuation.
 
-The audit also confirms two Ondra activation routes: sheltering the harbor child, or completing all three Altin/Imil/Tolbi kindness payments. Ondra's current N102 introduction always claims Isaac went to the docks for a child, which is false on the three-payment route. The fishermen question in the Tolbi Ash Jenna scene is not resolved by the child scene; the child's voices, the awakened, the Tideglass Blade, Mia's altered behavior, and Ondra's relationship to Mia have not yet been joined into one causal explanation. Lamakan NPC text describing mud and standing water has since been corrected to match the desert's source-defined sand/heat mechanics.
+Kegare has two encounter-access routes: sheltering the harbor child, or completing all three Altin/Imil/Tolbi kindness payments. Those conditions are access gates only; they do not explain her origin or motive. Her dialogue now centers on deliberately mimicking Mia and intending to replace her, without falsely claiming Isaac rescued the child. The fishermen question has been removed, and the harbor child remains a separate Ashfall thread. Lamakan NPC text now matches the desert's source-defined sand/heat mechanics.
 
-See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the verified event order, trigger behavior, concrete dialogue contradictions, and the repair sequence. No dialogue or event logic was changed in this audit; the next step is to settle the causal chain before rewriting those scenes.
+See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the verified event order, trigger behavior, and repair record. The initial audit did not change event logic; subsequent dialogue corrections are recorded below.
 
 
 ### Canonical correction: Kegare cameo super boss
@@ -278,4 +282,4 @@ The post-Lamakan Tolbi encounter has now been revised in `phase30_tolbi_ash_jenn
 
 The contradictory mud / flood wording in `phase34_mogall_lamakan.tsv` has also been removed. The dialogue now describes the actual source-defined sand, heat, dust, and ash-thick air of Lamakan; no environmental or heat-hazard logic was changed.
 
-Kegare's former Ondra source identifiers and dialogue filename have been renamed to Kegare. Her encounter-access conditions remain unchanged and are not presented as the source of her origin or motive. Her current moveset now contains the four highest-power appropriate Mercury Psynergy attacks in the table (Ice Missile, Freeze Prism, Deluge, Froth Spiral), both Water/Ice Blessings, Ply, and Pure Ply. Her two-action turn structure remains unchanged. The latest successful build at this point is run 351, which included the Kegare rename and first moveset pass; the revised Tolbi/Lamakan dialogue and final Ice Missile selection are under subsequent CI validation. A code build alone does not constitute balance testing or in-game progression verification.
+Kegare's former Ondra source identifiers and dialogue filename have been renamed to Kegare. Her encounter-access conditions remain unchanged and are not presented as the source of her origin or motive. Her current moveset now contains the four highest-power appropriate Mercury Psynergy attacks in the table (Ice Missile, Freeze Prism, Deluge, Froth Spiral), both Water/Ice Blessings, Ply, and Pure Ply. Her two-action turn structure remains unchanged. Run 354 passed the full build-and-patch workflow on its tested commit. Subsequent Aerie sequential-dialogue additions are covered by run 358, which passed dialogue validation, modified-edition compilation, baseline verification, IPS generation, and test-patch upload. A code build alone does not constitute boss-balance testing or in-game progression verification.

@@ -1,12 +1,14 @@
 # Ashfall: Lamakan-to-Tolbi continuity failure report
 
-Status: source-backed audit; dialogue and event logic not yet changed  
-Branch: `dark-story-rewrite`  
-Scope: the post-Manticore Lamakan sequence, Ash Jenna's later Tolbi encounter, the harbor child, and Ondra.
+Status: initial source-backed audit; current verified repairs are recorded at the end of this document  
+Branch: `dark-story-rewrite`
+
+**Reading note:** the numbered findings and immediate blockers below record the pre-repair state. The verified repair section at the end supersedes them where they conflict with the current branch.  
+Scope: the post-Manticore Lamakan sequence, Ash Jenna's later Tolbi encounter, the harbor child, and Kegare (formerly Ondra).
 
 ## Finding
 
-The player's experience is not failing because of one awkward line. The current route introduces several major story concepts without establishing their relationships, and later scenes behave as though the party has not already learned information from earlier scenes. There are also concrete branch-state mismatches in Ondra's introduction.
+The initial audit found more than isolated awkward lines: several concepts arrived without a clear causal order, and some dialogue contradicted the player's earlier knowledge. It also found a branch-state mismatch in the former Ondra/Kegare introduction. Those findings are retained below as the pre-repair record.
 
 This is a continuity repair, not a request to make the prose more ominous. The event order and the party's knowledge must be corrected before polishing individual sentences.
 
@@ -19,9 +21,9 @@ This is a continuity repair, not a request to make the prose more ominous. The e
 5. **Tolbi's Ash Jenna scene is written as though this is the first meeting.** `phase30_tolbi_ash_jenna.tsv` has Isaac ask, “Who are you?”, Garet challenge her as if the party has not met her, and Ash Jenna repeat her “Jenna who stopped waiting to be saved” line. But the party has already heard her identify herself in the Lamakan finale as a Jenna from a world the Wise One burned. The Tolbi scene must be a continuation: Isaac should recognize her, the party should refer to what she revealed, and her new purpose at the harbor should advance the story rather than restart the introduction.
 6. **The fishermen line is an unanswered setup.** Ash Jenna asks what fishermen keep pulling out of the water, but the scene does not answer that question or clearly connect it to the harbor child who is introduced moments later. The later child is not explicitly what the fishermen have been finding. This is a dangling question, not an earned mystery yet.
 7. **The harbor child is introduced as a sound cue inside the Tolbi Ash Jenna event.** After she fades, Ivan hears crying at the docks, Garet identifies it as a child's voice, and Mia dismisses it. The event sets `FLAG_DARK_HARBOR_CALLED`; the boy then appears in the separate Tolbi Docks scene. His actual line says voices are telling him to walk into the sea. The scene needs to establish why he hears the awakened, why he is at the docks, what the voices want, and why helping him matters to the larger tide / lighthouse plot.
-8. **Ondra has two different activation routes, but only one unconditional introduction.** `Tolbi_ApplyEntryState` places Ondra if either `FLAG_DARK_HARBOR_SHELTERED` is set **or** all three of `FLAG_DARK_TIDE_ALTIN`, `FLAG_DARK_TIDE_IMIL`, and `FLAG_DARK_TIDE_TOLBI` are set. In other words, the child-rescue route can awaken her on its own, while the three local kindness payments can also awaken her without the child being sheltered.
-9. **Ondra's current opening is wrong on the three-kindness route.** N102 in `phase33_ondra.tsv` says, “You went down to the docks for a stranger's child, and the tide noticed.” That is false if she appears because the player completed the three payments but did not shelter the child. The introduction must branch or use a cause-neutral opening. It must not attribute an action to Isaac that he may not have taken.
-10. **Ondra's relationship to Mia is introduced without groundwork.** Her line “Mia comes from my tide, so we share a face” asserts a major connection, but the player has not been given a clear basis for it. The Tideglass Blade's voice, Mia's other self, the awakened, and Ondra's “tide” are currently arriving as separate terms instead of one understandable chain of cause and effect.
+8. **Kegare has two different encounter-access routes.** `Tolbi_ApplyEntryState` places Kegare if either `FLAG_DARK_HARBOR_SHELTERED` is set **or** all three of `FLAG_DARK_TIDE_ALTIN`, `FLAG_DARK_TIDE_IMIL`, and `FLAG_DARK_TIDE_TOLBI` are set. These are optional access conditions only; neither is the source of Kegare's identity or power.
+9. **The former Kegare opening falsely attributed the child rescue to Isaac.** That line has been removed. The current Kegare dialogue in `phase33_kegare.tsv` focuses on observation, imitation, and replacement without claiming that the player took the child to safety.
+10. **Kegare's resemblance to Mia is intentional imitation, not shared mythology.** Kegare studies Mia's voice and movements because she intends to take Mia's place. She is a distinct cameo from the user's wider sprite-animation continuity; she is not connected to the harbor child or to Mia through a shared tide.
 
 ## Additional Lamakan mismatch
 
@@ -37,10 +39,10 @@ Write one canonical explanation, in plain language, for each of these and how th
 
 - What the lighthouses are doing to the awakened, and why lighting Mercury Lighthouse matters.
 - What “the awakened” are, how they are connected to the Manticore, the caravan, the people in Mogall, and the voices Ivan hears.
-- What the Tideglass Blade contains or represents, why Mia hears it, and why her behavior changes after the Manticore.
+- Why Mia reacts with anger after the Manticore, recognizes that anger as her own, and accepts support from the party.
 - Who Ash Jenna is, what she knows at Lamakan, what she wants at Tolbi, and why she is watching the harbor.
-- What the fishermen are finding, what the harbor child hears, and how the child relates to Ondra.
-- Why Ondra resembles Mia, what “my tide” means, and why either kindness route can wake her.
+- What the harbor child hears and how that separate Ashfall thread develops after Tolbi.
+- Why Kegare deliberately mimics Mia and intends to replace her, while keeping the kindness flags as encounter-access conditions only.
 
 These explanations do not all need to be spoken aloud at once. They do need to be settled in the continuity ledger so every scene is written from the same story.
 
@@ -52,7 +54,7 @@ These explanations do not all need to be spoken aloud at once. They do need to b
 4. Kalay and the Karagol crossing: preserve the original route and let the party carry the Lamakan revelation forward.
 5. Tolbi after Colosso: Ash Jenna must acknowledge the Lamakan meeting and advance her plan. Resolve or deliberately defer the fishermen question.
 6. Tolbi Docks: introduce the child as a consequence of the harbor situation, not as an unrelated new horror beat.
-7. Ondra: provide distinct, truthful introductions for the child-rescue route and the three-kindness route, then explain the Mia connection in a way the player can understand.
+7. Kegare: preserve the two optional access routes without making either one her origin; her dialogue should establish imitation and replacement. Keep the harbor child as a separate story thread.
 
 ### C. Protect the existing game
 
@@ -60,19 +62,19 @@ Do not alter original route flags, Colosso states, scene entrances, or battle be
 
 ## Immediate rewrite blockers
 
-- `phase35_lamakan_jenna.tsv` does not match the normal post-Manticore event path and must not be treated as the scene the player sees without further trigger verification.
-- `phase30_tolbi_ash_jenna.tsv` repeats a first-meeting exchange after the Lamakan revelation.
-- `phase33_ondra.tsv` contains a provably false child reference on the three-kindness activation route.
-- `phase34_mogall_lamakan.tsv` describes a flooded/muddy desert without a corresponding established environmental explanation.
-- `phase44_bloom.tsv`, `phase48_docks.tsv`, and the Tolbi / Tolbi Docks event code need to be read as one connected child sequence.
-- The Mia / blade / awakened terminology needs one consistent introduction order across `phase42_manticore_mia.tsv`, `phase43_ivan.tsv`, `phase37_blade.tsv`, and `phase47_finale.tsv`.
+- `phase35_lamakan_jenna.tsv` is an optional talk on the Manticore pass; the normal post-Manticore return separately runs the automatic Mia/caravan sequence and Ash Jenna's main revelation.
+- `phase30_tolbi_ash_jenna.tsv` has been rewritten as a continuation of the guaranteed Lamakan revelation.
+- `phase33_kegare.tsv` now focuses on Kegare's Mia imitation and replacement intent, with no false child-rescue claim.
+- `phase34_mogall_lamakan.tsv` has been corrected to match Lamakan's heat, sand, dust, and ash-thick air.
+- `phase44_bloom.tsv`, `phase48_docks.tsv`, and the Tolbi / Tolbi Docks event code have been reviewed as one connected child sequence; that sequence remains separate from Kegare.
+- Mia's post-Manticore emotional arc is simplified; no sentient blade, second self, or possession explanation remains in the current story.
 
-No dialogue or event code is changed by this audit. The next safe edit is to establish the canonical causal chain and then rewrite the Tolbi follow-up and Ondra's two activation paths in small, validated batches.
+The initial audit itself did not change dialogue or event code. Subsequent dialogue corrections and source-backed clarifications are recorded in the verified repair section below.
 
 
 ## Canonical correction: Kegare, not Ondra
 
-The character currently named Ondra is to be renamed **Kegare (穢れ, “impurity” / “defilement”)**. This is a cameo super boss from the user's sprite-animation continuity, in the same broad category as Heart. She is not a native Golden Sun sea goddess, a benevolent Tideglass Queen, or an entity awakened by the party's kindness.
+The character previously named Ondra is **Kegare (穢れ, “impurity” / “defilement”)**. This is a cameo super boss from the user's sprite-animation continuity, in the same broad category as Heart. She is not a native Golden Sun sea goddess, a benevolent Tideglass Queen, or an entity awakened by the party's kindness.
 
 ### Established character truth
 
@@ -97,3 +99,8 @@ The character currently named Ondra is to be renamed **Kegare (穢れ, “impuri
 Use “Kegare” consistently as the character's display name and in documentation. The Japanese word 穢れ carries the sense of impurity, defilement, or ritual pollution; it is not simply a synonym for “evil.” Keep that nuance in mind when writing her characterization. The exact in-game name rendering should follow the project's text-width and naming conventions.
 
 This correction supersedes the earlier speculative explanation of Ondra in this report. The prior audit remains useful for identifying the incorrect encounter timing and branch dialogue, but its “Tideglass Queen” interpretation is no longer canonical.
+
+
+### Current build verification
+
+Run 358 passed every workflow stage on commit `d3fe8b2bd35369c93a4e078fb37f7587944c62f9`, including dialogue validation, modified-edition compilation, baseline verification, IPS generation, and test-patch upload. This validates the current Aerie sequential-dialogue additions and the width correction; it does not replace in-game progression checks.

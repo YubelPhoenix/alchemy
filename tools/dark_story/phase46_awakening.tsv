@@ -1,4 +1,4 @@
-# Lamakan: the caravan wakes and the party splits.
+# Lamakan: the caravan wakes and Mia takes point.
 N183	MsgDarkAwakenIvan	Isaac, look at the caravan.\nThere must be forty of\nthem, and they're waking.{end_wait}
 N184	MsgDarkAwakenGaret	They're after the light,\nIsaac. We should turn back\nbefore they reach us.{end_wait}
 N185	MsgDarkAwakenMia	Turn back? Why? We could\njust burn them where they\nstand. It would be cleaner.{end_wait}

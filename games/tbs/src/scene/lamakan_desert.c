@@ -399,8 +399,8 @@ static void LamakanDesert_AshJennaFinale(void) {
   Event_End();
 }
 
-/// Ash Jenna, grey, watches the drowned desert and slips away from Isaac. Back
-/// from the Manticore, she gives the finale instead.
+/// Ash Jenna, grey, watches the ash-streaked desert and slips away from Isaac.
+/// After the Manticore and caravan sequence, she delivers the finale instead.
 static void LamakanDesert_MeetAshJenna(void) {
   if (GameFlag_Get(FLAG_DARK_CARAVAN_DONE) != 0) {
     LamakanDesert_AshJennaFinale();
@@ -1096,10 +1096,10 @@ static void LamakanDesert_MeetManticore(void) {
   }
 }
 
-/// Back from the Manticore's battle once Mercury Lighthouse is lit: Mia's
-/// other self gloats over the beast, Garet sees her smiling and she does not
-/// remember it. Once.
-static void LamakanDesert_MiaTakesOver(void) {
+/// After the Manticore battle, Mia reacts to what the beast did. Her anger
+/// unsettles the party, but she recognizes it as her own and remains
+/// accountable. The same return event then handles the caravan. Once.
+static void LamakanDesert_ManticoreAftermath(void) {
   Event_Start();
   // Run from the scene's start-up: bring the picture in before anyone speaks.
   MapGrid_CenterOnFollowedPoint();
@@ -1120,7 +1120,7 @@ static void LamakanDesert_MiaTakesOver(void) {
     Event_SetMessageId(MsgDarkManticoreIvanConcern);
     Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   }
-  // The caravan wakes. Isaac chooses; Mia walks on alone either way.
+  // The caravan wakes. Isaac chooses; Mia takes point either way.
   Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
   Event_SetMessageId(MsgDarkAwakenIvan);
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
@@ -1206,9 +1206,9 @@ s32 LamakanDesert_Initialize(void) {
        GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) &&
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
       GameFlag_Get(FLAG_DARK_CARAVAN_DONE) == 0) {
-    LamakanDesert_MiaTakesOver();
-    // Ash Jenna steps out of the haze right away, so the finale does not
-    // depend on the party finding her further down the pass.
+    LamakanDesert_ManticoreAftermath();
+    // The Manticore aftermath and caravan sequence play on the return from
+    // battle. Ash Jenna then appears for the finale automatically.
     if (GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0) {
       Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(167), PIXELS(184));
       Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_NORTH, 0);
