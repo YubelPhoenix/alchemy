@@ -264,7 +264,7 @@ const struct ActorTemplate *LamakanDesert_GetActorTemplates(void) {
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
       GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0 &&
       (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0 ||
-       GameFlag_Get(FLAG_DARK_CARAVAN_DONE) != 0 ||
+       GameFlag_Get(FLAG_DARK_MANTICORE_AFTERMATH_DONE) != 0 ||
        GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0 ||
        gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE)) {
     GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
@@ -315,9 +315,9 @@ static void LamakanDesert_SayMia(void) {
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
 }
 
-/// After the Manticore and the caravan, Ash Jenna names herself and offers to
-/// close the Lighthouse door by killing the awakened. The mercy count (the
-/// miner, the Mogall door and the caravan) colours the three endings.
+/// After the Manticore, Ash Jenna names herself and offers to close the
+/// Lighthouse door by killing the awakened. The miner and Mogall door choices
+/// determine whether refusing her offer leads to the Mercy or Divided ending.
 /// Once.
 static void LamakanDesert_AshJennaFinale(void) {
   s32 mercy;
@@ -325,7 +325,6 @@ static void LamakanDesert_AshJennaFinale(void) {
   mercy = 0;
   if (GameFlag_Get(FLAG_DARK_MINER_STAYED) != 0) mercy++;
   if (GameFlag_Get(FLAG_DARK_MOGALL_DOOR_OPENED) != 0) mercy++;
-  if (GameFlag_Get(FLAG_DARK_CARAVAN_CALMED) != 0) mercy++;
 
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
@@ -360,10 +359,6 @@ static void LamakanDesert_AshJennaFinale(void) {
     Event_SetMessageId(MsgDarkEchoDoor);
     Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   }
-  if (GameFlag_Get(FLAG_DARK_CARAVAN_CALMED) != 0) {
-    Event_SetMessageId(MsgDarkEchoCaravan);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  }
   if (mercy == 0) {
     Event_SetMessageId(MsgDarkEchoNone);
     Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
@@ -377,7 +372,7 @@ static void LamakanDesert_AshJennaFinale(void) {
     Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
     Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
     GameFlag_Set(FLAG_DARK_COMPLICIT);
-  } else if (mercy >= 3) {
+  } else if (mercy >= 2) {
     // The Mercy ending.
     Event_SetMessageId(MsgDarkFinaleNoIsaac);
     Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
@@ -409,9 +404,9 @@ static void LamakanDesert_AshJennaFinale(void) {
 }
 
 /// Ash Jenna, grey, watches the ash-streaked desert and slips away from Isaac.
-/// After the Manticore and caravan sequence, she delivers the finale instead.
+/// After the Manticore aftermath, she delivers the finale instead.
 static void LamakanDesert_MeetAshJenna(void) {
-  if (GameFlag_Get(FLAG_DARK_CARAVAN_DONE) != 0) {
+  if (GameFlag_Get(FLAG_DARK_MANTICORE_AFTERMATH_DONE) != 0) {
     LamakanDesert_AshJennaFinale();
     return;
   }
@@ -1129,38 +1124,8 @@ static void LamakanDesert_ManticoreAftermath(void) {
     Event_SetMessageId(MsgDarkManticoreIvanConcern);
     Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   }
-  // The caravan wakes. Isaac chooses; Mia takes point either way.
-  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
-  Event_SetMessageId(MsgDarkAwakenIvan);
-  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  Event_SetMessageId(MsgDarkAwakenAsk);
-  if (Event_AskYesNo(ACTOR_PARTY_LEADER, 0) == 0) {
-    Event_SetMessageId(MsgDarkAwakenYesIsaac);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-    GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-    GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-    GameFlag_Set(FLAG_DARK_CARAVAN_CALMED);
-  } else {
-    Event_SetMessageId(MsgDarkAwakenNoIsaac);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-    GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-    GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  }
-  Event_SetMessageId(MsgDarkAwakenMiaGoes);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   GameFlag_Set(FLAG_DARK_MIA_MANTICORE_SEEN);
-  GameFlag_Set(FLAG_DARK_CARAVAN_DONE);
+  GameFlag_Set(FLAG_DARK_MANTICORE_AFTERMATH_DONE);
   Event_End();
 }
 
@@ -1214,10 +1179,10 @@ s32 LamakanDesert_Initialize(void) {
       (gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE ||
        GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) &&
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
-      GameFlag_Get(FLAG_DARK_CARAVAN_DONE) == 0) {
+      GameFlag_Get(FLAG_DARK_MANTICORE_AFTERMATH_DONE) == 0) {
     LamakanDesert_ManticoreAftermath();
-    // The Manticore aftermath and caravan sequence play on the return from
-    // battle. Ash Jenna then appears for the finale automatically.
+    // Mia's aftermath plays on the return from battle. Ash Jenna then
+    // appears for the finale automatically.
     if (GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0) {
       Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(167), PIXELS(184));
       Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_NORTH, 0);
