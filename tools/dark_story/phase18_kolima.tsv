@@ -19,14 +19,14 @@
 05276	message	You're not listening,\nare you?{end_wait}
 05278	message	Hroom! Why do you\nremain unchanged?{end_wait}
 05299	message	We'll leave it to you,\n{actor_name:1}. Help them.{end_wait}
-05303	message	So{pause_20_skippable} the people of Kolima\nwill stay trees until\nthey wither and die?{end_now}
-05305	message	That's right...\nWe can't leave\nthem to rot!{end_wait}
-05306	message	But{pause_20_skippable} how do we bring\nback the gentle Tret\nand save the village?{end_wait}
-05307	message	I really don't know\nwhat to do.{end_wait}
-05308	message	{actor_name:3}, you can't give\nup!{pause_20_skippable} Please,{pause_20_skippable} convince him\nto help!{end_wait}
-05310	message	Promise{pause_20_skippable} you'll do\neverything in your power\nto save Kolima.{end_wait}
-05312	message	I was beginning to lose\nfaith in you, {actor_name:1}.{end_wait}
-05313	message	But how do we bring\nback the good Tret{page_break}and save Kolima?{end_wait}
+05303	message	Then they'll stay trees\nuntil they die?{end_now}
+05305	message	We can't leave\nthem like this.{end_wait}
+05306	message	How do we help Tret\nand lift the curse?{end_wait}
+05307	message	I don't know yet.{end_wait}
+05308	message	{actor_name:3}, please.\nWe need your help.{end_wait}
+05310	message	Promise you'll do\nall you can for Kolima.{end_wait}
+05312	message	I thought you'd leave,\n{actor_name:1}.{end_wait}
+05313	message	But how do we save\nTret and Kolima?{end_wait}
 05314	message	I really have no\nidea right now...{end_wait}
 05316	message	I don't know yet...\nBut we have to\nthink of something.{end_wait}
 05317	message	Well,{pause_20_skippable} let's go.{end_wait}
