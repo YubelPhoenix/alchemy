@@ -316,8 +316,8 @@ static void LamakanDesert_SayMia(void) {
 }
 
 /// After the Manticore and the caravan, Ash Jenna names herself and offers to
-/// close the Lighthouse door by killing the awakened. The mercy count (harbour
-/// child, the miner, the Mogall door and the caravan) colours the three endings.
+/// close the Lighthouse door by killing the awakened. The mercy count (the
+/// miner, the Mogall door and the caravan) colours the three endings.
 /// Once.
 static void LamakanDesert_AshJennaFinale(void) {
   s32 mercy;
