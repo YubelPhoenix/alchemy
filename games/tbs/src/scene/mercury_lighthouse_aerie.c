@@ -1262,6 +1262,8 @@ static void MercuryLighthouseAerie_MiaBeatsMenardi(void) {
   s32 hostages[4];
 
   Event_Start();
+  // The battle has already returned through its victory-only destination.
+  // Keep the encounter's outcome separate from the final reunion flags.
   MercuryLighthouseAerie_SetUpMiaAlone();
   Event_SetMessageId(MsgDarkAerieMenardiRetreat);
   FieldEvent_ShowMessageThenWait(ACTOR_MENARDI, 0, 20);
@@ -1281,6 +1283,8 @@ static void MercuryLighthouseAerie_MiaBeatsMenardi(void) {
   Party_AddMember(MIA);
   gSaveBlock.leaderActorId = ISAAC;
   Party_RestoreHpPp(1);
+  // Leave the post-battle scene via the reunion entrance; never restart
+  // the encounter from this successful path.
   Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_MIA_REUNITES);
   Event_End();
 }
