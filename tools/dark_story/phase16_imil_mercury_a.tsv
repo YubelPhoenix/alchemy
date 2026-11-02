@@ -83,7 +83,7 @@
 05534	message	The beacon can't be lit\nwithout the Mercury\nStar...{end_wait}
 05535	message	...The Elemental Stars\nwere stolen from Sol\nSanctum, on Mt. Aleph.{end_wait}
 05536	message	Mt. Aleph... Sol Sanctum...{pause_20_skippable}\nAre you healers from\nSol Sanctum?{end_now}
-05537	message	We came from Vale to\nrecover the three\nElemental Stars.{end_wait}
+05537	message	We came from Vale to\nrecover the four\nElemental Stars.{end_wait}
 05538	message	But unlike you, we are\nnot healers.{end_wait}
 05539	message	We came from Mt. Aleph,\nbut we're not healers.{end_wait}
 05540	message	We came from Vale to\nrecover the three\nElemental Stars.{end_wait}
