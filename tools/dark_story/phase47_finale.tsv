@@ -5,7 +5,7 @@ N195	MsgDarkFinaleJenna1	You kept walking, so you\nhave earned an answer. I'll\n
 N196	MsgDarkFinaleIsaac1	You aren't our Jenna. So\nwho are you?{end_wait}
 N197	MsgDarkFinaleJenna2	I am a Jenna from a world\nthe Wise One destroyed.{page_break}I survived what he left.\nI will not let him do it\nto another world.{end_wait}
 N198	MsgDarkFinaleGaret	Then what do you want from\nus? From Isaac?{end_wait}
-N199	MsgDarkFinaleJenna3	He used the power of the\nbeacons to destroy my world.\nHe will do it again.{page_break}I can help you stop him.\nBut you must decide whether\nyou trust me.{end_wait}
+N199	MsgDarkFinaleJenna3	Beacon power destroyed my\nworld. He will do it again.{page_break}I can help you stop him.\nBut you must decide whether\nyou trust me.{end_wait}
 N200	MsgDarkFinaleIvan	She's telling the truth,\nIsaac. But she's afraid of\nwhat comes next.{end_wait}
 N201	MsgDarkFinaleMia	If she's telling the truth,\nwe need to know more.\nRevenge won't guide us.{end_wait}
 N203	MsgDarkEchoMiner	You stayed with that miner\nuntil the end. I saw you.{end_wait}
