@@ -40,7 +40,7 @@
 04580	MsgValeTheWiseOneChoseGaretHimself	The Wise One chose\n{actor_name:2}.{page_break}I wish that made\nme less afraid.{end_wait}
 04581	MsgValeOnceGaretLeavesIWontBe	When {actor_name:2} leaves,\nI'll wait for news.{page_break}Every day, until\nhe comes home.{end_wait}
 04582	MsgValeIAmConcernedForGaretBut	I worry about\n{actor_name:2}.{page_break}I'll try to trust\nhis judgment.{end_wait}
-04585	MsgValeFelixInheritedHisFathersSkillWith	{actor_name:5} was gifted\nwith Psynergy.{page_break}I hope he remembers\nwhat it can protect.{end_wait}
+04585	MsgValeFelixInheritedHisFathersSkillWith	{actor_name:5} was gifted\nwith Psynergy.{page_break}I hope {actor_name:5}\nuses it to protect.{end_wait}
 04586	MsgValeJennaAnytimeYouFaceDangerJust	{actor_name:6}, stay strong.{page_break}Your mother's fire\nis still with you.{end_wait}
 04587	MsgValeWhyWouldFelixTakeHisSister	Why would {actor_name:5}\ntake {actor_name:6} away?{end_wait}
 04588	MsgValeWeAlmostLostTheTownOver	We nearly lost Vale\nbecause we kept secrets.{end_wait}
