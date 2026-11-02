@@ -63,6 +63,6 @@
 10417	message	His ship is here,\nin Lalivero.{end_wait}
 10418	message	So the ship at the\npeninsula belonged to\nSaturos!{end_wait}
 10419	message	Perhaps. But we have\nno way to learn that\nnow...{end_wait}
-10420	message	Yes...{pause_20_skippable} They're gone...{end_wait}
+10420	message	Yes...{pause_20_skippable} Saturos\nand Menardi are gone...{end_wait}
 10421	message	But now we can sail\nthe ship of the ancients!{end_wait}
 10422	message	It should help us\nfind {actor_name:6}.{end_wait}
