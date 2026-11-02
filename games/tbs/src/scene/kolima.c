@@ -1966,7 +1966,8 @@ static void Kolima_TalkToHeart(void) {
   Kolima_HeartSays();
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
   Kolima_HeartSays();
-  // Isaac answers Heart directly; Garet is not part of this encounter.
+  // Heart continues her accusation; only Isaac responds.
+  Kolima_HeartSays();
   Kolima_HeartSays();
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
   GameFlag_Set(FLAG_DARK_HEART_FOUGHT);
