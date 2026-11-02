@@ -1336,8 +1336,12 @@ static void MercuryLighthouseAerie_MiaRejoinsParty(void) {
   MapGrid_CenterOnFollowedPoint();
   WaitFrames(1);
   MapGrid_CopyCellsTo(4, 0x46, 4, 0x4A, 5, 4);
+  // The solo fight and reunion are complete. Persist the existing story
+  // completion flags only after the party has been restored.
   GameFlag_Set(FLAG_MERCURY_LIGHTHOUSE_AERIE_ALEX_APPEARED);
   GameFlag_Set(FLAG_SATUROS_BEATEN_AT_MERCURY);
+  // Release the fixed cutscene camera before restoring player control.
+  FieldCamera_MoveTo(-1, -1, -1, 0);
   Event_End();
 }
 
