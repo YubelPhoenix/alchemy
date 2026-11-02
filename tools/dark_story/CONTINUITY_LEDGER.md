@@ -3,7 +3,7 @@
 Status: working audit document  
 Branch: `dark-story-rewrite`  
 Scope: narrative chronology, story-state dependencies, and rewrite coverage  
-Last audited revision: `11cd753113b7a1ec3a4af365b9a260e947b5afa6`
+Last audited revision: `d0b0e2861730a9e84065595c4ccfa760cfd60acd`
 
 This document separates the original game's progression from Ashfall's custom events. Phase filenames are organizational labels, **not** a reliable chronological sequence.
 
@@ -62,6 +62,9 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase48_docks.tsv` | Tolbi harbor child material. Its placement and dialogue state must be checked against the post-Colosso Tolbi return. |
 | `phase49_babi_palace.tsv` | 89 non-empty Babi's Palace message entries rewritten across pre-Colosso, Colosso, and post-Colosso states, including residents, Sheba-related dialogue, Mind Read, examinations, and event prompts. |
 | `phase50_babi_scholars.tsv` | 19 Babi scholars' room entries rewritten, covering Alchemy, the Venus Ruins, the lighthouse, and Kraden's absence. |
+| `phase51_suhalla.tsv` | 30 Suhalla town messages rewritten across the pre- and post-audience states, including villagers' dialogue and Mind Read. |
+| `phase52_suhalla_interiors.tsv` | 44 Suhalla interior messages rewritten, including merchants, travelers, wounded soldiers, Mind Read, and environmental examinations. |
+| `phase53_babi_lighthouse.tsv` | 38 Babi Lighthouse messages rewritten, covering workers, injured guards, Faran's pursuit, Sheba's rescue, the sealed door, and the ruins clue. |
 
 ### Important custom-state observations
 
@@ -84,7 +87,7 @@ The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue st
 
 ### Suhalla
 
-Before `FLAG_BABI_SPOKE_AFTER_COLOSSO`, villagers discuss the sandstorms, Angaran distrust, and Sheba's hostage status. After the audience, their dialogue reflects soldiers caught in the storms on the way to Babi Lighthouse. The party crosses the desert with Iodem after Babi's audience.
+Before `FLAG_BABI_SPOKE_AFTER_COLOSSO`, villagers discuss the sandstorms, Angaran distrust, and Sheba's hostage status. After the audience, their dialogue reflects soldiers caught in the storms on the way to Babi Lighthouse. The party crosses the desert with Iodem after Babi's audience. The town rewrite covers 30 non-empty messages. Its interiors have a further 44 messages across the pre- and post-audience states; `FLAG_IODEM_MET_WOUNDED_SOLDIERS` and `FLAG_BABI_LIGHTHOUSE_IODEM_ARRIVED` distinguish the wounded-soldier and Iodem-arrival dialogue.
 
 ### Lalivero
 
@@ -92,7 +95,7 @@ The first visit occurs with Iodem; townspeople discuss Sheba's capture, injured 
 
 ### Venus Lighthouse and Aerie
 
-Audit the outside approach, scholars and soldiers, ground-floor NPCs and environmental text, all four floors, puzzles, encounters, and the Aerie. The Aerie sequence includes the initial confrontation and battle, beacon lighting and second battle, the party's world-map transitions, Sheba hanging from the broken Aerie, and her fall. Do not treat the second battle as the final scene of the game.
+Audit the outside approach, scholars and soldiers, ground-floor NPCs and environmental text, all four floors, puzzles, encounters, and the Aerie. The Aerie sequence includes the initial confrontation and battle, beacon lighting and second battle, the party's world-map transitions, Sheba hanging from the broken Aerie, and her fall. Do not treat the second battle as the final scene of the game. The Babi Lighthouse approach and sealed-door dialogue now has a 38-message rewrite batch; its `FLAG_BABI_LIGHTHOUSE_DOOR_SHOWN`, `FLAG_BABI_LIGHTHOUSE_DOOR_OPEN`, `FLAG_BABI_LIGHTHOUSE_ASKED_TO_FOLLOW`, `FLAG_BABI_LIGHTHOUSE_BACK_FROM_STONE_DOOR`, and `FLAG_BEYOND_DOOR` states still require in-game verification.
 
 ### Ending
 
@@ -109,7 +112,7 @@ The current rewrite directory contains phase files through `phase48_docks.tsv`. 
 | Kalay / Karagol / Tolbi / Altmiller / Colosso | Original progression verified in scene scripts; Ashfall message-by-message coverage remains to be checked. |
 | Babi's Palace and scholars' rooms | Source-message rewrite drafted (89 + 19 entries); automated build and in-game state validation pending. |
 | Babi's audience / Gondowan Passage | Requires full dialogue coverage audit. |
-| Suhalla / desert / Babi Lighthouse | Requires full dialogue coverage audit. |
+| Suhalla / desert / Babi Lighthouse | Drafts exist for 30 town, 44 interior, and 38 Babi Lighthouse messages; automated build and in-game state validation pending. |
 | Lalivero, first and second visits | Original state split verified; Ashfall coverage remains to be checked. |
 | Venus Lighthouse, all floors | Requires full dialogue, sign, Mind Read, puzzle, and event-message audit. |
 | Venus Aerie | Event sequence verified; Ashfall dialogue coverage and character-knowledge audit required. |
@@ -126,8 +129,8 @@ The current rewrite directory contains phase files through `phase48_docks.tsv`. 
 ## Next audit actions
 
 1. Inventory the game's text data and determine how the current TSV phase files are applied.
-2. Build a source-message coverage index for every late-game scene listed above. Babi's Palace and its scholars' rooms are the first completed source-message draft batches; validate them before marking coverage complete.
+2. Build a source-message coverage index for every late-game scene listed above. Babi's Palace, scholars' rooms, Suhalla, and Babi Lighthouse now have draft batches; validate them before marking coverage complete.
 3. Audit custom branch flags and callbacks against their event scripts.
-4. Draft missing dialogue in small, location-complete batches, including optional NPCs and Mind Read text. Next: Suhalla and Babi Lighthouse, preserving their distinct event states.
+4. Draft missing dialogue in small, location-complete batches, including optional NPCs and Mind Read text. Next: Lalivero's first and second visits, its interiors, wharf, and Iodem's farewell / Black Orb sequence.
 5. Run the existing rewrite/build tooling and inspect the resulting ROM in-game across representative branches.
 6. Extend this ledger as each area is verified; mark coverage complete only after source-message comparison and in-game validation.
