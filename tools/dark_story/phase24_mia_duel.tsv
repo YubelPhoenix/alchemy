@@ -1,7 +1,7 @@
 00790	message	Mia
-N59	MsgDarkDuelMiaStops	Enough. Vale lost the\nStars, and now Vale wants\nto fight my battle for me?{end_wait}
+N59	MsgDarkDuelMiaStops	Enough. You let the Stars\nfall into their hands. And\nnow you expect my trust?{end_wait}
 N60	MsgDarkDuelIsaacNoTime	Mia, Jenna and Kraden are\nhis hostages. We need to\nfight with you, not against{page_break}you.{end_wait}
-N61	MsgDarkDuelMiaPlace	Excuses. You couldn't guard\none sanctum, and now you\nwant my trust?{end_wait}
+N61	MsgDarkDuelMiaPlace	You couldn't protect Sol\nSanctum. Why should I trust\nyou with this lighthouse?{end_wait}
 N62	MsgDarkDuelIsaacRefuse	I'm asking you to move. I\nwon't stand aside while\nJenna's up there.{end_wait}
 N63	MsgDarkDuelMiaDraw	Then prove you're worth\nstanding beside. Draw your\nblade, Isaac, and face me{page_break}alone.{end_wait}
 N64	MsgDarkDuelSaturosAmused	Settle it, then. I can\nwait, and it'll show me\nwhat you're made of.{end_wait}
