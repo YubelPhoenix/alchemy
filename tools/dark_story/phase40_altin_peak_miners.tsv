@@ -4,7 +4,10 @@ N141	MsgDarkPeakMinerYes	Thank the mountain. Hurry,\nbefore the water wins.{end_
 N142	MsgDarkPeakMinerNo	Then go. The mountain keeps\nwhat it likes. It won't\nforgive you.{end_wait}
 N143	MsgDarkPeakMiaDig	Dig for strangers? Half of\nthem will wake wrong. Let\nthe mountain have them.{end_wait}
 N144	MsgDarkPeakGaretDig	Mia! They're men, not\nmonsters! Do you hear\nyourself?{end_wait}
-N145	MsgDarkPeakMiaAlex	I hear someone who has not\nseen what wakes in there.\nGo on, dig.{end_wait}
+N145	MsgDarkPeakMiaAlex	You haven't seen what comes
+back from those tunnels,
+Garet. But Isaac has made
+his choice. Go on, then.{page_break}Dig.{end_wait}
 N146	MsgDarkPeakIsaacDig	We dig, all of us. Nobody\nstays behind.{end_wait}
 N147	MsgDarkPeakMinerThanks	They're alive. Most are\nstill themselves. Take this\nbread, it's all we have.{end_wait}
 N148	MsgDarkPeakMinerDone	The water's going down.\nThank you. I mean it.{end_wait}
