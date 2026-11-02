@@ -517,7 +517,7 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
     Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
     Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_GREY);
   }
-  // Ondra rises once all three kindnesses are done, until she is beaten. A
+  // Kegare appears once an optional encounter condition is met, until beaten. A
   // return from her battle means she has been beaten.
   if (GameFlag_Get(FLAG_DARK_ONDRA_FOUGHT) != 0 &&
       gSaveBlock.sequenceResult == -1) {
@@ -1057,7 +1057,7 @@ struct Trigger gTolbiTriggersFestival[] = {
 
 /// On finals day.
 struct Trigger gTolbiTriggersFinalsDay[] = {
-    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToOndra) },
+    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -1130,7 +1130,7 @@ struct Trigger gTolbiTriggersFinalsDay[] = {
 
 /// After Colosso has ended.
 struct Trigger gTolbiTriggersAfterColosso[] = {
-    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToOndra) },
+    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { TRIGGER_TALK, ACTOR_TOLBI_ASH_JENNA, CONDITION_ALWAYS, EVENT(Tolbi_MeetAshJenna) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
