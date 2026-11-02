@@ -517,18 +517,17 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
     Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
     Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_GREY);
   }
-  // Kegare appears once an optional encounter condition is met, until beaten. A
-  // return from her battle means she has been beaten.
+  // Kegare appears only after Colosso, until her optional battle is won.
   if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0 &&
       gSaveBlock.sequenceResult == -1) {
     // The party lost: she is still waiting, and the fight can be tried again.
     GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
   } else if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0) {
     GameFlag_Set(FLAG_DARK_KEGARE_BEATEN);
-  } else if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0 ||
-             (GameFlag_Get(FLAG_DARK_TIDE_ALTIN) != 0 &&
-              GameFlag_Get(FLAG_DARK_TIDE_IMIL) != 0 &&
-              GameFlag_Get(FLAG_DARK_TIDE_TOLBI) != 0)) {
+  }
+  if (GameFlag_Get(FLAG_COLOSSO_OVER) != 0 &&
+      GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) == 0 &&
+      GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) == 0) {
     Actor_SetPosition(ACTOR_TOLBI_KEGARE, PIXELS(264), PIXELS(296));
     Actor_FaceDirection(ACTOR_TOLBI_KEGARE, FACING_NORTH, 0);
     Actor_ConfigureSpriteColor(ACTOR_TOLBI_KEGARE, SPRITE_COLOR_GREY);
@@ -566,15 +565,6 @@ static void Tolbi_MeetAshJenna(void) {
   Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_ASH_JENNA_TOLBI);
-  // The harbour: Ivan hears a child crying at the docks. The boy waits there;
-  // the choice about him is made in KalayTolbiDocks_TalkToHarborChild.
-  Event_SetMessageId(MsgDarkHarborIvan);
-  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  GameFlag_Set(FLAG_DARK_HARBOR_CALLED);
   // Mia admits that Ash Jenna's personal attack unsettled her, but the
   // party reassures her. No weapon, possession, or transfer choice is involved.
   Event_SetMessageId(MsgDarkMiaTolbiConcern);
@@ -614,7 +604,7 @@ static void Tolbi_TalkToStrandedFather(void) {
   Event_End();
 }
 
-/// Kegare, the Mia-mimicking Water Adept, challenges Isaac.
+/// Kegare, a demon from another age wearing Mia's face, challenges the party.
 /// Her battle is slot 2 of ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI; a win returns
 /// to Tolbi with FLAG_DARK_KEGARE_FOUGHT set, and she is gone.
 static void Tolbi_TalkToKegare(void) {
@@ -623,6 +613,14 @@ static void Tolbi_TalkToKegare(void) {
   Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkKegareMiaRefutes);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_SetMessageId(MsgDarkKegareThreatens);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
+  Event_SetMessageId(MsgDarkKegareMiaResolves);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_SetMessageId(MsgDarkKegareIsaacReady);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   GameFlag_Set(FLAG_DARK_KEGARE_FOUGHT);
   gFieldWork->transition =
@@ -986,7 +984,6 @@ struct ActorTemplate gTolbiActorTemplates[] = {
 
 /// During the festival, before the finals.
 struct Trigger gTolbiTriggersFestival[] = {
-    { TRIGGER_TALK, ACTOR_TOLBI_KEGARE, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
