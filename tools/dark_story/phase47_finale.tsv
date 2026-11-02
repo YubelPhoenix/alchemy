@@ -7,10 +7,10 @@ N197	MsgDarkFinaleJenna2	I am a Jenna from a world\nthe Wise One burned.{page_br
 N198	MsgDarkFinaleGaret	Then what do you want from\nus? From Isaac?{end_wait}
 N199	MsgDarkFinaleJenna3	Your lighthouses are doors.\nEach one wakes the sleepers\nand feeds the flame.{page_break}Kill the awakened and the\ndoor will close, quickly\nand cleanly. Just choose.{end_wait}
 N200	MsgDarkFinaleIvan	She's telling the truth,\nIsaac, and she's afraid.\nI can hear it in her.{end_wait}
-N201	MsgDarkFinaleMia	Do it, Isaac. Then all of\nthis will be over.{end_wait}
+N201	MsgDarkFinaleMia	If there is another way,\nwe have to find it. I won't\nlet fear choose for us.{end_wait}
 N203	MsgDarkEchoMiner	You stayed with that miner\nuntil the end. I saw you.{end_wait}
 N204	MsgDarkEchoDoor	You opened that door. I can\nstill hear her humming.{end_wait}
-N205	MsgDarkEchoCaravan	Forty of them were awake,\nand you walked in without\ndrawing a weapon.{end_wait}
+N205	MsgDarkEchoCaravan	You tried to reach them,\neven when you knew they\nmight not hear you.{end_wait}
 N207	MsgDarkEchoNone	You showed no mercy at all,\nIsaac. You and I are\nalready the same.{end_wait}
 N208	MsgDarkFinaleAsk	Take her offer?{end_now}
 N209	MsgDarkFinaleYesIsaac	All right. Do it, and make\nit quick.{end_wait}
@@ -20,7 +20,7 @@ N212	MsgDarkFinaleYesJenna2	He did what I asked.\nWelcome, Isaac.{end_wait}
 N213	MsgDarkFinaleNoIsaac	No. We'll find another\nway, and I'll carry\nwhatever it costs.{end_wait}
 N214	MsgDarkFinaleMercyJenna	Then carry it. The sleepers\nwill still wake, and\nremember that I offered.{end_wait}
 N215	MsgDarkFinaleMercyIvan	I'll hear every one of\nthem, Isaac, but I'm\nstaying with you.{end_wait}
-N216	MsgDarkFinaleMercyMia	Then we'll keep looking\nfor another way. I won't\nlet her choose for us.{end_wait}
+N216	MsgDarkFinaleMercyMia	Then we keep looking. I\nwon't pretend there's an\ easy answer, but we choose.{end_wait}
 N217	MsgDarkFinaleDivIsaac	I won't do that, not even\nto stop all of this.{end_wait}
 N218	MsgDarkFinaleDivJenna	Then I'll wait. People like\nyou always come around in\nthe end.{end_wait}
 N219	MsgDarkFinaleDivMia	He's too soft, and you know\nit. I'm done waiting for\nhim.{end_wait}
