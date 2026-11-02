@@ -1,90 +1,90 @@
 # Babi's Palace: every story state, resident, examination and Mind Read entry.
-08177	MsgTolbiRunBabisSoldiers	Have you seen Babi's\\nsoldiers? They were\\nsearching every street.{end_now}
-08183	MsgTolbiWeHaveJustEnoughExtra	There are beds enough\\nfor all of you. Come;\\nI'll show you the room.{page_break}Try to rest while you\\ncan. This palace is not\\na safe place tonight.{end_wait}
-08205	MsgBabiPalaceIGetSoAngrySeeingAll	I watched the warriors\\nleave for the arena. I\\nshould have gone with them.{page_break}Now my back is ruined,\\nand all I can do is listen\\nto the crowd.{end_wait}
-08206	MsgBabiPalaceMaybeIShouldntHaveEatenQuite	I ate too much before\\ntraining. Now I can barely\\nstand. Some fighter I am.{end_wait}
-08180	MsgBabiPalaceIfYoureEnteringColossoHurryAlong	If you're fighting, get\\nto the colosseum. The\\ntrials are nearly over.{page_break}The palace has no place\\nfor a warrior who won't\\nface the arena.{end_wait}
-08207	MsgBabiPalaceOnlyWarriorsWhoFightWellIn	The finals decide who\\njoins Babi's guard. The\\nstrong are taken in.{page_break}The rest go home, if\\nthey're lucky enough to\\nwalk away.{end_wait}
-08272	MsgBabiPalaceActorWasTakenHostageToForce	{actor_name:7} was taken to\\nmake Lalivero build the\\nlighthouse for Babi.{page_break}I hear her crying at\\nnight. No one here has\\nthe courage to help her.{end_wait}
-08766	MsgBabiPalaceWhatAreYouDoingHurryOver	Still here? The finals\\nare about to begin. Get\\nto the colosseum.{end_wait}
-08769	MsgTolbiCameRestBefore	You came here to recover\\nbefore your next match,\\ndidn't you?{page_break}Will you sleep now?{end_now}
-08775	MsgBabiPalaceBabiHasReturnedAndTheFinals	Lord Babi has returned.\\nThe finals will begin\\nsoon. At last.{end_wait}
-08777	MsgBabiPalaceWhatsGoingOnActorIsLooking	Why is {actor_name:7} smiling?\\nShe looked so frightened\\nwhen she first arrived.{page_break}Whatever the soldiers\\ntold her, it seems to\\nhave eased her fear.{end_wait}
-08778	MsgBabiPalaceTheSoldiersCameToSeeActor	The soldiers visited\\n{actor_name:7}. She has seemed\\ncalmer ever since.{page_break}They never tell the rest\\nof us what they do here.\\nI doubt it's good news.{end_wait}
-08882	MsgBabiPalaceBabiWasFoundSafeAndSound	Babi was found alive.\\nColosso can continue,\\nand the palace can breathe.{page_break}For now, at least. The\\nmen who searched for him\\nlook more tired than glad.{end_wait}
-08875	MsgTolbiEasternShoresKaragol	You crossed the Karagol\\nfrom the eastern shore?\\nDo you miss home already?{end_now}
-08883	MsgBabiPalaceNowThatColossoIsOverIm	Colosso is finished.\\nI'm bound for Gondowan\\nto raise Babi's lighthouse.{end_wait}
-08884	MsgBabiPalaceTheSouthernContinentIsADangerous	The southern continent\\nis not a gentle place.\\nYou'll learn that soon.{page_break}Angara has its troubles,\\nbut at least its roads\\nare not trying to kill you.{end_wait}
-09039	MsgBabiPalaceBabisFaceIsVeryPaleLike	Babi's skin has gone\\nwhite as old stone. He\\nlooks almost like a corpse.{page_break}No one will speak of it.\\nPerhaps they fear what\\nhe might do if they did.{end_wait}
-09042	MsgTolbiFoundCloakBall	You found the\\nCloak Ball.{end_wait}
-09049	MsgBabiPalaceTheGirlFromLaliveroIsNo	The girl from Lalivero\\nhas gone. Soldiers are\\ntaking her home.{page_break}They say the lighthouse\\nneeds no more hostages.\\nI doubt she believes it.{end_wait}
-09050	MsgBabiPalaceIAmSurprisedActorWasAllowed	I'm surprised {actor_name:7} was\\nallowed to return to\\nLalivero.{page_break}At least she can see\\nher own people again.\\nThat should matter.{end_wait}
-08173	MsgBabiPalaceNormallyNoOnesAllowedIntoBabis	The palace is closed\\nto visitors. Colosso is\\nthe only exception.{page_break}Do not mistake that\\nfor an invitation to\\nwander wherever you please.{end_wait}
-08174	MsgBabiPalaceSomeOfTheRoomsInThe	Some rooms are open to\\nColosso entrants. Lord\\nBabi has allowed it.{page_break}Try to remember whose\\nroof you're standing\\nunder.{end_wait}
-08184	MsgTolbiUseFourBeds	You may use the four\\nbeds. Will you sleep\\nnow?{end_now}
-08773	MsgTolbiTiredFeelFreeRest	If you need to rest,\\nplease do. The next match\\nwill come soon enough.{end_wait}
-08198	MsgTolbiPlanningEnterColosso	Are you entering\\nColosso?{end_now}
-08201	MsgTolbiCantFightBecauseLittleIndigestion	I can't fight over a\\nbit of stomach pain?\\nWhat a miserable excuse.{end_wait}
-08274	MsgTolbiEvenIfEscapedBabiPalace	Even if I left this place,\\nI could never cross the\\nSuhalla Desert alone.{page_break}Lalivero is beyond it.\\nI would die before I\\never saw home again.{end_wait}
-08832	MsgTolbiGetUp	{actor_name:1}! Wake up!{page_break}Come on, {actor_name:1}!\\nYou have to get up!{end_wait}
-08187	MsgTolbiLikeSleep	Would you like\\nto sleep now?{end_now}
-08900	MsgTolbiWaitingCompanions	I've been waiting for\\nyou and your companions,\\n{actor_name:1}.{end_wait}
-08755	MsgTolbiArent	You're {actor_name:1},\\naren't you?{end_now}
-08761	MsgTolbiIsaacIdReallyLikeThank	{actor_name:1}, I owe you\\nfor bringing Babi back.\\nHe wants to see you.{page_break}He's waiting at the\\ncolosseum. Don't keep\\nhim there.{end_wait}
-08762	MsgTolbiBabiWaitingForAtColosseum	Babi is waiting at the\\ncolosseum. Go straight\\nthere, as he requested.{end_wait}
-08867	MsgTolbiWarriorsWhoStayed	The warriors who stayed\\nhere have all left now.\\nWill you be leaving too?{end_now}
-10720	MsgTolbiItsFilledWithFreshClean	The water is clear.\\nNothing has disturbed it.{end_wait}
-08181	MsgBabiPalaceIWonderHowDiligentlyBabisSoldiers	Are Babi's soldiers still\\nsearching? I sent them\\nthrough every quarter.{end_wait}
-08182	MsgBabiPalaceWarriorsAreNotAllowedToStay	If you won't enter the\\nColosso, you cannot stay\\nin the palace. Leave.{end_wait}
-08204	MsgBabiPalaceIWantToWatchTheColosso	I'd rather be watching\\nthe matches. Instead, I\\nmust cheer the fighters on.{page_break}A fine duty, they say.\\nI would trade it for\\na place in the arena.{end_wait}
-08208	MsgBabiPalaceLordBabiIsBuildingTheLighthouse	The lighthouse is Babi's\\nmonument to himself.\\nThat's how I see it.{end_wait}
-08209	MsgBabiPalaceBabisNameIsRidingOnThe	His name is tied to the\\nlighthouse now. The work\\nmust not fail.{page_break}That's why the guards\\nwatch every stone and\\nevery worker.{end_wait}
-08210	MsgBabiPalaceEvenIfLordBabiDoesntReturn	Even if Babi never\\nreturns, the work will\\ncontinue.{page_break}I only hope we learn\\nwhat happened to him\\nbefore it is too late.{end_wait}
-08211	MsgBabiPalaceMyFirstColossoWasSoExciting	My first Colosso was\\nlike nothing I'd seen.\\nI still remember the roar.{page_break}This year, the crowd\\nsounds more frightened\\nthan excited.{end_wait}
-08212	MsgBabiPalaceOnceTheLighthouseIsCompleteBabis	When the lighthouse is\\nfinished, Babi's name\\nwill outlive us all.{end_wait}
-08213	MsgBabiPalaceWedNeverGetNearTheLighthouse	I would never reach the\\nworksite without Iodem's\\npasses.{end_wait}
-08214	MsgBabiPalaceIHearThatGirlIsGoing	They say the girl is\\ngoing with the next\\nparty to Gondowan.{end_wait}
-08267	MsgBabiPalaceItLooksLikeLordBabiDidnt	Babi's bed was untouched\\nthis morning. He never\\nmisses his routine.{page_break}Something has changed.\\nNo one wants to say\\nwhat it is.{end_wait}
-08268	MsgBabiPalaceIGuessLordBabiDidNot	He did not sleep here\\nlast night. I heard the\\nguards moving before dawn.{end_wait}
-08269	MsgBabiPalaceActorHasBeenStayingAsLord	{actor_name:7} has been kept\\nhere as Lord Babi's\\nguest for some time.{page_break}She is from Lalivero,\\nfar to the south, and\\nfar from her family.{end_wait}
-08270	MsgBabiPalaceActorWasReveredAsAChild	{actor_name:7} was revered\\nat home as a child of\\nthe gods.{page_break}Here she is only a girl\\nbehind a locked door.\\nThat is the truth of it.{end_wait}
-08271	MsgBabiPalaceBabiIsHoldingMeHostageIn	Babi is keeping me here\\nto force Lalivero to\\nbuild his lighthouse.{page_break}I want to go home.\\nI want this to end.\\nI am tired of asking.{end_wait}
-08273	MsgBabiPalaceActorIsNotPermittedToLeave	{actor_name:7} cannot leave\\nthis room. Her title\\nmeans nothing here.{page_break}She is a child, and\\nthere is no safe road\\nback to Gondowan alone.{end_wait}
-10672	MsgBabiPalaceTheArmorLooksHeavyItLooks	This armor is battered.\\nIt must have belonged\\nto a Colosso fighter.{end_wait}
-10673	MsgBabiPalaceTheresNothingInThereItsCompletely	The room is dark.\\nOnly a few old dice\\nlie scattered inside.{page_break}Someone spent a long\\ntime here, and lost\\nmore than a game.{end_wait}
-10674	MsgBabiPalaceTheresAHeadbandItSaysNever	A headband. The words\\nare faded, but still\\nlegible: Never give up.{end_wait}
-10675	MsgBabiPalaceTheresABookEntitledTheHeart	A book called The Heart\\nof the Colosso Warrior.{page_break}Its advice is simple:\\nFight hard. Leave your\\nmoney out of the wagers.{end_wait}
-10676	MsgBabiPalaceTheresANotebookThatShowsThe	A ledger of dice games.\\nThe same name appears\\nagain and again.{page_break}The sums beside it\\nare all losses.{end_wait}
-10677	MsgBabiPalaceTheresABookEntitledBecomeA	A book: Become Strong\\nin Twelve Easy Steps.{page_break}The pages are full of\\nexercises and promises.\\nMost are underlined.{end_wait}
-10678	MsgBabiPalaceHeyItsBabisDiaryItReads	Babi's diary. The last\\nentry is brief:{page_break}\"This Colosso may be\\nmy last...\"{end_wait}
-08765	MsgBabiPalaceBabisSoldiersHaveGoneToSee	Babi's soldiers are\\nwatching Colosso now.\\nThey are fighters too.{page_break}They cheer with the rest,\\nbut their eyes keep\\nturning toward the exits.{end_wait}
-08767	MsgBabiPalaceThoseGuysLookReallyConfidentAbout	Those fighters look\\nready for anything.\\nI wonder if they are.{page_break}Confidence is easy\\nwhen the crowd is\\nshouting your name.{end_wait}
-08768	MsgBabiPalaceTheFinalsAreAllThatsLeft	Only the finals remain.\\nI want to see a great\\nfight.{page_break}I hope the crowd can\\nremember it as a sport,\\nnot a funeral.{end_wait}
-08774	MsgBabiPalaceIHopeYoullAllDoWell	Good luck in the finals.\\nCome back in one piece.{end_wait}
-08776	MsgBabiPalaceWhenBabiReturnedHeHeadedOff	Babi returned and went\\nstraight to the festival.\\nHe did not even rest.{page_break}He seemed more concerned\\nwith the finals than\\nwith his own safety.{end_wait}
-08779	MsgBabiPalaceHmphIWishColossoWouldHurry	I wish Colosso would\\nend. The noise is getting\\nhard to bear.{end_wait}
-08780	MsgBabiPalaceASmileOnAPrettyGirl	Seeing {actor_name:7} smile\\nis a relief. There was\\nso much fear in her face.{page_break}I hope she has reason\\nto believe things will\\nbe better.{end_wait}
-08781	MsgBabiPalaceActorIsAGoodGirlBut	{actor_name:7} is kind, but\\nshe has a will of her\\nown. I respect that.{end_wait}
-08782	MsgBabiPalaceIDontHaveTheLeastInterest	Colosso means little to\\nme. When it ends, though,\\nthere may be good news.{end_wait}
-08878	MsgBabiPalaceIHaventSeenMuchOfBabi	I hardly see Babi now.\\nSometimes I think he is\\nafraid to be alone.{page_break}What could frighten a\\nman who commands this\\nwhole city?{end_wait}
-08879	MsgBabiPalaceItWouldBeAWasteTo	It would be a shame to\\nlet you leave, {actor_name:1}.\\nI won't tell you the way.{page_break}You have earned no\\nfavors from me.{end_wait}
-08880	MsgBabiPalaceNoOnesGoingToSleepIn	No one will sleep in\\nthis room until next\\nyear's Colosso.{page_break}Still, I must keep it\\nclean. It is the only\\nwork I have.{end_wait}
-08881	MsgBabiPalaceWouldThisRoomGetVeryDusty	If I left this room\\nuntouched, it would fill\\nwith dust.{page_break}I suppose I should keep\\ncleaning. It gives me\\nsomething to do.{end_wait}
-08885	MsgBabiPalaceIWasHopingIdBeThe	I hoped I would be the\\none to find Babi. The\\nsearch is over now.{end_wait}
-08886	MsgBabiPalaceColossoHasEndedSoWeHave	Colosso is over. We must\\nreturn to the lighthouse\\nand finish the work.{page_break}{pause_20_skippable}I still wonder why Babi\\nneeds it completed\\nso urgently.{end_wait}
-08887	MsgBabiPalaceIWantThatLighthouseFinishedQuickly	I want the lighthouse\\nfinished. Then I can\\nleave Gondowan behind.{end_wait}
-09047	MsgBabiPalaceIfYouUseTheCloakBall	The Cloak Ball hides you\\nfrom the eyes of beasts\\nwhen you stand in shadow.{page_break}That is how I crossed\\nAltmiller Cave without\\nbeing seen.{end_wait}
-09048	MsgBabiPalaceWhyWouldAnAdeptLikeYou	Why would an Adept need\\na Cloak Ball, {actor_name:1}?\\nYou have other gifts.{end_wait}
-09038	MsgBabiPalaceSleepingALotHelpsToDelay	Sleep slows the draught's\\neffect. It buys me time,\\nbut not much.{page_break}If you reach Lemuria,\\nbring back more. I cannot\\nkeep living this way.{end_wait}
-09040	MsgBabiPalaceIWishIHadMetYou	I wish we had met sooner,\\n{actor_name:1}. Perhaps\\nthings might differ.{page_break}But some roads close\\nlong before we see\\nwhere they lead.{end_wait}
-09041	MsgBabiPalaceIfSomethingHappensToBabiWhat	If Babi dies, what becomes\\nof Tolbi? No one speaks\\nof what follows him.{page_break}I fear the answer is\\nthat nothing here will\\nchange for the better.{end_wait}
-09051	MsgBabiPalaceItSeemedOnlyNaturalThatActor	It seemed right that\\n{actor_name:7} should return\\nto Lalivero.{page_break}But who decided she\\nwas free to go? I never\\nheard an explanation.{end_wait}
-09052	MsgBabiPalaceIAmSoRelievedActorHas	I'm glad {actor_name:7} is\\nhome again. I hope she\\ncan sleep without fear.{page_break}The palace feels empty\\nnow, though I cannot\\nexplain why.{end_wait}
-08175	MsgBabiPalaceShouldThePalaceReallyBeOpen	Should the palace be\\nopen to visitors while\\nBabi is missing?{end_wait}
-08176	MsgBabiPalaceIWonderHowManyPeopleWill	How many people will\\nstay here after Colosso?\\nWill anyone remain?{end_wait}
-08760	MsgBabiPalaceBabiWantsYouToGoStraight	Babi wants you at the\\ncolosseum. Go there\\nwithout delay.{page_break}He does not want you\\nwandering through the\\npalace first.{end_wait}
-08763	MsgBabiPalaceSureTheySavedBabiButIm	They brought Babi back,\\nbut that does not make\\nthem fit for the finals.{end_wait}
-08764	MsgBabiPalaceBabiIsADeliberateManHe	Babi is a careful man{em_dash}\\nhe does not choose\\nfavorites lightly.{page_break}What does he see in\\nthose warriors? What\\ndoes he want from them?{end_wait}
-08866	MsgBabiPalaceIveLostAllMyEnthusiasmSince	Since Colosso ended, the\\ncity has gone quiet.\\nI miss the crowds.{page_break}I never thought I would\\nmiss the sound of people\\ncheering for blood.{end_wait}
-08870	MsgBabiPalaceTheEndOfAFestivalIs	The end of a festival\\nleaves the streets empty.\\nIt is a lonely silence.{end_wait}
-08871	MsgBabiPalaceAllTheHeroicWarriorsWhoTook	The best fighters should\\nstay in Tolbi. That is\\nwhy Babi holds Colosso.{page_break}He gathers strong people\\nunder one roof. What he\\nplans for them is unclear.{end_wait}
+08177	MsgTolbiRunBabisSoldiers	Have you seen Babi's\nsoldiers? They were\nsearching every street.{end_now}
+08183	MsgTolbiWeHaveJustEnoughExtra	There are beds enough\nfor all of you. Come;\nI'll show you the room.{page_break}Try to rest while you\ncan. This palace is not\na safe place tonight.{end_wait}
+08205	MsgBabiPalaceIGetSoAngrySeeingAll	I watched the warriors\nleave for the arena. I\nshould have gone with them.{page_break}Now my back is ruined,\nand all I can do is listen\nto the crowd.{end_wait}
+08206	MsgBabiPalaceMaybeIShouldntHaveEatenQuite	I ate too much before\ntraining. Now I can barely\nstand. Some fighter I am.{end_wait}
+08180	MsgBabiPalaceIfYoureEnteringColossoHurryAlong	If you're fighting, get\nto the colosseum. The\ntrials are nearly over.{page_break}The palace has no place\nfor a warrior who won't\nface the arena.{end_wait}
+08207	MsgBabiPalaceOnlyWarriorsWhoFightWellIn	The finals decide who\njoins Babi's guard. The\nstrong are taken in.{page_break}The rest go home, if\nthey're lucky enough to\nwalk away.{end_wait}
+08272	MsgBabiPalaceActorWasTakenHostageToForce	{actor_name:7} was taken to\nmake Lalivero build the\nlighthouse for Babi.{page_break}I hear her crying at\nnight. No one here has\nthe courage to help her.{end_wait}
+08766	MsgBabiPalaceWhatAreYouDoingHurryOver	Still here? The finals\nare about to begin. Get\nto the colosseum.{end_wait}
+08769	MsgTolbiCameRestBefore	You came here to recover\nbefore your next match,\ndidn't you?{page_break}Will you sleep now?{end_now}
+08775	MsgBabiPalaceBabiHasReturnedAndTheFinals	Lord Babi has returned.\nThe finals will begin\nsoon. At last.{end_wait}
+08777	MsgBabiPalaceWhatsGoingOnActorIsLooking	Why is {actor_name:7} smiling?\nShe looked so frightened\nwhen she first arrived.{page_break}Whatever the soldiers\ntold her, it seems to\nhave eased her fear.{end_wait}
+08778	MsgBabiPalaceTheSoldiersCameToSeeActor	The soldiers visited\n{actor_name:7}. She has seemed\ncalmer ever since.{page_break}They never tell the rest\nof us what they do here.\nI doubt it's good news.{end_wait}
+08882	MsgBabiPalaceBabiWasFoundSafeAndSound	Babi was found alive.\nColosso can continue,\nand the palace can breathe.{page_break}For now, at least. The\nmen who searched for him\nlook more tired than glad.{end_wait}
+08875	MsgTolbiEasternShoresKaragol	You crossed the Karagol\nfrom the eastern shore?\nDo you miss home already?{end_now}
+08883	MsgBabiPalaceNowThatColossoIsOverIm	Colosso is finished.\nI'm bound for Gondowan\nto raise Babi's lighthouse.{end_wait}
+08884	MsgBabiPalaceTheSouthernContinentIsADangerous	The southern continent\nis not a gentle place.\nYou'll learn that soon.{page_break}Angara has its troubles,\nbut at least its roads\nare not trying to kill you.{end_wait}
+09039	MsgBabiPalaceBabisFaceIsVeryPaleLike	Babi's skin has gone\nwhite as old stone. He\nlooks almost like a corpse.{page_break}No one will speak of it.\nPerhaps they fear what\nhe might do if they did.{end_wait}
+09042	MsgTolbiFoundCloakBall	You found the\nCloak Ball.{end_wait}
+09049	MsgBabiPalaceTheGirlFromLaliveroIsNo	The girl from Lalivero\nhas gone. Soldiers are\ntaking her home.{page_break}They say the lighthouse\nneeds no more hostages.\nI doubt she believes it.{end_wait}
+09050	MsgBabiPalaceIAmSurprisedActorWasAllowed	I'm surprised {actor_name:7} was\nallowed to return to\nLalivero.{page_break}At least she can see\nher own people again.\nThat should matter.{end_wait}
+08173	MsgBabiPalaceNormallyNoOnesAllowedIntoBabis	The palace is closed\nto visitors. Colosso is\nthe only exception.{page_break}Do not mistake that\nfor an invitation to\nwander wherever you please.{end_wait}
+08174	MsgBabiPalaceSomeOfTheRoomsInThe	Some rooms are open to\nColosso entrants. Lord\nBabi has allowed it.{page_break}Try to remember whose\nroof you're standing\nunder.{end_wait}
+08184	MsgTolbiUseFourBeds	You may use the four\nbeds. Will you sleep\nnow?{end_now}
+08773	MsgTolbiTiredFeelFreeRest	If you need to rest,\nplease do. The next match\nwill come soon enough.{end_wait}
+08198	MsgTolbiPlanningEnterColosso	Are you entering\nColosso?{end_now}
+08201	MsgTolbiCantFightBecauseLittleIndigestion	I can't fight over a\nbit of stomach pain?\nWhat a miserable excuse.{end_wait}
+08274	MsgTolbiEvenIfEscapedBabiPalace	Even if I left this place,\nI could never cross the\nSuhalla Desert alone.{page_break}Lalivero is beyond it.\nI would die before I\never saw home again.{end_wait}
+08832	MsgTolbiGetUp	{actor_name:1}! Wake up!{page_break}Come on, {actor_name:1}!\nYou have to get up!{end_wait}
+08187	MsgTolbiLikeSleep	Would you like\nto sleep now?{end_now}
+08900	MsgTolbiWaitingCompanions	I've been waiting for\nyou and your companions,\n{actor_name:1}.{end_wait}
+08755	MsgTolbiArent	You're {actor_name:1},\naren't you?{end_now}
+08761	MsgTolbiIsaacIdReallyLikeThank	{actor_name:1}, I owe you\nfor bringing Babi back.\nHe wants to see you.{page_break}He's waiting at the\ncolosseum. Don't keep\nhim there.{end_wait}
+08762	MsgTolbiBabiWaitingForAtColosseum	Babi is waiting at the\ncolosseum. Go straight\nthere, as he requested.{end_wait}
+08867	MsgTolbiWarriorsWhoStayed	The warriors who stayed\nhere have all left now.\nWill you be leaving too?{end_now}
+10720	MsgTolbiItsFilledWithFreshClean	The water is clear.\nNothing has disturbed it.{end_wait}
+08181	MsgBabiPalaceIWonderHowDiligentlyBabisSoldiers	Are Babi's soldiers still\nsearching? I sent them\nthrough every quarter.{end_wait}
+08182	MsgBabiPalaceWarriorsAreNotAllowedToStay	If you won't enter the\nColosso, you cannot stay\nin the palace. Leave.{end_wait}
+08204	MsgBabiPalaceIWantToWatchTheColosso	I'd rather be watching\nthe matches. Instead, I\nmust cheer the fighters on.{page_break}A fine duty, they say.\nI would trade it for\na place in the arena.{end_wait}
+08208	MsgBabiPalaceLordBabiIsBuildingTheLighthouse	The lighthouse is Babi's\nmonument to himself.\nThat's how I see it.{end_wait}
+08209	MsgBabiPalaceBabisNameIsRidingOnThe	His name is tied to the\nlighthouse now. The work\nmust not fail.{page_break}That's why the guards\nwatch every stone and\nevery worker.{end_wait}
+08210	MsgBabiPalaceEvenIfLordBabiDoesntReturn	Even if Babi never\nreturns, the work will\ncontinue.{page_break}I only hope we learn\nwhat happened to him\nbefore it is too late.{end_wait}
+08211	MsgBabiPalaceMyFirstColossoWasSoExciting	My first Colosso was\nlike nothing I'd seen.\nI still remember the roar.{page_break}This year, the crowd\nsounds more frightened\nthan excited.{end_wait}
+08212	MsgBabiPalaceOnceTheLighthouseIsCompleteBabis	When the lighthouse is\nfinished, Babi's name\nwill outlive us all.{end_wait}
+08213	MsgBabiPalaceWedNeverGetNearTheLighthouse	I would never reach the\nworksite without Iodem's\npasses.{end_wait}
+08214	MsgBabiPalaceIHearThatGirlIsGoing	They say the girl is\ngoing with the next\nparty to Gondowan.{end_wait}
+08267	MsgBabiPalaceItLooksLikeLordBabiDidnt	Babi's bed was untouched\nthis morning. He never\nmisses his routine.{page_break}Something has changed.\nNo one wants to say\nwhat it is.{end_wait}
+08268	MsgBabiPalaceIGuessLordBabiDidNot	He did not sleep here\nlast night. I heard the\nguards moving before dawn.{end_wait}
+08269	MsgBabiPalaceActorHasBeenStayingAsLord	{actor_name:7} has been kept\nhere as Lord Babi's\nguest for some time.{page_break}She is from Lalivero,\nfar to the south, and\nfar from her family.{end_wait}
+08270	MsgBabiPalaceActorWasReveredAsAChild	{actor_name:7} was revered\nat home as a child of\nthe gods.{page_break}Here she is only a girl\nbehind a locked door.\nThat is the truth of it.{end_wait}
+08271	MsgBabiPalaceBabiIsHoldingMeHostageIn	Babi is keeping me here\nto force Lalivero to\nbuild his lighthouse.{page_break}I want to go home.\nI want this to end.\nI am tired of asking.{end_wait}
+08273	MsgBabiPalaceActorIsNotPermittedToLeave	{actor_name:7} cannot leave\nthis room. Her title\nmeans nothing here.{page_break}She is a child, and\nthere is no safe road\nback to Gondowan alone.{end_wait}
+10672	MsgBabiPalaceTheArmorLooksHeavyItLooks	This armor is battered.\nIt must have belonged\nto a Colosso fighter.{end_wait}
+10673	MsgBabiPalaceTheresNothingInThereItsCompletely	The room is dark.\nOnly a few old dice\nlie scattered inside.{page_break}Someone spent a long\ntime here, and lost\nmore than a game.{end_wait}
+10674	MsgBabiPalaceTheresAHeadbandItSaysNever	A headband. The words\nare faded, but still\nlegible: Never give up.{end_wait}
+10675	MsgBabiPalaceTheresABookEntitledTheHeart	A book called The Heart\nof the Colosso Warrior.{page_break}Its advice is simple:\nFight hard. Leave your\nmoney out of the wagers.{end_wait}
+10676	MsgBabiPalaceTheresANotebookThatShowsThe	A ledger of dice games.\nThe same name appears\nagain and again.{page_break}The sums beside it\nare all losses.{end_wait}
+10677	MsgBabiPalaceTheresABookEntitledBecomeA	A book: Become Strong\nin Twelve Easy Steps.{page_break}The pages are full of\nexercises and promises.\nMost are underlined.{end_wait}
+10678	MsgBabiPalaceHeyItsBabisDiaryItReads	Babi's diary. The last\nentry is brief:{page_break}"This Colosso may be\nmy last..."{end_wait}
+08765	MsgBabiPalaceBabisSoldiersHaveGoneToSee	Babi's soldiers are\nwatching Colosso now.\nThey are fighters too.{page_break}They cheer with the rest,\nbut their eyes keep\nturning toward the exits.{end_wait}
+08767	MsgBabiPalaceThoseGuysLookReallyConfidentAbout	Those fighters look\nready for anything.\nI wonder if they are.{page_break}Confidence is easy\nwhen the crowd is\nshouting your name.{end_wait}
+08768	MsgBabiPalaceTheFinalsAreAllThatsLeft	Only the finals remain.\nI want to see a great\nfight.{page_break}I hope the crowd can\nremember it as a sport,\nnot a funeral.{end_wait}
+08774	MsgBabiPalaceIHopeYoullAllDoWell	Good luck in the finals.\nCome back in one piece.{end_wait}
+08776	MsgBabiPalaceWhenBabiReturnedHeHeadedOff	Babi returned and went\nstraight to the festival.\nHe did not even rest.{page_break}He seemed more concerned\nwith the finals than\nwith his own safety.{end_wait}
+08779	MsgBabiPalaceHmphIWishColossoWouldHurry	I wish Colosso would\nend. The noise is getting\nhard to bear.{end_wait}
+08780	MsgBabiPalaceASmileOnAPrettyGirl	Seeing {actor_name:7} smile\nis a relief. There was\nso much fear in her face.{page_break}I hope she has reason\nto believe things will\nbe better.{end_wait}
+08781	MsgBabiPalaceActorIsAGoodGirlBut	{actor_name:7} is kind, but\nshe has a will of her\nown. I respect that.{end_wait}
+08782	MsgBabiPalaceIDontHaveTheLeastInterest	Colosso means little to\nme. When it ends, though,\nthere may be good news.{end_wait}
+08878	MsgBabiPalaceIHaventSeenMuchOfBabi	I hardly see Babi now.\nSometimes I think he is\nafraid to be alone.{page_break}What could frighten a\nman who commands this\nwhole city?{end_wait}
+08879	MsgBabiPalaceItWouldBeAWasteTo	It would be a shame to\nlet you leave, {actor_name:1}.\nI won't tell you the way.{page_break}You have earned no\nfavors from me.{end_wait}
+08880	MsgBabiPalaceNoOnesGoingToSleepIn	No one will sleep in\nthis room until next\nyear's Colosso.{page_break}Still, I must keep it\nclean. It is the only\nwork I have.{end_wait}
+08881	MsgBabiPalaceWouldThisRoomGetVeryDusty	If I left this room\nuntouched, it would fill\nwith dust.{page_break}I suppose I should keep\ncleaning. It gives me\nsomething to do.{end_wait}
+08885	MsgBabiPalaceIWasHopingIdBeThe	I hoped I would be the\none to find Babi. The\nsearch is over now.{end_wait}
+08886	MsgBabiPalaceColossoHasEndedSoWeHave	Colosso is over. We must\nreturn to the lighthouse\nand finish the work.{page_break}{pause_20_skippable}I still wonder why Babi\nneeds it completed\nso urgently.{end_wait}
+08887	MsgBabiPalaceIWantThatLighthouseFinishedQuickly	I want the lighthouse\nfinished. Then I can\nleave Gondowan behind.{end_wait}
+09047	MsgBabiPalaceIfYouUseTheCloakBall	The Cloak Ball hides you\nfrom the eyes of beasts\nwhen you stand in shadow.{page_break}That is how I crossed\nAltmiller Cave without\nbeing seen.{end_wait}
+09048	MsgBabiPalaceWhyWouldAnAdeptLikeYou	Why would an Adept need\na Cloak Ball, {actor_name:1}?\nYou have other gifts.{end_wait}
+09038	MsgBabiPalaceSleepingALotHelpsToDelay	Sleep slows the draught's\neffect. It buys me time,\nbut not much.{page_break}If you reach Lemuria,\nbring back more. I cannot\nkeep living this way.{end_wait}
+09040	MsgBabiPalaceIWishIHadMetYou	I wish we had met sooner,\n{actor_name:1}. Perhaps\nthings might differ.{page_break}But some roads close\nlong before we see\nwhere they lead.{end_wait}
+09041	MsgBabiPalaceIfSomethingHappensToBabiWhat	If Babi dies, what becomes\nof Tolbi? No one speaks\nof what follows him.{page_break}I fear the answer is\nthat nothing here will\nchange for the better.{end_wait}
+09051	MsgBabiPalaceItSeemedOnlyNaturalThatActor	It seemed right that\n{actor_name:7} should return\nto Lalivero.{page_break}But who decided she\nwas free to go? I never\nheard an explanation.{end_wait}
+09052	MsgBabiPalaceIAmSoRelievedActorHas	I'm glad {actor_name:7} is\nhome again. I hope she\ncan sleep without fear.{page_break}The palace feels empty\nnow, though I cannot\nexplain why.{end_wait}
+08175	MsgBabiPalaceShouldThePalaceReallyBeOpen	Should the palace be\nopen to visitors while\nBabi is missing?{end_wait}
+08176	MsgBabiPalaceIWonderHowManyPeopleWill	How many people will\nstay here after Colosso?\nWill anyone remain?{end_wait}
+08760	MsgBabiPalaceBabiWantsYouToGoStraight	Babi wants you at the\ncolosseum. Go there\nwithout delay.{page_break}He does not want you\nwandering through the\npalace first.{end_wait}
+08763	MsgBabiPalaceSureTheySavedBabiButIm	They brought Babi back,\nbut that does not make\nthem fit for the finals.{end_wait}
+08764	MsgBabiPalaceBabiIsADeliberateManHe	Babi is a careful man{em_dash}\nhe does not choose\nfavorites lightly.{page_break}What does he see in\nthose warriors? What\ndoes he want from them?{end_wait}
+08866	MsgBabiPalaceIveLostAllMyEnthusiasmSince	Since Colosso ended, the\ncity has gone quiet.\nI miss the crowds.{page_break}I never thought I would\nmiss the sound of people\ncheering for blood.{end_wait}
+08870	MsgBabiPalaceTheEndOfAFestivalIs	The end of a festival\nleaves the streets empty.\nIt is a lonely silence.{end_wait}
+08871	MsgBabiPalaceAllTheHeroicWarriorsWhoTook	The best fighters should\nstay in Tolbi. That is\nwhy Babi holds Colosso.{page_break}He gathers strong people\nunder one roof. What he\nplans for them is unclear.{end_wait}
