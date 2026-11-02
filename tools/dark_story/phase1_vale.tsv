@@ -17,7 +17,7 @@
 03682	message	No. It's too dangerous.\nDora, please. Take care\nof {actor_name:1}.{end_wait}
 03683	message	{actor_name:1} knows the way.\nHe can reach the plaza.\nI'll be right behind him.{end_wait}
 03684	message	You know the way,\n{actor_name:1}. Don't you?{end_now}
-03685	MsgValeBigBoyWhy	You know the way,\n{actor_name:1}. Go. I'll be there.\nI promise.{end_now}
+03685	MsgValeBigBoyWhy	You know the way,\n{actor_name:1}. Go now.\nI'll be there.{end_now}
 03686	MsgValeKnowWayGo	Go south to the plaza and\ndon't stop for anyone.\nBe careful!{end_wait}
 03687	MsgValeHuh	Huh? {actor_name:1}?\nWhat are you doing here?{end_wait}
 03688	message	Did you come back for me?{end_now}
