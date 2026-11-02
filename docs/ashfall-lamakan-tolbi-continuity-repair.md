@@ -126,3 +126,59 @@ The harbor-child storyline is removed in full. The Tolbi Ash Jenna event no long
 ### Verification still required
 
 The source and dialogue edits are committed, but this decision is not considered build-verified until the dialogue validator and full modified-edition workflow pass. A successful compile also does not replace in-game checks of the post-Colosso appearance, Mia's dialogue sequence, and retry/defeat behavior.
+
+
+
+## Verified finding: the post-Manticore caravan choice is not currently earned
+
+The caravan sequence was checked against both `phase42_manticore_mia.tsv`, `phase46_awakening.tsv`, `phase47_finale.tsv`, and the actual `LamakanDesert_ManticoreAftermath` / `LamakanDesert_AshJennaFinale` event code in `games/tbs/src/scene/lamakan_desert.c`.
+
+### 1. Mia's emotional progression jumps too sharply
+
+Immediately after the Manticore, Mia says she wanted it dead and wishes it had suffered less. When Garet notices her reaction, she acknowledges that anger got the better of her and says it is not who she wants to be. Isaac reassures her, and Ivan observes that she is trying to hide how badly the encounter shook her.
+
+The caravan scene then gives Mia this line:
+
+> Turn back? Why? We could just burn them where they stand. It would be cleaner.
+
+That is a much more extreme position than the anger she has just acknowledged. The current sequence does not show an intervening event, thought, or deterioration that would explain why she moves from regret to advocating the killing of forty frightened people. Ash Jenna later uses the remark against Mia in Tolbi, so the line becomes a defining character beat without sufficient development.
+
+**Finding:** the problem is not that Mia is allowed to say something disturbing. It is that the story has not earned this particular escalation. The Manticore aftermath and caravan scene need to be revised together, with a visible emotional progression and a response from Mia that preserves her accountability.
+
+### 2. The caravan prompt promises an outcome the event never shows
+
+The prompt asks whether Isaac will try to calm the caravan. On the yes branch, Isaac says he will talk to them; Ivan says they are afraid of what is in their own heads; Mia warns Isaac that he will get himself killed. The event then moves directly to Mia taking point. There is no exchange with the caravan, no indication that anyone was calmed, and no result for the people themselves.
+
+Despite that, the yes branch sets `FLAG_DARK_CARAVAN_CALMED`. The finale counts this flag as one of three mercy points and conditionally gives Ivan the line, “Forty of them were awake, and you walked in without drawing a weapon.” The event records Isaac's intention to help as though it were a successful act of mercy.
+
+On the no branch, Isaac says they cannot help and tells the party to keep moving. Garet hears the caravan calling Isaac's name, and Mia says they should not stop for ghosts. No corresponding outcome flag is recorded.
+
+**Finding:** the choice currently measures which response Isaac selected, not what happened to the caravan. The flag name and finale callback overstate the result. Either the scene must depict a meaningful consequence that justifies a mercy flag, or the flag/callback must be redesigned so an attempted intervention is not presented as a successful rescue.
+
+### 3. Mia takes point regardless of Isaac's choice
+
+Both branches converge on the same unconditional Mia line: “Keep up, Isaac. I'll walk point from here, because Kalay won't wait for us.” Garet then remarks that she did not look back.
+
+The event code does not give the two choices distinct aftermaths beyond the yes branch's mercy flag and altered preceding dialogue. Mia takes point in either case. This makes the prompt feel more consequential than the actual scene behavior, and it leaves unclear whether Mia is protecting the party, avoiding the caravan, punishing Isaac for hesitating, or simply forcing the group onward.
+
+**Finding:** the shared ending can remain if the story deliberately establishes why Mia takes point in both outcomes. Otherwise, the scene needs branch-specific reactions and a clearer emotional reason for her action.
+
+### 4. The finale compounds the problem
+
+Ash Jenna's finale follows automatically after the caravan event on the Manticore return. Mia is then asked to speak again, and her line is “Do it, Isaac. Then all of this will be over.” The player has just watched her advocate burning the caravan, so the line currently reinforces the same extreme position rather than revealing a new conflict or testing the limits of her anger.
+
+The finale's mercy calculation currently uses three independent flags: the miner stayed with, the Mogall door opened, and the caravan-calmed flag. The code comment still mentions the removed harbor-child choice, which is stale documentation. The actual calculation is three points, but the caravan point is not presently supported by an observed outcome.
+
+**Finding:** the caravan choice, Mia's role in the finale, and the mercy-ending threshold must be considered as one connected design. Rewriting only N185 or N193 would leave the underlying contradiction intact.
+
+### Required repair before this sequence is considered complete
+
+1. Revisit Mia's post-Manticore lines and the caravan scene as one continuous character arc.
+2. Decide what the caravan choice actually does in the story. Do not label the outcome “calmed” unless the scene demonstrates that the people were calmed or helped.
+3. Give the yes and no choices legible consequences, even if both paths eventually continue toward Kalay.
+4. Establish why Mia takes point and what her action means in each branch.
+5. Rework Mia's line in Ash Jenna's finale so it follows from the revised caravan scene rather than simply repeating the same extreme impulse.
+6. Update stale event comments that still refer to the removed harbor-child choice.
+7. Test both caravan branches and all combinations of the three mercy flags, including the resulting Complicit, Mercy, and Divided finale paths.
+
+No dialogue, flags, or event logic were changed as part of this audit. This is a source-verified defect report and a blocker for treating the Lamakan-to-Tolbi narrative as complete.
