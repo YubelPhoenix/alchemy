@@ -444,19 +444,17 @@ static void AltinPeak_TalkToTrappedMiner(void) {
       Event_SetMessageId(MsgDarkPeakMinerThanks);
       Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
       PartyInventory_Add(ITEM_POWER_BREAD);
-      // The Bloom takes him.
-      Actor_ConfigureSpriteColor(ACTOR_JUNCTION_ROOM_MINER, SPRITE_COLOR_GREY);
       Event_SetMessageId(MsgDarkPeakMinerWakes);
       Event_ShowMessageThenWait(ACTOR_JUNCTION_ROOM_MINER, 0, 20);
       Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
       Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-      Event_SetMessageId(MsgDarkPeakBloomAsk);
+      Event_SetMessageId(MsgDarkPeakMinerStayAsk);
       if (Event_AskYesNo(ACTOR_JUNCTION_ROOM_MINER, 0) == 0) {
-        Event_SetMessageId(MsgDarkPeakBloomStay);
+        Event_SetMessageId(MsgDarkPeakMinerStay);
         GameFlag_Set(FLAG_DARK_MINER_STAYED);
         Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
       } else {
-        Event_SetMessageId(MsgDarkPeakBloomLeave);
+        Event_SetMessageId(MsgDarkPeakMinerLeave);
         GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
         Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
         GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
