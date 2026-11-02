@@ -5,8 +5,8 @@
 03670	message	{actor_name:1}, wait!\nYou forgot something.{end_wait}
 03671	message	It's pouring out there.\nPut your tunic on.{end_wait}
 03672	message	Do you have everything\nyou need? Think fast.{end_now}
-03673	message	I'm sorry, there's no time.\nLeave it. We can replace\nit later, if we survive.{end_wait}
-03674	message	Good. Things can be\nreplaced, {actor_name:1}.\nPeople can't.{end_wait}
+03673	message	There's no time. Leave it.\nWe can replace it later.\nCome with me.{end_wait}
+03674	message	Good. Leave it behind.\nStay close to me.{end_wait}
 03675	MsgValeDoraHurryBoulder	{actor_name:1}, Dora, hurry!\nThe Boulder's going to\ndrop any second!{end_wait}
 03676	MsgValeKyleAbleStop	Kyle, can they hold it?{end_wait}
 03677	message	Not for long. Go. Now.{end_wait}
@@ -15,9 +15,9 @@
 03680	message	Not yet. People are still\ntrapped in their homes.{end_wait}
 03681	message	Then let me help!\nI'm not leaving you!{end_wait}
 03682	message	No. It's too dangerous.\nDora, please. Take care\nof {actor_name:1}.{end_wait}
-03683	message	{actor_name:1} can make it to\nthe plaza on his own.\nHe's not a baby.{end_wait}
+03683	message	{actor_name:1} knows the way.\nHe can reach the plaza.\nI'll be right behind him.{end_wait}
 03684	message	You know the way,\n{actor_name:1}. Don't you?{end_now}
-03685	MsgValeBigBoyWhy	You're old enough now,\n{actor_name:1}. Go on alone.\nPlease, honey.{end_now}
+03685	MsgValeBigBoyWhy	You know the way. Go.\nI'll be there soon.\nI promise.{end_now}
 03686	MsgValeKnowWayGo	Go south to the plaza and\ndon't stop for anyone.\nBe careful!{end_wait}
 03687	MsgValeHuh	Huh? {actor_name:1}?\nWhat are you doing here?{end_wait}
 03688	message	Did you come back for me?{end_now}
