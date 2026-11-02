@@ -133,7 +133,7 @@ The source and dialogue edits are committed, but this decision is not considered
 
 The caravan awakening sequence has been removed from the story and implementation. It is not a branch, a mercy choice, or part of Mia's post-Manticore character arc.
 
-The post-Manticore return now has a simpler sequence: Mia's existing aftermath plays once, then Ash Jenna's revelation/finale begins automatically. The obsolete phase46_awakening.tsv dialogue file has been deleted. The caravan dialogue, choice, callback, and mercy flag have been removed from the event flow. The former completion flag has been renamed to FLAG_DARK_MANTICORE_AFTERMATH_DONE because it now records only that Mia's aftermath has played.
+The post-Manticore return now has a simpler sequence: Mia's existing aftermath plays once, then Ash Jenna's revelation/finale begins automatically. The obsolete phase46_awakening.tsv dialogue file has been deleted. The caravan dialogue, choice, callback, and mercy flag have been removed from the event flow. The existing FLAG_DARK_MIA_MANTICORE_SEEN flag now gates the one-time aftermath; no separate caravan or aftermath completion flag is needed.
 
 The finale's mercy calculation now uses the two remaining choices: staying with the trapped miner and opening the Mogall camp door. Refusing Ash Jenna's offer reaches the Mercy ending when both are set; otherwise the Divided ending applies. Accepting her offer still reaches the Complicit ending.
 
