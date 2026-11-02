@@ -611,9 +611,10 @@ static void Tolbi_TalkToKegare(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkKegareRise);
   Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
+  Event_SetMessageId(MsgDarkKegareIsaac);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkKegareName);
   Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_SetMessageId(MsgDarkKegareMiaRefutes);
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   Event_SetMessageId(MsgDarkKegareThreatens);
@@ -1054,7 +1055,6 @@ struct Trigger gTolbiTriggersFestival[] = {
 
 /// On finals day.
 struct Trigger gTolbiTriggersFinalsDay[] = {
-    { TRIGGER_TALK, ACTOR_TOLBI_KEGARE, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
