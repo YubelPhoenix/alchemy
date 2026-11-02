@@ -2744,12 +2744,6 @@
 /// Isaac has called after Ash Jenna in the Lamakan Desert and she has gone.
 #define FLAG_DARK_ASH_JENNA_LAMAKAN_MET 0x8b9
 
-/// In Tolbi Isaac asked Mia for the Tideglass Blade and took it: she is weaker
-/// and her dark half quieter. Unset with the question asked means he left it.
-#define FLAG_DARK_BLADE_TAKEN 0x8c2
-/// Isaac has had his talk with Mia about the Tideglass Blade.
-#define FLAG_DARK_BLADE_ASKED 0x8c3
-
 /// Heart's battle in Kolima has begun (Kolima_TalkToHeart); set before it, so a
 /// win returns to a Kolima where she speaks her last words (Kolima_HeartAftermath).
 #define FLAG_DARK_HEART_FOUGHT 0x8c6
