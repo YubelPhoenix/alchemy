@@ -1,6 +1,6 @@
 # Lemurian ship departure: the party leaves Gondowan and sets course for Lemuria.
 10494	MsgFieldLooksLikeFinally	The time has come. We\nleave Gondowan behind.{end_wait}
-10495	message	It feels strange... We\nhave traveled so far,\nyet the road ahead{page_break}seems longer than ever.{end_wait}
+10495	message	It feels strange... We've\ncome so far, yet the road\nahead{page_break}seems no closer to its end.{end_wait}
 10496	message	So much has changed\nsince we left home.{end_wait}
 10497	message	Once we find {actor_name:6},\nwill our journey finally\nbe finished?{end_now}
 10498	message	Finished? We would only\nbe standing at the edge\nof another beginning.{end_wait}
