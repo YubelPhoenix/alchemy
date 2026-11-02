@@ -1,4 +1,5 @@
 05038	MsgBilibinItsTreeButAlmostLooks	That's no ordinary tree.\nLook at the arms.\nThe face. A man...?{end_wait}
+05040	MsgBilibinHelpMeSomebody	Please... somebody...\nI can hear you. I can't\nmove.{end_wait}
 05041	MsgBilibinWelcomeToBilibinPleaseJustIgnore	Welcome to Bilibin.\nIgnore the tree out front.\nEveryone else does.{page_break}Warriors have been sent\nto Kolima. Don't ask how\nmany have come back.{end_wait}
 05042	MsgBilibinIHearALargeGroupCrossed	A big group crossed the\nGoma Range. Heading for\nImil, last I heard.{end_wait}
 05043	MsgBilibinDidSeeTreeAtEntrance	You saw the tree at the\nentrance, didn't you?{end_now}
@@ -108,8 +109,11 @@
 05227	MsgBilibinItsAToughThingBeingSo	It's hard, being that\nyoung.{page_break}They dinnae ken what\nit means to be afraid.{end_wait}
 05228	MsgBilibinThatBarricadeIsPrettyShabbyIt	That barricade's shoddy.\nWe built it in a rush.{page_break}The hinges are noisy\nand weak. A good push\nmight break them.{end_wait}
 05229	MsgBilibinIDidntThinkTheydLetYou	I can't believe they let\nyou go. You're too young!{end_wait}
+05230	MsgBilibinMccoysHiddenWarehouseDoNot	McCoy's Hidden Warehouse\nNo entry. Keep out!{end_wait}
 05231	MsgBilibinEvenFrozenImilMustFeel	Even frozen Imil must\nfeel warm with {actor_name:4}\nthere.{end_wait}
 05232	MsgBilibinThereTreeLooksLikePerson	A tree... shaped like\na person. Disturbing.{end_wait}
+05233	MsgBilibinTheyreSoHeavy	They're... so heavy...\nI can't hold them much\nlonger.{end_wait}
+05234	MsgBilibinAreaOffLimitsThoseWithout	No entry without a permit.\nBy order of Lord McCoy.{end_wait}
 05823	MsgBilibinWasTurnedIntoTreeFor	I was a tree for a\nwhile. Can you believe\nthat?{end_now}
 05826	MsgBilibinWelcomeToBilibinWellForgetThat	Welcome to Bilibin.{pause_20_skippable}\nWe'll forget this curse\nbusiness soon enough.{end_wait}
 05827	MsgBilibinIfYoureTalkingAboutTheTravelers	The travelers from Imil?\nThey crossed the river.{end_wait}
@@ -120,3 +124,4 @@
 05832	MsgBilibinCurseWasBrokenThanksEfforts	Three young warriors\nbroke the curse.{page_break}Say... you wouldn't be\nthose warriors, would\nyou?{end_now}
 05835	MsgBilibinLordMccoysMenSaidTheySaw	McCoy's men say they saw\nthe ones who saved us.{end_wait}
 05836	MsgBilibinHaveEverBeenVillageImil	Ever been to Imil, up\nnorth?{end_now}
+10717	MsgBilibinBottomNotVisibleLooksVery	The bottom is hidden\nfrom view. The well is\ndeeper than it looks.{end_wait}
