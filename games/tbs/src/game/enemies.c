@@ -1985,7 +1985,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .itemChance = 7,
         .experience = 362,
     },
-    // Kegare, the Water Adept who mimics Mia: the secret boss of Tolbi.
+    // Kegare, the Water Adept who mimics Mia: Tolbi's optional boss.
     {
         .name = "              ",
         .level = 33,
