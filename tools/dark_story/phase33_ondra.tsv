@@ -1,5 +1,15 @@
-# Ondra, the Tideglass Queen, in Tolbi.
-N102	MsgDarkOndraRise	You went down to the docks\nfor a stranger's child, and\nthe tide noticed.{page_break}Who has woken the Queen\nof the Deep?{end_wait}
-N103	MsgDarkOndraIsaac	You look like Mia. Who\nare you?{end_wait}
-N104	MsgDarkOndraName	I am Ondra. Mia comes from\nmy tide, so we share a\nface.{page_break}When the waking took my\nkingdom, I drowned it\nmyself. Now show me mercy.{end_wait}
-N105	MsgDarkOndraIsaacReady	I didn't come to fight you,\nbut I won't walk away.{end_wait}
+# Kegare, the Mia-mimicking Water Adept, in Tolbi.
+N102	MsgDarkOndraRise	At last. I've watched you
+protect her, and now I can
+see what she sees in you.{end_wait}
+N103	MsgDarkOndraIsaac	You look exactly like Mia.
+Who are you?{end_wait}
+N104	MsgDarkOndraName	I am Kegare. I've studied
+her voice, her movements,
+everything that makes her
+seem irreplaceable.{page_break}Imitation was only the
+beginning. I intend to take
+her place.{end_wait}
+N105	MsgDarkOndraIsaacReady	Mia is not a place for you
+to take. You'll have to get
+through us first.{end_wait}
