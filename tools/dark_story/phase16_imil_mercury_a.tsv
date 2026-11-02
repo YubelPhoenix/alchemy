@@ -103,11 +103,11 @@
 05556	message	You survived the mountain.\nWill you throw that\nlife away here?{end_wait}
 05557	message	If you stand against me,\nI will not spare you.{end_wait}
 05558	message	You intend to face\nthem alone, Saturos?{end_wait}
-05559	message	Menardi, I can't ask you\nto leave our hostages\nand help me, can I?{end_wait}
-05560	message	Umm...{pause_20_skippable} That's true...{end_wait}
-05561	message	Besides, I want to see\nhow far their powers\nhave grown.{end_wait}
-05562	message	Are you sure about this,\nSaturos?{end_wait}
-05563	message	Leave me be!{pause_20_skippable} Head for the\nnext lighthouse{em_dash}now!{end_wait}
+05559	message	Our hostages are yours\nto guard, Menardi.\nDo not leave them.{end_wait}
+05560	message	I understand.{end_wait}
+05561	message	I want to know what\nVale has taught them\nsince we last met.{end_wait}
+05562	message	Saturos, the beacon\nhas changed the air.{end_wait}
+05563	message	I know. {pause_20_skippable}Go.\nReach the next lighthouse.\nDo not wait for me.{end_wait}
 05564	message	Come here, child...{end_wait}
 05565	message	Do you mean to\ndefy me?{end_wait}
 05566	message	I should teach you a\nlesson, child, but...{end_wait}
@@ -120,11 +120,11 @@
 05573	message	I'm counting on you!{end_wait}
 05574	message	{actor_name:1}! {actor_name:2}!\nDon't{pause_20_skippable} die!{end_wait}
 05575	message	{actor_name:6}... \nKraden!{end_wait}
-05576	message	If you want to save\nthem, you'll have to\nbeat me, first!{end_wait}
+05576	message	If you want them alive,\nyou'll have to go\nthrough me.{end_wait}
 05577	message	No! Get back!{end_wait}
 05578	message	What's the matter!{end_wait}
-05579	message	Saturos is extremely\npowerful. I felt it\nwhen I faced him.{end_wait}
-05580	message	Be very careful when\nyou fight him...{page_break}We have to match\nhis strength...{end_wait}
-05582	message	You overestimate\nyour chances.{end_wait}
-05585	message	What's happening?\nSaturos is moving\nstrangely.{end_wait}
-05586	message	What's this!? The light of\nMercury... It's\nweakening my Psynergy!{end_wait}
+05579	message	His power is immense.\nI felt it when\nwe faced him before.{end_wait}
+05580	message	Don't meet his strength\nwith strength alone.{page_break}Watch his movements.\nWait for an opening.{end_wait}
+05582	message	You have no idea\nwhat you're facing.{end_wait}
+05585	message	His movements...\nSomething is wrong.{end_wait}
+05586	message	The Mercury beacon...\nIt's draining my power!{end_wait}
