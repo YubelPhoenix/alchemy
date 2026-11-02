@@ -31,7 +31,7 @@
 05767	MsgKolimaInteriorsNoIDontWantToBe	No. Please.\nNot forever.{end_wait}
 05775	MsgKolimaYouKnowBeingATreeGives	I've had too much time\nto think about this.{end_wait}
 05776	MsgKolimaITurnedIntoATreeRight	The dust fell.{page_break}Then I couldn't move.\nI felt everything.{end_wait}
-05424	MsgImilWeveHadALotOfStrangers	Strangers keep coming.{page_break}If you're going\nto the lighthouse,\nspeak to {actor_name:4}.{end_wait}
+05424	MsgImilWeveHadALotOfStrangers	Strangers keep coming.{page_break}If you're going\nto the lighthouse,\nask around first.{end_wait}
 05425	MsgImilPeopleGetSickBecauseTheyStay	The cold gets into\neverything here.{page_break}Keep moving.\nDon't lose your heat.{end_wait}
 05426	MsgImilTheresBeenAnEpidemicGoingAround	The sickness is spreading.{page_break}If you can leave Imil,\nyou should.{end_wait}
 05427	MsgImilMiaRunningAroundTownCaring	{actor_name:4} tends the sick\nday and night.{page_break}She needs rest\nas much as we do.{end_wait}
