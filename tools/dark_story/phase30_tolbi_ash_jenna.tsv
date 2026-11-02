@@ -5,7 +5,9 @@ N76	MsgDarkTolbiJennaAsh	Who am I? I'm a Jenna who\nstopped waiting to be\nsaved
 N77	MsgDarkTolbiGaretFire	You wear her face, but\nJenna would never talk\nlike this!{end_wait}
 N78	MsgDarkTolbiJennaPlease	No, she wouldn't. She also\nwouldn't have lasted this\nlong.{page_break}Be quiet, Garet. You're\nmaking a scene.{end_wait}
 N79	MsgDarkTolbiMiaSneer	That isn't your Jenna.\nIt only wears her face, so\nlet the harbor have it.{end_wait}
-N80	MsgDarkTolbiJennaMia	Mia, I can see how much\nthis has unsettled you. You\nare trying very hard not\nto show it.{end_wait}
+N80	MsgDarkTolbiJennaMia	Mia, I see how deeply
+this has unsettled you.
+You hide it poorly.{end_wait}
 N81	MsgDarkTolbiMiaPlace	You don't know me, and\nyou don't get to decide\nwhat I can endure.{end_wait}
 N82	MsgDarkTolbiJennaGoing	Light the next lighthouse,\nIsaac. More will wake, and\nTolbi will drown them all.{page_break}Or you can be kind and\nend it quickly. I'll be\nwatching either way.{end_wait}
 N83	MsgDarkTolbiIsaacWait	Jenna, wait!{end_wait}
