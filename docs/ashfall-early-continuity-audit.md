@@ -83,3 +83,22 @@ Continue through the source units that own the transitions and dialogue for the 
 - Include ordinary NPCs, optional talks, Mind Read, object examinations and conditional variants.
 - Retain all engine control codes and runtime name tokens; validate every changed row with `tools/dark_story_rewrite.py --check`.
 - A successful ROM build proves technical integration, not narrative completeness. Narrative coverage and playthrough verification remain separate gates.
+
+
+## 7. Additional source checks: plaza, homes and Kraden's cottage
+
+The connected scene files add several important transitions that must be represented in the opening dialogue pass:
+
+- During the storm, Isaac and Garet return from the river to Vale Plaza after Felix falls in. The mayor sends two strongmen to aid the elders, then sends the boys back toward the river with Jenna and a strongman whose Psynergy the Psynergy Stone restored. Only after the Boulder has swept Kyle, Jenna's parents and Felix away, and Garet has gone after Isaac, does the plaza play the encounter with the two surviving travelers. The strangers say they alone survived Sol Sanctum's fury, fight the boys, and leave them lying in the storm whether the boys win or lose. The storm then ends and the title sequence advances three years.
+- The three-years-later plaza state is distinct from the storm. Its villagers can discuss the travelers, the old disaster and the loss of Isaac's father and Jenna's family. The farewell at the town gate occurs only after the party accepts the Wise One's quest in the Sanctum. After departure, the town gate opens to the world map; on the return from Kalay, villagers and the hut owner have another state.
+- During the storm, Cottage Rooms A has no residents; its doors lead back into the storm scene. Its jars and barrel are empty, and extra bookcases can be examined. By day the houses and shops are occupied, with their own objects and one-time finds. After the party leaves, Jenna's grandmother is ill and the item merchant can give Isaac a farewell Herb. After Kalay, Garet's family reunion introduces Ivan and Mia, while villagers worry about Dora.
+- Cottage Rooms B contains Isaac's house, the inn, forge, Kraden's study and a separate room in Babi's Palace. During the storm, Dora wakes Isaac upstairs, gives him his tunic, and Kyle calls them downstairs before the run to the plaza. By day, the masked man is at the inn and the three strangers are discussed there. After the party leaves, villagers discuss the eruption, Jenna's kidnapping and whether the masked man was Felix. After Kalay, Dora's illness has distinct visit and Mind Read states; the Mind Read flag is shared by the two relevant actors, and Dora's out-of-bed state is visit-specific.
+- At Kraden's cottage on the stormy night, a rockslide has broken the fence, monsters have entered, and a wounded survivor can either give up or discover he is unhurt and run to warn the plaza. Three years later, the party overhears Saturos and Menardi speaking about Sol Sanctum before Kraden plans the secret visit. Kraden then prepares the Mythril Bag; only after the party returns outside does he set off with them and set `FLAG_SANCTUM_VISIT_PLANNED`. The child at the fence and the later woman visiting the empty cottage belong to later states.
+
+## 8. Silent watcher: a second verified appearance
+
+The Sol Sanctum corridor source places a silent, cloaked figure off-map until a one-time step trigger. When the party reaches the middle of the long hall, the figure appears a few steps ahead, watches for 100 frames, and vanishes; `FLAG_DARK_WATCHER_SANCTUM_CORRIDOR` prevents a repeat. She says nothing. This establishes a second deliberate glimpse after the Vale storm appearance, but still does not establish her identity, motives, or relationship to any faction. Keep both appearances silent and observational unless a later source-backed event explicitly changes that.
+
+## 9. Additional coverage checks still required
+
+The source summaries above identify scene states and event ownership, but the full trigger tables and dialogue catalogues still need to be cross-checked. In particular, enumerate the plaza's Psynergy Stone and ivy examinations, the cottage bookcases and containers, inn/forge residents, the survivor's yes/no branch, the strangers' battle outcome branch, the Mythril Bag sequence, and all Mind Read variants after Kalay. Do not infer that a scene has no optional dialogue merely because its opening source comment does not list every message.
