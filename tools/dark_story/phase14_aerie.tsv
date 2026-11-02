@@ -7,16 +7,16 @@ N42	MsgDarkAerieMiaGoing	Wait, where's Mia? She went\nafter Menardi alone!{end_w
 N43	MsgDarkAerieIvanAlone	Then we'd better hurry. She\ncan't take on Menardi by\nherself!{end_wait}
 N44	MsgDarkAerieMiaFollow	...{end_wait}
 N45	MsgDarkAerieGaretAfterHer	She's already gone ahead.\nCome on, we have to catch\nup!{end_wait}
-N46	MsgDarkAerieMiaJenna	Menardi, I've followed you\na long way. Stop right\nthere.{end_wait}
-N47	MsgDarkAerieMenardiWhichReal	The healer, all alone.\nCouldn't your friends keep\nup?{end_wait}
-N48	MsgDarkAerieJennaScared	Whoever you are, please\nhelp us!{end_wait}
-N49	MsgDarkAerieMiaFear	I will. Just stay close to\nme.{end_wait}
-N50	MsgDarkAerieMiaGiveBack	You lit the beacon I'm\nmeant to guard. Give them\nback, or I'll take them.{end_wait}
-N51	MsgDarkAerieMenardiAlone	I don't want this fight,\nhealer, but I can't give\nthem back.{end_wait}
-N52	MsgDarkAerieMiaAngry	Then you've left me no\nchoice.{end_wait}
-N53	MsgDarkAerieMenardiRetreat	Enough. You have the\nadvantage. I won't risk my\nlife fighting you here.{end_wait}
-N54	MsgDarkAerieMenardiTakes	But the Stars and captives\nleave with me. You cannot\nstop us.{end_wait}
-N55	MsgDarkAerieGaretHurt	Mia! Are you hurt?{end_wait}
-N56	MsgDarkAerieMiaTookThem	Menardi took them all:\nJenna, Kraden, Felix and\nthe Stars.{end_wait}
-N57	MsgDarkAerieIvanTogether	Then we follow her, and\nthis time we do it\ntogether.{end_wait}
-N58	MsgDarkAerieMiaTogether	...Together, then. Just try\nto keep up.{end_wait}
+N46	MsgDarkAerieMiaJenna	Menardi! Let them go.\nThey have done nothing\nto deserve this.{end_wait}
+N47	MsgDarkAerieMenardiWhichReal	You came alone, healer.\nThat was a mistake.{end_wait}
+N48	MsgDarkAerieJennaScared	Please... Don't let\nher take us!{end_wait}
+N49	MsgDarkAerieMiaFear	Stay behind me.\nI won't let her hurt you.{end_wait}
+N50	MsgDarkAerieMiaGiveBack	You lit Mercury's beacon.\nNow you threaten children.\nI won't stand aside.{end_wait}
+N51	MsgDarkAerieMenardiAlone	Then you will fall\nwith the rest of them.{end_wait}
+N52	MsgDarkAerieMiaAngry	Not while I can\nstill stand.{end_wait}
+N53	MsgDarkAerieMenardiRetreat	You held me back.\nBut you cannot win\nagainst me alone.{end_wait}
+N54	MsgDarkAerieMenardiTakes	The Stars are ours.\nThe hostages come with us.\nDo not follow.{end_wait}
+N55	MsgDarkAerieGaretHurt	Mia! You're wounded.\nCan you walk?{end_wait}
+N56	MsgDarkAerieMiaTookThem	I couldn't save them.\nMenardi took the Stars\nand the captives.{end_wait}
+N57	MsgDarkAerieIvanTogether	Then we go after them.\nTogether this time.{end_wait}
+N58	MsgDarkAerieMiaTogether	I thought I could\nprotect them alone.{page_break}I was wrong.\nLet's go together.{end_wait}
