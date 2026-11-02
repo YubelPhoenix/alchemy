@@ -17,6 +17,7 @@
 10277	message	If you refuse to release\n{actor_name:7}, we will\nbring her back ourselves!{end_wait}
 10279	message	{actor_name:1}!{pause_20_skippable} They are too\nfar away! We cannot reach\n{actor_name:5}!{end_wait}
 10280	message	Look below! There is\nlight rising from the\nfoundations!{end_wait}
+10281	MsgVenusNoooo	No!{pause_20_skippable} {actor_name:7}! Hold on!{end_wait}
 10282	message	Hold on, {actor_name:7}!\nTake my hand!{end_wait}
 10284	message	You have to try!\nKeep your grip or\nyou will fall!{end_wait}
 10285	message	Look down...{pause_20_skippable}{pause_20_skippable} The\nlighthouse foundations\nare breaking apart!{end_wait}

@@ -49,6 +49,7 @@
 10123	message	Move now. We must\nstop them from\nlighting the beacon!{end_now}
 10124	message	There's no time left!{pause_20_skippable}\nGo!{end_wait}
 10125	message	Don't falter. If we\nwait, they will light it.{end_wait}
+10126	MsgVenusIsaac	{actor_name:1}...{end_wait}
 10127	message	So...{pause_20_skippable} you've come\nto stop us?{end_wait}
 10128	message	Your rebellion has\nbrought this upon us,\n{actor_name:5}.{end_wait}
 10129	message	I don't need anyone\nto rescue me, {actor_name:1}.{end_wait}

@@ -11,6 +11,10 @@
 09938	MsgLaliveroInteriorsTheRuinsThatFormTheLighthouse	The lighthouse foundation\nis riddled with caves.{page_break}Find a way through them,\nand perhaps the ruins\nwill finally make sense.{end_wait}
 09941	MsgLaliveroInteriorsHisWifeSeemsVeryCalmConsidering	His wife keeps her\nvoice steady.{page_break}But I know she fears\nfor {actor_name:7} as much\nas the rest of us.{end_wait}
 09940	MsgLaliveroInteriorsIJustKnowThatFatherWill	Father will bring my\nsister {actor_name:7} home. I\nknow he will.{end_wait}
+09964	MsgLaliveroImSorry	Oh, forgive me...{end_wait}
+09965	message	I keep thinking about\n{actor_name:7}. I cannot\nfocus on my work.{end_wait}
+09966	message	I know worrying will not\nhelp her. But I cannot\nstop thinking about it.{end_wait}
+09967	message	I should return to work.\nStanding here will not\nhelp her.{end_wait}
 09968	MsgLaliveroInteriorsWorkingLikeThisKeepsMyMind	If I keep working, I\ncan keep my thoughts\nfrom turning dark.{end_wait}
 10488	MsgLaliveroInteriorsFishingIsSoDifficultNowadaysBecause	The sea has become too\nrough for fishing.{page_break}We have little to cook\nwhen the boats cannot\nleave the shore.{end_wait}
 10480	MsgLaliveroWentOceanLook	I searched the shore for\n{actor_name:7}, but the waves\nwere too violent.{end_wait}
