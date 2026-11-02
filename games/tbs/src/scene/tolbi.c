@@ -579,11 +579,13 @@ static void Tolbi_MeetAshJenna(void) {
   // party reassures her. No weapon, possession, or transfer choice is involved.
   Event_SetMessageId(MsgDarkMiaTolbiConcern);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkMiaTolbiAdmit);
   GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
   Event_SetMessageId(MsgDarkMiaTolbiSupport);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkMiaTolbiResolve);
   GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
@@ -612,10 +614,10 @@ static void Tolbi_TalkToStrandedFather(void) {
   Event_End();
 }
 
-/// Ondra, the Tideglass Queen, woken by three kindnesses, challenges Isaac.
+/// Kegare, the Mia-mimicking Water Adept, challenges Isaac.
 /// Her battle is slot 2 of ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI; a win returns
 /// to Tolbi with FLAG_DARK_ONDRA_FOUGHT set, and she is gone.
-static void Tolbi_TalkToOndra(void) {
+static void Tolbi_TalkToKegare(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkOndraRise);
   Event_ShowMessageThenWait(ACTOR_TOLBI_ONDRA, 0, 20);
@@ -976,7 +978,7 @@ struct ActorTemplate gTolbiActorTemplates[] = {
     // The stranded farmer who asks for his family's fare.
     { SPRITE_MAN_CARRYING_A_PACK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(232), 0, PIXELS(296), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
-    // Ondra, parked until Tolbi_ApplyEntryState brings her out.
+    // Kegare, parked until Tolbi_ApplyEntryState brings her out.
     { SPRITE_WOMAN_WITH_FAIR_HAIR, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     { SCENE_TABLE_END },
@@ -984,7 +986,7 @@ struct ActorTemplate gTolbiActorTemplates[] = {
 
 /// During the festival, before the finals.
 struct Trigger gTolbiTriggersFestival[] = {
-    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToOndra) },
+    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
