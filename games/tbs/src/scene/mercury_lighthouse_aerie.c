@@ -974,12 +974,9 @@ static void MercuryLighthouseAerie_ArmMia(void) {
   }
 }
 
-/// Mia's other self speaks the next message: her arrogant half, who calls
-/// everyone a fool and tells them to know their place.
+/// Show Mia's normal dialogue; no hostile alternate persona is involved.
 static void MercuryLighthouseAerie_DarkMiaSays(void) {
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
 }
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_AFTER_SATUROS_BATTLE, back
@@ -1092,12 +1089,9 @@ static void MercuryLighthouseAerie_PlaceForConfrontation(void) {
   Event_WaitFrames(40);
 }
 
-/// Mia stops the fight with Saturos before it begins: she tells Isaac the
-/// lighthouse is hers to guard and that his party are trespassers, and they
-/// quarrel until she challenges him. Isaac fights her alone: Garet, Ivan and
-/// Mia leave the party for the duel (ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI,
-/// slot 1). Reached at the end of ConfrontSaturos and from
-/// MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY.
+/// Mia challenges Isaac's judgment, but they agree to cooperate rather
+/// than fight while Menardi escapes with the hostages. The existing
+/// aftermath entrance handles Mia's pursuit and the Saturos battle.
 static void MercuryLighthouseAerie_MiaInterrupts(void) {
   Actor_ShowEmote(ACTOR_MIA, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 60);
   Event_SetMessageId(MsgDarkDuelMiaStops);
@@ -1142,10 +1136,8 @@ static void MercuryLighthouseAerie_DuelWon(void) {
 }
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH: the party
-/// watches Mia, beaten, concede. Her other self admits Isaac is stronger, she
-/// calls the fight off and agrees to trust him, then goes on ahead to the
-/// beacon alone. Isaac, Garet and Ivan are the party again and the aerie is
-/// entered at MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES.
+/// sees Mia choose to trust Isaac and pursue Menardi to protect the
+/// hostages. Isaac, Garet and Ivan remain to confront Saturos.
 static void MercuryLighthouseAerie_MiaYields(void) {
   Event_Start();
   MercuryLighthouseAerie_PlaceForConfrontation();
