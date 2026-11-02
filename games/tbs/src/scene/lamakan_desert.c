@@ -264,7 +264,7 @@ const struct ActorTemplate *LamakanDesert_GetActorTemplates(void) {
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
       GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0 &&
       (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0 ||
-       GameFlag_Get(FLAG_DARK_MANTICORE_AFTERMATH_DONE) != 0 ||
+       GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) != 0 ||
        GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0 ||
        gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE)) {
     GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
@@ -406,7 +406,7 @@ static void LamakanDesert_AshJennaFinale(void) {
 /// Ash Jenna, grey, watches the ash-streaked desert and slips away from Isaac.
 /// After the Manticore aftermath, she delivers the finale instead.
 static void LamakanDesert_MeetAshJenna(void) {
-  if (GameFlag_Get(FLAG_DARK_MANTICORE_AFTERMATH_DONE) != 0) {
+  if (GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) != 0) {
     LamakanDesert_AshJennaFinale();
     return;
   }
@@ -1125,7 +1125,6 @@ static void LamakanDesert_ManticoreAftermath(void) {
     Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   }
   GameFlag_Set(FLAG_DARK_MIA_MANTICORE_SEEN);
-  GameFlag_Set(FLAG_DARK_MANTICORE_AFTERMATH_DONE);
   Event_End();
 }
 
@@ -1179,7 +1178,7 @@ s32 LamakanDesert_Initialize(void) {
       (gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE ||
        GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) &&
       GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
-      GameFlag_Get(FLAG_DARK_MANTICORE_AFTERMATH_DONE) == 0) {
+      GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) == 0) {
     LamakanDesert_ManticoreAftermath();
     // Mia's aftermath plays on the return from battle. Ash Jenna then
     // appears for the finale automatically.
