@@ -1,4 +1,4 @@
-# Lamakan finale: Ash Jenna's reveal, the echoes, the choice and three endings.
+# Lamakan finale: Ash Jenna's reveal, the remaining echoes, the choice and three endings.
 N224	MsgDarkFinaleJennaMet	You came back. I wondered\nif you would.{end_wait}
 N225	MsgDarkFinaleIsaacMet	You watched us in the sand.\nYou knew what happened.\nWho are you?{end_wait}
 N195	MsgDarkFinaleJenna1	You kept walking, so you\nhave earned an answer. I'll\ntell you what I am.{end_wait}
@@ -10,7 +10,6 @@ N200	MsgDarkFinaleIvan	She's telling the truth,\nIsaac, and she's afraid.\nI can
 N201	MsgDarkFinaleMia	If there is another way,\nwe have to find it. I won't\nlet fear choose for us.{end_wait}
 N203	MsgDarkEchoMiner	You stayed with that miner\nuntil the end. I saw you.{end_wait}
 N204	MsgDarkEchoDoor	You opened that door. I can\nstill hear her humming.{end_wait}
-N205	MsgDarkEchoCaravan	You tried to reach them,\neven when you knew they\nmight not hear you.{end_wait}
 N207	MsgDarkEchoNone	You showed no mercy at all,\nIsaac. You and I are\nalready the same.{end_wait}
 N208	MsgDarkFinaleAsk	Take her offer?{end_now}
 N209	MsgDarkFinaleYesIsaac	All right. Do it, and make\nit quick.{end_wait}
