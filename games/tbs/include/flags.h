@@ -2732,10 +2732,10 @@
 /// Isaac paid a stranded family's fare in Tolbi (Tolbi_TalkToStrandedFather):
 /// the third Tide Shard kindness.
 #define FLAG_DARK_TIDE_TOLBI 0x8b5
-/// Ondra's battle in Tolbi has begun (Tolbi_TalkToOndra); set before it, so a
+/// Kegare's battle in Tolbi has begun (Tolbi_TalkToKegare); set before it, so a
 /// win returns to a Tolbi where she is gone.
 #define FLAG_DARK_KEGARE_FOUGHT 0x8b6
-/// Ondra has been beaten, and her spoils given: she does not return.
+/// Kegare has been beaten, and her spoils given: she does not return.
 #define FLAG_DARK_KEGARE_BEATEN 0x8b7
 
 /// Ash Jenna stands in the Lamakan Desert's Manticore pass (set on entry while
