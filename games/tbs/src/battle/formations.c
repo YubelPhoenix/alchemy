@@ -1554,7 +1554,7 @@ const struct Formation gFormations[] = {
         .minimumCounts = {1},
         .maximumCounts = {1},
     },
-    // Ondra, the Tideglass Queen, in Tolbi.
+    // Kegare, the Mia-mimicking Water Adept, in Tolbi.
     {
         .memberIds = {104},
         .minimumCounts = {1},
