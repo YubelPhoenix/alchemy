@@ -1,0 +1,42 @@
+# Babi's audience, part I: Colosso's reward, the audience, and the first revelations about Lemuria.
+08901	message	I've waited for you.\nThere is something we\nmust discuss.{end_wait}
+08902	message	It's difficult to speak\nacross the room.\nCome closer.{end_wait}
+08903	message	The contests at Colosso\nwere worth witnessing.{end_wait}
+08904	message	It was a fine sight to\nsee Babi's chosen warrior\ncarry the day.{end_wait}
+08905	message	Iodem, present the\nvictor's reward.{end_wait}
+08907	message	{actor_name:1} received\n{argument_item_name:2}.{end_wait}
+08908	message	Now, {actor_name:1}, have you\nrecovered from the\ntrials?{end_now}
+08909	message	It pleased me to see\nBabi's chosen warrior\nstand until the end.{end_wait}
+08910	message	Tell me, {actor_name:1}, are\nyou feeling well again?{end_now}
+08911	message	Youth restores itself\nquickly, even after\nsuch trials.{end_wait}
+08912	message	You must be exhausted.\nI can hardly believe\nyou're standing.{end_wait}
+08913	message	Who could expect less\nfrom those who brought\nBabi safely home?{end_wait}
+08914	message	Enough praise. Why have\nyou summoned us?{end_wait}
+08915	message	Watch your tongue!\nDo you know who you\nare addressing?{end_wait}
+08916	message	Let him speak, Iodem.\nThere are better ways\nto judge a man.{end_wait}
+08917	message	What did you say\nyour name was?{end_wait}
+08918	message	He is speaking to\nyou, {actor_name:2}.{end_wait}
+08919	message	Yes, {actor_name:2}. We will\nexplain the matter.{end_wait}
+08920	message	We owe you and your\ncompanions for bringing\nme back, {actor_name:1}.{end_wait}
+08921	message	But a simple expression\nof gratitude will not\nsettle everything...{end_wait}
+08922	message	I have already told\nIodem the whole story.{end_wait}
+08923	message	What do you mean by\nthe whole story?{end_wait}
+08924	message	You wish to learn more\nabout Lemuria, don't you?{end_now}
+08925	message	Indeed. Your curiosity\nis plain to see.{end_wait}
+08926	message	There is no need to hide\nit. I can read the question\non your faces.{end_wait}
+08927	message	I have only just seen\nPsynergy for myself.\nWhat a power...{end_wait}
+08928	message	I used the Cloak Ball\nto let him witness\nPsynergy firsthand.{end_wait}
+08929	message	The others saw nothing,\nbut I knew {actor_name:1}'s\ncontest was unusual.{end_wait}
+08930	message	I doubted you would\nuse such power in a\nfight...{end_wait}
+08931	message	Do not be ashamed,\n{actor_name:1}. Psynergy is\nalso a warrior's gift.{end_wait}
+08932	message	When I first learned\nwhat you could do, I\nthought you Lemurian.{page_break}I was astonished.{end_wait}
+08933	message	You speak of Lemuria\noften, Babi. What is it?{end_wait}
+08934	message	A city of an ancient\npeople, hidden far out\nat sea.{end_wait}
+08935	message	Babi traveled there\naround the time of\nthe great flood.{end_wait}
+08937	message	The flood came while\nI was traveling with\nLunpa.{end_wait}
+08938	message	Lunpa? The thief\nfrom the old stories?{end_wait}
+08939	message	I know it sounds\nimpossible. It was\nmore than a century ago.{end_wait}
+08940	message	Then the rumors about\nyou were true?{end_wait}
+08941	message	Kraden spoke of the\nStone of Sages. Could\nthat explain your age?{end_now}
+08942	message	The Stone that grants\nimmortality came from\nLemuria?{end_wait}
+08943	message	Don't tell me you've\nforgotten the Stone\nof Sages...{end_now}
