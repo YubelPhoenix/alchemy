@@ -1,7 +1,7 @@
 02418	message	The Psynergy Stone...\nit's simply gone.{end_wait}
 04051	MsgSolSanctumKradenFirstTimeAtSol	This is the entrance to\nSol Sanctum. You've never\nbeen inside, have you?{end_now}
 04052	message	Look closely, then. It's\nolder than the village,\nolder than our memory.{end_wait}
-04053	message	Of course not. Almost no\none has. It's not a place\nfor idle visitors.{end_wait}
+04053	message	I doubt that. Few people\nhave ever been allowed\ninside.{end_wait}
 04054	MsgSolSanctumWrongKraden	Kraden? You've gone quiet.\nWhat is it?{end_wait}
 04055	message	Hmm...{page_break}Those two spoke of a\nhidden passage, deeper\nin. I can't forget it.{end_wait}
 04056	message	I've studied its history\nfor years, but never\nstood here until now.{end_wait}
