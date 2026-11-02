@@ -8,3 +8,21 @@
 09832	MsgSuhallaPityColossoVictor	A Colosso victor should\nnot have to suffer\nlike this.{page_break}When I find those\nresponsible, I will\nsettle the score.{end_wait}
 09833	MsgSuhallaAshamedBeforeIodem	Damn it... I cannot bear\nto let Iodem see me\nlike this.{page_break}I would rather hide\nthan face him in this\ncondition.{end_wait}
 09834	MsgSuhallaSurvivedAttack	I thought I was dead.\nI can hardly believe\nI survived.{page_break}Those strange men with\nwild hair overwhelmed\nus with their power.{end_wait}
+09813	message	Uh...{pause_20_skippable} Is...{pause_20_skippable}\nIs that Iodem...?{end_wait}
+09814	message	What happened here\nat the gate?{end_wait}
+09815	message	A group of strangers\ncame... They had no\npapers, but tried to pass.{end_wait}
+09816	message	I-Io{pause_20_skippable}dem...{end_wait}
+09817	message	We tried to stop them...{pause_20_skippable}\nbut they were too strong!{end_wait}
+09818	message	They{pause_20_skippable} wielded strange\npowers...{pause_20_skippable} We never\nstood a chance.{end_wait}
+09819	message	It had to be {actor_name:5}!{end_now}
+09820	message	No one else could have\ndone this...{end_wait}
+09821	message	You know your own enemy,\nIodem. Who else could\nhave done this?{end_wait}
+09822	message	Once we find {actor_name:7},\nwe must hunt down the\nmonsters who did this.{end_wait}
+09823	message	We must reach Babi\nLighthouse at once!{end_wait}
+09824	message	Yes{pause_20_skippable}, but we cannot\nleave the soldiers\nhere...{end_wait}
+09825	message	We're all right.{pause_20_skippable} Don't\nworry about us. Please,\ngo after them...{end_wait}
+09826	message	But we can't just...{end_wait}
+09827	message	We lost the fight, but\nwe'll survive.{pause_20_skippable} Now go!{end_wait}
+09828	message	If they've done anything\nto the lighthouse... I...{end_wait}
+09829	message	He's right. We have to\nstop them!{end_wait}
+09830	message	We're going after them,\naren't we, {actor_name:1}?{end_wait}
