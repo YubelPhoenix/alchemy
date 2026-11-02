@@ -14,6 +14,7 @@
 08759	message	Babi expects you at\nthe colosseum.{page_break}Go there directly.\nThere is no need to\nvisit the palace.{end_wait}
 08770	message	Here you are.\nRest well.{end_wait}
 08771	message	If you're weary, please\ntake some time to rest.{end_wait}
+08832	MsgTolbiGetUp	{actor_name:1}!{page_break}Get up, {actor_name:1}!{end_wait}
 08833	message	Are you feeling better?\nYou were troubled by\nnightmares for a while.{end_wait}
 08834	message	What's wrong,\n{actor_name:1}?{end_wait}
 08835	message	You entered the finals?\nAnd fought in them?{end_wait}
@@ -22,6 +23,9 @@
 08838	message	You're exhausted,\n{actor_name:1}.\nAre you feeling better?{end_now}
 08839	message	Can you manage now?{page_break}All right, but take\ncare of yourself,\n{actor_name:1}.{end_wait}
 08840	message	{actor_name:1} is awake.\nWe should go to the\ncolosseum now.{end_wait}
+08844	MsgTolbiCallsName	{actor_name:1}...{end_wait}
+08845	message	Huh?{end_wait}
+08846	message	You've awakened.{end_wait}
 08847	message	Colosso? That contest\nended some time ago!{end_wait}
 08848	message	You slept for a long\ntime...{page_break}Do you truly remember\nnothing?{end_now}
 08849	message	Oh, please! You were\ncompletely unconscious.\nYou remember nothing!{end_wait}
@@ -41,6 +45,7 @@
 08863	message	Are you certain you\nshould rise so quickly?{end_wait}
 08868	message	That's unfortunate.\nI thought we might have\nshared a good time.{end_wait}
 08869	message	I expected you to go\nas well. Perhaps I was\nwrong.{end_wait}
+08872	MsgTolbiMeetBabi	Did you meet with Babi?{end_now}
 08873	message	Babi needs your help.\nPlease stand with him.{page_break}He is relying on you.{end_wait}
 08874	message	Why have you not gone\nto meet Babi?{page_break}He wants to speak with\nyou before you depart.{end_wait}
 08876	message	That's a shame{pause_20_skippable}... I mean,\nthat no one will sail\nthe Karagol Sea.{page_break}Let Babi provide for\nyou until your ship is\nready to depart.{end_wait}

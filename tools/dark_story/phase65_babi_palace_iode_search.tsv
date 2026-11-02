@@ -1,6 +1,8 @@
 # Babi Palace sequential event: Iodem recounts the search for Babi at Altmiller Cave.
+08225	MsgTolbiIodemIodem	Iodem, Iodem!{end_wait}
 08226	message	We searched Altmiller\nCave, as you ordered.{end_wait}
 08227	message	And what did you learn?\nDid you find any sign\nof Lord Babi?{end_wait}
+08228	message	{pause_20_skippable}This is futile...{end_wait}
 08229	message	Iodem, why send us into\nsuch a dangerous place\nto search for him?{end_wait}
 08230	message	Why would Lord Babi\nenter that cave alone?\nIt makes no sense...{end_wait}
 08231	message	You were going to say\nit was impossible,\nweren't you?{end_wait}
@@ -16,6 +18,7 @@
 08241	message	Did you search the\ncave after him?{end_wait}
 08242	message	What was Lord Babi\ndoing in that place?{end_wait}
 08243	message	He entered the cave,\nthen vanished{pause_20_skippable}\nbefore my eyes.{end_wait}
+08244	message	Vanished?{end_wait}
 08245	message	So you lost sight\nof him inside?{end_wait}
 08246	message	I followed him past\nthe cave entrance...{page_break}but he was gone.\nThere was no trace\nof where he went.{end_wait}
 08247	message	I followed him again\non several occasions.{page_break}Each time, he vanished\nmoments after crossing\nthe threshold.{end_wait}
@@ -23,7 +26,9 @@
 08249	message	But he always returned\nfrom Altmiller Cave\nbefore now...{end_wait}
 08250	message	Then surely he will\nreturn soon?{end_wait}
 08251	message	No. This time is\nnot the same. Something\nabout it troubles me.{end_wait}
+08252	message	What do you mean?{end_wait}
 08253	message	It is strange that he\nleft just before Colosso.{page_break}But there is another\nmatter I cannot ignore...{end_wait}
+08254	message	What is it?{end_wait}
 08255	message	Lord Babi's bed had\nnot been slept in\nthis morning.{end_wait}
 08256	message	What does that\nhave to do with it?{end_wait}
 08257	message	He did not sleep there\nlast night. That is\nwhat troubles me.{end_wait}
@@ -32,6 +37,7 @@
 08260	message	We had no idea he\nhad been gone so long...{end_wait}
 08261	message	You don't think Lord\nBabi was ki{em_dash}{end_wait}
 08262	message	Do not speak such\nthings! Lord Babi is\nalive somewhere!{end_wait}
+08263	message	Ah, yes, of course.{end_wait}
 08264	message	I will attend Colosso\nin Lord Babi's place.\nYou must find him...{end_wait}
 08265	message	We will search again.\nEvery one of us.{end_wait}
 08266	message	Lord Babi... Where\nhave you gone?{end_wait}
