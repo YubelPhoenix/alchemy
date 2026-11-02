@@ -108,65 +108,7 @@ def validate(msgid: str, original: str, new: str) -> None:
 
 def validate_dark_message_references(catalogue: str) -> None:
     """Catch stale MsgDark references before the expensive game compiler runs."""
-    contexts = set(re.findall(r'^msgctxt "([^"]+)"    args = sys.argv[1:]
-    check_only = "--check" in args
-    replacements = load_replacements([a for a in args if a != "--check"] or None)
-    text = PO_PATH.read_text(encoding="utf-8")
-    entries = re.split(r"(\n\s*\n)", text)
-    done = set()
-    new_rows = {k: v for k, v in replacements.items() if k.startswith("N")}
-    for msgid, (context, new) in sorted(new_rows.items()):
-        validate(msgid, new, new)
-        done.add(msgid)
-    for index, entry in enumerate(entries):
-        match = re.search(r'^msgctxt "(.*?)"\nmsgid "([0-9]{5})"$', entry, re.MULTILINE)
-        if not match or match.group(2) not in replacements:
-            continue
-        context, msgid = match.groups()
-        expected_context, new = replacements[msgid]
-        if context != expected_context:
-            raise SystemExit(f"Dialogue {msgid} has context {context}; expected {expected_context}.")
-        validate(msgid, decode_msgstr(entry), new)
-        lines = entry.splitlines()
-        msgstr_index = next(i for i, line in enumerate(lines) if line.startswith("msgstr "))
-        display_lines = new.split(r"\n")
-        encoded = ['msgstr ""']
-        for i, display_line in enumerate(display_lines):
-            suffix = r"\n" if i < len(display_lines) - 1 else ""
-            encoded.append('"' + display_line + suffix + '"')
-        entries[index] = "\n".join(lines[:msgstr_index] + encoded)
-        done.add(msgid)
-    missing = sorted(set(replacements) - done)
-    if missing:
-        raise SystemExit("Dialogue IDs not found in the catalogue: " + ", ".join(missing))
-    if new_rows:
-        # New messages go in front of the catalogue's final null entry, which
-        # moves up to the next free number.
-        last = max(i for i, e in enumerate(entries) if "alchemy-null" in e)
-        first_id = int(re.search(r'msgid "([0-9]{5})"', entries[last]).group(1))
-        added = []
-        for offset, (key, (context, new)) in enumerate(sorted(new_rows.items(), key=lambda kv: int(kv[0][1:]))):
-            body = ['msgstr ""']
-            display_lines = new.split(r"\n")
-            for i, display_line in enumerate(display_lines):
-                suffix = r"\n" if i < len(display_lines) - 1 else ""
-                body.append('"' + display_line + suffix + '"')
-            added.append(f'msgctxt "{context}"\nmsgid "{first_id + offset:05d}"\n' + "\n".join(body))
-        terminator = re.sub(r'msgid "[0-9]{5}"', f'msgid "{first_id + len(added):05d}"', entries[last])
-        entries[last:last + 1] = ["\n\n".join(added), "\n\n", terminator]
-    updated = "".join(entries)
-    validate_dark_message_references(updated)
-    if check_only:
-        print(f"Checked {len(done)} dialogue entries and dark-story message references; en.po untouched.")
-        return
-    PO_PATH.write_text(updated, encoding="utf-8")
-    print(f"Rewrote and validated {len(done)} dialogue entries.")
-
-
-if __name__ == "__main__":
-    sys.dont_write_bytecode = True
-    main()
-, catalogue, re.MULTILINE))
+    contexts = set(re.findall(r'^msgctxt "([^"]+)"$', catalogue, re.MULTILINE))
     symbol_re = re.compile(r"\bMsgDark[A-Za-z0-9_]*\b")
     source_paths = sorted(Path("games/tbs/src").rglob("*.c"))
     source_paths += sorted(Path("games/tbs/include").rglob("*.h"))
@@ -219,7 +161,7 @@ def main() -> None:
     missing = sorted(set(replacements) - done)
     if missing:
         raise SystemExit("Dialogue IDs not found in the catalogue: " + ", ".join(missing))
-    if new_rows and not check_only:
+    if new_rows:
         # New messages go in front of the catalogue's final null entry, which
         # moves up to the next free number.
         last = max(i for i, e in enumerate(entries) if "alchemy-null" in e)
@@ -234,10 +176,12 @@ def main() -> None:
             added.append(f'msgctxt "{context}"\nmsgid "{first_id + offset:05d}"\n' + "\n".join(body))
         terminator = re.sub(r'msgid "[0-9]{5}"', f'msgid "{first_id + len(added):05d}"', entries[last])
         entries[last:last + 1] = ["\n\n".join(added), "\n\n", terminator]
+    updated = "".join(entries)
+    validate_dark_message_references(updated)
     if check_only:
-        print(f"Checked {len(done)} dialogue entries; en.po untouched.")
+        print(f"Checked {len(done)} dialogue entries and dark-story message references; en.po untouched.")
         return
-    PO_PATH.write_text("".join(entries), encoding="utf-8")
+    PO_PATH.write_text(updated, encoding="utf-8")
     print(f"Rewrote and validated {len(done)} dialogue entries.")
 
 
