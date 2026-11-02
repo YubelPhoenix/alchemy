@@ -317,3 +317,16 @@ A dedicated phase71_suhalla_gate_checkpoint.tsv now covers nine previously absen
 The lines were rewritten against their original English text and the source event sequence. In particular, the post-audience scene is still Iodem questioning his wounded guards after the attack; it does not imply that the party has already reached Babi Lighthouse. The original game question about Felix and the subsequent Iodem dialogue remain in their source-defined sequence; no scene logic, flags, actor placements, or event ordering were changed.
 
 The shared MsgGotPsynergyStone (02416) was deliberately not included: it is not a Suhalla Gate-specific line and must be resolved against the full phase index before any shared-text rewrite. The checkpoint's unnamed sequential message offsets also remain a separate branch-level audit item. This addition has not yet been validated by GitHub Actions or tested in-game; run the dialogue validator and full build before calling it technically verified.
+
+
+## Focused characterization and continuity repairs
+
+The following targeted revisions address issues found during the dialogue audit:
+
+- Menardi's early duel no longer gives Saturos an unestablished childhood history. His reply now responds to the immediate danger posed by Isaac's party.
+- Ash Jenna's Lamakan taunt now identifies the Mercury beacon as the one Isaac failed to stop and refers to the party pursuing the lighthouse sequence, rather than implying Isaac is lighting the beacons.
+- Mia's post-Tolbi exchange now moves from recognizing Ash Jenna's deliberate attack to choosing how Mia will respond. Her divided-finale branch now states why she leaves: she cannot keep waiting for a solution that has not come, and chooses to act alone.
+- Ivan's Bloom dialogue now makes clear that he does not hear every voice distinctly, that he cannot simply shut the voices out, and that the experience has a physical cost.
+- Heart's post-battle explanation retains the Tuaparang and lost-world revelation but stops short of explaining the faction's purpose or history.
+
+These are dialogue-only changes. They do not alter scene triggers, story flags, battles, or branch selection. The three finale outcomes still require a source-to-event audit to verify that their distinct conditions and consequences are correctly wired; dialogue polish alone cannot establish that.
