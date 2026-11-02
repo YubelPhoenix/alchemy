@@ -76,13 +76,11 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase30_tolbi_ash_jenna.tsv` | Later Tolbi Ash Jenna encounter; its event condition places it after Colosso and after Mercury Lighthouse is lit. |
 | `phase32_imil_tolbi_kindness.tsv`, `phase33_kegare.tsv` | Optional kindness route and Kegare encounter-access gates. Preserve the underlying decision flags and conditional availability. |
 | `phase34_mogall_lamakan.tsv`, `phase35_lamakan_jenna.tsv` | Mogall and Lamakan custom material. Verify each encounter's trigger and ensure Ash Jenna's later appearance acknowledges the earlier meeting. |
-| `phase36_peak_alex.tsv`, `phase39_mogall_alex.tsv` | Alex's separate encounters. His knowledge and warnings must develop between appearances rather than repeat. |
 | `phase37_mia_tolbi.tsv`, `phase38_heart.tsv` | Mia's post-Tolbi recovery scene and the separate Heart cameo dialogue. Keep Heart and Kegare distinct. |
 | `phase40_altin_peak_miners.tsv`, `phase41_altin_peak_mood.tsv` | Altin Peak rescue and aftermath. Preserve the rescue choice and the miner's subsequent condition. |
 | `phase42_manticore_mia.tsv` | Mia's post-Manticore episode. This must follow the Manticore encounter and be reflected in later party dialogue. |
-| `phase43_ivan.tsv` | Ivan's developing sensitivity to the awakened and their voices. His observations must match what he has actually heard. |
-| `phase44_bloom.tsv` | Altin Peak miner aftermath and the choice to stay with him. |
-| `phase45_mogall_door.tsv` | Mogall camp-door decision. Keep the yes/no outcomes distinct and preserve the humming-girl callback. |
+| `phase43_ivan.tsv` | Ivan's observations during Ash Jenna's confrontation and the Altin mine rescue. No supernatural hearing is part of the current story. |
+| `phase44_miner_aftermath.tsv` | Altin Peak miner's ordinary recovery after the mine collapse and the choice to stay with him. |
 | `phase47_finale.tsv` | Lamakan finale and Ash Jenna's major revelation. This is not the overall Golden Sun ending; it directs the party onward to Kalay. |
 | `phase49_babi_palace.tsv` | 89 non-empty Babi's Palace message entries rewritten across pre-Colosso, Colosso, and post-Colosso states, including residents, Sheba-related dialogue, Mind Read, examinations, and event prompts. |
 | `phase50_babi_scholars.tsv` | 19 Babi scholars' room entries rewritten, covering Alchemy, the Venus Ruins, the lighthouse, and Kraden's absence. |
@@ -134,9 +132,8 @@ Phases 49–67 now contain **849 rewritten source-message entries**: Babi's Pala
 ### Important custom-state observations
 
 - Ash Jenna has at least two distinct encounters: the Lamakan revelation and the later Tolbi confrontation. Dialogue must acknowledge the earlier meeting.
-- Alex appears in separate Mogall and Altin Peak encounters. His information and urgency must progress.
 - The post-Mercury custom events are gated by story conditions; their phase numbers do not mean they occur before the original Altin or Lamakan visits.
-- The Lamakan finale recalls the miner and Mogall camp choices. Those callbacks must agree with the actual flags and with the player's route.
+- The Lamakan confrontation recalls the miner recovery choice, but that choice does not determine Isaac's response to Ash Jenna's offer.
 - The Tolbi Ash Jenna encounter is a later event, gated by Colosso being over and Mercury Lighthouse being lit.
 - Kegare's appearance is conditional. Do not write her as a guaranteed encounter for every playthrough.
 
@@ -276,7 +273,7 @@ These values are a first balance target, not a claim that the fights are fully v
 
 ### Current continuity repair pass — November 2026
 
-The post-Lamakan Tolbi encounter has now been revised in `phase30_tolbi_ash_jenna.tsv`. Ash Jenna recognizes that the party has already met her in Lamakan; Isaac no longer asks who she is, and the exchange advances the established sleeper / lighthouse threat. The dangling fishermen question has been removed. Her warning about the harbor now leads directly into Ivan hearing the child at the docks, making that transition intentional rather than an unrelated sound cue. Mia acknowledges her anger in the desert without accepting Ash Jenna's attempt to define her by it. The event sequence and flags in `Tolbi_MeetAshJenna` were not changed.
+The post-Lamakan Tolbi encounter has been revised in `phase30_tolbi_ash_jenna.tsv`. Ash Jenna recognizes the party from Lamakan and continues her warning about the Wise One and the next lighthouse. The former sleeper/harbor thread is no longer part of the scene. Mia acknowledges her anger after the Manticore without accepting Ash Jenna's attempt to define her by it. The Tolbi event sequence and flags remain unchanged.
 
 The contradictory mud / flood wording in `phase34_mogall_lamakan.tsv` has also been removed. The dialogue now describes the actual source-defined sand, heat, dust, and ash-thick air of Lamakan; no environmental or heat-hazard logic was changed.
 
@@ -324,7 +321,20 @@ The following targeted revisions address issues found during the dialogue audit:
 - Menardi's early duel no longer gives Saturos an unestablished childhood history. His reply now responds to the immediate danger posed by Isaac's party.
 - Ash Jenna's Lamakan taunt now identifies the Mercury beacon as the one Isaac failed to stop and refers to the party pursuing the lighthouse sequence, rather than implying Isaac is lighting the beacons.
 - Mia's post-Tolbi exchange now moves from recognizing Ash Jenna's deliberate attack to choosing how Mia will respond. Her divided-finale branch now states why she leaves: she cannot keep waiting for a solution that has not come, and chooses to act alone.
-- Ivan's Bloom dialogue now makes clear that he does not hear every voice distinctly, that he cannot simply shut the voices out, and that the experience has a physical cost.
+- Ivan no longer has supernatural hearing or a connection to a Bloom. His lines now reflect ordinary observation and urgency during the mine rescue.
 - Heart's post-battle explanation retains the Tuaparang and lost-world revelation but stops short of explaining the faction's purpose or history.
 
 The finale's source flow has been updated after removing the caravan sequence. The Complicit outcome follows accepting Ash Jenna's offer; refusing it reaches the Mercy outcome only when both remaining mercy choices are set (miner stayed and Mogall door opened), otherwise the Divided outcome is selected and Mia leaves. The event message index advances between each speaker, so the consecutive branch message IDs are intentional.
+
+
+## Canonical decision: remove the Bloom and its dependent storyline
+
+The Bloom, awakened/sleeper mythology, and supernatural voice-hearing plot have been removed. They are not part of the current Ashfall story and must not be restored during later dialogue or scene work.
+
+The Mogall camp/keeper sequence and its Alex encounter have been removed. Alex's custom Mogall and Altin Peak appearances were also removed because they existed to explain or reinforce the Bloom plot. The broken Mogall sign no longer carries the unexplained warning about lights being awake.
+
+Altin Peak's trapped-miner encounter remains, but it is now a conventional mine-collapse rescue. The men are trapped by a failed support structure and rising water; there is no transformation, grey-eyed state, or supernatural aftermath. After the rescue, Isaac may stay with an injured miner while he recovers. This choice is remembered in the Lamakan confrontation but does not determine the party's ending.
+
+Ash Jenna's motivation has been simplified. She is a Jenna from a world she says the Wise One destroyed, and she wants Isaac's help confronting him. The Lamakan scene presents this as her account and her offer, not as an objective explanation of a new supernatural system. The Tolbi encounter continues that conflict without sleepers, awakened people, harbor voices, or lighthouse doors.
+
+Isaac now makes one clear choice: accept or refuse Ash Jenna's offer. Mia does not abruptly abandon the party because of the miner decision. The old Bloom branch, Mogall door mercy flag, supernatural Ivan dialogue, and divided-ending departure have been retired.
