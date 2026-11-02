@@ -2783,7 +2783,6 @@
 /// (WorldMap_MiaRejoinsParty), so a battle that reloads the entrance does not
 /// replay it.
 #define FLAG_DARK_MIA_REUNITED 0x8cd
-#define FLAG_DARK_HARBOR_SHELTERED 0x8ce
 #define FLAG_DARK_MOGALL_DOOR_OPENED 0x8cf
 #define FLAG_DARK_CARAVAN_CALMED 0x8d0
 #define FLAG_DARK_MINER_STAYED 0x8d3
@@ -2792,8 +2791,5 @@
 #define FLAG_DARK_COMPLICIT 0x8d6
 #define FLAG_DARK_MERCY_ENDING 0x8d7
 #define FLAG_DARK_CARAVAN_DONE 0x8d8
-/// Ivan heard a child crying at Tolbi's docks; the boy waits there until
-/// the party finds him.
-#define FLAG_DARK_HARBOR_CALLED 0x8d9
 
 #endif
