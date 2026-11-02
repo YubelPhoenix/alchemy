@@ -11,7 +11,7 @@
 07184	MsgValeIPromisedIdBecomeAGreat	I promised I'd be a\ngreat blacksmith before\n{actor_name:1} came back.{page_break}It's a man's promise.\nI'm still working on\nit.{end_wait}
 07185	MsgValeThatShyGirlWithIsaacSure	That quiet girl with\n{actor_name:1}{pause_20_skippable} looks kind.\nI hope she is.{end_wait}
 07186	MsgValeWhatHappenedToJennaHaventYou	What happened to {actor_name:6}?\nHaven't you found\nher yet?{end_wait}
-07187	MsgValeYouveGrownSoMuch	{actor_name:1}!{page_break}You've grown thin.\nI almost didn't\nrecognize you.{end_wait}
+07187	MsgValeYouveGrownSoMuch	{actor_name:1}!{page_break}You've grown so much.\nI almost didn't\nrecognize you.{end_wait}
 07188	MsgValeCameBack2	Oh. It's you, {actor_name:1}.\nYou came back.{end_wait}
 07189	MsgValeHomeJustToStay	You've come all the way\nhome to stay?\nAre you sure?{end_now}
 07190	message	Ah. You don't want to\nsettle into comfort.{page_break}Then you're welcome\nhere, for as long as\nyou stay.{end_wait}
