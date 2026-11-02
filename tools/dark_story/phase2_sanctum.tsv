@@ -4,11 +4,11 @@
 04053	message	Of course not. Almost no\none has. It's not a place\nfor idle visitors.{end_wait}
 04054	MsgSolSanctumWrongKraden	Kraden? You've gone quiet.\nWhat is it?{end_wait}
 04055	message	Hmm...{page_break}Those two spoke of a\nhidden passage, deeper\nin. I can't forget it.{end_wait}
-04056	message	I've walked these halls\nfor years. Something\nhas always felt wrong.{end_wait}
+04056	message	I've studied its history\nfor years, but never\nstood here until now.{end_wait}
 04057	message	I always imagined it'd\nlook different. Warmer.\nMore alive.{end_wait}
 04058	message	Different how, Kraden?{end_wait}
 04059	message	It was built to honor\nthe sun. So where's the\nsun, I ask you?{page_break}Nothing here shines.\nNothing here remembers\nlight.{end_wait}
-04060	message	It's bothered me for\nyears. I never said so.{end_wait}
+04060	message	That contradiction has\nbothered me for years.\nI never said so.{end_wait}
 04061	message	If there's a hidden way\nforward, it might lead\nto...{end_wait}
 04062	message	Well!{pause_20_skippable} We won't know\nunless we look.{end_wait}
 04063	message	He means it. Gods help\nus. Should we, {actor_name:1}?{end_now}
