@@ -114,15 +114,15 @@
 03787	message	Then my brother's still...\nhe's still alive?{end_wait}
 03788	message	{actor_name:5} is alive.{pause_20_skippable}\nHe's hanging on.{end_wait}
 03789	message	Come down here! Help us\nsave {actor_name:5}!{end_wait}
-03790	MsgValeNoItCantBeKyleIt	No...{pause_20_skippable} It can't be. Kyle...\nTell me it's a dream...{end_wait}
-03791	MsgValeMomDadFelixPleaseDontLeave	Mom... Dad...{pause_20_skippable} {actor_name:5}...{pause_20_skippable}{pause_20_skippable}\nPlease...{pause_20_skippable} Don't leave me\nhere alone...{end_wait}
+03790	MsgValeNoItCantBeKyleIt	No...{pause_20_skippable} Kyle...\nPlease, get up...{end_wait}
+03791	MsgValeMomDadFelixPleaseDontLeave	Mom... Dad...{pause_20_skippable} {actor_name:5}...{pause_20_skippable}{pause_20_skippable}\nPlease...{pause_20_skippable} answer me...{end_wait}
 03792	MsgValeBoulderNeedGet	{actor_name:1}... the Boulder...\nIf we don't get help,\neveryone drowns...{end_wait}
 03793	MsgValeIllGo	{text_effect:4}Oh...{pause_20_skippable} oh gods...{pause_20_skippable} I'll go.\nI'll go!{end_wait}
 03794	MsgValeICantMoveGetHelp	{text_effect:4}It's no use.{pause_20_skippable} I can't\nmove...{pause_20_skippable}{pause_20_skippable} {actor_name:1}, please!\nGet help!{end_wait}
 03796	message	I can't let him go alone...\nI won't.{end_wait}
-03797	message	Times like this, men stand\ntogether. Even the scared\nones.{end_wait}
+03797	message	I'm scared too.\nBut I won't leave him.{end_wait}
 03798	MsgValeOnlyTwoSurvived	Only two of us made it...\nand I don't know why.{end_wait}
-03799	message	We never imagined the\nSanctum would answer like\nthat.{end_wait}
+03799	message	The Sanctum...\nWe were not prepared.{end_wait}
 03800	message	It's a miracle we two\nwalked out of it alive.{end_wait}
 03801	message	That switch...\nIt was a trap. Had to be.{end_wait}
 03802	message	But could a single trap\nreally cause a storm like\nthis?{end_wait}
@@ -132,7 +132,7 @@
 03807	message	You were listening to us,\njust now...\nweren't you?{end_now}
 03809	message	{actor_name:1}... they look\nfrightening.{page_break}Are you sure you should\ntalk to them?{end_wait}
 03810	message	You must forget what you\nheard tonight. All of it.{end_wait}
-03811	message	Don't be afraid. We will\nhelp you forget.{end_wait}
+03811	message	You heard too much.\nWe can't let you leave.{end_wait}
 03812	MsgValeDoorWontOpen	The door won't open.{page_break}The impact must have torn\nit off its hinges. We're\ntrapped.{end_wait}
 03813	MsgValeThinkForgetThings	You think I should leave\neverything and just save\nmyself?{end_wait}
 03814	MsgValeRockHitsLose	If a rock hits now, I'll\nlose my chest and my life.\nThat would be stupid.{end_wait}
