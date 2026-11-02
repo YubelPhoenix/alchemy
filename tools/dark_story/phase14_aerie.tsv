@@ -14,8 +14,8 @@ N49	MsgDarkAerieMiaFear	I will. Just stay close to\nme.{end_wait}
 N50	MsgDarkAerieMiaGiveBack	You lit the beacon I'm\nmeant to guard. Give them\nback, or I'll take them.{end_wait}
 N51	MsgDarkAerieMenardiAlone	I don't want this fight,\nhealer, but I can't give\nthem back.{end_wait}
 N52	MsgDarkAerieMiaAngry	Then you've left me no\nchoice.{end_wait}
-N53	MsgDarkAerieMenardiRetreat	Enough. You're stronger\nthan I thought, and I won't\nthrow my life away here.{end_wait}
-N54	MsgDarkAerieMenardiTakes	The Stars and the captives\nare coming with me. Follow\nus if you're willing.{end_wait}
+N53	MsgDarkAerieMenardiRetreat	Enough. You have the\nadvantage. I won't risk my\nlife fighting you here.{end_wait}
+N54	MsgDarkAerieMenardiTakes	But the Stars and captives\nleave with me. You cannot\nstop us.{end_wait}
 N55	MsgDarkAerieGaretHurt	Mia! Are you hurt?{end_wait}
 N56	MsgDarkAerieMiaTookThem	Menardi took them all:\nJenna, Kraden, Felix and\nthe Stars.{end_wait}
 N57	MsgDarkAerieIvanTogether	Then we follow her, and\nthis time we do it\ntogether.{end_wait}
