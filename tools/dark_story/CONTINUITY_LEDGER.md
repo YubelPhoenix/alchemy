@@ -130,6 +130,11 @@ Phases 49–63 contain **640 rewritten source-message entries**: Babi's Palace a
 
 The first visit to Hammet Palace occurs before `FLAG_IVAN_REPORTED_TO_LAYANA`. Guards recognize Ivan and take the party to Lady Layana. Later dialogue differs. The Colosso tour group and the tunnel access also have separate conditions. After Hammet is returned from Lunpa, Layana opens the tunnel.
 
+
+### Vault revisit: Colosso chronology correction
+
+The Vault return sequence is selected only after `FLAG_KALAY_REACHED` (`vault.c` routes the party into `vault_revisit.c`). Its houses use `log_rooms_b.c`, where the source comment for `MsgVaultThePrisonersSaidTheyWantedTo` explicitly says the prisoners wanted to break out before Colosso began. The rewrite had changed this to a "war in Tolbi" and described Colosso as a blood pit where people bet on survival. That invented a war and distorted the source event: Colosso is the tournament the prisoners wanted to attend. Message `07372` in `phase20_vault_leftovers.tsv` now says they begged to be let out before Colosso began because even thieves wanted to see the tournament. No scene flags or event logic were changed.
+
 ### Babi's Palace
 
 The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue states. Sheba's captivity, the soldiers' search, and the audience with Babi must not be collapsed into one state. `FLAG_COLOSSO_OVER` and `FLAG_BABI_SPOKE_AFTER_COLOSSO` are essential distinctions. The Babi's Palace batch currently rewrites 89 named palace messages, with a further 19 scholars' room entries in `phase50_babi_scholars.tsv`. A separate source audit of the later scholars' room in `cottage_rooms_b.c` found four additional unrewritten message groups: the `MsgValeFolksSeemKnow` question/answer sequence and three bookcase examination messages (`MsgValeTheresABookEntitledEncyclopediaOf`, `MsgValeTheresANotebookEntitledExperimentsIn`, and `MsgValeTheresANotebookEntitledStudyOf`). These belong to the Babi Palace scholars' visit, not early Vale, and must be added to the later scholars batch. A source-code pass has since identified large sequential blocks beginning at `MsgTolbiGetUp`, `MsgTolbiLikeSleep`, `MsgTolbiIodemIodem`, `MsgTolbiCallsName`, and `MsgTolbiWaitingCompanions`, plus smaller question/answer sequences. These additional lines are not yet covered; the 89+19 count is partial.
