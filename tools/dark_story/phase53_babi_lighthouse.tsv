@@ -46,3 +46,61 @@
 10068	MsgBabiLighthouseThisIsABigWasteOf	This wait is pointless...{page_break}{actor_name:7}'s life is in\ndanger. If they do not\nfind her soon...{end_wait}
 10069	MsgBabiLighthouseIDontWantToHinderActors	I will not hinder\n{actor_name:7}'s rescue.{page_break}From here, the rest is\nfor those warriors\nto decide.{end_wait}
 10070	MsgBabiTruthDoorOpenThoseSeeing	The way opens to those\nwho can see beyond\nwhat their eyes reveal.{end_wait}
+
+
+# Sequential dialogue in Faran's first appeal and the sealed-door explanation.
+09987	message	I saw them enter. The\nstone door opened for them.{end_wait}
+09989	message	I tried to move it.\nIt will not give.{end_wait}
+09990	message	I told you. This door\nhas never opened for us.{end_wait}
+09991	message	If it could be opened,\nwe would have entered\nthe ruins long ago.{end_wait}
+09992	message	But I saw them pass\nthrough it. I know\nwhat I witnessed.{end_wait}
+09993	message	No one has ever passed\nthrough that door. What\nproof do you have?{end_wait}
+09996	message	I am{pause_20_skippable} sorry about\n{actor_name:7}...{end_wait}
+09997	message	Why did this have to\nhappen to her?{end_wait}
+09998	message	Are {actor_name:5} and the others\nbeyond this door?{end_wait}
+09999	message	If they passed through,\nthey are beyond it now...{end_wait}
+10000	message	Then we can follow them.\nWe only need a way\nthrough.{end_now}
+10002	message	There is no one else\nwho can go after them.{end_wait}
+10003	message	Iodem, who are these\npeople?{end_wait}
+10004	message	They came from the far\nnorth.{page_break}They followed the ones\nwho took {actor_name:7} all\nthe way here.{end_wait}
+10005	message	They pursued that group\nall the way from the\nnorth?{end_wait}
+10006	message	Yes. They are dangerous.\nWe have seen what they\ncan do.{end_wait}
+10007	message	Their power is terrible...\nAnd whatever they seek,\nit cannot be good.{end_wait}
+10008	message	Then we are the ones\nwho must stop them.{end_wait}
+10009	message	You believe you can\nstop them?{end_now}
+10010	message	Confidence is not enough.\nWhat can you actually\ndo against them?{end_wait}
+10011	message	Not with that attitude.\nYou will need more\nthan courage.{end_wait}
+10012	message	I have never heard you\nspeak so harshly, Faran.{end_wait}
+10013	message	What do you expect?\nWith {actor_name:7}'s life at stake...{page_break}you ask me to trust\nher rescue to children?{end_wait}
+10014	message	If you want my trust,\nyou must give me a\nreason to believe you.{end_wait}
+10015	message	Then show us what\nyou can do. Prove that\nyou can follow them.{end_wait}
+10016	message	Can you cross the same\npath they took?{end_now}
+10017	message	Your confidence proves\nnothing until you show\nus your strength.{end_wait}
+10018	message	There is no other way.\nYou will have to try.{end_wait}
+10019	message	Iodem asks only that\nyou stand back and\nwatch.{end_wait}
+10020	message	Then show us what\nyou can do.{end_wait}
+10032	message	The door moved! It\nactually opened!{end_wait}
+10033	message	After all these years...\nIt truly opened.{end_wait}
+10034	message	How did you manage\nto open it?{end_wait}
+10035	message	I cannot explain it.\nOur Psynergy answered\nwhere strength could not.{end_wait}
+10036	message	We did it because...\nwell, because we're us!{end_wait}
+10037	message	There is no time\nfor explanations now.{end_wait}
+10038	message	We can answer your\nquestions later. Sheba\nis still in danger.{end_wait}
+10039	message	Then go. Do not waste\nanother moment. Bring\nher back to us.{end_wait}
+10040	message	Come, Faran. We must\nreach Sheba before\nit is too late.{end_wait}
+10043	message	Why would the door\nclose again?{end_wait}
+10044	message	It is meant to keep out\nthose who have no\nPsynergy.{end_wait}
+10045	message	Anyone without Psynergy\nwould be in danger\nbeyond that door.{end_wait}
+10046	message	Then leave the rest\nto us. We will go on.{end_wait}
+10047	message	You expect us to remain\nhere and do nothing?{end_now}
+10048	message	We cannot open the door.\nFollowing you would only\nput you at risk.{end_wait}
+10049	message	The door will not admit\nus. We cannot follow\nyou beyond it.{end_wait}
+10051	message	But we cannot leave\nSheba in their hands,\nwhatever the danger.{end_wait}
+10052	message	Their strength is far\nbeyond anything you\nhave faced.{end_wait}
+10053	message	Without that power,\nwe cannot pass through?{end_now}
+10054	message	That is what the door\nhas made clear.{end_wait}
+10055	message	What you witnessed was\nonly a fraction of\ntheir true strength.{end_wait}
+10056	message	If we followed, we\nwould only become\nanother burden.{end_wait}
+10057	message	Then Sheba's life\nrests in your hands.{end_wait}
+10058	message	Bring her home safely.\nDo not fail her.{end_wait}
+10059	message	Go now, {actor_name:1}.\nWe will wait for your\nreturn.{end_wait}
