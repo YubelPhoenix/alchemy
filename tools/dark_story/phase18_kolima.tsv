@@ -27,18 +27,18 @@
 05310	message	Promise you'll do\nall you can for Kolima.{end_wait}
 05312	message	I thought you'd leave,\n{actor_name:1}.{end_wait}
 05313	message	But how do we save\nTret and Kolima?{end_wait}
-05314	message	I really have no\nidea right now...{end_wait}
-05316	message	I don't know yet...\nBut we have to\nthink of something.{end_wait}
-05317	message	Well,{pause_20_skippable} let's go.{end_wait}
-05322	message	Hroooom! He won't\nspeak to you, child!{end_wait}
-05337	message	Wait!\nWe can't let Tret\ndie like this!{end_wait}
-05338	message	That's right, {actor_name:1}.\nWe still need his help!{end_wait}
-05342	message	That's right, {actor_name:1}...{pause_20_skippable}{page_break}We have to save\neveryone in Kolima.{end_wait}
-05343	MsgTretTurnedPeopleKolima	I{pause_20_skippable} turned the people\nof Kolima into trees?{end_wait}
-05347	message	Tret is too weak. He\ncan't save Kolima like\nthis.{end_wait}
-05348	message	Then we heal him!{page_break}We can't let the\npeople of Kolima die\nwith the forest.{end_wait}
-05349	message	Every life in Kolima\ndepends on us.{end_wait}
-05350	message	We restore Tret and\nsave the people\nof Kolima.{end_wait}
+05314	message	I wish I knew.{end_wait}
+05316	message	We keep looking.\nThere must be a way.{end_wait}
+05317	message	Then let's go.{end_wait}
+05322	message	Hroom! He cannot\nanswer you, child.{end_wait}
+05337	message	Wait! We can't\nlet Tret die!{end_wait}
+05338	message	We still need him,\n{actor_name:1}.{end_wait}
+05342	message	{actor_name:1}, remember.{page_break}Kolima still needs us.{end_wait}
+05343	MsgTretTurnedPeopleKolima	I did this\nto the villagers?{end_wait}
+05347	message	Tret's too weak\nto lift the curse.{end_wait}
+05348	message	Then we heal him.{page_break}We can't abandon\nthose people.{end_wait}
+05349	message	Their lives depend\non what we do next.{end_wait}
+05350	message	Restore Tret.\nThen save Kolima.{end_wait}
 05352	message	Try the water!{end_wait}
 05353	message	Surely that will\nrevive Tret.{end_wait}
 05359	message	Hroooom...{pause_20_skippable} Life flows\nwithin me again.{end_wait}
