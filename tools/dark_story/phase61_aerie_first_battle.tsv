@@ -9,12 +9,17 @@
 10078	message	I sent {actor_name:6} and the\nothers to Idejima.{end_wait}
 10079	message	Then why did you\nreturn here?{end_wait}
 10080	message	I have another promise\nto fulfill.{end_wait}
+10081	message	A promise, you say?{end_wait}
+10082	message	You must mean {actor_name:7}...{end_wait}
 10083	message	Yes, {actor_name:7}. Why is\nshe still held here?{end_wait}
 10084	message	You said she would be\nfreed once we entered\nVenus Lighthouse.{end_wait}
 10085	message	So that is why you\ncame back.{end_wait}
 10086	message	You swore not to draw\nanyone else into this.{end_wait}
+10087	message	{actor_name:7} is special.{end_wait}
+10088	message	Of course...{end_wait}
 10089	message	Because {actor_name:7} is a\nspecial Adept?{end_wait}
 10090	message	You learned something\nfrom the first two\nlighthouses.{end_wait}
+10091	message	And what would that be?{end_wait}
 10092	message	Each lighthouse needed\nan Adept of its element.{end_wait}
 10093	message	We have Earth, Fire,\nand Water among us...{pause_20_skippable}\nbut no Wind Adept.{end_wait}
 10094	message	That would explain it{pause_20_skippable}.{end_wait}
@@ -62,15 +67,23 @@
 10136	message	Ah, so you care\nabout {actor_name:7} as well?{end_wait}
 10137	message	Don't worry. We won't\nhurt {actor_name:7}...{pause_20_skippable} if you\nmeet our conditions.{end_wait}
 10138	message	Saturos, what are\nyou doing?{end_wait}
+10139	message	Leave this to me!{end_wait}
 10140	message	{actor_name:7}!{pause_20_skippable} Do you recall\nthe rod linked to\nHesperia?{end_wait}
+10141	message	The Rod of Hesperia?{end_wait}
 10142	message	The Shaman's Rod.\nThe key to Jupiter\nLighthouse.{end_wait}
+10143	message	Ye{pause_20_skippable}-Yes...{end_wait}
 10144	message	Those who follow us\ncarry a rod... Is it\nthe same one?{end_wait}
 10145	message	{actor_name:7}! Stay there.\nYou can try from\nwhere you stand.{end_wait}
+10146	message	How about it, {actor_name:7}?{end_wait}
+10147	message	Well, {actor_name:7}?{end_wait}
 10148	message	...{pause_20_skippable}...{pause_20_skippable}...{pause_20_skippable}\nPerhaps...{pause_20_skippable}...{pause_20_skippable}...{pause_20_skippable}{end_wait}
 10149	message	"Perhaps?"{pause_20_skippable} What does\nthat mean? Speak!{end_wait}
+10150	message	Don't yell at her!{end_wait}
 10151	message	We're not shouting!{pause_20_skippable}\nWe need a clear answer.{end_wait}
+10152	message	So, {actor_name:7}?{end_wait}
 10153	message	Their thoughts are\nhidden... I cannot see...{pause_20_skippable}\nbut I think it is.{pause_20_skippable}{end_wait}
 10154	message	There is no point\nmaking her try again.{end_wait}
+10155	message	So, what do we do?{end_wait}
 10156	message	Do you know what we\nwill demand before we\nspare {actor_name:7}?{end_now}
 10157	message	You are quicker than\nI expected. You have\nguessed our price.{end_wait}
 10158	message	We want the rod that\nopens Jupiter\nLighthouse.{end_wait}
@@ -81,21 +94,28 @@
 10163	message	Do you care so little\nfor {actor_name:7}'s life?{end_wait}
 10164	message	Then take {text_effect:2}the rod!{reset_text_style}{end_wait}
 10165	message	Well done, Saturos.\nThe Shaman's Rod is\nfinally ours.{end_wait}
+10166	message	Go get it, {actor_name:5}!{end_wait}
+10167	message	Why me?{end_wait}
 10168	message	To make certain you\nkeep your word to us.{end_wait}
+10169	message	Go on, {actor_name:5}!{end_wait}
 10170	MsgVenusIsaacHandedOverShamansRod	{actor_name:1} surrendered\nthe Shaman's Rod.{end_wait}
 10171	message	What do you want\nme to do with it?{end_wait}
+10172	message	Keep it safe!{end_wait}
 10173	message	Where do you think\nyou're going, {actor_name:7}?{end_wait}
 10174	message	We gave you the rod.\nNow release {actor_name:7}.{end_wait}
 10175	message	What are you\ntalking about?{end_wait}
 10176	message	You said you'd free\n{actor_name:7} if we gave\nyou the rod.{end_wait}
+10177	message	Those{pause_20_skippable} were your terms.{end_wait}
 10178	message	We fulfilled our end.\nLet {actor_name:7} go.{end_wait}
 10179	message	You seem to have{pause_20_skippable}\nmisunderstood. I said we\nwouldn't harm {actor_name:7}...{page_break}but I never said\nwe'd let her go!{end_wait}
 10180	message	You changed the\nagreement?{end_wait}
 10181	message	You misunderstood\nthe terms. That is\nhardly our fault.{end_wait}
 10182	message	Besides, if we let\n{actor_name:7} go, she would\nnever reach home alone.{end_wait}
+10183	message	What do you mean?{end_wait}
 10184	message	{actor_name:7} cannot get\nback to Lalivero\nalone.{end_wait}
 10185	message	Take {actor_name:7}?{pause_20_skippable}...{pause_20_skippable}{pause_20_skippable}\nNo... I see now.{end_wait}
 10186	message	That's right.{pause_20_skippable} Your\njourney ends here.{end_wait}
+10187	message	Excuse me?{end_wait}
 10188	message	Enough!{pause_20_skippable} You are the\nones who will not\nleave this place!{end_wait}
 10189	message	Come then, boy. You\nwill regret standing\nagainst us.{end_wait}
 10190	message	Learn what a master\nFire Adept can do.{end_wait}

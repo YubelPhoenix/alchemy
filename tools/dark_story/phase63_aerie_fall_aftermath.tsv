@@ -5,20 +5,28 @@
 10259	message	At least no one can\nuse them to awaken\nanother beacon.{end_wait}
 10260	message	But {actor_name:5} is gone,\nand he has taken\n{actor_name:7} with him...{end_wait}
 10261	message	What is wrong with you?\n{actor_name:1}, what are you\nstaring at?{end_wait}
+10262	message	{actor_name:5}!{end_wait}
+10263	message	Did you{pause_20_skippable}{pause_20_skippable} finish them?{end_wait}
 10264	message	I knew their strength\nbetter than anyone.{page_break}If you overcame them,\nthen I have no reason\nto challenge you.{end_wait}
 10265	message	I cannot oppose you\nnow, {actor_name:1}...{page_break}I must leave.{end_wait}
+10266	message	Come, {actor_name:7}!{end_wait}
+10267	message	Wait, {actor_name:5}!{end_wait}
+10268	message	Why do you run from us?{end_wait}
 10269	message	They fell into the\nlighthouse. It is over!{end_wait}
 10270	message	Fools...{pause_20_skippable} If you believe\nthis is finished, you\nhave learned nothing.{end_wait}
 10271	message	If you intend to awaken\nthe remaining beacons,\nyou will still need...{end_wait}
 10272	message	The Elemental Stars?\nWe have them with us!{end_wait}
 10273	message	They're gone, {actor_name:5}!\nYou no longer need to\nawaken the beacons...{end_wait}
 10274	message	I must.{pause_20_skippable} If I do not\nawaken the beacons...{end_wait}
+10275	message	What will happen?{end_wait}
 10276	message	Words will change\nnothing...{pause_20_skippable}\nWait and see.{end_wait}
 10277	message	If you refuse to release\n{actor_name:7}, we will\nbring her back ourselves!{end_wait}
+10278	message	The lighthouse...!{end_wait}
 10279	message	{actor_name:1}!{pause_20_skippable} They are too\nfar away! We cannot reach\n{actor_name:5}!{end_wait}
 10280	message	Look below! There is\nlight rising from the\nfoundations!{end_wait}
 10281	MsgVenusNoooo	No!{pause_20_skippable} {actor_name:7}! Hold on!{end_wait}
 10282	message	Hold on, {actor_name:7}!\nTake my hand!{end_wait}
+10283	message	I can't...{end_wait}
 10284	message	You have to try!\nKeep your grip or\nyou will fall!{end_wait}
 10285	message	Look down...{pause_20_skippable}{pause_20_skippable} The\nlighthouse foundations\nare breaking apart!{end_wait}
 10286	MsgVenusWhyHappeningProtectVenusLighthouse	Why is this happening?\nIs the power trying to\nprotect Venus Lighthouse?{end_wait}
@@ -26,6 +34,7 @@
 10288	message	No!{pause_20_skippable} Don't let go!\nYou'll fall!{end_wait}
 10289	message	Farewell, {actor_name:5},{pause_20_skippable}\n{pause_20_skippable} and thank you.{end_wait}
 10290	message	{text_effect:2}{actor_name:7}!!!{reset_text_style}{pause_20_skippable} No!\nI will not let you die!{end_wait}
+10291	message	!!!{end_wait}
 10292	message	{actor_name:7} fell after\nthat final tremor...{end_wait}
 10293	message	{actor_name:5} did not dive\nafter her, did he?{end_wait}
 10294	message	I cannot believe he\nleapt from that height!{end_wait}
@@ -45,8 +54,10 @@
 10308	message	After all this, you\ncannot face {actor_name:6}\nor tell her of {actor_name:5}?{end_wait}
 10309	message	If you will not tell\nher what happened to\n{actor_name:5}, who will?{end_wait}
 10310	message	You must find a way\nto help {actor_name:6} bear\nthe truth...{end_wait}
+10311	message	What's the matter, {actor_name:2}?{end_wait}
 10312	message	I was thinking...{pause_20_skippable}{pause_20_skippable}\nHow are we meant to\nclimb down from here?{end_wait}
 10313	message	You're right.{pause_20_skippable} Getting away\nfrom this place will be\ndifficult...{end_wait}
+10314	message	It's back to normal!{end_wait}
 10315	message	That was strange...\nWhat is happening\naround here?{end_wait}
 10316	message	Perhaps we will\nnever know.{end_wait}
 10317	message	At least we can search\nfor {actor_name:6} and\nthe others now.{end_wait}
