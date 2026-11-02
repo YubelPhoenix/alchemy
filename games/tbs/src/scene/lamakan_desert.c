@@ -317,8 +317,8 @@ static void LamakanDesert_SayMia(void) {
 
 /// After the Manticore and the caravan, Ash Jenna names herself and offers to
 /// close the Lighthouse door by killing the awakened. The mercy count (harbour
-/// child, the miner, the Mogall door, the caravan, the blade left with Mia)
-/// colours the three endings. Once.
+/// child, the miner, the Mogall door and the caravan) colours the three endings.
+/// Once.
 static void LamakanDesert_AshJennaFinale(void) {
   s32 mercy;
 
@@ -327,8 +327,6 @@ static void LamakanDesert_AshJennaFinale(void) {
   if (GameFlag_Get(FLAG_DARK_MINER_STAYED) != 0) mercy++;
   if (GameFlag_Get(FLAG_DARK_MOGALL_DOOR_OPENED) != 0) mercy++;
   if (GameFlag_Get(FLAG_DARK_CARAVAN_CALMED) != 0) mercy++;
-  if (GameFlag_Get(FLAG_DARK_BLADE_ASKED) != 0 &&
-      GameFlag_Get(FLAG_DARK_BLADE_TAKEN) == 0) mercy++;
 
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
@@ -356,11 +354,6 @@ static void LamakanDesert_AshJennaFinale(void) {
   if (GameFlag_Get(FLAG_DARK_CARAVAN_CALMED) != 0) {
     Event_SetMessageId(MsgDarkEchoCaravan);
     Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  }
-  if (GameFlag_Get(FLAG_DARK_BLADE_ASKED) != 0 &&
-      GameFlag_Get(FLAG_DARK_BLADE_TAKEN) == 0) {
-    Event_SetMessageId(MsgDarkEchoBlade);
-    LamakanDesert_SayMia();
   }
   if (mercy == 0) {
     Event_SetMessageId(MsgDarkEchoNone);
