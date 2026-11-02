@@ -6,7 +6,7 @@
 03671	message	It's pouring out there.\nPut your tunic on.{end_wait}
 03672	message	Do you have everything\nyou need? Think fast.{end_now}
 03673	message	There's no time. Leave it.\nWe can replace it later.\nCome with me.{end_wait}
-03674	message	Good. Leave it behind.\nStay close to me.{end_wait}
+03674	message	Good. Leave it behind,\n{actor_name:1}. Stay close to me.{end_wait}
 03675	MsgValeDoraHurryBoulder	{actor_name:1}, Dora, hurry!\nThe Boulder's going to\ndrop any second!{end_wait}
 03676	MsgValeKyleAbleStop	Kyle, can they hold it?{end_wait}
 03677	message	Not for long. Go. Now.{end_wait}
@@ -17,7 +17,7 @@
 03682	message	No. It's too dangerous.\nDora, please. Take care\nof {actor_name:1}.{end_wait}
 03683	message	{actor_name:1} knows the way.\nHe can reach the plaza.\nI'll be right behind him.{end_wait}
 03684	message	You know the way,\n{actor_name:1}. Don't you?{end_now}
-03685	MsgValeBigBoyWhy	You know the way. Go.\nI'll be there soon.\nI promise.{end_now}
+03685	MsgValeBigBoyWhy	You know the way,\n{actor_name:1}. Go. I'll be there.\nI promise.{end_now}
 03686	MsgValeKnowWayGo	Go south to the plaza and\ndon't stop for anyone.\nBe careful!{end_wait}
 03687	MsgValeHuh	Huh? {actor_name:1}?\nWhat are you doing here?{end_wait}
 03688	message	Did you come back for me?{end_now}
@@ -56,12 +56,12 @@
 03723	MsgValeSaveYourselves	I knew it... Leave me.\nSave yourselves...{end_wait}
 03724	MsgValeNoBrother	Oh no... my brother!\n{actor_name:5}!{end_wait}
 03725	message	Hang on, {actor_name:5}!\nPlease, hang on!{end_wait}
-03726	message	We can still reach him.\nThere has to be a way.{end_wait}
+03726	message	We can still reach\n{actor_name:5}. There has to\nbe a way.{end_wait}
 03728	message	The rope won't reach.\nWe need Psynergy. Do you\nhave any left?{end_wait}
 03729	message	I've nothing left. Kyle?\nPlease. Tell me you can.{end_wait}
 03730	message	I'm drained. I spent it\nall getting people out...\nI'm sorry.{end_wait}
 03731	message	We need help. Someone...\nanyone with Psynergy.{end_wait}
-03732	message	How long can he hold on?\nLook at the current...{end_wait}
+03732	message	How long can {actor_name:5}\nhold on? Look at the\ncurrent...{end_wait}
 03733	message	There's nothing else we\ncan do for him here...\nis there?{end_wait}
 03734	message	Then get help. Be quick!\nEvery second counts!{end_wait}
 03735	message	{actor_name:6}, go with them.\nPlease. I'll stay here.{end_wait}
@@ -71,7 +71,7 @@
 03739	MsgValeGoLookNorth	I'll check the north path.\nYou go to the plaza. And\ndon't follow me.{end_wait}
 03740	message	Yes, ma'am. Anyone with\nPsynergy left. Anyone\nat all.{end_wait}
 03742	message	You saw it, didn't you?\nYou saw what happened.{end_now}
-03743	message	I have to find help.\nHe's still in the river!{end_wait}
+03743	message	I have to find help.\n{actor_name:5} is still in\nthe river!{end_wait}
 03744	message	{actor_name:5} fell in the river.\nI need someone with\nPsynergy. Please!{end_wait}
 03745	MsgValeDontSupposeTwo	I don't suppose... could\nyou two help me? Please.\nI can't do this alone.{end_now}
 03746	message	{actor_name:6} went to the plaza\nfor help. Go to her.{end_wait}
@@ -176,7 +176,7 @@
 03899	MsgValeKradenHadVisitors	Kraden had visitors this\nmorning. They didn't give\ntheir names.{page_break}I wonder where they went...\nI wonder what they want.{end_wait}
 03900	MsgValeMeditateOnMtAlephDaily	{protagonist_name}. Have you\nmeditated on Mt. Aleph\ntoday?{end_now}
 03901	message	Good. Some say prayer\nkeeps Vale safe.{page_break}I prayed that night too.{end_wait}
-03902	message	Then go today. The elders\nsay Mt. Aleph protects us.{page_break}I wish I believed them.{end_wait}
+03902	message	Then go today,\n{protagonist_name}. The elders say\nMt. Aleph protects us.{page_break}I wish I believed them.{end_wait}
 03903	MsgValeADifficultTimeThreeYears	You had a terrible time\nthree years ago. Didn't\nyou?{end_now}
 03904	message	You lost your father.\n{actor_name:6} lost her family.{page_break}Her grandparents took\nher in. Thank goodness.{end_wait}
 03905	message	You kept going, {actor_name:1}.{page_break}I still remember how\n{actor_name:6} looked that day.{end_wait}
@@ -214,7 +214,7 @@
 03943	MsgValeYoureInTroubleNowGaretYour	You're in trouble now,\n{actor_name:2}.{page_break}Your sister is furious.{end_wait}
 03944	MsgValeIToldGaretItWas	I told that oaf {actor_name:2}\nit was fine.{page_break}But what do I do about\nthis hole?{end_wait}
 03945	MsgValeItWontRainForSome	No rain for a while,\nit seems.{page_break}So I'll have you fix it\nlater, {actor_name:1}.{end_wait}
-03946	MsgValeMyGranddaughterJennaIsFinallyHappy	{actor_name:6} smiles more now.{page_break}You and {actor_name:2} have\nhelped her. I see that.{end_wait}
+03946	MsgValeMyGranddaughterJennaIsFinallyHappy	{actor_name:6} smiles more now.{page_break}You and {actor_name:2} helped\nher, {actor_name:1}. I see that.{end_wait}
 03947	MsgValeIHopeYouTwoWontBe	Please, don't take\n{actor_name:6} beyond Vale.{page_break}I can't lose her too.{end_wait}
 03948	MsgValeJennaIsTheSpittingImageOf	{actor_name:6} looks so much\nlike her mother.{page_break}Some days I can't bear\nto look too long.{end_wait}
 03949	MsgValeKradenCameToStudyMt	Kraden came to Vale to\nstudy Mt. Aleph, didn't he?{end_now}
