@@ -182,9 +182,6 @@ enum TolbiDocksActorId {
 /// of gKalayTolbiDocks_TolbiActorTemplatesStranded that hold other people
 /// than gKalayTolbiDocks_TolbiActorTemplates. The man who hears of the
 /// scary trip, the one done sailing and the crates keep their rows.
-/// A frightened boy who is hearing the awakened (FLAG_DARK_HARBOR_CALLED).
-enum { ACTOR_HARBOR_CHILD = ACTOR_FIRST_PLACED + 10 };
-
 enum TolbiDocksStrandedActorId {
   /// A young man with brown hair (SPRITE_YOUNG_MAN_WITH_BROWN_HAIR), the
   /// passenger who charges the tour guide and is knocked flat.
@@ -273,7 +270,6 @@ static void KalayTolbiDocks_PrepareInterior(void);
 static void KalayTolbiDocks_UpdateCrateCells(void);
 static void KalayTolbiDocks_SettleCrates(s32 actorId);
 static void KalayTolbiDocks_GaretSeesTheKaragol(void);
-static void KalayTolbiDocks_TalkToHarborChild(void);
 
 /// Kalay Docks: talking to Ground, a Venus Djinni, makes it join the party.
 static void KalayTolbiDocks_GroundJoins(void) {
@@ -382,32 +378,6 @@ const struct Trigger *KalayTolbiDocks_GetTriggers(void) {
   }
 
   return gKalayTolbiDocks_NoTriggers;
-}
-
-/// The boy from Tolbi's harbour: the voices of the awakened are in his head.
-/// Isaac chooses whether to take him somewhere safe. Yes earns Ondra's
-/// attention (FLAG_DARK_HARBOR_SHELTERED); either way he leaves the pier.
-static void KalayTolbiDocks_TalkToHarborChild(void) {
-  Event_Start();
-  Event_SetMessageId(MsgDarkDockChild);
-  Event_ShowMessageThenWait(ACTOR_HARBOR_CHILD, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  Event_SetMessageId(MsgDarkHarborAsk);
-  if (Event_AskYesNo(ACTOR_PARTY_LEADER, 0) == 0) {
-    Event_SetMessageId(MsgDarkHarborYesIsaac);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-    GameFlag_Set(FLAG_DARK_HARBOR_SHELTERED);
-  } else {
-    Event_SetMessageId(MsgDarkHarborNoIsaac);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  }
-  GameFlag_Clear(FLAG_DARK_HARBOR_CALLED);
-  Actor_ConfigureSpriteColor(ACTOR_HARBOR_CHILD, SPRITE_COLOR_HIDDEN);
-  Actor_SetPosition(ACTOR_HARBOR_CHILD, PIXELS(-9), PIXELS(488));
-  Event_End();
 }
 
 /// Kalay Docks: a young man asks whether the party wants to go to Tolbi. Yes,
@@ -1274,9 +1244,6 @@ struct ActorTemplate gKalayTolbiDocks_TolbiActorTemplatesStranded[] = {
         PIXELS(280), 0, PIXELS(288), FACING_WEST, TALK_FACING_KEEP, 0 },
     { SPRITE_OLD_MAN_WITH_CANE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(280), 0, PIXELS(248), FACING_SOUTH, TALK_FACING_PARTY_AND_BACK, 0 },
-    // The boy Ivan heard, once Ash Jenna has spoken in Tolbi.
-    { SPRITE_BOY_WITH_FAIR_HAIR, IF_FLAG_SET(FLAG_DARK_HARBOR_CALLED), MOVEMENT_TYPE_STAND,
-        PIXELS(344), 0, PIXELS(296), FACING_WEST, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1456,7 +1423,6 @@ struct Trigger gKalayTolbiDocks_TolbiTriggersStranded[] = {
     { TRIGGER_TALK, ACTOR_TOUR_GUIDE, CONDITION_ALWAYS, MSGNO(MsgKalayTolbiDocksWellBeCountingOnYouIf) },
     { TRIGGER_TALK, ACTOR_BODYGUARD, CONDITION_ALWAYS, MSGNO(MsgKalayTolbiDocksAsLongAsWereStuckHere) },
     { TRIGGER_TALK, ACTOR_SIGHING_PASSENGER, CONDITION_ALWAYS, MSGNO(MsgKalayTolbiDocksSighIfIKnewItWould) },
-    { TRIGGER_TALK, ACTOR_HARBOR_CHILD, CONDITION_ALWAYS, EVENT(KalayTolbiDocks_TalkToHarborChild) },
     { PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_SECOND_TOUR_GUIDE, CONDITION_ALWAYS, MSGNO(MsgKalayTolbiDocksIfTheydJustLetTheShip) },
     { PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_ANGRY_YOUNG_MAN, CONDITION_ALWAYS, MSGNO(MsgKalayTolbiDocksIfImGoingToBeStuck) },
     { PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_STRANDED_WOMAN, CONDITION_ALWAYS, MSGNO(MsgKalayTolbiDocksGrrrWhyDontYouGetUp) },
