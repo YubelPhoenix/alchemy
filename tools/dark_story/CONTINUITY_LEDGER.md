@@ -48,6 +48,8 @@ Vale dialogue must be audited by visit state, not by phase-file number. The scen
 
 
 ### Bilibin / Gang of Three dialogue coverage repair
+A follow-up source-to-phase check now finds all 67 distinct `MsgBilibin...` identifiers referenced in `bilibin.c` represented across the relevant Bilibin, Kolima/Imil, and riverbank phase files. This closes the named-message omission list for the Bilibin overlay; generic sequential dialogue blocks and each conditional state still need separate verification.
+
 
 A source-to-phase comparison of `bilibin.c` found nine named Bilibin messages missing from the relevant rewrite batches. Restored them in `phase8_bilibin_a.tsv` and `phase21_bilibin_riverbank.tsv`: the tree-man's Mind Read (`05040`), McCoy's Treasury and barricade signs (`05230`, `05234`), the bottom tree's Mind Read (`05233`), the Bilibin well examination (`10717`), and the Gang of Three / Jill riverbank sequence (`06005`, `06010`, `06015`, `06016`). The Jill rescue sequence also had two unrewritten generic message rows (`06007`, `06009`); those are now included so the event's full dialogue block is covered.
 
