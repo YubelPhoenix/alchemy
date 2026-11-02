@@ -79,6 +79,14 @@ Message `06391` described people losing someone "who's still standing right in f
 
 Particular care is needed with the Xian traveler and the Silk Road blockage. The party must not receive information about the girl's search, the blocked road, or the passage west before those details become available in the actual route.
 
+### 9. Lamakan Desert: Ash Jenna's optional meeting must carry into the finale
+
+The source allows the party to speak to Ash Jenna in the Manticore area before the Manticore/caravan sequence is complete. That optional scene sets `FLAG_DARK_ASH_JENNA_LAMAKAN_MET`. Later, the Manticore return runs the caravan sequence and automatically starts the finale. The finale previously used the same opening whether or not Isaac had already encountered her, making him ask who she was as though the earlier conversation had never happened.
+
+The finale now branches on that existing encounter flag. A first-time meeting keeps the original opening; a returning meeting acknowledges that she watched the party in the desert before Isaac asks who she is. The following dialogue IDs are set explicitly so both branches resume at the correct shared reveal and cannot drift into the wrong sequential message.
+
+The new rows use unused message IDs `N224` and `N225`; they were checked against the full dark-story TSV set to avoid collisions. The encounter flag and scene progression are unchanged.
+
 ## Sentence-level editorial rules for this entire stretch
 
 Every line must pass both a continuity test and a spoken-language test.
