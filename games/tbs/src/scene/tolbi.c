@@ -536,48 +536,6 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   return 0;
 }
 
-/// Takes the Tideglass Blade from Mia and puts it in the party's bag. The
-/// slot is closed up by hand: Inventory_Remove is not one of the routines an
-/// overlay can call.
-static void Tolbi_TakeBladeFromMia(void) {
-  struct Unit *mia = Unit_Get(MIA);
-  s32 slot;
-  s32 next;
-
-  for (slot = 0; slot < INVENTORY_SLOTS; slot++) {
-    if ((mia->inventory[slot] & INVENTORY_ITEM_ID_MASK) == ITEM_TIDEGLASS_BLADE) {
-      for (next = slot; next < INVENTORY_SLOTS - 1; next++) {
-        mia->inventory[next] = mia->inventory[next + 1];
-      }
-      mia->inventory[INVENTORY_SLOTS - 1] = 0;
-      Unit_Calculate(MIA);
-      PartyInventory_Add(ITEM_TIDEGLASS_BLADE);
-      break;
-    }
-  }
-}
-
-/// Isaac asks Mia for the blade; she says the dark voice came with it, and he
-/// chooses whether to take it. Called inside the Ash Jenna event.
-static void Tolbi_AskMiaForTheBlade(void) {
-  Event_SetMessageId(MsgDarkBladeIsaacAsk);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  Event_SetMessageId(MsgDarkBladeChoose);
-  if (Event_AskYesNo(ACTOR_MIA, 0) == 0) {
-    Tolbi_TakeBladeFromMia();
-    GameFlag_Set(FLAG_DARK_BLADE_TAKEN);
-  }
-  GameFlag_Set(FLAG_DARK_BLADE_ASKED);
-}
-
 /// Ash Jenna, grey and hostile, confronts the party in the rain after Colosso.
 /// The fire has left only ash in her, and every lighthouse the party lights
 /// feeds her. She taunts them, Mia answers her, and she fades away promising
@@ -617,7 +575,18 @@ static void Tolbi_MeetAshJenna(void) {
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
   GameFlag_Set(FLAG_DARK_HARBOR_CALLED);
-  Tolbi_AskMiaForTheBlade();
+  // Mia admits that Ash Jenna's personal attack unsettled her, but the
+  // party reassures her. No weapon, possession, or transfer choice is involved.
+  Event_SetMessageId(MsgDarkMiaTolbiConcern);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  Event_SetMessageId(MsgDarkMiaTolbiSupport);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
   Event_End();
 }
 
