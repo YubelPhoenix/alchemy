@@ -22,8 +22,8 @@
 03687	MsgValeHuh	Huh? {actor_name:1}?\nWhat are you doing here?{end_wait}
 03688	message	Did you come back for me?{end_now}
 03689	message	Sorry I shoved you. I've\njust got to get out of\nhere. Now.{end_wait}
-03690	message	This is no time to play,\nboy! Move, or die here!{end_wait}
-03691	message	We'd better get to the\nplaza before the Boulder\nfinds us.{end_wait}
+03690	message	Get out of the doorway!\nI can't stay here!{end_wait}
+03691	message	We need to reach the plaza.\nBefore the path is gone.{end_wait}
 03693	message	{actor_name:1}, what do you want?\nI'm trying to save my\nthings!{end_wait}
 03694	MsgValeWantDumpStuff	What, you want me to just\ndump everything I own?
 03695	message	I guess dragging a heavy\nchest around like this\nisn't very safe...{end_wait}
