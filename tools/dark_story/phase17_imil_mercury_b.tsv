@@ -55,7 +55,7 @@
 05735	message	Is that why you're\nleaving? To protect the\nworld?{end_wait}
 05736	message	Yes.{pause_20_skippable} That's right...{end_wait}
 05737	message	Then there's nothing\nwe can do...{end_wait}
-05738	message	We won't try\nto stop you, then.{page_break}After all, you're\ntrying to protect the\nMercury Clan.{end_wait}
+05738	message	We won't try\nto stop you, then.{page_break}After all, you're\ntrying to protect the\nworld.{end_wait}
 05739	message	Yes.{pause_20_skippable} I am...{end_wait}
 05740	message	We're Mercury Clan\ntoo...we'll protect Imil\nourselves.{page_break}So don't worry, OK?{end_wait}
 05741	message	I'll work hard and\nlearn to heal as well\nas you, {actor_name:4}!{end_wait}
