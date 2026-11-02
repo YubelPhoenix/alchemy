@@ -227,3 +227,10 @@ A source-backed audit now records the specific narrative failures reported durin
 The audit also confirms two Ondra activation routes: sheltering the harbor child, or completing all three Altin/Imil/Tolbi kindness payments. Ondra's current N102 introduction always claims Isaac went to the docks for a child, which is false on the three-payment route. The fishermen question in the Tolbi Ash Jenna scene is not resolved by the child scene; the child's voices, the awakened, the Tideglass Blade, Mia's altered behavior, and Ondra's relationship to Mia have not yet been joined into one causal explanation. Lamakan NPC text describing mud and standing water also needs reconciliation with the desert's source-defined sand/heat mechanics.
 
 See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the verified event order, trigger behavior, concrete dialogue contradictions, and the repair sequence. No dialogue or event logic was changed in this audit; the next step is to settle the causal chain before rewriting those scenes.
+
+
+### Canonical correction: Kegare cameo super boss
+
+The character previously named Ondra is **Kegare (穢れ)**, meaning impurity/defilement. Per the user's sprite-animation continuity, Kegare deliberately mimics Mia and ultimately intends to replace her. She is a cameo super boss from that wider continuity, in the same broad cameo category as Heart, not a native Golden Sun Tideglass Queen or a benevolent entity awakened by kindness.
+
+The earlier Tideglass Queen / shared-tide explanation is noncanonical and must be discarded. Child-rescue and three-kindness flags, if retained, are encounter-discovery/access conditions only; they do not explain Kegare's origin or motive. The harbor child is a separate story thread unless a coherent connection is established independently. Keep Kegare and Heart distinct. Her dialogue should emphasize unsettling imitation and replacement while keeping her full origin restrained enough that she remains a cameo rather than taking over Golden Sun's main plot. See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the superseding character definition and revision requirements.
