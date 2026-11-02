@@ -6,7 +6,7 @@
 08077	MsgTolbiTolbisAlwaysReallyBustlingDuringColosso	The festival goes on. Babi\nsays stopping it would\nstart a panic.{page_break}There's a panic anyway.\nIt's just quiet.{end_wait}
 08078	MsgTolbiColossoIsHeldInTheColosseum	Colosso's in the colosseum,\nwhere it's driest. Get\nthere early.{page_break}People are shoving for\nseats like it's the last\ndry place on earth.{end_wait}
 08079	MsgTolbiTryoutsStartedAtTheColosseumToday	Tryouts started today. I'll\nwatch the finals, if the\nroof holds.{page_break}And if the town does.{end_wait}
-08080	MsgTolbiColossoShouldHaveStartedTodayWhat	Colosso should've started.\nWhere is everyone?{page_break}Babi's bodyguards are\nwandering the streets with\ntheir swords out.{page_break}If something's wrong with\nBabi, nobody will say so.{end_wait}
+08080	MsgTolbiColossoShouldHaveStartedTodayWhat	Colosso is underway.\nWhy are Babi's guards\nsearching the streets?{page_break}They carry their swords\nas if expecting trouble.\nIf Babi is in danger,{page_break}nobody will say so.{end_wait}
 08081	MsgTolbiBabiWasAlreadyPrettyOldBack	Babi was old when I was\nborn, and I'm 65 now.{page_break}A man can't live that\nlong. Something's wrong\nin this town.{end_wait}
 08082	MsgTolbiSomeoneLiveMore	Can anyone live past a\nhundred years?{end_now}
 08083	message	Hmm. Babi is a lot older\nthan that. It worries me\nmore than the rain does.{end_wait}
