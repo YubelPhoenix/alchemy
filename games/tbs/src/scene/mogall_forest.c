@@ -478,12 +478,6 @@ static void MogallForest_AlexAndMia(void) {
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0) {
-    Event_SetMessageId(MsgDarkMogallBloomSheltered);
-  } else {
-    Event_SetMessageId(MsgDarkMogallBloomLeft);
-  }
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   // The keeper's door: either choice costs something.
   Event_SetMessageId(MsgDarkMogallDoorAsk);
   if (Event_AskYesNo(ACTOR_PARTY_LEADER, 0) == 0) {
