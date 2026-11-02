@@ -1,13 +1,13 @@
 00790	message	Mia
-N59	MsgDarkDuelMiaStops	Enough. You let the Stars\nfall into their hands. And\nnow you expect my trust?{end_wait}
-N60	MsgDarkDuelIsaacNoTime	Mia, Jenna and Kraden are\nhis hostages. We need to\nfight with you, not against{page_break}you.{end_wait}
-N61	MsgDarkDuelMiaPlace	You couldn't protect Sol\nSanctum. Why should I trust\nyou with this lighthouse?{end_wait}
-N62	MsgDarkDuelIsaacRefuse	I'm asking you to move. I\nwon't stand aside while\nJenna's up there.{end_wait}
-N63	MsgDarkDuelMiaDraw	Then show me you can\nstand your ground, Isaac.{page_break}Face me alone.{end_wait}
-N64	MsgDarkDuelSaturosAmused	Settle it, then. I can\nwait, and it'll show me\nwhat you're made of.{end_wait}
-N65	MsgDarkDuelMiaLost	Tch... You're stronger than\na fool has any right to be.{end_wait}
-N66	MsgDarkDuelMiaStop	That's enough. He held\nback, and I could feel it\nin every blow.{end_wait}
-N67	MsgDarkDuelIsaacNotEnemy	We're not your enemy, Mia.\nWe want Jenna and the Stars\nback just like you do.{end_wait}
-N68	MsgDarkDuelMiaTrust	...Then I'll trust you, a\nlittle. Keep Saturos busy\nwhile I go after Menardi.{end_wait}
-N69	MsgDarkDuelMiaKeepUp	Keep him busy, fools. I'll\nbring the captives back\nmyself.{end_wait}
-N70	MsgDarkDuelSaturosResumes	The healer has gone ahead.\nNow it's your turn, Adepts.{end_wait}
+N59	MsgDarkDuelMiaStops	You lost the Stars.\nWhy should I trust you\nwith Mercury's light?{end_wait}
+N60	MsgDarkDuelIsaacNoTime	Jenna and Kraden\nare still their hostages.\nWe need to act together.{end_wait}
+N61	MsgDarkDuelMiaPlace	I swore to guard\nthis lighthouse.\nI cannot fail again.{end_wait}
+N62	MsgDarkDuelIsaacRefuse	Then stand with us.\nWe can still save them.{end_wait}
+N63	MsgDarkDuelMiaDraw	You're right.\nWe have no time to waste.{page_break}I'll stop Menardi.\nYou face Saturos.{end_wait}
+N64	MsgDarkDuelSaturosAmused	Go, then.\nIt changes nothing.{end_wait}
+N65	MsgDarkDuelMiaLost	I doubted you, Isaac.\nI was wrong.{end_wait}
+N66	MsgDarkDuelMiaStop	I can still reach her.\nDon't follow me.{end_wait}
+N67	MsgDarkDuelIsaacNotEnemy	Mia, be careful.\nShe's holding Jenna.{end_wait}
+N68	MsgDarkDuelMiaTrust	I know. Keep Saturos\naway from the captives.\nI'll face Menardi.{end_wait}
+N69	MsgDarkDuelMiaKeepUp	I won't let her\ntake them without a fight.{end_wait}
+N70	MsgDarkDuelSaturosResumes	The healer has gone.\nNow face me.{end_wait}
