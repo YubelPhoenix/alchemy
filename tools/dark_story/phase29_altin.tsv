@@ -57,7 +57,7 @@
 06388	MsgAltinAFewThingsGotDampBut	A few things got damp...{page_break}It shouldn't affect\nthe quality, so you can\nuse them safely.{page_break}...Maybe I should put\nup a sign to say so.{end_wait}
 06389	MsgAltinWeGotLittleDampBut	We got a little damp, but\nwe are doing okay. We\nmust count our blessings.{end_now}
 06390	message	After all, many good men\ncame up from the mine and\nnever spoke again.{end_wait}
-06391	message	Remember, many lost\neverything they own.{page_break}And some lost someone\nwho's still standing right\nin front of them.{end_wait}
+06391	message	Remember, many lost\neverything they owned.{page_break}Some have lost loved ones\nwho are still standing\nright in front of them.{end_wait}
 06392	MsgAltinIdGiveAnythingForSomeoneTo	I'd give anything to have\nAltin back the way it was.{page_break}You look young, but if\nyou can fight, please help.\nWe can't do it alone.{end_wait}
 06393	MsgAltinICameFromXianICook	I came from Xian.\nI cook good food.\nEat up!{end_wait}
 06394	MsgAltinNoneOfUsCanGoHome	None of us can go\nhome until the\nwater subsides.{end_wait}
