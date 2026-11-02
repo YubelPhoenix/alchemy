@@ -444,7 +444,7 @@ static void AltinPeak_TalkToTrappedMiner(void) {
       Event_SetMessageId(MsgDarkPeakMinerThanks);
       Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
       PartyInventory_Add(ITEM_POWER_BREAD);
-      Event_SetMessageId(MsgDarkPeakMinerWakes);
+      Event_SetMessageId(MsgDarkPeakMinerAftermath);
       Event_ShowMessageThenWait(ACTOR_JUNCTION_ROOM_MINER, 0, 20);
       Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
       Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
