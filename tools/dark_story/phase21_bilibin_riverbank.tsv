@@ -29,8 +29,8 @@
 06011	message	I'll never forget what\nyou did for me.\nThank you.{end_wait}
 06013	MsgBilibinIReallyLikeThisSpotBy	I like this spot by the\nriverbank... The water\nstill sounds peaceful.{end_wait}
 06014	MsgBilibinIWillThinkOfYouWhenever	I'll think of you\nwhenever I taste a\npersimmon.{end_wait}
-06015	MsgBilibinIHeardWeWereOnceCalled	They used to call us the\nGang of Three. After\nwhat happened to Jill,\nI don't know if that\nname feels right anymore.{end_wait}
-06016	MsgBilibinIfOnlyWeHadntTriedGetting	If we hadn't gone after\nthose persimmons, Jill\nwouldn't have been swept\ninto the river.{page_break}We nearly lost her. I\ndon't think we'll ever\nclimb on each other's\nshoulders again.{end_wait}
+06015	MsgBilibinIHeardWeWereOnceCalled	They used to call us the\nGang of Three. After\nwhat happened to Jill...{page_break}I don't know if that\nname feels right anymore.{end_wait}
+06016	MsgBilibinIfOnlyWeHadntTriedGetting	If we'd left the\npersimmons alone, Jill\nwouldn't have been swept{page_break}away by the river. We\nnearly lost her.{page_break}We won't climb on each\nother's shoulders again.{end_wait}
 06017	MsgBilibinWhoseIdeaWasItToPick	Whose idea was it to\npick persimmons,\nanyway?{end_wait}
 06018	MsgBilibinWellItWasntMyIdeaTo	Don't look at me.\nIt wasn't my idea.{end_wait}
 06019	MsgBilibinThesePersimmonsAreJustLikeMy	These persimmons are\njust like my memories...\nSo{pause_20_skippable} bitter...{end_wait}
