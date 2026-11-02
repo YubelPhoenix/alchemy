@@ -1,0 +1,14 @@
+# Post-game ending sequence: Jenna and Kraden adrift, then Alex arrives.
+10515	MsgWorldMapKradenHowLongWillIsland	Kraden... How long must\nwe drift before this\nisland reaches shore?{end_wait}
+10516	message	I cannot say. If only\nI had an answer for you.{end_wait}
+10517	message	You always have an answer.\nNow you have nothing?{end_wait}
+10519	message	How can you think of\nfood at a time like this?{end_wait}
+10520	message	I keep wondering what\nbecame of my brother...{end_wait}
+10521	message	I cannot be certain,{pause_20_skippable} but\nthe Venus beacon seems\nto have been lit.{end_wait}
+10522	message	I know. That light is\nwhy we are stranded here,\nisn't it?{end_wait}
+10523	message	You're unusually sour\ntoday, {actor_name:6}!{end_wait}
+10524	message	Perhaps you're worried\nabout {actor_name:5}. I know\nI am.{end_wait}
+10525	message	{actor_name:1} and his friends\nmust have been close by\nwhen it happened.{end_wait}
+10527	message	I miss them... {actor_name:1}...\nAnd {actor_name:5}...{end_wait}
+10528	message	There is something\nI want you both to see.{end_wait}
+10534	message	What is that? Alex,\nwhat have you done?{end_wait}
