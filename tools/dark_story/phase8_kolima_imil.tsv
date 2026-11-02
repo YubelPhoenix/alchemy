@@ -42,5 +42,5 @@
 05459	MsgImilMayOnlyStudentButCan	I'm still learning.{page_break}But I can help\nwith small wounds.{end_wait}
 05466	MsgImilTheseFolkOkayTheyDont	They don't seem\nlike trouble to me.{end_wait}
 05467	MsgImilMiaWasSayingSheHas	{actor_name:4} said something\nwas troubling her.{page_break}I wonder if she meant\nthese strangers.{end_wait}
-05486	MsgImilMiaIsAGoodGirlI	{actor_name:4} cares for everyone.{page_break}She teaches Megan\nand Justin as well.{page_break}Her last apprentice\nnever returned.{end_wait}
+05486	MsgImilMiaIsAGoodGirlI	{actor_name:4} helps everyone.{page_break}She teaches Megan\nand Justin as well.{page_break}Her last apprentice\nnever returned.{end_wait}
 05487	MsgImilMiaClanOnceLivedHere	{actor_name:4}'s family once\nguarded the lighthouse.{page_break}Now she carries\nthat duty alone.{end_wait}
