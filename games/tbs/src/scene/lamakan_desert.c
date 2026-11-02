@@ -339,12 +339,18 @@ static void LamakanDesert_AshJennaFinale(void) {
   } else {
     Event_SetMessageId(MsgDarkFinaleJenna1);
     Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    Event_SetMessageId(MsgDarkFinaleIsaac1);
     Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   }
+  Event_SetMessageId(MsgDarkFinaleJenna2);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleGaret);
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleJenna3);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleIvan);
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleMia);
   LamakanDesert_SayMia();
   // What the party remembers of Isaac's choices.
   if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0) {
