@@ -39,6 +39,11 @@ The following is the baseline route established by the original scene scripts. A
 | 14 | Return to Lalivero | The party returns after the Aerie; Iodem's farewell and the Black Orb / wharf progression are part of the route onward. |
 | 15 | Lemurian ship and ending | The ship's departure sequence is the game's final scene path; the ending continues beyond the Aerie battles. |
 
+
+### Vale state map verified against `games/tbs/src/scene/vale.c`
+
+Vale dialogue must be audited by visit state, not by phase-file number. The scene source documents four distinct states: (1) the opening roof-repair sequence at `VALE_FROM_TITLE`, three years after the storm, followed by `VALE_FROM_ROOF_MENDED` and Dora sending Isaac, Garet, and Jenna up Mt. Aleph with Kraden; (2) the pre-departure visit, when Jenna stops Isaac from sneaking up Mt. Aleph and the guard warns him, with the puppies removed only after the party meets Saturos and Menardi; (3) the post-departure state under `FLAG_VALE_PARTY_LEFT`, when Dora refuses to open Isaac's house and villagers discuss tremors and Kraden's absence; and (4) the return after `FLAG_KALAY_REACHED`, when Garet has reunion dialogue with his family, can ask them to protect Vale, and Dora is ill inside the cottage. The existing Vale phases contain dialogue for several of these states, but the complete NPC / Mind Read / conditional coverage and each message's actual trigger still need to be checked before any Vale section is marked complete.
+
 ## Ashfall custom-event placement
 
 These are custom additions or altered encounters. They must be treated as revisits or branches where their event conditions say so.
