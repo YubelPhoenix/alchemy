@@ -315,10 +315,9 @@ static void LamakanDesert_SayMia(void) {
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
 }
 
-/// After the Manticore, Ash Jenna names herself and offers to close the
-/// Lighthouse door by killing the awakened. The miner and Mogall door choices
-/// determine whether refusing her offer leads to the Mercy or Divided ending.
-/// Once.
+/// After the Manticore, Ash Jenna reveals her origin and asks Isaac to help
+/// her confront the Wise One. The miner's rescue is remembered, but it does not
+/// decide Isaac's answer. Once.
 static void LamakanDesert_AshJennaFinale(void) {
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
