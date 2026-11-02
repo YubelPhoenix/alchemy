@@ -28,7 +28,7 @@
 10025	MsgBabiLighthouseIfYouCanOpenThisDoor	If you open this door,\nI will trust Iodem\nonce more.{end_wait}
 10026	MsgBabiLighthouseIDoNotMeanToDoubt	I do not doubt you,\n{actor_name:1}, but I fear\nwhat waits beyond.{page_break}If this door stays shut,\nwe may lose her.{end_wait}
 10027	MsgBabiLighthouseNobodyThinksTheDoorCanBe	No one believes this door\ncan be opened. I am\nstarting to doubt it too.{page_break}I never saw them pass\nthrough. I only heard\nwhat others claimed.{end_wait}
-10028	MsgBabiLighthouseIDontKnowWhatTheyreWaiting	What are they waiting for?\nIf they can open the door,\nthey must do it now.{end_wait}
+10028	MsgBabiLighthouseIDontKnowWhatTheyreWaiting	What are they waiting for?{page_break}If they can open the door,\nthey must do it now.{end_wait}
 10029	MsgBabiLighthouseThisIsAllAHugeWaste	This waiting is useless.\nIf we do not find\n{actor_name:7} soon,{page_break}her life may be lost\nbeyond that door.{end_wait}
 10030	MsgBabiLighthouseIHopeTheyCanOpenThe	I hope the door opens.\nI will believe it when\nI see it.{end_wait}
 10031	MsgBabiTheDoor	The door!{end_wait}
@@ -83,11 +83,11 @@
 10033	message	After all these years...\nIt truly opened.{end_wait}
 10034	message	How did you manage\nto open it?{end_wait}
 10035	message	I cannot explain it.\nOur Psynergy answered\nwhere strength could not.{end_wait}
-10036	message	We did it because...\nwell, because we're us!{end_wait}
+10036	message	We did it because{pause_20_skippable}{pause_20_skippable}\nwe are who we are!{end_wait}
 10037	message	There is no time\nfor explanations now.{end_wait}
 10038	message	We can answer your\nquestions later. Sheba\nis still in danger.{end_wait}
-10039	message	Then go. Do not waste\nanother moment. Bring\nher back to us.{end_wait}
-10040	message	Come, Faran. We must\nreach Sheba before\nit is too late.{end_wait}
+10039	message	Then go. Do not waste\nanother moment. Bring\n{actor_name:7} back to us.{end_wait}
+10040	message	Come, Faran. We must\nreach {actor_name:7} before\nit is too late.{end_wait}
 10043	message	Why would the door\nclose again?{end_wait}
 10044	message	It is meant to keep out\nthose who have no\nPsynergy.{end_wait}
 10045	message	Anyone without Psynergy\nwould be in danger\nbeyond that door.{end_wait}
@@ -95,12 +95,12 @@
 10047	message	You expect us to remain\nhere and do nothing?{end_now}
 10048	message	We cannot open the door.\nFollowing you would only\nput you at risk.{end_wait}
 10049	message	The door will not admit\nus. We cannot follow\nyou beyond it.{end_wait}
-10051	message	But we cannot leave\nSheba in their hands,\nwhatever the danger.{end_wait}
+10051	message	But we cannot leave\n{actor_name:7} in their hands\njust because it is dangerous.{end_wait}
 10052	message	Their strength is far\nbeyond anything you\nhave faced.{end_wait}
 10053	message	Without that power,\nwe cannot pass through?{end_now}
 10054	message	That is what the door\nhas made clear.{end_wait}
 10055	message	What you witnessed was\nonly a fraction of\ntheir true strength.{end_wait}
 10056	message	If we followed, we\nwould only become\nanother burden.{end_wait}
-10057	message	Then Sheba's life\nrests in your hands.{end_wait}
-10058	message	Bring her home safely.\nDo not fail her.{end_wait}
+10057	message	Then {actor_name:7}'s life\nrests in your hands.{end_wait}
+10058	message	Bring {actor_name:7} home safely.\nDo not fail her.{end_wait}
 10059	message	Go now, {actor_name:1}.\nWe will wait for your\nreturn.{end_wait}
