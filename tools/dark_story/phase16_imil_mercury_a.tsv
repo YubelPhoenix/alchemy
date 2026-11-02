@@ -86,7 +86,7 @@
 05537	message	We came from Vale to\nrecover the four\nElemental Stars.{end_wait}
 05538	message	But unlike you, we are\nnot healers.{end_wait}
 05539	message	We came from Mt. Aleph,\nbut we're not healers.{end_wait}
-05540	message	We came from Vale to\nrecover the three\nElemental Stars.{end_wait}
+05540	message	We came from Vale to\nrecover the four\nElemental Stars.{end_wait}
 05541	message	Did you say{pause_20_skippable} Vale?{end_wait}
 05542	message	Our village was there to\nguard Sol Sanctum, but\nthe Stars were stolen.{end_wait}
 05543	message	That sounds just like\nmy clan...{end_wait}
