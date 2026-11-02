@@ -34,30 +34,30 @@
 05337	message	Wait! We can't\nlet Tret die!{end_wait}
 05338	message	We still need him,\n{actor_name:1}.{end_wait}
 05342	message	{actor_name:1}, remember.{page_break}Kolima still needs us.{end_wait}
-05343	MsgTretTurnedPeopleKolima	I did this\nto the villagers?{end_wait}
+05343	MsgTretTurnedPeopleKolima	I turned them into trees?\nThose people...\nWhat have I done?{end_wait}
 05347	message	Tret's too weak\nto lift the curse.{end_wait}
 05348	message	Then we heal him.{page_break}We can't abandon\nthose people.{end_wait}
 05349	message	Their lives depend\non what we do next.{end_wait}
 05350	message	Restore Tret.\nThen save Kolima.{end_wait}
 05352	message	Try the water!{end_wait}
 05353	message	It may restore\nhis strength.{end_wait}
-05359	message	Hrooom...\nLife returns to me.{end_wait}
-05362	message	Forgive me, Laurel.\nI frightened you.{end_wait}
-05363	message	Young ones...\nYou have a request?{end_now}
+05359	message	Hrooom...\nThe pain is fading.\nI can think again.{end_wait}
+05362	message	Forgive me, Laurel.\nI let my anger\nconsume the forest.{end_wait}
+05363	message	You came back for me?\nAfter what I did?{end_now}
 05366	message	{actor_name:1}! The villagers!\nAsk him to help!{end_wait}
 05367	message	Tret has his strength.\nHe can help them.{end_wait}
 05368	message	Ask him to undo\nwhat he did.{end_wait}
-05369	message	Tret, please.\nRelease the villagers.{end_wait}
+05369	message	Tret, the villagers\nare still suffering.\nCan you free them?{end_wait}
 05372	message	I never held\nsuch power before.{end_wait}
 05373	message	It came with the stones\nthat fell from the sky.{end_wait}
 05374	message	Stones from the sky...\nPsynergy Stones?{end_now}
 05375	message	Could they really\nhave caused this?{end_wait}
 05376	message	I don't want to believe\nit, either.{end_wait}
 05378	message	The stones fell\namong my branches.{end_wait}
-05379	message	I was angry.{page_break}Then I could no longer\nmaster that anger.{end_wait}
-05380	message	They found me\nwhile I was grieving.{end_wait}
-05381	message	The stones stirred\nwhat we already felt.{end_wait}
-05382	message	My anger became\nsomething I couldn't stop.{end_wait}
+05379	message	I was angry.\nI wanted them to feel\nwhat I had lost.{page_break}But I never meant\nfor this to happen.{end_wait}
+05380	message	The stones fell\nwhile I was grieving.\nI welcomed their power.{end_wait}
+05381	message	They gave your anger\nstrength. But the choice\nwas still yours.{end_wait}
+05382	message	Yes. I must answer\nfor what I have done.{end_wait}
 05384	message	Only the elder trees\nwere touched by them.{end_wait}
 05385	message	Other trees too?{end_wait}
 05386	message	Then this may be\nhappening elsewhere.{end_wait}
@@ -65,7 +65,7 @@
 05388	message	Perhaps they were\nordinary animals once.{end_wait}
 05389	message	They were living things.{page_break}The stones changed them.\nWe don't know how.{end_wait}
 05390	message	Laurel, did the stones\nchange you too?{end_wait}
-05391	message	My gift is different.\nIts source is the same.{end_wait}
+05391	message	The stones changed me,\nbut they did not\ncommand my heart.{end_wait}
 05392	message	Laurel? What is it?{end_wait}
 05393	message	Wait. You'll see.{end_wait}
 05394	message	What did you find, Laurel?{end_wait}
