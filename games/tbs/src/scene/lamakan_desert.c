@@ -1117,7 +1117,7 @@ static void LamakanDesert_MiaTakesOver(void) {
     GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
     Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
     Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_SetMessageId(MsgDarkManticoreIvanBlade);
+    Event_SetMessageId(MsgDarkManticoreIvanConcern);
     Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   }
   // The caravan wakes. Isaac chooses; Mia walks on alone either way.
