@@ -2716,8 +2716,8 @@
 #define FLAG_DARK_MIA_THIEVES_DONE 0x88a
 /// The hired thieves exist in Imil (set on the way in, cleared on the way out).
 #define FLAG_DARK_MIA_THIEVES_ACTIVE 0x88b
-/// Mia's other self is speaking: her message portrait is the dark one
-/// (Portrait_GetForSpeaker). Set around a message, then cleared.
+/// Mia's alternate message portrait is displayed for selected dialogue.
+/// Set around the message, then cleared.
 #define FLAG_DARK_MIA_SPEAKING 0x88c
 
 /// Ash Jenna has spoken to the party in Tolbi after Colosso, and slipped away.
