@@ -145,8 +145,8 @@ enum TolbiActorId {
   /// A stranded farmer (SPRITE_MAN_CARRYING_A_PACK) whose family cannot get
   /// home (Tolbi_TalkToStrandedFather).
   ACTOR_TOLBI_STRANDED_FATHER = 34,
-  /// Kegare, the Mia-mimicking Water Adept: the optional Tolbi boss, who
-  /// appears after the harbor is sheltered or all three Tide Shards are found.
+  /// Kegare, a demon from another age wearing Mia's visage; the optional
+  /// superboss appears in Tolbi only after Colosso is over.
   ACTOR_TOLBI_KEGARE = 35,
 };
 
