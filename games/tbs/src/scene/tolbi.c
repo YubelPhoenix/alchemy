@@ -536,9 +536,8 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
 }
 
 /// Ash Jenna, grey and hostile, confronts the party in the rain after Colosso.
-/// The fire has left only ash in her, and every lighthouse the party lights
-/// feeds her. She taunts them, Mia answers her, and she fades away promising
-/// to wait at Venus Lighthouse.
+/// She continues her account of the Wise One's destruction, needles Mia about
+/// the Manticore, and directs the party toward the next lighthouse.
 static void Tolbi_MeetAshJenna(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkTolbiJennaFound);
