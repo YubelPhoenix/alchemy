@@ -1,60 +1,60 @@
-04741	message	Then you're not the\nthieves. Good. Stay that\nway.{end_wait}
-04742	message	Hmm...{pause_20_skippable} Something's off...{pause_20_skippable}\nYou{pause_20_skippable} are thieves...{end_wait}
-04743	MsgVaultHahhWereSureToSeeA	Hahh... Nobody travels\nthrough a burned town.\nWe'll be ruined.{end_wait}
-04748	MsgVaultTheGuestsUpstairsWerentInTheir	The guests upstairs\nweren't in their room\nwhen the mountain blew.{page_break}We searched it after,\nand found nothing. That\nalone troubles me.{end_wait}
-04749	MsgVaultEveryoneThinksOurGuestsThieves	Everyone says our guests\nare the thieves.{page_break}But accusing people\nwithout proof is how a\ntown tears itself apart.{page_break}They look rough, I\nadmit, but they've been\npolite. And paid cash.{end_wait}
-04750	MsgVaultThoseThreeStrangersSureHave	Those three have fooled\nthe innkeeper and his\nwife completely.{page_break}I know their type.\nThey take what they\nwant and smile.{end_wait}
-04752	MsgVaultThatKidIvanHeCreepsMe	That boy, {actor_name:3}...\nSomething's wrong with\nhim.{page_break}He grabbed my arm and\njust stared at me.{page_break}I shook him off. It felt\nlike he was reading me\nlike a book.{end_wait}
-04753	MsgVaultWeHaventDoneAnythingYoureA	We haven't done anything.\nYou're a terrible person\nif you{page_break}accuse people with no\nproof at all.{end_wait}
-04754	MsgVaultItWouldBeAwfulIfOur	It would be awful if our\nguests turned out to be\nthe thieves.{end_wait}
-04755	MsgVaultThatVolcanoCostUsALot	The volcano cost us half\nour business, and now\nthis robbery!{page_break}Those three pay well.\nVery well.{page_break}I'll stand up for them\nif there's trouble. We\nneed the coin.{end_wait}
-04756	MsgVaultMasterHisWifeBlindedBy	The master and his wife\nare blinded by coin.{page_break}If they don't help hunt\nthe thieves, they'll pay\nfor it.{end_wait}
-04758	MsgVaultWant	What do you want, kid?{end_wait}
-04759	message	That strange boy is with\nthem!{end_wait}
-04760	message	Don't let him near me!\nHe looks inside people!{end_wait}
-04761	MsgVaultTheyreActingSuspiciousSomethingsNot	They're very edgy.\nSomething isn't right.{end_wait}
-04762	message	You can't read them if\nthey keep running, can\nyou?{end_now}
-04763	message	Is there any way to\ncorner them?{end_wait}
-04764	message	There has to be a way\nto get close enough, but\nhow?{end_wait}
-04765	message	Maybe the three of us\ncan box one of them in.{end_wait}
-04766	message	Don't worry. This will\nwork. It has to.{end_wait}
-04767	MsgVaultIsaacTakeLead	{actor_name:1}, you take the\nlead. I'll follow.{end_wait}
-04768	MsgVaultTheyreBack	They're back!{end_wait}
-04769	message	Damn! They're coming at\nus one at a time!{end_wait}
-04770	message	Keep your distance, like\nbefore! Don't let them\nlay a hand on you!{end_wait}
-04771	MsgVaultTheresNowhereRun	There's nowhere left to\nrun!{end_wait}
-04772	MsgVaultImSurrounded	Damn! I'm surrounded!{end_wait}
-04773	MsgVaultNowIvan	Now, {actor_name:3}! Do it!{end_wait}
-04774	message	A-All right...!{end_wait}
-04775	message	Wh-what's this? What's\nhe doing to me?!{end_wait}
-04776	message	His eyes are shut...\nWhat is he doing?{end_wait}
-04777	message	Are you done, {actor_name:3}?\nBe quick.{end_wait}
-04778	message	You freaks... Stay away\nfrom me! All of you!{end_wait}
-04779	message	Get out! Get out of\nmy sight!{end_wait}
-04780	MsgVaultOwStop	Ah! Stop it!{end_wait}
-04781	MsgVaultNoLeaveAlone	No! Get out of my head!{end_wait}
-04782	MsgVaultLearn	What did you find,\n{actor_name:3}?{end_wait}
-04783	message	It's them. They took far\nmore than the rod... a\nlot of other things too.{end_wait}
-04784	message	They've hidden it all\nsomewhere in this inn...{end_wait}
-04785	message	But they'll never let me\nnear them again.{end_wait}
-04786	message	Then we have no choice.\nWe have to search the\ninn ourselves...{end_now}
-04787	message	It's a lot of ground, but\nwe're the only ones who\ncan do it. Right?{end_now}
-04788	message	Please, {actor_name:1}...\nI'm begging you...{end_now}
-04789	message	So it can't be done...?{end_wait}
-04795	MsgVaultWeDontHaveTimeFor	We don't have time for\nthat, {actor_name:1}!{end_wait}
-04796	MsgVaultLeave	Leave it to us.{end_wait}
-04797	message	{actor_name:1} always comes\nthrough.{end_wait}
-04798	message	I trust your sense of\nduty.{end_wait}
-04799	message	It's settled. Let's go,\n{actor_name:3}.{end_wait}
+04741	message	Then you're not the\nthieves. I'm relieved.{end_wait}
+04742	message	Something isn't right...{pause_20_skippable}\nYou{pause_20_skippable} took it, didn't you?{end_wait}
+04743	MsgVaultHahhWereSureToSeeA	The roads are empty.\nHow will we stay open?{end_wait}
+04748	MsgVaultTheGuestsUpstairsWerentInTheir	Our guests were gone\nwhen the mountain shook.{page_break}They came back later.\nI didn't ask where.{end_wait}
+04749	MsgVaultEveryoneThinksOurGuestsThieves	People blame our guests.{page_break}But suspicion isn't\nproof.{page_break}They've been polite\nand paid for their rooms.{end_wait}
+04750	MsgVaultThoseThreeStrangersSureHave	The innkeeper trusts\nthose three.{page_break}I don't. I've seen\nhow they watch the door.{end_wait}
+04752	MsgVaultThatKidIvanHeCreepsMe	That boy, {actor_name:3},\nstared right through me.{page_break}I felt exposed.\nI didn't like it.{end_wait}
+04753	MsgVaultWeHaventDoneAnythingYoureA	We've done nothing!{page_break}You can't accuse us\nwithout proof.{end_wait}
+04754	MsgVaultItWouldBeAwfulIfOur	If our guests did it,\nwhat happens to the inn?{end_wait}
+04755	MsgVaultThatVolcanoCostUsALot	The eruption nearly\nruined our business.{page_break}Those three pay well.\nWe need the money.{end_wait}
+04756	MsgVaultMasterHisWifeBlindedBy	The owners need money.{page_break}They won't ask questions\nabout those guests.{end_wait}
+04758	MsgVaultWant	What do you want?{end_wait}
+04759	message	That boy is with them!{end_wait}
+04760	message	Keep him away!\nHe reads minds!{end_wait}
+04761	MsgVaultTheyreActingSuspiciousSomethingsNot	They're watching us.\nThey know we're close.{end_wait}
+04762	message	They run whenever\nwe get near. What now?{end_now}
+04763	message	We need to stop them\nlong enough for Ivan.{end_wait}
+04764	message	We can't catch all three\nat once.{end_wait}
+04765	message	Then we split them up.\nCorner one at a time.{end_wait}
+04766	message	Stay close.\nDon't let them scatter.{end_wait}
+04767	MsgVaultIsaacTakeLead	{actor_name:1}, go first.\nWe'll follow.{end_wait}
+04768	MsgVaultTheyreBack	They're coming back!{end_wait}
+04769	message	They're closing in!\nKeep moving!{end_wait}
+04770	message	Don't let them touch you!\nKeep your distance!{end_wait}
+04771	MsgVaultTheresNowhereRun	There's nowhere to run!{end_wait}
+04772	MsgVaultImSurrounded	I'm trapped!{end_wait}
+04773	MsgVaultNowIvan	Now, {actor_name:3}!{end_wait}
+04774	message	All right... I'll try.{end_wait}
+04775	message	What's he doing?!\nGet away from me!{end_wait}
+04776	message	His eyes are closed.\nWhat's happening?{end_wait}
+04777	message	{actor_name:3}, did you see it?{end_wait}
+04778	message	Stay out of my head!{end_wait}
+04779	message	Get away from me!{end_wait}
+04780	MsgVaultOwStop	Stop! That hurts!{end_wait}
+04781	MsgVaultNoLeaveAlone	No! Leave me alone!{end_wait}
+04782	MsgVaultLearn	What did you learn,\n{actor_name:3}?{end_wait}
+04783	message	They took the rod.\nAnd other things too.{end_wait}
+04784	message	The goods are hidden\nsomewhere in this inn.{end_wait}
+04785	message	They won't let me\nnear them again.{end_wait}
+04786	message	Then we search the inn.\nIt's our only lead.{end_now}
+04787	message	We'll have to look\neverywhere. Agreed?{end_now}
+04788	message	Please, {actor_name:1}.\nWill you help?{end_now}
+04789	message	Then I suppose\nwe'll have to wait.{end_wait}
+04795	MsgVaultWeDontHaveTimeFor	Not now, {actor_name:1}!\nWe have to hurry.{end_wait}
+04796	MsgVaultLeave	We'll handle it.{end_wait}
+04797	message	{actor_name:1} won't give up.{end_wait}
+04798	message	I believe you can do it.{end_wait}
+04799	message	Come on, {actor_name:3}.\nLet's search.{end_wait}
 04803	MsgVaultUhnnUhnn	Uhnn... Uhnn...{end_wait}
-04804	MsgVaultAhhHelpMe	Ahh! Help me... please...{end_wait}
-04805	MsgVaultVaultCutFree	{protagonist_name} cut the ropes.\nThey had bitten into his\nwrists.{end_wait}
-04806	message	I came into the loft to\nfix the roof...{end_wait}
-04807	message	But I couldn't get to\nthe back of the loft...{page_break}So I went to look\nwhen{pause_20_skippable} WHAM!{end_wait}
-04808	message	Someone hit me from\nbehind!{page_break}When I woke, I was tied\nup. And bleeding.{end_wait}
-04809	message	These crates weren't\nhere before.\nSomething is wrong.{end_wait}
-04810	message	All the stolen goods are\nprobably in these crates.{end_wait}
-04811	message	So. We've been found out.{end_wait}
-04812	message	You're persistent for one\nof Hammet's pups.\nThat'll get you killed.{end_wait}
-04828	MsgVaultVaultThievesCaught	What? Even if we return\neverything and beg\nforgiveness,{page_break}it's still a crime?{end_wait}
-04829	MsgVaultTheseKidsNothingWorryAbout	They're only children.\nNothing to worry about.{end_wait}
+04804	MsgVaultAhhHelpMe	Help! Somebody!{end_wait}
+04805	MsgVaultVaultCutFree	{protagonist_name} freed him.\nHis wrists were raw.{end_wait}
+04806	message	I came to repair\nthe roof.{end_wait}
+04807	message	There were crates\nblocking the loft.{page_break}I went to move them{pause_20_skippable}\nand someone hit me.{end_wait}
+04808	message	I woke up tied here.{page_break}I never saw who\ndid it.{end_wait}
+04809	message	Those crates weren't\nhere yesterday.{end_wait}
+04810	message	The stolen goods\nmust be inside.{end_wait}
+04811	message	So you found us.{end_wait}
+04812	message	Hammet's boy brought\ncompany.{page_break}You should've\nstayed downstairs.{end_wait}
+04828	MsgVaultVaultThievesCaught	Even if we give it back,\nwe're still going to jail?{end_wait}
+04829	MsgVaultTheseKidsNothingWorryAbout	They're just children.\nDon't worry about them.{end_wait}
