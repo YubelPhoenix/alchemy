@@ -16,7 +16,7 @@
 08883	MsgBabiPalaceNowThatColossoIsOverIm	Colosso is finished.\nI'm bound for Gondowan\nto raise Babi's lighthouse.{end_wait}
 08884	MsgBabiPalaceTheSouthernContinentIsADangerous	The southern continent\nis not a gentle place.\nYou'll learn that soon.{page_break}Angara has its troubles,\nbut at least its roads\nare not trying to kill you.{end_wait}
 09039	MsgBabiPalaceBabisFaceIsVeryPaleLike	Babi's skin has gone\nwhite as old stone. He\nlooks almost like a corpse.{page_break}No one will speak of it.\nPerhaps they fear what\nhe might do if they did.{end_wait}
-09042	MsgTolbiFoundCloakBall	You found the\nCloak Ball.{end_wait}
+09042	MsgTolbiFoundCloakBall	The Cloak Ball is\nnow yours.{end_wait}
 09049	MsgBabiPalaceTheGirlFromLaliveroIsNo	The girl from Lalivero\nhas gone. Soldiers are\ntaking her home.{page_break}They say the lighthouse\nneeds no more hostages.\nI doubt she believes it.{end_wait}
 09050	MsgBabiPalaceIAmSurprisedActorWasAllowed	I'm surprised {actor_name:7} was\nallowed to return to\nLalivero.{page_break}At least she can see\nher own people again.\nThat should matter.{end_wait}
 08173	MsgBabiPalaceNormallyNoOnesAllowedIntoBabis	The palace is closed\nto visitors. Colosso is\nthe only exception.{page_break}Do not mistake that\nfor an invitation to\nwander wherever you please.{end_wait}
