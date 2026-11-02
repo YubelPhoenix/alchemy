@@ -29,31 +29,31 @@
 05461	message	{actor_name:4} just left.{page_break}She's visiting\nthe sick again.{end_wait}
 05463	MsgImilHaveVisitedOldCoupleWho	Have you visited the\nold couple near the\nentrance of town?{end_now}
 05464	message	Oh. That's where\n{actor_name:4} was going.{page_break}You may have\njust missed her.{end_wait}
-05465	message	{actor_name:4} went to their\nhouse. You might have seen\nher if you stopped...{end_wait}
-05468	MsgImilHowFeeling	How are you feeling?{end_wait}
+05465	message	{actor_name:4} went to their house.\nYou may have missed her.{end_wait}
+05468	MsgImilHowFeeling	How do you feel now?{end_wait}
 05469	message	{text_effect:4} Cough...{pause_20_skippable} Cough...{end_wait}
-05470	message	He's been coughing\nfor a long while now...{end_wait}
-05471	message	You'll feel better soon.{end_wait}
+05470	message	He's been coughing\nfor days.{end_wait}
+05471	message	Rest. You'll be\nstronger soon.{end_wait}
 05472	message	{text_effect:4}Cough{pause_20_skippable} cough...{pause_20_skippable}{pause_20_skippable}\nCough{pause_20_skippable}{pause_20_skippable}... {pause_20_skippable}{pause_20_skippable}\nCough... {pause_20_skippable}{pause_20_skippable}{pause_20_skippable}Cough...{end_wait}
-05473	message	How do you feel now?{end_wait}
-05474	message	Much{pause_20_skippable} better...{end_wait}
-05475	message	No, Grandpa.{pause_20_skippable} You mustn't\npush yourself too hard.{end_wait}
+05473	message	Any better, Grandpa?{end_wait}
+05474	message	A little... yes.{end_wait}
+05475	message	Don't try to stand yet.\nPlease, Grandpa.{end_wait}
 05476	message	Thank you, {actor_name:4}...{page_break}I don't know how this\nvillage would survive\nwithout you...{page_break}{text_effect:4}Cough{reset_text_style}...{end_wait}
-05477	message	Don't mention it...\nYou should rest in bed,\ntoo, ma'am.{end_wait}
+05477	message	Don't thank me yet.{page_break}You need rest too.{end_wait}
 05478	message	Who are you?{end_wait}
 05479	message	Can I help you?{end_wait}
-05480	message	Was that{pause_20_skippable}{pause_20_skippable}{pause_20_skippable} the lighthouse?{end_wait}
-05481	message	It can't be...{end_wait}
-05482	message	Only I can...{end_wait}
-05483	message	Oh, no...{pause_20_skippable} Alex!!!{end_wait}
+05480	message	Was that...\nthe lighthouse?{end_wait}
+05481	message	No. It can't be.{end_wait}
+05482	message	Only I can enter...{end_wait}
+05483	message	Alex! What have you done?{end_wait}
 05484	MsgMercuryFeelMuchBetter	I feel much better,\nthanks to {actor_name:4}.\nI should be fine now.{end_wait}
-05485	MsgImilHappenedInLighthouseNortheast	What happened in the\nlighthouse to the\nnortheast?{end_wait}
+05485	MsgImilHappenedInLighthouseNortheast	What happened\nat the lighthouse?{end_wait}
 05488	MsgImilEvenIfMiaHealsUs	Even if {actor_name:4} heals us,\nthe sickness comes back\nevery winter. {text_effect:4}Brr...{end_wait}
-05489	MsgImilCantUnderstandWhyAnyOne	I can't understand why\nanyone would exercise\nin this cold.{end_wait}
-05490	MsgImilAmHealerWhileMiaOut	I'm the healer while\n{actor_name:4} is out. Tell me\nif you need anything.{end_wait}
-05491	MsgImilFeelLikeGrownUpWhen	I feel grown-up when\nI heal people.\nI wish it were easier.{end_wait}
-05492	MsgImilEveryoneCountsOnMiaThats	Everyone needs {actor_name:4}.\nThat's why she's always\nso busy.{end_wait}
-05493	MsgImilWeHaveDoWhateverWe	We have to help {actor_name:4}\nany way we can.\nShe's stretched thin.{end_wait}
+05489	MsgImilCantUnderstandWhyAnyOne	How can anyone run\nin weather like this?{end_wait}
+05490	MsgImilAmHealerWhileMiaOut	I'm tending the sick\nwhile {actor_name:4} is away.{end_wait}
+05491	MsgImilFeelLikeGrownUpWhen	Healing looks easy\nwhen {actor_name:4} does it.{end_wait}
+05492	MsgImilEveryoneCountsOnMiaThats	Everyone depends\non {actor_name:4}.{end_wait}
+05493	MsgImilWeHaveDoWhateverWe	We have to share\nher work somehow.{end_wait}
 05494	MsgImilHermesHealingWaterFountain	Fountain of Healing{page_break}Water of Hermes:\nIt brings rejuvenation\nto all that lives.{end_wait}
 05495	MsgImilSomebodyHere	Somebody...is here.{end_wait}
 05496	message	Someone is here...{end_wait}
