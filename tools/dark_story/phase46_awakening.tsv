@@ -9,5 +9,5 @@ N189	MsgDarkAwakenYesMia	Then I'm going with you.\nI won't watch you walk into\n
 N190	MsgDarkAwakenNoIsaac	We can't reach them from\nhere. We have to keep\nmoving, even if it hurts.{end_wait}
 N191	MsgDarkAwakenNoGaret	Isaac... they're calling\nyour name. How could they\npossibly know it?{end_wait}
 N192	MsgDarkAwakenNoMia	Don't call them ghosts,\nGaret. Whatever is left\nin them was once human.{end_wait}
-N193	MsgDarkAwakenMiaGoes	I'll take the lead. Not\nbecause I'm unafraid, but\nbecause we must keep moving.{end_wait}
+N193	MsgDarkAwakenMiaGoes	I'll take the lead. Not\nbecause I'm unafraid, but\nbecause we must press on.{end_wait}
 N194	MsgDarkAwakenGaretLeft	She kept her eyes ahead.\nI don't think she trusted\nherself to look back.{end_wait}
