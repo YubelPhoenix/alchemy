@@ -95,7 +95,7 @@
 10047	message	You expect us to remain\nhere and do nothing?{end_now}
 10048	message	We cannot open the door.\nFollowing you would only\nput you at risk.{end_wait}
 10049	message	The door will not admit\nus. We cannot follow\nyou beyond it.{end_wait}
-10051	message	But we cannot leave\n{actor_name:7} in their hands\njust because it is dangerous.{end_wait}
+10051	message	But we cannot leave\n{actor_name:7} in their hands,\neven if it is dangerous.{end_wait}
 10052	message	Their strength is far\nbeyond anything you\nhave faced.{end_wait}
 10053	message	Without that power,\nwe cannot pass through?{end_now}
 10054	message	That is what the door\nhas made clear.{end_wait}
