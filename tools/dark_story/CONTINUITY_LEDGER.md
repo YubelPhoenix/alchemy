@@ -244,3 +244,29 @@ Both Heart and Kegare are intended to be difficult but fair optional superbosses
 - **Shared fairness standard:** neither boss should require extreme overleveling, luck-based resets, exploits, or an effectively endless healing loop. Evaluate damage output, survivability, healing frequency, speed/action economy, elemental matchup, and the expected party level/equipment at the actual unlock point as one encounter. Do not copy the same difficulty profile onto both bosses: their identities and battle roles should remain distinct.
 - **Validation:** do not call either fight balanced based on a code build alone. Record the expected progression point and test the encounter with plausible party levels and equipment. Confirm that the battle can be won consistently with a reasonable strategy while still punishing careless play.
 
+### Simplified Mia arc: no sentient Tideglass Blade
+
+The sentient Tideglass Blade storyline is retired. It introduced an unnecessary second mythology (a voice in the weapon, influence/possession of Mia, a transfer decision for Isaac, and a separate mercy condition) that distracted from the Ashfall conflict.
+
+Canonical direction going forward:
+
+- Mia's behavior after the Manticore is an emotional response to what the party has witnessed and the anger and strain she is carrying. She briefly speaks more harshly than she intends, recognizes it, and remains accountable for it. There is no second self, possession, weapon voice, or loss of memory.
+- Ash Jenna is the antagonist who deliberately recognizes and exploits Mia's vulnerability. Her taunts are personal and cruel, but they do not reveal a supernatural connection between Mia and Jenna.
+- Isaac and the party support Mia. The Tolbi follow-up is a short character scene about being unsettled and choosing not to let Ash Jenna define her; there is no weapon-transfer choice.
+- The Tideglass Blade is not a sentient artifact and must not be the cause of Mia's behavior, a branching ending condition, or an explanatory link to Kegare.
+- The finale's mercy count is now based on the harbor child, miner, Mogall door, and caravan choices only. The retired blade decision is not counted.
+- Existing ordinary weapon terminology in unrelated original-game dialogue is unaffected. This correction removes the custom sentient-weapon plot, not the game's ordinary swords or battle equipment.
+
+### Current superboss balance pass
+
+The first numerical rebalance is in place, pending encounter testing:
+
+| Boss | Level | HP | PP | Attack | Defense | Agility | Actions |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Heart | 38 | 3,600 | 240 | 300 | 130 | 140 | 1 |
+| Kegare | 33 | 4,200 | 300 | 285 | 125 | 145 | 2 |
+
+Kegare's current enemy ability set includes high-tier Mercury-element attacks and ABILITY_PLY. Her role is a Water Adept: pressure through powerful water/ice Psynergy and measured healing, not an endless recovery loop. Heart keeps her own ability identity but no longer has 9,999 HP, 999 PP, 520 attack, 190 defense, 200 agility, or two actions every turn.
+
+These values are a first balance target, not a claim that the fights are fully validated. The encounter unlock points and realistic party levels/equipment must be used for testing. Adjust further if either fight proves unfair or trivial in play.
+
