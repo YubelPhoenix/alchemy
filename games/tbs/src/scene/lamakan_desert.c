@@ -323,7 +323,6 @@ static void LamakanDesert_AshJennaFinale(void) {
   s32 mercy;
 
   mercy = 0;
-  if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0) mercy++;
   if (GameFlag_Get(FLAG_DARK_MINER_STAYED) != 0) mercy++;
   if (GameFlag_Get(FLAG_DARK_MOGALL_DOOR_OPENED) != 0) mercy++;
   if (GameFlag_Get(FLAG_DARK_CARAVAN_CALMED) != 0) mercy++;
@@ -353,10 +352,6 @@ static void LamakanDesert_AshJennaFinale(void) {
   Event_SetMessageId(MsgDarkFinaleMia);
   LamakanDesert_SayMia();
   // What the party remembers of Isaac's choices.
-  if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0) {
-    Event_SetMessageId(MsgDarkEchoHarbor);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  }
   if (GameFlag_Get(FLAG_DARK_MINER_STAYED) != 0) {
     Event_SetMessageId(MsgDarkEchoMiner);
     Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
