@@ -1,0 +1,39 @@
+# Suhalla interiors: Iodem questions the wounded soldiers after Babi's audience.
+09707	MsgSuhallaIodem	Iodem...{end_wait}
+09708	message	You were meant to escort\nthe soldiers to Babi\nLighthouse.{end_wait}
+09709	message	Iodem... What are\nyou doing here?{end_wait}
+09710	message	Babi ordered me to go\nto the lighthouse with\n{actor_name:1}.{end_wait}
+09711	message	You were escorting\n{actor_name:7} to Lalivero,\nweren't you?{end_wait}
+09712	message	We have disgraced\nTolbi...{end_wait}
+09713	message	What happened to\n{actor_name:7}? Where is\n{actor_name:7}?{end_wait}
+09714	message	We do not know. When we\nwoke, we were here\nin these beds.{end_wait}
+09715	message	If {actor_name:7} was harmed,\nwhat becomes of the\nlighthouse?{end_wait}
+09716	message	{actor_name:7} was the reason\nLalivero agreed to help\nbuild it.{end_wait}
+09717	message	We entrusted {actor_name:7}\nto your care to keep\nthe work moving.{page_break}Was that a mistake?{end_wait}
+09718	message	Iodem...{pause_20_skippable} At least I know\n{actor_name:7} was not caught\nin the sandstorm.{end_wait}
+09719	message	Are you certain?{end_wait}
+09720	message	We were entrusted with\n{actor_name:7}. We kept her\nout of danger.{end_wait}
+09721	message	Then you did what you\ncould. But where is\n{actor_name:7} now?{end_wait}
+09722	message	Near the edge of the\nsandstorm that struck us...{end_wait}
+09723	message	{actor_name:1}, we must search\nthe desert and find\n{actor_name:7}.{end_wait}
+09724	message	If you return to the\ndesert, beware that\ncyclone!{end_wait}
+09725	message	At first{pause_20_skippable}, we could not\nescape the sandstorms.{end_wait}
+09726	message	But others crossed\nthose storms without\nbeing caught.{end_wait}
+09727	message	They used water to\nforce the cyclones\nto break.{end_wait}
+09728	message	Water can stop the\nsandstorms...?{end_wait}
+09729	message	I see. Rest now.\nYou have done enough.{end_wait}
+09730	message	Wait, Iodem...{pause_20_skippable} There is\nmore. Do not meet\nour fate...{end_wait}
+09731	message	The sandstorms{pause_20_skippable} are\ncaused{pause_20_skippable} by monsters.{end_wait}
+09732	message	Monsters?{end_wait}
+09733	message	The others...{pause_20_skippable} They slew\nthe beasts{pause_20_skippable}... That is\nhow they crossed.{end_wait}
+09734	message	Wh{pause_20_skippable}-Who{pause_20_skippable}{em_dash} what are they?{end_wait}
+09735	message	When the storms stopped,\nthey moved ahead,{pause_20_skippable}\nbut another storm rose...{end_wait}
+09736	message	They had strange powers.\nWe carried barrels of\nwater...{pause_20_skippable}{end_wait}
+09737	message	The barrels exhausted us...\nand then{pause_20_skippable} the beast...{end_wait}
+09738	message	Enough. Get some rest.\nWe will take it from here.{end_wait}
+09739	message	They are dangerous.\nSlay the beast, then\nfollow their trail...{end_wait}
+09740	message	Thank you. You have\nserved with honor.{end_wait}
+09741	message	Could these be the ones\nyou are following,\n{actor_name:1}?{end_now}
+09742	message	You reached the same\nconclusion from their\naccount...{end_wait}
+09743	message	I cannot explain it,\nbut something in their\nstory tells me so...{end_wait}
+09744	message	We must find {actor_name:7}\nas quickly as we can!{end_wait}
