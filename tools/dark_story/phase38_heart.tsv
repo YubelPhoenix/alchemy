@@ -1,13 +1,13 @@
 # Heart (Chalice), the Kolima secret boss. Also names rows 101 and 104.
 00756	message	Heart
 00759	message	Kegare
-N123	MsgDarkHeartShock	That face... Matthew?\nNo. You're not him. Who\nare you?{end_wait}
-N124	MsgDarkHeartIsaacName	I'm Isaac. I don't know\nanyone named Matthew.\nWhy did you call me that?{end_wait}
-N125	MsgDarkHeartSameFace	A man with your face\ndefeated me once. I held\nback my full power.{end_wait}
-N126	MsgDarkHeartGaretGhost	Isaac, be careful. She\nspeaks as if that defeat\nstill weighs on her.{end_wait}
-N127	MsgDarkHeartHatred	I came to observe this\nworld. But I won't hold\nback against you.{end_wait}
-N128	MsgDarkHeartIsaacReady	Then show us what you\ncan do. But afterward,\nyou will answer us.{end_wait}
-N129	MsgDarkHeartBeaten	You are not Matthew. I\nmistook you for him. But\nyou have your own strength.{end_wait}
-N130	MsgDarkHeartIsaacNotHim	Then tell us who Matthew\nis, and why you came\nhere.{end_wait}
-N131	MsgDarkHeartWorld	I am Heart. I serve\nTuaparang. We came from a\nworld that is gone.{page_break}That is all I will say.\nYou have learned enough\nfor now.{end_wait}
-N132	MsgDarkHeartPrize	You have earned this.\nTake it. We may meet\nagain, Isaac.{end_wait}
+N123	MsgDarkHeartShock	Matthew...\nYou came back.\nLook what you made of me.{end_wait}
+N124	MsgDarkHeartIsaacName	I'm Isaac.\nMatthew is my son.\nYou've mistaken me.{end_wait}
+N125	MsgDarkHeartSameFace	No. I know that face.\nI remember my defeat.\nAnd what came after.{end_wait}
+N126	MsgDarkHeartGaretGhost	This face... this body...\nI paid for that failure.\nNow you will pay.{end_wait}
+N127	MsgDarkHeartHatred	I won't fail again.\nNot against you, Matthew.\nNot this time.{end_wait}
+N128	MsgDarkHeartIsaacReady	I'm not your enemy.\nBut I won't let you\nhurt anyone else.{end_wait}
+N129	MsgDarkHeartBeaten	No... Not again...\nAfter everything...\nAfter what I became...{end_wait}
+N130	MsgDarkHeartIsaacNotHim	It's over.\nYou can't keep fighting.\nI'm not Matthew.{end_wait}
+N131	MsgDarkHeartWorld	Liar... I know those eyes.\nThat same damned face...{page_break}I lost my pride.\nMy face. Everything.\nI will never forgive you.{end_wait}
+N132	MsgDarkHeartPrize	You don't get to decide.\nRemember this, Matthew.\nWe will meet again.{end_wait}
