@@ -1,6 +1,6 @@
 # Lemurian ship departure: the party leaves Gondowan and sets course for Lemuria.
 10494	MsgFieldLooksLikeFinally	The time has come. We\nleave Gondowan behind.{end_wait}
-10495	message	It feels strange... We've\ncome so far, yet the road\nahead{page_break}seems no closer to its end.{end_wait}
+10495	message	It feels strange... We've\ncome so far, yet the end\nof our journey feels no nearer.{end_wait}
 10496	message	So much has changed\nsince we left home.{end_wait}
 10497	message	Once we find {actor_name:6},\nwill our journey finally\nbe finished?{end_now}
 10498	message	Finished? We would only\nbe standing at the edge\nof another beginning.{end_wait}
@@ -10,7 +10,7 @@
 10504	message	We cannot leave without\nfinding {actor_name:6},\ncan we?{end_now}
 10506	message	She will be furious\nwhen I tell {actor_name:6}\nwhat you said!{end_wait}
 10507	message	This is my first time\nseeing the open ocean\nfrom a ship.{end_wait}
-10508	message	So this is the sea\nKraden wanted me to see.\nIt feels endless.{end_wait}
+10508	message	So this is the sea\nKraden wanted me to see.\nIt stretches beyond sight.{end_wait}
 10509	message	The water is rough.\nAre we certain this ship\ncan weather it?{end_now}
 10510	message	The vessel is Lemurian.\nIt should carry us\nsafely.{end_wait}
 10511	message	I hope you're right.\nStill, there is no\nturning back now...{end_wait}
