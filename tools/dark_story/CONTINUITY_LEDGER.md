@@ -81,10 +81,9 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase40_altin_peak_miners.tsv`, `phase41_altin_peak_mood.tsv` | Altin Peak rescue and aftermath. Preserve the rescue choice and the miner's subsequent condition. |
 | `phase42_manticore_mia.tsv` | Mia's post-Manticore episode. This must follow the Manticore encounter and be reflected in later party dialogue. |
 | `phase43_ivan.tsv` | Ivan's developing sensitivity to the awakened and their voices. His observations must match what he has actually heard. |
-| `phase44_bloom.tsv` | Branching kindness material involving the harbor child and miner, with later callbacks. |
+| `phase44_bloom.tsv` | Altin Peak miner aftermath and the choice to stay with him. |
 | `phase45_mogall_door.tsv` | Mogall camp-door decision. Keep the yes/no outcomes distinct and preserve the humming-girl callback. |
 | `phase47_finale.tsv` | Lamakan finale and Ash Jenna's major revelation. This is not the overall Golden Sun ending; it directs the party onward to Kalay. |
-| `phase48_docks.tsv` | Tolbi harbor child material. Its placement and dialogue state must be checked against the post-Colosso Tolbi return. |
 | `phase49_babi_palace.tsv` | 89 non-empty Babi's Palace message entries rewritten across pre-Colosso, Colosso, and post-Colosso states, including residents, Sheba-related dialogue, Mind Read, examinations, and event prompts. |
 | `phase50_babi_scholars.tsv` | 19 Babi scholars' room entries rewritten, covering Alchemy, the Venus Ruins, the lighthouse, and Kraden's absence. |
 | `phase51_suhalla.tsv` | 30 Suhalla town messages rewritten across the pre- and post-audience states, including villagers' dialogue and Mind Read. |
