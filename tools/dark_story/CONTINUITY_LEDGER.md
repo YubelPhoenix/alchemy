@@ -90,6 +90,13 @@ These are custom additions or altered encounters. They must be treated as revisi
 
 
 
+
+### Vale return visit: Cottage Rooms B correction and coverage check
+
+The after-Kalay inn scene in `games/tbs/src/scene/cottage_rooms_b.c` identifies `MsgValeYouveGrownSoMuch` as the inn patron's observation that Isaac has grown so much he is nearly unrecognizable. The rewrite had changed this to "You've grown thin," which altered the meaning and introduced an unnecessary comment on Isaac's body. Message `07187` in `phase15_vale_revisit.tsv` has been restored to "You've grown so much. I almost didn't recognize you."
+
+A source-to-phase name check found all 67 distinct `MsgVale...` identifiers referenced in `vale.c` among the four Vale phase files (`phase1_vale`, `phase2_vale`, `phase5_vale_departure`, `phase15_vale_revisit`). This is a useful named-message coverage check, not proof of complete dialogue coverage: generic `message` entries, cottage-room scenes, Mind Read variants, and sequential branches still need separate trigger-by-trigger verification. Three `MsgVale...` identifiers in `cottage_rooms_b.c` belong to the later Babi scholars' room and are not early Vale omissions. The source also documents legacy events that no trigger table reaches; these must not be mistaken for missing playable dialogue.
+
 ### Sol Sanctum first-visit correction
 
 The first-entry sequence in `games/tbs/src/scene/sol_sanctum_entrance.c` explicitly asks whether this is the party's first time inside Sol Sanctum. Kraden's event then has him explain that he has heard of a hidden passage, reflect on how the Sanctum differs from what he imagined, and question the absence of sunlight in a place built to honor the sun. The former `04056` line claimed, "I've walked these halls for years," contradicting both the first-visit question and the scene's event sequence. It has been corrected to say that Kraden has studied the Sanctum's history for years but has never stood inside it until now. `04060` now refers to the contradiction bothering him for years, making clear that his prior knowledge came from study, not repeated visits. No scene logic was changed.
