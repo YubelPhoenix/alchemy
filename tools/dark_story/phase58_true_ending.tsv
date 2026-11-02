@@ -4,7 +4,7 @@
 10517	message	You always have an answer.\nNow you have nothing?{end_wait}
 10519	message	How can you think of\nfood at a time like this?{end_wait}
 10520	message	I keep wondering what\nbecame of my brother...{end_wait}
-10521	message	I cannot be certain,{pause_20_skippable} but\nthe Venus beacon seems\nto have been lit.{end_wait}
+10521	message	I cannot be certain,{pause_20_skippable} but\nit seems the Venus beacon\nhas been lit.{end_wait}
 10522	message	I know. That light is\nwhy we are stranded here,\nisn't it?{end_wait}
 10523	message	You're unusually sour\ntoday, {actor_name:6}!{end_wait}
 10524	message	I can see you're worried{pause_20_skippable}\nabout {actor_name:5}. I am, too.{end_wait}
