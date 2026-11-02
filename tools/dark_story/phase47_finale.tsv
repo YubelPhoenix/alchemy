@@ -1,4 +1,9 @@
 # Lamakan finale: Ash Jenna's reveal, the echoes, the choice and three endings.
+N222	MsgDarkFinaleJennaMet	You came back. I wondered
+if you would.{end_wait}
+N223	MsgDarkFinaleIsaacMet	You watched us in the sand.
+You knew what happened.
+Who are you?{end_wait}
 N195	MsgDarkFinaleJenna1	You kept walking, so you\nhave earned an answer. I'll\ntell you what I am.{end_wait}
 N196	MsgDarkFinaleIsaac1	You aren't our Jenna. So\nwho are you?{end_wait}
 N197	MsgDarkFinaleJenna2	I am a Jenna from a world\nthe Wise One burned.{page_break}I'm the one he couldn't\nkill. The fire I took from\nhis ruin belongs to me now.{end_wait}
