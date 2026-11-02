@@ -179,3 +179,15 @@ The source check makes the route more specific than the broad location list abov
 7. **Only after this stretch does the party proceed into the westward route through Mogall Forest, then Xian and Altin.** Mogall is before Altin.
 
 The crucial distinction is that the Mercury victory and the Tret cure are separate milestones. `FLAG_SATUROS_BEATEN_AT_MERCURY` opens the fountain and changes the riverbank scene; it does not itself lift Kolima's curse. `FLAG_KOLIMA_CURSE_LIFTED` is set later, when Tret is healed. Dialogue must respect the interval between those events.
+
+
+### Bilibin trigger-level findings from the first actor pass
+
+The first trigger pass confirms several important details and identifies items that need closer review rather than speculative rewriting:
+
+- The main town's paired talk and Mind Read responses are selected by `FLAG_KOLIMA_CURSE_LIFTED`. This includes the welcome NPC, Imil travelers, entrance-tree observer, McCoy observer, road/barricade observers, red-sky girl, Imil-tower Adept, and strange-creatures villager. Their variants must be checked against both actor placement and what the party has actually done.
+- The post-curse town has a restored-tree-man actor with its own talk and Mind Read entries. The pre-curse tree actor's Mind Read remains the trapped plea. These are not interchangeable.
+- The riverbank trigger table confirms that the Imil travelers' crossing is keyed to `FLAG_SATUROS_BEATEN_AT_MERCURY`, not the Tret cure. Jill's rescue and her later gift use separate flags. The Gang of Three have rescued/not-rescued dialogue and Mind Read branches; Jill's own dialogue is available after the cure.
+- The riverbank's Mind Read entries for the fallen trees and Jill are not all intuitively named: some responses depend on the rescue flag, not simply on whether the player has used Move. Preserve the actual source conditions.
+
+No wording changes were made. The next audit pass needs to trace the town's special event handlers (including the McCoy job, southeast route, Imil questions, and post-curse tree-man conversation) and compare every paired message with the actor's actual state. A trigger that technically selects a line is not sufficient proof that the line is narratively correct; chronology and scene placement must also agree.
