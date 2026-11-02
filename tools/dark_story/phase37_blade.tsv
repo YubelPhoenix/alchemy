@@ -1,9 +1,9 @@
 # Tolbi, after Ash Jenna: Isaac asks Mia for the Tideglass Blade.
-N115	MsgDarkBladeIsaacAsk	Mia, that blade ends things\nquickly, doesn't it?\nWithout pain?{end_wait}
-N116	MsgDarkBladeMiaCold	It does. You're asking me\nto hand you a mercy, Isaac.\nThink who that makes you.{end_wait}
-N117	MsgDarkBladeIsaacGive	The harbor was slower. I'd\nrather it were me than the\nwater. Give it to me.{end_wait}
-N118	MsgDarkBladeMiaFool	Fool. The voice in it loves\nthis. It hums when someone\nis about to die.{end_wait}
+N115	MsgDarkBladeIsaacAsk	Mia, that blade ends things\nquickly, doesn't it?\nWithout any pain?{end_wait}
+N116	MsgDarkBladeMiaCold	It does. You're asking me\nto hand you a mercy, Isaac.{page_break}Think about what that\nmakes you.{end_wait}
+N117	MsgDarkBladeIsaacGive	The harbor was slower. I'd\nrather it be me than the\nwater, so give it to me.{end_wait}
+N118	MsgDarkBladeMiaFool	You fool. The voice inside\nit loves this. It hums when\nsomeone is about to die.{end_wait}
 N119	MsgDarkBladeMiaSoft	It speaks when I'm angry\nor afraid, and I can't make\nit stop.{end_wait}
 N120	MsgDarkBladeChoose	Then choose. Take the blade\nand its voice, or leave it\nwith me.{page_break}Will you take the\nTideglass Blade?{end_now}
-N121	MsgDarkBladeTaken	Then take it. Be quick\nabout it, and be kind. The\nvoice won't be.{end_wait}
-N122	MsgDarkBladeLeft	You'd leave it with me.\nThen don't ask me to be\nmerciful when it sings.{end_wait}
+N121	MsgDarkBladeTaken	Then take it. Be quick\nabout it, and be kind,\nbecause the voice won't be.{end_wait}
+N122	MsgDarkBladeLeft	You'll leave it with me.\nThen don't ask me to be\nmerciful when it sings.{end_wait}
