@@ -3,7 +3,7 @@
 Status: working audit document  
 Branch: `dark-story-rewrite`  
 Scope: narrative chronology, story-state dependencies, and rewrite coverage  
-Last audited revision: `735f72338de74f7dbeac6834e3691ee1f7e20604`
+Last audited revision: `2ed6097dd245e14c3c68e77dc16d104ec9aa79dd`
 
 This document separates the original game's progression from Ashfall's custom events. Phase filenames are organizational labels, **not** a reliable chronological sequence.
 
@@ -76,6 +76,10 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase62_aerie_beacon_fusion.tsv` | 57 Aerie messages rewritten for Felix's decision, beacon activation, Saturos and Menardi's return, and the fusion battle. |
 | `phase63_aerie_fall_aftermath.tsv` | 52 Aerie messages rewritten for the collapse, Sheba's fall, Felix's sacrifice, and the party's return. |
 
+## Current rewrite batch summary
+
+Phases 49–63 contain **640 rewritten source-message entries**: Babi's Palace and scholars (108), Suhalla and its interiors (74), Babi Lighthouse (38), Lalivero and its interiors (146), Black Orb interactions (3), Lemurian ship departure (16), post-game ending (13), Tunnel Ruins (8), Venus Lighthouse (25), and the Aerie (209). All 640 rows passed a manual source-catalog check for message ID/context, runtime placeholders, ending controls, pause/style controls, text-box width, and page-line limits. No duplicate message IDs were found within these phases or against the prior phase files listed in this ledger. The repository's full validator/build and in-game checks remain pending.
+
 ### Important custom-state observations
 
 - Ash Jenna has at least two distinct encounters: the Lamakan revelation and the later Tolbi confrontation. Dialogue must acknowledge the earlier meeting.
@@ -93,27 +97,31 @@ The first visit to Hammet Palace occurs before `FLAG_IVAN_REPORTED_TO_LAYANA`. G
 
 ### Babi's Palace
 
-The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue states. Sheba's captivity, the soldiers' search, and the audience with Babi must not be collapsed into one state. `FLAG_COLOSSO_OVER` and `FLAG_BABI_SPOKE_AFTER_COLOSSO` are essential distinctions. The source-message rewrite batches now cover 640 non-empty messages across phases 49–63: Babi's Palace and scholars (108), Suhalla and its interiors (74), Babi Lighthouse (38), Lalivero and its interiors (146), Black Orb interactions (3), the Lemurian ship (16), the post-game ending (13), Tunnel Ruins (8), Venus Lighthouse (25), and the Aerie (209). Message IDs, contexts, runtime placeholders, ending controls, and required presentation controls were checked against the source catalog. Duplicate IDs were checked against the existing phase files listed in this ledger. Automated build validation and in-game testing are still pending.
+The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue states. Sheba's captivity, the soldiers' search, and the audience with Babi must not be collapsed into one state. `FLAG_COLOSSO_OVER` and `FLAG_BABI_SPOKE_AFTER_COLOSSO` are essential distinctions. The Babi's Palace batch rewrites 89 non-empty palace messages, with a further 19 scholars' room entries in `phase50_babi_scholars.tsv`. Build validation and in-game state testing remain pending.
 
 ### Suhalla
 
-Before `FLAG_BABI_SPOKE_AFTER_COLOSSO`, villagers discuss the sandstorms, Angaran distrust, and Sheba's hostage status. After the audience, their dialogue reflects soldiers caught in the storms on the way to Babi Lighthouse. The party crosses the desert with Iodem after Babi's audience. The town rewrite covers 30 non-empty messages. Its interiors have a further 44 messages across the pre- and post-audience states; `FLAG_IODEM_MET_WOUNDED_SOLDIERS` and `FLAG_BABI_LIGHTHOUSE_IODEM_ARRIVED` distinguish the wounded-soldier and Iodem-arrival dialogue.
+Before `FLAG_BABI_SPOKE_AFTER_COLOSSO`, villagers discuss the sandstorms, Angaran distrust, and Sheba's hostage status. After the audience, their dialogue reflects soldiers caught in the storms on the way to Babi Lighthouse. The party crosses the desert with Iodem after Babi's audience. The town rewrite covers 30 non-empty messages. Its interiors have a further 44 messages across the pre- and post-audience states; `FLAG_IODEM_MET_WOUNDED_SOLDIERS` and `FLAG_BABI_LIGHTHOUSE_IODEM_ARRIVED` distinguish the wounded-soldier and Iodem-arrival dialogue. Build and in-game state testing remain pending.
 
 ### Lalivero
 
-The first visit occurs with Iodem; townspeople discuss Sheba's capture, injured soldiers explain where her captors went, and the wharf guard blocks access. After Venus Lighthouse, the party returns. Iodem's farewell and the Black Orb handover lead to the wharf opening. Preserve the relevant conditions, including `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED`, `FLAG_IODEM_FAREWELL_SEEN`, `FLAG_SAW_SHIP_AT_IDEJIMA`, and `FLAG_LALIVERO_WHARF_OPEN`.
+The first visit occurs with Iodem; townspeople discuss Sheba's capture, injured soldiers explain where her captors went, and the wharf guard blocks access. After Venus Lighthouse, the party returns. Iodem's farewell and the Black Orb handover lead to the wharf opening. Preserve the relevant conditions, including `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED`, `FLAG_IODEM_FAREWELL_SEEN`, `FLAG_SAW_SHIP_AT_IDEJIMA`, and `FLAG_LALIVERO_WHARF_OPEN`. The current draft covers 51 town-map and 95 interior messages; build and in-game state testing remain pending.
+
+### Babi Lighthouse and Tunnel Ruins
+
+Babi Lighthouse has 38 rewritten messages covering its workers, guards, Faran's pursuit, Sheba's rescue, and sealed-door sequence. Keep `FLAG_BABI_LIGHTHOUSE_DOOR_SHOWN`, `FLAG_BABI_LIGHTHOUSE_DOOR_OPEN`, `FLAG_BABI_LIGHTHOUSE_ASKED_TO_FOLLOW`, `FLAG_BABI_LIGHTHOUSE_BACK_FROM_STONE_DOOR`, and `FLAG_BEYOND_DOOR` distinct. Tunnel Ruins has 8 rewritten riddle and pillar messages; its `FLAG_TUNNEL_RUINS_STATUE_DOOR_OPEN`, `FLAG_VENUS_LIGHTHOUSE_FIRST_PATH`, `FLAG_VENUS_LIGHTHOUSE_SECOND_PATH`, pillar-placement, douse, and freeze flags must be tested against the puzzle sequence.
 
 ### Venus Lighthouse and Aerie
 
-Audit the outside approach, scholars and soldiers, ground-floor NPCs and environmental text, all four floors, puzzles, encounters, and the Aerie. The Aerie sequence includes the initial confrontation and battle, beacon lighting and second battle, the party's world-map transitions, Sheba hanging from the broken Aerie, and her fall. Do not treat the second battle as the final scene of the game. The Babi Lighthouse approach and sealed-door dialogue now has a 38-message rewrite batch; its `FLAG_BABI_LIGHTHOUSE_DOOR_SHOWN`, `FLAG_BABI_LIGHTHOUSE_DOOR_OPEN`, `FLAG_BABI_LIGHTHOUSE_ASKED_TO_FOLLOW`, `FLAG_BABI_LIGHTHOUSE_BACK_FROM_STONE_DOOR`, and `FLAG_BEYOND_DOOR` states still require in-game verification. Tunnel Ruins has 8 rewritten riddle and pillar messages; its `FLAG_TUNNEL_RUINS_STATUE_DOOR_OPEN`, `FLAG_VENUS_LIGHTHOUSE_FIRST_PATH`, `FLAG_VENUS_LIGHTHOUSE_SECOND_PATH`, pillar-placement, douse, and freeze flags must be tested against the puzzle sequence. Venus Lighthouse has 25 rewritten messages across the approach and four floors; preserve its pillar, wall, gate, socket, switch, and `FLAG_VENUS_LIGHTHOUSE_LIT` states. The Aerie has 209 rewritten messages split across three phases. Its `FLAG_AERIE_FIRST_BATTLE_BEGUN`, `FLAG_AERIE_SECOND_BATTLE_BEGUN`, `FLAG_VENUS_AERIE_FUSION_SLIDING`, `FLAG_VENUS_AERIE_FUSION_GROWING`, `FLAG_VENUS_AERIE_BEACON_ERUPTED`, `FLAG_VENUS_AERIE_PARTY_LIFTED`, and `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED` states must remain distinct.
+Venus Lighthouse has 25 rewritten messages across the approach and four floors, including scholars, guards, the relief inscription, the statue's message, and the route clue. Preserve its pillar, wall, gate, socket, switch, and `FLAG_VENUS_LIGHTHOUSE_LIT` states. The Aerie has 209 rewritten messages split across three phases: first confrontation and battle, beacon activation and fusion battle, and the collapse / Sheba fall aftermath. Keep `FLAG_AERIE_FIRST_BATTLE_BEGUN`, `FLAG_AERIE_SECOND_BATTLE_BEGUN`, `FLAG_VENUS_AERIE_FUSION_SLIDING`, `FLAG_VENUS_AERIE_FUSION_GROWING`, `FLAG_VENUS_AERIE_BEACON_ERUPTED`, `FLAG_VENUS_AERIE_PARTY_LIFTED`, and `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED` distinct. The sequence is drafted, but build, battle-state, and in-game route validation remain pending.
 
 ### Ending
 
-The world-map ending and Lemurian ship departure are separate from the Aerie event. The world-map script documents the ending after the cleared game is saved; the Lemurian ship departure sequence leads into the final scene path and return to the title. The rewrite must cover this material rather than stopping at Venus Lighthouse.
+The world-map ending and Lemurian ship departure are separate from the Aerie event. The world-map script documents the ending after the cleared game is saved; the Lemurian ship departure sequence leads into the final scene path and return to the title. Drafts now cover 3 Black Orb / ship-world-map messages, 16 Lemurian ship departure messages, and 13 post-game ending messages. The sequence still requires build and in-game validation.
 
 ## Coverage status
 
-The current rewrite directory contains phase files through `phase48_docks.tsv`. That does **not** establish complete late-game coverage.
+The current rewrite directory contains phase files through `phase63_aerie_fall_aftermath.tsv`. Drafted dialogue coverage does **not** establish a successful build or complete in-game validation.
 
 | Area | Audit status |
 |---|---|
@@ -126,10 +134,6 @@ The current rewrite directory contains phase files through `phase48_docks.tsv`. 
 | Lalivero first/second visit and interiors | Drafts exist for 51 town and 95 interior messages; branch-state and in-game validation pending. |
 | Black Orb / Lemurian ship / true ending | Drafts exist for 3 Black Orb, 16 ship, and 13 post-game ending messages; sequence and in-game validation pending. |
 | Tunnel Ruins / Venus Lighthouse / Aerie | Drafts exist for 8 Tunnel Ruins, 25 Venus Lighthouse, and 209 Aerie messages; puzzle, battle, and post-fall state validation pending. |
-| Lalivero, first and second visits | Original state split verified; Ashfall coverage remains to be checked. |
-| Venus Lighthouse, all floors | Requires full dialogue, sign, Mind Read, puzzle, and event-message audit. |
-| Venus Aerie | Event sequence verified; Ashfall dialogue coverage and character-knowledge audit required. |
-| Lemurian ship / true ending | Ending path identified; full Ashfall dialogue coverage not yet established. |
 
 ## Known caution items
 
@@ -141,7 +145,7 @@ The current rewrite directory contains phase files through `phase48_docks.tsv`. 
 
 ## Next audit actions
 
-1. Inventory the game's text data and determine how the current TSV phase files are applied.
+1. Inventory the game's text data and determine how the current TSV phase files are applied. **Done.**
 2. Build a source-message coverage index for every late-game scene listed above. Draft batches now cover Babi's Palace, scholars' rooms, Suhalla, Babi Lighthouse, Lalivero, the Black Orb, the Lemurian ship, the post-game ending, Tunnel Ruins, Venus Lighthouse, and the Aerie; validate them before marking coverage complete.
 3. Audit custom branch flags and callbacks against their event scripts.
 4. Draft missing dialogue in small, location-complete batches, including optional NPCs and Mind Read text. Next: audit Babi's audience / Gondowan Passage and perform a final sweep for optional NPCs, world-map events, and shared generic dialogue. Then run the full validator, build, and in-game route checks.
