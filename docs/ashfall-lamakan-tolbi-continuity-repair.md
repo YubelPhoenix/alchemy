@@ -4,7 +4,7 @@ Status: initial source-backed audit; current verified repairs are recorded at th
 Branch: `dark-story-rewrite`
 
 **Reading note:** the numbered findings and immediate blockers below record the pre-repair state. The verified repair section at the end supersedes them where they conflict with the current branch.  
-Scope: the post-Manticore Lamakan sequence, Ash Jenna's later Tolbi encounter, the harbor child, and Kegare (formerly Ondra).
+Scope: the post-Manticore Lamakan sequence, Ash Jenna's later Tolbi encounter, and Kegare.
 
 ## Finding
 
@@ -104,3 +104,25 @@ This correction supersedes the earlier speculative explanation of Ondra in this 
 ### Current build verification
 
 Run 358 passed every workflow stage on commit `d3fe8b2bd35369c93a4e078fb37f7587944c62f9`, including dialogue validation, modified-edition compilation, baseline verification, IPS generation, and test-patch upload. This validates the current Aerie sequential-dialogue additions and the width correction; it does not replace in-game progression checks.
+
+
+## Canonical decision: remove the harbor child; move Kegare after Colosso
+
+This section supersedes the earlier harbor-child and Kegare access-route findings above.
+
+### Harbor-child storyline removed
+
+The harbor-child storyline is removed in full. The Tolbi Ash Jenna event no longer hears or introduces a crying child; Tolbi Docks no longer spawns or hosts the custom child actor or interaction; Mogall no longer branches on whether the child was sheltered or left behind. The associated dialogue rows and dedicated flags have been retired. The original Tolbi festival family's child remains part of the unmodified town population and is unrelated to the removed custom storyline.
+
+### Kegare's revised encounter
+
+- Kegare is a demon from another age who has taken Mia's visage.
+- She intends to replace Mia; her resemblance is deliberate imitation, not a shared origin.
+- She is an optional cameo superboss and appears in Tolbi only after `FLAG_COLOSSO_OVER`.
+- Her appearance no longer depends on the harbor-child choice or the three Tide Shard kindness flags. Those kindness events remain independent side content.
+- Her opening now identifies her as a demon from an age long past. Mia directly rejects the claim that wearing her face grants Kegare her identity or place among the party.
+- The encounter continues to use the existing scripted battle slot and return-to-Tolbi behavior. The battle must still be tested for both victory and defeat: defeat should leave Kegare available to challenge again; victory should mark her beaten and prevent another appearance.
+
+### Verification still required
+
+The source and dialogue edits are committed, but this decision is not considered build-verified until the dialogue validator and full modified-edition workflow pass. A successful compile also does not replace in-game checks of the post-Colosso appearance, Mia's dialogue sequence, and retry/defeat behavior.
