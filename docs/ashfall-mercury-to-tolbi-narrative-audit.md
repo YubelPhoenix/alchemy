@@ -112,3 +112,55 @@ Every line must pass both a continuity test and a spoken-language test.
 ## Scope boundary
 
 This audit does not declare all current dialogue defective, and it does not authorize broad replacement of the original event structure. It records concrete contradictions already found and defines the source checks required before a safe rewrite.
+
+
+## Chronological source audit: Bilibin, Kolima, and the riverbank
+
+This pass checked the current dialogue batches against `games/tbs/src/scene/bilibin.c` and `games/tbs/src/scene/kolima.c`. It establishes the event-state boundaries before further line edits.
+
+### Bilibin town has two distinct population states
+
+The Bilibin town scene is controlled primarily by `FLAG_KOLIMA_CURSE_LIFTED`, which is set when Tret is healed in Kolima Forest.
+
+- **Before the curse is lifted:** the tree-shaped man remains at the town entrance; his Mind Read is the trapped plea in `05040`. The ten town NPCs use their pre-cure talk and Mind Read lines.
+- **After the curse is lifted:** the tree actor is removed and the restored man appears; the ten NPCs switch to their post-cure dialogue; the old man and old woman turn to face the party and their talk changes. The restored man's talk and Mind Read are separate from the tree's earlier interaction.
+- The two groups of dialogue are selected by the scene's ordered trigger rows. Do not move a post-cure response into the pre-cure state merely because it reads better in isolation.
+
+### The Bilibin Barricade has a separate, independent progression axis
+
+The riverbank scene is not governed by the Kolima curse flag alone. Its tree arrangement changes when `FLAG_SATUROS_BEATEN_AT_MERCURY` is set:
+
+- Before that flag, the Gang of Three are stacked as trees and Jill remains at the top.
+- After that flag, the middle tree is laid across the river and Jill's tree is placed in the water. The player can use Move on Jill to pull her ashore.
+- `FLAG_BILIBIN_JILL_RESCUED` changes Jill's Mind Read and the two boys' later dialogue.
+- Once `FLAG_KOLIMA_CURSE_LIFTED` is set, all three trees are removed and the children return to the bank. Jill is absent if she was not rescued. If rescued, the step trigger gives the Hard Nut and sets `FLAG_BILIBIN_JILL_GIFT_RECEIVED`.
+
+These flags must remain independent. In particular, the post-Mercury river event can occur while the Kolima curse is still active; rescuing Jill is not the same event as healing Tret.
+
+### Dialogue review findings
+
+- `phase8_bilibin_a.tsv` and `phase8_bilibin_b.tsv` contain both pre- and post-curse dialogue. The source trigger table confirms that many of the paired lines are intentional state changes, not contradictions. They must be audited as pairs.
+- `phase21_bilibin_riverbank.tsv` includes the Jill rescue aftermath and the Gang of Three's changed dialogue. The rescued/not-rescued variants in `06002`–`06004`, `06015`–`06021`, and the gift sequence must remain tied to their existing flags.
+- `05993`–`05999` contain retrospective Bilibin dialogue about the party's trip to Kolima, the barricade, and the reward. These lines must be checked against their actual palace/town actor triggers before any wording change; their retrospective framing is not inherently a chronology error.
+- `phase19_bilibin_tone.tsv` is not a clean location-only batch: it includes Kolima villagers and interiors alongside Bilibin inn dialogue. Its filename must not be used to infer where or when a message is spoken.
+- The Kolima source confirms the party's protective Psynergy explanation and Tret's explanation of the falling Psynergy Stones. The existing corrections to `05257` and `05381` are consistent with those events. The remaining Tret/Laurel explanation (`05372`–`05399`) should be checked as one continuous conversation, including the transition to the forest south of the river, rather than edited line by line without its preceding and following turns.
+
+### Open checks before declaring this stretch complete
+
+1. Map every row in the three Bilibin phase batches to the exact town, palace/interior, or barricade actor and trigger; include all Mind Read and examination entries.
+2. Confirm the event order of the Imil travelers crossing the river against the Mercury Lighthouse flag and the player's actual return route.
+3. Verify both Jill branches in-game: rescued before Tret is healed, and not rescued before Tret is healed.
+4. Check the Kolima post-Tret NPC and interior rows in `phase19_bilibin_tone.tsv` against their scene-specific triggers; do not assume the phase filename denotes one location.
+5. Only make text edits when a specific trigger/state or clear language defect has been established.
+
+No Bilibin or Kolima dialogue was changed during this pass. This is a source-backed state map, not a claim that every row has been individually validated.
+
+## Superseding story decision: harbor child removed; Kegare is a post-Colosso cameo
+
+This section supersedes earlier notes in this document that describe the harbor child as an active Ashfall thread or describe Kegare's encounter as gated by child-rescue / kindness flags.
+
+- The custom harbor-child storyline has been removed, including its Tolbi introduction, dock actor and interaction, dedicated dialogue, flags, Mogall callbacks, and Lamakan finale callback. It is not part of the current story and must not be reintroduced as Kegare's origin.
+- Kegare comes from the user's existing sprite-animation continuity: she is a demon from a different period who has taken Mia's appearance and intends to replace her. Do not invent a new origin or merge her with the lighthouse/awakened plot.
+- Kegare's optional cameo superboss encounter is available only after `FLAG_COLOSSO_OVER`. The harbor-child and three-kindness flags do not gate her.
+- Mia directly confronts Kegare's claim that wearing her face gives Kegare her identity or place among the party.
+- GitHub Actions Run 394 (`41459976297`) completed successfully on the current branch head, including dialogue validation, modified English edition compilation, unmodified baseline verification, IPS generation, and test-patch upload. This verifies the build pipeline for that commit; in-game encounter and route testing remain separate requirements.
