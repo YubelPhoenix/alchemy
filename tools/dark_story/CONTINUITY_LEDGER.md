@@ -76,6 +76,13 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase62_aerie_beacon_fusion.tsv` | 57 Aerie messages rewritten for Felix's decision, beacon activation, Saturos and Menardi's return, and the fusion battle. |
 | `phase63_aerie_fall_aftermath.tsv` | 52 Aerie messages rewritten for the collapse, Sheba's fall, Felix's sacrifice, and the party's return. |
 
+
+### Heart / Chalice cameo in Kolima
+
+Heart is Chalice from *Golden Sun: Dark Dawn*, using her Japanese name as in the sprite animation. Her characterization is not that of a newly invented alternate-world antagonist. In the sprite-animation continuity, the Dark Dawn world is destroyed; Tuaparang escapes that destruction and continues observing events from the shadows while pursuing its own plans. Heart is a powerful Dark Adept whose earlier defeat by Matthew taught her not to leave her abilities unused. The Kolima encounter must preserve those facts without turning her into an exposition device or revealing Tuaparang's full plans.
+
+`phase38_heart.tsv` has been revised accordingly: Heart recognizes Matthew's resemblance in Isaac, explains that she previously held back, and challenges the party with the resolve to use her full power. After defeat, she recognizes Isaac is not Matthew, identifies herself as Heart and a member of Tuaparang, confirms that her people escaped their world's destruction, and leaves Tuaparang's purpose undisclosed. The Kolima scene comments were corrected to match this characterization. The existing battle/event flow and reward have not been changed; the encounter formation, presentation, and in-game timing still require separate validation.
+
 ## Current rewrite batch summary
 
 Phases 49–63 contain **640 rewritten source-message entries**: Babi's Palace and scholars (108), Suhalla and its interiors (74), Babi Lighthouse (38), Lalivero and its interiors (146), Black Orb interactions (3), Lemurian ship departure (16), post-game ending (13), Tunnel Ruins (8), Venus Lighthouse (25), and the Aerie (209). All 640 drafted rows passed a manual source-catalog check for message ID/context, runtime placeholders, ending controls, pause/style controls, text-box width, and page-line limits. No duplicate message IDs were found within these phases or against the prior phase files listed in this ledger. **This is not yet complete scene coverage:** a deeper source audit found sequential event-message blocks that are not represented by the named-message inventory. These still need to be rewritten and added before any location is marked complete. The repository's full validator/build and in-game checks also remain pending.
