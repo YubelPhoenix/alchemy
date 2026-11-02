@@ -40,17 +40,17 @@
 05349	message	Their lives depend\non what we do next.{end_wait}
 05350	message	Restore Tret.\nThen save Kolima.{end_wait}
 05352	message	Try the water!{end_wait}
-05353	message	Surely that will\nrevive Tret.{end_wait}
-05359	message	Hroooom...{pause_20_skippable} Life flows\nwithin me again.{end_wait}
-05362	message	I'm sorry to have\nworried you, Laurel.{end_wait}
-05363	message	And you, young ones...\nDid you not have a\nfavor to ask of me?{end_now}
-05366	message	{actor_name:1}! Did you forget?\nWe have to save\nthe people of Kolima!{end_wait}
-05367	message	Tret should be able to\ndo it now that his\nstrength is back.{end_wait}
-05368	message	Ask him to save\neveryone he turned\ninto a tree.{end_wait}
-05369	message	Please, Tret... You must\nsave those you turned\ninto trees.{end_wait}
-05372	message	Tret didn't always\nhave this terrible\npower.{end_wait}
-05373	message	It began when strange\ngems fell from the sky.{end_wait}
-05374	message	Gems from the sky...\nDo you think he means\nthe Psynergy Stones?{end_now}
+05353	message	It may restore\nhis strength.{end_wait}
+05359	message	Hrooom...\nLife returns to me.{end_wait}
+05362	message	Forgive me, Laurel.\nI frightened you.{end_wait}
+05363	message	Young ones...\nYou have a request?{end_now}
+05366	message	{actor_name:1}! The villagers!\nAsk him to help!{end_wait}
+05367	message	Tret has his strength.\nHe can help them.{end_wait}
+05368	message	Ask him to undo\nwhat he did.{end_wait}
+05369	message	Tret, please.\nRelease the villagers.{end_wait}
+05372	message	I never held\nsuch power before.{end_wait}
+05373	message	It came with the stones\nthat fell from the sky.{end_wait}
+05374	message	Stones from the sky...\nPsynergy Stones?{end_now}
 05375	message	You really think the\nPsynergy Stones caused\nall of this?{end_wait}
 05376	message	I know you don't want\nto believe it, but\nnothing else fits...{end_wait}
 05378	message	Those gems fell\ninto my branches...{end_wait}
