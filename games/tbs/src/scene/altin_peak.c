@@ -278,9 +278,7 @@ enum {
   /// ★ Named from what the player sees: a stone pillar south of the boulder
   /// (its render)
   ACTOR_WEST_EXIT_ROOM_PILLAR,
-  /// Alex (SPRITE_ALEX), who waits here once Mercury Lighthouse is lit
-  /// (AltinPeak_MeetAlex).
-  ACTOR_WEST_EXIT_ALEX
+  ACTOR_WEST_EXIT_ROOM_PILLAR
 };
 
 /// The rooms' frozen puddles and Garet at the sign: scene temp flags, kept
@@ -469,23 +467,6 @@ static void AltinPeak_TalkToTrappedMiner(void) {
   Event_End();
 }
 
-/// Alex warns Isaac in the rain and walks off.
-static void AltinPeak_MeetAlex(void) {
-  Event_Start();
-  Event_SetMessageId(MsgDarkPeakAlexRoads);
-  Event_ShowMessageThenWait(ACTOR_WEST_EXIT_ALEX, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_WEST_EXIT_ALEX, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_WEST_EXIT_ALEX, 0, 20);
-  Actor_ConfigureSpriteColor(ACTOR_WEST_EXIT_ALEX, SPRITE_COLOR_BLINK);
-  Event_WaitFrames(40);
-  Actor_ConfigureSpriteColor(ACTOR_WEST_EXIT_ALEX, SPRITE_COLOR_HIDDEN);
-  Actor_SetPosition(ACTOR_WEST_EXIT_ALEX, PIXELS(-9), PIXELS(488));
-  GameFlag_Set(FLAG_DARK_ALEX_PEAK_MET);
-  GameFlag_Clear(FLAG_DARK_ALEX_PEAK_HERE);
-  Event_End();
-}
-
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
   s16 sceneId = gSaveBlock.sceneId;
 
@@ -514,12 +495,6 @@ const struct ActorTemplate *Scene_GetActorTemplates(void) {
     return gAltinPeak_HydrosStatueActorTemplates;
   }
   if (sceneId == (s32)&SceneId_AltinPeakWestExit) {
-    if (GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
-        GameFlag_Get(FLAG_DARK_ALEX_PEAK_MET) == 0) {
-      GameFlag_Set(FLAG_DARK_ALEX_PEAK_HERE);
-    } else {
-      GameFlag_Clear(FLAG_DARK_ALEX_PEAK_HERE);
-    }
     return gAltinPeak_WestExitActorTemplates;
   }
   return gAltinPeak_ActorTemplatesOther;
@@ -3122,8 +3097,6 @@ struct ActorTemplate gAltinPeak_WestExitActorTemplates[] = {
         TALK_FACING_KEEP, 0},
     {SPRITE_STONE_PILLAR, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(200), 0, PIXELS(328), FACING_SOUTH,
         TALK_FACING_KEEP, 0},
-    {SPRITE_MAN_WITH_PICKAXE, IF_FLAG_SET(FLAG_DARK_ALEX_PEAK_HERE), MOVEMENT_TYPE_STAND, PIXELS(260), 0, PIXELS(300), FACING_SOUTH,
-        TALK_FACING_PARTY, 0},
     {SCENE_TABLE_END},
 };
 
@@ -3293,8 +3266,6 @@ struct Trigger gAltinPeak_WestExitTriggers[] = {
      CONDITION_ALWAYS, 0},
     {PSYNERGY_ON_ACTOR(ABILITY_MOVE), ACTOR_WEST_EXIT_ROOM_PILLAR,
      CONDITION_ALWAYS, 0},
-    {TRIGGER_TALK, ACTOR_WEST_EXIT_ALEX, IF_FLAG_SET(FLAG_DARK_ALEX_PEAK_HERE),
-     EVENT(AltinPeak_MeetAlex)},
     {EXAMINE_TRIGGER(EXAMINE_CHEST), 100, FLAG_ALTIN_PEAK_VIAL,
      FIND_ITEM(ITEM_VIAL)},
     {TRIGGERS_END},
