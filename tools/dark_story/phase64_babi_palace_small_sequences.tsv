@@ -1,0 +1,49 @@
+# Babi Palace sequential dialogue: Colosso questions, rest scenes, and short post-audience exchanges.
+08178	message	Then they have not\nfound him yet...{end_wait}
+08179	message	I told them to search\nevery corner of this\ntown!{end_wait}
+08186	message	If you need rest later,\nyou may use this room\nwhenever you wish.{end_wait}
+08189	message	I feared we would never\nfind a place to stay.\nWhat a relief!{end_wait}
+08190	message	We should rest now\nand prepare for tomorrow.{end_wait}
+08199	message	Then you should hurry!{page_break}The trials have begun.\nGo straight to the\ncolosseum!{end_wait}
+08200	message	Were you hurt as well?{page_break}To be injured just\nbefore the trials begin\nis cruel luck.{end_wait}
+08202	message	Perhaps I can ignore\nthis pain in my stomach.\nI must enter Colosso...{end_wait}
+08203	message	No... I cannot go on.\nMy stomach is killing me!{end_wait}
+08756	message	Babi left instructions\nto meet him at the\ncolosseum.{page_break}Do not return to the\npalace. Go there at once.{end_wait}
+08757	message	Oh. Then I must have\nmisheard...{end_wait}
+08758	message	No, I am certain\nit was you.{end_wait}
+08759	message	Babi expects you at\nthe colosseum.{page_break}Go there directly.\nThere is no need to\nvisit the palace.{end_wait}
+08770	message	Here you are.\nRest well.{end_wait}
+08771	message	If you're weary, please\ntake some time to rest.{end_wait}
+08833	message	Are you feeling better?\nYou were troubled by\nnightmares for a while.{end_wait}
+08834	message	What's wrong,\n{actor_name:1}?{end_wait}
+08835	message	You entered the finals?\nAnd fought in them?{end_wait}
+08836	message	How could you, {actor_name:1}?\nYou have not even gone\nto the colosseum!{page_break}You came here to rest\nbefore the finals began.{end_wait}
+08837	message	It sounds as though\nyou were dreaming,\n{actor_name:1}.{end_wait}
+08838	message	You're exhausted,\n{actor_name:1}.\nAre you feeling better?{end_now}
+08839	message	Can you manage now?{page_break}All right, but take\ncare of yourself,\n{actor_name:1}.{end_wait}
+08840	message	{actor_name:1} is awake.\nWe should go to the\ncolosseum now.{end_wait}
+08847	message	Colosso? That contest\nended some time ago!{end_wait}
+08848	message	You slept for a long\ntime...{page_break}Do you truly remember\nnothing?{end_now}
+08849	message	Oh, please! You were\ncompletely unconscious.\nYou remember nothing!{end_wait}
+08850	message	Of course he remembers\nnothing. He was out\ncold! We were worried.{end_wait}
+08851	message	I'm sorry I raised\nmy voice at you.{end_wait}
+08852	message	You fought with great\ncourage, {actor_name:1}.{page_break}Babi spoke highly\nof your performance.{end_wait}
+08853	message	Are you well now?\nIn body and mind?{end_now}
+08854	message	After sleeping this long,\nhe had better be well!\nHonestly...{end_wait}
+08855	message	If you still feel strange,\nit may be because you\nslept far too long!{page_break}Honestly...{end_wait}
+08856	message	Forgive me. I should\nnot have shouted again.{end_wait}
+08857	message	Babi asked to see you\nonce you were awake,\n{actor_name:1}.{end_wait}
+08858	message	If you're ready, shall\nwe go and speak with\nBabi?{end_wait}
+08859	message	You're all right,\naren't you, {actor_name:1}?{end_wait}
+08860	message	I'm not convinced\n{actor_name:1} is ready\nto leave just yet.{end_wait}
+08861	message	Feeling faint? A little\nfresh air and a walk\nshould help, right?{end_wait}
+08862	message	I'm more concerned\nabout Babi's request.\nWe should go.{end_wait}
+08863	message	Are you certain you\nshould rise so quickly?{end_wait}
+08868	message	That's unfortunate.\nI thought we might have\nshared a good time.{end_wait}
+08869	message	I expected you to go\nas well. Perhaps I was\nwrong.{end_wait}
+08873	message	Babi needs your help.\nPlease stand with him.{page_break}He is relying on you.{end_wait}
+08874	message	Why have you not gone\nto meet Babi?{page_break}He wants to speak with\nyou before you depart.{end_wait}
+08876	message	That's a shame{pause_20_skippable}... I mean,\nthat no one will sail\nthe Karagol Sea.{page_break}Let Babi provide for\nyou until your ship is\nready to depart.{end_wait}
+08877	message	You have changed your\nmind? Excellent!{page_break}Babi will be pleased\nto hear it.{end_wait}
+09044	message	Then leave the Cloak\nBall here.{page_break}Do not concern yourself\nwith payment. Iodem has\nmade arrangements.{end_wait}
+09045	message	The Cloak Ball means\na great deal to me.{page_break}I cannot part with it,\nbut you may borrow it\nfor your journey.{end_wait}
