@@ -10,5 +10,5 @@ N09	MsgDarkMenardiDuel09	Go on up. We'll be waiting\nat the top, by the stars.{e
 N10	MsgDarkMenardiDuel10	And {protagonist_name}, when we meet\nagain, remember that I let\nyou pass.{end_wait}
 N11	MsgDarkSaturosDuel01	That's enough, Menardi.\nYou've made your point.{end_wait}
 N12	MsgDarkSaturosDuel02	Saturos, they're only\nchildren.{end_wait}
-N13	MsgDarkSaturosDuel03	So were we once, and nobody\nspared us.{end_wait}
+N13	MsgDarkSaturosDuel03	They came here to stop us.\nThat makes them dangerous.{end_wait}
 N14	MsgDarkSaturosDuel04	Come on. The stars are\nwaiting, and they can\nfollow us if they dare.{end_wait}
