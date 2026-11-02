@@ -21,9 +21,9 @@ The source-backed route is:
 
 ## Concrete defects already visible in the current dialogue
 
-### 1. Mercury Lighthouse: incorrect count of the Elemental Stars
+### 1. Mercury Lighthouse: Elemental Star count — verified, no dialogue correction needed
 
-In `phase16_imil_mercury_a.tsv`, message IDs `05537` and `05540` say the party came to recover the **three** Elemental Stars. Golden Sun's Sol Sanctum contains four Elemental Stars. This is a factual continuity error, not a stylistic preference. Correct both rows consistently after confirming the original message contexts.
+An earlier audit note incorrectly claimed that message IDs `05537` and `05540` referred to **three** Elemental Stars. The current branch already says **four** in both rows, which is correct. The live text and the Aerie scene context agree: Isaac and Garet came from Vale to recover the four Stars stolen from Sol Sanctum. Do not change these rows. This finding is closed as a stale audit note, not an outstanding dialogue defect.
 
 ### 2. Tolbi: incompatible story states are mixed together
 
