@@ -3,7 +3,7 @@
 Status: working audit document  
 Branch: `dark-story-rewrite`  
 Scope: narrative chronology, story-state dependencies, and rewrite coverage  
-Last audited revision: `7e563f4562bf389442ffee43ee96dc0c7052ca8b`
+Last audited revision: `11cd753113b7a1ec3a4af365b9a260e947b5afa6`
 
 This document separates the original game's progression from Ashfall's custom events. Phase filenames are organizational labels, **not** a reliable chronological sequence.
 
@@ -60,6 +60,8 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase46_awakening.tsv` | Caravan awakening and the party's response. The choice must be carried into the finale. |
 | `phase47_finale.tsv` | Lamakan finale and Ash Jenna's major revelation. This is not the overall Golden Sun ending; it directs the party onward to Kalay. |
 | `phase48_docks.tsv` | Tolbi harbor child material. Its placement and dialogue state must be checked against the post-Colosso Tolbi return. |
+| `phase49_babi_palace.tsv` | 89 non-empty Babi's Palace message entries rewritten across pre-Colosso, Colosso, and post-Colosso states, including residents, Sheba-related dialogue, Mind Read, examinations, and event prompts. |
+| `phase50_babi_scholars.tsv` | 19 Babi scholars' room entries rewritten, covering Alchemy, the Venus Ruins, the lighthouse, and Kraden's absence. |
 
 ### Important custom-state observations
 
@@ -78,7 +80,7 @@ The first visit to Hammet Palace occurs before `FLAG_IVAN_REPORTED_TO_LAYANA`. G
 
 ### Babi's Palace
 
-The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue states. Sheba's captivity, the soldiers' search, and the audience with Babi must not be collapsed into one state. `FLAG_COLOSSO_OVER` and `FLAG_BABI_SPOKE_AFTER_COLOSSO` are essential distinctions.
+The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue states. Sheba's captivity, the soldiers' search, and the audience with Babi must not be collapsed into one state. `FLAG_COLOSSO_OVER` and `FLAG_BABI_SPOKE_AFTER_COLOSSO` are essential distinctions. The first source-message rewrite batch is now drafted: 89 non-empty palace messages in `phase49_babi_palace.tsv`, plus 19 scholars' room messages in `phase50_babi_scholars.tsv`. Message IDs, contexts, runtime placeholders, ending controls, and the pause/em-dash controls were checked against the source catalog. Build validation and in-game testing are still pending.
 
 ### Suhalla
 
@@ -105,6 +107,7 @@ The current rewrite directory contains phase files through `phase48_docks.tsv`. 
 | Early game through Mercury Lighthouse | Existing phase files present; comprehensive NPC / Mind Read / branch coverage still needs verification. |
 | Post-Mercury custom encounters | Existing phases present; event-order and callback audit in progress. |
 | Kalay / Karagol / Tolbi / Altmiller / Colosso | Original progression verified in scene scripts; Ashfall message-by-message coverage remains to be checked. |
+| Babi's Palace and scholars' rooms | Source-message rewrite drafted (89 + 19 entries); automated build and in-game state validation pending. |
 | Babi's audience / Gondowan Passage | Requires full dialogue coverage audit. |
 | Suhalla / desert / Babi Lighthouse | Requires full dialogue coverage audit. |
 | Lalivero, first and second visits | Original state split verified; Ashfall coverage remains to be checked. |
@@ -123,8 +126,8 @@ The current rewrite directory contains phase files through `phase48_docks.tsv`. 
 ## Next audit actions
 
 1. Inventory the game's text data and determine how the current TSV phase files are applied.
-2. Build a source-message coverage index for every late-game scene listed above.
+2. Build a source-message coverage index for every late-game scene listed above. Babi's Palace and its scholars' rooms are the first completed source-message draft batches; validate them before marking coverage complete.
 3. Audit custom branch flags and callbacks against their event scripts.
-4. Draft missing dialogue in small, location-complete batches, including optional NPCs and Mind Read text.
+4. Draft missing dialogue in small, location-complete batches, including optional NPCs and Mind Read text. Next: Suhalla and Babi Lighthouse, preserving their distinct event states.
 5. Run the existing rewrite/build tooling and inspect the resulting ROM in-game across representative branches.
 6. Extend this ledger as each area is verified; mark coverage complete only after source-message comparison and in-game validation.
