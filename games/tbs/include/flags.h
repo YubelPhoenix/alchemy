@@ -2775,8 +2775,8 @@
 /// (AltinPeak_TalkToTrappedMiner).
 #define FLAG_DARK_MINERS_FREED 0x8cb
 
-/// Mia's other self took over after the Manticore fell and the party saw it
-/// (LamakanDesert_MiaTakesOver).
+/// The party has seen Mia's reaction to the Manticore and her post-battle
+/// aftermath has played (LamakanDesert_ManticoreAftermath).
 #define FLAG_DARK_MIA_MANTICORE_SEEN 0x8cc
 
 /// Mia rejoined the party on the road south of Imil after Menardi's defeat
