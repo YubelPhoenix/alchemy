@@ -1,13 +1,13 @@
 # Heart (Chalice), the Kolima secret boss. Also names rows 101 and 104.
 00756	message	Heart
 00759	message	Ondra
-N123	MsgDarkHeartShock	...Matthew? No, you died\nwhen that world burned. I\nwatched it fall.{end_wait}
-N124	MsgDarkHeartIsaacName	Matthew? My name is Isaac.\nI don't know you.{end_wait}
-N125	MsgDarkHeartSameFace	Same face, same stance. How\ndid you live through the\nend of everything?{end_wait}
-N126	MsgDarkHeartGaretGhost	Isaac, step back. She's\nlooking at you like she's\nseen a ghost.{end_wait}
-N127	MsgDarkHeartHatred	If you survived, then so\ndid my hatred. I'll finish\nwhat the fall began.{end_wait}
-N128	MsgDarkHeartIsaacReady	She won't listen, so I'll\nhave to stop her.{end_wait}
-N129	MsgDarkHeartBeaten	...You aren't him. Matthew\ncould never have beaten me\nlike this.{end_wait}
-N130	MsgDarkHeartIsaacNotHim	I told you, I'm not\nMatthew.{end_wait}
-N131	MsgDarkHeartWorld	Then not every world ended\nthe same. Mine did. So did\nAsh Jenna's.{page_break}Ask her what the fall left.\nRemember my name: Heart.{end_wait}
-N132	MsgDarkHeartPrize	Take your prize, stranger.\nWe'll meet again, whoever\nyou are.{end_wait}
+N123	MsgDarkHeartShock	That face... Matthew?\nNo. You're not him. Who\nare you?{end_wait}
+N124	MsgDarkHeartIsaacName	I'm Isaac. I don't know\nanyone named Matthew.\nWhy did you call me that?{end_wait}
+N125	MsgDarkHeartSameFace	A man with your face\ndefeated me once. I held\nback what I could do.{end_wait}
+N126	MsgDarkHeartGaretGhost	Isaac, be careful. She\nspeaks as if that defeat\nstill weighs on her.{end_wait}
+N127	MsgDarkHeartHatred	I won't make that mistake\nagain. This time, I will\nuse everything I have.{end_wait}
+N128	MsgDarkHeartIsaacReady	Then show us what you\ncan do. But afterward,\nyou will answer us.{end_wait}
+N129	MsgDarkHeartBeaten	You are not Matthew. I\nmistook you for him. But\nyou have your own strength.{end_wait}
+N130	MsgDarkHeartIsaacNotHim	Then tell us who Matthew\nis, and why you came\nhere.{end_wait}
+N131	MsgDarkHeartWorld	I am Heart. I serve\nTuaparang. We escaped the\nworld that was lost.{page_break}We watch this world from\nthe shadows. Our purpose\nis not yours to know.{end_wait}
+N132	MsgDarkHeartPrize	You have earned this.\nTake it. We may meet\nagain, Isaac.{end_wait}
