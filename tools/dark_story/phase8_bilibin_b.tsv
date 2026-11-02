@@ -1,23 +1,23 @@
-05839	MsgBilibinTheEruptionOnTheOtherSide	The mountain beyond Goma\nhas stopped burning.{page_break}Quiet again. For now.\nI don't trust it.{end_wait}
-05840	MsgBilibinNowThatTheCurseIsBroken	The curse is broken, so\nwhy not build the palace\nafter all?{end_wait}
-05841	MsgBilibinItsOverOverMilordDecidedNot	That's it! It's over!\nMilord won't build the\npalace after all.{end_wait}
-05842	MsgBilibinHmphMyPalaceIsNotFinished	Hmph! My palace isn't\nfinished!{page_break}He loves that wretched\ntree more than he loves\nme!{end_wait}
-05843	MsgBilibinINeverWantToBeTurned	I never want to be a tree\nagain. I felt everything.\nIt was terrible.{end_wait}
-05844	MsgBilibinNotManyLumberjacksAreWillingTo	Few lumberjacks will cut\nin Kolima Forest now.\nCan you blame them?{end_wait}
-05845	MsgBilibinOneOfTheTwoPeopleThat	Two others came later.\nOne of them looked hurt.{end_wait}
-05846	MsgBilibinThatGuyMightTurnIntoA	Stay away from that one.\nHe might turn to wood\nagain.{end_wait}
-05847	MsgBilibinLordMccoySeemsToBeHaving	Lord McCoy and his wife\nare fighting again.\nPlace your bets.{end_wait}
-05848	MsgBilibinApparentlyJustAboutAnyoneCouldJust	Anyone could walk right\nthrough that barricade.\nSome good it did us.{end_wait}
-05849	MsgBilibinTheGangOfThreeHaTheyre	\"The Gang of Three\"{em_dash}HA!\nThey're probably asleep\nin a ditch somewhere.{end_wait}
-05850	MsgBilibinImSureLordMccoyWillGive	McCoy will reward you\nwell, I'm sure. I wonder\nwhat it'll be.{end_wait}
-05851	MsgBilibinTheyMustBeReportingYourDeeds	They're surely telling\nLord McCoy what you did\nright now.{end_wait}
-05852	MsgBilibinIWantToShareWithYou	I'm so relieved I could\ncry. Let me share it\nwith you!{end_wait}
-05853	MsgBilibinAsLongAsImOkayI	As long as I'm fine, I\ndon't care what happens\nto anyone else.{end_wait}
-05854	MsgBilibinWedStillBeWorkingIfWe	We'd still be working if\nthey hadn't used the holy\ntree for the palace.{page_break}I told them not to.\nNo one listened.{end_wait}
-05855	MsgBilibinThatWasCloseBuildingACursed	That was close!{page_break}Building a cursed palace\nwould ruin my name.{end_wait}
-05856	MsgBilibinHeSaidHeStoppedConstructionSo	He says he stopped it so\nI wouldn't be cursed...{page_break}I think he's just\nweaseling out of his\npromise!{end_wait}
+05839	MsgBilibinTheEruptionOnTheOtherSide	Mt. Aleph is quiet now.{page_break}I hope it stays that way.{end_wait}
+05840	MsgBilibinNowThatTheCurseIsBroken	The curse is gone.\nWill work resume?{end_wait}
+05841	MsgBilibinItsOverOverMilordDecidedNot	It's settled.\nThe palace is canceled.{end_wait}
+05842	MsgBilibinHmphMyPalaceIsNotFinished	My palace will never\nbe finished!{page_break}He promised me.\nNow he's broken his word.{end_wait}
+05843	MsgBilibinINeverWantToBeTurned	I remember everything.\nEven when I was a tree.{end_wait}
+05844	MsgBilibinNotManyLumberjacksAreWillingTo	Few will cut timber\nin Kolima now.{end_wait}
+05845	MsgBilibinOneOfTheTwoPeopleThat	Two travelers passed.\nOne seemed injured.{end_wait}
+05846	MsgBilibinThatGuyMightTurnIntoA	He was a tree once.\nI still can't forget it.{end_wait}
+05847	MsgBilibinLordMccoySeemsToBeHaving	McCoy and his wife\nare arguing again.{end_wait}
+05848	MsgBilibinApparentlyJustAboutAnyoneCouldJust	The barricade barely\nslowed anyone down.{end_wait}
+05849	MsgBilibinTheGangOfThreeHaTheyre	The Gang of Three?\nI haven't seen them.{end_wait}
+05850	MsgBilibinImSureLordMccoyWillGive	McCoy owes you\na proper reward.{end_wait}
+05851	MsgBilibinTheyMustBeReportingYourDeeds	They're telling McCoy\nwhat happened.{end_wait}
+05852	MsgBilibinIWantToShareWithYou	I'm so relieved.\nI could cry.{end_wait}
+05853	MsgBilibinAsLongAsImOkayI	I'm just glad\nmy family is safe.{end_wait}
+05854	MsgBilibinWedStillBeWorkingIfWe	We warned them not\nto cut the sacred tree.{page_break}No one listened.{end_wait}
+05855	MsgBilibinThatWasCloseBuildingACursed	The palace work is over.\nMy reputation survived.{end_wait}
+05856	MsgBilibinHeSaidHeStoppedConstructionSo	He says the palace\nwould have been cursed.{page_break}I think he just\nchanged his mind.{end_wait}
 05857	MsgBilibinDoKnowIfHolyTree	Did the holy tree\nsurvive? Do you know?{end_now}
-05860	MsgBilibinThankGoodnessTheyStoppedConstructionOf	Thank goodness the palace\nwas called off.{page_break}Lady McCoy took it\nbadly, though.{end_wait}
+05860	MsgBilibinThankGoodnessTheyStoppedConstructionOf	I'm glad the work\nhas stopped.{page_break}Lady McCoy isn't.{end_wait}
 05861	MsgBilibinItTakesManyYearsForA	A tree takes centuries to\ngrow that old.{page_break}No man has the right\nto kill something so\nprecious.{end_wait}
 05862	MsgBilibinSometimesIWishICouldSee	Sometimes I wonder what\nthe palace would've\nlooked like.{end_wait}
 05863	MsgBilibinIAlwaysMissAltinInThe	I miss Altin in winter.{page_break}I worked the mines\nthere. It was always\nwarm down below.{end_wait}
