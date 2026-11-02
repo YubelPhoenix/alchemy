@@ -1,18 +1,7 @@
-# Bloom scenes: Tolbi harbour, Altin Peak miner, Mogall aftermath.
-N160	MsgDarkHarborIvan	Isaac, someone is crying\ndown at the docks. It\nsounds like a child.{end_wait}
-N161	MsgDarkHarborGaret	That's a boy's voice. We\nshould go and find out\nwhat happened to him.{end_wait}
-N162	MsgDarkHarborMia	Go if you like. The water\ntakes what it takes, and\nthe sea doesn't care.{end_wait}
-N163	MsgDarkHarborAsk	Take the boy to shelter?{end_now}
-N164	MsgDarkHarborYesIsaac	Come with me. We'll find\nyou somewhere warm and\nsafe, I promise.{end_wait}
-N165	MsgDarkHarborYesIvan	He's calmer already. The\nvoices fade when someone\nlistens to him.{end_wait}
-N166	MsgDarkHarborYesGaret	I'll get him settled at the\ninn first. It's the least\nwe can do.{end_wait}
-N167	MsgDarkHarborNoIsaac	I'm sorry. We can't carry\nevery child in this town.{end_wait}
-N168	MsgDarkHarborNoIvan	He was still crying as we\nleft. I'll hear it for a\nlong time, Isaac.{end_wait}
+# Bloom scenes: Altin Peak miner and Mogall aftermath.
 N169	MsgDarkPeakMinerWakes	Why did you pull me out?\nThe light is so loud, and\nit hurts to look at it.{end_wait}
 N170	MsgDarkPeakBloomIvan	His thoughts just went\nquiet, Isaac. All of them,\nall at once.{end_wait}
 N171	MsgDarkPeakBloomGaret	Look at his eyes, Isaac.\nThey've turned grey.{end_wait}
 N172	MsgDarkPeakBloomAsk	Will you stay with him\nuntil it passes?{end_now}
 N173	MsgDarkPeakBloomStay	Thank you. Please don't go\nyet. I don't want to be\nalone when it takes me.{end_wait}
 N174	MsgDarkPeakBloomLeave	He's gone, Isaac. There's\nnothing left in there to\nsave, so don't watch him.{end_wait}
-N175	MsgDarkMogallBloomSheltered	At least that boy in Tolbi\nis safe now. That has to\ncount for something.{end_wait}
-N176	MsgDarkMogallBloomLeft	I keep thinking about that\nboy on the docks, Ivan. I\ncan't stop hearing him.{end_wait}
