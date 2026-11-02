@@ -4,4 +4,6 @@ N155	MsgDarkMogallIvanHears	I can hear all of them,\nIsaac. They're awake, and\n
 N156	MsgDarkMogallIsaacIvan	Can you shut it out?{end_wait}
 N157	MsgDarkMogallIvanNo	I can't. It keeps getting\nlouder, and I think it's\nbecause of the lighthouse.{end_wait}
 N158	MsgDarkPeakIvanHears	Mia, I can hear them down\nthere. Some are praying,\nand some are changing.{page_break}Every minute we spend\narguing, there are fewer\nof them left.{end_wait}
-N159	MsgDarkManticoreIvanBlade	The blade went quiet when\nshe stopped. It wants her\nback, and it's patient.{end_wait}
+N159	MsgDarkManticoreIvanBlade	Mia is trying to hide how
+much that encounter shook
+her. We should stay close.{end_wait}
