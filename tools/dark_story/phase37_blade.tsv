@@ -1,14 +1,5 @@
 # Tolbi, after Ash Jenna: Mia admits that Ash Jenna's taunts unsettled her.
-N115	MsgDarkMiaTolbiConcern	Mia, what she said back
-there... she was trying to
-get under your skin.{end_wait}
-N116	MsgDarkMiaTolbiAdmit	I know. And I let her. I
-won't pretend it didn't
-hurt to hear those words.{end_wait}
-N117	MsgDarkMiaTolbiSupport	You don't have to face
-her alone. Whatever she
-says, we're here.{end_wait}
-N118	MsgDarkMiaTolbiResolve	Thank you, Isaac. I'm not
-as untouched by this as I
-would like to be, but I
-won't let her define me.{end_wait}
+N115	MsgDarkMiaTolbiConcern	Mia, what she said back\nthere... she was trying to\nget under your skin.{end_wait}
+N116	MsgDarkMiaTolbiAdmit	I know. And I let her. I\nwon't pretend it didn't\nhurt to hear those words.{end_wait}
+N117	MsgDarkMiaTolbiSupport	You don't have to face\nher alone. Whatever she\nsays, we're here.{end_wait}
+N118	MsgDarkMiaTolbiResolve	Thank you, Isaac. I'm not\nas untouched by this as I\nwould like to be, but I\nwon't let her define me.{end_wait}
