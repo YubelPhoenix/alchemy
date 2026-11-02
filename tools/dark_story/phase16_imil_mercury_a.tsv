@@ -7,28 +7,28 @@
 05434	MsgImilOoohIDontFeelSoGood	{text_effect:4}Oooh...{pause_20_skippable}{pause_20_skippable} I don't feel well\n{pause_20_skippable}... Am I going to die?{end_wait}
 05436	MsgImilCoughTheEpidemicHasHitAlmost	{text_effect:4}Cough...{pause_20_skippable}{reset_text_style}\nThe sickness has hit\nalmost everyone in Imil.{page_break}I'm sick, too. {text_effect:4}Cough!{reset_text_style}{page_break}What would happen to us\nif we didn't have {actor_name:4}?\n{text_effect:4}Cough{reset_text_style}!{end_wait}
 05437	MsgImilHerPalmsShineWithABlue	Her palms shine with\na blue light...\nIs she{pause_20_skippable} an angel?{end_wait}
-05438	MsgMercuryStoreClosedUntilWell	Our store is closed\nuntil we get well.\nIf we get well...{end_wait}
+05438	MsgMercuryStoreClosedUntilWell	The shop is closed\nuntil we're well.{end_wait}
 05439	MsgImilDoWantWeapons	Do you want weapons?{end_now}
 05440	message	I can't sell weapons\nuntil I'm cured. {text_effect:4}Ohh...{pause_20_skippable}{reset_text_style}\nChills... {text_effect:4}Cough!{reset_text_style}{end_wait}
 05441	message	Travelers from the\nsouth brought this\nsickness to our village.{page_break}{reset_text_style}Are you from the south,\ntoo? If you have no\nbusiness here,{page_break}then leave... {text_effect:4}Cough!{reset_text_style}{end_wait}
-05443	MsgMercuryTooSickBusiness	Sorry. Too sick for\nbusiness today.\nTry again tomorrow...{end_wait}
-05444	MsgImilWereClosedSorryIGetA	We're closed!!!\nSorry... I snap at\neveryone when I'm sick. {page_break}I'll open when I'm\nbetter.{end_wait}
-05445	MsgImilWhyDoTheyAlwaysComeWhen	Why do they always\ncome when I'm sick?{end_wait}
-05446	MsgMercuryMomsSickGetWhatever	Mom's sick, but I can\nget you whatever you\nneed...{end_wait}
-05447	MsgMercuryDadLumberjack	My dad is a lumberjack.\nHe's down south in\nKolima. No word lately.{end_wait}
-05448	MsgImilIfYouWantToBuyAnything	If you want to buy\nanything, please talk to\nmy daughter.{end_wait}
-05450	MsgImilIfOnlyWeHadSomeOf	If only we had that\nspring water of legend.\nThat would heal us.{end_wait}
-05452	MsgImilWereTheOnlyInnThatStays	We're the only inn that\nstays open in winter.\nGuests are few.{page_break}We'll wait on you hand\nand foot, so please\nstay a while.{end_wait}
+05443	MsgMercuryTooSickBusiness	I'm sorry. I can't\nopen the shop today.{end_wait}
+05444	MsgImilWereClosedSorryIGetA	We're closed for now.{page_break}I didn't mean to shout.\nIt's been a hard week.{end_wait}
+05445	MsgImilWhyDoTheyAlwaysComeWhen	Why must everyone\ncome when I'm ill?{end_wait}
+05446	MsgMercuryMomsSickGetWhatever	Mother is sick.{page_break}Tell me what you need.\nI'll find it.{end_wait}
+05447	MsgMercuryDadLumberjack	Father went south\nto work in Kolima.{page_break}We haven't heard\nfrom him since.{end_wait}
+05448	MsgImilIfYouWantToBuyAnything	My daughter can help\nyou with your order.{end_wait}
+05450	MsgImilIfOnlyWeHadSomeOf	If the old spring\nstill flowed...{page_break}Perhaps it could\nhelp the sick.{end_wait}
+05452	MsgImilWereTheOnlyInnThatStays	We're open all winter.{page_break}There aren't many guests.\nYou're welcome to stay.{end_wait}
 05453	MsgImilDoWantSeeRestaurantMenu	Do you want to see\nthe restaurant menu?{end_now}
 05454	message	Here you go.{pause_20_skippable} We're small,\nso the selection isn't\ngreat.{end_wait}
-05455	message	Tonight's dinner is stew\nand rye bread. A feast,\nthese days.{pause_20_skippable} Hm.{end_wait}
-05456	MsgImilSoManyCustomersItJustGoes	So many customers.\nIt's been a good week,\nfor a bad winter.{page_break}I'll hold on to\nthat.{end_wait}
-05457	MsgImilWintersAreToughHereSoIm	Winters are hard here,\nso I'm glad for\nguests to talk to.{page_break}I'll give them the\nbest service I can.{end_wait}
-05458	MsgImilWeDontGetToEatMany	We don't eat many fancy\nmeals in winter.{page_break}A hot stew would be\na real treat.{end_wait}
+05455	message	Stew and rye bread.{page_break}It's not much,\nbut it'll warm you.{end_wait}
+05456	MsgImilSoManyCustomersItJustGoes	We've had more guests\nthan usual this week.{page_break}I wish they'd come\nunder better skies.{end_wait}
+05457	MsgImilWintersAreToughHereSoIm	Winter keeps us inside.{page_break}It's good to hear\na new voice.{end_wait}
+05458	MsgImilWeDontGetToEatMany	A hot meal sounds\nlike a feast right now.{end_wait}
 05460	MsgImilLookingForMia	Looking for {actor_name:4}?{end_now}
-05461	message	{actor_name:4} just left.{page_break}The sickness is spreading\nthrough the village, so\n{actor_name:4} is run ragged.{end_wait}
+05461	message	{actor_name:4} just left.{page_break}She's visiting\nthe sick again.{end_wait}
 05463	MsgImilHaveVisitedOldCoupleWho	Have you visited the\nold couple near the\nentrance of town?{end_now}
-05464	message	Oh. {pause_20_skippable} That's too bad.\nThat's where {actor_name:4}\nwas headed.{page_break}You probably just missed\nher if you didn't see\nher on the way.{end_wait}
+05464	message	Oh. That's where\n{actor_name:4} was going.{page_break}You may have\njust missed her.{end_wait}
 05465	message	{actor_name:4} went to their\nhouse. You might have seen\nher if you stopped...{end_wait}
 05468	MsgImilHowFeeling	How are you feeling?{end_wait}
 05469	message	{text_effect:4} Cough...{pause_20_skippable} Cough...{end_wait}
