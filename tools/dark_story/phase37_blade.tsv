@@ -1,9 +1,14 @@
-# Tolbi, after Ash Jenna: Isaac asks Mia for the Tideglass Blade.
-N115	MsgDarkBladeIsaacAsk	Mia, that blade ends things\nquickly, doesn't it?\nWithout any pain?{end_wait}
-N116	MsgDarkBladeMiaCold	It does. You're asking me\nto hand you a mercy, Isaac.{page_break}Think about what that\nmakes you.{end_wait}
-N117	MsgDarkBladeIsaacGive	The harbor was slower. I'd\nrather it be me than the\nwater, so give it to me.{end_wait}
-N118	MsgDarkBladeMiaFool	You fool. The voice inside\nit loves this. It hums when\nsomeone is about to die.{end_wait}
-N119	MsgDarkBladeMiaSoft	It speaks when I'm angry\nor afraid, and I can't make\nit stop.{end_wait}
-N120	MsgDarkBladeChoose	Then choose. Take the blade\nand its voice, or leave it\nwith me.{page_break}Will you take the\nTideglass Blade?{end_now}
-N121	MsgDarkBladeTaken	Then take it. Be quick\nabout it, and be kind,\nbecause the voice won't be.{end_wait}
-N122	MsgDarkBladeLeft	You'll leave it with me.\nThen don't ask me to be\nmerciful when it sings.{end_wait}
+# Tolbi, after Ash Jenna: Mia admits that Ash Jenna's taunts unsettled her.
+N115	MsgDarkMiaTolbiConcern	Mia, what she said back
+there... she was trying to
+get under your skin.{end_wait}
+N116	MsgDarkMiaTolbiAdmit	I know. And I let her. I
+won't pretend it didn't
+hurt to hear those words.{end_wait}
+N117	MsgDarkMiaTolbiSupport	You don't have to face
+her alone. Whatever she
+says, we're here.{end_wait}
+N118	MsgDarkMiaTolbiResolve	Thank you, Isaac. I'm not
+as untouched by this as I
+would like to be, but I
+won't let her define me.{end_wait}
