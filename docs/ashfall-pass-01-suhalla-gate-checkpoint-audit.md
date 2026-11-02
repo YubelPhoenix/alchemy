@@ -1,6 +1,6 @@
 # Ashfall Pass 01 — Suhalla Gate checkpoint audit
 
-Status: source-to-dialogue audit completed for the named checkpoint triggers; sequential Iodem event offsets remain to be reconciled against the message catalogue.
+Status: named checkpoint triggers and the sequential Iodem confrontation (09812–09830) are mapped and drafted; validator/build and in-game checks are pending.
 Branch: `dark-story-rewrite`
 Source: `games/tbs/src/scene/suhalla_gate.c`
 Dialogue batch: `tools/dark_story/phase71_suhalla_gate_checkpoint.tsv`
@@ -33,11 +33,13 @@ All nine named message references in `gSuhallaGateTriggersOther` have rows in ph
 
 The trigger conditions matter. In particular, 09810/09811 and 09833/09834 are not generic alternate thoughts: the source switches them according to `FLAG_SUHALLA_GATE_ATTACK_SEEN`. The west guard's ordinary talk also switches between 09831 and 09805 according to that flag. The east guard's talk is an event with yes/no branches before the attack is confronted, then a single wounded-state line afterward.
 
-## Remaining sequential-message audit
+## Sequential Iodem confrontation now covered
 
-The named-message pass is not proof that the entire Iodem event is covered. `SuhallaGate_IodemQuestionsGuards` advances `gFieldWork->message` between calls to `FieldEvent_ShowMessageThenWait`, and includes an `Event_AskYesNo` plus a conditional extra message when `FLAG_IODEM_MET_WOUNDED_SOLDIERS` is set. The exact message IDs and text for every offset must be reconciled against the message catalogue and the complete event call order before marking this sequence complete.
+The source event advances through the generic message IDs 09813–09830 after the named opening line 09812. Those 18 sequential entries were absent from the earlier phase 71 draft. They have now been added in source order, preserving the original `{pause_20_skippable}` counts, `{end_wait}` / `{end_now}` controls, and `{actor_name:5}`, `{actor_name:7}`, and `{actor_name:1}` placeholders. The dialogue follows the actual event beats: the guards recognize Iodem, describe the paperless group and their powers, Iodem identifies the likely culprit, the party discusses finding Sheba and pursuing the attackers, and the wounded soldiers insist the party continue.
 
 The separate vanishing-soldier event uses the shared `MsgFieldVenusLighthouseWasAttackedBy`; do not duplicate it as a Suhalla-specific message without first checking the shared-message phase index.
+
+A source-catalogue check of all 27 phase 71 rows confirms matching message contexts, all original brace-delimited controls and runtime placeholders, no page over three lines, and no line over the 27-character validator limit (dynamic actor names reserved at eight characters). This is a local structural check; the GitHub Actions run must still complete before the batch is called build-validated.
 
 ## Quality and implementation constraints
 
