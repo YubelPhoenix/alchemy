@@ -1,7 +1,7 @@
-# Bloom scenes: Altin Peak miner and Mogall aftermath.
-N169	MsgDarkPeakMinerWakes	Why did you pull me out?\nThe light is so loud, and\nit hurts to look at it.{end_wait}
-N170	MsgDarkPeakBloomIvan	His thoughts just went\nquiet, Isaac. All of them,\nall at once.{end_wait}
-N171	MsgDarkPeakBloomGaret	Look at his eyes, Isaac.\nThey've turned grey.{end_wait}
-N172	MsgDarkPeakBloomAsk	Will you stay with him\nuntil it passes?{end_now}
-N173	MsgDarkPeakBloomStay	Thank you. Please don't go\nyet. I don't want to be\nalone when it takes me.{end_wait}
-N174	MsgDarkPeakBloomLeave	He's gone, Isaac. There's\nnothing left in there to\nsave, so don't watch him.{end_wait}
+# Altin Peak: the miner's condition after the rescue.
+N169	MsgDarkPeakMinerWakes	I thought the roof would\ncome down again. I can't\nstop shaking.{end_wait}
+N170	MsgDarkPeakBloomIvan	He's in shock. Give him\na moment before asking\nanything else.{end_wait}
+N171	MsgDarkPeakBloomGaret	The others are waiting\noutside. He's hurt, but\nhe's not alone.{end_wait}
+N172	MsgDarkPeakBloomAsk	Stay with him until\nhe's ready to leave?{end_now}
+N173	MsgDarkPeakBloomStay	Thank you. I need a\nmoment before I can walk.{end_wait}
+N174	MsgDarkPeakBloomLeave	The mine is still unstable.\nWe can't stay here. Let's\nget everyone to safety.{end_wait}
