@@ -2772,9 +2772,13 @@
 /// (WorldMap_MiaRejoinsParty), so a battle that reloads the entrance does not
 /// replay it.
 #define FLAG_DARK_MIA_REUNITED 0x8cd
+/// Isaac stayed with the injured miner after the Altin Peak rescue.
 #define FLAG_DARK_MINER_STAYED 0x8d3
+/// Ash Jenna's Lamakan confrontation has played.
 #define FLAG_DARK_FINALE_DONE 0x8d4
+/// Isaac accepted Ash Jenna's offer to confront the Wise One.
 #define FLAG_DARK_ASH_JENNA_ACCEPTED 0x8d6
+/// Isaac refused Ash Jenna's offer and chose his own course.
 #define FLAG_DARK_ASH_JENNA_REFUSED 0x8d7
 
 #endif
