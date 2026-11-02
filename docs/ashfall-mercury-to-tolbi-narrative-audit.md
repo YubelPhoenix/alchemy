@@ -71,7 +71,7 @@ This sequence must be held out of the active dialogue pass until the Ashfall pre
 
 ### 7. Altin: clarify the cost to families
 
-Message `06391` described people losing someone "who's still standing right in front of them." The intended horror is that some miners returned physically, but were no longer emotionally or mentally present as the people their families knew. The original phrasing was evocative but too oblique to land clearly. It now reads: "Some have lost loved ones who are still standing right in front of them." This keeps the disturbing implication while making the sentence grammatical and immediately comprehensible. The Altin scene uses the surrounding inn dialogue for this exchange; no event condition or message ID was changed.
+Message `06391` described people losing someone "who's still standing right in front of them." The intended horror is that some miners returned physically, but were no longer emotionally or mentally present as the people their families knew. The original phrasing was evocative but too oblique to land clearly. It now reads: "Some have lost loved ones who are still standing right in front of them." This keeps the disturbing implication while making the sentence grammatical and immediately comprehensible. The exact trigger for `06391` has not yet been mapped to its source event, so it remains an open verification item. This was a sentence-level correction only; no event condition or message ID was changed.
 
 ### 8. Altin: the crisis and recovery states need to be separated
 
