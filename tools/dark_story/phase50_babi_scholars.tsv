@@ -9,6 +9,9 @@
 08222	MsgBabiKradensJourneyWasMeantToRevive	Kraden left to restore\nthe lost art of Alchemy.\nThat was Babi's hope.{page_break}He was also meant to\nlearn why the world\nturned away from it.{end_wait}
 08223	MsgBabiTheVenusRuinsAreTheRemnants	The Venus Ruins belonged\nto a civilization that\nunderstood great power.{page_break}Babi's lighthouse rises\nfrom its foundation. I\nfear what that means.{end_wait}
 08224	MsgBabiLordBabiExpectedGreatResultsFrom	Babi expected answers\nfrom Kraden's journey.\nHe has received none.{page_break}I wonder whether the\nold man knew more than\nhe ever told us.{end_wait}
+08889	MsgValeFolksSeemKnow	You know Kraden,\ndon't you? Have you\nspoken with him?{end_now}
+08890	message	We have not heard from\nhim in years... To think\nhe was in your village!{page_break}I wonder whether he\nfound the legendary\nElemental Stars?{end_wait}
+08891	message	I'm surprised no one\nin Vale knew he came\nfrom Tolbi.{page_break}Why did Kraden never\ntell anyone about\nthis place?{end_wait}
 08888	MsgBabiOnceBabiLighthouseIsCompleteId	When the lighthouse is\nfinished, I want to move\nthere and study the ruins.{page_break}Perhaps the stones will\nanswer what our books\nnever could.{end_wait}
 08892	MsgBabiAlchemyTeachesThatTheFourElements	Alchemy speaks of four\nfoundations: earth, water,\nfire, and wind.{page_break}All things take shape\nfrom that union. It once\nchanged the world.{end_wait}
 08893	MsgBabiIfTheRiddleOfTheVenus	If we understood the\nVenus Ruins, Babi might\nnever have built the tower.{page_break}We study the old stones,\nbut the answer remains\nout of reach.{end_wait}
@@ -18,3 +21,6 @@
 08897	MsgBabiTheresGotToBeAGood	There must be a reason\nfor the four Elements\nbeing called great bases.{page_break}If we understood it,\nperhaps we could change\nlead into gold.{end_wait}
 08898	MsgBabiWhatSortOfUnfathomableRiddlesAre	What secrets lie beneath\nthe Venus Ruins? The\nold stones keep silent.{end_wait}
 08899	MsgBabiThereMustBeAReasonWhy	Kraden has not returned.\nThere must be a reason.\nI fear it is a cruel one.{end_wait}
+10679	MsgValeTheresABookEntitledEncyclopediaOf	A book entitled\n"Encyclopedia of\nAncient Ruins."{end_wait}
+10680	MsgValeTheresANotebookEntitledExperimentsIn	A notebook entitled\n"Experiments in\nAlchemy."{page_break}"The experiment failed\nagain. I still have so\nmuch to ask Kraden..."{end_wait}
+10681	MsgValeTheresANotebookEntitledStudyOf	A notebook entitled\n"Study of the Venus\nRuins."{page_break}"Many ancient\ncivilizations still lie\nburied in that region..."{end_wait}
