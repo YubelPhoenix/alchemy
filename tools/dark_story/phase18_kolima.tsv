@@ -1,24 +1,24 @@
 05235	MsgKolimaQuiet	It's quiet here.\nToo quiet.{end_wait}
 05237	message	That tree was a person.{end_wait}
 05238	message	Everyone here...\nThey've become trees.{end_wait}
-05239	message	It's horrible. These\ntrees in clothes are\nKolima's villagers!{end_wait}
+05239	message	Look at their clothes.\nThese are villagers.{end_wait}
 05246	message	{text_effect:4}My mind!!!\nSomeone{pause_20_skippable} is attacking my{em_dash}{end_wait}
-05250	message	We have to get\nout of here!{end_wait}
-05252	message	Oh, no...{pause_20_skippable}\nIf it touches us,\nwe'll become trees!{end_wait}
-05257	MsgKolimaWasOurPsynergy	Our Psynergy protected us.{end_wait}
-05258	message	What are you saying?{end_wait}
+05250	message	We have to leave!{end_wait}
+05252	message	Stay back!\nWe'll become trees!{end_wait}
+05257	MsgKolimaWasOurPsynergy	Our Psynergy saved us.{end_wait}
+05258	message	What do you mean?{end_wait}
 05265	message	You're lying, {actor_name:1}!{end_wait}
-05266	message	When I trained, I'd\nfocus so hard my head\nfelt ready to burst.{end_wait}
-05267	message	Maybe it's easier for\nyou, but when I use\nPsynergy...{end_wait}
-05268	message	But what? You can only\nuse Psynergy by\nconcentrating!{end_wait}
-05270	message	That means some Psynergy\nacts only when it's\nneeded.{end_wait}
-05271	message	You mean, when we're\nin danger?{end_wait}
-05272	message	Maybe like a critical\nhit in battle.{page_break}We can't control it,\nbut it's there when\nwe need it.{end_wait}
+05266	message	I used to train\nuntil my head hurt.{end_wait}
+05267	message	Maybe it's easy for you.\nIt isn't for me.{end_wait}
+05268	message	Psynergy takes focus.\nYou know that.{end_wait}
+05270	message	Maybe some power\nacts on its own.{end_wait}
+05271	message	When we're in danger?{end_wait}
+05272	message	Like a sudden burst\nof strength in battle.{page_break}We can't summon it.\nNot yet.{end_wait}
 05274	message	Could we use this power\nat will, {actor_name:1}?{end_now}
-05275	message	Yes. We have to learn\nto master it.{end_wait}
-05276	message	You...{pause_20_skippable}{pause_20_skippable}\nYou're not really\ninterested, are you?{end_wait}
-05278	message	Hroom!{pause_20_skippable} Why?{pause_20_skippable}{pause_20_skippable} Why do they not\nturn into trees...?{end_wait}
-05299	message	We'll leave it up to\nyou, {actor_name:1}.\nLet's save everyone.{end_wait}
+05275	message	Then we should try.{end_wait}
+05276	message	You're not listening,\nare you?{end_wait}
+05278	message	Hroom! Why do you\nremain unchanged?{end_wait}
+05299	message	We'll leave it to you,\n{actor_name:1}. Help them.{end_wait}
 05303	message	So{pause_20_skippable} the people of Kolima\nwill stay trees until\nthey wither and die?{end_now}
 05305	message	That's right...\nWe can't leave\nthem to rot!{end_wait}
 05306	message	But{pause_20_skippable} how do we bring\nback the gentle Tret\nand save the village?{end_wait}
