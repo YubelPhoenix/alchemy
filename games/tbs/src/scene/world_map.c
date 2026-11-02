@@ -2425,14 +2425,11 @@ static void WorldMap_PlaceMenardisGroup(void) {
   Actor_FaceDirection(ACTOR_WM_FELIX, FACING_SOUTH, 0);
 }
 
-/// Mia's second interlude, part one, on the road south of Imil. The
-/// party is Mia alone, raised to beat Menardi, with the Tideglass Blade. She
-/// has caught up with Menardi's group, who rode the lift down. The captive
-/// Jenna looks exactly like the one Mia met, but has never met Mia, so Mia
-/// takes her for the other and turns hostile; Menardi urges her on until the
-/// captive's fear tells Mia she is wrong. Mia asks for them back and Menardi
-/// takes her on; winning brings her back at WORLD_MAP_MIA_MENARDI_WON,
-/// losing replays this.
+/// Mia's second interlude, part one, on the road south of Imil. Mia has
+/// caught up with Menardi's group, who rode the lift down. She finds Jenna,
+/// Kraden and Felix held captive, confronts Menardi, and demands their return.
+/// Menardi refuses, and the two fight; winning brings Mia back at
+/// WORLD_MAP_MIA_MENARDI_WON, while losing replays this.
 static void WorldMap_MiaFacesMenardi(void) {
   WorldMap_MiaThievesOpen();
   WorldMap_PlaceMenardisGroup();
@@ -2448,14 +2445,6 @@ static void WorldMap_MiaFacesMenardi(void) {
   WorldMap_MiaSay(ACTOR_MIA, 20);
   WorldMap_MiaSay(ACTOR_WM_MENARDI, 20);
   WorldMap_MiaSay(ACTOR_MIA, 20);
-  // Her other self draws the Tideglass Blade, which the healer swore never to
-  // draw: it is for those she wishes dead.
-  Event_SetMessageId(MsgDarkMiaBladeForged);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  WorldMap_MiaSay(ACTOR_MIA, 20);
-  WorldMap_MiaSay(ACTOR_MIA, 20);
-  WorldMap_MiaSay(ACTOR_MIA, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Event_SetAfterBattleDestination((s32)&SceneId_WorldMap,
                                   WORLD_MAP_MIA_MENARDI_WON);
