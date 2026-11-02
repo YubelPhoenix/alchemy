@@ -1,7 +1,7 @@
 # Altin Peak: the miner's condition after the rescue.
-N169	MsgDarkPeakMinerWakes	I thought the roof would\ncome down again. I can't\nstop shaking.{end_wait}
-N170	MsgDarkPeakBloomIvan	He's in shock. Give him\na moment before asking\nanything else.{end_wait}
-N171	MsgDarkPeakBloomGaret	The others are waiting\noutside. He's hurt, but\nhe's not alone.{end_wait}
-N172	MsgDarkPeakBloomAsk	Stay with him until\nhe's ready to leave?{end_now}
-N173	MsgDarkPeakBloomStay	Thank you. I need a\nmoment before I can walk.{end_wait}
-N174	MsgDarkPeakBloomLeave	The mine is still unstable.\nWe can't stay here. Let's\nget everyone to safety.{end_wait}
+N169	MsgDarkPeakMinerAftermath	I thought the roof would\ncome down again. I can't\nstop shaking.{end_wait}
+N170	MsgDarkPeakMinerShockIvan	He's in shock. Give him\na moment before asking\nanything else.{end_wait}
+N171	MsgDarkPeakMinerShockGaret	The others are waiting\noutside. He's hurt, but\nhe's not alone.{end_wait}
+N172	MsgDarkPeakMinerStayAsk	Stay with him until\nhe's ready to leave?{end_now}
+N173	MsgDarkPeakMinerStay	Thank you. I need a\nmoment before I can walk.{end_wait}
+N174	MsgDarkPeakMinerLeave	The mine is still unstable.\nWe can't stay here. Let's\nget everyone to safety.{end_wait}
