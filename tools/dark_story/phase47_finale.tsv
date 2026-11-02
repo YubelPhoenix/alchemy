@@ -10,7 +10,6 @@ N202	MsgDarkEchoHarbor	You went down to the docks\nfor that boy. He's still\nbre
 N203	MsgDarkEchoMiner	You stayed with that miner\nuntil the end. I saw you.{end_wait}
 N204	MsgDarkEchoDoor	You opened that door. I can\nstill hear her humming.{end_wait}
 N205	MsgDarkEchoCaravan	Forty of them were awake,\nand you walked in without\ndrawing a weapon.{end_wait}
-N206	MsgDarkEchoBlade	You let me keep the blade.\nI haven't decided yet if\nthat was kind of you.{end_wait}
 N207	MsgDarkEchoNone	You showed no mercy at all,\nIsaac. You and I are\nalready the same.{end_wait}
 N208	MsgDarkFinaleAsk	Take her offer?{end_now}
 N209	MsgDarkFinaleYesIsaac	All right. Do it, and make\nit quick.{end_wait}
@@ -20,7 +19,10 @@ N212	MsgDarkFinaleYesJenna2	He did what I asked.\nWelcome, Isaac.{end_wait}
 N213	MsgDarkFinaleNoIsaac	No. We'll find another\nway, and I'll carry\nwhatever it costs.{end_wait}
 N214	MsgDarkFinaleMercyJenna	Then carry it. The sleepers\nwill still wake, and\nremember that I offered.{end_wait}
 N215	MsgDarkFinaleMercyIvan	I'll hear every one of\nthem, Isaac, but I'm\nstaying with you.{end_wait}
-N216	MsgDarkFinaleMercyMia	Fine. The blade stays quiet\nfor now, but I'm watching\nyou, Isaac.{end_wait}
+N216	MsgDarkFinaleMercyMia	Then we'll keep looking for
+another way. I won't let
+her make this choice for
+us.{end_wait}
 N217	MsgDarkFinaleDivIsaac	I won't do that, not even\nto stop all of this.{end_wait}
 N218	MsgDarkFinaleDivJenna	Then I'll wait. People like\nyou always come around in\nthe end.{end_wait}
 N219	MsgDarkFinaleDivMia	He's too soft, and you know\nit. I'm done waiting for\nhim.{end_wait}
