@@ -3,7 +3,7 @@
 Status: working audit document  
 Branch: `dark-story-rewrite`  
 Scope: narrative chronology, story-state dependencies, and rewrite coverage  
-Last audited revision: `d0b0e2861730a9e84065595c4ccfa760cfd60acd`
+Last audited revision: `7e6ef78d80e4577e9aad1177ce8cbfc2626baa36`
 
 This document separates the original game's progression from Ashfall's custom events. Phase filenames are organizational labels, **not** a reliable chronological sequence.
 
@@ -65,6 +65,11 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase51_suhalla.tsv` | 30 Suhalla town messages rewritten across the pre- and post-audience states, including villagers' dialogue and Mind Read. |
 | `phase52_suhalla_interiors.tsv` | 44 Suhalla interior messages rewritten, including merchants, travelers, wounded soldiers, Mind Read, and environmental examinations. |
 | `phase53_babi_lighthouse.tsv` | 38 Babi Lighthouse messages rewritten, covering workers, injured guards, Faran's pursuit, Sheba's rescue, the sealed door, and the ruins clue. |
+| `phase54_lalivero.tsv` | 51 Lalivero town-map messages rewritten, covering Sheba's absence, the soldiers, the aftermath of Venus Lighthouse, and the wharf. |
+| `phase55_lalivero_interiors.tsv` | 95 interior messages rewritten, including Sheba's family, town residents, Mind Read, wounded soldiers, Iodem, and the ship. |
+| `phase56_black_orb.tsv` | 3 world-map messages rewritten for the Black Orb / Babi's ship interaction and optional shipwreck inspection. |
+| `phase57_lemurian_ship.tsv` | 16 messages rewritten for the departure from Gondowan and the voyage toward Lemuria. |
+| `phase58_true_ending.tsv` | 13 non-empty messages rewritten for the post-game drifting-island scene with Jenna, Kraden, and Alex. |
 
 ### Important custom-state observations
 
@@ -83,7 +88,7 @@ The first visit to Hammet Palace occurs before `FLAG_IVAN_REPORTED_TO_LAYANA`. G
 
 ### Babi's Palace
 
-The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue states. Sheba's captivity, the soldiers' search, and the audience with Babi must not be collapsed into one state. `FLAG_COLOSSO_OVER` and `FLAG_BABI_SPOKE_AFTER_COLOSSO` are essential distinctions. The first source-message rewrite batch is now drafted: 89 non-empty palace messages in `phase49_babi_palace.tsv`, plus 19 scholars' room messages in `phase50_babi_scholars.tsv`. Message IDs, contexts, runtime placeholders, ending controls, and the pause/em-dash controls were checked against the source catalog. Build validation and in-game testing are still pending.
+The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue states. Sheba's captivity, the soldiers' search, and the audience with Babi must not be collapsed into one state. `FLAG_COLOSSO_OVER` and `FLAG_BABI_SPOKE_AFTER_COLOSSO` are essential distinctions. The source-message rewrite batches now cover 398 non-empty messages across phases 49–58: Babi's Palace and scholars (108), Suhalla and its interiors (74), Babi Lighthouse (38), Lalivero and its interiors (146), Black Orb interactions (3), the Lemurian ship (16), and the post-game ending (13). Message IDs, contexts, runtime placeholders, ending controls, and required presentation controls were checked against the source catalog. Duplicate IDs were checked against the existing phase files listed in this ledger. Automated build validation and in-game testing are still pending.
 
 ### Suhalla
 
@@ -113,6 +118,8 @@ The current rewrite directory contains phase files through `phase48_docks.tsv`. 
 | Babi's Palace and scholars' rooms | Source-message rewrite drafted (89 + 19 entries); automated build and in-game state validation pending. |
 | Babi's audience / Gondowan Passage | Requires full dialogue coverage audit. |
 | Suhalla / desert / Babi Lighthouse | Drafts exist for 30 town, 44 interior, and 38 Babi Lighthouse messages; automated build and in-game state validation pending. |
+| Lalivero first/second visit and interiors | Drafts exist for 51 town and 95 interior messages; branch-state and in-game validation pending. |
+| Black Orb / Lemurian ship / true ending | Drafts exist for 3 Black Orb, 16 ship, and 13 post-game ending messages; sequence and in-game validation pending. |
 | Lalivero, first and second visits | Original state split verified; Ashfall coverage remains to be checked. |
 | Venus Lighthouse, all floors | Requires full dialogue, sign, Mind Read, puzzle, and event-message audit. |
 | Venus Aerie | Event sequence verified; Ashfall dialogue coverage and character-knowledge audit required. |
@@ -129,8 +136,8 @@ The current rewrite directory contains phase files through `phase48_docks.tsv`. 
 ## Next audit actions
 
 1. Inventory the game's text data and determine how the current TSV phase files are applied.
-2. Build a source-message coverage index for every late-game scene listed above. Babi's Palace, scholars' rooms, Suhalla, and Babi Lighthouse now have draft batches; validate them before marking coverage complete.
+2. Build a source-message coverage index for every late-game scene listed above. Draft batches now cover Babi's Palace, scholars' rooms, Suhalla, Babi Lighthouse, Lalivero, the Black Orb, the Lemurian ship, and the post-game ending; validate them before marking coverage complete.
 3. Audit custom branch flags and callbacks against their event scripts.
-4. Draft missing dialogue in small, location-complete batches, including optional NPCs and Mind Read text. Next: Lalivero's first and second visits, its interiors, wharf, and Iodem's farewell / Black Orb sequence.
+4. Draft missing dialogue in small, location-complete batches, including optional NPCs and Mind Read text. Next: Venus Lighthouse and the Aerie. Keep the first ascent, beacon activation, the two battles, Sheba's fall, and the post-fall transition distinct.
 5. Run the existing rewrite/build tooling and inspect the resulting ROM in-game across representative branches.
 6. Extend this ledger as each area is verified; mark coverage complete only after source-message comparison and in-game validation.
