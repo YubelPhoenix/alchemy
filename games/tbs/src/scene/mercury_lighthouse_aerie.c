@@ -1227,9 +1227,9 @@ static void MercuryLighthouseAerie_SetUpMiaAlone(void) {
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE: Mia reaches
 /// the beacon ledge alone. Menardi has Jenna, Kraden and Felix there. Mia
-/// confronts Menardi and demands their return. Menardi refuses; the two fight,
-/// with victory returning Mia to MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT
-/// and defeat replaying this scene.
+/// confronts Menardi and demands their return. Menardi refuses; the two fight.
+/// Surviving the encounter advances to the aftermath, where Menardi escapes
+/// with the hostages; battle defeat retries the encounter.
 static void MercuryLighthouseAerie_MiaFacesMenardi(void) {
   Event_Start();
   MercuryLighthouseAerie_SetUpMiaAlone();
@@ -1253,8 +1253,9 @@ static void MercuryLighthouseAerie_MiaFacesMenardi(void) {
   Event_End();
 }
 
-/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT: Menardi,
-/// beaten by the light and Mia, leaves with the Stars and the captives. The
+/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT: Mia
+/// holds Menardi off but cannot rescue the captives. Menardi withdraws
+/// with the Stars and the hostages. The
 /// party is put back together and the aerie loads again at
 /// MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES.
 static void MercuryLighthouseAerie_MiaBeatsMenardi(void) {
