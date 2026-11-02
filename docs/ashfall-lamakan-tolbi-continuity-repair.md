@@ -1,9 +1,9 @@
 # Ashfall: Lamakan-to-Tolbi continuity failure report
 
-Status: initial source-backed audit; current verified repairs are recorded at the end of this document  
+Status: historical source-backed audit; superseded decisions are recorded below  
 Branch: `dark-story-rewrite`
 
-**Reading note:** the numbered findings and immediate blockers below record the pre-repair state. The verified repair section at the end supersedes them where they conflict with the current branch.  
+**Reading note:** the numbered findings and immediate blockers below record the pre-repair state. The harbor-child decision in the canonical correction section and the caravan-removal decision at the end supersede all earlier references to those storylines.  
 Scope: the post-Manticore Lamakan sequence, Ash Jenna's later Tolbi encounter, and Kegare.
 
 ## Finding
@@ -15,7 +15,7 @@ This is a continuity repair, not a request to make the prose more ominous. The e
 ## Verified route and event behavior
 
 1. **Lamakan Desert is before Kalay and Tolbi in the original route.** The Manticore is encountered before the Kalay visit and Karagol Sea crossing. The Ashfall post-Manticore sequence therefore occurs before the party reaches Tolbi and before Colosso.
-2. **The post-Manticore return launches a large custom sequence automatically.** In `LamakanDesert_Initialize`, when the party returns from the Manticore battle (or the Manticore is already beaten), Mercury Lighthouse is lit, and the caravan sequence has not run, the game calls `LamakanDesert_MiaTakesOver()`. That event contains Mia's post-battle episode and the caravan choice, then sets `FLAG_DARK_CARAVAN_DONE`. The initializer then places Ash Jenna and calls `LamakanDesert_AshJennaFinale()` immediately. The finale sets `FLAG_DARK_FINALE_DONE`.
+2. **The post-Manticore return launches Mia's aftermath and Ash Jenna's finale automatically.** In `LamakanDesert_Initialize`, when the party returns from the Manticore battle (or the Manticore is already beaten), Mercury Lighthouse is lit, and the aftermath has not run, the game calls `LamakanDesert_ManticoreAftermath()`. The initializer then places Ash Jenna and calls `LamakanDesert_AshJennaFinale()` immediately. The aftermath and finale each have a completion flag.
 3. **That means the first meaningful Ash Jenna encounter is the Lamakan finale, not the short N106–N110 exchange in `phase35_lamakan_jenna.tsv`.** The actual automatic sequence uses N195 onward in `phase47_finale.tsv`. The short watch scene is not the dialogue the player receives on the normal post-Manticore return; after the finale flag is set, the actor is no longer placed for that first-meeting path. Any alternate path that might make N106–N110 reachable still needs to be checked before those rows are removed or repurposed.
 4. **The party then continues to Kalay, crosses the Karagol Sea, reaches Tolbi, and completes Colosso.** Only after `FLAG_COLOSSO_OVER` and `FLAG_MERCURY_LIGHTHOUSE_LIT` does `Tolbi_ApplyEntryState` place Ash Jenna in Tolbi.
 5. **Tolbi's Ash Jenna scene is written as though this is the first meeting.** `phase30_tolbi_ash_jenna.tsv` has Isaac ask, “Who are you?”, Garet challenge her as if the party has not met her, and Ash Jenna repeat her “Jenna who stopped waiting to be saved” line. But the party has already heard her identify herself in the Lamakan finale as a Jenna from a world the Wise One burned. The Tolbi scene must be a continuation: Isaac should recognize her, the party should refer to what she revealed, and her new purpose at the harbor should advance the story rather than restart the introduction.
@@ -38,7 +38,7 @@ The same phase adds “Don't follow the lights at night. They're awake” to a M
 Write one canonical explanation, in plain language, for each of these and how they connect:
 
 - What the lighthouses are doing to the awakened, and why lighting Mercury Lighthouse matters.
-- What “the awakened” are, how they are connected to the Manticore, the caravan, the people in Mogall, and the voices Ivan hears.
+- What “the awakened” are, how they are connected to the Manticore, the people in Mogall, and the voices Ivan hears.
 - Why Mia reacts with anger after the Manticore, recognizes that anger as her own, and accepts support from the party.
 - Who Ash Jenna is, what she knows at Lamakan, what she wants at Tolbi, and why she is watching the harbor.
 - What the harbor child hears and how that separate Ashfall thread develops after Tolbi.
@@ -50,7 +50,7 @@ These explanations do not all need to be spoken aloud at once. They do need to b
 
 1. Mercury Lighthouse aftermath and the party's first exposure to the consequences of lighting it.
 2. Mogall and Altin Peak: establish the awakened, the voices, and Ivan's growing sensitivity before using those terms as shorthand.
-3. Lamakan / Manticore: make Mia's episode a consequence of what the party has already witnessed; give the caravan encounter a clear relationship to the awakened; then let Ash Jenna's revelation answer questions the route has deliberately raised.
+3. Lamakan / Manticore: make Mia's episode a consequence of what the party has already witnessed, then let Ash Jenna's revelation answer questions the route has deliberately raised.
 4. Kalay and the Karagol crossing: preserve the original route and let the party carry the Lamakan revelation forward.
 5. Tolbi after Colosso: Ash Jenna must acknowledge the Lamakan meeting and advance her plan. Resolve or deliberately defer the fishermen question.
 6. Tolbi Docks: introduce the child as a consequence of the harbor situation, not as an unrelated new horror beat.
@@ -62,7 +62,7 @@ Do not alter original route flags, Colosso states, scene entrances, or battle be
 
 ## Immediate rewrite blockers
 
-- `phase35_lamakan_jenna.tsv` is an optional talk on the Manticore pass; the normal post-Manticore return separately runs the automatic Mia/caravan sequence and Ash Jenna's main revelation.
+- `phase35_lamakan_jenna.tsv` is an optional talk on the Manticore pass; the normal post-Manticore return separately runs Mia's aftermath and Ash Jenna's main revelation.
 - `phase30_tolbi_ash_jenna.tsv` has been rewritten as a continuation of the guaranteed Lamakan revelation.
 - `phase33_kegare.tsv` now focuses on Kegare's Mia imitation and replacement intent, with no false child-rescue claim.
 - `phase34_mogall_lamakan.tsv` has been corrected to match Lamakan's heat, sand, dust, and ash-thick air.
@@ -129,56 +129,12 @@ The source and dialogue edits are committed, but this decision is not considered
 
 
 
-## Verified finding: the post-Manticore caravan choice is not currently earned
+## Canonical decision: remove the caravan storyline
 
-The caravan sequence was checked against both `phase42_manticore_mia.tsv`, `phase46_awakening.tsv`, `phase47_finale.tsv`, and the actual `LamakanDesert_ManticoreAftermath` / `LamakanDesert_AshJennaFinale` event code in `games/tbs/src/scene/lamakan_desert.c`.
+The caravan awakening sequence has been removed from the story and implementation. It is not a branch, a mercy choice, or part of Mia's post-Manticore character arc.
 
-### 1. Mia's emotional progression jumps too sharply
+The post-Manticore return now has a simpler sequence: Mia's existing aftermath plays once, then Ash Jenna's revelation/finale begins automatically. The obsolete phase46_awakening.tsv dialogue file has been deleted. The caravan dialogue, choice, callback, and mercy flag have been removed from the event flow. The former completion flag has been renamed to FLAG_DARK_MANTICORE_AFTERMATH_DONE because it now records only that Mia's aftermath has played.
 
-Immediately after the Manticore, Mia says she wanted it dead and wishes it had suffered less. When Garet notices her reaction, she acknowledges that anger got the better of her and says it is not who she wants to be. Isaac reassures her, and Ivan observes that she is trying to hide how badly the encounter shook her.
+The finale's mercy calculation now uses the two remaining choices: staying with the trapped miner and opening the Mogall camp door. Refusing Ash Jenna's offer reaches the Mercy ending when both are set; otherwise the Divided ending applies. Accepting her offer still reaches the Complicit ending.
 
-The caravan scene then gives Mia this line:
-
-> Turn back? Why? We could just burn them where they stand. It would be cleaner.
-
-That is a much more extreme position than the anger she has just acknowledged. The current sequence does not show an intervening event, thought, or deterioration that would explain why she moves from regret to advocating the killing of forty frightened people. Ash Jenna later uses the remark against Mia in Tolbi, so the line becomes a defining character beat without sufficient development.
-
-**Finding:** the problem is not that Mia is allowed to say something disturbing. It is that the story has not earned this particular escalation. The Manticore aftermath and caravan scene need to be revised together, with a visible emotional progression and a response from Mia that preserves her accountability.
-
-### 2. The caravan prompt promises an outcome the event never shows
-
-The prompt asks whether Isaac will try to calm the caravan. On the yes branch, Isaac says he will talk to them; Ivan says they are afraid of what is in their own heads; Mia warns Isaac that he will get himself killed. The event then moves directly to Mia taking point. There is no exchange with the caravan, no indication that anyone was calmed, and no result for the people themselves.
-
-Despite that, the yes branch sets `FLAG_DARK_CARAVAN_CALMED`. The finale counts this flag as one of three mercy points and conditionally gives Ivan the line, “Forty of them were awake, and you walked in without drawing a weapon.” The event records Isaac's intention to help as though it were a successful act of mercy.
-
-On the no branch, Isaac says they cannot help and tells the party to keep moving. Garet hears the caravan calling Isaac's name, and Mia says they should not stop for ghosts. No corresponding outcome flag is recorded.
-
-**Finding:** the choice currently measures which response Isaac selected, not what happened to the caravan. The flag name and finale callback overstate the result. Either the scene must depict a meaningful consequence that justifies a mercy flag, or the flag/callback must be redesigned so an attempted intervention is not presented as a successful rescue.
-
-### 3. Mia takes point regardless of Isaac's choice
-
-Both branches converge on the same unconditional Mia line: “Keep up, Isaac. I'll walk point from here, because Kalay won't wait for us.” Garet then remarks that she did not look back.
-
-The event code does not give the two choices distinct aftermaths beyond the yes branch's mercy flag and altered preceding dialogue. Mia takes point in either case. This makes the prompt feel more consequential than the actual scene behavior, and it leaves unclear whether Mia is protecting the party, avoiding the caravan, punishing Isaac for hesitating, or simply forcing the group onward.
-
-**Finding:** the shared ending can remain if the story deliberately establishes why Mia takes point in both outcomes. Otherwise, the scene needs branch-specific reactions and a clearer emotional reason for her action.
-
-### 4. The finale compounds the problem
-
-Ash Jenna's finale follows automatically after the caravan event on the Manticore return. Mia is then asked to speak again, and her line is “Do it, Isaac. Then all of this will be over.” The player has just watched her advocate burning the caravan, so the line currently reinforces the same extreme position rather than revealing a new conflict or testing the limits of her anger.
-
-The finale's mercy calculation currently uses three independent flags: the miner stayed with, the Mogall door opened, and the caravan-calmed flag. The code comment still mentions the removed harbor-child choice, which is stale documentation. The actual calculation is three points, but the caravan point is not presently supported by an observed outcome.
-
-**Finding:** the caravan choice, Mia's role in the finale, and the mercy-ending threshold must be considered as one connected design. Rewriting only N185 or N193 would leave the underlying contradiction intact.
-
-### Required repair before this sequence is considered complete
-
-1. Revisit Mia's post-Manticore lines and the caravan scene as one continuous character arc.
-2. Decide what the caravan choice actually does in the story. Do not label the outcome “calmed” unless the scene demonstrates that the people were calmed or helped.
-3. Give the yes and no choices legible consequences, even if both paths eventually continue toward Kalay.
-4. Establish why Mia takes point and what her action means in each branch.
-5. Rework Mia's line in Ash Jenna's finale so it follows from the revised caravan scene rather than simply repeating the same extreme impulse.
-6. Update stale event comments that still refer to the removed harbor-child choice.
-7. Test both caravan branches and all combinations of the three mercy flags, including the resulting Complicit, Mercy, and Divided finale paths.
-
-No dialogue, flags, or event logic were changed as part of this audit. This is a source-verified defect report and a blocker for treating the Lamakan-to-Tolbi narrative as complete.
+This removal is intentional. Do not restore the caravan, its dialogue, its flag, or its finale callback when continuing the Lamakan rewrite. The Manticore aftermath and Ash Jenna's reveal should carry the story forward without it.
