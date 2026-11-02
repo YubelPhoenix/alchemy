@@ -114,3 +114,49 @@ Therefore the safe policy remains:
 4. Inspect the message speaker implementation and an existing leader-speaker example before approving Isaac dialogue.
 5. Run grammar, placeholder expansion, 27-character working-ceiling, and rendered-width checks only after all live dialogue rows are mapped.
 6. Rewrite complete chronological scenes, not isolated fragments, and validate each branch in-game or through a reliable event test.
+
+## J. Verified trigger inventory and corrections from the deeper source pass
+
+### Elemental Star Room: exact interaction coverage
+
+The trigger table contains these player-facing interactions:
+
+- Talk to Kraden: before Alex takes the stars, he asks the party to bring them; the line changes after the Venus Star is bagged. After the hostage event, he expresses responsibility.
+- Talk to Jenna: before the reveal, her line changes after the Venus Star is bagged. After Alex takes the stars, she says Felix is alive.
+- Talk to Saturos: he demands the final star.
+- Talk to Menardi: she demands the final gem.
+- Talk to Felix: he says nothing; the message is an ellipsis.
+- Mind Read Kraden: same state-dependent event as talking to him.
+- Mind Read Jenna: same state-dependent event as talking to her.
+- Mind Read Saturos: the same final-star demand message.
+- Mind Read Menardi: the same final-gem demand event.
+- There is no Felix Mind Read trigger in this table.
+- Walking north toward the way back triggers Kraden stopping the party until the stars are taken.
+- The east and south jump spots are traversal triggers, not dialogue.
+- The four pedestal examine triggers each stop responding after their corresponding state flag is set.
+
+This distinction matters: the captors' lines after Alex has taken the three stars are not the same as their dialogue during the initial confrontation. Do not merge these message states.
+
+### Statue puzzle: corrected exact sequence
+
+The source header and initialization code give the following authoritative sequence:
+
+1. The first seal opened **before the centre statue has moved** sends the party back to the Luna and Sol rooms with the falling-lights trap transition. This is the first trap event.
+2. On the return to the statue room, Kraden's first explanation event runs once. He explains that moving a statue springs the trap, that something important is hidden here, and that light may be the key. Jenna and Garet are staged for this conversation and then rejoin the leader.
+3. After the falling-lights event has been seen, a seal opened too early no longer sends the party away. The seal animation plays, the statue slides back, the leader jumps clear, and the seal flag is cleared.
+4. Both beam statues must shine on the centre. This opens the floor hole. Moving the centre statue south into the hole disarms the trap.
+5. The first seal opened after the centre statue has moved sends the party to the Luna and Sol rooms with the trap-disarmed transition. On return, Kraden's second explanation event runs once; he recognizes the hole and explains how the puzzle disarmed the trap.
+6. The remaining seals can then be opened and remain open. Once all four are open, the route onward is revealed in the Luna and Sol rooms.
+
+The prior summary was broadly right about the trap, but this detailed state progression is the version to follow. In particular, the first trap trip and later failed seal attempts are two different behaviors.
+
+### Existing custom watcher: do not silently expand it
+
+The current statue-room source already contains a custom, silent cloaked-figure event:
+- Actor template: `SPRITE_GAROH_HOODED_FIGURE`.
+- Event: `SolSanctumStatue_WatcherAppears`.
+- Flag: `FLAG_DARK_WATCHER_SANCTUM_STATUE`.
+- It appears briefly in the south corridor as the party leaves the statue room, watches without speaking, and disappears.
+
+This is an existing custom addition in the branch, not an event established by the original game's statue-puzzle sequence. Its identity, motive, and future payoff must not be inferred from its sprite or flag name. Before the rewrite relies on it, compare it with the project's approved Ashfall continuity decisions and confirm that it belongs in this location. Do not add dialogue, a reveal, or a new consequence to it merely because the actor exists.
+
