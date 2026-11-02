@@ -63,19 +63,19 @@
 05386	message	Then this may be\nhappening elsewhere.{end_wait}
 05387	message	You fought beasts\non your journey here.{end_wait}
 05388	message	Perhaps they were\nordinary animals once.{end_wait}
-05389	message	Once, they were pure\nof heart... Hroom...{page_break}Those gems have brought\na great evil to\nthe world...{end_wait}
-05390	message	Oh! Laurel, you were\ngiven powers, too?{end_wait}
-05391	message	Different from mine,\nbut from the same\nsource.{end_wait}
-05392	message	Laurel! What are\nyou doing?{end_wait}
-05393	message	Wait. You'll soon see.{end_wait}
-05394	message	What did you see, Laurel?{end_wait}
-05395	message	It's true{em_dash}even the\nanimals have become\nmonsters.{page_break}And beyond the river...{end_wait}
-05397	message	Yes... An evil forest\nhas risen south of\nthe river.{end_wait}
-05399	message	That area will only\ngrow more dangerous...{page_break}If you must go, hurry.{end_wait}
-05400	message	Good... It would be\nfoolish to risk your\nlives further.{end_wait}
-05402	message	May your roots go deep\nand your branches\nreach high.{end_wait}
-05403	message	Were you surprised,\n{actor_name:1}? We trees have\ngrown strong.{end_wait}
-05409	message	Oh!{pause_20_skippable} You're the ones who\nresisted Tret's glamour?{end_wait}
-05410	message	I sense a great warmth\nwithin you...{end_wait}
-05411	message	If you came to rescue\nTret, you're already\ntoo late.{end_wait}
-05412	message	Soon, Tret will die,\nand we shall wither\naway without him.{page_break}Leave now, before this\nforest is destroyed...{end_wait}
+05389	message	They were living things.{page_break}The stones changed them.\nWe don't know how.{end_wait}
+05390	message	Laurel, did the stones\nchange you too?{end_wait}
+05391	message	My gift is different.\nIts source is the same.{end_wait}
+05392	message	Laurel? What is it?{end_wait}
+05393	message	Wait. You'll see.{end_wait}
+05394	message	What did you find, Laurel?{end_wait}
+05395	message	The animals have changed.{page_break}And south of the river...{end_wait}
+05397	message	Another forest\nhas changed there.{end_wait}
+05399	message	That land is dangerous.{page_break}If you go, be careful.{end_wait}
+05400	message	Then stay here.\nThere's no shame in it.{end_wait}
+05402	message	May the earth\nkeep you safe.{end_wait}
+05403	message	We've grown stronger,\n{actor_name:1}.{end_wait}
+05409	message	You resisted\nTret's power?{end_wait}
+05410	message	There's warmth\nin your hearts.{end_wait}
+05411	message	If you came for Tret,\nyou may be too late.{end_wait}
+05412	message	His life is fading.{page_break}When he dies,\nthis forest will follow.{page_break}Leave while you can.{end_wait}
