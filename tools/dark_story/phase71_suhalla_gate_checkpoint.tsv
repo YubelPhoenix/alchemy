@@ -1,0 +1,10 @@
+# Suhalla Gate checkpoint: travel papers, Colosso guards, Iodem's arrival and the wounded soldiers.
+09805	MsgSuhallaTravelPapersRequired	Only travelers with\nproper papers may pass.\nShow them, or turn back.{end_wait}
+09806	MsgSuhallaWantGoBabi	Are you heading to\nBabi Lighthouse?{end_now}
+09810	MsgSuhallaObeyBabiOrders	I do not question why\nBabi ordered us to guard\nthis passage.{page_break}I follow his orders.\nThat is what a soldier\nis expected to do.{end_wait}
+09811	MsgSuhallaSeeColossoNextYear	I wonder whether\nColosso has finished\nfor the year.{page_break}I would have liked to\nsee it. Perhaps next\nyear...{end_wait}
+09812	MsgSuhallaMeaning	What happened here?\nWho did this to my men?{end_wait}
+09831	MsgSuhallaSendHelpFromTower	I cannot get up...\nI do not think I can\nstand.{page_break}Please, send help from\nBabi Lighthouse when\nyou reach it.{end_wait}
+09832	MsgSuhallaPityColossoVictor	A Colosso victor should\nnot have to suffer\nlike this.{page_break}When I find those\nresponsible, I will\nsettle the score.{end_wait}
+09833	MsgSuhallaAshamedBeforeIodem	Damn it... I cannot bear\nfor Iodem to see me\nlike this.{page_break}I would rather hide\nthan face him in this\ncondition.{end_wait}
+09834	MsgSuhallaSurvivedAttack	I thought I was dead.\nI can hardly believe\nI survived.{page_break}Those strange men with\nwild hair overwhelmed\nus with their power.{end_wait}
