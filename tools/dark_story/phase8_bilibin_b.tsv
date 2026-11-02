@@ -1,12 +1,12 @@
 05839	MsgBilibinTheEruptionOnTheOtherSide	Mt. Aleph is quiet now.{page_break}I hope it stays that way.{end_wait}
 05840	MsgBilibinNowThatTheCurseIsBroken	The curse is lifted.\nWill they start\nthe palace again?{end_wait}
 05841	MsgBilibinItsOverOverMilordDecidedNot	No. Lord McCoy\nhas stopped the work.\nThe forest needs time.{end_wait}
-05842	MsgBilibinHmphMyPalaceIsNotFinished	He promised me\na palace.{page_break}I know what happened\nin Kolima, but...\nI wanted that home.{end_wait}
+05842	MsgBilibinHmphMyPalaceIsNotFinished	He promised me a palace.\nNow he bows to fear.{page_break}Those people have their\nhomes. Where is mine?{end_wait}
 05843	MsgBilibinINeverWantToBeTurned	I remember everything.\nEven when I was a tree.{end_wait}
 05844	MsgBilibinNotManyLumberjacksAreWillingTo	No one wants to cut\nthe trees near Kolima.\nI can't blame them.{end_wait}
 05845	MsgBilibinOneOfTheTwoPeopleThat	Two travelers passed.\nOne seemed injured.{end_wait}
 05846	MsgBilibinThatGuyMightTurnIntoA	He was a tree once.\nI still can't forget it.{end_wait}
-05847	MsgBilibinLordMccoySeemsToBeHaving	They barely speak now.\nHe knows why the curse\nbegan. So does she.{end_wait}
+05847	MsgBilibinLordMccoySeemsToBeHaving	They argued again.\nShe says he let\nstrangers shame him.{end_wait}
 05848	MsgBilibinApparentlyJustAboutAnyoneCouldJust	The barricade barely\nslowed anyone down.{end_wait}
 05849	MsgBilibinTheGangOfThreeHaTheyre	The Gang of Three?\nI haven't seen them.{end_wait}
 05850	MsgBilibinImSureLordMccoyWillGive	A reward is owed,\nbut it won't bring back\nwhat people endured.{end_wait}
@@ -17,9 +17,9 @@
 05855	MsgBilibinThatWasCloseBuildingACursed	The work has stopped.\nI have men to pay\nand no timber to sell.{end_wait}
 05856	MsgBilibinHeSaidHeStoppedConstructionSo	McCoy says the curse\nchanged his mind.{page_break}Maybe fear taught him\nwhat reason couldn't.{end_wait}
 05857	MsgBilibinDoKnowIfHolyTree	Did the holy tree\nsurvive? Do you know?{end_now}
-05860	MsgBilibinThankGoodnessTheyStoppedConstructionOf	The work has stopped.\nSome are relieved.\nLady McCoy isn't.{end_wait}
+05860	MsgBilibinThankGoodnessTheyStoppedConstructionOf	Milady won't forgive\nhim for ending the work.\nNot anytime soon.{end_wait}
 05861	MsgBilibinItTakesManyYearsForA	It took centuries\nfor that tree to grow.\nWe nearly lost it.{end_wait}
-05862	MsgBilibinSometimesIWishICouldSee	I still wonder what\nthe palace might've been.{end_wait}
+05862	MsgBilibinSometimesIWishICouldSee	I wonder what that\npalace would have been.{page_break}Perhaps it's best\nwe'll never know.{end_wait}
 05863	MsgBilibinIAlwaysMissAltinInThe	I miss Altin in winter.{page_break}The mines were warm\neven in the cold.{end_wait}
 05864	MsgBilibinMyFatherSaysThatItsWarm	Father says it's warmer\nsouth of the river.{end_wait}
 05865	MsgBilibinIWonderIfThereAreStill	Are there still gems\nin Altin Mine?{end_wait}
