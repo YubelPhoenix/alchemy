@@ -1,7 +1,0 @@
-# Mogall keeper: the door to the camp.
-N177	MsgDarkMogallDoorAsk	Open the door to the camp?{end_now}
-N178	MsgDarkMogallDoorYesIsaac	Open it. They're not\nmonsters, they're just\nfrightened.{end_wait}
-N179	MsgDarkMogallDoorYesKeeper	Then you'll be the one who\nburies whatever comes out.\nI buried the others.{end_wait}
-N180	MsgDarkMogallDoorYesGaret	One of them is humming a\nlullaby, Isaac. She just\nwon't stop.{end_wait}
-N181	MsgDarkMogallDoorNoIsaac	I'm sorry, but we can't\nsave all of them.{end_wait}
-N182	MsgDarkMogallDoorNoMia	At least that was honest.\nNow keep walking, Isaac.{end_wait}
