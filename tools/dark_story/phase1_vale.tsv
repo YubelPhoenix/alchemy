@@ -56,22 +56,22 @@
 03723	MsgValeSaveYourselves	I knew it... Leave me.\nSave yourselves...{end_wait}
 03724	MsgValeNoBrother	Oh no... my brother!\n{actor_name:5}!{end_wait}
 03725	message	Hang on, {actor_name:5}!\nPlease, hang on!{end_wait}
-03726	message	{actor_name:5} will be fine.\nWe'll find a way to\nsave him. We have to.{end_wait}
+03726	message	We can still reach him.\nThere has to be a way.{end_wait}
 03728	message	The rope won't reach.\nWe need Psynergy. Do you\nhave any left?{end_wait}
-03729	message	I'm empty. Kyle? Please\ntell me you have some.{end_wait}
+03729	message	I've nothing left. Kyle?\nPlease. Tell me you can.{end_wait}
 03730	message	I'm drained. I spent it\nall getting people out...\nI'm sorry.{end_wait}
 03731	message	We need help. Someone...\nanyone with Psynergy.{end_wait}
-03732	message	Can {actor_name:5} hold on\nlong enough? Can he?{end_wait}
+03732	message	How long can he hold on?\nLook at the current...{end_wait}
 03733	message	There's nothing else we\ncan do for him here...\nis there?{end_wait}
 03734	message	Then get help. Be quick!\nEvery second counts!{end_wait}
 03735	message	{actor_name:6}, go with them.\nPlease. I'll stay here.{end_wait}
-03736	message	You'll find help...\nwon't you?{end_wait}
+03736	message	Find someone. Please.\nDon't come back alone.{end_wait}
 03737	message	Your brother is counting\non you, {actor_name:6}.{end_wait}
 03738	message	All right. Let's go.{end_wait}
 03739	MsgValeGoLookNorth	I'll check the north path.\nYou go to the plaza. And\ndon't follow me.{end_wait}
 03740	message	Yes, ma'am. Anyone with\nPsynergy left. Anyone\nat all.{end_wait}
 03742	message	You saw it, didn't you?\nYou saw what happened.{end_now}
-03743	message	I have to find help before\n{actor_name:5} drowns!{end_wait}
+03743	message	I have to find help.\nHe's still in the river!{end_wait}
 03744	message	{actor_name:5} fell in the river.\nI need someone with\nPsynergy. Please!{end_wait}
 03745	MsgValeDontSupposeTwo	I don't suppose... could\nyou two help me? Please.\nI can't do this alone.{end_now}
 03746	message	{actor_name:6} went to the plaza\nfor help. Go to her.{end_wait}
