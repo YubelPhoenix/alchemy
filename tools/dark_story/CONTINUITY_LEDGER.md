@@ -308,3 +308,12 @@ The commit adding the six Babi scholars entries is `1719d5e345ad3e8ca314b48138c2
 3. Audit the story flags and callbacks in phases 28–70 against the actual scene scripts. In particular, keep pre-/post-Colosso, pre-/post-audience, first-/second-visit Lalivero, Aerie battle/fall, and Black Orb/ship states distinct.
 4. Run the dialogue validator and build after each edit batch. Then test the resulting IPS in-game across representative branches, the Venus Lighthouse puzzle, both Aerie battles, the Sheba aftermath, the Black Orb departure and the post-game ending. A successful compile is not proof of correct progression or balance.
 
+
+
+### Suhalla Gate checkpoint dialogue coverage — 2 November 2026
+
+A dedicated phase71_suhalla_gate_checkpoint.tsv now covers nine previously absent named dialogue references from games/tbs/src/scene/suhalla_gate.c: travel papers (09805), the Babi Lighthouse question (09806), the soldier obeying Babi's orders (09810), the Colosso spectator (09811), Iodem's confrontation (09812), the wounded soldier asking for help from the Lighthouse (09831), the injured Colosso victor (09832), the guard ashamed before Iodem (09833), and the surviving guard's account of the attack (09834).
+
+The lines were rewritten against their original English text and the source event sequence. In particular, the post-audience scene is still Iodem questioning his wounded guards after the attack; it does not imply that the party has already reached Babi Lighthouse. The original game question about Felix and the subsequent Iodem dialogue remain in their source-defined sequence; no scene logic, flags, actor placements, or event ordering were changed.
+
+The shared MsgGotPsynergyStone (02416) was deliberately not included: it is not a Suhalla Gate-specific line and must be resolved against the full phase index before any shared-text rewrite. The checkpoint's unnamed sequential message offsets also remain a separate branch-level audit item. This addition has not yet been validated by GitHub Actions or tested in-game; run the dialogue validator and full build before calling it technically verified.
