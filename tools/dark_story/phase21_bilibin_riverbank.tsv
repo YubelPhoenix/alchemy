@@ -20,11 +20,17 @@
 06002	MsgBilibinShellBeSweptDownstreamIfShe	The current will drag\nher under if no one\npulls her out!{end_wait}
 06003	MsgBilibinAhhhhPleaseAnyonePleaseHelp	AHHHH! Please! Anyone!\nHelp me!{end_wait}
 06004	MsgBilibinThankSavedMeFromBeing	Thank you! You pulled me\nout before the river took\nme!{end_wait}
+06005	MsgBilibinYoureGuy	Hey! You're the one who\npulled Jill from the\nriver!{end_wait}
 06006	message	Jill, are these the\nones who saved you?{end_wait}
+06007	message	Do you remember me? I\nwas the tree in the\nriver.{end_wait}
 06008	message	The river would have\ncarried me away if it\nweren't for you.{end_wait}
+06009	message	Please, take this. It\nisn't much, but I want\nyou to have it.{end_wait}
+06010	MsgBilibinJillGaveIsaacSpecialGift	Jill gave {actor_name:1} a\ntoken of thanks.{end_wait}
 06011	message	I'll never forget what\nyou did for me.\nThank you.{end_wait}
 06013	MsgBilibinIReallyLikeThisSpotBy	I like this spot by the\nriverbank... The water\nstill sounds peaceful.{end_wait}
 06014	MsgBilibinIWillThinkOfYouWhenever	I'll think of you\nwhenever I taste a\npersimmon.{end_wait}
+06015	MsgBilibinIHeardWeWereOnceCalled	They used to call us the\nGang of Three. After\nwhat happened to Jill,\nI don't know if that\nname feels right anymore.{end_wait}
+06016	MsgBilibinIfOnlyWeHadntTriedGetting	If we hadn't gone after\nthose persimmons, Jill\nwouldn't have been swept\ninto the river.{page_break}We nearly lost her. I\ndon't think we'll ever\nclimb on each other's\nshoulders again.{end_wait}
 06017	MsgBilibinWhoseIdeaWasItToPick	Whose idea was it to\npick persimmons,\nanyway?{end_wait}
 06018	MsgBilibinWellItWasntMyIdeaTo	Don't look at me.\nIt wasn't my idea.{end_wait}
 06019	MsgBilibinThesePersimmonsAreJustLikeMy	These persimmons are\njust like my memories...\nSo{pause_20_skippable} bitter...{end_wait}
