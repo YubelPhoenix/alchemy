@@ -15,7 +15,6 @@ on:
       - 'games/tbs/src/graphics/sprite/layout.tsv'
       - 'tools/dark_story_rewrite.py'
       - 'tools/dark_story/*.tsv'
-      - '.github/workflows/build-golden-sun-dialogue.yml'
 
 permissions:
   contents: read
