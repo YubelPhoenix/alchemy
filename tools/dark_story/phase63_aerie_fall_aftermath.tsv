@@ -40,7 +40,7 @@
 10294	message	I cannot believe he\nleapt from that height!{end_wait}
 10295	message	Fool, {actor_name:5}!{pause_20_skippable} I cannot\nbelieve he still meant\nto awaken the beacons.{end_wait}
 10296	message	We might have stopped\nhim if the ground had\nnot broken...{end_wait}
-10297	message	But he risked his life\nto save {actor_name:7}. He is\nnot like Saturos.{end_wait}
+10297	message	But he risked his life\nto save {actor_name:7}. We\ncannot ignore that.{end_wait}
 10298	message	I'm lost, {actor_name:1}.\nWe must decide what\nto do now.{end_wait}
 10299	message	What choice is left?{pause_20_skippable}\nWhat {text_effect:2}can{reset_text_style} we do?{end_wait}
 10300	message	What about {actor_name:6} and\nthe others at Idejima?{end_wait}
