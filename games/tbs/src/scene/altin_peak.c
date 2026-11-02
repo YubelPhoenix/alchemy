@@ -277,7 +277,6 @@ enum {
   ACTOR_WEST_EXIT_ROOM_BOULDER = ACTOR_FIRST_PLACED,
   /// ★ Named from what the player sees: a stone pillar south of the boulder
   /// (its render)
-  ACTOR_WEST_EXIT_ROOM_PILLAR,
   ACTOR_WEST_EXIT_ROOM_PILLAR
 };
 
