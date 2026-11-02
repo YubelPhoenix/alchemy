@@ -52,8 +52,8 @@
 08273	MsgBabiPalaceActorIsNotPermittedToLeave	{actor_name:7} cannot leave\nthis room. Her title\nmeans nothing here.{page_break}She is a child, and\nthere is no safe road\nback to Gondowan alone.{end_wait}
 10672	MsgBabiPalaceTheArmorLooksHeavyItLooks	This armor is battered.\nIt must have belonged\nto a Colosso fighter.{end_wait}
 10673	MsgBabiPalaceTheresNothingInThereItsCompletely	The room is dark.\nOnly a few old dice\nlie scattered inside.{page_break}Someone spent a long\ntime here, and lost\nmore than a game.{end_wait}
-10674	MsgBabiPalaceTheresAHeadbandItSaysNever	A headband. The words\nare faded, but still\nlegible: Never give up.{end_wait}
-10675	MsgBabiPalaceTheresABookEntitledTheHeart	A book called The Heart\nof the Colosso Warrior.{page_break}Its advice is simple:\nFight hard. Leave your\nmoney out of the wagers.{end_wait}
+10674	MsgBabiPalaceTheresAHeadbandItSaysNever	A headband. Its words\nare nearly worn away:\nHold fast until the bell.{end_wait}
+10675	MsgBabiPalaceTheresABookEntitledTheHeart	A book titled The\nFighter's Discipline.{page_break}Its advice is simple:\nFight hard. Leave your\nmoney out of the wagers.{end_wait}
 10676	MsgBabiPalaceTheresANotebookThatShowsThe	A ledger of dice games.\nThe same name appears\nagain and again.{page_break}The sums beside it\nare all losses.{end_wait}
 10677	MsgBabiPalaceTheresABookEntitledBecomeA	A book: Become Strong\nin Twelve Easy Steps.{page_break}The pages are full of\nexercises and promises.\nMost are underlined.{end_wait}
 10678	MsgBabiPalaceHeyItsBabisDiaryItReads	Babi's diary. The last\nentry is brief:{page_break}"This Colosso may be\nmy last..."{end_wait}
