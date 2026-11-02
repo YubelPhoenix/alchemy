@@ -1,18 +1,6 @@
 # Lamakan Desert: Mia is shaken by the Manticore and briefly lets her anger show.
-N149	MsgDarkManticoreMiaGloat	It's over. After what it
-did, I wanted it dead. I
-only wish it had suffered
-less before we arrived.{end_wait}
-N150	MsgDarkManticoreGaretSmile	Mia... you sounded almost
-pleased when it fell. I've
-never heard you speak like
-that.{end_wait}
-N151	MsgDarkManticoreMiaPlace	I know. I let my anger get
-the better of me. That
-isn't who I want to be.{end_wait}
-N152	MsgDarkManticoreMiaSoft	I'm all right, Isaac. Just
-give me a moment. I won't
-let this change me.{end_wait}
-N153	MsgDarkManticoreIsaacSupport	You don't have to carry
-what happened here alone,
-Mia. We're with you.{end_wait}
+N149	MsgDarkManticoreMiaGloat	It's over. After what it\ndid, I wanted it dead. I\nonly wish it had suffered\nless before we arrived.{end_wait}
+N150	MsgDarkManticoreGaretSmile	Mia... you sounded almost\npleased when it fell. I've\nnever heard you speak like\nthat.{end_wait}
+N151	MsgDarkManticoreMiaPlace	I know. I let my anger get\nthe better of me. That\nisn't who I want to be.{end_wait}
+N152	MsgDarkManticoreMiaSoft	I'm all right, Isaac. Just\ngive me a moment. I won't\nlet this change me.{end_wait}
+N153	MsgDarkManticoreIsaacSupport	You don't have to carry\nwhat happened here alone,\nMia. We're with you.{end_wait}
