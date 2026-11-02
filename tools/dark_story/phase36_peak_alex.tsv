@@ -1,5 +1,0 @@
-# Alex waits in the Altin Peak west exit after Mercury Lighthouse is lit.
-N111	MsgDarkPeakAlexRoads	You lit that lighthouse.\nI know the look.{page_break}Everyone down there\nwears it now.{end_wait}
-N112	MsgDarkPeakIsaacAlex	Who are you? What happened\nin the mine?{end_wait}
-N113	MsgDarkPeakAlexCount	Ask what didn't. The rock\nmoved on its own, and then\nthe screaming started.{end_wait}
-N114	MsgDarkPeakAlexGone	Go on. Dig if you have the\nstomach for it. Don't\nexpect thanks.{end_wait}
