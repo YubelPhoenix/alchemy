@@ -2744,11 +2744,6 @@
 /// Isaac has called after Ash Jenna in the Lamakan Desert and she has gone.
 #define FLAG_DARK_ASH_JENNA_LAMAKAN_MET 0x8b9
 
-/// Alex stands in Altin Peak's west exit room (set on entry while pending).
-#define FLAG_DARK_ALEX_PEAK_HERE 0x8ba
-/// Isaac has spoken to Alex in Altin Peak, and he has gone.
-#define FLAG_DARK_ALEX_PEAK_MET 0x8bb
-
 /// In Tolbi Isaac asked Mia for the Tideglass Blade and took it: she is weaker
 /// and her dark half quieter. Unset with the question asked means he left it.
 #define FLAG_DARK_BLADE_TAKEN 0x8c2
@@ -2765,12 +2760,6 @@
 /// (Portrait_GetForSpeaker). Set around her lines, then cleared.
 #define FLAG_DARK_HEART_SPEAKING 0x8c7
 
-/// Alex stands in the way in Mogall Forest's second area (set on entry while
-/// pending; the trigger table is that scene's own).
-#define FLAG_DARK_ALEX_MOGALL_HERE 0x8c9
-/// Alex has spoken to the party in Mogall Forest, and gone.
-#define FLAG_DARK_ALEX_MOGALL_MET 0x8ca
-
 /// Isaac dug the trapped miners out in Altin Peak's junction room
 /// (AltinPeak_TalkToTrappedMiner).
 #define FLAG_DARK_MINERS_FREED 0x8cb
@@ -2783,11 +2772,9 @@
 /// (WorldMap_MiaRejoinsParty), so a battle that reloads the entrance does not
 /// replay it.
 #define FLAG_DARK_MIA_REUNITED 0x8cd
-#define FLAG_DARK_MOGALL_DOOR_OPENED 0x8cf
 #define FLAG_DARK_MINER_STAYED 0x8d3
 #define FLAG_DARK_FINALE_DONE 0x8d4
-#define FLAG_DARK_MIA_LEFT 0x8d5
-#define FLAG_DARK_COMPLICIT 0x8d6
-#define FLAG_DARK_MERCY_ENDING 0x8d7
+#define FLAG_DARK_ASH_JENNA_ACCEPTED 0x8d6
+#define FLAG_DARK_ASH_JENNA_REFUSED 0x8d7
 
 #endif
