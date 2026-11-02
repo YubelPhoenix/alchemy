@@ -14,7 +14,6 @@
 08759	message	Babi expects you at\nthe colosseum.{page_break}Go there directly.\nThere is no need to\nvisit the palace.{end_wait}
 08770	message	Here you are.\nRest well.{end_wait}
 08771	message	If you're weary, please\ntake some time to rest.{end_wait}
-08832	MsgTolbiGetUp	{actor_name:1}!{page_break}Get up, {actor_name:1}!{end_wait}
 08833	message	Are you feeling better?\nYou were troubled by\nnightmares for a while.{end_wait}
 08834	message	What's wrong,\n{actor_name:1}?{end_wait}
 08835	message	You entered the finals?\nAnd fought in them?{end_wait}
