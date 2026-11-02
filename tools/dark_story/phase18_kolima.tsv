@@ -1,6 +1,6 @@
-05235	MsgKolimaQuiet	It's so quiet...\nThe forest is holding\nits breath.{end_wait}
-05237	message	This tree...was a person.{end_wait}
-05238	message	Everyone in Kolima has\nbeen turned into a tree.{end_wait}
+05235	MsgKolimaQuiet	It's quiet here.\nToo quiet.{end_wait}
+05237	message	That tree was a person.{end_wait}
+05238	message	Everyone here...\nThey've become trees.{end_wait}
 05239	message	It's horrible. These\ntrees in clothes are\nKolima's villagers!{end_wait}
 05246	message	{text_effect:4}My mind!!!\nSomeone{pause_20_skippable} is attacking my{em_dash}{end_wait}
 05250	message	We have to get\nout of here!{end_wait}
