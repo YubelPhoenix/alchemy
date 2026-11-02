@@ -12,14 +12,14 @@ N22	MsgDarkMiaThievesChiefWarning	Keep her busy, kid, and\ndon't let the healer 
 N23	MsgDarkMiaThievesWalkAway	Your men are on the ground.\nWalk away while you still\ncan.{end_wait}
 N24	MsgDarkMiaThievesChiefRefuses	I don't walk away from paid\nwork, girl.{end_wait}
 N25	MsgDarkMiaThievesWhoSent	Who sent you?{end_wait}
-N26	MsgDarkMiaThievesChiefLies	Nobody did. We heard a\nhealer was worth a good\nransom.{end_wait}
-N27	MsgDarkMiaThievesNotBuying	You knew my hair, my robes\nand my route, so try again.{end_wait}
-N28	MsgDarkMiaThievesChiefSlips	...It was a girl. She came\nto our camp two nights ago.{end_wait}
-N29	MsgDarkMiaThievesGold	She paid us in gold, more\nthan I've ever held, half\nnow and half after.{end_wait}
-N30	MsgDarkMiaThievesWhatLook	What did she look like?{end_wait}
-N31	MsgDarkMiaThievesRedHair	Red hair, tied back. About\nyour age, maybe a little\nolder.{end_wait}
-N32	MsgDarkMiaThievesColdEyes	She had cold eyes, and she\ndidn't blink once the whole\ntime she talked.{end_wait}
-N33	MsgDarkMiaThievesNotFromImil	Nobody in Imil looks like\nthat, so she isn't from\nhere.{end_wait}
+N26	MsgDarkMiaThievesChiefLies	Nobody hired us. We\nheard healers carry\nmedicine worth selling.{end_wait}
+N27	MsgDarkMiaThievesNotBuying	You waited on this road.\nYou knew I'd come.{end_wait}
+N28	MsgDarkMiaThievesChiefSlips	We watched the village.\nYou take this road alone.{end_wait}
+N29	MsgDarkMiaThievesGold	The roads are empty.\nWe thought no one would\ncome looking for you.{end_wait}
+N30	MsgDarkMiaThievesWhatLook	And if I had refused?{end_wait}
+N31	MsgDarkMiaThievesRedHair	We'd have taken what\nwe could and left you.{end_wait}
+N32	MsgDarkMiaThievesColdEyes	We didn't expect you\nto fight back.{end_wait}
+N33	MsgDarkMiaThievesNotFromImil	Then remember this:\nImil is not defenseless.{end_wait}
 N34	MsgDarkMiaThievesLeave	Get up, take your men and\ngo. If I see you near Imil\nagain, I won't stop.{end_wait}
 N35	MsgDarkMiaThievesChiefAgrees	...All right, we're going.{end_wait}
-N36	MsgDarkMiaThievesNotAWord	Don't say a word of this to\nanyone, not yet.{end_wait}
+N36	MsgDarkMiaThievesNotAWord	I'll warn the village.\nYou won't get another\nchance.{end_wait}
