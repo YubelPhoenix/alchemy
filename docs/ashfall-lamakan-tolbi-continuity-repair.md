@@ -135,6 +135,21 @@ The caravan awakening sequence has been removed from the story and implementatio
 
 The post-Manticore return now has a simpler sequence: Mia's existing aftermath plays once, then Ash Jenna's revelation/finale begins automatically. The obsolete phase46_awakening.tsv dialogue file has been deleted. The caravan dialogue, choice, callback, and mercy flag have been removed from the event flow. The existing FLAG_DARK_MIA_MANTICORE_SEEN flag now gates the one-time aftermath; no separate caravan or aftermath completion flag is needed.
 
-The finale's mercy calculation now uses the two remaining choices: staying with the trapped miner and opening the Mogall camp door. Refusing Ash Jenna's offer reaches the Mercy ending when both are set; otherwise the Divided ending applies. Accepting her offer still reaches the Complicit ending.
+The Lamakan confrontation now has one clear choice: accept or refuse Ash Jenna's offer to confront the Wise One. Staying with the injured miner is remembered as a character choice but does not determine the finale branch. Mia no longer leaves the party because of that earlier decision.
 
 This removal is intentional. Do not restore the caravan, its dialogue, its flag, or its finale callback when continuing the Lamakan rewrite. The Manticore aftermath and Ash Jenna's reveal should carry the story forward without it.
+
+
+## Canonical decision: remove the Bloom and its dependent storyline
+
+The Bloom, awakened/sleeper mythology, and supernatural voice-hearing plot have been removed from the current story. The earlier findings in this report that discuss those concepts are historical audit notes and are superseded by this decision.
+
+The Mogall keeper/camp encounter and its associated Alex appearance have been removed. Alex's custom Altin Peak appearance has also been removed because it served only to foreshadow the discarded Bloom plot. The Mogall sign no longer contains an unexplained warning about lights being awake.
+
+Altin Peak's trapped-miner encounter remains as a grounded rescue after a mine collapse. The supports fail, miners are trapped behind rubble, and water is rising. Mia's hesitation now comes from the danger of causing another collapse, not from fear that the miners will transform. After the rescue, Isaac may stay with an injured miner while he recovers. There is no grey transformation or supernatural aftermath.
+
+Ivan does not hear the thoughts or voices of the awakened. His dialogue now reflects ordinary observation: he notices Ash Jenna's attempt to frighten the party and warns that the rising water is reaching the trapped miners.
+
+Ash Jenna's conflict is now personal and direct. She says the Wise One destroyed the world she came from and asks Isaac to help her confront him. The story treats this as her account and her motive, not as an explanation of a new supernatural system. The Tolbi scene continues that conflict without sleepers, awakened people, harbor voices, or lighthouse doors.
+
+Isaac's response to Ash Jenna is a straightforward accept/refuse choice. The miner's recovery choice is a separate character moment. The discarded Mogall door choice, its callback, the supernatural Ivan material, and the divided ending in which Mia leaves have been removed. Do not restore those elements.
