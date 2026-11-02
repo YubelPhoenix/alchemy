@@ -1,0 +1,58 @@
+# Venus Lighthouse Aerie: Felix's decision, the beacon's awakening, the second battle and fusion.
+10192	message	Come, {actor_name:7}...{pause_20_skippable}\nWe must move now.{end_wait}
+10193	message	{actor_name:5}! What do you\nthink you're doing?{end_wait}
+10194	message	I will not abandon\n{actor_name:7}...{end_wait}
+10195	message	What!?{pause_20_skippable} We just helped\nyou!{end_wait}
+10196	message	I never asked you\nto interfere...{end_wait}
+10197	message	{actor_name:5}, you are not one\nof us. You can leave\nwhile you still may.{end_wait}
+10198	message	Then why stay here?{end_wait}
+10199	message	All four beacons must\nbe awakened...{end_wait}
+10200	message	You mean to light all\nfour? That's madness!{end_wait}
+10201	message	I knew you'd oppose me.{pause_20_skippable}\nBut{pause_20_skippable} I will do it\nregardless.{end_wait}
+10202	message	So if he intends to\nlight the beacons, he\nis our enemy, right?{end_now}
+10203	message	Do as you wish, {actor_name:1},{pause_20_skippable}\nbut if you stand in my\nway, I will fight.{end_wait}
+10204	message	Friend or foe, you\nwill not take {actor_name:7}\nfrom me!{end_wait}
+10205	message	I hope{pause_20_skippable} you do not think{pause_20_skippable}\nyou have finished us.{end_wait}
+10206	message	You may still breathe,\nbut you can barely stand.{end_wait}
+10207	message	For now,{pause_20_skippable} yes...{pause_20_skippable}\nBut we will rise again...{page_break}and when we do{pause_20_skippable}{pause_20_skippable}\nyou will see!{end_wait}
+10208	message	No!{pause_20_skippable} He threw the\nElemental Star into\nthe lighthouse!{end_wait}
+10209	message	We failed to stop them.\nThe beacon is awake.{end_wait}
+10211	message	The beacon's energy\nwill restore our\nstrength.{end_wait}
+10212	message	How can it restore\ntheir power? Venus is\nEarth, isn't it?{end_now}
+10213	message	Then why would Venus\ngive strength to Fire\nAdepts?{end_wait}
+10214	message	Have you forgotten?\nVenus is Earth.{page_break}It should not feed\nthe power of Fire.{end_wait}
+10215	message	Fire and earth sustain\none another{pause_20_skippable}...{end_wait}
+10216	message	The light is returning\nour Psynergy!{end_wait}
+10217	message	You can defeat us a\nhundred times. We will\nnever yield.{end_wait}
+10218	message	You may have beaten\nthe two of us once...{end_wait}
+10219	message	But{pause_20_skippable} now you face the\nfull might of the northern\nFire Clan!{end_wait}
+10220	message	The northern Fire Clan?{end_wait}
+10221	message	Behold the strength\nthat endures in the\nnorthern wastes!{end_wait}
+10222	message	Enough! We beat you\nonce. We can do it\nagain!{end_wait}
+10223	message	Go, {actor_name:5}!\nTake {actor_name:7} and\nget away!{end_wait}
+10225	message	After this, we may not\nhave the strength to\nprotect {actor_name:7}.{end_wait}
+10226	message	You must take {actor_name:7}\nto the ship. Do not\nfail us!{end_wait}
+10227	message	Why are you still here?\nMove! Now!{end_wait}
+10228	message	I will not leave you\nto face them alone.{end_wait}
+10229	message	Are you afraid to lose\nto {actor_name:1}?{end_wait}
+10230	message	I wonder... Is that\nwhat this is about?{end_wait}
+10232	message	Would you watch your\nchildhood friend perish\nwithout trying to help?{end_wait}
+10234	message	You are here to shield\nthis child from the\npast you share.{end_wait}
+10235	message	Do you truly believe I{pause_20_skippable}\nwould help them?{end_wait}
+10236	message	I would not rule it out.\nNot after all this.{end_wait}
+10237	message	And you, Saturos?{pause_20_skippable}\nDo you agree?{end_wait}
+10238	message	I would not say that...{pause_20_skippable}\nBut we must not invite\nmore suspicion.{end_wait}
+10239	message	Who is telling whom\nwhat to do? Fine. I will\ntake {actor_name:7} myself!{end_wait}
+10241	message	Wait, {actor_name:5}! You\ncannot leave us!{end_wait}
+10242	message	{actor_name:5} is the least of\nyour concerns now...{end_wait}
+10244	message	Now you will learn{pause_20_skippable}\nwhat true strength means!{end_wait}
+10245	message	Their Psynergy is\nrising beyond control!{end_wait}
+10246	message	Hah!{pause_20_skippable} There is no\nescape now!{end_wait}
+10247	message	They're joining\ntogether!{end_wait}
+10248	message	They have become one!\nEveryone, fall back!{end_wait}
+10249	MsgVenusPairDefeated	How...{pause_20_skippable} How could\nwe be defeated?{end_wait}
+10250	message	We were stronger in\nevery way{pause_20_skippable}, yet they\novercame us...{end_wait}
+10252	message	We defeated them...{pause_20_skippable}\nbut did we truly win?{end_now}
+10253	message	Even though we failed\nto stop the beacon?{end_wait}
+10254	message	Then all our efforts\nwere for nothing.{end_wait}
+10255	message	What are you saying?{end_wait}
