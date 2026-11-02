@@ -230,7 +230,7 @@ See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the verified event ord
 
 ### Canonical correction: Kegare cameo super boss
 
-The character previously named Ondra is **Kegare (穢れ)**, meaning impurity/defilement. Per the user's sprite-animation continuity, Kegare deliberately mimics Mia and ultimately intends to replace her. She is a cameo super boss from that wider continuity, in the same broad cameo category as Heart, not a native Golden Sun Tideglass Queen or a benevolent entity awakened by kindness.
+The character previously named Ondra is **Kegare (穢れ)**, meaning impurity/defilement. Per the user's sprite-animation continuity, Kegare deliberately mimics Mia and ultimately intends to replace her. She is a cameo super boss from that wider continuity, in the same broad cameo category as Heart, not a native Golden Sun sea goddess or a benevolent entity created by kindness.
 
 The earlier Tideglass Queen / shared-tide explanation is noncanonical and must be discarded. Child-rescue and three-kindness flags, if retained, are encounter-discovery/access conditions only; they do not explain Kegare's origin or motive. The harbor child is a separate story thread unless a coherent connection is established independently. Keep Kegare and Heart distinct. Her dialogue should emphasize unsettling imitation and replacement while keeping her full origin restrained enough that she remains a cameo rather than taking over Golden Sun's main plot. See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the superseding character definition and revision requirements.
 
@@ -324,7 +324,7 @@ The following targeted revisions address issues found during the dialogue audit:
 - Ivan no longer has supernatural hearing or a connection to a Bloom. His lines now reflect ordinary observation and urgency during the mine rescue.
 - Heart's post-battle explanation retains the Tuaparang and lost-world revelation but stops short of explaining the faction's purpose or history.
 
-The finale's source flow has been updated after removing the caravan sequence. The Complicit outcome follows accepting Ash Jenna's offer; refusing it reaches the Mercy outcome only when both remaining mercy choices are set (miner stayed and Mogall door opened), otherwise the Divided outcome is selected and Mia leaves. The event message index advances between each speaker, so the consecutive branch message IDs are intentional.
+The Lamakan confrontation now uses a single accept/refuse choice for Ash Jenna's offer. The miner's recovery choice is remembered only as a character callback. Mia remains with the party regardless of that earlier choice; the old Mogall-door mercy calculation and Divided departure are gone. The event message index advances between each speaker, so the consecutive branch message IDs are intentional.
 
 
 ## Canonical decision: remove the Bloom and its dependent storyline
