@@ -283,3 +283,28 @@ The post-Lamakan Tolbi encounter has now been revised in `phase30_tolbi_ash_jenn
 The contradictory mud / flood wording in `phase34_mogall_lamakan.tsv` has also been removed. The dialogue now describes the actual source-defined sand, heat, dust, and ash-thick air of Lamakan; no environmental or heat-hazard logic was changed.
 
 Kegare's former Ondra source identifiers and dialogue filename have been renamed to Kegare. Her encounter-access conditions remain unchanged and are not presented as the source of her origin or motive. Her current moveset now contains the four highest-power appropriate Mercury Psynergy attacks in the table (Ice Missile, Freeze Prism, Deluge, Froth Spiral), both Water/Ice Blessings, Ply, and Pure Ply. Her two-action turn structure remains unchanged. Run 354 passed the full build-and-patch workflow on its tested commit. Subsequent Aerie sequential-dialogue additions are covered by run 358, which passed dialogue validation, modified-edition compilation, baseline verification, IPS generation, and test-patch upload. A code build alone does not constitute boss-balance testing or in-game progression verification.
+
+### Current late-game source-to-phase audit — 2 November 2026
+
+This section supersedes the older late-game coverage counts and the earlier next-action list above. The branch now contains dialogue batches through `phase70_lalivero_interior_sequences.tsv`. Phases 49–70 contain **1,087 unique replacement rows** in total: 756 across phases 49–63 and 331 across phases 64–70. The dialogue validator rejects duplicate IDs across the batch, so this is a count of distinct replacement entries, not a count of scene visits.
+
+The Babi Palace and surrounding sequences have advanced beyond the earlier partial status:
+
+- `babi_palace.c`: all 93 distinct named message references found in the scene are represented across phases 49 and 64–67. The four sequential Babi Palace batches now contain 175 rows (52, 42, 41 and 40).
+- `cottage_rooms_b.c`: the later Babi scholars' room had six missing entries. Added the Kraden question and both responses (08889–08891), plus the three bookcase examinations (10679–10681), to `phase50_babi_scholars.tsv`. Phase 50 now contains 25 rows. These are player-facing dialogue and examination text; no scene logic or flags changed.
+- `babi_lighthouse.c`: all 40 distinct `MsgBabi...` references are represented in phase 53. The sequential sealed-door event is also covered: every message ID from 09986 through 10070 is present (85 entries). `MsgFieldFlippedSwitch` is a shared system message, not a missing Babi-specific line.
+- `suhalla.c`: all 30 distinct named message references are represented in phase 51. The 44 interior references in `timber_rooms_a.c` are represented in phase 52, and the separate 38-message Iodem / wounded-soldier sequence (09707–09744) is represented in phase 68.
+- `lalivero.c`: all 51 distinct named message references are represented in phase 54; the 62-row town sequence is in phase 69. The 59-message interior sequence (10320–10378) is fully represented across phases 55 and 70, with no missing IDs in that range.
+- `venus_lighthouse_aerie.c`: all eight distinct named message references are represented across phases 61–63. The Aerie draft remains subject to event-order, battle-state and in-game checks.
+
+A source-to-phase scan also surfaced several shared messages used by more than one scene: `MsgInnWelcome`, `MsgSuhallaNowhereFound`, `MsgGomaNoUsePsynergy`, `MsgValeWoodenBoxEmpty`, `MsgVaultIsaacCheckedChest`, and `MsgGotPsynergyStone`. These must be checked against the complete phase index before being treated as omissions; shared system text should not be rewritten blindly. The same applies to shared field text such as `MsgFieldFlippedSwitch`.
+
+The commit adding the six Babi scholars entries is `1719d5e345ad3e8ca314b48138c28f98616b8ab6`. Workflow run 396 has passed the dialogue-validation step; the pinned toolchain build and modified-edition compilation were still in progress at the time of this note. Do not call the patch build-verified until that run completes successfully.
+
+### Next audit actions
+
+1. Resolve the shared-message list above against all phase files. Rewrite only those shared lines that are genuinely missing and whose player-facing meaning warrants a replacement.
+2. Continue source-to-phase review of optional NPC dialogue, Mind Read, examinations, conditional actor tables and post-flag variants for Tolbi through the Lemurian ship. Named-message presence alone does not prove that every branch or sequential offset is covered.
+3. Audit the story flags and callbacks in phases 28–70 against the actual scene scripts. In particular, keep pre-/post-Colosso, pre-/post-audience, first-/second-visit Lalivero, Aerie battle/fall, and Black Orb/ship states distinct.
+4. Run the dialogue validator and build after each edit batch. Then test the resulting IPS in-game across representative branches, the Venus Lighthouse puzzle, both Aerie battles, the Sheba aftermath, the Black Orb departure and the post-game ending. A successful compile is not proof of correct progression or balance.
+
