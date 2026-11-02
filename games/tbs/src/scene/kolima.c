@@ -1958,8 +1958,8 @@ static void Kolima_HeartSays(void) {
   Portrait_CloseWindow(1);
 }
 
-/// Heart, shocked to see Matthew alive in Isaac, attacks. Her battle is set up
-/// as Ondra's is; the scene after it is Kolima_HeartAftermath.
+/// Heart recognizes Matthew in Isaac's face. Her defeat by Matthew taught her
+/// not to hold back her Dark Adept abilities; this encounter tests that resolve.
 static void Kolima_TalkToHeart(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkHeartShock);
@@ -1981,8 +1981,8 @@ static void Kolima_TalkToHeart(void) {
   Event_End();
 }
 
-/// After Heart's defeat she kneels, learns Isaac is not Matthew, hands over her
-/// prize and fades away.
+/// After Heart's defeat, she recognizes Isaac is not Matthew, identifies herself
+/// as Tuaparang, hints that her people survived their world's destruction, and leaves.
 static void Kolima_HeartAftermath(void) {
   Event_Start();
   // Run from the scene's start-up: bring the picture in before anyone speaks.
