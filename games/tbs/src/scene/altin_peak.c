@@ -418,8 +418,8 @@ const struct SceneExitRegion *Scene_GetExitRegions(void) {
 const u32 *Scene_GetExits(void) { return gAltinPeak_Exits; }
 
 /// The collapsed mine: a miner begs the party to dig out his trapped fellows.
-/// Mia would let them drown and Garet argues; Isaac decides. Digging them out
-/// earns a loaf of bread, once.
+/// Mia fears another collapse; Garet insists they must try. Isaac decides.
+/// Digging them out earns a loaf of bread, once.
 static void AltinPeak_TalkToTrappedMiner(void) {
   Event_Start();
   if (GameFlag_Get(FLAG_DARK_MINERS_FREED) != 0) {
