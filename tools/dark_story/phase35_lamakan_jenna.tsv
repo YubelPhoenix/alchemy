@@ -1,5 +1,5 @@
 # Ash Jenna glimpsed in the Lamakan Desert after Mercury Lighthouse is lit.
-N106	MsgDarkLamakanJennaWatch	Look at the sand, Isaac.\nIt's still warm where they\nfell.{page_break}That's the beacon you\nfailed to stop. I only watched.{end_wait}
+N106	MsgDarkLamakanJennaWatch	Look at the sand, Isaac.\nIt's still warm where they\nfell.{page_break}You failed to stop it.\nI only watched.{end_wait}
 N107	MsgDarkLamakanIsaacWait	Jenna, wait! Whatever this\nis, we can still stop it.\nCome back!{end_wait}
 N108	MsgDarkLamakanJennaUndo	Stop it? Sweet Isaac, I've\nseen what stopping it looks\nlike. It's a long grave.{end_wait}
 N109	MsgDarkLamakanJennaClimb	Keep chasing them. I'll be\nwarm when the last one\nburns.{end_wait}
