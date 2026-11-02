@@ -960,8 +960,8 @@ static void MercuryLighthouseAerie_ConfrontSaturos(void) {
 #define MIA_DUEL_ISAAC_LEVEL 14
 #define MIA_DUEL_MIA_LEVEL 24
 
-/// Gives Mia the Tideglass Blade, a Mercury sword only she can use, and equips it, so that she can
-/// beat Menardi alone. Does nothing if her items are full.
+/// Equips the dedicated weapon for Mia's scripted solo duel. Does nothing
+/// if her inventory is full.
 static void MercuryLighthouseAerie_ArmMia(void) {
   struct Unit *mia = Unit_Get(MIA);
   s32 slot;
@@ -1242,14 +1242,11 @@ static void MercuryLighthouseAerie_SetUpMiaAlone(void) {
   Event_WaitFrames(40);
 }
 
-/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE: Mia reaches the
-/// beacon ledge alone. Menardi has Jenna, Kraden and Felix there. The captive
-/// Jenna looks exactly like the one Mia has already met, but has never met
-/// Mia, so Mia takes her for the other and turns hostile; Menardi urges her
-/// on until the captive's fear and blank stare tell Mia she is wrong. Mia asks
-/// for them back and Menardi, weakened by the light but sure of herself,
-/// takes her on; winning brings Mia back at
-/// MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT, losing replays this.
+/// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE: Mia reaches
+/// the beacon ledge alone. Menardi has Jenna, Kraden and Felix there. Mia
+/// confronts Menardi and demands their return. Menardi refuses; the two fight,
+/// with victory returning Mia to MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT
+/// and defeat replaying this scene.
 static void MercuryLighthouseAerie_MiaFacesMenardi(void) {
   Event_Start();
   MercuryLighthouseAerie_SetUpMiaAlone();
@@ -1264,12 +1261,6 @@ static void MercuryLighthouseAerie_MiaFacesMenardi(void) {
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_MENARDI, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  // Her other self draws the Tideglass Blade, which the healer swore never to
-  // draw: it is for those she wishes dead.
-  Event_SetMessageId(MsgDarkMiaBladeForged);
-  MercuryLighthouseAerie_DarkMiaSays();
-  MercuryLighthouseAerie_DarkMiaSays();
-  MercuryLighthouseAerie_DarkMiaSays();
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Event_SetAfterBattleDestination((s32)&SceneId_MercuryLighthouseAerie,
                                   MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT);
