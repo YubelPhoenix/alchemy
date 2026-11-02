@@ -1,0 +1,5 @@
+# Kegare, the Mia-mimicking Water Adept, in Tolbi.
+N102	MsgDarkKegareRise	At last. I've watched you\nprotect her, and now I can\nsee what she sees in you.{end_wait}
+N103	MsgDarkKegareIsaac	You look exactly like Mia.\nWho are you?{end_wait}
+N104	MsgDarkKegareName	I've studied her voice,\nher movements, and the\nway they trust her.{page_break}Imitation was only the\nbeginning. I intend to\ntake her place.{end_wait}
+N105	MsgDarkKegareIsaacReady	Mia is not a place for you\nto take. You'll have to get\nthrough us first.{end_wait}
