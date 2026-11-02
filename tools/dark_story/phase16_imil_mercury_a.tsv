@@ -26,7 +26,7 @@
 05457	MsgImilWintersAreToughHereSoIm	Winter keeps us inside.{page_break}It's good to hear\na new voice.{end_wait}
 05458	MsgImilWeDontGetToEatMany	A hot meal sounds\nlike a feast right now.{end_wait}
 05460	MsgImilLookingForMia	Looking for {actor_name:4}?{end_now}
-05461	message	{actor_name:4} just left.{page_break}She's visiting\nthe sick again.{end_wait}
+05461	message	{actor_name:4} just left.{page_break}The sick need {actor_name:4}\nmore than ever.{end_wait}
 05463	MsgImilHaveVisitedOldCoupleWho	Have you visited the\nold couple near the\nentrance of town?{end_now}
 05464	message	Oh. That's where\n{actor_name:4} was going.{page_break}You may have\njust missed her.{end_wait}
 05465	message	{actor_name:4} went to their house.\nYou may have missed her.{end_wait}
