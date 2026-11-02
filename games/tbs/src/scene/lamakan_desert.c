@@ -1102,7 +1102,7 @@ static void LamakanDesert_MeetManticore(void) {
 
 /// After the Manticore battle, Mia reacts to what the beast did. Her anger
 /// unsettles the party, but she recognizes it as her own and remains
-/// accountable. The same return event then handles the caravan. Once.
+/// accountable. The aftermath plays once on the return from battle. Once.
 static void LamakanDesert_ManticoreAftermath(void) {
   Event_Start();
   // Run from the scene's start-up: bring the picture in before anyone speaks.
