@@ -83,7 +83,6 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase43_ivan.tsv` | Ivan's developing sensitivity to the awakened and their voices. His observations must match what he has actually heard. |
 | `phase44_bloom.tsv` | Branching kindness material involving the harbor child and miner, with later callbacks. |
 | `phase45_mogall_door.tsv` | Mogall camp-door decision. Keep the yes/no outcomes distinct and preserve the humming-girl callback. |
-| `phase46_awakening.tsv` | Caravan awakening and Mia taking point after the party's response. The choice must be carried into the finale. |
 | `phase47_finale.tsv` | Lamakan finale and Ash Jenna's major revelation. This is not the overall Golden Sun ending; it directs the party onward to Kalay. |
 | `phase48_docks.tsv` | Tolbi harbor child material. Its placement and dialogue state must be checked against the post-Colosso Tolbi return. |
 | `phase49_babi_palace.tsv` | 89 non-empty Babi's Palace message entries rewritten across pre-Colosso, Colosso, and post-Colosso states, including residents, Sheba-related dialogue, Mind Read, examinations, and event prompts. |
@@ -138,7 +137,7 @@ Phases 49–67 now contain **849 rewritten source-message entries**: Babi's Pala
 - Ash Jenna has at least two distinct encounters: the Lamakan revelation and the later Tolbi confrontation. Dialogue must acknowledge the earlier meeting.
 - Alex appears in separate Mogall and Altin Peak encounters. His information and urgency must progress.
 - The post-Mercury custom events are gated by story conditions; their phase numbers do not mean they occur before the original Altin or Lamakan visits.
-- The Lamakan finale recalls earlier choices involving the harbor child, miner, camp, and caravan. Those callbacks must agree with the actual flags and with the player's route.
+- The Lamakan finale recalls the miner and Mogall camp choices. Those callbacks must agree with the actual flags and with the player's route.
 - The Tolbi Ash Jenna encounter is a later event, gated by Colosso being over and Mercury Lighthouse being lit.
 - Kegare's appearance is conditional. Do not write her as a guaranteed encounter for every playthrough.
 
@@ -226,7 +225,7 @@ This pass confirms the event order and the existence of the branch/state distinc
 
 ### Lamakan-to-Tolbi continuity failure audit
 
-A source-backed audit records the pre-repair continuity failures. The normal post-Manticore return runs Mia's emotional aftermath and caravan choice from `LamakanDesert_Initialize`, then immediately runs Ash Jenna's full revelation/finale before the party proceeds to Kalay. The shorter N106–N110 Lamakan watch exchange is an optional conversation on the Manticore pass, distinct from that automatic return sequence. The later Tolbi encounter follows the guaranteed Lamakan revelation and has now been rewritten as a continuation.
+A source-backed audit records the pre-repair continuity failures. The normal post-Manticore return now runs Mia's emotional aftermath and then Ash Jenna's full revelation/finale before the party proceeds to Kalay. The discarded caravan sequence and its choice are not part of the current story. The shorter N106–N110 Lamakan watch exchange is an optional conversation on the Manticore pass, distinct from that automatic return sequence. The later Tolbi encounter follows the guaranteed Lamakan revelation and has now been rewritten as a continuation.
 
 Kegare has two encounter-access routes: sheltering the harbor child, or completing all three Altin/Imil/Tolbi kindness payments. Those conditions are access gates only; they do not explain her origin or motive. Her dialogue now centers on deliberately mimicking Mia and intending to replace her, without falsely claiming Isaac rescued the child. The fishermen question has been removed, and the harbor child remains a separate Ashfall thread. Lamakan NPC text now matches the desert's source-defined sand/heat mechanics.
 
@@ -258,7 +257,7 @@ Canonical direction going forward:
 - Ash Jenna is the antagonist who deliberately recognizes and exploits Mia's vulnerability. Her taunts are personal and cruel, but they do not reveal a supernatural connection between Mia and Jenna.
 - Isaac and the party support Mia. The Tolbi follow-up is a short character scene about being unsettled and choosing not to let Ash Jenna define her; there is no weapon-transfer choice.
 - The Tideglass Blade is not a sentient artifact and must not be the cause of Mia's behavior, a branching ending condition, or an explanatory link to Kegare.
-- The finale's mercy count is now based on the harbor child, miner, Mogall door, and caravan choices only. The retired blade decision is not counted.
+- The finale's mercy count is based only on the miner-stayed and Mogall-door-opened choices. The discarded caravan sequence and retired blade decision are not counted.
 - Existing ordinary weapon terminology in unrelated original-game dialogue is unaffected. This correction removes the custom sentient-weapon plot, not the game's ordinary swords or battle equipment.
 
 ### Current superboss balance pass
@@ -329,4 +328,4 @@ The following targeted revisions address issues found during the dialogue audit:
 - Ivan's Bloom dialogue now makes clear that he does not hear every voice distinctly, that he cannot simply shut the voices out, and that the experience has a physical cost.
 - Heart's post-battle explanation retains the Tuaparang and lost-world revelation but stops short of explaining the faction's purpose or history.
 
-These are dialogue-only changes. They do not alter scene triggers, story flags, battles, or branch selection. The finale source has now been checked against its dialogue sequence. The Complicit outcome follows accepting Ash Jenna's offer; refusing it reaches the Mercy outcome only when all three mercy flags are set (miner stayed, Mogall door opened, caravan calmed), otherwise the Divided outcome is selected and Mia leaves. The event message index advances between each speaker, so the consecutive branch message IDs are intentional. The source comment was corrected because the former harbor-child branch is removed and is not part of the mercy count.
+The finale's source flow has been updated after removing the caravan sequence. The Complicit outcome follows accepting Ash Jenna's offer; refusing it reaches the Mercy outcome only when both remaining mercy choices are set (miner stayed and Mogall door opened), otherwise the Divided outcome is selected and Mia leaves. The event message index advances between each speaker, so the consecutive branch message IDs are intentional.
