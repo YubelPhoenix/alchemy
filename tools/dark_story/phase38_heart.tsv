@@ -9,5 +9,5 @@ N127	MsgDarkHeartHatred	I came to observe this\nworld. But I won't hold\nback ag
 N128	MsgDarkHeartIsaacReady	Then show us what you\ncan do. But afterward,\nyou will answer us.{end_wait}
 N129	MsgDarkHeartBeaten	You are not Matthew. I\nmistook you for him. But\nyou have your own strength.{end_wait}
 N130	MsgDarkHeartIsaacNotHim	Then tell us who Matthew\nis, and why you came\nhere.{end_wait}
-N131	MsgDarkHeartWorld	I am Heart. I serve\nTuaparang. We escaped the\nworld that was lost.{page_break}We watch this world from\nthe shadows. Our purpose\nis not yours to know.{end_wait}
+N131	MsgDarkHeartWorld	I am Heart. I serve\nTuaparang. We came from a\nworld that no longer exists.{page_break}That is all I will tell you.\nYou have learned enough\nfor now.{end_wait}
 N132	MsgDarkHeartPrize	You have earned this.\nTake it. We may meet\nagain, Isaac.{end_wait}
