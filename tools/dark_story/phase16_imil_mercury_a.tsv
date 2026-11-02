@@ -55,14 +55,14 @@
 05492	MsgImilEveryoneCountsOnMiaThats	Everyone depends\non {actor_name:4}.{end_wait}
 05493	MsgImilWeHaveDoWhateverWe	We have to share\nher work somehow.{end_wait}
 05494	MsgImilHermesHealingWaterFountain	Fountain of Healing{page_break}Water of Hermes:\nIt brings rejuvenation\nto all that lives.{end_wait}
-05495	MsgImilSomebodyHere	Somebody...is here.{end_wait}
-05496	message	Someone is here...{end_wait}
+05495	MsgImilSomebodyHere	Someone's inside.{end_wait}
+05496	message	I hear someone...{end_wait}
 05497	message	Can you hear it, too?{end_now}
-05498	message	Alex is the only one\nother than I who can\nenter Mercury Lighthouse.{end_wait}
-05499	message	You can't hear it? Well,\nI can. {page_break}Alex is the only one\nother than I who can\nenter Mercury Lighthouse.{end_wait}
-05500	message	But this statue is\nblocking my way...{end_wait}
-05501	MsgImilStatueBlocksEntrance	This statue is blocking\nthe entrance.{end_wait}
-05502	MsgMercuryLighthouseSomeoneDoesntWantMeToGet	Someone doesn't want\nme to get inside.{end_wait}
+05498	message	Only Alex and I\ncan enter this tower.{end_wait}
+05499	message	You don't hear it?{page_break}Only Alex and I\ncan enter this tower.{end_wait}
+05500	message	The statue blocks\nthe passage.{end_wait}
+05501	MsgImilStatueBlocksEntrance	The statue won't move.{end_wait}
+05502	MsgMercuryLighthouseSomeoneDoesntWantMeToGet	Someone's trying\nto keep me out.{end_wait}
 05503	MsgMercuryDidThat	Did you do that?{end_now}
 05506	message	You{pause_20_skippable}...{pause_20_skippable} You could\nsee our Psynergy?{end_wait}
 05508	message	We thought you used\nPsynergy when you healed\nthat old man, {actor_name:4}.{end_wait}
@@ -71,16 +71,16 @@
 05513	message	Sure... They guard a\nspecial power, just\nlike us.{end_wait}
 05514	message	Oh, come on! Both are\nprotectors of a special\npower.{page_break}Only the names are\ndifferent.{end_wait}
 05516	message	{actor_name:4} used Ply.{end_wait}
-05517	MsgMercuryMonsterInsideTower	A monster inside\nMercury Lighthouse?\nHow can this be!?{end_wait}
-05518	MsgMercuryLetMePass	I have to get\npast him!{end_wait}
-05519	MsgMercuryLighthouseThePathIsBlockedAgainWhat	The path is blocked again.{pause_20_skippable}\nWhat do I do now?{end_wait}
-05520	MsgMercuryLighthouseThisStatueWasntHereBeforeI	This statue wasn't\nhere before. Alex...{page_break}No, Alex wouldn't...\nbut what if he's\nnot alone?{end_wait}
-05521	MsgMercurySavedMeAgain	You saved me again,\nhaven't you!{end_wait}
+05517	MsgMercuryMonsterInsideTower	A monster? Here?\nInside the lighthouse?{end_wait}
+05518	MsgMercuryLetMePass	I have to get past it.{end_wait}
+05519	MsgMercuryLighthouseThePathIsBlockedAgainWhat	It's blocked again.{page_break}There must be\nanother way.{end_wait}
+05520	MsgMercuryLighthouseThisStatueWasntHereBeforeI	This statue was moved.{page_break}Alex... why?{end_wait}
+05521	MsgMercurySavedMeAgain	You saved me again.{end_wait}
 05527	MsgMercuryThoughtSo	I thought so...{end_wait}
 05531	message	The Adept {actor_name:4} joined\nyour party!{end_wait}
-05532	MsgMercuryLighthouseAlreadyLit	It's too late! The\nlighthouse has already\nbeen lit!{end_wait}
-05533	message	It...{pause_20_skippable} It can't be!{end_wait}
-05534	message	The beacon can't be lit\nwithout the Mercury\nStar...{end_wait}
+05532	MsgMercuryLighthouseAlreadyLit	The beacon...\nIt's already burning.{end_wait}
+05533	message	No...{end_wait}
+05534	message	Without the Mercury Star,\nthat should be impossible.{end_wait}
 05535	message	...The Elemental Stars\nwere stolen from Sol\nSanctum, on Mt. Aleph.{end_wait}
 05536	message	Mt. Aleph... Sol Sanctum...{pause_20_skippable}\nAre you healers from\nSol Sanctum?{end_now}
 05537	message	We came from Vale to\nrecover the four\nElemental Stars.{end_wait}
