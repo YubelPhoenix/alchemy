@@ -1,10 +1,10 @@
 # Altin Peak: the mine has collapsed with men pinned behind the rubble.
-N140	MsgDarkPeakMinerPlea	The roof came down when\nsome of the men... changed.{page_break}The rest are pinned behind\nthe rubble, and the water\nis rising.{page_break}Will you help dig them out?{end_now}
+N140	MsgDarkPeakMinerPlea	The roof came down when\nthe supports gave way.{page_break}The men are pinned behind\nthe rubble, and the water\nis rising.{page_break}Will you help dig them out?{end_now}
 N141	MsgDarkPeakMinerYes	Thank the mountain. Hurry,\nbefore the water wins.{end_wait}
 N142	MsgDarkPeakMinerNo	Then go. The mountain keeps\nwhat it likes. It won't\nforgive you.{end_wait}
-N143	MsgDarkPeakMiaDig	Dig for strangers? Half of\nthem will wake wrong. Let\nthe mountain have them.{end_wait}
-N144	MsgDarkPeakGaretDig	Mia! They're men, not\nmonsters! Do you hear\nyourself?{end_wait}
-N145	MsgDarkPeakMiaAlex	You haven't seen what\ncomes back from the mine.\nIsaac has chosen. Dig.{end_wait}
+N143	MsgDarkPeakMiaDig	The roof is unstable. If\nwe dig carelessly, we may\nbring it down again.{end_wait}
+N144	MsgDarkPeakGaretDig	Then we brace it first.\nWe can't leave them under\nthere.{end_wait}
+N145	MsgDarkPeakMiaAlex	I know. I'm afraid we'll\nlose more lives if we rush.\nBut we have to try.{end_wait}
 N146	MsgDarkPeakIsaacDig	We dig, all of us. Nobody\nstays behind.{end_wait}
-N147	MsgDarkPeakMinerThanks	They're alive. Most are\nstill themselves. Take this\nbread, it's all we have.{end_wait}
-N148	MsgDarkPeakMinerDone	The water's going down.\nThank you. I mean it.{end_wait}
+N147	MsgDarkPeakMinerThanks	You got them out. I\nthought we'd be buried\nalive. Please, take this.{end_wait}
+N148	MsgDarkPeakMinerDone	The others are safe now.\nThank you for getting us\nout before the next fall.{end_wait}
