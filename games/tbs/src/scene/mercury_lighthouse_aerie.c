@@ -1107,17 +1107,8 @@ static void MercuryLighthouseAerie_MiaInterrupts(void) {
   FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   MercuryLighthouseAerie_DarkMiaSays();
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 20);
-  Party_RemoveMember(GARET);
-  Party_RemoveMember(IVAN);
-  Party_RemoveMember(MIA);
-  Unit_LevelUpTo(ISAAC, MIA_DUEL_ISAAC_LEVEL);
-  Party_RestoreHpPp(1);
-  Battle_SetType(BATTLE_TYPE_SCRIPTED);
-  Event_SetAfterBattleDestination((s32)&SceneId_MercuryLighthouseAerie,
-                                  MERCURY_LIGHTHOUSE_AERIE_DUEL_WON);
-  Event_SetDefeatDestination((s32)&SceneId_MercuryLighthouseAerie,
-                             MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST);
-  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 1);
+  // Mia chooses to trust Isaac rather than force a duel while hostages flee.
+  Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_AFTERMATH);
   Event_End();
 }
 
