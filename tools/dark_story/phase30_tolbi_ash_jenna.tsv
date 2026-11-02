@@ -1,5 +1,5 @@
 # Ash Jenna, an antagonist, confronts the party in Tolbi after Colosso.
-N74	MsgDarkTolbiJennaFound	You remember what I told\nyou in Lamakan. The sleepers\nare stirring here, too.{page_break}Listen to the harbor,\nIsaac. The sea has begun\nto answer them.{end_wait}
+N74	MsgDarkTolbiJennaFound	You remember what I said\nin Lamakan. The sleepers\nare stirring here, too.{page_break}Listen to the harbor,\nIsaac. The sea has begun\nto answer them.{end_wait}
 N75	MsgDarkTolbiIsaacGrey	Ash Jenna. We know what\nyou told us in Lamakan.\nWhy are you here?{end_wait}
 N76	MsgDarkTolbiJennaAsh	I am watching what wakes\nwhen the next lighthouse\nis lit.{page_break}You cannot save every\nsoul that hears the call,\nno matter how you try.{end_wait}
 N77	MsgDarkTolbiGaretFire	You said the lighthouses\nwake the sleepers. Is this\nwhat is happening here?{end_wait}
