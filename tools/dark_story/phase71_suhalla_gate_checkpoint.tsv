@@ -10,7 +10,7 @@
 09834	MsgSuhallaSurvivedAttack	I thought I was dead!\nI'm lucky to be alive\nat all...{page_break}Those strange men with\nwild hair... They were\nfar too powerful.{end_wait}
 09813	message	Uh...{pause_20_skippable} Is...{pause_20_skippable}\nIs that Iodem...?{end_wait}
 09814	message	What happened here\nat the gate?{end_wait}
-09815	message	A group of strangers\ncame... They had no\nThey tried to get through...{end_wait}
+09815	message	A group of strangers\ncame... They had no\nThey tried to get through.{end_wait}
 09816	message	I-Io{pause_20_skippable}dem...{end_wait}
 09817	message	We tried to stop them...\nbut they were{pause_20_skippable}\ntoo strong for us!{end_wait}
 09818	message	They{pause_20_skippable} wielded strange\npowers...{pause_20_skippable} We were\nno match for them.{end_wait}
