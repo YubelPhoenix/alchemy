@@ -25,7 +25,11 @@ The source-backed route is:
 
 An earlier audit note incorrectly claimed that message IDs `05537` and `05540` referred to **three** Elemental Stars. The current branch already says **four** in both rows, which is correct. The live text and the Aerie scene context agree: Isaac and Garet came from Vale to recover the four Stars stolen from Sol Sanctum. Do not change these rows. This finding is closed as a stale audit note, not an outstanding dialogue defect.
 
-### 2. Tolbi: incompatible story states are mixed together
+### 2. Imil farewell: Mia's stated purpose contradicted the scene
+
+In `phase17_imil_mercury_b.tsv`, message `05738` originally said Mia was leaving to protect the **Mercury Clan**. The surrounding farewell exchange establishes that she is joining Isaac's quest because the world is in danger; the Imil scene source also explicitly describes her promise to join that quest to protect the world. The apprentices, not Mia, promise to protect Imil as members of the Mercury Clan. Corrected `05738` to say she is trying to protect the **world**. This preserves the scene's intended distinction between Mia's wider mission and the apprentices' responsibility at home.
+
+### 3. Tolbi: incompatible story states are mixed together
 
 `phase28_tolbi.tsv` combines lines that describe different points in the Colosso sequence:
 
@@ -39,7 +43,7 @@ These are not one simultaneous town state. Each line must be attached to the ori
 
 The new rain/flood/harbor-patrol framing also needs a continuity map. It cannot silently replace the original Tolbi states or make Babi simultaneously absent, present, and already returned.
 
-### 3. Tolbi: unsupported or confusing causal statements
+### 4. Tolbi: unsupported or confusing causal statements
 
 Several new lines use striking imagery but do not establish what happened:
 
@@ -51,7 +55,7 @@ Several new lines use striking imagery but do not establish what happened:
 
 The solution is not to remove every dark detail. It is to give each detail a clear cause, witness, chronology, and payoff.
 
-### 4. The "Ash Jenna" Tolbi encounter is not presently supported by the original story state
+### 5. The "Ash Jenna" Tolbi encounter is not presently supported by the original story state
 
 `phase30_tolbi_ash_jenna.tsv` stages an antagonist who looks like Jenna and speaks as though she is a changed or alternate Jenna. Yet in the original route Jenna remains a hostage of Saturos and Menardi until the later Venus Lighthouse events. The current lines do not explain how this figure can be in Tolbi, why she has Jenna's face, whether she is a copy, a vision, a possession, or something else, or how the party distinguishes her from the real Jenna.
 
@@ -59,7 +63,7 @@ The line "I'm a Jenna who stopped waiting to be saved" is evocative but does not
 
 This sequence must be held out of the active dialogue pass until the Ashfall premise, the figure's identity, the blade's role, and the party's knowledge at this exact point are established in the continuity ledger. Do not solve this by inventing an explanation inside one NPC line.
 
-### 5. Altin: the crisis and recovery states need to be separated
+### 6. Altin: the crisis and recovery states need to be separated
 
 `phase29_altin.tsv` contains dialogue for the flooded state, the water-receded state, the aftermath of defeating the hydros statues, the return of residents, and later discoveries beneath the mine. Some of these lines can only be heard after the player has completed the corresponding event. The file should be audited against the trigger conditions in `altin.c` and the mine scene scripts before any text is moved or rewritten.
 
