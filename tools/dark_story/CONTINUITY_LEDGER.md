@@ -78,7 +78,7 @@ These are custom additions or altered encounters. They must be treated as revisi
 
 ## Current rewrite batch summary
 
-Phases 49–63 contain **640 rewritten source-message entries**: Babi's Palace and scholars (108), Suhalla and its interiors (74), Babi Lighthouse (38), Lalivero and its interiors (146), Black Orb interactions (3), Lemurian ship departure (16), post-game ending (13), Tunnel Ruins (8), Venus Lighthouse (25), and the Aerie (209). All 640 rows passed a manual source-catalog check for message ID/context, runtime placeholders, ending controls, pause/style controls, text-box width, and page-line limits. No duplicate message IDs were found within these phases or against the prior phase files listed in this ledger. The repository's full validator/build and in-game checks remain pending.
+Phases 49–63 contain **640 rewritten source-message entries**: Babi's Palace and scholars (108), Suhalla and its interiors (74), Babi Lighthouse (38), Lalivero and its interiors (146), Black Orb interactions (3), Lemurian ship departure (16), post-game ending (13), Tunnel Ruins (8), Venus Lighthouse (25), and the Aerie (209). All 640 drafted rows passed a manual source-catalog check for message ID/context, runtime placeholders, ending controls, pause/style controls, text-box width, and page-line limits. No duplicate message IDs were found within these phases or against the prior phase files listed in this ledger. **This is not yet complete scene coverage:** a deeper source audit found sequential event-message blocks that are not represented by the named-message inventory. These still need to be rewritten and added before any location is marked complete. The repository's full validator/build and in-game checks also remain pending.
 
 ### Important custom-state observations
 
@@ -97,19 +97,19 @@ The first visit to Hammet Palace occurs before `FLAG_IVAN_REPORTED_TO_LAYANA`. G
 
 ### Babi's Palace
 
-The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue states. Sheba's captivity, the soldiers' search, and the audience with Babi must not be collapsed into one state. `FLAG_COLOSSO_OVER` and `FLAG_BABI_SPOKE_AFTER_COLOSSO` are essential distinctions. The Babi's Palace batch rewrites 89 non-empty palace messages, with a further 19 scholars' room entries in `phase50_babi_scholars.tsv`. Build validation and in-game state testing remain pending.
+The script documents separate pre-Colosso, Colosso, and post-Colosso dialogue states. Sheba's captivity, the soldiers' search, and the audience with Babi must not be collapsed into one state. `FLAG_COLOSSO_OVER` and `FLAG_BABI_SPOKE_AFTER_COLOSSO` are essential distinctions. The Babi's Palace batch currently rewrites 89 named palace messages, with a further 19 scholars' room entries in `phase50_babi_scholars.tsv`. A source-code pass has since identified large sequential blocks beginning at `MsgTolbiGetUp`, `MsgTolbiLikeSleep`, `MsgTolbiIodemIodem`, `MsgTolbiCallsName`, and `MsgTolbiWaitingCompanions`, plus smaller question/answer sequences. These additional lines are not yet covered; the 89+19 count is partial.
 
 ### Suhalla
 
-Before `FLAG_BABI_SPOKE_AFTER_COLOSSO`, villagers discuss the sandstorms, Angaran distrust, and Sheba's hostage status. After the audience, their dialogue reflects soldiers caught in the storms on the way to Babi Lighthouse. The party crosses the desert with Iodem after Babi's audience. The town rewrite covers 30 non-empty messages. Its interiors have a further 44 messages across the pre- and post-audience states; `FLAG_IODEM_MET_WOUNDED_SOLDIERS` and `FLAG_BABI_LIGHTHOUSE_IODEM_ARRIVED` distinguish the wounded-soldier and Iodem-arrival dialogue. Build and in-game state testing remain pending.
+Before `FLAG_BABI_SPOKE_AFTER_COLOSSO`, villagers discuss the sandstorms, Angaran distrust, and Sheba's hostage status. After the audience, their dialogue reflects soldiers caught in the storms on the way to Babi Lighthouse. The party crosses the desert with Iodem after Babi's audience. The town rewrite currently covers 30 named messages. Its interiors have a further 44 named messages across the pre- and post-audience states; `FLAG_IODEM_MET_WOUNDED_SOLDIERS` and `FLAG_BABI_LIGHTHOUSE_IODEM_ARRIVED` distinguish the wounded-soldier and Iodem-arrival dialogue. The 38-message Iodem sequence beginning at `MsgSuhallaIodem` in `timber_rooms_a.c` is additional and still needs coverage.
 
 ### Lalivero
 
-The first visit occurs with Iodem; townspeople discuss Sheba's capture, injured soldiers explain where her captors went, and the wharf guard blocks access. After Venus Lighthouse, the party returns. Iodem's farewell and the Black Orb handover lead to the wharf opening. Preserve the relevant conditions, including `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED`, `FLAG_IODEM_FAREWELL_SEEN`, `FLAG_SAW_SHIP_AT_IDEJIMA`, and `FLAG_LALIVERO_WHARF_OPEN`. The current draft covers 51 town-map and 95 interior messages; build and in-game state testing remain pending.
+The first visit occurs with Iodem; townspeople discuss Sheba's capture, injured soldiers explain where her captors went, and the wharf guard blocks access. After Venus Lighthouse, the party returns. Iodem's farewell and the Black Orb handover lead to the wharf opening. Preserve the relevant conditions, including `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED`, `FLAG_IODEM_FAREWELL_SEEN`, `FLAG_SAW_SHIP_AT_IDEJIMA`, and `FLAG_LALIVERO_WHARF_OPEN`. The current draft covers 51 named town-map and 95 named interior messages, but four sequential event blocks beginning at `MsgLaliveroMoreTolbisSoldiersLayDefeated`, `MsgLaliveroWhereGoingIsaacIodemAsked`, `MsgLaliveroBabiToldMeShipAncients`, `MsgLaliveroThoughtShipWeSawAt`, and four interior sequences beginning at `MsgLaliveroImSorry`, `MsgLaliveroHowDidSearchForSheba`, `MsgLaliveroDoNotWorryAboutSheba`, and `MsgLaliveroTellOthers` still need to be audited and rewritten.
 
 ### Babi Lighthouse and Tunnel Ruins
 
-Babi Lighthouse has 38 rewritten messages covering its workers, guards, Faran's pursuit, Sheba's rescue, and sealed-door sequence. Keep `FLAG_BABI_LIGHTHOUSE_DOOR_SHOWN`, `FLAG_BABI_LIGHTHOUSE_DOOR_OPEN`, `FLAG_BABI_LIGHTHOUSE_ASKED_TO_FOLLOW`, `FLAG_BABI_LIGHTHOUSE_BACK_FROM_STONE_DOOR`, and `FLAG_BEYOND_DOOR` distinct. Tunnel Ruins has 8 rewritten riddle and pillar messages; its `FLAG_TUNNEL_RUINS_STATUE_DOOR_OPEN`, `FLAG_VENUS_LIGHTHOUSE_FIRST_PATH`, `FLAG_VENUS_LIGHTHOUSE_SECOND_PATH`, pillar-placement, douse, and freeze flags must be tested against the puzzle sequence.
+Babi Lighthouse currently has 38 named messages covering its workers, guards, Faran's pursuit, Sheba's rescue, and sealed-door sequence. Two sequential event blocks beginning at `MsgBabiYoureSureTheyWentThrough` and `MsgBabiTheDoor` add approximately 59 more messages and still need coverage. Keep `FLAG_BABI_LIGHTHOUSE_DOOR_SHOWN`, `FLAG_BABI_LIGHTHOUSE_DOOR_OPEN`, `FLAG_BABI_LIGHTHOUSE_ASKED_TO_FOLLOW`, `FLAG_BABI_LIGHTHOUSE_BACK_FROM_STONE_DOOR`, and `FLAG_BEYOND_DOOR` distinct. Tunnel Ruins has 8 rewritten riddle and pillar messages; its `FLAG_TUNNEL_RUINS_STATUE_DOOR_OPEN`, `FLAG_VENUS_LIGHTHOUSE_FIRST_PATH`, `FLAG_VENUS_LIGHTHOUSE_SECOND_PATH`, pillar-placement, douse, and freeze flags must be tested against the puzzle sequence.
 
 ### Venus Lighthouse and Aerie
 
@@ -129,9 +129,9 @@ The current rewrite directory contains phase files through `phase63_aerie_fall_a
 | Post-Mercury custom encounters | Existing phases present; event-order and callback audit in progress. |
 | Kalay / Karagol / Tolbi / Altmiller / Colosso | Original progression verified in scene scripts; Ashfall message-by-message coverage remains to be checked. |
 | Babi's Palace and scholars' rooms | Source-message rewrite drafted (89 + 19 entries); automated build and in-game state validation pending. |
-| Babi's audience / Gondowan Passage | Requires full dialogue coverage audit. |
-| Suhalla / desert / Babi Lighthouse | Drafts exist for 30 town, 44 interior, and 38 Babi Lighthouse messages; automated build and in-game state validation pending. |
-| Lalivero first/second visit and interiors | Drafts exist for 51 town and 95 interior messages; branch-state and in-game validation pending. |
+| Babi's audience / Gondowan Passage | Partial. Named messages are drafted, but the long Iodem/Babi audience and other sequential message blocks remain. |
+| Suhalla / desert / Babi Lighthouse | Partial. 30 Suhalla town, 44 named interior, and 38 named Babi Lighthouse messages are drafted; the 38-message Iodem sequence and 59-message Babi Lighthouse sequences remain. |
+| Lalivero first/second visit and interiors | Partial. 51 named town and 95 named interior messages are drafted; 62 town-map and 59 interior sequential messages remain. |
 | Black Orb / Lemurian ship / true ending | Drafts exist for 3 Black Orb, 16 ship, and 13 post-game ending messages; sequence and in-game validation pending. |
 | Tunnel Ruins / Venus Lighthouse / Aerie | Drafts exist for 8 Tunnel Ruins, 25 Venus Lighthouse, and 209 Aerie messages; puzzle, battle, and post-fall state validation pending. |
 
@@ -148,6 +148,6 @@ The current rewrite directory contains phase files through `phase63_aerie_fall_a
 1. Inventory the game's text data and determine how the current TSV phase files are applied. **Done.**
 2. Build a source-message coverage index for every late-game scene listed above. Draft batches now cover Babi's Palace, scholars' rooms, Suhalla, Babi Lighthouse, Lalivero, the Black Orb, the Lemurian ship, the post-game ending, Tunnel Ruins, Venus Lighthouse, and the Aerie; validate them before marking coverage complete.
 3. Audit custom branch flags and callbacks against their event scripts.
-4. Draft missing dialogue in small, location-complete batches, including optional NPCs and Mind Read text. Next: audit Babi's audience / Gondowan Passage and perform a final sweep for optional NPCs, world-map events, and shared generic dialogue. Then run the full validator, build, and in-game route checks.
+4. Rewrite the missing sequential event-message blocks first: Babi Palace / Iodem's audience, the Suhalla Iodem scene, Babi Lighthouse, and Lalivero / Iodem's departure. Then audit world-map transitions and optional NPCs before running the full validator, build, and in-game route checks.
 5. Run the existing rewrite/build tooling and inspect the resulting ROM in-game across representative branches.
 6. Extend this ledger as each area is verified; mark coverage complete only after source-message comparison and in-game validation.
