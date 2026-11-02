@@ -53,7 +53,7 @@
 05490	MsgImilAmHealerWhileMiaOut	I'm tending the sick\nwhile {actor_name:4} is away.{end_wait}
 05491	MsgImilFeelLikeGrownUpWhen	Healing looks easy\nwhen the others do it.{end_wait}
 05492	MsgImilEveryoneCountsOnMiaThats	Everyone depends\non {actor_name:4}.{end_wait}
-05493	MsgImilWeHaveDoWhateverWe	We have to share\nher work somehow.{end_wait}
+05493	MsgImilWeHaveDoWhateverWe	We have to help {actor_name:4}.\nShe can't do it alone.{end_wait}
 05494	MsgImilHermesHealingWaterFountain	Fountain of Healing{page_break}Water of Hermes:\nIt brings rejuvenation\nto all that lives.{end_wait}
 05495	MsgImilSomebodyHere	Someone's inside.{end_wait}
 05496	message	I hear someone...{end_wait}
