@@ -1,36 +1,36 @@
 04830	message	{text_effect:4}Uhnn... Ohh...{end_wait}
-04831	message	You'll stay here. You're\nour hostages now.{end_wait}
-04832	message	Keep your mouth shut, or\nhe pays for it!{end_wait}
-04833	MsgVaultWontGoAway	They just won't die,\nwill they? They're back!{end_wait}
-04834	message	Then we'll just have to\nbeat them down again!{end_wait}
-04835	message	We'll make you sorry\nyou were born! Get 'em!!{end_wait}
-04836	MsgVaultTheyTheyGotUs	They...{pause_20_skippable} They got us...{end_wait}
-04837	message	For a second there, I\nthought we were dead.{end_wait}
-04838	message	We... we won.{end_wait}
-04839	message	I'll get the mayor.\nDon't let them move.{end_wait}
-04840	message	After all we went through\nto steal this much...{end_wait}
-04841	message	Stealing from the dead\nand the dying? That's a\nspecial kind of low.{end_wait}
-04842	message	Damn it! I told you we\nshould have left town\nafter the first night...{end_wait}
-04843	message	You didn't get away with\nit. Nobody does.{end_wait}
-04850	MsgVaultSeeThatsHappened	I see... So that's what\nhappened here...{end_wait}
-04851	message	These are the thieves,\nMayor...{end_wait}
-04852	message	What you did is vile.\nStealing, while we were\nburying our neighbors!?{end_wait}
-04853	message	You people left your\ndoors wide open!{page_break}You were practically\nbegging us to{em_dash}OUCH!{end_wait}
-04854	message	Sorry... I was hungry.\nI couldn't help myself...{end_wait}
-04855	message	What should we do with\nthem?{end_wait}
-04856	message	We'll lock them away for\na long, long time. Maybe\nforever.{end_wait}
-04857	message	Hey! Wake up!{end_wait}
-04860	MsgVaultYouIsaacRightWontForget	Hey, you! {actor_name:1}, right?\nYou'll regret this!{end_wait}
-04861	message	Take them away!{end_wait}
-04862	message	Thank you for catching\nthem. Vault owes you a\ndebt it can't repay.{end_wait}
-04863	message	We needed this. Truly.{end_wait}
-04864	message	Let's see what they took.{end_wait}
-04865	message	The mayor's urn. They took\neven that.{end_wait}
-04866	message	Mayor... isn't that your\nfamily's urn?{end_wait}
-04867	message	My family's ashes are\nhome again. Thank you.{end_wait}
+04831	message	You're staying here.\nBoth of you.{end_wait}
+04832	message	One word and\nhe gets hurt!{end_wait}
+04833	MsgVaultWontGoAway	They're back!\nWhy won't they leave?{end_wait}
+04834	message	Then we fight again.\nNo more running.{end_wait}
+04835	message	Get them!\nDon't let them escape!{end_wait}
+04836	MsgVaultTheyTheyGotUs	They...{pause_20_skippable} beat us...{end_wait}
+04837	message	I thought we were\ngoing to die.{end_wait}
+04838	message	It's over. We won.{end_wait}
+04839	message	I'll fetch the mayor.\nKeep an eye on them.{end_wait}
+04840	message	All that trouble,\nand for what?{end_wait}
+04841	message	You robbed people\nduring the eruption.{page_break}Some of them\nhad lost everything.{end_wait}
+04842	message	I told you we should\nhave left days ago.{end_wait}
+04843	message	You were caught.\nThat's what matters.{end_wait}
+04850	MsgVaultSeeThatsHappened	So this is where\nthey hid everything.{end_wait}
+04851	message	Mayor, we found\nthe thieves.{end_wait}
+04852	message	You stole from people\nwho'd lost their homes.{page_break}What were you thinking?{end_wait}
+04853	message	Their doors were open!{page_break}We thought{em_dash}Ow!\nAll right!{end_wait}
+04854	message	I was hungry.\nI know that changes nothing.{end_wait}
+04855	message	What happens to them now?{end_wait}
+04856	message	They'll be held\nuntil we decide.{page_break}The law still applies,\neven after a disaster.{end_wait}
+04857	message	Wake up!{end_wait}
+04860	MsgVaultYouIsaacRightWontForget	{actor_name:1}!\nI'll remember you!{end_wait}
+04861	message	Take them to the jail.{end_wait}
+04862	message	You brought them in.\nThank you.{end_wait}
+04863	message	We needed some good news.{end_wait}
+04864	message	Let's count what's here.{end_wait}
+04865	message	The mayor's urn...\nThey took that too.{end_wait}
+04866	message	Mayor, is this\nyour family's urn?{end_wait}
+04867	message	These ashes are\nall I have left.{page_break}Thank you for\nbringing them home.{end_wait}
 04900	MsgVaultIvanGotShamansRod	{actor_name:3} took back the\nShaman's Rod.{end_wait}
-04901	message	I won't forget this\ntown's kindness... or its\nfear. Go well.{end_wait}
-04902	message	We should go. Whatever's\ncoming won't wait.{end_wait}
+04901	message	People here feared me.\nSome still helped.{page_break}I won't forget either.\nTake care.{end_wait}
+04902	message	We should get moving.\nThere's a long road ahead.{end_wait}
 04946	MsgVaultICanSleepWellNowThat	I can sleep now that\nthe thieves are locked up.{page_break}I kept thinking they'd\ncome for my gem in the\ndark.{end_wait}
 04947	MsgVaultThankGoodnessThoseThievesWere	Thank the gods they were\ncaught before they took\nour gem.{end_wait}
 04948	MsgVaultEverybodysAfterMyRockTheyWant	Everybody wants my rock!\nThey'd take it from me!{page_break}I can't let my guard\ndown for a second!{end_wait}
