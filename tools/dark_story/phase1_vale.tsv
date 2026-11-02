@@ -283,19 +283,19 @@
 04025	message	Inside Sol Sanctum?\nWithout permission?{end_wait}
 04028	message	Just because Mt. Aleph is\nforbidden?{end_now}
 04029	MsgValeKradenWeOnlyCheckThe	We only want to see if\nthey've been up there.{page_break}Surely that's acceptable...\nisn't it?{end_wait}
-04030	MsgValeKradenWeOnlyCheckMt	That's right. We're only\nchecking whether they've\nbeen to Mt. Aleph.{end_wait}
+04030	MsgValeKradenWeOnlyCheckMt	We only need to learn\nif they climbed Mt. Aleph.{end_wait}
 04031	MsgValeFineIfTheyDontSee	If no one sees us...\nwe'll be fine. Right?{end_now}
 04033	message	You say no, but I know\nyou're curious.{end_wait}
-04034	MsgValeJennaOurSecret	This stays our secret.\nOkay?{end_now}
+04034	MsgValeJennaOurSecret	Not a word to anyone.\nAgreed?{end_now}
 04035	message	No, {actor_name:1}.{pause_20_skippable} Not a word to\nyour mother. Promise.{end_wait}
 04037	message	You'll be our leader.\nOkay, {protagonist_name}?{end_now}
-04038	MsgValeGaretYouCanHandleThe	There are dangerous\nplaces between Mt. Aleph\nand Sol Sanctum,{page_break}but you can handle it,\nright, {protagonist_name}?{end_wait}
+04038	MsgValeGaretYouCanHandleThe	The path to Sol Sanctum\nis dangerous.{page_break}Stay alert,\n{protagonist_name}.{end_wait}
 04039	message	You're more careful than\n{actor_name:2}, {protagonist_name}.{page_break}You'll be fine!{end_wait}
-04041	MsgValeGaretIllTakeOverIf	There are dangerous\nplaces between Mt. Aleph\nand Sol Sanctum,{page_break}so I'll take over if\nyou freeze up.{end_wait}
+04041	MsgValeGaretIllTakeOverIf	The mountain is dangerous.{page_break}If you hesitate,\nI'll take the lead.{end_wait}
 04042	message	If {actor_name:2} leads, we'll be\nthe nervous ones.{page_break}Don't you agree, Kraden?{end_wait}
 04044	MsgValeKradenOurBestBet	We may not get another\nchance to find out.{end_wait}
-04046	MsgValeNotSneakingUpMtAleph	You're not planning to\nsneak up Mt. Aleph,\nare you?{end_now}
-04047	message	Mt. Aleph is sacred. No\none climbs it without\npermission.{end_wait}
+04046	MsgValeNotSneakingUpMtAleph	You aren't thinking of\nclimbing Mt. Aleph?{end_now}
+04047	message	The elders forbid it.\nYou know that.{end_wait}
 04048	message	I'll overlook it this time.{page_break}But I'm watching you,\n{actor_name:1}.{end_wait}
-04049	MsgValeMtAlephIsASacredPeak	Mt. Aleph is sacred. It is\nforbidden to climb it.{end_wait}
-04050	message	Past here, monsters own the\npath. Be careful.{end_wait}
+04049	MsgValeMtAlephIsASacredPeak	Mt. Aleph is sacred.\nNo one enters freely.{end_wait}
+04050	message	There are monsters ahead.\nKeep your guard up.{end_wait}
