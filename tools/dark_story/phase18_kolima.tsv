@@ -5,7 +5,7 @@
 05246	message	{text_effect:4}My mind!!!\nSomeone{pause_20_skippable} is attacking my{em_dash}{end_wait}
 05250	message	We have to get\nout of here!{end_wait}
 05252	message	Oh, no...{pause_20_skippable}\nIf it touches us,\nwe'll become trees!{end_wait}
-05257	MsgKolimaWasOurPsynergy	It was our Psynergy.{end_wait}
+05257	MsgKolimaWasOurPsynergy	Our Psynergy protected us.{end_wait}
 05258	message	What are you saying?{end_wait}
 05265	message	You're lying, {actor_name:1}!{end_wait}
 05266	message	When I trained, I'd\nfocus so hard my head\nfelt ready to burst.{end_wait}
