@@ -69,6 +69,10 @@ The line "I'm a Jenna who stopped waiting to be saved" is evocative but does not
 
 This sequence must be held out of the active dialogue pass until the Ashfall premise, the figure's identity, the blade's role, and the party's knowledge at this exact point are established in the continuity ledger. Do not solve this by inventing an explanation inside one NPC line.
 
+### 7. Altin: clarify the cost to families
+
+Message `06391` described people losing someone "who's still standing right in front of them." The intended horror is that some miners returned physically, but were no longer emotionally or mentally present as the people their families knew. The original phrasing was evocative but too oblique to land clearly. It now reads: "Some have lost loved ones who are still standing right in front of them." This keeps the disturbing implication while making the sentence grammatical and immediately comprehensible. The Altin scene uses the surrounding inn dialogue for this exchange; no event condition or message ID was changed.
+
 ### 7. Altin: the crisis and recovery states need to be separated
 
 `phase29_altin.tsv` contains dialogue for the flooded state, the water-receded state, the aftermath of defeating the hydros statues, the return of residents, and later discoveries beneath the mine. Some of these lines can only be heard after the player has completed the corresponding event. The file should be audited against the trigger conditions in `altin.c` and the mine scene scripts before any text is moved or rewritten.
