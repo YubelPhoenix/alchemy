@@ -16,7 +16,7 @@
 10270	message	Fools...{pause_20_skippable} If you believe\nthis is finished, you\nhave learned nothing.{end_wait}
 10271	message	If you intend to awaken\nthe remaining beacons,\nyou will still need...{end_wait}
 10272	message	The Elemental Stars?\nWe have them with us!{end_wait}
-10273	message	They're gone, {actor_name:5}!\nYou no longer need to\nawaken the beacons...{end_wait}
+10273	message	Saturos and Menardi are\ngone, {actor_name:5}! You no\nlonger need to awaken\nthe beacons...{end_wait}
 10274	message	I must.{pause_20_skippable} If I do not\nawaken the beacons...{end_wait}
 10275	message	What will happen?{end_wait}
 10276	message	Words will change\nnothing...{pause_20_skippable}\nWait and see.{end_wait}
