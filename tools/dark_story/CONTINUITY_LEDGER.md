@@ -132,6 +132,8 @@ The first visit to Hammet Palace occurs before `FLAG_IVAN_REPORTED_TO_LAYANA`. G
 
 
 ### Vault revisit: Colosso chronology correction
+A named-message coverage scan across `vault.c`, `vault_revisit.c`, `stone_rooms.c`, `log_rooms_a.c`, `log_rooms_b.c`, and `vault_cave.c` found 233 distinct message identifiers, all represented in the six Vault phase files (`phase2_vault`, `phase5_vault_a/b/c`, `phase20_vault_leftovers`, and `phase6_gaps`). This verifies named-ID presence only; sequential `message` offsets, branch responses, Mind Read state changes, and post-Kalay revisits still require a trigger-by-trigger content audit.
+
 
 The Vault return sequence is selected only after `FLAG_KALAY_REACHED` (`vault.c` routes the party into `vault_revisit.c`). Its houses use `log_rooms_b.c`, where the source comment for `MsgVaultThePrisonersSaidTheyWantedTo` explicitly says the prisoners wanted to break out before Colosso began. The rewrite had changed this to a "war in Tolbi" and described Colosso as a blood pit where people bet on survival. That invented a war and distorted the source event: Colosso is the tournament the prisoners wanted to attend. Message `07372` in `phase20_vault_leftovers.tsv` now says they begged to be let out before Colosso began because even thieves wanted to see the tournament. No scene flags or event logic were changed.
 
