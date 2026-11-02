@@ -11,4 +11,4 @@
 10525	message	{actor_name:1} and his friends\nmust have been near the\nbeacon when it was lit.{end_wait}
 10527	message	I miss them... {actor_name:1}...\nAnd {actor_name:5}...{end_wait}
 10528	message	There is something\nI want you both to see.{end_wait}
-10534	message	What is that? Alex,\nwhat have you done?{end_wait}
+10534	message	Come with me. There is\nsomeone you both must see.{end_wait}
