@@ -15,7 +15,7 @@ N210	MsgDarkFinaleYesJenna	Then stay close. The next\nbeacon will prove I was\nr
 N211	MsgDarkFinaleYesIvan	Isaac, are you certain\nthis is the path we should\ntake?{end_wait}
 N212	MsgDarkFinaleYesJenna2	Then I will see you at the\nnext lighthouse. Don't\nmake me wait.{end_wait}
 N213	MsgDarkFinaleNoIsaac	No. We don't know enough\nto follow you. We'll find\nour own way.{end_wait}
-N214	MsgDarkFinaleMercyJenna	Then keep walking. The\nWise One will not wait for\nyou to catch up.{end_wait}
-N215	MsgDarkFinaleMercyIvan	We should keep moving,\nIsaac. We still have to\nreach Kalay.{end_wait}
-N216	MsgDarkFinaleMercyMia	Then we keep looking. I\nwon't pretend this is easy.\nBut the choice is ours.{end_wait}
+N214	MsgDarkFinaleRefusalJenna	Then keep walking. The\nWise One will not wait for\nyou to catch up.{end_wait}
+N215	MsgDarkFinaleRefusalIvan	We should keep moving,\nIsaac. We still have to\nreach Kalay.{end_wait}
+N216	MsgDarkFinaleRefusalMia	Then we keep looking. I\nwon't pretend this is easy.\nBut the choice is ours.{end_wait}
 N221	MsgDarkFinaleHook	Your Jenna, Kraden and\nFelix are still Menardi's\nprisoners.{page_break}The Wise One has noticed\nyou now, so hurry to Kalay.{end_wait}
