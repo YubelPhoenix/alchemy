@@ -330,9 +330,17 @@ static void LamakanDesert_AshJennaFinale(void) {
 
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
-  Event_SetMessageId(MsgDarkFinaleJenna1);
-  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0) {
+    // Isaac has already seen her watching the desert; acknowledge that meeting.
+    Event_SetMessageId(MsgDarkFinaleJennaMet);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    Event_SetMessageId(MsgDarkFinaleIsaacMet);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  } else {
+    Event_SetMessageId(MsgDarkFinaleJenna1);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  }
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
