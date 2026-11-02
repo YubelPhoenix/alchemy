@@ -86,6 +86,8 @@ These are custom additions or altered encounters. They must be treated as revisi
 ### Sol Sanctum first-visit correction
 
 The first-entry sequence in `games/tbs/src/scene/sol_sanctum_entrance.c` explicitly asks whether this is the party's first time inside Sol Sanctum. Kraden's event then has him explain that he has heard of a hidden passage, reflect on how the Sanctum differs from what he imagined, and question the absence of sunlight in a place built to honor the sun. The former `04056` line claimed, "I've walked these halls for years," contradicting both the first-visit question and the scene's event sequence. It has been corrected to say that Kraden has studied the Sanctum's history for years but has never stood inside it until now. `04060` now refers to the contradiction bothering him for years, making clear that his prior knowledge came from study, not repeated visits. No scene logic was changed.
+The same first-visit prompt has a conditional response: the scene comment documents Kraden's response to a "no" answer as "I doubt that..." The former `04053` began "Of course not," which read as agreement with a claim that the party had visited before. It has been revised to "I doubt that. Few people have ever been allowed inside," preserving the branch's intended meaning. The yes/no branches remain intact.
+
 
 ### Heart / Chalice cameo in Kolima
 
