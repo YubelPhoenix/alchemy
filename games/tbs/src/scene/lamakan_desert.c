@@ -320,12 +320,6 @@ static void LamakanDesert_SayMia(void) {
 /// determine whether refusing her offer leads to the Mercy or Divided ending.
 /// Once.
 static void LamakanDesert_AshJennaFinale(void) {
-  s32 mercy;
-
-  mercy = 0;
-  if (GameFlag_Get(FLAG_DARK_MINER_STAYED) != 0) mercy++;
-  if (GameFlag_Get(FLAG_DARK_MOGALL_DOOR_OPENED) != 0) mercy++;
-
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
   if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0) {
@@ -350,44 +344,27 @@ static void LamakanDesert_AshJennaFinale(void) {
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   Event_SetMessageId(MsgDarkFinaleMia);
   LamakanDesert_SayMia();
-  // What the party remembers of Isaac's choices.
   if (GameFlag_Get(FLAG_DARK_MINER_STAYED) != 0) {
     Event_SetMessageId(MsgDarkEchoMiner);
     Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   }
-  if (GameFlag_Get(FLAG_DARK_MOGALL_DOOR_OPENED) != 0) {
-    Event_SetMessageId(MsgDarkEchoDoor);
-    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-  }
-  if (mercy == 0) {
-    Event_SetMessageId(MsgDarkEchoNone);
-    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
-  }
   Event_SetMessageId(MsgDarkFinaleAsk);
   if (Event_AskYesNo(ACTOR_PARTY_LEADER, 0) == 0) {
-    // The Complicit ending.
+    // Isaac agrees to help Ash Jenna confront the Wise One.
     Event_SetMessageId(MsgDarkFinaleYesIsaac);
     Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
     Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
     Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
     Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
-    GameFlag_Set(FLAG_DARK_COMPLICIT);
-  } else if (mercy >= 2) {
-    // The Mercy ending.
+    GameFlag_Set(FLAG_DARK_ASH_JENNA_ACCEPTED);
+  } else {
+    // Isaac refuses to follow her without knowing the whole truth.
     Event_SetMessageId(MsgDarkFinaleNoIsaac);
     Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
     Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
     Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
     LamakanDesert_SayMia();
-    GameFlag_Set(FLAG_DARK_MERCY_ENDING);
-  } else {
-    // The Divided ending.
-    Event_SetMessageId(MsgDarkFinaleDivIsaac);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
-    LamakanDesert_SayMia();
-    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-    GameFlag_Set(FLAG_DARK_MIA_LEFT);
+    GameFlag_Set(FLAG_DARK_ASH_JENNA_REFUSED);
   }
   Event_SetMessageId(MsgDarkFinaleHook);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
