@@ -1,0 +1,31 @@
+# Suhalla town: before and after Babi's audience; includes NPC Mind Read states.
+09655	MsgSuhallaThisIsSuhallaDontTryCrossing	This is Suhalla. Stay\nclear of the desert while\nthe storms are raging.{page_break}The winds can swallow a\ntraveler before anyone\ncan reach them.{end_wait}
+09656	MsgSuhallaTryingGetLalivero	Are you trying to reach\nLalivero?{end_now}
+09659	MsgSuhallaWeGondowansWillNeverTrustAnyone	We Gondowans have no\nreason to trust Angara.\nNot after what they did.{page_break}{actor_name:7} was taken as a\nhostage to keep Lalivero\nunder Tolbi's control.{end_wait}
+09690	MsgSuhallaWeWereBroughtHereByThe	The storm carried us\nhere before we could\nfind shelter.{end_wait}
+09660	MsgSuhallaItHasBeenSaidForAges	For generations, people\nhave said the desert\nspirits stir the storms...{page_break}when angered by the\nthings people do.{end_wait}
+09661	MsgSuhallaYouCantGetToSouthernGondowan	Can anyone reach southern\nGondowan from here?{page_break}The rivers and broken\nland make a crossing\nnearly impossible.{end_wait}
+09662	MsgSuhallaTheWorkersSayTherereHugeFestivals	The workers speak of\nTolbi's great festival.\nI wish I could see it.{end_wait}
+09663	MsgSuhallaTheSandstormsSuddenlyIncreasedIHope	The storms grew violent\nwithout warning.{page_break}I hope no one else is\nleft out there when the\nnext one comes.{end_wait}
+09692	MsgSuhallaBroughtSuhallaSandstorm	The storm swept you\ninto Suhalla, didn't it?{end_now}
+09664	MsgSuhallaTheSuhallaHasLongBeenKnown	Suhalla has always known\nsandstorms. Lately, they\ncome too often.{end_wait}
+09665	MsgSuhallaThePeopleOfLaliveroHaveBeen	Angaran soldiers have\nworked Lalivero's people\nto the bone.{page_break}No one would dare treat\nSuhallans that way. We\nwould not endure it.{end_wait}
+09666	MsgSuhallaTheRulerOfTolbiTookA	{actor_name:7} was taken as a\nhostage to keep Lalivero\nunder Tolbi's control.{page_break}We will not forget\nwhat Babi has done, nor\nforgive it easily.{end_wait}
+09667	MsgSuhallaIKnowTheDesertSpiritsWill	The desert spirits will\nmake Babi answer for\nwhat he has done.{end_wait}
+09668	MsgSuhallaSouthernGondowanIsGuardedByThe	The land itself guards\nsouthern Gondowan. Few\ncan cross it safely.{page_break}Still, we watch the north.\nAn Angaran army could\ncome one day.{end_wait}
+09669	MsgSuhallaIveHeardThatTolbisColossoIs	They say Colosso is a\nfestival for warriors.\nWhat does that mean?{page_break}Do they celebrate skill,\nor simply the sight of\npeople being hurt?{end_wait}
+09670	MsgSuhallaNoneOfTheGrownUpsIn	When the storms rise,\nthe adults stay indoors.\nNo one argues with them.{end_wait}
+09687	MsgSuhallaWelcomeToSuhallaIBetThe	Welcome to Suhalla. The\nstorms must have been\nterrible out there.{end_wait}
+09688	MsgSuhallaTheDesertIsEnvelopedInSandstorms	The desert has vanished\nbehind a wall of sand.\nIt's frightening.{end_wait}
+09689	MsgSuhallaSoldiersFromTolbiWereCaughtIn	Tolbi's soldiers were\ncaught in the storms.\nMost did not survive.{page_break}The few who returned\nare being cared for\nin the house nearby.{end_wait}
+09691	MsgSuhallaThisSandstormIsTheFaultOf	The Angarans brought\nthis upon us!{page_break}The tower they forced\nLalivero to build may\nhave stirred the spirits.{end_wait}
+09695	MsgSuhallaWhyAreTheSandstormsAttackingHumans	The storms seem to choose\nwho they strike. They\nmove like living things.{page_break}What kind of force can\nturn the desert against\nthose who cross it?{end_wait}
+09696	MsgSuhallaThoseSoldiersKeptMumblingAboutMonsters	The soldiers kept\nwhispering about shapes\ninside the storm.{end_wait}
+09697	MsgSuhallaIBetTheseWarriorsWereBrought	Those warriors must have\nbeen swept here by the\nsame terrible winds.{end_wait}
+09698	MsgSuhallaIWonderWhyThereAreSo	The storms were not this\nfrequent until recently.{pause_20_skippable}\nWhat changed?{end_wait}
+09699	MsgSuhallaTheSoldiersFromTolbiWereCollapsing	The Tolbi soldiers fell\nlike men who had already\nfought a losing battle.{end_wait}
+09700	MsgSuhallaAfterYouGetSwallowedByA	Once a storm takes you,\nyou have only moments\nbefore it throws you back.{page_break}You can struggle all\nyou like. There is no\nway to fight the wind.{end_wait}
+09701	MsgSuhallaLatelyAllTheSandstormsHaveBeen	The storms have grown\nstronger with each day.{page_break}What could have angered\nthe desert spirits so\ncompletely?{end_wait}
+09702	MsgSuhallaIfYouFightTheStormsYoull	Fight a death storm and\nyou invite the spirits'\nwrath.{page_break}Perhaps that is what\nbrought the Tolbi soldiers\nto their knees.{end_wait}
+09703	MsgSuhallaGrownUpsSayTheSandstormsAttack	The adults say the storms\nattack people. But how\ncan a storm choose?{page_break}It is only wind and sand.\nIsn't it?{end_wait}
+09704	MsgSuhallaTheySayTheSoldiersWereRavaged	They say the soldiers\nwere torn apart by the\nstorms...{page_break}I think something was\nhiding inside the wind.{end_wait}
