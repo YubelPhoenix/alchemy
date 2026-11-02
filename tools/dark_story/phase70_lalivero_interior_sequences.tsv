@@ -1,0 +1,62 @@
+# Lalivero interiors: the report to Faran and the search for Sheba.
+# First account of the search and the fate of Idejima.
+10321	message	We were{pause_20_skippable} unable to\nfind any sign of her.{end_wait}
+10322	message	The sea is too rough\nfor us to search.{end_wait}
+10323	message	And on land, there is\nno trace of her...{end_wait}
+10324	message	Tolbi is responsible\nfor what happened to\n{actor_name:7}.{end_wait}
+10325	message	No apology can lessen\nthe grief I feel for\nyour loss, Faran...{end_wait}
+10326	message	All we can do for\n{actor_name:7} now is...\nhope.{end_wait}
+10327	message	But tell me, what of\n{actor_name:6} and the\nothers?{end_wait}
+10328	message	The same. We searched\neverywhere, but found\nno sign of them.{end_wait}
+10329	message	The lighthouse's shock\ntore the ground apart,\nand the ship...{end_wait}
+10330	message	Everything at Idejima,\nship included, was\nswept out to sea...{end_wait}
+10331	message	So Idejima itself\nwas washed out to sea?{end_now}
+10332	message	Incredible... Then the\ncave must have flooded\nas well?{end_wait}
+10333	message	But we believe {actor_name:6}\nand the others are\nstill alive.{end_wait}
+10334	message	They may have been\ncarried out to sea\nwith Idejima.{end_wait}
+10335	message	We will keep searching\nuntil we find {actor_name:6}.{end_wait}
+10336	message	Haven't we,\n{actor_name:1}?{end_now}
+
+# Faran's response, the Adept discussion, and the farewell.
+10338	message	You need not worry\nabout {actor_name:7}...{end_wait}
+10339	message	We will find {actor_name:7}\nwithout fail...{end_wait}
+10340	message	{actor_name:7} has faced\ndanger before and\nsurvived.{end_wait}
+10341	message	But this time...\nIt would take a miracle.{end_wait}
+10342	message	Who could have guessed\nthe sea would rise as\nshe fell?{end_wait}
+10343	message	Can you truly call\nthat a miracle?{end_wait}
+10344	message	Was it really a miracle,\nor simply good fortune?{end_wait}
+10345	message	Call it coincidence,\nfor now.{end_wait}
+10346	message	Nothing is coincidence\nwhen it comes to this\nchild.{end_wait}
+10347	message	So you believe\n{actor_name:7} survived...?{end_wait}
+10348	message	Yes. I am certain.{end_wait}
+10349	message	Because {actor_name:7}...\nwas an Adept?{end_wait}
+10350	message	An Adept...?\nWhat is that?{end_wait}
+10351	message	Well, it's...{end_wait}
+10352	message	Someone with abilities\nlike theirs.{end_wait}
+10353	message	{actor_name:1}, you and your\nfriends are remarkable.{end_wait}
+10354	message	You entered the ancient\nruins and reached\nVenus Lighthouse.{end_wait}
+10355	message	But {actor_name:7} was different.\nShe could not enter\nthe ruins.{end_wait}
+10356	message	That's because {actor_name:7}'s\nabilities differ from\ntheirs.{end_wait}
+10357	message	I have explained this\nto Faran again and again.\nHe still will not listen!{end_wait}
+10358	message	{actor_name:2}, that is\nunfair...{end_wait}
+10359	message	We cannot stay here.\nWe have to go.{end_wait}
+10360	message	Of course. I did not\nmean to keep you...{end_wait}
+10361	message	That did not come\nout as I intended...{end_wait}
+10362	message	While we speak,\n{actor_name:6} and the others\nare still lost at sea.{end_wait}
+10363	message	I understand. You cannot\nafford to wait.{end_wait}
+10364	message	The sea has been rough\nsince the beacon was lit.\nBe careful!{end_wait}
+10365	message	You, too. Farewell.{end_wait}
+10366	message	Take care...\nand farewell!{end_wait}
+10367	message	Thank you. I hope your\nsearch for {actor_name:7}\nends in success.{end_wait}
+
+# Alternate report when the party did not see the ship at Idejima.
+10369	message	The same. We searched\neverywhere, but found\nno sign of them.{end_wait}
+10370	message	The shock from the\nlighthouse tore the\nground apart...{end_wait}
+10371	message	Then Idejima itself\nwas swept out to sea...{end_wait}
+10372	message	My goodness... Then\n{actor_name:6} and the others\nmust have...{end_wait}
+10373	message	{actor_name:5} said he sent\n{actor_name:6} ahead to the\nship from the lighthouse.{end_wait}
+10374	message	But we believe they\nsurvived.{end_wait}
+10375	message	They may have been\ncarried out to sea\nwith Idejima...{end_wait}
+10376	message	We will keep searching\nfor {actor_name:6}.{end_wait}
+10377	message	Isn't that right,\n{actor_name:1}?{end_now}
+10378	message	You will find {actor_name:6}.\nI believe that...\nFarewell.{end_wait}
