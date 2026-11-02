@@ -82,6 +82,11 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase63_aerie_fall_aftermath.tsv` | 52 Aerie messages rewritten for the collapse, Sheba's fall, Felix's sacrifice, and the party's return. |
 
 
+
+### Sol Sanctum first-visit correction
+
+The first-entry sequence in `games/tbs/src/scene/sol_sanctum_entrance.c` explicitly asks whether this is the party's first time inside Sol Sanctum. Kraden's event then has him explain that he has heard of a hidden passage, reflect on how the Sanctum differs from what he imagined, and question the absence of sunlight in a place built to honor the sun. The former `04056` line claimed, "I've walked these halls for years," contradicting both the first-visit question and the scene's event sequence. It has been corrected to say that Kraden has studied the Sanctum's history for years but has never stood inside it until now. `04060` now refers to the contradiction bothering him for years, making clear that his prior knowledge came from study, not repeated visits. No scene logic was changed.
+
 ### Heart / Chalice cameo in Kolima
 
 Heart is Chalice from *Golden Sun: Dark Dawn*, using her Japanese name as in the sprite animation. Her characterization is not that of a newly invented alternate-world antagonist. In the sprite-animation continuity, the Dark Dawn world is destroyed; Tuaparang escapes that destruction and continues observing events from the shadows while pursuing its own plans. Heart is a powerful Dark Adept whose earlier defeat by Matthew taught her not to leave her abilities unused. The Kolima encounter must preserve those facts without turning her into an exposition device or revealing Tuaparang's full plans.
