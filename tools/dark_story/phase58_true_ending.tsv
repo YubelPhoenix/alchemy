@@ -8,7 +8,7 @@
 10522	message	I know. That light is\nwhy we are stranded here,\nisn't it?{end_wait}
 10523	message	You're unusually sour\ntoday, {actor_name:6}!{end_wait}
 10524	message	I can see you're worried{pause_20_skippable}\nabout {actor_name:5}. I am, too.{end_wait}
-10525	message	{actor_name:1} and his friends\nmust have been close by\nwhen it happened.{end_wait}
+10525	message	{actor_name:1} and his friends\nmust have been near the\nbeacon when it was lit.{end_wait}
 10527	message	I miss them... {actor_name:1}...\nAnd {actor_name:5}...{end_wait}
 10528	message	There is something\nI want you both to see.{end_wait}
 10534	message	What is that? Alex,\nwhat have you done?{end_wait}
