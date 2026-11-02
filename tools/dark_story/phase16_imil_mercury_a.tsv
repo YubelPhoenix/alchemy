@@ -93,16 +93,16 @@
 05544	message	I have failed in the\none duty placed upon me...{pause_20_skippable}{page_break}This is terrible.{end_wait}
 05545	message	{actor_name:1}! {actor_name:2}!{end_wait}
 05546	message	So it's you, {actor_name:1}!{end_wait}
-05549	message	That's not all...\nWe're after the\nElemental Stars!{end_wait}
-05550	message	In other words,{pause_20_skippable} they've\ncome to stop us.{end_wait}
-05551	message	Then we have no choice...{page_break}We deal with them\nnow, before they do\nany harm!{end_wait}
-05552	message	Menardi... {pause_20_skippable}Wait!{end_wait}
-05553	message	Oh, Saturos...\nThey want to...{end_wait}
-05554	message	I heard everything.{end_wait}
-05555	message	They survived the\neruption of Mt. Aleph.\nLucky.{end_wait}
-05556	message	You've endured so much,\nand now you want to\nthrow your lives away?{end_wait}
-05557	message	Fine. If that's your\nwish, prepare to have\nit granted.{end_wait}
-05558	message	Saturos... Are you going\nto fight them alone?{end_wait}
+05549	message	We came to reclaim\nwhat you stole from Vale!{end_wait}
+05550	message	Then you know why\nwe cannot let you pass.{end_wait}
+05551	message	They'll pursue us.\nWe end this here,\nbefore they reach the rest.{end_wait}
+05552	message	Menardi...{pause_20_skippable} Enough.{end_wait}
+05553	message	Saturos, they know\nwhat we've taken...{end_wait}
+05554	message	I heard them.{end_wait}
+05555	message	They lived through\nMt. Aleph's collapse.\nAgainst all odds.{end_wait}
+05556	message	You survived the mountain.\nWill you throw that\nlife away here?{end_wait}
+05557	message	If you stand against me,\nI will not spare you.{end_wait}
+05558	message	You intend to face\nthem alone, Saturos?{end_wait}
 05559	message	Menardi, I can't ask you\nto leave our hostages\nand help me, can I?{end_wait}
 05560	message	Umm...{pause_20_skippable} That's true...{end_wait}
 05561	message	Besides, I want to see\nhow far their powers\nhave grown.{end_wait}
