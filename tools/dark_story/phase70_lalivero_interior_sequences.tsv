@@ -22,9 +22,9 @@
 10339	message	We will find {actor_name:7}\nwithout fail...{end_wait}
 10340	message	{actor_name:7} has faced\ndanger before and\nsurvived.{end_wait}
 10341	message	But this time...\nIt would take a miracle.{end_wait}
-10342	message	Who could have guessed\nthe sea would rise as\nshe fell?{end_wait}
-10343	message	Can you truly call\nthat a miracle?{end_wait}
-10344	message	Was it really a miracle,\nor simply good fortune?{end_wait}
+10342	message	Who could have known\nthe sea would rise just\nas she fell?{end_wait}
+10343	message	Would you truly call\nthat a miracle?{end_wait}
+10344	message	Was it a miracle, or\nmerely good fortune?{end_wait}
 10345	message	Call it coincidence,\nfor now.{end_wait}
 10346	message	Nothing is coincidence\nwhen it comes to this\nchild.{end_wait}
 10347	message	So you believe\n{actor_name:7} survived...?{end_wait}
@@ -32,7 +32,7 @@
 10349	message	Because {actor_name:7}...\nwas an Adept?{end_wait}
 10350	message	An Adept...?\nWhat is that?{end_wait}
 10351	message	Well, it's...{end_wait}
-10352	message	Someone with abilities\nlike theirs.{end_wait}
+10352	message	Someone with powers\nlike theirs.{end_wait}
 10353	message	{actor_name:1}, you and your\nfriends are remarkable.{end_wait}
 10354	message	You entered the ancient\nruins and reached\nVenus Lighthouse.{end_wait}
 10355	message	But {actor_name:7} was different.\nShe could not enter\nthe ruins.{end_wait}
