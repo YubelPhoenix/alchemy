@@ -95,7 +95,7 @@
 05546	message	So it's you, {actor_name:1}!{end_wait}
 05549	message	We came to reclaim\nwhat you stole from Vale!{end_wait}
 05550	message	Then you know why\nwe cannot let you pass.{end_wait}
-05551	message	They'll pursue us.\nWe end this here,\nbefore they reach the rest.{end_wait}
+05551	message	They'll pursue us.\nWe stop them here,\nbefore they follow.{end_wait}
 05552	message	Menardi...{pause_20_skippable} Enough.{end_wait}
 05553	message	Saturos, they know\nwhat we've taken...{end_wait}
 05554	message	I heard them.{end_wait}
@@ -106,7 +106,7 @@
 05559	message	Our hostages are yours\nto guard, Menardi.\nDo not leave them.{end_wait}
 05560	message	I understand.{end_wait}
 05561	message	I want to know what\nVale has taught them\nsince we last met.{end_wait}
-05562	message	Saturos, the beacon\nhas changed the air.{end_wait}
+05562	message	Saturos, Mercury's light\nis weakening you.{end_wait}
 05563	message	I know. {pause_20_skippable}Go.\nReach the next lighthouse.\nDo not wait for me.{end_wait}
 05564	message	Come here, child...{end_wait}
 05565	message	Do you mean to\ndefy me?{end_wait}
