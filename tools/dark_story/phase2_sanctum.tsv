@@ -279,7 +279,7 @@
 04328	message	The situation changed.\nSo must our plans.{end_wait}
 04329	message	{actor_name:6} has no part in\nthis. I won't let you\nhurt her!{end_wait}
 04330	message	Do what you want with\nme. Just let {actor_name:6} go!{end_wait}
-04331	message	I respect your courage.\nIt changes nothing.{end_wait}
+04331	message	You cannot help\n{actor_name:6} now.{end_wait}
 04332	message	Leave {actor_name:6} here and she\ndies. Is that what you\nwant, {actor_name:5}?{end_wait}
 04333	message	Let's go, {actor_name:5}.\nSomething is watching us.\nI don't like it.{end_wait}
 04334	message	{actor_name:5}... please.{end_wait}
