@@ -17,20 +17,20 @@
 05406	MsgKolimaKnowCannotStopButPlease	I won't stop you.{page_break}Be careful\nbeyond the river.{end_wait}
 05407	MsgKolimaMustHorribleBeyondRiverAm	The road ahead\nis dangerous.{page_break}Take care, {actor_name:1}.{end_wait}
 05413	MsgKolimaLeaveBeforeForest	Leave before\nthe forest falls.{end_wait}
-05749	MsgKolimaIfICouldSpeakIdTell	If I could speak, I'd\nwarn them. This is\nKolima... or it was.{end_wait}
-05750	MsgKolimaHowCouldAnyoneTurnAGirl	How could anyone turn a\ngirl like me into a tree?{page_break}...I do make a rather\nlovely tree, though.{end_wait}
-05751	MsgKolimaThisIsADreamItHas	This is a dream. It has\nto be a dream.{end_wait}
-05752	MsgKolimaBeingUnableToMoveIsSo	Not being able to move\nis worse than I thought.{end_wait}
-05753	MsgKolimaIAmOldIveLivedA	I'm old. I've lived a\nfull life. Being a tree\ndoesn't trouble me.{page_break}It's the children I\npity. They were turned\ntoo.{end_wait}
-05754	MsgKolimaItsTheSacredTreesCurseWhy	The sacred tree's curse!\nWhy did they try to cut\ndown Tret?{end_wait}
-05756	MsgKolimaIfICantMoveThenMom	If I can't move, Mom\ncan't make me go to bed.{page_break}...I want my mom.{end_wait}
-05757	MsgKolimaInteriorsWhatAreTheyStaringAtThey	Why are they staring?\nThey look so young...{page_break}They won't survive Tret.{end_wait}
-05760	MsgKolimaInteriorsSoonAllOfKolimaWillBe	Soon all of Kolima will\nbe forest. Nothing else.{end_wait}
-05762	MsgKolimaInteriorsMaybeWeTurnedIntoTreesBecause	Maybe this is payment\nfor all the trees we cut.{page_break}We were only doing our\njobs. Weren't we?{end_wait}
-05765	MsgKolimaInteriorsIUsedToCarveWeaponsOut	I used to carve weapons\nout of wood. Now I am\nwood.{page_break}Life has a cruel sense\nof humor.{end_wait}
-05767	MsgKolimaInteriorsNoIDontWantToBe	No! I don't want to be\na tree forever!{end_wait}
-05775	MsgKolimaYouKnowBeingATreeGives	Being a tree gives you a\ngreat deal of time to\nthink. Too much.{end_wait}
-05776	MsgKolimaITurnedIntoATreeRight	I turned the moment the\nsparkles fell from the\nsky. It didn't hurt.{end_wait}
+05749	MsgKolimaIfICouldSpeakIdTell	If I could speak,\nI'd warn them to run.{end_wait}
+05750	MsgKolimaHowCouldAnyoneTurnAGirl	I can hear them talking.{page_break}They don't know\nI'm still here.{end_wait}
+05751	MsgKolimaThisIsADreamItHas	This can't be real.\nIt can't.{end_wait}
+05752	MsgKolimaBeingUnableToMoveIsSo	I can't even\nturn my head.{end_wait}
+05753	MsgKolimaIAmOldIveLivedA	I've lived a long life.{page_break}But the children...\nThey've barely begun.{end_wait}
+05754	MsgKolimaItsTheSacredTreesCurseWhy	They tried to cut Tret.{page_break}Did they think\nhe wouldn't fight back?{end_wait}
+05756	MsgKolimaIfICantMoveThenMom	I want my mother.\nI can't call to her.{end_wait}
+05757	MsgKolimaInteriorsWhatAreTheyStaringAtThey	Why are they staring?{page_break}They don't know\nwhat waits ahead.{end_wait}
+05760	MsgKolimaInteriorsSoonAllOfKolimaWillBe	Soon there'll be\nnothing left but trees.{end_wait}
+05762	MsgKolimaInteriorsMaybeWeTurnedIntoTreesBecause	We cut trees for work.{page_break}Did that make us\npart of this?{end_wait}
+05765	MsgKolimaInteriorsIUsedToCarveWeaponsOut	I carved wood\nfor a living.{page_break}Now I know\nwhat it feels like.{end_wait}
+05767	MsgKolimaInteriorsNoIDontWantToBe	No. Please.\nNot forever.{end_wait}
+05775	MsgKolimaYouKnowBeingATreeGives	I've had too much time\nto think about this.{end_wait}
+05776	MsgKolimaITurnedIntoATreeRight	The dust fell.{page_break}Then I couldn't move.\nI felt everything.{end_wait}
 05424	MsgImilWeveHadALotOfStrangers	We've had too many\nstrangers lately.{page_break}Are you after the\nlighthouse? Mia won't\nlike that.{end_wait}
 05425	MsgImilPeopleGetSickBecauseTheyStay	People get sick from\nhiding indoors all day.{page_break}Keep moving, keep warm.\nThat's what keeps you\nalive here.{end_wait}
 05426	MsgImilTheresBeenAnEpidemicGoingAround	There's a sickness in\nImil. It's spreading.{page_break}If you value your life,\nleave now.{end_wait}
