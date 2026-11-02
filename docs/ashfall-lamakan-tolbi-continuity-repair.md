@@ -68,3 +68,32 @@ Do not alter original route flags, Colosso states, scene entrances, or battle be
 - The Mia / blade / awakened terminology needs one consistent introduction order across `phase42_manticore_mia.tsv`, `phase43_ivan.tsv`, `phase37_blade.tsv`, and `phase47_finale.tsv`.
 
 No dialogue or event code is changed by this audit. The next safe edit is to establish the canonical causal chain and then rewrite the Tolbi follow-up and Ondra's two activation paths in small, validated batches.
+
+
+## Canonical correction: Kegare, not Ondra
+
+The character currently named Ondra is to be renamed **Kegare (穢れ, “impurity” / “defilement”)**. This is a cameo super boss from the user's sprite-animation continuity, in the same broad category as Heart. She is not a native Golden Sun sea goddess, a benevolent Tideglass Queen, or an entity awakened by the party's kindness.
+
+### Established character truth
+
+- Kegare is deliberately mimicking Mia.
+- Her ultimate objective is to replace Mia.
+- The resemblance is intentional and is the central source of unease; it is not a family resemblance or a shared elemental origin.
+- She should be presented as an unsettling cameo super boss, with enough self-contained context for a Golden Sun player to understand the immediate threat. Her full origin and wider sprite-animation context should remain restrained rather than being dumped into the game's dialogue.
+- Her appearance should feel like an intrusion from the larger sprite-animation continuity, as Heart does, without displacing the main Golden Sun plot.
+
+### Consequences for the current rewrite
+
+1. Remove the “Tideglass Queen,” “Mia comes from my tide,” and shared-face mythology. Those claims contradict the established premise.
+2. Do not describe Kegare as being awakened by the child's rescue or by three kindnesses. Those choices may remain as optional conditions for discovering or gaining access to the encounter, but they are not her origin, motive, or source of power.
+3. The harbor child must not be used as the explanation for Kegare's existence. If retained, his scene needs its own coherent purpose in the wider Ashfall plot; otherwise it should be audited separately rather than retrofitted into Kegare's backstory.
+4. Reframe the optional kindness flags as encounter/access conditions only if the existing route and player experience support that design. They must not cause Kegare to claim that Isaac performed an action on a path where he did not.
+5. Rewrite Kegare's dialogue around observation, imitation, and replacement. She should know Mia well enough to unsettle her, but should not explain every detail of her origin or reveal the entire sprite-animation plot.
+6. Preserve her status as a cameo super boss: a memorable, optional or specially gated confrontation, not a new central antagonist who hijacks the Tolbi chapter.
+7. The Ash Jenna / Heart continuity must remain separate. Heart and Kegare are distinct cameos with distinct purposes; do not merge their origins or imply that one is the other.
+
+### Naming and localization
+
+Use “Kegare” consistently as the character's display name and in documentation. The Japanese word 穢れ carries the sense of impurity, defilement, or ritual pollution; it is not simply a synonym for “evil.” Keep that nuance in mind when writing her characterization. The exact in-game name rendering should follow the project's text-width and naming conventions.
+
+This correction supersedes the earlier speculative explanation of Ondra in this report. The prior audit remains useful for identifying the incorrect encounter timing and branch dialogue, but its “Tideglass Queen” interpretation is no longer canonical.
