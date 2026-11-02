@@ -164,3 +164,18 @@ This section supersedes earlier notes in this document that describe the harbor 
 - Kegare's optional cameo superboss encounter is available only after `FLAG_COLOSSO_OVER`. The harbor-child and three-kindness flags do not gate her.
 - Mia directly confronts Kegare's claim that wearing her face gives Kegare her identity or place among the party.
 - GitHub Actions Run 394 (`41459976297`) completed successfully on the current branch head, including dialogue validation, modified English edition compilation, unmodified baseline verification, IPS generation, and test-patch upload. This verifies the build pipeline for that commit; in-game encounter and route testing remain separate requirements.
+
+
+### Corrected early-game route: Kolima and Mercury are interleaved
+
+The source check makes the route more specific than the broad location list above. Do not describe this stretch as simply "Mercury, then Bilibin, then Kolima."
+
+1. **Initial Bilibin visit:** the Kolima road is blocked and the tree-shaped man is at the town entrance.
+2. **First Kolima / Tret visit:** the party witnesses the curse and reaches Tret. Tret's wrathful side rejects an attempt to use ordinary progress at this point; Laurel's Mind Read points toward the healing waters of Mercury Lighthouse, whose fountain has dried up.
+3. **Imil and Mercury Lighthouse:** Mia joins the party; the party reaches the lighthouse, lights its beacon, and defeats Saturos at the Aerie. The source documents that the Fountain of Healing begins flowing only after Saturos is beaten, allowing an Empty Bottle to become Hermes' Water.
+4. **Bilibin Barricade river event on the return:** `FLAG_SATUROS_BEATEN_AT_MERCURY` changes the Gang of Three's tree arrangement while `FLAG_KOLIMA_CURSE_LIFTED` is still clear. The travelers from Imil have crossed using the fallen trees; Jill is in the river and can be rescued with Move. This is the window for the optional Jill rescue.
+5. **Return to Tret:** use Hermes' Water on Tret. The Water of Hermes seeps into him, the party restores his gentle side, and `FLAG_KOLIMA_CURSE_LIFTED` changes Kolima and the forest to their post-curse states.
+6. **Post-curse Bilibin revisit:** the tree-shaped man is restored, the town NPCs switch to their post-curse talk and Mind Read, the road opens, and the Gang of Three are children again. Jill's presence and gift depend on the earlier rescue flag.
+7. **Only after this stretch does the party proceed into the westward route through Mogall Forest, then Xian and Altin.** Mogall is before Altin.
+
+The crucial distinction is that the Mercury victory and the Tret cure are separate milestones. `FLAG_SATUROS_BEATEN_AT_MERCURY` opens the fountain and changes the riverbank scene; it does not itself lift Kolima's curse. `FLAG_KOLIMA_CURSE_LIFTED` is set later, when Tret is healed. Dialogue must respect the interval between those events.
