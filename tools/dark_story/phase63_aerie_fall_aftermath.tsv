@@ -54,7 +54,7 @@
 10308	message	After all this, you\ncannot face {actor_name:6}\nor tell her of {actor_name:5}?{end_wait}
 10309	message	If you will not tell\nher what happened to\n{actor_name:5}, who will?{end_wait}
 10310	message	You must find a way\nto help {actor_name:6} bear\nthe truth...{end_wait}
-10311	message	What's the matter, {actor_name:2}?{end_wait}
+10311	message	What's wrong, {actor_name:2}?{end_wait}
 10312	message	I was thinking...{pause_20_skippable}{pause_20_skippable}\nHow are we meant to\nclimb down from here?{end_wait}
 10313	message	You're right.{pause_20_skippable} Getting away\nfrom this place will be\ndifficult...{end_wait}
 10314	message	It's back to normal!{end_wait}
