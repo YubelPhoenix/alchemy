@@ -241,15 +241,15 @@
 03970	message	Yeah... When travelers\ncome, he hears all about\nthe outside world.{end_wait}
 03971	message	Hmph. I can't believe you\ndon't envy him, {actor_name:1}.{page_break}I'd give anything to hear\na traveler's stories.{end_wait}
 03972	MsgValeValeMustRemainHiddenPsynergysSecrets	Vale must stay hidden.\nPsynergy's secrets can't\nreach the wrong hands.{page_break}That's our oldest law.\nHanded down for a reason.{end_wait}
-03973	MsgValeTheyKnowLittleOfThe	They know so little of the\nSanctum's mysteries.{end_wait}
+03973	MsgValeTheyKnowLittleOfThe	They know nothing of what\nthe Sanctum holds.{end_wait}
 03974	message	The elders will let no one\ninside. Not even Kraden.{end_wait}
-03975	message	Kraden...{pause_20_skippable} Could he be of\nuse to us?{end_wait}
-03976	message	His knowledge is great.\nYes, we can use him.{end_wait}
-03977	message	But he's more stubborn\nthan we hoped.{end_wait}
-03978	message	And clever, too.\nDangerously clever.{end_wait}
-03979	message	If he won't come\nwillingly, we can always...{end_wait}
+03975	message	Kraden...{pause_20_skippable} He may know\nhow to get us inside.{end_wait}
+03976	message	He knows the mountain.\nWe should speak to him.{end_wait}
+03977	message	He refused to help us.{end_wait}
+03978	message	And he asks too many\nquestions.{end_wait}
+03979	message	Then we'll find another\nway inside.{end_wait}
 03982	message	Were you listening to our\nconversation?{end_now}
-03983	message	Oh? Well... I can't let\nyou keep spying on us.{end_wait}
+03983	message	You heard us.{pause_20_skippable} How much\ndo you know?{end_wait}
 03984	message	Hmph.{pause_20_skippable} I suppose I should\ntake you at your word.{end_wait}
 03986	message	Sneaking?{pause_20_skippable} Who are you to\naccuse me?{end_wait}
 03987	message	So Kraden's appointment\nwas with you...{end_wait}
@@ -258,15 +258,15 @@
 03990	message	Pfeh. If your errand\noutweighs ours, then...\ngo.{end_wait}
 03991	message	Kraden has sent us away.\nHe is waiting for you.{end_wait}
 03994	message	Are you sure, Saturos?\nThey heard everything.{end_wait}
-03995	message	Menardi, they're children.\nWe have no reason to\nhold them.{end_wait}
+03995	message	Menardi, let them go.\nThey are not our concern.{end_wait}
 03997	MsgValeDoNotKeepKradenWaiting	Go on, children. Don't\nkeep Kraden waiting.{end_wait}
 03998	MsgValeLeaveBeforeWeChangeMinds	Leave. Before we change\nour minds.{end_wait}
 03999	MsgValeWho	Who were they? Something\nabout them felt wrong.{end_wait}
-04000	message	They know too much about\nSol Sanctum.{end_wait}
-04001	message	They know things even the\nelders of Vale don't know.{end_wait}
+04000	message	They knew the name\nSol Sanctum.{end_wait}
+04001	message	And spoke of things the\nelders never taught me.{end_wait}
 04003	message	The elements of Alchemy:\nearth, water, fire, wind.{page_break}They mean to set them in\nmotion?{end_wait}
 04004	message	And the four Elemental\nStars are the key? Gods\nhelp us.{end_wait}
-04005	message	Even I, a trained sage,\nknow nothing of this.{end_wait}
+04005	message	I've studied for years,\nand I still know so little.{end_wait}
 04009	message	It's those two, isn't it?\nSaturos and Menardi,\nI believe.{end_wait}
 04010	message	Are they still out there?\nThey don't give up easily.{end_wait}
 04011	message	Did they want something\nfrom you, Kraden?{end_wait}
@@ -275,17 +275,17 @@
 04014	message	Mt. Aleph, Sol Sanctum...{page_break}They spoke as if they had\nseen them. With their\nown eyes.{end_wait}
 04016	MsgValeYouCannotEnterMtAleph	Yes.{pause_20_skippable} No one climbs Mt.\nAleph without a very good\nreason.{end_wait}
 04017	MsgValeKradenIWaitedYearsFor	I waited years before they\nlet me into the Sanctum.{page_break}Of course it's strange.{end_wait}
-04018	MsgValeJennaTheyMightBeThieves	And if they sneaked in,\nthey might be thieves!{end_wait}
-04019	message	We have to tell the high\nelders and the village!{end_wait}
-04021	message	I don't know how much of\nwhat they said is true.{end_wait}
-04022	message	We can't act until we've\nconfirmed what they said.{end_wait}
-04024	message	Then we confirm it\nourselves.{end_wait}
-04025	message	...You mean go into Sol\nSanctum? Ourselves?{end_wait}
+04018	MsgValeJennaTheyMightBeThieves	If they went inside,\nthey broke Vale's laws!{end_wait}
+04019	message	We should tell the elders\nbefore someone gets hurt.{end_wait}
+04021	message	We don't know if they\nwere telling the truth.{end_wait}
+04022	message	We need proof before we\naccuse anyone.{end_wait}
+04024	message	Then we go and look.{end_wait}
+04025	message	Inside Sol Sanctum?\nWithout permission?{end_wait}
 04028	message	Just because Mt. Aleph is\nforbidden?{end_now}
 04029	MsgValeKradenWeOnlyCheckThe	We only want to see if\nthey've been up there.{page_break}Surely that's acceptable...\nisn't it?{end_wait}
 04030	MsgValeKradenWeOnlyCheckMt	That's right. We're only\nchecking whether they've\nbeen to Mt. Aleph.{end_wait}
-04031	MsgValeFineIfTheyDontSee	We'll be fine if no one\nsees us. Right?{end_now}
-04033	message	Sure, you say no. But\nyou want to.{end_wait}
+04031	MsgValeFineIfTheyDontSee	If no one sees us...\nwe'll be fine. Right?{end_now}
+04033	message	You say no, but I know\nyou're curious.{end_wait}
 04034	MsgValeJennaOurSecret	This stays our secret.\nOkay?{end_now}
 04035	message	No, {actor_name:1}.{pause_20_skippable} Not a word to\nyour mother. Promise.{end_wait}
 04037	message	You'll be our leader.\nOkay, {protagonist_name}?{end_now}
@@ -293,7 +293,7 @@
 04039	message	You're more careful than\n{actor_name:2}, {protagonist_name}.{page_break}You'll be fine!{end_wait}
 04041	MsgValeGaretIllTakeOverIf	There are dangerous\nplaces between Mt. Aleph\nand Sol Sanctum,{page_break}so I'll take over if\nyou freeze up.{end_wait}
 04042	message	If {actor_name:2} leads, we'll be\nthe nervous ones.{page_break}Don't you agree, Kraden?{end_wait}
-04044	MsgValeKradenOurBestBet	This may be our best\nchance.{end_wait}
+04044	MsgValeKradenOurBestBet	We may not get another\nchance to find out.{end_wait}
 04046	MsgValeNotSneakingUpMtAleph	You're not planning to\nsneak up Mt. Aleph,\nare you?{end_now}
 04047	message	Mt. Aleph is sacred. No\none climbs it without\npermission.{end_wait}
 04048	message	I'll overlook it this time.{page_break}But I'm watching you,\n{actor_name:1}.{end_wait}
