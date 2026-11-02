@@ -46,6 +46,13 @@ Vale dialogue must be audited by visit state, not by phase-file number. The scen
 
 
 
+
+### Bilibin / Gang of Three dialogue coverage repair
+
+A source-to-phase comparison of `bilibin.c` found nine named Bilibin messages missing from the relevant rewrite batches. Restored them in `phase8_bilibin_a.tsv` and `phase21_bilibin_riverbank.tsv`: the tree-man's Mind Read (`05040`), McCoy's Treasury and barricade signs (`05230`, `05234`), the bottom tree's Mind Read (`05233`), the Bilibin well examination (`10717`), and the Gang of Three / Jill riverbank sequence (`06005`, `06010`, `06015`, `06016`). The Jill rescue sequence also had two unrewritten generic message rows (`06007`, `06009`); those are now included so the event's full dialogue block is covered.
+
+The source trigger for `06015` and `06016` is conditional on `FLAG_BILIBIN_JILL_RESCUED`, meaning Jill has been pulled from the river and is present with the other two children after the curse is lifted. The old text said she was "gone" and implied she had died. The new lines instead acknowledge how close they came to losing her, without contradicting the rescue flag or her presence in the scene. The other two boys now recognize Isaac as the one who pulled Jill from the river, and Jill's offer and reward text are restored in the sequence. No event flags, rewards, or scene logic were changed.
+
 ### Kolima post-curse Mind Read: voice recovery
 
 `games/tbs/src/scene/kolima.c` binds `MsgKolimaForAWhileIThoughtId` to Mind Read on the young man who speaks after `FLAG_KOLIMA_CURSE_LIFTED`. The previous text said he had "waited [his] whole life" to speak, although he could speak before the curse and was only temporarily transformed into a tree. It also repeated the same point as his spoken dialogue. The Mind Read now reads: "For a while, I thought I'd never speak again. I keep testing my voice, just to be sure it's still mine." This keeps the aftermath personal without implying he was born unable to speak.
