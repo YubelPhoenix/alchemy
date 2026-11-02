@@ -71,7 +71,7 @@
 10010	message	Confidence is not enough.\nWhat can you actually\ndo against them?{end_wait}
 10011	message	Not with that attitude.\nYou will need more\nthan courage.{end_wait}
 10012	message	I have never heard you\nspeak so harshly, Faran.{end_wait}
-10013	message	What do you expect?\nWith {actor_name:7}'s life at stake...{page_break}you ask me to trust\nher rescue to children?{end_wait}
+10013	message	What do you expect?\nWith {actor_name:7}'s life\nat stake...{page_break}you ask me to trust\nher rescue to children?{end_wait}
 10014	message	If you want my trust,\nyou must give me a\nreason to believe you.{end_wait}
 10015	message	Then show us what\nyou can do. Prove that\nyou can follow them.{end_wait}
 10016	message	Can you cross the same\npath they took?{end_now}
