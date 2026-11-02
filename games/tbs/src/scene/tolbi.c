@@ -619,7 +619,7 @@ static void Tolbi_TalkToStrandedFather(void) {
 /// to Tolbi with FLAG_DARK_KEGARE_FOUGHT set, and she is gone.
 static void Tolbi_TalkToKegare(void) {
   Event_Start();
-  Event_SetMessageId(MsgDarkOndraRise);
+  Event_SetMessageId(MsgDarkKegareRise);
   Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
