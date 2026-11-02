@@ -166,7 +166,6 @@ enum MogallForestQuartzActorId {
   ACTOR_SECOND_AREA_SOUTH_APE_STUMP,
   /// Quartz, a Venus Djinni, placed until the party has it.
   /// ★ Named from the game: "Quartz" (MsgDjinnName)
-  ACTOR_SECOND_AREA_QUARTZ,
   ACTOR_SECOND_AREA_QUARTZ
 };
 
