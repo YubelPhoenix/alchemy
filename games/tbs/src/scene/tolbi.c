@@ -519,19 +519,19 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   }
   // Kegare appears once an optional encounter condition is met, until beaten. A
   // return from her battle means she has been beaten.
-  if (GameFlag_Get(FLAG_DARK_ONDRA_FOUGHT) != 0 &&
+  if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0 &&
       gSaveBlock.sequenceResult == -1) {
     // The party lost: she is still waiting, and the fight can be tried again.
-    GameFlag_Clear(FLAG_DARK_ONDRA_FOUGHT);
-  } else if (GameFlag_Get(FLAG_DARK_ONDRA_FOUGHT) != 0) {
-    GameFlag_Set(FLAG_DARK_ONDRA_BEATEN);
+    GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
+  } else if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0) {
+    GameFlag_Set(FLAG_DARK_KEGARE_BEATEN);
   } else if (GameFlag_Get(FLAG_DARK_HARBOR_SHELTERED) != 0 ||
              (GameFlag_Get(FLAG_DARK_TIDE_ALTIN) != 0 &&
               GameFlag_Get(FLAG_DARK_TIDE_IMIL) != 0 &&
               GameFlag_Get(FLAG_DARK_TIDE_TOLBI) != 0)) {
-    Actor_SetPosition(ACTOR_TOLBI_ONDRA, PIXELS(264), PIXELS(296));
-    Actor_FaceDirection(ACTOR_TOLBI_ONDRA, FACING_NORTH, 0);
-    Actor_ConfigureSpriteColor(ACTOR_TOLBI_ONDRA, SPRITE_COLOR_GREY);
+    Actor_SetPosition(ACTOR_TOLBI_KEGARE, PIXELS(264), PIXELS(296));
+    Actor_FaceDirection(ACTOR_TOLBI_KEGARE, FACING_NORTH, 0);
+    Actor_ConfigureSpriteColor(ACTOR_TOLBI_KEGARE, SPRITE_COLOR_GREY);
   }
   return 0;
 }
@@ -616,15 +616,15 @@ static void Tolbi_TalkToStrandedFather(void) {
 
 /// Kegare, the Mia-mimicking Water Adept, challenges Isaac.
 /// Her battle is slot 2 of ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI; a win returns
-/// to Tolbi with FLAG_DARK_ONDRA_FOUGHT set, and she is gone.
+/// to Tolbi with FLAG_DARK_KEGARE_FOUGHT set, and she is gone.
 static void Tolbi_TalkToKegare(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkOndraRise);
-  Event_ShowMessageThenWait(ACTOR_TOLBI_ONDRA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  Event_ShowMessageThenWait(ACTOR_TOLBI_ONDRA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  GameFlag_Set(FLAG_DARK_ONDRA_FOUGHT);
+  GameFlag_Set(FLAG_DARK_KEGARE_FOUGHT);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
   Event_SetAfterBattleDestination((s32)&SceneId_Tolbi, 0);
@@ -986,7 +986,7 @@ struct ActorTemplate gTolbiActorTemplates[] = {
 
 /// During the festival, before the finals.
 struct Trigger gTolbiTriggersFestival[] = {
-    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
+    { TRIGGER_TALK, ACTOR_TOLBI_KEGARE, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -1057,7 +1057,7 @@ struct Trigger gTolbiTriggersFestival[] = {
 
 /// On finals day.
 struct Trigger gTolbiTriggersFinalsDay[] = {
-    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
+    { TRIGGER_TALK, ACTOR_TOLBI_KEGARE, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -1130,7 +1130,7 @@ struct Trigger gTolbiTriggersFinalsDay[] = {
 
 /// After Colosso has ended.
 struct Trigger gTolbiTriggersAfterColosso[] = {
-    { TRIGGER_TALK, ACTOR_TOLBI_ONDRA, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
+    { TRIGGER_TALK, ACTOR_TOLBI_KEGARE, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { TRIGGER_TALK, ACTOR_TOLBI_ASH_JENNA, CONDITION_ALWAYS, EVENT(Tolbi_MeetAshJenna) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
