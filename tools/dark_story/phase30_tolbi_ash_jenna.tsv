@@ -1,11 +1,11 @@
-# Ash Jenna, an antagonist, confronts the party in Tolbi after Colosso.
-N74	MsgDarkTolbiJennaFound	You remember what I said\nin Lamakan. The sleepers\nare stirring here, too.{page_break}Listen to the harbor,\nIsaac. The sea has begun\nto answer them.{end_wait}
+# Ash Jenna confronts the party in Tolbi after Colosso.
+N74	MsgDarkTolbiJennaFound	You remember what I said\nin Lamakan. The Wise One\nhas noticed you, too.{page_break}He will not let you reach\nthe next lighthouse\nwithout watching.{end_wait}
 N75	MsgDarkTolbiIsaacGrey	Ash Jenna. We know what\nyou told us in Lamakan.\nWhy are you here?{end_wait}
-N76	MsgDarkTolbiJennaAsh	I am watching what wakes\nwhen the next lighthouse\nis lit.{page_break}You cannot save every\nsoul that hears the call,\nno matter how you try.{end_wait}
-N77	MsgDarkTolbiGaretFire	You said the lighthouses\nwake the sleepers. Is this\nwhat is happening here?{end_wait}
-N78	MsgDarkTolbiJennaPlease	You are learning, Garet.\nBut understanding the\nthreat will not stop it.{end_wait}
-N79	MsgDarkTolbiMiaSneer	You came to frighten us.\nWe won't leave people to\nface this alone.{end_wait}
+N76	MsgDarkTolbiJennaAsh	I am watching what happens\nwhen the next lighthouse\nis lit.{page_break}The Wise One will be\nwaiting for you there. He\nalways is.{end_wait}
+N77	MsgDarkTolbiGaretFire	You said the Wise One\ndestroyed your world. Is\nthat what you fear here?{end_wait}
+N78	MsgDarkTolbiJennaPlease	I know what follows when\nhe gets what he wants. You\nwill learn soon enough.{end_wait}
+N79	MsgDarkTolbiMiaSneer	You came to frighten us.\nWe won't follow you\nblindly.{end_wait}
 N80	MsgDarkTolbiJennaMia	Still defending everyone,\nMia? You admitted you\nwanted the beast to suffer.{end_wait}
 N81	MsgDarkTolbiMiaPlace	I was angry. I won't deny\nit. But you don't get to\nturn that into my nature.{end_wait}
-N82	MsgDarkTolbiJennaGoing	Light the next lighthouse,\nIsaac. More will wake, and\nthe voices will spread.{page_break}You may keep answering\nthem, but you cannot be\neverywhere at once.{end_wait}
-N83	MsgDarkTolbiIsaacWait	Wait! What is happening\nto the people at the\nharbor?{end_wait}
+N82	MsgDarkTolbiJennaGoing	Go to the next lighthouse,\nIsaac. You'll see what the\nWise One is hiding.{end_wait}
+N83	MsgDarkTolbiIsaacWait	Wait! What happened to\nyour world? What did he\ndo?{end_wait}
