@@ -51,7 +51,7 @@
 05488	MsgImilEvenIfMiaHealsUs	Even if {actor_name:4} heals us,\nthe sickness comes back\nevery winter. {text_effect:4}Brr...{end_wait}
 05489	MsgImilCantUnderstandWhyAnyOne	How can anyone run\nin weather like this?{end_wait}
 05490	MsgImilAmHealerWhileMiaOut	I'm tending the sick\nwhile {actor_name:4} is away.{end_wait}
-05491	MsgImilFeelLikeGrownUpWhen	Healing looks easy\nwhen {actor_name:4} does it.{end_wait}
+05491	MsgImilFeelLikeGrownUpWhen	Healing looks easy\nwhen the others do it.{end_wait}
 05492	MsgImilEveryoneCountsOnMiaThats	Everyone depends\non {actor_name:4}.{end_wait}
 05493	MsgImilWeHaveDoWhateverWe	We have to share\nher work somehow.{end_wait}
 05494	MsgImilHermesHealingWaterFountain	Fountain of Healing{page_break}Water of Hermes:\nIt brings rejuvenation\nto all that lives.{end_wait}
