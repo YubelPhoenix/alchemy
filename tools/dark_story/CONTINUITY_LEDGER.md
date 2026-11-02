@@ -44,6 +44,13 @@ The following is the baseline route established by the original scene scripts. A
 
 Vale dialogue must be audited by visit state, not by phase-file number. The scene source documents four distinct states: (1) the opening roof-repair sequence at `VALE_FROM_TITLE`, three years after the storm, followed by `VALE_FROM_ROOF_MENDED` and Dora sending Isaac, Garet, and Jenna up Mt. Aleph with Kraden; (2) the pre-departure visit, when Jenna stops Isaac from sneaking up Mt. Aleph and the guard warns him, with the puppies removed only after the party meets Saturos and Menardi; (3) the post-departure state under `FLAG_VALE_PARTY_LEFT`, when Dora refuses to open Isaac's house and villagers discuss tremors and Kraden's absence; and (4) the return after `FLAG_KALAY_REACHED`, when Garet has reunion dialogue with his family, can ask them to protect Vale, and Dora is ill inside the cottage. The existing Vale phases contain dialogue for several of these states, but the complete NPC / Mind Read / conditional coverage and each message's actual trigger still need to be checked before any Vale section is marked complete.
 
+
+### Bilibin and Imil state map verified against scene scripts
+
+Bilibin's town, Treasury, and Barricade are separate scenes, not interchangeable versions of one visit. In town, `FLAG_KOLIMA_CURSE_LIFTED` controls the tree-man at the entrance, the villagers' dialogue/thoughts, and the return of the former tree-man. A later state begins only after `FLAG_SATUROS_BEATEN_AT_MERCURY`: travelers from Imil have crossed the river, and the Gang of Three / Jill river rescue has its own conditional state. Dialogue that mentions Mia or the Imil travelers must be checked against this later state rather than assumed to be available on the first Bilibin visit.
+
+Imil's scene source confirms a separate progression: before Saturos is beaten at Mercury Lighthouse, villagers are sick or waiting for Mia, the weapon and armor shops are closed, and Mia is first met healing the old man in the couple's house. After Saturos is beaten, the lighthouse is lit, the fountain flows, the villagers and sellers are cured, and Mia's farewell to Megan and Justin plays on the first subsequent visit to the Sanctum. Some NPC lines also change while Mia is in the party. The audit must preserve all of these states, including the custom Mia/thieves interlude, without letting cured-village dialogue appear early.
+
 ## Ashfall custom-event placement
 
 These are custom additions or altered encounters. They must be treated as revisits or branches where their event conditions say so.
