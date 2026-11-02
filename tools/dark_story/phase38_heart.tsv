@@ -3,9 +3,9 @@
 00759	message	Ondra
 N123	MsgDarkHeartShock	That face... Matthew?\nNo. You're not him. Who\nare you?{end_wait}
 N124	MsgDarkHeartIsaacName	I'm Isaac. I don't know\nanyone named Matthew.\nWhy did you call me that?{end_wait}
-N125	MsgDarkHeartSameFace	A man with your face\ndefeated me once. I held\nback what I could do.{end_wait}
+N125	MsgDarkHeartSameFace	A man with your face\ndefeated me once. I held\nback my full power.{end_wait}
 N126	MsgDarkHeartGaretGhost	Isaac, be careful. She\nspeaks as if that defeat\nstill weighs on her.{end_wait}
-N127	MsgDarkHeartHatred	I won't make that mistake\nagain. This time, I will\nuse everything I have.{end_wait}
+N127	MsgDarkHeartHatred	I came to observe this\nworld. But I won't hold\nback against you.{end_wait}
 N128	MsgDarkHeartIsaacReady	Then show us what you\ncan do. But afterward,\nyou will answer us.{end_wait}
 N129	MsgDarkHeartBeaten	You are not Matthew. I\nmistook you for him. But\nyou have your own strength.{end_wait}
 N130	MsgDarkHeartIsaacNotHim	Then tell us who Matthew\nis, and why you came\nhere.{end_wait}
