@@ -7,15 +7,15 @@
 09662	MsgSuhallaTheWorkersSayTherereHugeFestivals	The workers speak of\nTolbi's great festival.\nI wish I could see it.{end_wait}
 09663	MsgSuhallaTheSandstormsSuddenlyIncreasedIHope	The storms grew violent\nwithout warning.{page_break}I hope no one else is\nleft out there when the\nnext one comes.{end_wait}
 09664	MsgSuhallaTheSuhallaHasLongBeenKnown	Suhalla has always known\nsandstorms. Lately, they\ncome too often.{end_wait}
-09665	MsgSuhallaThePeopleOfLaliveroHaveBeen	Angaran soldiers have\nworked Lalivero's people\nto the bone.{page_break}No one would dare treat\nSuhallans that way. We\nwould not endure it.{end_wait}
+09665	MsgSuhallaThePeopleOfLaliveroHaveBeen	Angaran soldiers have\nworked Lalivero's people\nto the bone.{page_break}We speak of their pain,\nbut what have we done\nto help them?{end_wait}
 09666	MsgSuhallaTheRulerOfTolbiTookA	{actor_name:7} was taken as a\nhostage to keep Lalivero\nunder Tolbi's control.{page_break}We will not forget\nwhat Babi has done, nor\nforgive it easily.{end_wait}
 09667	MsgSuhallaIKnowTheDesertSpiritsWill	The desert spirits will\nmake Babi answer for\nwhat he has done.{end_wait}
 09668	MsgSuhallaSouthernGondowanIsGuardedByThe	The land itself guards\nsouthern Gondowan. Few\ncan cross it safely.{page_break}Still, we watch the north.\nAn Angaran army could\ncome one day.{end_wait}
-09669	MsgSuhallaIveHeardThatTolbisColossoIs	They say Colosso is a\nfestival for warriors.\nWhat does that mean?{page_break}Do they celebrate skill,\nor simply the sight of\npeople being hurt?{end_wait}
+09669	MsgSuhallaIveHeardThatTolbisColossoIs	They say Colosso draws\nwarriors from far away.\nTolbi cheers them on.{page_break}I wonder if anyone\nthere remembers what\nthose fighters risk.{end_wait}
 09670	MsgSuhallaNoneOfTheGrownUpsIn	When the storms rise,\nthe adults stay indoors.\nNo one argues with them.{end_wait}
 09687	MsgSuhallaWelcomeToSuhallaIBetThe	Welcome to Suhalla. The\nstorms must have been\nterrible out there.{end_wait}
 09688	MsgSuhallaTheDesertIsEnvelopedInSandstorms	The desert has vanished\nbehind a wall of sand.\nIt's frightening.{end_wait}
-09689	MsgSuhallaSoldiersFromTolbiWereCaughtIn	Tolbi's soldiers were\ncaught in the storms.\nMost did not survive.{page_break}The few who returned\nare being cared for\nin the house nearby.{end_wait}
+09689	MsgSuhallaSoldiersFromTolbiWereCaughtIn	Tolbi's soldiers were\ncaught in the storms.\nSome barely survived.{page_break}The wounded were brought\nto a house nearby.\nThey need time to heal.{end_wait}
 09690	MsgSuhallaWeWereBroughtHereByThe	The storm carried us\nhere before we could\nfind shelter.{end_wait}
 09691	MsgSuhallaThisSandstormIsTheFaultOf	The Angarans brought\nthis upon us!{page_break}The tower they forced\nLalivero to build may\nhave stirred the spirits.{end_wait}
 09692	MsgSuhallaBroughtSuhallaSandstorm	The storm swept you\ninto Suhalla, didn't it?{end_now}
