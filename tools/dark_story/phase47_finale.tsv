@@ -18,4 +18,4 @@ N213	MsgDarkFinaleNoIsaac	No. I won't promise\nanything until\nwe know the truth
 N214	MsgDarkFinaleRefusalJenna	Then find out\nfor yourself.\nI won't stop you.{end_wait}
 N215	MsgDarkFinaleRefusalIvan	We should go, Isaac.\nKalay is still ahead.{end_wait}
 N216	MsgDarkFinaleRefusalMia	Her story may be true.\nBut we have to decide\nwhat to do ourselves.{end_wait}
-N221	MsgDarkFinaleHook	Your Jenna and Kraden\nare still with them.\nFelix hasn't left.{page_break}Go on toward Kalay.\nDon't let this\nslow you down.{end_wait}
+N221	MsgDarkFinaleHook	Jenna and Kraden\nare with Menardi.\nFelix is with them.{page_break}Go on toward Kalay.\nDon't let this\nslow you down.{end_wait}
