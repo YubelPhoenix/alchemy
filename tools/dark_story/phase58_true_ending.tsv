@@ -1,14 +1,14 @@
 # Post-game ending sequence: Jenna and Kraden adrift, then Alex arrives.
-10515	MsgWorldMapKradenHowLongWillIsland	Kraden... How long must\nwe drift before this\nisland reaches shore?{end_wait}
-10516	message	I cannot say. If only\nI had an answer for you.{end_wait}
-10517	message	You always have an answer.\nNow you have nothing?{end_wait}
-10519	message	How can you think of\nfood at a time like this?{end_wait}
-10520	message	I keep wondering what\nbecame of my brother...{end_wait}
-10521	message	I cannot be certain,{pause_20_skippable} but\nit seems the Venus beacon\nhas been lit.{end_wait}
-10522	message	I know. That light is\nwhy we are stranded here,\nisn't it?{end_wait}
-10523	message	You're unusually sour\ntoday, {actor_name:6}!{end_wait}
-10524	message	I can see you're worried{pause_20_skippable}\nabout {actor_name:5}. I am, too.{end_wait}
-10525	message	{actor_name:1} and his friends\nmust have been near the\nbeacon when it was lit.{end_wait}
-10527	message	I miss them... {actor_name:1}...\nAnd {actor_name:5}...{end_wait}
-10528	message	There is something\nI want you both to see.{end_wait}
-10534	message	Come with me. There is\nsomeone you both must see.{end_wait}
+10515	MsgWorldMapKradenHowLongWillIsland	Kraden... how long\nwill this island drift\nbefore we reach land?{end_wait}
+10516	message	I wish I knew.\nThe current is beyond\nanything I've studied.{end_wait}
+10517	message	You always have\nan answer. Not now?{end_wait}
+10519	message	How can you think\nabout food right now?{end_wait}
+10520	message	I keep thinking\nabout my brother.\nWhere is he now?{end_wait}
+10521	message	I cannot be sure,{pause_20_skippable} but\nthe Venus beacon\nseems to be burning.{end_wait}
+10522	message	I saw it. That light\nis why we're drifting\nout here, isn't it?{end_wait}
+10523	message	You're in a foul mood\ntoday, {actor_name:6}.{end_wait}
+10524	message	You're worried{pause_20_skippable}\nabout {actor_name:5}.\nSo am I.{end_wait}
+10525	message	{actor_name:1} and his friends\nwere near the beacon.\nI hope they escaped.{end_wait}
+10527	message	I miss them. {actor_name:1}...\nAnd {actor_name:5}, too.{end_wait}
+10528	message	There's something\nyou both need to see.{end_wait}
+10534	message	Come with me.\nSomeone is waiting\nfor you both.{end_wait}
