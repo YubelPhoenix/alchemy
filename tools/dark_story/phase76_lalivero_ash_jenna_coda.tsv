@@ -12,7 +12,7 @@ N309	MsgDarkLaliveroIsaacEvidence	You still don't know\nwhat destroyed\nyour wor
 N310	MsgDarkLaliveroAshBurden	I don't need proof.\nI need him to suffer.\nThat is the difference.{end_wait}
 N311	MsgDarkLaliveroIsaacAccepted	I agreed to help\nfind the truth.{page_break}I never agreed\nto your revenge.{end_wait}
 N312	MsgDarkLaliveroIsaacRefused	I refused you then.\nI heard your answer.{page_break}Nothing I've seen\nhas changed my mind.{end_wait}
-N313	MsgDarkLaliveroAshJenna	Your {actor_name:6} and Kraden\nare still missing.\nGo on. Run after them.{end_wait}
+N313	MsgDarkLaliveroAshJenna	Your {actor_name:6} and Kraden\nare still missing.\nGo find them, then.{end_wait}
 N314	MsgDarkLaliveroIsaacOthers	And Felix and Sheba.\nThey're not names\nI can just forget.{end_wait}
 N315	MsgDarkLaliveroAshOwnPath	You count every name.{page_break}I'd leave this town\nto burn for one\nchance at him.{end_wait}
 N316	MsgDarkLaliveroIsaacProof	These people did\nnothing to you.\nLeave them out of this.{end_wait}

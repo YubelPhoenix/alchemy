@@ -49,11 +49,11 @@
 10303	message	{actor_name:1}...{pause_20_skippable}\nThere you are.\nCan you stand?{end_wait}
 10304	message	We have to find\n{actor_name:6}. Will you\ncome with us?{end_now}
 10305	message	Thank you.\nI didn't want to\nface this alone.{end_wait}
-10306	message	{actor_name:1}, when we find\n{actor_name:6}, we'll tell her\nwhat {actor_name:5} did.{end_wait}
+10306	message	{actor_name:1}, when we find\n{actor_name:6}, we'll tell her\nwhat {actor_name:5} did. Gently.{end_wait}
 10307	message	Not what we fear.\nJust what we saw.\nShe deserves that.{end_wait}
-10308	message	{actor_name:6} deserves to know\nwhat we saw {actor_name:5} do.\nWe can't keep silent.{end_wait}
+10308	message	{actor_name:6} may blame herself\nfor what {actor_name:5} did.\nWe must listen to her.{end_wait}
 10309	message	We don't know\nif {actor_name:5} survived.\nWe can't pretend we do.{end_wait}
-10310	message	When we find {actor_name:6},\nwe'll tell her gently.\nShe'll need a friend.{end_wait}
+10310	message	When we find {actor_name:6},\nwe'll stay beside her.\nShe won't be alone.{end_wait}
 10311	message	What's wrong, {actor_name:2}?{end_wait}
 10312	message	I was thinking...{pause_20_skippable}{pause_20_skippable}\nHow are we meant to\nclimb down from here?{end_wait}
 10313	message	You're right.{pause_20_skippable} Getting away\nfrom this place will be\ndifficult...{end_wait}
