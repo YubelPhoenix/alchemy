@@ -1,0 +1,115 @@
+# Xian: Feizhi's warning, Feh's school, Force and Chi, Hsu's disappearance and the blocked Silk Road.
+06192	MsgFuchinTempleMasterFehIsVeryBusyHe	Master Feh is speaking\nwith Feizhi.{page_break}Please don't interrupt.{end_wait}
+06193	MsgFuchinTempleWarriorsFightWithWeaponsKungFu	You carry weapons.\nDoes our training\nseem useless to you?{end_wait}
+06194	MsgFuchinTemplePracticingKicksHurtsMyFeetVery	My feet hurt after\nevery lesson.{page_break}Still, I'll return\ntomorrow.{end_wait}
+06195	MsgFuchinTempleThatPunchWasGoodYouSurprise	That was a good punch.\nYou caught me off guard.{end_wait}
+06196	MsgFuchinTempleIMoveTooQuicklyYouCant	A blade means little\nif you cannot land\na single blow.{end_wait}
+06197	MsgFuchinTempleWarriorsCameToLearnTheFeh	Warriors travel here\nto learn from Feh.{page_break}His school has earned\nits reputation.{end_wait}
+06198	MsgFuchinTempleGreatKickKickFromTheHip	Kick from the hip.\nKeep your weight steady.\nNow try again.{end_wait}
+06199	MsgFuchinTempleYouAreTheWarriorsWhoCame	You came to study?{page_break}Master Feh rarely\naccepts strangers.{end_wait}
+06200	MsgFuchinTempleMasterFehIsTalkingWithFeizhi	Feizhi and her father\nare arguing again.{page_break}Please leave them\nin peace.{end_wait}
+06201	message	The tree fell!\nNo one even touched it!{end_wait}
+06202	MsgXianCannotPushHands	Don't push the tree.\nStrike it with Chi\nfrom the marked line.{end_wait}
+06203	MsgXianDidDoWarrior	What did you do\nto that tree?{end_wait}
+06204	message	He struck the tree\nwithout touching it!{page_break}Master Feh must\nsee this.{end_wait}
+06206	message	Your Chi reached\nacross the yard.{page_break}I'll tell Master Feh.{end_wait}
+06207	message	He has no training\nin our school.{page_break}How could he use Chi?{end_wait}
+06208	message	The door opened\nwithout a hand\non the latch!{end_wait}
+06210	message	Are you worried\nabout Hsu?{end_wait}
+06211	message	He's only late\nreturning from Lama\nTemple. Give him time.{end_wait}
+06212	message	No. Something is wrong.\nI can feel it.{end_wait}
+06213	message	Feizhi... Is this\nanother of your visions?{end_wait}
+06214	message	Ever since the stones\nstruck me, I have seen\nthings before they happen.{end_wait}
+06216	message	I don't doubt you\nare afraid, Feizhi.{page_break}But fear can make\ncoincidence seem certain.{end_wait}
+06217	message	How many visions\nmust come true before\nyou believe me?{end_wait}
+06218	message	I saw Mogall change\nbefore anyone knew\nwhat had happened.{end_wait}
+06219	message	You were right\nabout Mogall.{page_break}I cannot explain\nhow you knew.{end_wait}
+06220	message	I warned you\nabout Altin's flood.\nWas that chance too?{end_wait}
+06221	message	Feizhi has been right\ntoo many times\nfor me to dismiss it.{end_wait}
+06223	message	I remember every\nprediction.{page_break}That does not prove\nwhat caused them.{end_wait}
+06224	message	You still refuse\nto believe me?{end_wait}
+06225	message	Hsu is late.\nThat alone does not\nmean he is hurt.{end_wait}
+06226	message	Did you send anyone\nto search for Hsu?{end_wait}
+06228	message	Feizhi! You will not\nspeak to your father\nin that manner.{end_wait}
+06229	message	Then I'll go myself.\nI won't wait here\nwhile Hsu is in danger.{end_wait}
+06231	message	Master Feh!\nFeizhi has left\nthe school!{end_wait}
+06232	message	I've never seen her\nso angry.{page_break}She looked terrified.{end_wait}
+06233	message	She believes Hsu\nis in danger.{page_break}She's gone to find him.{end_wait}
+06234	message	Feizhi can defend\nherself.{page_break}I hope that will\nbe enough.{end_wait}
+06235	message	She's traveling alone.\nThe roads aren't safe.{end_wait}
+06236	message	She'll come back\nwhen she calms down.{page_break}At least, I hope so.{end_wait}
+06237	message	That tree fell\nwithout a touch.{end_wait}
+06238	message	The traveler used\nsome kind of power.{end_wait}
+06240	message	Show me again.\nStand at the line\nand strike the tree.{end_wait}
+06242	message	Show us your Chi\nfrom the marked line.{end_wait}
+06243	message	I want to see\nthat power again.{end_wait}
+06244	MsgFuchinTempleWarriorLetMeSeeYourChi	Warrior, show me\nyour Chi.{end_wait}
+06245	MsgFuchinTempleFeizhiIsGoneItIsDangerous	Feizhi left alone.\nThe road is dangerous.\nI'm worried for her.{end_wait}
+06246	MsgFuchinTempleFeizhiIsStrongerThanSheLooks	Feizhi trains harder\nthan anyone here.{page_break}She may be safer\nthan we think.{end_wait}
+06247	MsgFuchinTempleWarriorShowUsYourChiLike	Use Chi again,\njust as before.{end_wait}
+06248	MsgFuchinTempleWarriorThatWasGreatButMaster	Impressive, warrior.{page_break}Master Feh can do\nmore than that.{end_wait}
+06249	MsgFuchinTempleWarriorShowMeYourChiI	Please show me\nyour Chi again.{end_wait}
+06251	MsgFuchinTempleMyKickAndPunchAreVery	My fists are strong,\nbut I must learn\nto control them.{end_wait}
+06252	MsgFuchinTempleShowUsYourChiNowDo	Show us that power.\nI want to understand\nhow it works.{end_wait}
+06253	MsgFuchinTempleIAmShockedThatThisWarrior	He has no training\nwith Master Feh.{page_break}How can he use\nthat technique?{end_wait}
+06257	MsgFuchinTempleFeizhiIsGoneItIsDangerousOutside	Feizhi is alone\non the western road.{page_break}Someone should\ngo after her.{end_wait}
+06258	MsgFuchinTempleFeizhiIsStrongerThanSheLooksShe	Feizhi is strong.\nI pray she returns\nwith Hsu.{end_wait}
+06259	MsgFuchinTempleIKnowWhyYouCanUse	You learned that\npower at Fuchin,\ndidn't you?{end_wait}
+06260	MsgFuchinTempleWarriorChiIsAGreatPower	Why hide your power?\nMaster Feh only wants\nto understand it.{end_wait}
+06261	MsgFuchinTempleIWantToSeeTheChi	I wish I could\nmove a tree from\nacross the yard.{end_wait}
+06263	MsgFuchinTempleMyKickAndPunchAreVeryLoud	I can strike hard.\nNow I must learn\nwhen not to.{end_wait}
+06264	MsgFuchinTempleWarriorShowMeYourChiNow	Show me your Chi\nfrom the line.{end_wait}
+06265	MsgFuchinTempleWarriorDoNotHideYourChi	Please don't hide\nyour power from Feh.{page_break}I told him\nwhat I saw.{end_wait}
+06267	message	Master, did you see?\nHe moved the tree!{end_wait}
+06268	message	Master? What's wrong?{end_wait}
+06269	message	He wasn't standing\nat the line.{page_break}I cannot judge\nwhat I saw.{end_wait}
+06270	message	Stand at the line.\nTry it again.{end_wait}
+06271	MsgFuchinTempleWarriorUseYourChiFromThe	Use your Chi\nfrom the line.{end_wait}
+06272	MsgFuchinTempleWarriorPleaseUseYourChiFrom	Please stand\nat the marked line\nand try again.{end_wait}
+06273	MsgFuchinTempleWarriorTheRulesRequireYouTo	The rules are clear.\nYou must stand\nbehind the line.{end_wait}
+06274	MsgFuchinTempleSoCloseWarriorUseChiFrom	Almost! Stand\nat the line\nand try once more.{end_wait}
+06276	message	Master, the traveler\nmoved the tree!{end_wait}
+06277	message	His power is strong.\nDid you see it?{end_wait}
+06279	message	The tree fell.\nThat much is certain.{end_wait}
+06280	message	Is something wrong\nwith his technique?{end_wait}
+06281	message	What he used\nwas not Chi.{end_wait}
+06283	message	It resembles Chi,\nbut its source\nis different.{end_wait}
+06287	message	What does Fuchin\nhave to do with Chi?{end_wait}
+06288	message	Master Hama taught me\nChi at Lama Temple.{end_wait}
+06289	message	Then aren't they\nthe same power?{end_wait}
+06290	message	They may look alike.\nThat does not make\nthem the same.{end_wait}
+06291	message	Chi gathers energy\nwithin the body.{page_break}We release it\nthrough the hands.{end_wait}
+06292	message	Your power came\nfrom the mind.\nDo you understand?{end_now}
+06293	message	To move the tree\nwith thought alone\nrequires discipline.{end_wait}
+06294	message	Remember this:{page_break}A thought becomes\npower through focus.{end_wait}
+06295	message	Fuchin's Ki uses\nthe mind as Chi\nuses the body.{end_wait}
+06296	message	The body tires.\nThe mind has limits\nof its own.{end_wait}
+06297	message	Train that power\nwith care, warrior.\nIt may save you.{end_wait}
+06298	MsgFuchinTemplePracticeEveryoneChiHasItsLimits	Practice your Chi.\nStrength without\ncontrol is wasted.{end_wait}
+06299	MsgFuchinTempleWarriorYouAreGreatYouHave	You've earned\nmy respect, warrior.{end_wait}
+06300	MsgFuchinTempleEveryoneWantsToLearnTheChi	I want to learn\nMaster Feh's Chi.{page_break}I'll train until\nI understand it.{end_wait}
+06301	MsgFuchinTempleConcentrateEnergyIntoTheHandsAnd	Gather the energy\nin your hands.{page_break}Release it with\ncontrol, not anger.{end_wait}
+06302	MsgXianLamaTempleFarWestIn	Lama Temple lies\nwest of Altin,\nnear Lamakan Desert.{page_break}Hsu went there\nto study.{end_wait}
+06303	MsgFuchinTempleIDidNotThinkMuchOf	I misjudged you.\nPlease forgive me.{end_wait}
+06304	MsgFuchinTempleWhereDidFeizhiGoIAm	Where has Feizhi gone?\nI'm worried for her.{end_wait}
+06305	MsgFuchinTempleMasterHsuIsLateICan	Hsu is late.{page_break}I understand why\nFeizhi is afraid.{end_wait}
+06306	MsgFuchinTempleIWillLearnChiIWill	One day I'll master\nChi as well as Feh.{page_break}Perhaps even better.{end_wait}
+06307	MsgFuchinTempleYourChiIsFuchinTemplesHow	Your power comes\nfrom Fuchin Temple?{page_break}How is it different\nfrom our Chi?{end_wait}
+06308	MsgFuchinTempleIDontCareWhichChiIt	Chi or Ki...\nI want to learn\nwhat you can do.{end_wait}
+06309	MsgFuchinTempleMasterHamasChiCanShatterBoulders	They say Master Hama\ncan break stone\nwith Chi.{page_break}Could Hsu do that?{end_wait}
+06310	MsgFuchinTempleFollowSilkRoadStraightPassThrough	Follow Silk Road\nthrough the canyon\ntoward Lama Temple.{end_wait}
+06311	MsgFuchinTempleWarriorYouUseWeaponsAndChi	You fight with weapons\nand use Ki as well.{page_break}I hope you know\nwhen to stop.{end_wait}
+06312	MsgFuchinTempleFeizhiIsNotInTheFeh	Feizhi has gone.\nThe school feels\nempty without her.{end_wait}
+06313	MsgFuchinTempleFeizhiWorriesOnlyAboutMasterHsu	Feizhi worries\nonly about Hsu.{page_break}I wish she'd\nnotice me too.{end_wait}
+06314	MsgFuchinTempleLearningChiIsVeryHardMaster	Learning Chi is hard.\nFeh makes it look\nso simple.{end_wait}
+06315	MsgFuchinTempleCanSuchAYoungWarriorReally	Can someone so young\nreally wield that power?{end_wait}
+06316	MsgXianGreatWarriorTrain	You are skilled.\nI'll train harder\nfrom now on.{end_wait}
+06318	MsgXianWarriorsCannotUse	That isn't Chi...\nWait. What was\nthat power?{end_wait}
+06319	message	Stay behind the line.\nThose are the rules.{end_wait}
+06320	message	Stand beyond the line.\nThen use your power.{end_wait}
+06325	MsgMountainYahhSilkRoadBouldersBlock	Silk Road is blocked!\nThe rocks have buried\nthe passage!{end_wait}
+06326	message	My vision came true.\nI knew something\nwas wrong.{end_wait}
+06328	message	I can't hear Hsu.\nNot even a whisper.{end_wait}
+06330	message	I won't turn back.\nHsu is still\nout there.{end_wait}
+06331	message	You're right.\nI have to find Hsu.{end_wait}
+06332	MsgAlpineCrossingLamaTempleHsuIsInDangerICan	Hsu is in danger.\nI can feel it.{page_break}I must find him\nbefore it's too late.{end_wait}
