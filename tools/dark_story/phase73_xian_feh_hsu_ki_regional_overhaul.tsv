@@ -22,9 +22,9 @@
 06214	message	Ever since the stones\nstruck me, I have seen\nthings before they happen.{end_wait}
 06216	message	I don't doubt you\nare afraid, Feizhi.{page_break}But fear can make\ncoincidence seem certain.{end_wait}
 06217	message	How many visions\nmust come true before\nyou believe me?{end_wait}
-06218	message	I saw Mogall change\nbefore anyone knew\nwhat had happened.{end_wait}
-06219	message	You were right\nabout Mogall.{page_break}I cannot explain\nhow you knew.{end_wait}
-06220	message	I warned you\nabout Altin's flood.\nWas that chance too?{end_wait}
+06218	message	I dreamed the forest\nwould swallow the road.{page_break}Then travelers\nstopped coming.{end_wait}
+06219	message	You warned us\nabout the forest.{page_break}I still don't know\nhow you knew.{end_wait}
+06220	message	I warned you\nabout the falling rocks.\nWas that chance too?{end_wait}
 06221	message	Feizhi has been right\ntoo many times\nfor me to dismiss it.{end_wait}
 06223	message	I remember every\nprediction.{page_break}That does not prove\nwhat caused them.{end_wait}
 06224	message	You still refuse\nto believe me?{end_wait}
@@ -79,10 +79,10 @@
 06289	message	Then aren't they\nthe same power?{end_wait}
 06290	message	They may look alike.\nThat does not make\nthem the same.{end_wait}
 06291	message	Chi gathers energy\nwithin the body.{page_break}We release it\nthrough the hands.{end_wait}
-06292	message	Your power came\nfrom the mind.\nDo you understand?{end_now}
+06292	message	Your power comes\nfrom the mind.\nDo you understand?{end_now}
 06293	message	To move the tree\nwith thought alone\nrequires discipline.{end_wait}
 06294	message	Remember this:{page_break}A thought becomes\npower through focus.{end_wait}
-06295	message	Fuchin's Ki uses\nthe mind as Chi\nuses the body.{end_wait}
+06295	message	Fuchin's Ki and Chi\nare different paths\nto hidden strength.{end_wait}
 06296	message	The body tires.\nThe mind has limits\nof its own.{end_wait}
 06297	message	Train that power\nwith care, warrior.\nIt may save you.{end_wait}
 06298	MsgFuchinTemplePracticeEveryoneChiHasItsLimits	Practice your Chi.\nStrength without\ncontrol is wasted.{end_wait}
@@ -97,7 +97,7 @@
 06307	MsgFuchinTempleYourChiIsFuchinTemplesHow	Your power comes\nfrom Fuchin Temple?{page_break}How is it different\nfrom our Chi?{end_wait}
 06308	MsgFuchinTempleIDontCareWhichChiIt	Chi or Ki...\nI want to learn\nwhat you can do.{end_wait}
 06309	MsgFuchinTempleMasterHamasChiCanShatterBoulders	They say Master Hama\ncan break stone\nwith Chi.{page_break}Could Hsu do that?{end_wait}
-06310	MsgFuchinTempleFollowSilkRoadStraightPassThrough	Follow Silk Road\nthrough the canyon\ntoward Lama Temple.{end_wait}
+06310	MsgFuchinTempleFollowSilkRoadStraightPassThrough	Follow the road\nwest toward Altin.{page_break}Lama Temple lies\nbeyond the mountains.{end_wait}
 06311	MsgFuchinTempleWarriorYouUseWeaponsAndChi	You fight with weapons\nand use Ki as well.{page_break}I hope you know\nwhen to stop.{end_wait}
 06312	MsgFuchinTempleFeizhiIsNotInTheFeh	Feizhi has gone.\nThe school feels\nempty without her.{end_wait}
 06313	MsgFuchinTempleFeizhiWorriesOnlyAboutMasterHsu	Feizhi worries\nonly about Hsu.{page_break}I wish she'd\nnotice me too.{end_wait}
