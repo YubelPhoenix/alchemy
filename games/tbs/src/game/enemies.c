@@ -1771,12 +1771,12 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     // Takes the unused Wise Gryphon's place.
     {
         .name = "              ",
-        .level = 42,
-        .hp = 5200,
+        .level = 40,
+        .hp = 4400,
         .pp = 400,
-        .atk = 310,
-        .def = 140,
-        .agi = 150,
+        .atk = 265,
+        .def = 120,
+        .agi = 130,
         .luck = 40,
         .turns = 1,
         .elementPreset = 41,
