@@ -1,41 +1,41 @@
 # Babi's audience, part II: the Draught of Lemuria, Babi's failing supply, and the search for the lost city.
-08944	message	The Stone of Sages?{pause_20_skippable} A\nstone that grants endless\nlife?{end_wait}
-08945	message	I cannot think of\nanother explanation for\nBabi's long life.{end_wait}
-08946	message	So you know of the\nStone of Sages. I do\nnot possess it.{end_wait}
-08947	message	It is the Draught of\nLemuria that has kept\nme alive.{end_wait}
+08944	message	The Stone of Sages?{pause_20_skippable}\nA stone that grants\neternal life?{end_wait}
+08945	message	How else could Babi\nhave lived for\nso many years?{end_wait}
+08946	message	I know the stories.\nBut I do not have\nthe Stone of Sages.{end_wait}
+08947	message	The Draught of Lemuria\nhas kept me alive\nall this time.{end_wait}
 08948	message	The Draught of Lemuria?{end_wait}
-08949	message	A rare drink once\nprepared for those who\nlived in Lemuria.{end_wait}
-08950	message	Does drinking it stop\nyou from growing old?{end_wait}
-08952	message	It is more accurate to\nsay it slows the passage\nof age{pause_20_skippable}.{end_wait}
-08953	message	Death still comes to\nthe people of Lemuria...{end_wait}
-08954	message	But only after their\nsenses have dulled over\ncenturies of life.{end_wait}
-08955	message	Do the people of\nLemuria wield Psynergy\nas we do?{end_wait}
+08949	message	A rare drink made\nin Lemuria, long ago.{end_wait}
+08950	message	Then it stops\npeople from aging?{end_wait}
+08952	message	No. It only slows\nthe passing of years{pause_20_skippable}.{end_wait}
+08953	message	Lemurians still die.\nThey merely live\nlonger than we do.{end_wait}
+08954	message	Their lives can span\ncenturies, while\ntheir senses fade.{end_wait}
+08955	message	Do Lemurians use\nPsynergy, as we do?{end_wait}
 08956	message	You have the draught,\nBabi. That is how you\nhave lived so long.{end_wait}
-08957	message	I used its power to\namass enough wealth\nto rule Tolbi.{end_wait}
+08957	message	With that time,\nI built my fortune\nand came to rule.{end_wait}
 08958	message	What are you suggesting?{end_wait}
-08959	message	What do you hope to\ngain by having everyone\nstudy Alchemy?{end_wait}
-08960	message	I have wondered the\nsame. What does Babi\nhope to gain?{end_wait}
-08961	message	If I had found true\nimmortality, I would\nnot need this research.{end_wait}
-08963	message	I had little of the\ndraught left. Now even\nthat supply is failing.{end_wait}
+08959	message	Then why do you\nhave scholars working\non Alchemy?{end_wait}
+08960	message	I've wondered that\nmyself. What is Babi\nhoping to find?{end_wait}
+08961	message	If I had found a way\nto live forever,\nwould I need them?{end_wait}
+08963	message	I have little draught\nleft. Every drop\nmatters now.{end_wait}
 08964	message	You saw it in the cave.\nOnly a small amount\nremained.{end_wait}
-08965	message	How long will it last?\nWhat happens when it\nis gone?{end_wait}
-08966	message	It will be gone soon.\nThen my life will end.{end_wait}
-08967	message	Why did you not tell\nus sooner? We must\nreach Lemuria at once.{end_wait}
+08965	message	What happens when\nthe last of it\nis gone?{end_wait}
+08966	message	Then I will die.\nI have no reason\nto hide that now.{end_wait}
+08967	message	Why didn't you\ntell us sooner?\nWe must act!{end_wait}
 08969	message	What do you mean,\nthere is no point?{end_wait}
-08970	message	We cannot find Lemuria.\nIt remains beyond our\nreach.{end_wait}
+08970	message	I have searched\nfor Lemuria for years.\nStill, nothing.{end_wait}
 08971	message	But you said it lies\nfar out at sea...{end_wait}
-08972	message	Then we must search\nthe ocean until we\nfind it!{end_wait}
-08973	message	I have sent many ships\nout to search for\nLemuria.{end_wait}
+08972	message	Then let's send\nanother ship!\nThere must be a way!{end_wait}
+08973	message	I have sent ships.\nMore than I care\nto remember.{end_wait}
 08974	message	I was not here then.\nBut every voyage failed?{end_wait}
-08975	message	I needed more draught,\nbut Lemuria stayed\nhidden from us.{end_wait}
-08976	message	Then why did you\ncollapse in the cave\nif you still had some?{end_wait}
-08977	message	I rationed it too\ncarefully. Too much\ntime passed between doses.{end_wait}
-08978	message	You were trying to\nmake the supply last...{end_wait}
-08979	message	I drove myself to find\nLemuria before the last\nof the draught ran out.{end_wait}
-08980	message	So you summoned us\nbecause you need us\nto find Lemuria?{end_wait}
-08981	message	Precisely. I want you\nto find it for me.{end_wait}
-08982	message	I cannot reach it by\nsea. Perhaps the answer\nlies above the waves.{end_wait}
-08983	message	I can hide it no longer...\nI built Babi Lighthouse\nto search for Lemuria.{end_wait}
-08984	message	What? That is why\nyou raised the lighthouse?{end_wait}
-08985	message	No. There is more\nyou must understand.{end_wait}
+08975	message	I needed more draught.\nEvery voyage failed\nto reach Lemuria.{end_wait}
+08976	message	Then why did you\ncollapse in Altmiller\nCave?{end_wait}
+08977	message	I waited too long\nbetween doses.\nI feared wasting it.{end_wait}
+08978	message	You were trying\nto make it last...{end_wait}
+08979	message	I kept searching\nas my supply ran low.\nIt was never enough.{end_wait}
+08980	message	So you called us here\nto find Lemuria\nfor you?{end_wait}
+08981	message	Yes. I need you\nto find what\nmy ships could not.{end_wait}
+08982	message	The sea has failed me.\nI hoped a view\nfrom above might help.{end_wait}
+08983	message	That's why I built\nBabi Lighthouse.\nTo search for Lemuria.{end_wait}
+08984	message	You built a lighthouse\njust to search\nthe sea?{end_wait}
+08985	message	There is something\nelse you must hear.{end_wait}
 08986	message	A shape stirred\nsoutheast in the sea...{pause_20_skippable}{pause_20_skippable}\nwhere Lemuria should lie.{end_wait}
