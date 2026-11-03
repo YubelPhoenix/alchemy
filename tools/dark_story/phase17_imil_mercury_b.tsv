@@ -5,14 +5,14 @@
 05671	message	The legend was true.\nThe beacon lit,\nthe spring returned.{page_break}Imil can heal again.\nBut what else has\nthat light changed?{end_wait}
 05672	message	I can't leave them.\nNot when they've\nneeded me so long.{page_break}But the water is back.\nAnd Imil has healers.\nI have to trust them.{end_wait}
 05673	message	They're getting away.\nWe need to follow.{end_wait}
-05674	MsgMercuryLighthouseTheLegendsSaidThatIfThe	The fountain runs again.\nThe legend was true.{page_break}But who can tell us\nwhat the light will cost?{end_wait}
+05674	MsgMercuryLighthouseTheLegendsSaidThatIfThe	The fountain flows!\nThe legend was true.{page_break}I thought it was just\nan old story.{end_wait}
 05675	MsgMercuryLighthouseOurFountainIsBackTheySay	Our fountain is back.\nThey say these waters\nheal all that lives.{end_wait}
 05676	MsgMercuryLighthouseIDrankTheHealingWaterAnd	I drank the healing\nwater, and I feel\nstrong again.{page_break}I'll take a bottle\nhome. Just in case.{end_wait}
 05677	MsgMercuryLighthouseWeDontHaveToFearAny	The fever is gone.\nI pray it stays gone.{end_wait}
 05678	MsgMercuryLighthouseHowDidTheFountainKnowThat	How did the fountain\nknow the beacon\nwas lit?{end_wait}
 05679	MsgMercuryLighthouseAllThatLivesThatMeansIt	All that lives... It must\nwork on plants and\nanimals, too.{end_wait}
 05680	MsgMercuryLighthouseIKnewItWouldWorkBut	I thought I'd die here.\nNow I can stand again.{page_break}I should be grateful.\nWhy am I still afraid?{end_wait}
-05681	MsgMercuryLighthouseINeverBelievedThoseStoriesBut	I never believed those\nstories, but there's\nthe proof.{end_wait}
+05681	MsgMercuryLighthouseINeverBelievedThoseStoriesBut	I used to laugh\nat those old stories.\nLook at me now!{end_wait}
 05682	MsgMercuryWhoHonorsHeart	He who honors the heart\nof the goddess shall stand\nat the center of all,{page_break}like a swan in the\ncenter of a rippling\npond.{end_wait}
 05683	MsgMercuryHonorsGoddessRainbows	He who honors the\ngoddess of rainbows shall{page_break}be guided to the heavens\nupon wings of fluid grace.{end_wait}
 05684	message	The door is shut tight.{end_wait}
@@ -20,7 +20,7 @@
 05686	MsgMercuryLighthouseFountainSeemsDry	The fountain seems dry.{end_wait}
 05687	MsgMercuryLighthouseStrangeForcesBlockWay	Strange forces are at\nwork... It seems\nimpossible to proceed.{end_wait}
 05692	MsgImilCountingAfterDeparture	One,{pause_20_skippable} two,{pause_20_skippable} three,{pause_20_skippable} four...{end_wait}
-05693	message	I trained hard to\nwithstand any disease...{page_break}And now the fountain\nis back?{end_now}
+05693	message	I trained all winter\nto stay healthy...{page_break}And now the fountain\nis back?{end_now}
 05694	message	What did I train\nso hard for all this time?{end_wait}
 05695	message	No, it can't be! Everyone\nis in perfect health!{end_wait}
 05697	MsgImilDontWorryAboutUsMiaWell	We'll care for Imil,\n{actor_name:4}. You taught us\nwhat to do.{end_wait}
@@ -33,13 +33,13 @@
 05706	MsgImilThatBlueLightFromHerHands	That blue light from her\nhands... Is she an angel,\nor something else?{end_wait}
 05707	MsgMercuryCatchUpLostOpportunity	I have to catch up\non lost time.\nBack to business.{end_wait}
 05708	MsgImilCustomersAreHardToComeBy	Customers are rare, and\nI can't afford to lose\neven one.{end_wait}
-05709	MsgMercuryShameStoreClosed	A shame the store was\nclosed for something\nas small as a cold.{end_wait}
+05709	MsgMercuryShameStoreClosed	I thought I'd never\nopen this shop again.\nIt's good to be back.{end_wait}
 05710	MsgImilTheCustomersAreBackIThought	The customers are back.\nI thought I'd lost my\nbusiness for good.{end_wait}
 05711	MsgMercuryRecoveredThanksFountain	I'm fully recovered,\nthanks to the fountain.\nBack to work.{end_wait}
 05712	MsgImilImSoHappyThatMommyIs	I'm so happy Mommy\nis well again!{end_wait}
 05714	MsgImilMyDaddysStillInKolimaIll	My daddy's still in\nKolima. I'll be so happy\nif he comes home soon.{end_wait}
 05715	MsgImilItsAlmostTimeForLeave	It's almost time for you\nto leave, isn't it?{end_now}
-05716	message	Just like the legend,\nthe fountain began to\nflow when the light lit.{page_break}Imil need never fear\nsickness again.{end_wait}
+05716	message	The legend was right.\nThe fountain flows\nwith the beacon lit.{page_break}Winter will return.\nBut we'll have\nthe water this time.{end_wait}
 05717	message	I'll cook a feast\nfor you tonight.{end_wait}
 05722	MsgImilINeverToldMiaThatI	I never told {actor_name:4}\nthat I liked her...{page_break}Maybe it's for\nthe best.{end_wait}
 05723	MsgImilMia	{actor_name:4}...{end_wait}
