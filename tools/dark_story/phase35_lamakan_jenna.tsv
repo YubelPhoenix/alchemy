@@ -1,6 +1,6 @@
 # Ash Jenna glimpsed in the Lamakan Desert after Mercury Lighthouse is lit.
-N106	MsgDarkLamakanJennaWatch	The desert buries\nwhat it takes, Isaac.{page_break}You cannot save\neveryone you follow.{end_wait}
-N107	MsgDarkLamakanIsaacWait	Jenna! Wait.\nTell me what happened.\nPlease.{end_wait}
-N108	MsgDarkLamakanJennaUndo	You still think\nthere's time to save\neverything.{page_break}Look at this place.\nSome losses remain.{end_wait}
-N109	MsgDarkLamakanJennaClimb	Keep following them.\nYou'll learn what it\ncosts to be too late.{end_wait}
-N110	MsgDarkLamakanIsaacSilent	...Jenna.\nWhat happened to you?{end_wait}
+N106	MsgDarkLamakanJennaWatch	You keep looking\nfor the people\nyou couldn't save.{page_break}I know what\nthat feels like.{end_wait}
+N107	MsgDarkLamakanIsaacWait	Jenna?\nWait. Who are you?{end_wait}
+N108	MsgDarkLamakanJennaUndo	You think there's\nstill time to put\neverything right.{page_break}I thought so, too.{end_wait}
+N109	MsgDarkLamakanJennaClimb	Keep following them.\nThen ask yourself\nwho pays for it.{end_wait}
+N110	MsgDarkLamakanIsaacSilent	She looks like Jenna.\nBut that voice...{end_wait}
