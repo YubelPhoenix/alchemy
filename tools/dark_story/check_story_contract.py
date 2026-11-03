@@ -271,7 +271,22 @@ def check_dormant_palette_cache_is_disabled() -> None:
             "Disabled palette renderer must not be scheduled")
 
 
+def check_mercury_lighthouse_chronology() -> None:
+    sequence = read("games/tbs/src/overworld/overworld/sequence_manager.c")
+    mercury = scene("mercury_lighthouse_aerie.c")
+    state = read("games/tbs/include/world_state.h")
+    require("GameFlag_GetFar(FLAG_AREA_VISITED(0x13))" not in sequence,
+            "Merely visiting Mercury Lighthouse must not mark its beacon lit")
+    require("GameFlag_ClearFar(FLAG_MERCURY_LIGHTHOUSE_LIT)" not in sequence,
+            "The genuine Mercury beacon flag must survive area changes")
+    require("GameFlag_Set(FLAG_MERCURY_LIGHTHOUSE_LIT);" in mercury,
+            "Only Mercury's actual aerie/beacon scene sets its lit state")
+    require("FLAG_MERCURY_LIGHTHOUSE_LIT" in state,
+            "World-stage weather must read the genuine lit flag")
+
+
 def main() -> None:
+    check_mercury_lighthouse_chronology()
     check_dormant_palette_cache_is_disabled()
     check_visual_identity()
     check_flags_and_quest_order()

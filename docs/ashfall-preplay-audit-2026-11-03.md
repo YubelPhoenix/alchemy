@@ -75,3 +75,18 @@ The original Golden Sun route, the Star/Alchemy conflict and the consequences to
 **Runtime readiness:** **CONDITIONAL / NOT CERTIFIED.** The unresolved world-map A-button freeze and unplayed high-risk story branches prevent a clean 10/10 or production-release sign-off. The next playthrough is a necessary quality gate, not a formality.
 
 **Do not label any unresolved checkbox as tested.** Record save/reload behavior, actor portraits and sprite collisions, controls and story order from the actual game.
+
+### PREPLAY FIX — Mercury beacon falsely lit by visiting the area
+
+The initial pre-play inspection also found a **real chronology defect** in `Scene_Arrive` (`games/tbs/src/overworld/overworld/sequence_manager.c`). A convenience block set `FLAG_MERCURY_LIGHTHOUSE_LIT` whenever `FLAG_AREA_VISITED(0x13)` was true. That flag becomes true merely from entering Mercury Lighthouse; the player does **not** have to reach the beacon. This incorrectly promoted `WorldState_GetStage()` to the post-Mercury state, potentially causing early rain and any other flag-dependent dialogue/conditions to act as if the beacon were lit.
+
+**Correction:** Removed the visited-area shortcut. `Scene_Arrive` already preserves the Mercury lit flag across area changes, and `MercuryLighthouseAerie_Initialize` sets it during the actual lit-beacon aerie sequence. Therefore the flag now reflects the real story event without a new save bit or alternate route. Added `check_mercury_lighthouse_chronology()` to the automated story contracts. **Game test:** enter/leave the lower Mercury Lighthouse *before* lighting the beacon, then complete the beacon and leave; confirm weather/story flags only advance afterward.
+
+### Additional scene-source routing audit
+
+All **19 modified scene C files** were checked for named `Import_EventSetExitRequest` destinations against their actual `SCENE_EXIT` tables; no unmatched **named** exits were found. Scripted battle destinations were enumerated across Mercury, Imil, World Map, Kolima, Tolbi, Lamakan, Altin, Sol Sanctum and Mogall. This is a source-symbol cross-reference only: destination `0`, implicit default exits, party state at the destination and true runtime reachability are not proven by this scan.
+
+The same 19 scene sources were searched for active `FLAG_DARK_*` / `MsgDark*` references to the abandoned custom awakened, Bloom, harbor-child, caravan-choice, phantom voice and sleeper plots. No matching active code identifiers were found. Original-game Hammet caravan events are separate and must stay.
+
+**The combined pre-play changes** include engine palette-memory cleanup *and* the Mercury-visited chronology repair. The newest commit after both changes must pass its own dialogue, story-contract, compiler and IPS workflow before its patch is considered the recommended playtest build.
+
