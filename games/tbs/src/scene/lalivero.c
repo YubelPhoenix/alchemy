@@ -142,7 +142,10 @@ enum LaliveroActorId {
   ACTOR_NORTH_EXIT_SIGN,
   /// The orb Iodem holds out, drawn from its item icon.
   /// ★ Named from the game: "Black Orb" (MsgItemName)
-  ACTOR_BLACK_ORB
+  ACTOR_BLACK_ORB,
+  /// Ash Jenna's optional farewell near the wharf after Venus Lighthouse.
+  /// Placed only in the post-Venus template, following the Black Orb.
+  ACTOR_LALIVERO_ASH_JENNA
 };
 
 /// The door into the Lalivero Sanctum, a gate two cells wide.
@@ -163,6 +166,67 @@ enum { WALL_CELL_X = 20, WALL_CELL_Y = 23 };
 /// party.
 static void Lalivero_TalkToTorch(void) {
   Djinn_JoinParty(ACTOR_TORCH, ELEMENT_MARS, DJINNI_INDEX(DJINNI_TORCH));
+}
+
+/// Optional post-Venus coda for the Jenna from another world. Only available
+/// after the Tolbi encounter, so Isaac can recognize her and the earlier
+/// accepted/refused answer can receive its final callback. This exchange
+/// changes neither the original ending nor any lighthouse or ship state.
+static void Lalivero_TalkToAshJenna(void) {
+  Event_Start();
+  Actor_FaceActor(ACTOR_LALIVERO_ASH_JENNA, ACTOR_PARTY_LEADER, 0);
+  Event_SetMessageId(MsgDarkLaliveroAshWatch);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacFall);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshSurvival);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacSearch);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshSearch);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacResolve);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshWaiting);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacWiseOne);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshBelief);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacEvidence);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshBurden);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  if (GameFlag_Get(FLAG_DARK_ASH_JENNA_ACCEPTED) != 0) {
+    Event_SetMessageId(MsgDarkLaliveroIsaacAccepted);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  } else {
+    // The only other Lamakan outcome is refusal. Keep an explicit reset
+    // after either branch instead of relying on the message cursor.
+    Event_SetMessageId(MsgDarkLaliveroIsaacRefused);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  }
+  Event_SetMessageId(MsgDarkLaliveroAshJenna);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacOthers);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshOwnPath);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacProof);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshFarewell);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacPromise);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Actor_FaceDirection(ACTOR_LALIVERO_ASH_JENNA, FACING_EAST, 0);
+  Event_WaitFrames(20);
+  Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA,
+                             SPRITE_COLOR_GREY | SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_LALIVERO_ASH_JENNA, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_ASH_JENNA_LALIVERO);
+  Event_End();
 }
 
 const struct SceneEntrance *Lalivero_GetEntrances(void) {
@@ -879,6 +943,15 @@ s32 Lalivero_Initialize(void) {
     if (GameFlag_Get(FLAG_LALIVERO_WHARF_OPEN)) {
       Actor_SetPosition(ACTOR_WHARF_GUARD, PIXELS(56), PIXELS(184));
     }
+    // A reachable, optional closing conversation, not a route-blocking event.
+    // The actor is otherwise parked outside the playable map.
+    if (GameFlag_Get(FLAG_DARK_ASH_JENNA_TOLBI) != 0 &&
+        GameFlag_Get(FLAG_DARK_ASH_JENNA_LALIVERO) == 0) {
+      Actor_SetPosition(ACTOR_LALIVERO_ASH_JENNA, PIXELS(128), PIXELS(240));
+      Actor_FaceDirection(ACTOR_LALIVERO_ASH_JENNA, FACING_SOUTH, 0);
+      Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA,
+                                 SPRITE_COLOR_GREY);
+    }
   } else {
     // The first visit: the two soldiers lie on the ground, drawn under the
     // party with their own collision off, and the two cells each covers
@@ -1087,6 +1160,10 @@ struct ActorTemplate gLaliveroActorTemplatesAfterLighthouse[] = {
         PIXELS(248), 0, PIXELS(80), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_BLANK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-64), 0, PIXELS(-64), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    // After the Black Orb: the optional Ash Jenna coda actor is hidden until
+    // Lalivero_Initialize confirms the Tolbi meeting and unfinished coda.
+    { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        PIXELS(-64), 0, PIXELS(-64), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { ACTOR_GARET, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_EAST, TALK_FACING_PARTY, 0 },
     { ACTOR_IVAN, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
@@ -1158,6 +1235,9 @@ struct Trigger gLaliveroTriggers[] = {
 struct Trigger gLaliveroTriggersAfterLighthouse[] = {
     { TRIGGER_STEP, 50, FLAG_IODEM_FAREWELL_SEEN, EVENT(Lalivero_IodemGivesBlackOrb) },
     { TRIGGER_STEP, 51, CONDITION_ALWAYS, EVENT(Lalivero_TurnBackToTheShip) },
+    // A completed coda cannot retrigger; the actor is only placed after Tolbi.
+    { TRIGGER_TALK, ACTOR_LALIVERO_ASH_JENNA, FLAG_DARK_ASH_JENNA_LALIVERO,
+      EVENT(Lalivero_TalkToAshJenna) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 1, CONDITION_ALWAYS, EVENT(Lalivero_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 2, CONDITION_ALWAYS, EVENT(Lalivero_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 3, CONDITION_ALWAYS, EVENT(Lalivero_EnterDoor) },

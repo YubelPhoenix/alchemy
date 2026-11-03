@@ -1,0 +1,20 @@
+# Optional Ash Jenna coda: after Venus Lighthouse, if Isaac met her in Tolbi. The main ending remains unchanged.
+N300	MsgDarkLaliveroAshWatch	I came to watch the\nVenus beacon.\nI saw it burn.{end_wait}
+N301	MsgDarkLaliveroIsaacFall	The lighthouse broke.\n{actor_name:7} fell. {actor_name:5}\njumped after her.{end_wait}
+N302	MsgDarkLaliveroAshSurvival	And you don't know\nif they survived?{end_wait}
+N303	MsgDarkLaliveroIsaacSearch	No. We have to find\nout what happened.{end_wait}
+N304	MsgDarkLaliveroAshSearch	Even now, you go\nlooking for someone\nyou may not find.{end_wait}
+N305	MsgDarkLaliveroIsaacResolve	I'd rather search\nthan leave them behind.{end_wait}
+N306	MsgDarkLaliveroAshWaiting	I waited for that\nlight to prove I\nwas right about him.{end_wait}
+N307	MsgDarkLaliveroIsaacWiseOne	The Wise One?{end_wait}
+N308	MsgDarkLaliveroAshBelief	Yes. I still believe\nhe let my world die.{page_break}But believing isn't\nproof, is it?{end_wait}
+N309	MsgDarkLaliveroIsaacEvidence	No. And what happened\nhere doesn't tell us\nwhat happened there.{end_wait}
+N310	MsgDarkLaliveroAshBurden	I asked you to bear\nan answer I couldn't\nfind myself.{end_wait}
+N311	MsgDarkLaliveroIsaacAccepted	I said I'd help you\nfind out.{page_break}I still mean to,\nwhen I can.{end_wait}
+N312	MsgDarkLaliveroIsaacRefused	I never promised\nto follow you.{page_break}But I won't dismiss\nwhat you told us.{end_wait}
+N313	MsgDarkLaliveroAshJenna	You have {actor_name:6} and\nKraden to find.\nGo after them.{end_wait}
+N314	MsgDarkLaliveroIsaacOthers	And the others who\nfell at Venus.{end_wait}
+N315	MsgDarkLaliveroAshOwnPath	I know.{page_break}I'll look for proof,\nnot someone to blame.{end_wait}
+N316	MsgDarkLaliveroIsaacProof	If you find proof,\nI hope you'll let\nus know.{end_wait}
+N317	MsgDarkLaliveroAshFarewell	I'll try.{page_break}And, {actor_name:1}... don't\nmistake me for her.{end_wait}
+N318	MsgDarkLaliveroIsaacPromise	I won't. And I\nwon't give up on\nfinding her.{end_wait}

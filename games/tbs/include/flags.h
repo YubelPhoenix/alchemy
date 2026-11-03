@@ -2774,5 +2774,8 @@
 #define FLAG_DARK_ASH_JENNA_ACCEPTED 0x8d6
 /// Isaac refused Ash Jenna's offer and chose his own course.
 #define FLAG_DARK_ASH_JENNA_REFUSED 0x8d7
+/// Ash Jenna's optional closing talk in Lalivero after the Venus Lighthouse
+/// collapse. Set after the scene; hides her on subsequent town entries.
+#define FLAG_DARK_ASH_JENNA_LALIVERO 0x8d8
 
 #endif
