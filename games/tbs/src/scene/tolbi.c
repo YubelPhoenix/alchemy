@@ -509,9 +509,9 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
     }
   }
   // Ash Jenna waits in the rain once Colosso is over and Mercury Lighthouse
-  // is lit, until she has spoken to the party.
+  // has returned from Lamakan's full confrontation, until she has spoken to the party.
   if (GameFlag_Get(FLAG_COLOSSO_OVER) != 0 &&
-      GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
+      GameFlag_Get(FLAG_DARK_FINALE_DONE) != 0 &&
       GameFlag_Get(FLAG_DARK_ASH_JENNA_TOLBI) == 0) {
     Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(232), PIXELS(256));
     Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
@@ -545,6 +545,18 @@ static void Tolbi_MeetAshJenna(void) {
   Event_WaitFrames(30);
   Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  // The Lamakan choice changes how she addresses Isaac in Tolbi. The
+  // rest of the exchange is shared, regardless of his answer.
+  if (GameFlag_Get(FLAG_DARK_ASH_JENNA_ACCEPTED) != 0) {
+    Event_SetMessageId(MsgDarkTolbiJennaAccepted);
+    Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  } else if (GameFlag_Get(FLAG_DARK_ASH_JENNA_REFUSED) != 0) {
+    Event_SetMessageId(MsgDarkTolbiJennaRefused);
+    Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  }
+  // Resume the existing consecutive messages at N76, not after the
+  // newly allocated branch line's message index.
+  Event_SetMessageId(MsgDarkTolbiJennaAsh);
   Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);

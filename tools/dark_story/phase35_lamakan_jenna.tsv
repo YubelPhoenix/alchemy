@@ -1,6 +1,6 @@
 # Ash Jenna glimpsed in the Lamakan Desert after Mercury Lighthouse is lit.
-N106	MsgDarkLamakanJennaWatch	You keep looking\nfor the people\nyou couldn't save.{page_break}I know what\nthat feels like.{end_wait}
-N107	MsgDarkLamakanIsaacWait	Jenna?\nWait. Who are you?{end_wait}
-N108	MsgDarkLamakanJennaUndo	You think there's\nstill time to put\neverything right.{page_break}I thought so, too.{end_wait}
-N109	MsgDarkLamakanJennaClimb	Keep following them.\nThen ask yourself\nwho pays for it.{end_wait}
-N110	MsgDarkLamakanIsaacSilent	She looks like Jenna.\nBut that voice...{end_wait}
+N106	MsgDarkLamakanJennaWatch	You look at every face\nas though the missing\nmight come back to you.{page_break}I did that once, too.{end_wait}
+N107	MsgDarkLamakanIsaacWait	You look like Jenna.\nBut that can't be...\nWho are you?{end_wait}
+N108	MsgDarkLamakanJennaUndo	I thought I could save\nthem if I kept moving.{page_break}I was too late.{end_wait}
+N109	MsgDarkLamakanJennaClimb	Keep following them.\nThen ask what the\nbeacons are worth.{end_wait}
+N110	MsgDarkLamakanIsaacSilent	That's her face.\nBut it wasn't her voice.\nWho was she?{end_wait}

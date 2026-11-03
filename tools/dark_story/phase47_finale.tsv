@@ -1,21 +1,21 @@
 # Lamakan confrontation: Ash Jenna's origin, her offer, and Isaac's response.
-N224	MsgDarkFinaleJennaMet	You found me again.\nI wasn't sure\nyou'd come back.{end_wait}
-N225	MsgDarkFinaleIsaacMet	Back in the desert...\nWho are you, really?{end_wait}
-N195	MsgDarkFinaleJenna1	You kept going.\nI suppose I owe you\nan answer.{end_wait}
-N196	MsgDarkFinaleIsaac1	You look like Jenna.\nBut you're not her.\nWho are you?{end_wait}
-N197	MsgDarkFinaleJenna2	I'm Jenna. Not yours.\nThe Wise One stood by\nas my world burned.{page_break}I watched it happen.\nI survived.\nThat's why I'm here.{end_wait}
-N198	MsgDarkFinaleGaret	What do you want\nwith Isaac?{end_wait}
-N199	MsgDarkFinaleJenna3	The beacons burned\nin my world, too.{page_break}I believe the Wise One\nlet it happen.\nHelp me face him.{end_wait}
-N200	MsgDarkFinaleIvan	She may believe it.\nBut we can't tell\nif she's right.{end_wait}
-N201	MsgDarkFinaleMia	Then we need proof.\nNot another fight\nwe don't understand.{end_wait}
-N203	MsgDarkEchoMiner	You stayed with\nthose miners.\nYou could have left.{end_wait}
-N208	MsgDarkFinaleAsk	Take her offer?{end_now}
-N209	MsgDarkFinaleYesIsaac	I'll help find out\nwhat happened.\nBut I need proof.{end_wait}
-N210	MsgDarkFinaleYesJenna	Then watch what\nhappens when the\nnext beacon burns.{end_wait}
-N211	MsgDarkFinaleYesIvan	Isaac, are you sure?\nWe barely know her.{end_wait}
-N212	MsgDarkFinaleYesJenna2	Then don't look away.\nRemember what\nI told you.{end_wait}
-N213	MsgDarkFinaleNoIsaac	No. I won't promise\nanything until\nwe know the truth.{end_wait}
-N214	MsgDarkFinaleRefusalJenna	Then find out\nfor yourself.\nI won't stop you.{end_wait}
-N215	MsgDarkFinaleRefusalIvan	We should go, Isaac.\nKalay is still ahead.{end_wait}
-N216	MsgDarkFinaleRefusalMia	Her story may be true.\nBut we have to decide\nwhat to do ourselves.{end_wait}
-N221	MsgDarkFinaleHook	Jenna and Kraden\nare with Menardi.\nFelix is with them.{page_break}Go on toward Kalay.\nDon't let this\nslow you down.{end_wait}
+N224	MsgDarkFinaleJennaMet	You came back.\nI wondered if you'd\nrecognize me.{end_wait}
+N225	MsgDarkFinaleIsaacMet	I saw you before.\nYou look like Jenna.\nTell me who you are.{end_wait}
+N195	MsgDarkFinaleJenna1	You kept going,\njust as I thought.\nI owe you an answer.{end_wait}
+N196	MsgDarkFinaleIsaac1	I know Jenna.\nYou have her face.\nWho are you?{end_wait}
+N197	MsgDarkFinaleJenna2	I'm Jenna. Not yours.\nThe beacons in my world\nwere all lit.{page_break}Then our home was gone.\nThe Wise One did nothing.\nI was there to see it.{end_wait}
+N198	MsgDarkFinaleGaret	Why come to Isaac?\nWhat can he do\nthat you couldn't?{end_wait}
+N199	MsgDarkFinaleJenna3	He gave you a task.\nYou're the one he may\nbe willing to hear.{page_break}I need to know why\nmy world was left to die.\nHelp me ask him.{end_wait}
+N200	MsgDarkFinaleIvan	It may be her truth.\nBut we only have\nher word for it.{end_wait}
+N201	MsgDarkFinaleMia	If she's right,\nwe need to know.\nBut we need evidence.{end_wait}
+N203	MsgDarkEchoMiner	You stayed for\nthose miners when we\ncould have moved on.{end_wait}
+N208	MsgDarkFinaleAsk	Help her question\nthe Wise One?{end_now}
+N209	MsgDarkFinaleYesIsaac	I'll face him with you.\nBut I won't condemn\nhim without proof.{end_wait}
+N210	MsgDarkFinaleYesJenna	Then when the next\nbeacon burns, watch\nwhat changes.{end_wait}
+N211	MsgDarkFinaleYesIvan	Isaac, I want answers\ntoo. Just don't mistake\nher pain for proof.{end_wait}
+N212	MsgDarkFinaleYesJenna2	Don't trust me blindly.\nJust remember what\nI asked you to notice.{end_wait}
+N213	MsgDarkFinaleNoIsaac	No. I'll find out\nwhat happened first.\nThen I'll decide.{end_wait}
+N214	MsgDarkFinaleRefusalJenna	Then find your proof.\nI hope you can bear\nwhat you discover.{end_wait}
+N215	MsgDarkFinaleRefusalIvan	We can argue later.\nKalay is still ahead.{end_wait}
+N216	MsgDarkFinaleRefusalMia	She may be wrong.\nThat doesn't mean\nwe shouldn't look.{end_wait}
+N221	MsgDarkFinaleHook	Your Jenna and Kraden\nare still with Menardi.\nFelix travels with them.{page_break}The road goes to Kalay.\nGo after your friends.\nWe'll speak again.{end_wait}

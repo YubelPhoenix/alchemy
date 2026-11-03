@@ -1,11 +1,14 @@
 # Ash Jenna confronts the party in Tolbi after Colosso.
-N74	MsgDarkTolbiJennaFound	So you've come\nto Tolbi after all.{page_break}Still chasing answers,\nIsaac?{end_wait}
-N75	MsgDarkTolbiIsaacGrey	What do you want?\nYou said enough\nin Lamakan.{end_wait}
-N76	MsgDarkTolbiJennaAsh	The next beacon\nwill burn, too.{page_break}I think the Wise One\nis counting on it.{end_wait}
-N77	MsgDarkTolbiGaretFire	You said your world\nwas destroyed.\nWhy believe you?{end_wait}
-N78	MsgDarkTolbiJennaPlease	You don't have to\nbelieve me, Garet.\nJust keep watching.{end_wait}
-N79	MsgDarkTolbiMiaSneer	You came to scare us.\nWe're not giving up.{end_wait}
-N80	MsgDarkTolbiJennaMia	You were so angry\nwhen that beast fell,\nweren't you, Mia?{end_wait}
-N81	MsgDarkTolbiMiaPlace	I was angry.\nI won't deny it.\nBut I'm not like you.{end_wait}
-N82	MsgDarkTolbiJennaGoing	Keep going, Isaac.\nThe next lighthouse\nis waiting.{end_wait}
-N83	MsgDarkTolbiIsaacWait	Wait! Your world...\nWhat happened there?{end_wait}
+N74	MsgDarkTolbiJennaFound	You made it to Tolbi.\nI wondered if you'd\ncome this far.{page_break}What have you seen\nsince Lamakan, Isaac?{end_wait}
+N75	MsgDarkTolbiIsaacGrey	You told us to watch.\nWe did. What are you\nhere to tell us?{end_wait}
+N76	MsgDarkTolbiJennaAsh	The next beacon may burn.\nI watched the lights\nin my own world.{page_break}I think the Wise One\nknew the cost.\nI couldn't stop it.{end_wait}
+N77	MsgDarkTolbiGaretFire	You told us what\nyou believe. Where's\nthe proof?{end_wait}
+N78	MsgDarkTolbiJennaPlease	I don't ask you to\ntrust me, Garet.\nJust keep looking.{end_wait}
+N79	MsgDarkTolbiMiaSneer	You've given us\nno reason to follow you.\nWe have our own road.{end_wait}
+N80	MsgDarkTolbiJennaMia	I saw you after\nthe Manticore, Mia.\nYou feared your own anger.{end_wait}
+N81	MsgDarkTolbiMiaPlace	I was afraid of\nwhat I might become.\nI still chose to stay.{end_wait}
+N82	MsgDarkTolbiJennaGoing	Then keep choosing.\nThe next lighthouse\nwill test all of you.{end_wait}
+N83	MsgDarkTolbiIsaacWait	You want us to watch.\nThen stop hiding\nwhat you know.{end_wait}
+
+N240	MsgDarkTolbiJennaAccepted	You said you'd help.\nDo you still mean\nto question the Wise One?{end_wait}
+N241	MsgDarkTolbiJennaRefused	You refused my offer.\nBut you kept watching.\nWhat did you find?{end_wait}

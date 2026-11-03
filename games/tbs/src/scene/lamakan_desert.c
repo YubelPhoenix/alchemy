@@ -165,7 +165,7 @@ enum {
   /// ★ Named from the game: "Smog" (MsgDjinnName)
   ACTOR_SMOG = ACTOR_LAST_PIT + 1,
   /// Ash Jenna (ACTOR_JENNA), glimpsed in LamakanDesertManticore's pass once
-  /// Mercury Lighthouse is lit (LamakanDesert_MeetAshJenna). Only that scene
+  /// Saturos has been defeated at Mercury (LamakanDesert_MeetAshJenna). Only that scene
   /// places her, as its third actor.
   ACTOR_LAMAKAN_ASH_JENNA = ACTOR_FIRST_PLACED + 2
 };
@@ -261,7 +261,7 @@ const struct ActorTemplate *LamakanDesert_GetActorTemplates(void) {
   // Ash Jenna's glimpse is pending in the Manticore pass only; the trigger
   // table is shared, so the flag is cleared in the other scenes.
   if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
-      GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
+      GameFlag_Get(FLAG_SATUROS_BEATEN_AT_MERCURY) != 0 &&
       GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0 &&
       (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0 ||
        GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) != 0 ||
@@ -1153,7 +1153,7 @@ s32 LamakanDesert_Initialize(void) {
   if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
       (gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE ||
        GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) &&
-      GameFlag_Get(FLAG_MERCURY_LIGHTHOUSE_LIT) != 0 &&
+      GameFlag_Get(FLAG_SATUROS_BEATEN_AT_MERCURY) != 0 &&
       GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) == 0) {
     LamakanDesert_ManticoreAftermath();
     // Mia's aftermath plays on the return from battle. Ash Jenna then
