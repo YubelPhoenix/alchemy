@@ -1,17 +1,17 @@
 # Lemurian ship departure: the party leaves Gondowan and sets course for Lemuria.
-10494	MsgFieldLooksLikeFinally	The time has come. We\nleave Gondowan behind.{end_wait}
-10495	message	It feels strange... We've\ncome so far, yet\nwe're no closer to the end.{end_wait}
-10496	message	So much has changed\nsince we left home.{end_wait}
-10497	message	Once we find {actor_name:6},\nwill our journey finally\nbe finished?{end_now}
-10498	message	Finished? We would only\nbe standing at the edge\nof another beginning.{end_wait}
-10499	message	Another beginning? What\ncould possibly come after\nall that we've faced?{end_wait}
-10500	message	You have already forgotten,\nhaven't you, {actor_name:2}?{end_wait}
-10503	message	What do you think\nLemuria will be like?{end_wait}
-10504	message	We cannot leave without\nfinding {actor_name:6},\ncan we?{end_now}
-10506	message	She will be furious\nwhen I tell {actor_name:6}\nwhat you said!{end_wait}
-10507	message	This is my first time\nseeing the open ocean\nfrom a ship.{end_wait}
-10508	message	So this is the sea\nKraden wanted me to see.\nIt stretches beyond sight.{end_wait}
-10509	message	The water is rough.\nAre we certain this ship\ncan weather it?{end_now}
-10510	message	The vessel is Lemurian.\nIt should carry us\nsafely.{end_wait}
-10511	message	I hope you're right.\nStill, there is no\nturning back now...{end_wait}
-10514	message	{actor_name:6} is waiting.\nWe should hurry.{end_wait}
+10494	MsgFieldLooksLikeFinally	Gondowan is behind us.\nWe cannot turn back.{end_wait}
+10495	message	We've come so far.\nSomehow the end still\nfeels out of reach.{end_wait}
+10496	message	I keep thinking about\nhow things were\nbefore we left Vale.{end_wait}
+10497	message	If we find {actor_name:6},\nwill this finally\nbe over?{end_now}
+10498	message	Finding her won't\nundo what happened.\nWe still have choices.{end_wait}
+10499	message	A choice? After all\nwe've been through?{end_wait}
+10500	message	You haven't forgotten\nLemuria, have you,\n{actor_name:2}?{end_wait}
+10503	message	I wonder what Lemuria\nis really like.{end_wait}
+10504	message	We can't just leave\n{actor_name:6} out there,\ncan we?{end_now}
+10506	message	{actor_name:6} won't thank you\nfor saying that!{end_wait}
+10507	message	I've never been\nthis far from land.\nIt's unsettling.{end_wait}
+10508	message	Kraden wanted me\nto see the sea.\nNow I understand why.{end_wait}
+10509	message	These waves are rough.\nCan this ship really\ncarry us through?{end_now}
+10510	message	It's a Lemurian ship.\nIf any vessel can,\nthis one should.{end_wait}
+10511	message	I hope you're right.\nWe're far from shore.{end_wait}
+10514	message	{actor_name:6} is out there.\nWe can't stop now.{end_wait}
