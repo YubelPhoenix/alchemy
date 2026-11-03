@@ -399,8 +399,8 @@
 06180	MsgSanctumWhenYouStayInXianFor	Stay in Xian long enough\nand you start talking\nstrangely.{page_break}My head gets so\nconfused...{end_wait}
 06410	MsgSanctumWasAfterEerieNightWhen	It was after that eerie\nnight, when the gems fell\nfrom the sky.{page_break}That's when the water-\nspitting beasts showed\nup in the mine!{end_wait}
 06411	MsgSanctumPleaseSaveTheHelplessInAltin	Please help\nthe people of Altin.\nThey have nowhere to go.{end_wait}
-06481	MsgSanctumSavedAltinFromMonstersClearly	You saved Altin from the\nmonsters.{page_break}Clearly, this is the work\nof Fate's own hand.{end_wait}
-06482	MsgSanctumAlmightyFateMustHaveHeardMe	Fate must have heard my\nprayers.{end_wait}
+06481	MsgSanctumSavedAltinFromMonstersClearly	You helped save Altin.{page_break}People here will\nremember your courage.{end_wait}
+06482	MsgSanctumAlmightyFateMustHaveHeardMe	I prayed for help.\nYou were the ones\nwho answered.{end_wait}
 07164	MsgSanctumPathSolSanctumStillClosed	The path to Sol Sanctum\nis still closed.{page_break}You'll have to wait for\nthe mountain to quiet.{end_wait}
 07165	MsgSanctumIsaacYourNewFriendsAdepts	{actor_name:1}, are your new\nfriends Adepts, by any\nchance?{end_now}
 07166	message	So others besides Valeans\nhave been given Psynergy?{end_wait}
