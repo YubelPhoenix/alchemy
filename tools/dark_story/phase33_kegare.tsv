@@ -1,8 +1,8 @@
 # Kegare, a demon from another age who has taken Mia's visage.
-N102	MsgDarkKegareRise	At last. I have watched\nyou protect Mia. Now I\nunderstand her trust.{end_wait}
-N103	MsgDarkKegareIsaac	You look exactly like Mia.\nWho are you?{end_wait}
-N104	MsgDarkKegareName	I am Kegare, a demon\nfrom an age long past. I\nstudied her every move.{page_break}Now I will take her place.\nHer life and name will be\nmine.{end_wait}
-N105	MsgDarkKegareIsaacReady	You will not replace Mia.\nYou'll have to get through\nus first.{end_wait}
-N226	MsgDarkKegareMiaRefutes	You may wear my face,\nbut you do not know my\nlife. You cannot claim me.{end_wait}
-N227	MsgDarkKegareThreatens	Let them decide who is\nreal. When I am finished,\nthey will choose me.{end_wait}
-N228	MsgDarkKegareMiaResolves	They know me by my choices,\nnot the shape of my face.\nYou will never become me.{end_wait}
+N102	MsgDarkKegareRise	I have watched you\nprotect Mia.\nNow I understand\nwhy she trusts you.{end_wait}
+N103	MsgDarkKegareIsaac	You have Mia's face.\nWho are you?{end_wait}
+N104	MsgDarkKegareName	I am Kegare.\nI come from an age\nlong buried.\nI learned her voice.\nI studied her face.\nNow I will take her place.{end_wait}
+N105	MsgDarkKegareIsaacReady	You are not Mia.\nAnd you never will be.{end_wait}
+N226	MsgDarkKegareMiaRefutes	You wear my face.\nYou know nothing\nof the life I've lived.{end_wait}
+N227	MsgDarkKegareThreatens	When I am done,\nthey will call me Mia.\nAnd forget you.{end_wait}
+N228	MsgDarkKegareMiaResolves	My face is not my life.\nMy choices made me.\nYou cannot steal them.{end_wait}
