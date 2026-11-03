@@ -3,7 +3,7 @@
 06334	message	Look at what's left of\nAltin.{page_break}The lower streets are\nunderwater. We carried\nout what we could.{end_wait}
 06335	message	We used to be a\nmining town.{page_break}Now look at us.\nThe streets are rivers.{end_now}
 06336	message	We never had enough\nwater in the old days.{page_break}Now the beasts have\nflooded our homes.\nNothing seems fair.{end_wait}
-06337	message	The creatures appeared\nafter the stones fell\nfrom the sky.{page_break}Then the water rose.\nNo one knows why the\nstatues came alive.{end_wait}
+06337	message	The old statues moved.\nThen the water rose.{page_break}No one can explain\nwhat woke them.{end_wait}
 06338	MsgAltinHowCanThoseCreaturesSpitUp	How can those beasts\nproduce so much water?{end_wait}
 06339	MsgAltinHowHorribleMyHouseIsTotally	My home is soaked.\nThe walls may not\nstand much longer.{end_wait}
 06340	MsgAltinEvenTheMineIsSubmergedNo	The mine is flooded.\nWithout it, we have\nno wages or food.{end_wait}
@@ -12,7 +12,7 @@
 06343	MsgAltinWeCantDrinkWaterMonsters	Don't drink that water.\nWe don't know where\nit came from.{page_break}The children are thirsty.\nWhat am I meant to\ntell them?{end_wait}
 06344	MsgAltinTheWatersAroundHereHaveSubsided	The water has begun\nto fall.{page_break}The rain hasn't\nstopped, though.{end_wait}
 06345	MsgAltinTheWaterBeastsLookedExactlyLike	Those beasts look\nlike our old guardian\nstatues.{page_break}What made them move?{end_wait}
-06346	MsgAltinTheWatersHaveFlushedOutTons	The flood washed rock\nout of the mine.{page_break}Some see treasure.\nI see the men who\nwere trapped below.{end_wait}
+06346	MsgAltinTheWatersHaveFlushedOutTons	The flood washed rock\nout of the mine.{page_break}Some see treasure.\nI think of the miners\nstill working below.{end_wait}
 06347	MsgAltinYouCameToAltinAtA	You came to Altin\nat a terrible time.{page_break}Mind your footing.\nThe ground is soft.{end_wait}
 06348	MsgAltinItsAlmostLikeTheyreTurningThe	It's as though they\nmake water out of\nempty air.{end_wait}
 06349	MsgAltinImGladISavedMyVery	I saved an old letter.\nEverything else is\nunderwater.{page_break}It seemed foolish then.\nNow I'm glad I kept it.{end_wait}
@@ -82,7 +82,7 @@
 06426	message	No? Then where did\nall that water\ncome from?{end_wait}
 06427	MsgAltinOnceTheMineOpensAgainWell	Once the mine is safe,\nwe can return to work.{page_break}It won't be easy,\nbut we have to try.{end_wait}
 06428	MsgAltinTheyAlreadyStartedMiningTheUpper	The upper shafts are\nopen again.{page_break}No one will work below\nuntil we know they're\nsafe.{end_wait}
-06429	MsgAltinTheWaterDrainedOutOfThe	The water drained\ninto the cracks.{page_break}The rain continues,\nso the streets\nremain muddy.{end_wait}
+06429	MsgAltinTheWaterDrainedOutOfThe	The water drained\ninto the cracks.{page_break}The streets are muddy.\nIt will take time\nto clear them.{end_wait}
 06430	MsgAltinThankGoodnessTheVillageIsFree	The beasts are gone.\nAt last, the water\nis going down.{end_wait}
 06431	MsgAltinOnesWhoDefeatedWaterBeasts	Are you the ones\nwho saved Altin?{end_now}
 06432	message	If you can spare time,\nwe still need help\nrebuilding the village.{end_wait}
