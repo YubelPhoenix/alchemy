@@ -1,10 +1,10 @@
 # Altin Peak: the mine has collapsed with men pinned behind the rubble.
-N140	MsgDarkPeakMinerPlea	The roof came down when\nthe supports gave way.{page_break}The men are pinned behind\nthe rubble, and the water\nis rising.{page_break}Will you help dig them out?{end_now}
-N141	MsgDarkPeakMinerYes	Thank the mountain. Hurry,\nbefore the water wins.{end_wait}
-N142	MsgDarkPeakMinerNo	Then go. The mountain keeps\nwhat it likes. It won't\nforgive you.{end_wait}
-N143	MsgDarkPeakMiaDig	The roof is unstable. If\nwe dig carelessly, we may\nbring it down again.{end_wait}
-N144	MsgDarkPeakGaretDig	Then we brace it first.\nWe can't leave them under\nthere.{end_wait}
-N145	MsgDarkPeakMiaAlex	I know. I'm afraid we'll\nlose more lives if we rush.\nBut we have to try.{end_wait}
-N146	MsgDarkPeakIsaacDig	We dig, all of us. Nobody\nstays behind.{end_wait}
-N147	MsgDarkPeakMinerThanks	You got them out. I\nthought we'd be buried\nalive. Please, take this.{end_wait}
-N148	MsgDarkPeakMinerDone	The others are safe now.\nThank you for getting us\nout before the next fall.{end_wait}
+N140	MsgDarkPeakMinerPlea	The supports gave way.\nMen are trapped behind\nthe fallen rock.{page_break}The water is rising.\nWill you help us?{end_now}
+N141	MsgDarkPeakMinerYes	Thank you. Quickly!\nThey won't last long\nin that water.{end_wait}
+N142	MsgDarkPeakMinerNo	Then find someone who\nwill help. I won't\nleave them here.{end_wait}
+N143	MsgDarkPeakMiaDig	The roof could fall\nagain. We must brace\nit before we dig.{end_wait}
+N144	MsgDarkPeakGaretDig	I'll find timbers.\nIsaac, help me set\nthem against the wall.{end_wait}
+N145	MsgDarkPeakMiaAlex	We can't rush blindly.\nBut every moment\nmatters to those men.{end_wait}
+N146	MsgDarkPeakIsaacDig	Brace the roof first.\nThen we move the stone.\nTogether.{end_wait}
+N147	MsgDarkPeakMinerThanks	You saved them.\nI heard them calling\nthrough the rock.{page_break}Please, take this.\nIt's all I can offer.{end_wait}
+N148	MsgDarkPeakMinerDone	They're outside now.\nThe mine can wait.\nTheir lives couldn't.{end_wait}
