@@ -1,11 +1,11 @@
 # Mogall's route marker and the Lamakan Desert's heat and ash-thick air.
-06118	MsgMogallForestBrokenSign	The broken sign reads:{page_break}North: Fuchin Temple\nSouth: Mogall Prairie...{end_wait}
-06675	message	Agh... The sand is hot\nnow, and it's still\nsweltering.{end_wait}
-06676	message	Every step sinks in loose\nsand. This desert burns\nwithout a flame.{end_wait}
-06677	message	I can't stop sweating,\nand I can't catch my\nbreath. The air is thick.{end_wait}
-06678	message	The air is thick with ash,\nbut there's no smoke\nanywhere.{end_wait}
-06679	message	I can't keep my cool\nwhen the ground burns\nunder me.{end_wait}
-06680	message	Ew... My clothes are\ncaked in dust and sweat!\nThis is gross!{end_wait}
-06681	message	Aghh! I can't stand it!\nMy feet burn with every\nstep I take!{end_wait}
-06682	message	I can't take another\nminute of this! Where\nis the oasis?{end_wait}
-06683	message	If we find no oasis\nsoon, I'll collapse\nout here!{end_wait}
+06118	MsgMogallForestBrokenSign	The broken sign reads:{page_break}North: Fuchin Temple\nSouth: Mogall Forest{end_wait}
+06675	message	The sand burns through\nmy boots. We can't\nstay here long.{end_wait}
+06676	message	Every step sinks.\nThere's no firm ground\nanywhere.{end_wait}
+06677	message	I can't catch my breath.\nThe heat is making\nme dizzy.{end_wait}
+06678	message	The wind carries sand\ninto my eyes. I can\nbarely see ahead.{end_wait}
+06679	message	The ground is hot\neven in the shade.\nHow can that be?{end_wait}
+06680	message	My clothes are stiff\nwith sweat and dust.\nI need water.{end_wait}
+06681	message	My feet hurt. I can't\nkeep this pace\nfor much longer.{end_wait}
+06682	message	How far is the oasis?\nI can't see anything\nbut sand.{end_wait}
+06683	message	If we don't find water,\nwe'll never make it\nout of here.{end_wait}
