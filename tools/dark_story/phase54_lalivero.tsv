@@ -33,20 +33,20 @@
 10427	MsgLaliveroHaHaIThoughtTheyHad	I thought I would not\nrecover, but the wounds\nhave finally closed.{end_wait}
 10428	MsgLaliveroIWillNeverLetMyGuard	I will not lower my guard\nagain.{page_break}We must be ready to\nprotect Lalivero when\ndanger returns.{end_wait}
 10429	MsgLaliveroWhereCouldActorBeNowIm	Where is {actor_name:7} now?\nI cannot stop worrying\nabout her.{end_wait}
-10433	MsgLaliveroISawTheBeaconOfVenus	I saw Venus Lighthouse\nignite in the distance.{page_break}For one moment, the whole\nsky seemed to hold its\nbreath.{end_wait}
-10434	MsgLaliveroTheExplosionInTheVenusRuins	The blast in the Venus\nRuins brought Babi's\nlighthouse down.{page_break}No human work could\nstand against power\nlike that.{end_wait}
-10435	MsgLaliveroThePeninsulaBehindVenusLighthouseIs	The land behind Venus\nLighthouse is under water.{page_break}The old powers have\nchanged the coast in\nan instant.{end_wait}
+10433	MsgLaliveroISawTheBeaconOfVenus	Venus Lighthouse lit\nup the night sky.{page_break}For a moment, I thought\nthe whole coast was\non fire.{end_wait}
+10434	MsgLaliveroTheExplosionInTheVenusRuins	The blast from the ruins\nbrought Babi's tower\ndown.{page_break}We spent years building\nit. Gone in a moment.{end_wait}
+10435	MsgLaliveroThePeninsulaBehindVenusLighthouseIs	The land beyond Venus\nLighthouse has sunk\nbeneath the sea.{page_break}I knew the earth shook.\nI never imagined this.{end_wait}
 10436	MsgLaliveroICantBelieveYouEscapedVenus	You escaped Venus\nLighthouse? I can hardly\nbelieve it.{page_break}The tunnel beneath it\nmust have brought you\nback safely.{end_wait}
-10437	MsgLaliveroIfYouDefeatedThatEvilBunch	If you defeated those\npeople, you must be\nstronger than you look.{end_wait}
-10438	MsgLaliveroActorJumpedIntoTheOceanFrom	{actor_name:7} leapt from the\nlighthouse into the sea?{page_break}How could anyone survive\nsuch a fall?{end_wait}
+10437	MsgLaliveroIfYouDefeatedThatEvilBunch	You fought them and\nlived to tell of it?{page_break}I saw what they did\nto our soldiers. I can\nhardly believe it.{end_wait}
+10438	MsgLaliveroActorJumpedIntoTheOceanFrom	{actor_name:7} fell from the\nlighthouse into the sea?{page_break}How could she survive\na fall like that?{end_wait}
 10425	MsgLaliveroApparentlyAShipHasBeenDocked	A ship has been hidden\nat this wharf all along.{page_break}It must be unlike any\nvessel we have seen.{end_wait}
-10440	MsgLaliveroIAmAllHealedNowBut	My wounds have healed,\nbut my confidence has\nnot returned.{page_break}I will not fight again.\nI have had enough.{end_wait}
+10440	MsgLaliveroIAmAllHealedNowBut	The wounds are gone.\nI still wake up hearing\nthe fighting.{page_break}I cannot go through\nthat again.{end_wait}
 10441	MsgLaliveroIWantedToBeAPart	I wanted to stand with\nthe others at Venus\nLighthouse.{end_wait}
 10442	MsgLaliveroIfActorUsedHerGreatPowers	If {actor_name:7} used her power{pause_20_skippable},\nshe may still be alive.{page_break}But the sea is merciless.\nI fear what she faced\nout there.{end_wait}
-10443	MsgLaliveroAfterEverythingThatsHappenedLaliveroNo	After all that has\nhappened, Lalivero no\nlonger feels safe.{end_wait}
+10443	MsgLaliveroAfterEverythingThatsHappenedLaliveroNo	We used to leave our\ndoors open at night.{page_break}No one does that now.{end_wait}
 10444	MsgLaliveroVenusLighthouseHasBeenTheSymbol	Venus Lighthouse has\nwatched over Lalivero\nfor generations.{page_break}Its light may yet mark\na better beginning for\nthis town.{end_wait}
-10446	MsgLaliveroTheOceanIsSoRoughSince	The sea has grown rough\nsince the peninsula fell.{page_break}One disaster seems to\ncall another. How much\nmore can this coast bear?{end_wait}
+10446	MsgLaliveroTheOceanIsSoRoughSince	The sea has been rough\nsince the land sank.{page_break}I used to know these\nwaters. Now I fear them.{end_wait}
 10447	MsgLaliveroVenusLighthouseIsStillStandingStrong	Venus Lighthouse still\nstands after everything.{page_break}Perhaps its builders knew\nmore than we ever did.{end_wait}
 10448	MsgLaliveroYouMustBeGreatWarriorsTo	You must be formidable\nto have survived that.{page_break}Would you take me on\nas an apprentice?{end_wait}
-10449	MsgLaliveroActorWouldBeFineEvenAfter	{actor_name:7} will survive{em_dash}\nshe has endured worse\nthan a fall.{end_wait}
+10449	MsgLaliveroActorWouldBeFineEvenAfter	I want to believe\n{actor_name:7} survived that fall.{page_break}But wanting it does\nnot make it true.{end_wait}
 10426	MsgLaliveroThisSureSeemsLikeAStrange	A strange place to moor\nBabi's private vessel.\nWhat was he hiding?{end_wait}
