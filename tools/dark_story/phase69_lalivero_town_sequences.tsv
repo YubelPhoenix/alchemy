@@ -26,43 +26,43 @@
 09900	message	Even they are urging\nus on, {actor_name:1}. Come on!{end_wait}
 
 # Iodem's Black Orb briefing.
-10383	message	We'll have to work on\nyour memory, {actor_name:1}.{end_wait}
-10384	message	I know we must leave,\nbut first we should hear\nIodem out.{end_wait}
-10385	message	We can delay our\ndeparture a little.\nLet us wait.{end_wait}
-10386	message	Thank you for waiting.{end_wait}
-10387	message	As you have guessed,\nI need to speak with you\nabout Lemuria.{end_wait}
-10388	message	The island of the\nancients, far out to sea.{end_wait}
-10389	message	When you could not find\n{actor_name:6}, you returned to\nVenus Lighthouse.{end_wait}
-10390	message	Yes. The base was\nflooded, and we could\nnot get out.{end_wait}
-10391	message	Then you looked out to\nsea, as you promised\nBabi you would.{end_wait}
-10392	message	Yes... We saw a region\nwrapped in mist.{end_wait}
-10393	message	I remembered Babi's\nwords: Lemuria is always\ncovered in mist.{end_wait}
-10394	message	I cannot be certain,\nbut that may have been\nLemuria...{end_wait}
-10395	message	If it is, then Babi's\nlife...{end_wait}
-10396	message	...could be saved?\nYes.{end_wait}
-10397	message	Then we have no choice\nbut to go...{end_now}
-10398	message	Good. It is settled.\nI will arrange for you\nto leave at once.{end_wait}
-10399	message	You gave Babi your word.\nIt means nothing if you\ndo not go at once.{end_wait}
-10400	message	But we still have to\nfind {actor_name:6} first...{end_wait}
-10401	message	That is why I asked\nyou to wait. I have\nsomething for you.{end_wait}
-10402	message	Iodem takes out\nthe Black Orb.{end_wait}
-10403	message	Is that the Black Orb?{end_wait}
-10404	message	You will need it to\nsail Babi's ship.{end_wait}
-10406	message	It will help you find\n{actor_name:6}.{end_wait}
-10407	message	We are grateful.{end_wait}
-10408	message	But I need you to find\nLemuria as soon as\npossible.{end_wait}
-10409	message	We gave Babi our word.\nWe will see it through.{end_wait}
+10383	message	You forgot already,\n{actor_name:1}? Iodem asked\nus to wait.{end_wait}
+10384	message	We have to leave soon.\nBut Iodem asked to\nspeak with us first.{end_wait}
+10385	message	We can spare a moment.\nLet's hear what he\nhas to say.{end_wait}
+10386	message	Thank you for staying.\nI will be brief.{end_wait}
+10387	message	There is something\nI must ask you about\nLemuria.{end_wait}
+10388	message	The ancient island\nBabi searched for\nall his life.{end_wait}
+10389	message	You returned to Venus\nLighthouse without\nfinding {actor_name:6}.{end_wait}
+10390	message	The lower passage\nwas flooded. We could\nnot get through.{end_wait}
+10391	message	But you looked out\nto sea, as Babi\nasked you to.{end_wait}
+10392	message	We saw a bank of mist\nfar out at sea. It\nnever seemed to move.{end_wait}
+10393	message	Babi told us Lemuria\nwas hidden behind\na wall of mist.{end_wait}
+10394	message	I cannot swear it\nwas Lemuria. But it\nmay be our only lead.{end_wait}
+10395	message	Then there may still\nbe hope for Babi...{end_wait}
+10396	message	...for his life?\nYes. If we find it.{end_wait}
+10397	message	Then we have to go.\nWe made him a promise.{end_now}
+10398	message	Good. I will see\nthat you have what\nyou need to sail.{end_wait}
+10399	message	Babi trusted you.\nI intend to honor\nthat trust.{end_wait}
+10400	message	We cannot leave\nwithout finding\n{actor_name:6} first.{end_wait}
+10401	message	I know. That is why\nI asked you to stay.\nTake this.{end_wait}
+10402	message	Iodem produces\nthe Black Orb.{end_wait}
+10403	message	The Black Orb?\nYou had it all along?{end_wait}
+10404	message	It controls Babi's\nship. Without it,\nyou cannot sail.{end_wait}
+10406	message	Take the ship.\nIt may help you\nfind {actor_name:6}.{end_wait}
+10407	message	Thank you, Iodem.\nWe won't forget this.{end_wait}
+10408	message	Find your friend.\nBut remember Lemuria.\nBabi has little time.{end_wait}
+10409	message	We gave him our word.\nWe will find Lemuria\nif we can.{end_wait}
 10410	MsgGotBlackOrb	{actor_name:1} got the Black\nOrb.{end_wait}
-10411	message	The ship is docked at\nthe edge of town.\nYou will know it.{end_wait}
-10412	message	Farewell. Bring back\nnews of Lemuria!{end_wait}
-10413	message	Right on, {actor_name:1}!\nAt last, we get to see\nthe ocean!{end_wait}
-10414	message	Then let's get to sea!{end_wait}
-10415	message	It is time to depart.{end_wait}
+10411	message	Babi's ship waits\nat the wharf. The guard\nwill let you through.{end_wait}
+10412	message	Go safely. If you\nfind Lemuria, bring\nword to Tolbi.{end_wait}
+10413	message	{actor_name:1}, we're really\ngoing to sea. I never\nthought we'd get here.{end_wait}
+10414	message	Then we should go\nbefore the storm comes.{end_wait}
+10415	message	We've waited enough.\nIt's time to leave.{end_wait}
 
 # The ship at Idejima was not Babi's.
-10417	message	His ship is here,\nin Lalivero.{end_wait}
-10418	message	So the ship at the\npeninsula belonged to\nSaturos!{end_wait}
-10419	message	Perhaps. But we have\nno way to learn that\nnow...{end_wait}
-10420	message	Yes...{pause_20_skippable} Saturos\nand Menardi are gone...{end_wait}
-10421	message	But now we can sail\nthe ship of the ancients!{end_wait}
-10422	message	It should help us\nfind {actor_name:6}.{end_wait}
+10417	message	Babi's ship is here,\nat Lalivero's wharf.{end_wait}
+10418	message	Then the ship we saw\nat Idejima wasn't his.\nWas it Saturos's?{end_wait}
+10419	message	Perhaps. We have no\nway to ask him now.{end_wait}
+10420	message	Yes...{pause_20_skippable} Saturos and\nMenardi are both dead.{end_wait}
+10421	message	But Babi's ship is\nstill here. We can\nfinally cross the sea.{end_wait}
+10422	message	If {actor_name:6} is alive,\nwe may yet find her.{end_wait}
