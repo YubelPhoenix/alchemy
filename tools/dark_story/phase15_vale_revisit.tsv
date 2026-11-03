@@ -16,8 +16,8 @@
 07189	MsgValeHomeJustToStay	You've come all the way\nhome to stay?\nAre you sure?{end_now}
 07190	message	Then rest while you can.\nThere'll be plenty\nof road ahead.{page_break}You're welcome here\nas long as you need.{end_wait}
 07191	message	Good. You've come a long\nway. Now go home\nand rest.{end_wait}
-07192	MsgValeYouTraveledAroundTheEasternEdge	You've traveled farther\nthan most folks here.{page_break}You must be tired.\nDid you rest at all?{end_wait}
-07193	MsgValeArentYouGladToSeeThe	The streets are the same.\nBut the houses hold\nnew worries now.{end_wait}
+07192	MsgValeYouTraveledAroundTheEasternEdge	You went around\nthe eastern edge\nof the continent?{page_break}I can't picture\nbeing that far\nfrom home.{end_wait}
+07193	MsgValeArentYouGladToSeeThe	The bread still bakes.\nThe children still play.\nI'm grateful for that.{end_wait}
 07194	MsgValeDoraWasStruckWithIllness	Does {actor_name:1} know that\nDora has fallen ill?{end_wait}
 07195	MsgValeDoraWouldntLetHimStay	Maybe {actor_name:1} came back\nbecause Dora can't hide\nit anymore.{page_break}Only the mayor knows.\nShe asked us all not\nto say.{end_wait}
 07196	MsgValeIWonderIfIsaacWillContinue	Will {actor_name:1} go on\nwith the journey?\nIt must be hard.{end_wait}

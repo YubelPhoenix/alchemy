@@ -8,9 +8,9 @@
 10500	message	And Lemuria, {actor_name:2}?\nWe gave Babi\nour word.{end_wait}
 10503	message	Babi spent a lifetime\nlooking for that place.\nI want to see it.{end_wait}
 10504	message	Should we find\n{actor_name:6} before we sail\nto Lemuria?{end_now}
-10506	message	Then we'll try both.\nWe promised to help\n{actor_name:6} and Babi.{end_wait}
+10506	message	Then we'll try both.\nWe won't abandon\n{actor_name:6} or Babi.{end_wait}
 10507	message	It's an old ship.\nThe sea may have\nchanged since it sailed.{end_wait}
-10508	message	I used to dream of\na voyage like this.\nJust not these waves!{end_wait}
+10508	message	Kraden wanted me\nto see the sea.\nHe left out the waves!{end_wait}
 10509	message	Look at those waves.\nAre we certain\nthis ship can take them?{end_now}
 10510	message	I trust you.\nStill, we'll watch\nthe weather closely.{end_wait}
 10511	message	At least you're\nthinking of the risks.\nWe'll manage together.{end_wait}
