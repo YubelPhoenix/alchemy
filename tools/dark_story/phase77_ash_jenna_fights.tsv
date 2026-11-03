@@ -1,9 +1,9 @@
 # Ash Jenna's two fights: the optional super boss in Vale and the one at Suhalla Gate.
-N330	MsgDarkAshValeGreet	Isaac. I wondered how\nlong you would take\nto come home.{end_wait}
-N331	MsgDarkAshValeIsaac	Jenna, stop this.\nI don't want to fight\nyou.{end_wait}
-N332	MsgDarkAshValeChallenge	Then you'll die\nwanting to.\nShow me what you've got.{end_wait}
-N333	MsgDarkAshValeBeaten	Hm. Still standing.\nThe fire isn't done\nwith you, Isaac.{end_wait}
-N334	MsgDarkAshGateGreet	The soldiers don't\nsay much anymore.\nNeither will you.{end_wait}
-N335	MsgDarkAshGateIsaac	Get out of the way,\nJenna.{end_wait}
-N336	MsgDarkAshGateChallenge	Make me.{end_wait}
-N337	MsgDarkAshGateBeaten	Go on, then.\nBut I'll be waiting\nwhere you end up.{end_wait}
+N330	MsgDarkAshValeGreet	You came back to Vale.\nDoes it still feel\nlike home, Isaac?{end_wait}
+N331	MsgDarkAshValeIsaac	You wear Jenna's face.\nBut I know what\nyou are.{end_wait}
+N332	MsgDarkAshValeChallenge	Then stop talking.\nShow me what you\ncan do.{end_wait}
+N333	MsgDarkAshValeBeaten	So you can fight.\nDon't mistake that\nfor saving anyone.{end_wait}
+N334	MsgDarkAshGateGreet	These guards tried\nto hold the gate.\nThey couldn't.{end_wait}
+N335	MsgDarkAshGateIsaac	They're hurt.\nStep aside. We have\nto reach them.{end_wait}
+N336	MsgDarkAshGateChallenge	Still trying to save\neveryone? Then come\nthrough me.{end_wait}
+N337	MsgDarkAshGateBeaten	You won this time.\nThe road ahead won't\nbe so kind.{end_wait}
