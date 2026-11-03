@@ -718,6 +718,9 @@ struct Trigger gSuhallaGateTriggersOther[] = {
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 3, CONDITION_ALWAYS, EVENT(SuhallaGate_EnterHouse) },
     { TRIGGER_STEP, 10, FLAG_BABI_SPOKE_AFTER_COLOSSO, EVENT(SuhallaGate_GuardsBlockPassage) },
     { TRIGGER_STEP, 10, FLAG_SUHALLA_GATE_ATTACK_SEEN, EVENT(SuhallaGate_IodemQuestionsGuards) },
+    // Once Iodem has questioned the guards, Ash Jenna blocks the north passage.
+    // The same passage trigger makes this a story fight rather than talk-only.
+    { TRIGGER_STEP, 10, FLAG_DARK_ASH_GATE_FOUGHT, EVENT(SuhallaGate_TalkToAshJenna) },
     { TRIGGER_TALK, ACTOR_WEST_GUARD, FLAG_SUHALLA_GATE_ATTACK_SEEN, MSGNO(MsgSuhallaTravelPapersRequired) },
     { TRIGGER_TALK, ACTOR_WEST_GUARD, CONDITION_ALWAYS, MSGNO(MsgSuhallaSendHelpFromTower) },
     { TRIGGER_TALK, ACTOR_EAST_GUARD, CONDITION_ALWAYS, EVENT(SuhallaGate_TalkToEastGuard) },
