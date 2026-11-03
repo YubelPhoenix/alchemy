@@ -2,7 +2,7 @@
 00756	message	Heart
 00759	message	Kegare
 N123	MsgDarkHeartShock	Matthew...\nYou came back.\nLook what you made of me.{end_wait}
-N124	MsgDarkHeartIsaacName	I'm Isaac.\nMatthew is my son.\nYou've mistaken me.{end_wait}
+N124	MsgDarkHeartIsaacName	My name is Isaac.\nI don't know Matthew.\nYou've mistaken me.{end_wait}
 N125	MsgDarkHeartSameFace	No. I know that face.\nI remember my defeat.\nAnd what came after.{end_wait}
 N126	MsgDarkHeartGaretGhost	This face... this body...\nI paid for that failure.\nNow you will pay.{end_wait}
 N127	MsgDarkHeartHatred	I won't fail again.\nNot against you, Matthew.\nNot this time.{end_wait}
