@@ -49,7 +49,7 @@ jobs:
 
       - name: Restore Heart battle artwork without distortion
         run: |
-          python3 -m pip install --break-system-packages Pillow
+          python3 -m pip install --break-system-packages Pillow numpy
           python3 tools/dark_story/build_heart_art.py
 
       - name: Build pinned toolchain and host tools

@@ -21,7 +21,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install Pillow
-        run: python3 -m pip install --break-system-packages Pillow
+        run: python3 -m pip install --break-system-packages Pillow numpy
       - name: Generate Heart artwork independently of dialogue
         run: python3 tools/dark_story/build_heart_art.py
       - name: Check sprite palette and frame dimensions
@@ -33,10 +33,14 @@ jobs:
           assert sprite.mode == 'P', sprite.mode
           assert sprite.size == (64, 768), sprite.size
           used = set(sprite.getdata())
-          assert min(used) == 0 and max(used) <= 15, used
+          # Battle monsters are 8bpp raw indices into the shared sprite
+          # palette, so the sheet must carry exactly that palette.
+          shared = Image.open('games/tbs/src/system/memory/basic.png').getpalette()[:224 * 3]
           palette = sprite.getpalette()
-          assert len(palette) >= 48
-          assert all(c % 8 == 0 for c in palette[:48])
+          assert palette[:224 * 3] == shared, 'palette differs from basic.png'
+          assert min(used) == 0 and max(used) <= 223, used
+          assert max(used) > 15, 'sheet only uses 16 colours'
+          assert all(c % 8 == 0 for c in palette[:224 * 3])
           for idx in range(6):
               top = sprite.crop((0, idx * 128, 64, idx * 128 + 64))
               bottom = sprite.crop((0, idx * 128 + 64, 64, (idx + 1) * 128))
