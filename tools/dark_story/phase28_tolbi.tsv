@@ -51,7 +51,7 @@
 08671	MsgTolbiIThoughtSomethingHappenedToBabi	I thought something had\nhappened to Babi.{page_break}He showed up at the\nfinals, so it was\nnothing. Probably.{end_wait}
 08672	MsgTolbiTheColosseumWasSoFullThat	The colosseum was too full\nto get in. All I did was\nthe Lucky Guess.{end_wait}
 08673	MsgTolbiNobodyElseHasNoticedButThis	Nobody has said it, but\nthis festival is a way to\nnot look at the harbor.{end_wait}
-08674	MsgTolbiHoorayFinalsSeven	It's the finals!\nSeven warriors remain!\nOnly one will live!{end_wait}
+08674	MsgTolbiHoorayFinalsSeven	It's the finals!\nSeven warriors remain!\nWho will be champion?{end_wait}
 08675	MsgTolbiWaahBigBrother	Waah! My brother spent all\nour money on the Lucky\nGuess!{end_wait}
 08676	MsgTolbiHowAboutSomeColossoSouvenirsThis	Colosso souvenirs!\nLast chance! Thirty\npercent off!{end_wait}
 08677	MsgTolbiTheFinalsAreSoLongIts	The finals are long. Buy\nfood now, before it runs\nout!{end_wait}
@@ -65,7 +65,7 @@
 08685	message	They said they would\nbuy it after Colosso.\nI doubt it.{end_wait}
 08686	MsgTolbiTheFinalsStartTodayIWonder	The finals start today. I\nhope my buddy is all right.{page_break}If you need a seat,\nbuy a ticket from him.{end_wait}
 08687	MsgTolbiIveGotToGetToThe	I have to get to the\ncolosseum.{page_break}What if I miss the best\npart of the battle?{end_wait}
-08688	MsgTolbiABattleToTheDeathWith	A battle to the death\nwith 7 strong warriors.\nHow exciting!{end_wait}
+08688	MsgTolbiABattleToTheDeathWith	Seven strong warriors\nin the finals!\nWhat a spectacle!{end_wait}
 08689	MsgTolbiTheFinalsStartOnBabisSignal	The finals start on\nBabi's signal.\nI love that part!{end_wait}
 08690	MsgTolbiSoWhyWereTheSoldiersAll	If nothing's wrong with\nBabi, why were the soldiers\nso upset?{end_wait}
 08691	MsgTolbiICouldStillBuySeatsFrom	I could still buy a\nseat from a scalper,\nbut I hate that.{end_wait}
