@@ -314,7 +314,8 @@ void BattlePlacement_LayoutEnemies(u16 *actorIds, s32 count, s32 *xPositions,
     // is not small and far off beside it.
     if (!IS_PLACEHOLDER_ID(actorIds[index]) &&
         (Unit_GetFar(actorIds[index])->id == 109 ||
-         Unit_GetFar(actorIds[index])->id == 100)) {
+         Unit_GetFar(actorIds[index])->id == 100 ||
+         Unit_GetFar(actorIds[index])->id == 8)) {
       xPositions[index] = -62;
     }
     if (index != 0) {

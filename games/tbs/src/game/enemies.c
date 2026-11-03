@@ -9,17 +9,27 @@
 
 // clang-format off
 const struct EnemyDefinition gEnemy_Definitions[] = {
-    // ???
+    // Ash Jenna at Suhalla Gate (SuhallaGate_TalkToAshJenna), at ordinary boss
+    // strength. Takes the empty "???" placeholder's place.
     {
         .name = "              ",
-        .hp = 18,
-        .atk = 22,
-        .def = 6,
-        .agi = 9,
-        .luck = 1,
+        .level = 30,
+        .hp = 1800,
+        .pp = 250,
+        .atk = 175,
+        .def = 85,
+        .agi = 105,
+        .luck = 25,
         .turns = 1,
-        .coins = 1,
-        .experience = 1,
+        .elementPreset = 41,
+        .targetStrategy = TARGET_STRATEGY_RANDOM,
+        .actionStrategy = ACTION_STRATEGY_FALLING,
+        .abilities = {226, 52, 56, 223, 161, 194, 222, ABILITY_ATTACK},
+        .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
+        .coins = 1500,
+        .item = ITEM_ELIXIR,
+        .itemChance = 1,
+        .experience = 2000,
     },
     // Vermin
     {
@@ -1757,8 +1767,8 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .itemChance = 8,
         .experience = 322,
     },
-    // Ash Jenna, the final test before the party leaves Lamakan Desert
-    // (LamakanDesert_AshJennaFinale). Takes the unused Wise Gryphon's place.
+    // Ash Jenna, the optional super boss of Vale (ValePlaza_TalkToAshJenna).
+    // Takes the unused Wise Gryphon's place.
     {
         .name = "              ",
         .level = 42,

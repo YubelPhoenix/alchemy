@@ -316,7 +316,10 @@ enum ValeAfterKalayActorId {
   ACTOR_NUT_AFTER_KALAY,
   /// ★ Named from what the player sees: a stone pillar of brown rock standing
   /// below the cliff north of the village (its render)
-  ACTOR_PILLAR_AFTER_KALAY ///< the pillar of ACTOR_PILLAR
+  ACTOR_PILLAR_AFTER_KALAY, ///< the pillar of ACTOR_PILLAR
+  /// Ash Jenna, the optional super boss (Vale_TalkToAshJenna), until she is
+  /// beaten (FLAG_DARK_ASH_VALE_FOUGHT).
+  ACTOR_ASH_JENNA_AFTER_KALAY
 };
 
 /// The game's opening (Vale_MendingTheRoof), the placed actors of
@@ -1547,6 +1550,8 @@ UNUSED static void Vale_UnusedRoofMended(void) {
 /// the watching man going, removes the puppies once Saturos and Menardi have
 /// been met, and after a battle restores the roof's and the bridge's
 /// cells.
+static void Vale_AshJennaAftermath(void);
+
 s32 Vale_Initialize(void) {
   struct Actor *actor;
   s32 set;
@@ -1670,7 +1675,51 @@ s32 Vale_Initialize(void) {
     MapGrid_CenterOnFollowedPoint();
     WaitFrames(1);
   }
+  // Back from Ash Jenna's battle.
+  if (GameFlag_Get(FLAG_DARK_ASH_VALE_PENDING) != 0) {
+    Vale_AshJennaAftermath();
+  }
   return 0;
+}
+
+/// Ash Jenna in Vale: a battle Isaac can pick or leave. A defeat comes back
+/// here and she waits to be fought again.
+static void Vale_TalkToAshJenna(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkAshValeGreet);
+  Event_ShowMessageThenWait(ACTOR_ASH_JENNA_AFTER_KALAY, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
+  Event_ShowMessageThenWait(ACTOR_ASH_JENNA_AFTER_KALAY, 0, 20);
+  GameFlag_Set(FLAG_DARK_ASH_VALE_PENDING);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  Event_SetAfterBattleDestination((s32)&SceneId_Vale, 0);
+  Event_SetDefeatDestination((s32)&SceneId_Vale, 0);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 4);
+  Event_End();
+}
+
+/// Back from Ash Jenna's battle in Vale: after a win she says her last words
+/// and goes; after a defeat she waits.
+static void Vale_AshJennaAftermath(void) {
+  GameFlag_Clear(FLAG_DARK_ASH_VALE_PENDING);
+  if (gSaveBlock.sequenceResult == -1) {
+    return;
+  }
+  Event_Start();
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_SetMessageId(MsgDarkAshValeBeaten);
+  Event_ShowMessageThenWait(ACTOR_ASH_JENNA_AFTER_KALAY, 0, 20);
+  Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA_AFTER_KALAY, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA_AFTER_KALAY, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_ASH_JENNA_AFTER_KALAY, PIXELS(0), PIXELS(0));
+  GameFlag_Set(FLAG_DARK_ASH_VALE_FOUGHT);
+  Event_End();
 }
 
 /// Back from Kalay, Garet meets his sister in Vale; sets area flag
@@ -3644,6 +3693,9 @@ struct ActorTemplate gVale_ActorTemplatesAfterKalay[] = {
         PIXELS(152), 0, PIXELS(1016), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_STONE_PILLAR, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(378), 0, PIXELS(584), FACING_EAST, TALK_FACING_KEEP, 0 },
+    // Ash Jenna, waiting in the square until she is beaten.
+    { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, FLAG_DARK_ASH_VALE_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(400), 0, PIXELS(800), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -3761,6 +3813,7 @@ struct Trigger gVale_TriggersAfterLeaving[] = {
 };
 
 struct Trigger gVale_TriggersAfterKalay[] = {
+    { TRIGGER_TALK, ACTOR_ASH_JENNA_AFTER_KALAY, FLAG_DARK_ASH_VALE_FOUGHT, EVENT(Vale_TalkToAshJenna) },
     { TRIGGER_TALK, ACTOR_GARETS_SISTER_AFTER_KALAY, FLAG_VALE_GARET_MET_SISTER, EVENT(Vale_GaretMeetsHisSister) },
     { TRIGGER_TALK, ACTOR_GARETS_SISTER_AFTER_KALAY, CONDITION_ALWAYS, MSGNO(MsgValeICanTellJustByLooking) },
     { TRIGGER_TALK, ACTOR_GARETS_BROTHER_AFTER_KALAY, FLAG_VALE_GARET_ASKED_TO_PROTECT_FAMILY, EVENT(Vale_GaretAsksToProtectFamily) },

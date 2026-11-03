@@ -100,7 +100,10 @@ enum SuhallaGateCheckpointActorId {
   /// After Babi's audience, out of sight until SuhallaGate_IodemQuestionsGuards
   /// brings him out of the party.
   /// ★ Named from the game: "Iodem..." (MsgSuhallaIodem)
-  ACTOR_IODEM
+  ACTOR_IODEM,
+  /// Ash Jenna, barring the passage (SuhallaGate_TalkToAshJenna), until she is
+  /// beaten (FLAG_DARK_ASH_GATE_FOUGHT).
+  ACTOR_ASH_JENNA
 };
 
 /// The actors of the second scene (SuhallaGateDew), numbered in the order
@@ -119,6 +122,46 @@ enum SuhallaGateDewActorId {
 /// SPRITE_SPROUT's animations as the sprouts here stand: half grown or fully
 /// grown (spr_238's frames 3 and 6).
 enum { SPROUT_ANIMATION_HALF_GROWN = 3, SPROUT_ANIMATION_GROWN = 4 };
+
+/// Ash Jenna at the gate: an ordinary boss fight. A defeat comes back here and
+/// she waits to be fought again.
+static void SuhallaGate_TalkToAshJenna(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkAshGateGreet);
+  Event_ShowMessageThenWait(ACTOR_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
+  Event_ShowMessageThenWait(ACTOR_ASH_JENNA, 0, 20);
+  GameFlag_Set(FLAG_DARK_ASH_GATE_PENDING);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  Event_SetAfterBattleDestination((s32)&SceneId_SuhallaGateCheckpoint, 0);
+  Event_SetDefeatDestination((s32)&SceneId_SuhallaGateCheckpoint, 0);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 5);
+  Event_End();
+}
+
+/// Back from Ash Jenna's battle at the gate: after a win she says her last
+/// words and goes; after a defeat she waits.
+static void SuhallaGate_AshJennaAftermath(void) {
+  GameFlag_Clear(FLAG_DARK_ASH_GATE_PENDING);
+  if (gSaveBlock.sequenceResult == -1) {
+    return;
+  }
+  Event_Start();
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_SetMessageId(MsgDarkAshGateBeaten);
+  Event_ShowMessageThenWait(ACTOR_ASH_JENNA, 0, 20);
+  Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_ASH_JENNA, PIXELS(0), PIXELS(0));
+  GameFlag_Set(FLAG_DARK_ASH_GATE_FOUGHT);
+  Event_End();
+}
 
 /// Suhalla Gate's second scene (SceneId_SuhallaGateDew): talking to Dew, a
 /// Mercury Djinni, starts its battle.
@@ -224,6 +267,9 @@ s32 Scene_Initialize(void) {
     }
     if (gSaveBlock.entrance == SUHALLA_GATE_CHECKPOINT_FROM_WORLD_MAP_EAST)
       GameFlag_Set(FLAG_SUHALLA_GATE_ENTERED_FROM_EAST);
+    // Back from Ash Jenna's battle.
+    if (GameFlag_Get(FLAG_DARK_ASH_GATE_PENDING) != 0)
+      SuhallaGate_AshJennaAftermath();
   } else if (sceneId == (s32)&SceneId_SuhallaGateDew) {
     Import_ActorSetAnimation(ACTOR_FIRST_SPROUT, SPROUT_ANIMATION_GROWN);
     Import_ActorSetAnimation(ACTOR_FIRST_SPROUT + 1, SPROUT_ANIMATION_GROWN);
@@ -650,10 +696,14 @@ struct ActorTemplate gSuhallaGateCheckpointActorTemplatesAfterAudience[] = {
 #endif
     { SPRITE_IODEM, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_EAST, TALK_FACING_KEEP, 0 },
+    // Ash Jenna, in the path north of the south entrance until she is beaten.
+    { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, FLAG_DARK_ASH_GATE_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(152), 0, PIXELS(456), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
 struct Trigger gSuhallaGateTriggersOther[] = {
+    { TRIGGER_TALK, ACTOR_ASH_JENNA, FLAG_DARK_ASH_GATE_FOUGHT, EVENT(SuhallaGate_TalkToAshJenna) },
     { TRIGGER_STEP, 1, CONDITION_ALWAYS, EVENT(SuhallaGate_LeaveForWorldMap) },
     { TRIGGER_EXIT, 2, CONDITION_ALWAYS, SUHALLA_GATE_CHECKPOINT_TO_SUHALLA_GATE_DEW_WEST },
     { TRIGGER_EXIT, 4, CONDITION_ALWAYS, SUHALLA_GATE_CHECKPOINT_TO_SUHALLA_GATE_DEW_EAST },

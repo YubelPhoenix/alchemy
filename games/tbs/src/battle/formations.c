@@ -1566,9 +1566,15 @@ const struct Formation gFormations[] = {
         .minimumCounts = {1},
         .maximumCounts = {1},
     },
-    // Ash Jenna, in Lamakan Desert.
+    // Ash Jenna, the optional super boss in Vale.
     {
         .memberIds = {92},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
+    // Ash Jenna, at Suhalla Gate.
+    {
+        .memberIds = {0},
         .minimumCounts = {1},
         .maximumCounts = {1},
     },

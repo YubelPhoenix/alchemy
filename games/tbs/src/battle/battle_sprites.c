@@ -40,7 +40,11 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .animation = 0,
     },
     {
-        .animation = 0,
+        // Ash Jenna at Suhalla Gate: the same art as the super boss.
+        .animation = 477,
+        .attackAnim = 1,
+        .defeatSound = 1,
+        .effectHeight = 42,
     },
     {
         .animation = 453,

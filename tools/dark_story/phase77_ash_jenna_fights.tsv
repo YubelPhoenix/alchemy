@@ -1,0 +1,9 @@
+# Ash Jenna's two fights: the optional super boss in Vale and the one at Suhalla Gate.
+N330	MsgDarkAshValeGreet	Isaac. I wondered how\nlong you would take\nto come home.{end_wait}
+N331	MsgDarkAshValeIsaac	Jenna, stop this.\nI don't want to fight\nyou.{end_wait}
+N332	MsgDarkAshValeChallenge	Then you'll die\nwanting to.\nShow me what you've got.{end_wait}
+N333	MsgDarkAshValeBeaten	Hm. Still standing.\nThe fire isn't done\nwith you, Isaac.{end_wait}
+N334	MsgDarkAshGateGreet	The soldiers don't\nsay much anymore.\nNeither will you.{end_wait}
+N335	MsgDarkAshGateIsaac	Get out of the way,\nJenna.{end_wait}
+N336	MsgDarkAshGateChallenge	Make me.{end_wait}
+N337	MsgDarkAshGateBeaten	Go on, then.\nBut I'll be waiting\nwhere you end up.{end_wait}
