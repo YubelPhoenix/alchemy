@@ -410,3 +410,21 @@ Source checked against `games/tbs/src/scene/lalivero.c`, `lemurian_ship.c`, and 
 **Technical protection:** Only existing TSV message payloads changed; no scene source, state flags, speaker IDs, battle scripts, branching logic or original event order were edited. The batch was checked for a maximum of three display lines per page, 27 visible characters per line with eight-character runtime names, and exact preservation of each edited row's control tokens, including pauses, style and end markers. The repository's full dialogue validator and modified-edition build are a separate CI gate.
 
 **Remaining release gates:** Verify this commit's workflow result; inspect both responses to all three ship questions, both Iodem responses and Idejima branches, item acquisition and orb use, the transition to clear data, and the post-clear ending with the actual speaker portraits. Check the untouched in-between dialogue lines against the new surrounding text before calling the finale polished. Full sequential playtesting and earlier-scene coverage are still required for a 10/10 release claim.
+
+
+## Venus Aerie dialogue speaker/branch continuity pass — 3 November 2026
+
+This connected editorial pass rewrites 157 existing dialogue messages in the overheard Felix–Saturos–Menardi dispute, the Shaman's Rod coercion, the initial fight, Venus beacon, Fire Clan transformation, and the Sheba fall. The source is `games/tbs/src/scene/venus_lighthouse_aerie.c`; the English player-facing replacement rows are `phase61_aerie_first_battle.tsv`, `phase62_aerie_beacon_fusion.tsv` and `phase63_aerie_fall_aftermath.tsv`.
+
+### Explicit canonical and dramatic constraints
+
+1. Felix sent Jenna, Kraden and the others ahead to Idejima before he returned for Sheba. Felix is not freely abandoning his lighthouse mission; he is confronting the captors about a broken promise and the danger posed by lighting Venus.
+2. Saturos and Menardi need a Jupiter Adept for Jupiter Lighthouse. Their duty and fear of failure make them coercive; the story does not invent facts about Prox or the remaining beacons that the observing party could not already reasonably deduce. Sheba is a person with preferences, not a prize the others may endlessly bargain over.
+3. The Shaman's Rod exchange distinguishes the literal guarantee **not to harm Sheba** from the party's mistaken expectation of **release**. Both Isaac Yes/No replies converge on the original handover; Ivan expresses reluctant concern without claiming the rod was willingly surrendered in a refusal branch.
+4. The overheard party choice (10123), Shaman's Rod bargain question (10159), Garet's question about stopping Felix (10202) and the power-question (10212) have actual question-shaped prompts. Keep their existing branching and outcome logic; the alternatives are dialogue responses, not new flags or alternate story routes.
+5. In the original script, 10213 and 10214 are both **Garet's** responses to Isaac about Venus restoring Fire Adepts. Menardi then gives the Earth/Fire explanation at 10215. Similarly, 10237 is **Felix asking Saturos** whether he doubts him; 10238 is **Saturos's reply**. These speaker bindings govern the rewritten lines.
+6. After the Fire Clan fight, the party does not retroactively know Felix and Sheba survived their fall. Sheba's two pauses in 10285 describe the breaking platform, while the later story keeps the height and uncertainty intact. The eventual post-clear revelation belongs to Jenna and Kraden, not to Faran or Isaac's group.
+
+### Technical and final-acceptance boundaries
+
+Only dialogue TSV payloads and this ledger were edited in this pass; no actor IDs, event conditions, battle slots, items, text message IDs, or engine source were changed. All edited text was locally checked against the exact multiset of existing runtime/control tokens, three lines per page, and a width ceiling of 27 visible characters with eight-character actor-name expansion. The full project validator, ROM compilation, successful patch generation, scripted event variants, and real gameplay remain separate release gates. A passing workflow is not proof the complete story is a 10/10.

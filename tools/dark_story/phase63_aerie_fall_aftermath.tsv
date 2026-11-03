@@ -28,8 +28,8 @@
 10282	message	{actor_name:7}, take my hand!\nPlease!{end_wait}
 10283	message	I can't...{end_wait}
 10284	message	Reach for me!\nDon't look down!{end_wait}
-10285	message	Look down...{pause_20_skippable}{pause_20_skippable} The\nlighthouse foundations\nare breaking apart!{end_wait}
-10286	MsgVenusWhyHappeningProtectVenusLighthouse	Why is this happening?\nIs the power trying to\nprotect Venus Lighthouse?{end_wait}
+10285	message	I can feel{pause_20_skippable}{pause_20_skippable} the\nground cracking\nbeneath me!{end_wait}
+10286	MsgVenusWhyHappeningProtectVenusLighthouse	The lighthouse is\ntearing itself apart!\nWhat's happening?{end_wait}
 10287	message	I'm{pause_20_skippable} slipping...{pause_20_skippable}{pause_20_skippable}\nI cannot{pause_20_skippable}{pause_20_skippable} hold on{pause_20_skippable}\nany longer.{end_wait}
 10288	message	No!{pause_20_skippable} Don't let go!\nYou'll fall!{end_wait}
 10289	message	{actor_name:5}...{pause_20_skippable}\n{pause_20_skippable}Thank you.{end_wait}
@@ -42,7 +42,7 @@
 10296	message	From this height,\nwe can't tell if\nthey survived.{end_wait}
 10297	message	He jumped to save\n{actor_name:7}.\nI hope he reached her.{end_wait}
 10298	message	{actor_name:1}, what now?\nWe can't stay here.{end_wait}
-10299	message	What can we do{pause_20_skippable}\nnow? What {text_effect:2}can{reset_text_style}\nwe do?{end_wait}
+10299	message	How can we{pause_20_skippable}\nhelp them? What {text_effect:2}can{reset_text_style}\nwe do from here?{end_wait}
 10300	message	{actor_name:6} is still\nout there. And the\nothers, too.{end_wait}
 10301	message	{actor_name:6}...{pause_20_skippable}\nShe still doesn't\nknow any of this.{end_wait}
 10302	message	{actor_name:1}!{pause_20_skippable} Listen.\nWe still have to\nfind {actor_name:6}.{end_wait}

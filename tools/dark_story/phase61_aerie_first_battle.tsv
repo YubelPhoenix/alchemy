@@ -1,122 +1,122 @@
 # Venus Lighthouse Aerie: first confrontation, Sheba's hostage crisis, the Shaman's Rod bargain and first battle.
 10071	MsgVenusLongLastTime	At last. Venus\nLighthouse is within\nour reach.{end_wait}
-10072	message	With this beacon lit,\nonly two will remain.{end_wait}
+10072	message	After Venus, only\nJupiter and Mars\nwill remain.{end_wait}
 10073	message	Jupiter is next.\nMars comes last.{end_wait}
-10074	message	Then we cannot\nafford another delay.{end_wait}
-10075	message	You've followed us\na long way.{end_wait}
-10076	message	Why are you still here,\n{actor_name:5}?{end_wait}
-10077	message	I ordered you to\ngo ahead to the ship.{end_wait}
-10078	message	I sent {actor_name:6} and the\nothers to Idejima.{end_wait}
-10079	message	Then why did you\nreturn here?{end_wait}
-10080	message	I made a promise.\nI mean to keep it.{end_wait}
-10081	message	A promise, you say?{end_wait}
-10082	message	You must mean {actor_name:7}...{end_wait}
-10083	message	Yes, {actor_name:7}. Why is\nshe still held here?{end_wait}
-10084	message	You said she'd be free\nwhen we reached\nVenus Lighthouse.{end_wait}
-10085	message	So that is why you\ncame back.{end_wait}
-10086	message	You promised no one\nelse would be dragged\ninto this.{end_wait}
-10087	message	{actor_name:7} is different.{end_wait}
-10088	message	Of course...{end_wait}
-10089	message	Because {actor_name:7} is a\nspecial Adept?{end_wait}
-10090	message	The first two beacons\ntaught us something.{end_wait}
-10091	message	And what would that be?{end_wait}
+10074	message	Then we cannot stop\nuntil both are lit.{end_wait}
+10075	message	Wait. I need to\nspeak with you.{end_wait}
+10076	message	Why have you returned,\n{actor_name:5}?{end_wait}
+10077	message	You were supposed\nto go on to the ship.{end_wait}
+10078	message	I sent {actor_name:6} and the\nothers ahead to Idejima.{end_wait}
+10079	message	Then what brings\nyou back here?{end_wait}
+10080	message	I gave my word.\nI won't break it.{end_wait}
+10081	message	Your word? To whom?{end_wait}
+10082	message	To {actor_name:7}, of course.{end_wait}
+10083	message	Then why is {actor_name:7}\nstill here?{end_wait}
+10084	message	You said she could\nleave when we reached\nVenus Lighthouse.{end_wait}
+10085	message	So that's why\nyou came back.{end_wait}
+10086	message	She never chose\nto come with us.\nYou promised her freedom.{end_wait}
+10087	message	We still need\n{actor_name:7}.{end_wait}
+10088	message	So you meant to\nkeep her all along.{end_wait}
+10089	message	Because {actor_name:7} is\na Wind Adept?{end_wait}
+10090	message	The first two beacons\ntaught me what\nthe next one needs.{end_wait}
+10091	message	Then you know\nour problem.{end_wait}
 10092	message	Each lighthouse needs\nan Adept of its\nown element.{end_wait}
 10093	message	We have Earth, Fire,\nand Water among us...{pause_20_skippable}\nbut no Wind Adept.{end_wait}
-10094	message	That would explain it{pause_20_skippable}.{end_wait}
-10095	message	Then we need {actor_name:7}\nto enter Jupiter\nLighthouse?{end_wait}
-10096	message	I'm sorry, {actor_name:5}.\nWe need a Wind Adept\nto enter Jupiter.{end_wait}
-10097	message	Now I see why you\ncannot release {actor_name:7}.{end_wait}
-10098	message	You understand more\nthan you once did.{page_break}Now go, {actor_name:5}.{end_wait}
-10099	message	No. I'm not leaving\n{actor_name:7} here.{end_wait}
-10100	message	I'm taking {actor_name:7}\nto the ship.{end_wait}
-10101	message	What do you mean,\n{actor_name:5}?{end_wait}
-10102	message	We don't know what the\nbeacon will do. I won't\nleave {actor_name:7} here.{end_wait}
-10103	message	We promised to keep\n{actor_name:7} safe. Don't\nyou trust us?{end_wait}
-10104	message	I just want to know{pause_20_skippable}\nshe'll be safe.{end_wait}
-10105	message	Don't decide for us,\n{actor_name:5}. You will not\ntake {actor_name:7}.{end_wait}
+10094	message	So you've understood{pause_20_skippable}.{end_wait}
+10095	message	And you need {actor_name:7}\nto enter Jupiter\nLighthouse?{end_wait}
+10096	message	Yes, {actor_name:5}.\nWithout Wind, Jupiter\nwill stay closed.{end_wait}
+10097	message	You never meant\nto free {actor_name:7}.{end_wait}
+10098	message	We have no choice.{page_break}Go now, {actor_name:5}.\nLet us finish this.{end_wait}
+10099	message	Not without\n{actor_name:7}.{end_wait}
+10100	message	I'm taking {actor_name:7}\nto the ship. Now.{end_wait}
+10101	message	You would defy us,\n{actor_name:5}?{end_wait}
+10102	message	The beacon could\nkill {actor_name:7}.\nI won't leave her here.{end_wait}
+10103	message	I promised to keep\n{actor_name:7} safe. Haven't\nI kept my word?{end_wait}
+10104	message	Then ask her{pause_20_skippable}\nwhat she wants.{end_wait}
+10105	message	You may go, {actor_name:5}.\n{actor_name:7} must stay.{end_wait}
 10106	message	Why not?{pause_20_skippable}{pause_20_skippable} What?{pause_20_skippable}\nYou don't trust me?{end_wait}
-10107	message	After what you just\ndemanded, how could we\ntrust you with {actor_name:7}?{end_wait}
-10108	message	If we had trusted you,\n{actor_name:7} would be free\nby now.{end_wait}
-10109	message	Come on, {actor_name:7}.\nI'll take you\nto the ship.{end_wait}
-10110	message	Are you prepared to\nfight us for her?{end_wait}
-10111	message	He has already chosen.{page_break}He would not oppose us\nunless he meant to\nsee it through.{end_wait}
-10112	message	If I must fight\nto keep {actor_name:7} safe,\nI will.{end_wait}
-10113	message	You know our strength.\nDon't force us\nto prove it.{end_wait}
-10114	message	How will you protect\n{actor_name:7}{pause_20_skippable} if you cannot\nprotect yourself?{end_wait}
-10115	message	This defiance is why\nyou were never allowed\nto fight beside us.{end_wait}
-10116	message	Think of how far\nwe've come. Don't\nthrow it away now.{end_wait}
-10117	message	You cannot beat us,\n{actor_name:5}. Don't try.{end_wait}
-10118	message	Enough talk!{pause_20_skippable} Show us\nwhat you can do!{end_wait}
-10119	message	They're arguing\nover {actor_name:7}.{end_wait}
-10120	message	And neither side\nis backing down.{end_wait}
-10121	message	Saturos and Menardi\ndon't trust {actor_name:5}\nanymore.{end_wait}
-10122	message	Then we may have\none chance to stop\nthe beacon.{end_wait}
-10123	message	We have to move\nbefore they light it!{end_now}
-10124	message	There's no time left!{pause_20_skippable}\nGo!{end_wait}
-10125	message	Don't falter. If we\nwait, they will light it.{end_wait}
+10107	message	You've turned on us.\nWhy trust you with\n{actor_name:7} now?{end_wait}
+10108	message	We can't let\n{actor_name:7} leave in\nyour care.{end_wait}
+10109	message	Come, {actor_name:7}.\nI'll take you\nto the ship.{end_wait}
+10110	message	Will you fight\nus over her?{end_wait}
+10111	message	He has made his\nchoice, Saturos.{page_break}He knows what\nstanding here will cost.{end_wait}
+10112	message	If I have to fight\nfor {actor_name:7}, I will.{end_wait}
+10113	message	You know our power.\nDon't make us\nuse it against you.{end_wait}
+10114	message	You cannot protect\n{actor_name:7}{pause_20_skippable} if you fall\ntrying to stop us.{end_wait}
+10115	message	This is what it\ncomes to after all\nwe've endured?{end_wait}
+10116	message	Think how far we've\ncome. Don't throw\nit away now.{end_wait}
+10117	message	Stand aside,\n{actor_name:5}. Don't test us.{end_wait}
+10118	message	Enough talk!{pause_20_skippable} If you\nmean to fight, fight!{end_wait}
+10119	message	They're going to\nfight over {actor_name:7}.{end_wait}
+10120	message	Has anyone asked\nwhat she wants?{end_wait}
+10121	message	They're watching\n{actor_name:5}, not us.\nWe have an opening.{end_wait}
+10122	message	Then let's reach\nthe beacon before\nthey can light it.{end_wait}
+10123	message	Should we stop them\nbefore they light it?{end_now}
+10124	message	Then move!{pause_20_skippable} They may\nsee us any moment!{end_wait}
+10125	message	Hesitate now, and\nwe may lose our chance.{end_wait}
 10126	MsgVenusIsaac	{actor_name:1}...{end_wait}
-10127	message	So...{pause_20_skippable} you've come\nto stop us?{end_wait}
-10128	message	Your rebellion has\nbrought this upon us,\n{actor_name:5}.{end_wait}
-10129	message	I can handle this,\n{actor_name:1}.{end_wait}
-10130	message	I was about to\nsettle this myself.{page_break}Stay out of it.{end_wait}
-10131	message	Then you'll witness\nthe full force of\nthis beacon.{end_wait}
-10132	message	But {actor_name:7} has no part\nin your conflict. Let\n{actor_name:7} go!{end_wait}
-10133	message	Quiet!{pause_20_skippable} One more word,\n{actor_name:5}, and both you\nand {actor_name:7} will suffer.{end_wait}
-10134	message	If {actor_name:7} is hurt,\nwe've failed Faran.{end_wait}
+10127	message	So{pause_20_skippable} you followed us\nall the way here?{end_wait}
+10128	message	Your defiance has\nbrought them here,\n{actor_name:5}.{end_wait}
+10129	message	Stay back, {actor_name:1}.\nI can handle this.{end_wait}
+10130	message	I came to settle\nthis myself.{page_break}I won't ask you\nto fight my battle.{end_wait}
+10131	message	The beacon isn't safe.\nNo one knows what\nit will do next.{end_wait}
+10132	message	But {actor_name:7} doesn't\ndeserve this. Let\n{actor_name:7} go!{end_wait}
+10133	message	Enough!{pause_20_skippable} One more\nmove, {actor_name:5}, and\n{actor_name:7} is in danger.{end_wait}
+10134	message	Faran trusted us\nto bring {actor_name:7}\nhome alive.{end_wait}
 10135	message	We won't let you\nhurt {actor_name:7} or\n{actor_name:5}!{end_wait}
-10136	message	Ah, so you care\nabout {actor_name:7} as well?{end_wait}
-10137	message	Don't worry. We won't\nhurt {actor_name:7}...{pause_20_skippable} if you\nmeet our conditions.{end_wait}
+10136	message	So you care about\n{actor_name:7} as well?{end_wait}
+10137	message	Then listen.{pause_20_skippable} Give us\nwhat we need, and\n{actor_name:7} won't be harmed.{end_wait}
 10138	message	Saturos, what are\nyou doing?{end_wait}
-10139	message	Leave this to me!{end_wait}
-10140	message	{actor_name:7}!{pause_20_skippable} Do you recall\nthe rod linked to\nHesperia?{end_wait}
+10139	message	A bargain. Nothing more.{end_wait}
+10140	message	{actor_name:7}!{pause_20_skippable} Have you heard\nof the rod from\nHesperia?{end_wait}
 10141	message	The Rod of Hesperia?{end_wait}
-10142	message	The Shaman's Rod.\nThe key to Jupiter\nLighthouse.{end_wait}
-10143	message	Ye{pause_20_skippable}-Yes...{end_wait}
-10144	message	Those who follow us\ncarry a rod... Is it\nthe same one?{end_wait}
-10145	message	{actor_name:7}! Stay there.\nYou can try from\nwhere you stand.{end_wait}
-10146	message	How about it, {actor_name:7}?{end_wait}
-10147	message	Well, {actor_name:7}?{end_wait}
+10142	message	The Shaman's Rod.\nIt opens the way to\nJupiter Lighthouse.{end_wait}
+10143	message	Yes{pause_20_skippable}. I've heard of it.{end_wait}
+10144	message	The ones chasing us\nhave a rod. Is it\nthe one we need?{end_wait}
+10145	message	{actor_name:7}, stay there.\nTry from where\nyou stand.{end_wait}
+10146	message	Can you sense it,\n{actor_name:7}?{end_wait}
+10147	message	Tell us what you can,\n{actor_name:7}.{end_wait}
 10148	message	...{pause_20_skippable}...{pause_20_skippable}...{pause_20_skippable}\nPerhaps...{pause_20_skippable}...{pause_20_skippable}...{pause_20_skippable}{end_wait}
-10149	message	"Perhaps?"{pause_20_skippable} What does\nthat mean? Speak!{end_wait}
-10150	message	Stop shouting\nat her!{end_wait}
+10149	message	"Perhaps?"{pause_20_skippable} We need\nmore than that.\nPlease, try again.{end_wait}
+10150	message	Stop frightening her!{end_wait}
 10151	message	We're not shouting!{pause_20_skippable}\nWe need a clear answer.{end_wait}
 10152	message	So, {actor_name:7}?{end_wait}
-10153	message	Their thoughts are\nhidden... I cannot see...{pause_20_skippable}\nbut I think it is.{pause_20_skippable}{end_wait}
-10154	message	She can't be sure.\nStop pressing her.{end_wait}
+10153	message	I can't see it\nclearly...{pause_20_skippable} But\nI think it's the one.{pause_20_skippable}{end_wait}
+10154	message	That's enough.\nWe have our answer.{end_wait}
 10155	message	So, what do we do?{end_wait}
 10156	message	Do you know what we\nwill demand before we\nspare {actor_name:7}?{end_now}
-10157	message	You are quicker than\nI expected. You have\nguessed our price.{end_wait}
-10158	message	Give us the rod\nthat opens Jupiter\nLighthouse.{end_wait}
-10159	message	Give us the Shaman's\nRod, and {actor_name:7} will be\nunharmed. Agreed?{end_now}
-10160	message	The Shaman's Rod?{pause_20_skippable}\nIf it keeps {actor_name:7} safe,\nthen take it.{end_wait}
-10161	message	If the rod saves\n{actor_name:7}, take it.{end_wait}
-10162	message	What?{pause_20_skippable} But Hammet gave\nthat to you, {actor_name:3}!{end_wait}
-10163	message	Do you care so little\nfor {actor_name:7}'s life?{end_wait}
+10157	message	Then you already\nknow what I want.{end_wait}
+10158	message	The Shaman's Rod.\nHand it over.{end_wait}
+10159	message	Give us the rod, and\n{actor_name:7} won't be harmed.\nAgreed?{end_now}
+10160	message	I don't like this.{pause_20_skippable}\nBut {actor_name:7}'s life\ncomes first.{end_wait}
+10161	message	If it keeps\n{actor_name:7} safe, then\nwe have to do it.{end_wait}
+10162	message	But Hammet gave it\nto you, {actor_name:3}!{pause_20_skippable}\nCan we trust them?{end_wait}
+10163	message	Would you risk\n{actor_name:7}'s life to\nkeep the rod?{end_wait}
 10164	message	Then take {text_effect:2}the rod!{reset_text_style}{end_wait}
-10165	message	Well done, Saturos.\nThe Shaman's Rod is\nfinally ours.{end_wait}
-10166	message	Go get it, {actor_name:5}!{end_wait}
+10165	message	At last, Saturos.\nThe Shaman's Rod\nis ours.{end_wait}
+10166	message	Fetch it, {actor_name:5}.{end_wait}
 10167	message	Why me?{end_wait}
-10168	message	So we know\nyou'll keep your word.{end_wait}
+10168	message	Show me that you\nstill keep your word.{end_wait}
 10169	message	Go on, {actor_name:5}!{end_wait}
 10170	MsgVenusIsaacHandedOverShamansRod	{actor_name:1} surrendered\nthe Shaman's Rod.{end_wait}
 10171	message	What do you want\nme to do with it?{end_wait}
 10172	message	Keep it safe.{end_wait}
-10173	message	Where do you think\nyou're going, {actor_name:7}?{end_wait}
-10174	message	You have the rod.\nLet {actor_name:7} go.{end_wait}
-10175	message	What are you\ntalking about?{end_wait}
+10173	message	Where are you going,\n{actor_name:7}?{end_wait}
+10174	message	You have the rod.\nNow let {actor_name:7} go.{end_wait}
+10175	message	Why would we do that?{end_wait}
 10176	message	You promised to\nrelease {actor_name:7}.{end_wait}
-10177	message	Those{pause_20_skippable} were your terms.{end_wait}
-10178	message	We fulfilled our end.\nLet {actor_name:7} go.{end_wait}
-10179	message	You seem to have{pause_20_skippable}\nmisunderstood. I said we\nwouldn't harm {actor_name:7}...{page_break}but I never said\nwe'd let her go!{end_wait}
-10180	message	You lied to us?{end_wait}
-10181	message	We promised she\nwouldn't be harmed.\nNothing more.{end_wait}
-10182	message	Besides, if we let\n{actor_name:7} go, she would\nnever reach home alone.{end_wait}
-10183	message	What do you mean?{end_wait}
-10184	message	{actor_name:7} cannot get\nback to Lalivero\nalone.{end_wait}
-10185	message	Take {actor_name:7}?{pause_20_skippable}...{pause_20_skippable}{pause_20_skippable}\nNo... I see now.{end_wait}
+10177	message	Those{pause_20_skippable} were your words.\nNot ours.{end_wait}
+10178	message	We've done what you\nasked. Let {actor_name:7}\ngo home.{end_wait}
+10179	message	You misunderstood.{pause_20_skippable}\nI said we wouldn't\nharm {actor_name:7}.{page_break}I never promised\nto let her leave.{end_wait}
+10180	message	You tricked us!{end_wait}
+10181	message	We promised she\nwouldn't be harmed.\nNo more than that.{end_wait}
+10182	message	How would {actor_name:7}\nreach Lalivero\non her own?{end_wait}
+10183	message	Then let her come\nwith us.{end_wait}
+10184	message	Take {actor_name:7} from us\nif you can. Those\nare your choices.{end_wait}
+10185	message	Take {actor_name:7}?{pause_20_skippable}{pause_20_skippable}{pause_20_skippable}\nYou mean we'd have\nto fight for her.{end_wait}
 10186	message	That's right.{pause_20_skippable} Your\njourney ends here.{end_wait}
-10187	message	Excuse me?{end_wait}
-10188	message	Enough!{pause_20_skippable} You're the\nones who won't leave\nthis place!{end_wait}
-10189	message	Then come and fight.\nYou've chased us\nlong enough.{end_wait}
+10187	message	Then you've left\nus no choice.{end_wait}
+10188	message	Enough!{pause_20_skippable} You'll have\nto get through us!{end_wait}
+10189	message	Then face us.\nYou followed us\nto the end.{end_wait}
 10190	message	You don't know\nwhat we stand to lose.{end_wait}
 10191	MsgVenusBeatEm	They're down.\nWe stopped them.{end_wait}
