@@ -11,8 +11,8 @@ DEST = ROOT / "games/tbs/src/graphics/monster/purple_beast.png"
 # The first two animation slots are the resting loop; do not alternate
 # a defensive stance into that loop. Other slots retain distinct poses.
 POSES = [1, 1, 3, 4, 5, 6]
-IDLE_HEIGHT = 42
-ACTION_HEIGHT = {3: 21, 4: 33, 5: 42, 6: 42}
+IDLE_HEIGHT = 36
+ACTION_HEIGHT = {3: 19, 4: 29, 5: 36, 6: 36}
 sheet = Image.new("RGBA", (64, 768), (0, 0, 0, 0))
 for index, number in enumerate(POSES):
     src = Image.open(SOURCE / f"pose_128_{number}.png").convert("RGBA")
