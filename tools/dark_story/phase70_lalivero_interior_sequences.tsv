@@ -33,7 +33,7 @@
 10350	message	An Adept? I have\nnever heard that word.{end_wait}
 10351	message	It's hard to explain.{end_wait}
 10352	message	Someone who can use\npowers like ours.{end_wait}
-10353	message	{actor_name:1}, your friends\nand you have done\nwhat we could not.{end_wait}
+10353	message	You and your friends\nhave done what we\ncouldn't, {actor_name:1}.{end_wait}
 10354	message	You found a way\nthrough the ruins\nto Venus Lighthouse.{end_wait}
 10355	message	But {actor_name:7} could not\npass through the ruins.\nWhy was that?{end_wait}
 10356	message	{actor_name:7} has powers\nunlike ours. That may\nexplain the ruins.{end_wait}

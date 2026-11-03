@@ -29,7 +29,7 @@
 08929	message	The others saw nothing,\nbut I knew {actor_name:1}'s\ncontest was unusual.{end_wait}
 08930	message	I doubted you would\nuse such power in a\nfight...{end_wait}
 08931	message	Do not be ashamed,\n{actor_name:1}. Psynergy is\nalso a warrior's gift.{end_wait}
-08932	message	When I first learned\nwhat you could do, I\nthought you Lemurian.{page_break}I was astonished.{end_wait}
+08932	message	When I first learned\nwhat you could do, I\nthought you were Lemurians.{page_break}I was astonished.{end_wait}
 08933	message	You speak of Lemuria\noften, Babi. What is it?{end_wait}
 08934	message	A city of an ancient\npeople, hidden far out\nat sea.{end_wait}
 08935	message	Babi traveled there\naround the time of\nthe great flood.{end_wait}

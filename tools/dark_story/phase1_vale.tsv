@@ -163,7 +163,7 @@
 03857	message	But you're here, {actor_name:1}.\nAnd so am I.{end_wait}
 03858	message	You're nearly seventeen.\nYou have Kyle's eyes.\nSome days it's hard.{end_wait}
 03859	message	I want to see the life\nyou make for yourself.{end_wait}
-03868	message	The children still play.\nEvery time I hear them,\nI'm glad Vale survived.{end_wait}
+03868	message	You're not climbing\nMt. Aleph just for fun,\nare you?{end_wait}
 03874	message	Alchemy... If it's so\npowerful, why couldn't\nit save them?{end_wait}
 03875	message	Your mother would rather\nsee you grow into a happy,\nordinary man.{end_wait}
 03876	message	But I suppose you'll go\nanyway...{end_now}
