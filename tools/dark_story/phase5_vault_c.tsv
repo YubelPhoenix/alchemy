@@ -14,7 +14,7 @@
 04843	message	You were caught.\nThat's what matters.{end_wait}
 04850	MsgVaultSeeThatsHappened	So this is where\nthey hid everything.{end_wait}
 04851	message	Mayor, we found\nthe thieves.{end_wait}
-04852	message	You stole from people\nwho'd lost their homes.{page_break}What were you thinking?{end_wait}
+04852	message	The inn took you in.{page_break}And you repaid this town\nby stealing from it.{end_wait}
 04853	message	Their doors were open!{page_break}We thought{em_dash}Ow!\nAll right!{end_wait}
 04854	message	I was hungry.\nI know it's no excuse.{end_wait}
 04855	message	What happens to them now?{end_wait}

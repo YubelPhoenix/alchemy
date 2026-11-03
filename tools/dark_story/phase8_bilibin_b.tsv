@@ -9,7 +9,7 @@
 05847	MsgBilibinLordMccoySeemsToBeHaving	They argued again.\nShe says he let\nstrangers shame him.{end_wait}
 05848	MsgBilibinApparentlyJustAboutAnyoneCouldJust	The barricade barely\nslowed anyone down.{end_wait}
 05849	MsgBilibinTheGangOfThreeHaTheyre	The Gang of Three?\nI haven't seen them.{end_wait}
-05850	MsgBilibinImSureLordMccoyWillGive	A reward is owed,\nbut it won't bring back\nwhat people endured.{end_wait}
+05850	MsgBilibinImSureLordMccoyWillGive	McCoy owes you a reward.\nMake sure he pays.\nHe makes a lot of promises.{end_wait}
 05851	MsgBilibinTheyMustBeReportingYourDeeds	They're telling McCoy\nwhat happened.{end_wait}
 05852	MsgBilibinIWantToShareWithYou	I'm so relieved.\nI could cry.{end_wait}
 05853	MsgBilibinAsLongAsImOkayI	I'm just glad\nmy family is safe.{end_wait}
@@ -25,7 +25,7 @@
 05865	MsgBilibinIWonderIfThereAreStill	Are there still gems\nin Altin Mine?{end_wait}
 05866	MsgBilibinMyFatherHasTraveledAllOver	My father has traveled\nfarther than I have.{end_wait}
 05867	MsgBilibinTheRoadToKolimaIsOpen	The road to Kolima\nis open again.{end_wait}
-05871	MsgBilibinTravelingMakesYoungWarriorsStronger	Travel teaches you plenty.\nIf you survive.{end_wait}
+05871	MsgBilibinTravelingMakesYoungWarriorsStronger	You seem steadier now.\nLooks like the road\nhas taught you something.{end_wait}
 05873	MsgBilibinIThoughtISawLightsIn	I saw light above Imil.{page_break}Was it the lighthouse?{end_wait}
 05874	MsgBilibinHisEyesAreRedBecauseHe	He stayed up all night.\nLook at his eyes.{end_wait}
 05875	MsgBilibinTheresNoDoubtAboutItIts	That light came\nfrom the lighthouse.{end_wait}

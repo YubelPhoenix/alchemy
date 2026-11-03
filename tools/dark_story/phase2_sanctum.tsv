@@ -60,8 +60,8 @@
 04109	message	To keep intruders out.\nOr keep something in.{end_wait}
 04110	message	We need to understand\nit before we go on.{end_wait}
 04111	message	Shall I tell you more?{end_now}
-04112	MsgSolSanctumHonestlyDoubtUnderstand	Hmm. If I explained it now,\nI doubt you would follow.\nNot yet.{end_wait}
-04113	MsgSolSanctumHmphWellTold	Hmph.{pause_20_skippable} Even if I told\nyou, you wouldn't get it.\nNot yet.{end_wait}
+04112	MsgSolSanctumHonestlyDoubtUnderstand	I have a theory.\nTry the statues first.\nThen we'll talk.{end_wait}
+04113	MsgSolSanctumHmphWellTold	Hmm.{pause_20_skippable} Then try it\nwithout me. Watch what\nthe light does.{end_wait}
 04114	MsgSolSanctumTryFindSolution	We should solve this\nbefore moving forward.{end_wait}
 04115	message	More puzzles. Of course.{end_wait}
 04116	message	I'll stay with the Luna\nroom. You go on and\nexplore.{end_wait}
@@ -292,9 +292,9 @@
 04341	message	{actor_name:1}, {actor_name:2}!{pause_20_skippable}\nDon't you die!{end_wait}
 04342	message	The Mars Star...\nWe have to leave it.{end_wait}
 04343	message	For now. We may yet\nrecover it.{end_wait}
-04344	MsgSolSanctumWellTurnedBadly	Well. That went badly.\nWouldn't you say?{end_now}
-04345	message	We're alive. Somehow.{end_wait}
-04346	message	How can you talk\nlike that?{end_wait}
+04344	MsgSolSanctumWellTurnedBadly	That went badly.\nWe're lucky to be alive.\nDon't you think?{end_now}
+04345	message	I know.\nFor a moment, I thought\nwe were finished.{end_wait}
+04346	message	Don't tell me you're\nnot scared. I know\nI am.{end_wait}
 04347	MsgSolSanctumFriendsGone	{actor_name:6}. Kraden. Both\ngone!{end_wait}
 04348	message	They wouldn't hurt\n{actor_name:6} or Kraden...\nwould they?{end_now}
 04349	MsgSolSanctumThanksALot	Thanks for that.\nBut they should be fine,\n{actor_name:6} and Kraden.{page_break}{actor_name:5} is with them...{end_wait}

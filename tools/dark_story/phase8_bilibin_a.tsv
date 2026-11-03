@@ -15,7 +15,7 @@
 05059	MsgBilibinTellingMeImResponsibleFor	So you're saying this\nis my fault?{end_now}
 05062	MsgBilibinYouGuysAreSoUnluckyArriving	Bad time to visit.\nBilibin's on edge.{end_wait}
 05063	MsgBilibinYouMustBeMadItsAlmost	Imil? In this weather?\nYou'll freeze.{end_wait}
-05064	MsgBilibinWeEndedUpLikeThisBecause	Lady McCoy wanted\na grander palace.{page_break}Now look at what\nit's cost us.{end_wait}
+05064	MsgBilibinWeEndedUpLikeThisBecause	Lady McCoy wanted\na new palace.{page_break}We cut the forest\nto build it for her.{end_wait}
 05065	MsgBilibinEveryoneGetsWorriedWhenTownLeaders	Lord McCoy stays inside.{page_break}People notice when\ntheir lord is afraid.{end_wait}
 05066	MsgBilibinWhereDidTheseKidsComeFrom	Who let those children\ninto the palace?{end_wait}
 05067	MsgBilibinNoOneWouldDareGoAfter	No one will go back\ninto that forest.{end_wait}
@@ -47,7 +47,7 @@
 05093	MsgBilibinHaveEverHeardOcean	Have you ever heard of\nthe ocean?{end_now}
 05096	MsgBilibinIWishICouldSeeAnother	I'd like to see\nthe world someday.{end_wait}
 05097	MsgBilibinMustUsedTypesDangerBeing	You look capable.{page_break}Perhaps Lord McCoy\nwould speak to you.{end_wait}
-05098	MsgBilibinOnlySomeoneReallyBraveWouldGo	It takes courage\nto enter that forest.{end_wait}
+05098	MsgBilibinOnlySomeoneReallyBraveWouldGo	I'd turn back at\nthe first cursed tree.\nYou're braver than me.{end_wait}
 05099	MsgBilibinCurseOnKolimaScaryDevelopment	Kolima's cursed.\nWhat happens next?{end_wait}
 05100	MsgBilibinYouCantReachKolimaNoMatter	The road is blocked.\nYou can't reach Kolima.{end_wait}
 05101	MsgBilibinImReallyWorriedAboutKolima	My family lives\nin Kolima.{page_break}I can't work\nwithout thinking of them.{end_wait}

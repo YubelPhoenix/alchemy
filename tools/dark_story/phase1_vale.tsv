@@ -17,7 +17,7 @@
 03682	message	No. It's too dangerous.\nDora, please. Take care\nof {actor_name:1}.{end_wait}
 03683	message	{actor_name:1} knows the way.\nHe can reach the plaza.\nI'll be right behind him.{end_wait}
 03684	message	You know the way,\n{actor_name:1}. Don't you?{end_now}
-03685	MsgValeBigBoyWhy	You know the way,\n{actor_name:1}. Go now.\nI'll be there.{end_now}
+03685	MsgValeBigBoyWhy	I know you're scared,\n{actor_name:1}. So am I.\nBut you can do this.{end_now}
 03686	MsgValeKnowWayGo	Go south to the plaza and\ndon't stop for anyone.\nBe careful!{end_wait}
 03687	MsgValeHuh	Huh? {actor_name:1}?\nWhat are you doing here?{end_wait}
 03688	message	Did you come back for me?{end_now}
@@ -96,7 +96,7 @@
 03766	MsgValeGoAidElders	Go to the elders! They\ncan't hold the Boulder\nmuch longer!{end_wait}
 03767	message	We can't let the Boulder\nbury Vale. We can't.{end_wait}
 03768	message	Let's help the elders.\nNow.{end_wait}
-03769	message	We're all counting on you.\nDon't fail us.{end_wait}
+03769	message	Stay together, boys.\nHurry, but watch\nwhere you step.{end_wait}
 03771	message	{actor_name:2}, {actor_name:1}...\nyou came to help me?{end_wait}
 03772	message	{actor_name:6} told me about\n{actor_name:5}. Is that why you\ncame?{end_now}
 03773	message	Whatever the reason, I\nneed you two to help\n{actor_name:6}.{end_wait}
@@ -163,7 +163,7 @@
 03857	message	But you're here, {actor_name:1}.\nAnd so am I.{end_wait}
 03858	message	You're nearly seventeen.\nYou have Kyle's eyes.\nSome days it's hard.{end_wait}
 03859	message	I want to see the life\nyou make for yourself.{end_wait}
-03868	message	The children still play.\nI'm glad someone can.{end_wait}
+03868	message	The children still play.\nEvery time I hear them,\nI'm glad Vale survived.{end_wait}
 03874	message	Alchemy... If it's so\npowerful, why couldn't\nit save them?{end_wait}
 03875	message	Your mother would rather\nsee you grow into a happy,\nordinary man.{end_wait}
 03876	message	But I suppose you'll go\nanyway...{end_now}
@@ -274,7 +274,7 @@
 04013	message	You think so?{end_wait}
 04014	message	Mt. Aleph, Sol Sanctum...{page_break}They spoke as if they had\nseen them. With their\nown eyes.{end_wait}
 04016	MsgValeYouCannotEnterMtAleph	Yes.{pause_20_skippable} No one climbs Mt.\nAleph without a very good\nreason.{end_wait}
-04017	MsgValeKradenIWaitedYearsFor	I waited years before they\nlet me into the Sanctum.{page_break}Of course it's strange.{end_wait}
+04017	MsgValeKradenIWaitedYearsFor	I've studied the Sanctum\nfor years.{page_break}The elders never\nlet me inside.{end_wait}
 04018	MsgValeJennaTheyMightBeThieves	If they went inside,\nthey broke Vale's laws!{end_wait}
 04019	message	We should tell the elders\nbefore someone gets hurt.{end_wait}
 04021	message	We don't know if they\nwere telling the truth.{end_wait}

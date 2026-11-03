@@ -37,7 +37,7 @@
 05343	MsgTretTurnedPeopleKolima	I turned them into trees?\nThose people...\nWhat have I done?{end_wait}
 05347	message	Tret's too weak\nto undo the curse.{end_wait}
 05348	message	Then we help him.{page_break}The villagers are\nstill waiting.{end_wait}
-05349	message	They're counting\non us.{end_wait}
+05349	message	Families are waiting\nin Kolima.\nThey need Tret alive.{end_wait}
 05350	message	Help Tret first.\nThen Kolima.{end_wait}
 05352	message	Try the water!{end_wait}
 05353	message	It may restore\nhis strength.{end_wait}

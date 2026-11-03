@@ -21,7 +21,7 @@
 04691	MsgVaultIvanHasGreatPowersWouldnt	{actor_name:3} has a gift.\nWould you like to hear?{end_now}
 04692	message	Then I'll say no more.{end_wait}
 04693	message	Don't lie to {actor_name:3}.\nHe'll know.{end_wait}
-04694	MsgVaultDoPossessStrangePowers	I have a strange power.\nIt scares people.{end_wait}
+04694	MsgVaultDoPossessStrangePowers	When I meet someone,\nI notice things they\nwish I hadn't.{end_wait}
 04695	message	You can use it too.\nI can sense that.{end_wait}
 04696	message	Psynergy...\nSo that's its name.{end_wait}
 04697	message	We're alike, then.\nMaybe I can trust you.{end_wait}
@@ -33,7 +33,7 @@
 04703	MsgVaultThankHelpBelieve	Thank you.\nI couldn't do this alone.{end_wait}
 04704	message	What are your names?{end_wait}
 04705	message	{actor_name:1}, {actor_name:2}.\nI'm {actor_name:3}.{end_wait}
-04706	message	My gift frightens people.\nI can see it in their eyes.{end_wait}
+04706	message	People look away\nwhen I try to help.\nI wish they didn't.{end_wait}
 04707	message	Do I frighten you too?\nTell me.{end_now}
 04708	message	{actor_name:3} took\n{actor_name:1}'s hand and went\nvery still.{end_wait}
 04709	message	{text_effect:4}Ahh! Get out of my\nhead, {actor_name:3}!!\nStop it!{end_wait}

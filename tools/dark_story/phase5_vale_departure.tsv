@@ -28,13 +28,13 @@
 04545	MsgValeImSoJealousOfYouBeing	Part of me envies you.\nThen I remember\nwhy you're leaving.{end_wait}
 04546	MsgValeOnceYouLeaveTownTakeCare	Don't show your Psynergy\nto strangers.{page_break}Fear makes people cruel.{end_wait}
 04547	MsgValeIHadNoIdeaThatSuch	We guarded the Sanctum\nwithout knowing why.{page_break}Now it's too late\nto ask the elders.{end_wait}
-04571	MsgValeIsaacYoureGoingOnADifficult	{protagonist_name}, the road\nwill test you.{page_break}Don't let it change\nwho you are.{end_wait}
+04571	MsgValeIsaacYoureGoingOnADifficult	The road will be hard,\n{protagonist_name}.{page_break}Ask for help when\nyou need it.{end_wait}
 04572	MsgValeIfYouFaceAnyHardshipIn	If you need to\ncome home, come home.{page_break}No one here will\nthink less of you.{end_wait}
 04573	MsgValeSoIfThatWasFelixWho	If {actor_name:5} took\n{actor_name:6} away...{page_break}why are you the one\nwho must follow?{end_wait}
-04574	MsgValeIWillThinkOfJennaAs	I'll keep {actor_name:6}\nin my thoughts.{page_break}Please come back,\n{protagonist_name}.{end_wait}
+04574	MsgValeIWillThinkOfJennaAs	I'll listen for news\nof {actor_name:6}.{page_break}If I hear anything,\nI'll tell you, {protagonist_name}.{end_wait}
 04575	MsgValeNowThatJennaIsGoneWe	Since {actor_name:6} left,\nthe house feels empty.{page_break}No one can take\nher place.{end_wait}
 04576	MsgValeWhoCouldHaveKnownThatMasked	The masked man was\n{actor_name:5}.{page_break}I still can't\nunderstand it.{end_wait}
-04577	MsgValeIWonderIfFelixChangedMuch	I remember {actor_name:5}\nas a gentle boy.{page_break}Could {actor_name:6}\nchange that much too?{end_wait}
+04577	MsgValeIWonderIfFelixChangedMuch	I remember {actor_name:5}\nas a gentle boy.{page_break}I can't imagine how\n{actor_name:6} feels now.{end_wait}
 04578	MsgValeFelixAndHisGangMustHave	People keep saying\n{actor_name:5} chose to go.{page_break}I wonder whether\nhe really had a choice.{end_wait}
 04579	MsgValeItsHardLettingMyPreciousGaret	I don't want\n{actor_name:2} to go.{page_break}But he has made\nup his mind.{end_wait}
 04580	MsgValeTheWiseOneChoseGaretHimself	The Wise One chose\n{actor_name:2}.{page_break}That doesn't make\nme less afraid.{end_wait}

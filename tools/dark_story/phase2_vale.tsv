@@ -181,7 +181,7 @@
 04504	message	Three of you out there?\nAren't you afraid?{end_now}
 04505	message	Four of you, against all\nthat? Aren't you afraid?{end_now}
 04506	message	Don't wander too deep into\nthe unknown.{page_break}Fighting hopeless odds is\nnot brave. It's foolish.{end_wait}
-04507	message	Courage isn't recklessness.\nKnow the difference.{page_break}True courage takes caution.\nSometimes it even looks\nlike cowardice.{end_wait}
+04507	message	It's all right to run\nwhen a fight goes wrong.{page_break}Better to live\nand try again.{end_wait}
 04508	MsgValeReplenishPsynergyBeforeDungeon	Restore your Psynergy\nbefore any dungeon.{page_break}The ones who come back\nalways do.{end_wait}
 04530	MsgValeImProudOfYouGaretMy	I'm proud of you, {actor_name:2}.\nMy son... on a quest like\nthis. Come back to me.{end_wait}
 04532	MsgValeYouGuysAreSoLuckyGaret	You're lucky, {actor_name:2}.{page_break}I'd give anything to go\nwith you. Anything.{end_wait}
