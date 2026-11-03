@@ -386,3 +386,14 @@ This checkpoint follows the dialogue and scene-script audit; it does **not** rep
 - **Lalivero before Venus:** Town conversations (phase54: 09901–09924; phase55: 09929–09975) mix concern for Sheba, responsibility for Tolbi's earlier coercion, Faran's search, and uncertainty about what her powers can do. Preserve different opinions, including skepticism. Do not make every villager deliver the same speech of guilt.
 - **Lalivero after Venus:** Later dialogue (phase55: 10454–10460) follows Sheba's fall toward the sea. Locals have **no confirmation** that she survived. Any belief that Venus's light will bring her back is a villager's hope, not worldbuilding established as fact. Refer to the fall rather than inventing a deliberate dive.
 - **Test gates:** Revisit the palace in the missing-Babi, finals, and post-Colosso states; check Sheba's spoken line and Mind Read in both earlier states; check Lalivero before entering Venus and after the beacon/fall. In-game text box expansion and state transitions remain unverified.
+
+## Venus fall and Faran post-fall branch checkpoint (3 November 2026)
+
+Source-checked against `games/tbs/src/scene/venus_lighthouse_aerie.c` and `games/tbs/src/scene/lalivero_interiors.c`.
+
+- After the defeated Saturos and Menardi fall, the Venus platform breaks. Sheba loses her grip, Felix leaps after her, and Isaac's party **cannot see where either lands**. Do not assert that either survived or died. The sequence in `phase63_aerie_fall_aftermath.tsv` must retain that uncertainty, and Garet's immediate response should express shock rather than belittling Felix's choice.
+- After Felix leaps, Garet addresses Isaac, and Isaac's response about looking for Jenna branches into two short reactions. This dialogue is not a new moral alignment flag and both responses return to the same urgency: locating Jenna and telling her what happened to Felix, while acknowledging they do not know his fate.
+- In Faran's report after Venus (`phase70_lalivero_interior_sequences.tsv`), the initial report branches on `FLAG_SAW_SHIP_AT_IDEJIMA`. Neither path proves Jenna is dead. A later Yes/No prompt about continuing the search for Sheba has separate replies from Faran. Both converge on his personal hope for his daughter, not on a miraculous survival guarantee.
+- Sheba's last words remain spoken by **Sheba**, not Felix. The script then gives Felix his leap and Isaac, Garet, Ivan and Mia their own reactions. Keep that speaker order and all message IDs stable.
+- Required gameplay verification: both `FLAG_SAW_SHIP_AT_IDEJIMA` states; both answers to Faran; both answers after Felix's leap; full beacon-rupture animation, Sheba's fall, Felix's leap, return to Lalivero, and line widths after name substitution. A passing CI build alone does not establish these in-game outcomes.
+
