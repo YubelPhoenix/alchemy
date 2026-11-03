@@ -375,3 +375,14 @@ This is a narrative editorial assessment of the existing rewrite text, **not** c
 - Obtain a successful full build at the latest commit.
 - Test in game: Vale choices/revisits; Mercury and Kolima flags; Mogall/Altin/Lamakan custom gates; Colosso and Babi audience; both Lalivero visits; both Aerie battles; Sheba's fall; Black Orb/ship departure; ending.
 - Conduct a read-aloud pass for voice, pacing, and repeated exposition after the event/state tests. Only then describe the narrative as final.
+
+## Sheba and Lalivero state checkpoint (3 November 2026)
+
+This checkpoint follows the dialogue and scene-script audit; it does **not** replace gameplay testing.
+
+- **Before Colosso / Babi missing:** In Babi Palace, Sheba is held away from home to compel Lalivero's lighthouse construction (phase49: 08269–08274). She is Faran's daughter and Lalivero's revered child, but those labels do not erase her own wishes. Her spoken response and Mind Read should remain distinguishable from what the attendants assume.
+- **Finals day:** The palace attendants report that Sheba may be allowed to return after the tournament (phase49: 08777–08782). This is a promise or expectation, not certainty and not a permanent resolution.
+- **After Colosso:** Sheba is sent back toward Lalivero (phase49: 09049–09052). **Later, in Lalivero, she is taken again by Saturos/Menardi's party** as the Venus Lighthouse pursuit advances. Do not confuse Babi's confinement with that subsequent abduction.
+- **Lalivero before Venus:** Town conversations (phase54: 09901–09924; phase55: 09929–09975) mix concern for Sheba, responsibility for Tolbi's earlier coercion, Faran's search, and uncertainty about what her powers can do. Preserve different opinions, including skepticism. Do not make every villager deliver the same speech of guilt.
+- **Lalivero after Venus:** Later dialogue (phase55: 10454–10460) follows Sheba's fall toward the sea. Locals have **no confirmation** that she survived. Any belief that Venus's light will bring her back is a villager's hope, not worldbuilding established as fact. Refer to the fall rather than inventing a deliberate dive.
+- **Test gates:** Revisit the palace in the missing-Babi, finals, and post-Colosso states; check Sheba's spoken line and Mind Read in both earlier states; check Lalivero before entering Venus and after the beacon/fall. In-game text box expansion and state transitions remain unverified.
