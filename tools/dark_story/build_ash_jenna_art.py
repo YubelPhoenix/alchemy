@@ -8,6 +8,8 @@ raw indices into the shared 224-colour sprite palette
 16 frames tall; spr_477.tsv steps through frames 0, 2, 4, 6, 8, 10, 12 and 14,
 so every frame is stored twice.
 
+  Her sword is drawn over every pose (SWORD).
+
   0, 2, 4   idle (the same pose, bobbing one row)
   6, 8      dash / leap
   10, 12    cast
@@ -16,7 +18,7 @@ so every frame is stored twice.
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "assets" / "ash_jenna"
@@ -50,6 +52,39 @@ def to_lab(rgb):
 
 palette_lab = to_lab(colors)
 
+# Her sword, drawn over the poses: (hand x, hand y) -> (tip x, tip y) per step.
+# Battle monsters cannot hold equipment, so the blade is part of the art.
+SWORD = {
+    0: ((40, 42), (52, 20)), 2: ((40, 42), (52, 20)), 4: ((40, 42), (52, 20)),
+    6: ((50, 44), (63, 38)),
+    8: ((45, 45), (58, 28)),
+    10: ((42, 22), (47, 4)),
+    12: ((38, 46), (57, 36)),
+    14: ((45, 42), (56, 27)),
+}
+
+
+def draw_sword(frame, hand, tip, rise):
+    """Blade, gold crossguard, grip and pommel from the hand to the tip."""
+    draw = ImageDraw.Draw(frame)
+    hx, hy = hand[0], hand[1] - rise
+    tx, ty = tip[0], tip[1] - rise
+    length = max(1.0, ((tx - hx) ** 2 + (ty - hy) ** 2) ** 0.5)
+    ux, uy = (tx - hx) / length, (ty - hy) / length
+    px, py = -uy, ux  # perpendicular
+    steel, edge, gold, leather = ((214, 222, 236, 255), (250, 252, 255, 255),
+                                  (232, 184, 72, 255), (104, 64, 40, 255))
+    # grip and pommel behind the hand
+    draw.line([(hx - ux * 4, hy - uy * 4), (hx, hy)], fill=leather, width=2)
+    draw.ellipse([hx - ux * 5 - 1, hy - uy * 5 - 1, hx - ux * 5 + 1, hy - uy * 5 + 1], fill=gold)
+    # blade, two pixels wide with a bright edge
+    draw.line([(hx + ux * 2, hy + uy * 2), (tx, ty)], fill=steel, width=3)
+    draw.line([(hx + ux * 3 + px * 0.7, hy + uy * 3 + py * 0.7),
+               (tx + px * 0.7, ty + py * 0.7)], fill=edge, width=1)
+    # crossguard
+    draw.line([(hx + ux * 2 - px * 3, hy + uy * 2 - py * 3),
+               (hx + ux * 2 + px * 3, hy + uy * 2 + py * 3)], fill=gold, width=2)
+
 sheet = Image.new("RGBA", (FRAME, FRAME * FRAMES), (0, 0, 0, 0))
 for index in range(FRAMES):
     number, mirror, rise = STEPS[index - index % 2]
@@ -60,6 +95,8 @@ for index in range(FRAMES):
         src = src.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
     frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
     frame.alpha_composite(src, (0, -rise))
+    hand, tip = SWORD[index - index % 2]
+    draw_sword(frame, hand, tip, rise)
     sheet.alpha_composite(frame, (0, index * FRAME))
 
 data = np.asarray(sheet)
@@ -81,3 +118,19 @@ for n in range(FRAMES):
 indexed.save(DEST, optimize=False)
 print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, "
       f"{len(set(indices[visible].tolist()))} colours from the shared palette")
+
+# Her mugshot, a new portrait icon (ICON_67 in icons.tsv, numbered 128 + 51 in
+# Portrait_GetForSpeaker). Icons are 32x32 with at most 16 colours, each
+# channel a multiple of eight (GBA 5-bit colour).
+portrait = Image.open(SOURCE / "portrait_32.jpg").convert("RGB")
+if portrait.size != (32, 32):
+    portrait = portrait.resize((32, 32), Image.Resampling.LANCZOS)
+icon = portrait.quantize(colors=16, method=Image.Quantize.MEDIANCUT)
+icon_palette = icon.getpalette()
+for i in range(0, len(icon_palette), 3):
+    for channel in range(3):
+        icon_palette[i + channel] = (icon_palette[i + channel] // 8) * 8
+icon.putpalette(icon_palette)
+icon_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_67.png"
+icon.save(icon_target)
+print(f"Rebuilt {icon_target.relative_to(ROOT)} from portrait_32.jpg")

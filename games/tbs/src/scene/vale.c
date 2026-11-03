@@ -1682,14 +1682,21 @@ s32 Vale_Initialize(void) {
   return 0;
 }
 
+/// Ash Jenna's next message, shown with her own mugshot.
+static void Vale_AshJennaSays(void) {
+  GameFlag_Set(FLAG_DARK_ASH_JENNA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_ASH_JENNA_AFTER_KALAY, 0, 20);
+  GameFlag_Clear(FLAG_DARK_ASH_JENNA_SPEAKING);
+}
+
 /// Ash Jenna in Vale: a battle Isaac can pick or leave. A defeat comes back
 /// here and she waits to be fought again.
 static void Vale_TalkToAshJenna(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkAshValeGreet);
-  Event_ShowMessageThenWait(ACTOR_ASH_JENNA_AFTER_KALAY, 0, 20);
+  Vale_AshJennaSays();
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
-  Event_ShowMessageThenWait(ACTOR_ASH_JENNA_AFTER_KALAY, 0, 20);
+  Vale_AshJennaSays();
   GameFlag_Set(FLAG_DARK_ASH_VALE_PENDING);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
@@ -1713,7 +1720,7 @@ static void Vale_AshJennaAftermath(void) {
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
   Event_SetMessageId(MsgDarkAshValeBeaten);
-  Event_ShowMessageThenWait(ACTOR_ASH_JENNA_AFTER_KALAY, 0, 20);
+  Vale_AshJennaSays();
   Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA_AFTER_KALAY, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
   Event_WaitFrames(40);
   Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA_AFTER_KALAY, SPRITE_COLOR_HIDDEN);
