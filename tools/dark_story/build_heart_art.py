@@ -12,7 +12,7 @@ DEST = ROOT / "games/tbs/src/graphics/monster/purple_beast.png"
 # a defensive stance into that loop. Other slots retain distinct poses.
 POSES = [1, 1, 3, 4, 5, 6]
 IDLE_HEIGHT = 36
-ACTION_HEIGHT = {3: 19, 4: 29, 5: 36, 6: 36}
+ACTION_HEIGHT = {3: 36, 4: 36, 5: 36, 6: 36}
 sheet = Image.new("RGBA", (64, 768), (0, 0, 0, 0))
 for index, number in enumerate(POSES):
     src = Image.open(SOURCE / f"pose_128_{number}.png").convert("RGBA")
@@ -21,7 +21,7 @@ for index, number in enumerate(POSES):
         raise ValueError(f"Heart pose {number} is empty")
     art = src.crop(bounds)
     target_height = IDLE_HEIGHT if index < 2 else ACTION_HEIGHT[number]
-    target_width = max(1, round(art.width * target_height / art.height))
+    # Keep each pose's original aspect ratio. Different source poses must\n    # not be independently squashed to arbitrary tiny heights.\n    target_width = max(1, round(art.width * target_height / art.height))
     if target_width > 60:
         target_width = 60
         target_height = max(1, round(art.height * target_width / art.width))
