@@ -1,0 +1,113 @@
+# Fuchin Temple, Nyunpa's trial and passing, Xian village and martial arts school. Original chronology and branch-specific endings preserved.
+06029	MsgFuchinTempleIBeginningToThinkIllBe	The forest has cut us\noff from the road.{page_break}I fear I may never\nsee home again.{end_wait}
+06030	message	Did you know Mogall\nwas once open grassland?{end_now}
+06031	message	They say the trees\ngrew in a single night.{page_break}Nyunpa alone knows\nhow to cross safely.{end_wait}
+06032	message	I saw stones falling\nfrom the night sky.{page_break}The forest changed\nsoon after that.{end_wait}
+06033	MsgFuchinTempleOmOmBlueLightsInThe	Om...{pause_20_skippable} Om...\nThe northern sky\nburned blue.{page_break}Stones fell like rain.\nThe woods swallowed\nthe old road.{end_wait}
+06034	MsgFuchinTempleGemsFromTheSkyBlueLights	The falling stones\nand strange blue light\ntrouble the monks.{page_break}Our oldest scrolls\nspeak of such signs.{end_wait}
+06035	MsgFuchinTempleNyunpaHasNotEatenInDays	Nyunpa has refused\nfood for days.{page_break}His hands tremble.\nHe says he must\ncontinue fasting.{end_wait}
+06036	MsgXianIsntNobleHimTrySave	Is it noble to give\nyour life seeking\nenlightenment?{end_now}
+06037	message	I respect his faith.\nI still wish he'd eat.\nWe need him alive.{end_wait}
+06041	MsgFuchinTempleIDontFeelSafeGoingHome	I won't cross the\nforest alone.{page_break}Even the monks fear\nwhat lives there.{end_wait}
+06042	MsgFuchinTempleManyStarsFellFromTheSky	The scrolls speak of\nstars falling to earth.{page_break}I never believed\nI'd see it myself.{end_wait}
+06043	MsgFuchinTempleThereIsNoPointInTraining	If disaster is coming,\nwhy do we still train?{page_break}I don't know whether\nto fight or run.{end_wait}
+06044	MsgFuchinTempleICantImagineFastingItGets	I tried fasting once.\nBy evening I could\nthink of nothing else.{end_wait}
+06045	MsgFuchinTempleIWillTrainToBecomeA	I want to become\na worthy monk.{page_break}But I hope wisdom\ndoesn't demand\nmy death.{end_wait}
+06047	MsgXianMmmmWhoWhoSpeaksMy	Who is there?\nWho speaks inside\nmy thoughts?{end_wait}
+06059	MsgXianThenCannotTellGiveUp	Then I cannot help.\nYou should turn back\nwhile you still can.{end_wait}
+06061	MsgXianDoNotWorryWillPermitted	The grotto is open\nto you now.{page_break}Be careful below\nthe waterfall.{end_wait}
+06064	MsgFuchinTempleSpeakToTheMonkStandingBeneath	Speak to the monk\nbeneath the falls.\nHe guards the trial.{end_wait}
+06065	MsgXianEnjoyReadingMindsOthersDo	Do you take pleasure\nin reading the minds\nof strangers?{end_now}
+06066	message	Listen too often,\nand you may learn\nthings you regret.{end_wait}
+06067	message	Then you understand\nthat a thought is\nnot always a wish.{end_wait}
+06068	MsgXianAlreadyHeardTest	Nyunpa has told me\nabout your trial.\nYou may enter.{end_wait}
+06069	MsgFuchinTempleTheTestOfFuchinFallsIs	Fuchin Falls tests\nmore than strength.{page_break}Enter only when\nyou are ready.{end_wait}
+06070	MsgFuchinTempleCanSuchYoungWarriorsEndureThe	Those travelers look\nyoung to face the\nwaterfall grotto.{end_wait}
+06071	MsgXianYoungMasterDidCompleteTest	Have you finished\nthe grotto trial?{end_now}
+06072	message	You learned the\nsecret of Ki?{end_wait}
+06074	message	Nyunpa is waiting\nfor you inside.{end_wait}
+06076	MsgFuchinTempleMasterNyunpaIsWaitingForYou	Master Nyunpa waits\nat the temple.{page_break}Go to him now.{end_wait}
+06077	MsgFuchinTempleTheWarriorsHaveMasteredTheSecrets	The travelers have\npassed the trial.{page_break}Nyunpa will surely\nbe pleased.{end_wait}
+06079	message	You have done well\nto master our art.{end_wait}
+06080	message	We call this power\nKi at Fuchin Temple.{end_wait}
+06083	message	You have shown\npatience and wisdom.{page_break}But there is more\nyou should know.{end_wait}
+06085	message	As promised, I will\nshow you the way.{page_break}Use this power\nwithin the forest.{end_wait}
+06086	message	What might happen\nif you used Force\namong the trees?{end_wait}
+06087	message	Ha! Still curious,\nI see.{end_now}
+06090	message	Strength is useful.\nBut not every path\nopens through battle.{end_wait}
+06091	message	Good. There is no\nwisdom in needless\nviolence.{end_wait}
+06092	message	The beasts will flee\nwhen they know\nyou can see them.{end_wait}
+06093	message	The creatures know\ntheir own forest.{page_break}Follow their path\nand you may survive.{end_wait}
+06094	MsgFuchinTempleUseThisEnergyToFindThe	Use Force to reveal\nthe hidden beasts.{page_break}Follow them through\nthe trees.{end_wait}
+06096	message	Nyunpa seems at peace.{page_break}Do not waste\nwhat he taught you.{end_wait}
+06097	message	We cannot leave\neverything to strangers.{page_break}We must learn\nto help ourselves.{end_wait}
+06098	MsgFuchinTempleTheFuchinTempleIsAPleasant	It used to be quiet\nhere at the temple.{page_break}Now every traveler\nbrings fearful news.{end_wait}
+06100	MsgFuchinTempleAhhhMasterNyunpaHeHasPassed	Master Nyunpa...\nHe's gone.{end_wait}
+06101	MsgFuchinTempleMasterNyunpaHasWastedAwayAt	He grew so thin\nin his final days.{page_break}I wish he'd let\nus care for him.{end_wait}
+06103	message	I used to believe\nhe'd watch over us.{page_break}Now I don't know\nwhat to believe.{end_wait}
+06105	MsgFuchinTempleGemsFallingFromTheSkyMountains	Stones from the sky.\nMountains in flames.\nThe sea in turmoil.{page_break}Even this temple\nmay not be safe.{end_wait}
+06106	MsgFuchinTempleIKnewMasterNyunpaWasFasting	I knew his fasting\nmight kill him.{page_break}Knowing that didn't\nmake it easier\nto watch.{end_wait}
+06107	MsgFuchinTempleMasterNyunpaReachedEnlightenmentDuringHis	Nyunpa found peace\nbefore he died.{page_break}I hope that peace\nwas worth the cost.{end_wait}
+06108	MsgFuchinTempleMasterNyunpaIsNothingButSkin	He was scarcely\nmore than skin\nand bone.{end_wait}
+06109	MsgFuchinTempleHeCantLeaveUsYetHe	He still had so\nmuch to teach us.{page_break}Who will guide\nthe younger monks?{end_wait}
+06113	MsgFuchinDragonFlameShowsPath	The dragon's flame\nlights the way\nthrough darkness.{end_wait}
+06114	MsgFuchinSecretKiRevealed	Those who seek truth\nmay discover\nthe secret of Ki.{end_wait}
+06115	MsgFuchinLightRevealsShadows	Light reveals\nwhat darkness hides.{end_wait}
+06116	MsgFuchinEyelessDragon	A stone dragon\nwithout eyes.{page_break}Something once fit\ninside the sockets.{end_wait}
+06117	MsgFuchinDragonRedEyes	The dragon's eyes\nglow a deep red.{end_wait}
+06119	MsgXianThisIsXianTravelersAreWelcome	Welcome to Xian.\nTravelers are rare\nthese days.{end_wait}
+06120	MsgXianYoungWarriorsVeryGallantCame	You crossed Mogall\nForest alive?{end_now}
+06121	message	That's no small feat.\nYou must be skilled.{end_wait}
+06123	MsgXianXianIsTheVillageOfKinu	Xian is known\nfor its fine silk.{page_break}Our families have\nworked it for years.{end_wait}
+06125	message	Thieves trouble\nthe roads now.{page_break}They avoid Xian.\nMaster Feh sees\nto that.{end_wait}
+06126	message	Master Feh teaches\nmartial arts here.{page_break}His students keep\nour village safe.{end_wait}
+06127	MsgXianMartialArtsAreVeryPopularIn	Martial arts are\na part of life\nin Xian.{end_wait}
+06128	MsgXianYouWarriorsShouldVisitMasterFehs	You should visit\nMaster Feh's school.{page_break}He may teach you\nsomething useful.{end_wait}
+06129	MsgXianMyClothesAreNotSilkSilk	My clothes aren't silk.\nOnly the wealthy\ncan afford it.{end_wait}
+06132	MsgXianKungFuStrong	My kung fu improves\na little each day.{page_break}Master Feh says\npatience matters.{end_wait}
+06133	MsgXianDisastersFromTheSkyManyMany	The roads are unsafe.\nStill, I trust\nour fighters.{end_wait}
+06134	MsgXianThisIsTheMulberryOrchardWhen	These mulberry trees\nfeed the silkworms.{page_break}Without them,\nXian would suffer.{end_wait}
+06135	MsgXianWarriorsFromSchoolStrongWarriors	Are you warriors\nfrom Master Feh's\nschool?{end_now}
+06136	message	Then I wish you\nstrength on the\nwestern road.{end_wait}
+06137	message	At least you know\nyour limits.{page_break}That's more than\nmost fighters admit.{end_wait}
+06138	MsgXianDoingMadeMeSpillMy	Watch where you're\nstanding! You made\nme spill the water!{end_wait}
+06139	MsgXianNowMustGetWaterAgain	Now I must fill\nthese buckets again.{page_break}My back can't take\nmuch more of this.{end_wait}
+06140	message	Please, stand clear.\nI can't afford\nto spill this.{end_wait}
+06141	MsgXianWhaWhaHappened	The tree moved!\nDid you see that?{end_wait}
+06142	message	It moved again...\nPerhaps I need\nsome rest.{end_wait}
+06143	MsgXianTheseChildrenMustHaveComeTo	Those children came\nto study at\nMaster Feh's school.{end_wait}
+06145	MsgXianIHopeManyPeopleComeTo	I hope our silk\nreaches new markets\nwhen the road opens.{end_wait}
+06147	MsgXianFightingWithKicksAndPunchesIs	A strong fist means\nnothing without\ngood judgment.{end_wait}
+06148	MsgXianMasterFehsSchoolIsTrainingIt	Master Feh trains\nus hard.{page_break}He says discipline\ncomes before strength.{end_wait}
+06149	MsgXianSilkIsShinyAndSmoothIt	Silk is soft,\nbut the work that\nmakes it is hard.{end_wait}
+06151	MsgXianMasterFehSaidYahAndThen	Master Feh shouted,\nand the thieves ran.{page_break}No one here\nhas forgotten it.{end_wait}
+06152	MsgXianTheOrchardGivesTheVillageLife	These trees keep\nour village alive.{page_break}We guard them\nas carefully as homes.{end_wait}
+06153	MsgXianGoingWestAloneIsVeryDangerous	Traveling west alone\nis dangerous.{page_break}I'll wait until\nI find companions.{end_wait}
+06154	MsgXianIMustCarryWaterEveryDay	I carry water\nevery morning.{page_break}The work never ends.{end_wait}
+06156	MsgXianInteriorsFarmWorkIsVeryHardWarriors	You know how to fight.\nBut could you work\nthese fields all day?{end_wait}
+06158	MsgXianInteriorsFarmWorkIsHardOnThe	The harvest leaves\nmy shoulders aching.{page_break}Still, we need\nthe silk.{end_wait}
+06159	MsgXianInteriorsXianSilkIsSentOnSilk	Our silk travels\nwest to Tolbi.{page_break}When the road closes,\nour wages vanish.{end_wait}
+06160	MsgXianInteriorsSilkRoadEndsInTolbiIt	Silk Road leads\ntoward Tolbi.{page_break}It takes many days\nto reach the city.{end_wait}
+06161	MsgXianInteriorsSilkRoadIsFullOfSilk	We depend on\nthe silk merchants.{page_break}Without them,\nour stalls sit empty.{end_wait}
+06162	MsgXianInteriorsMerchantsSayTolbiIsVeryBeautiful	I've heard Tolbi\nis a beautiful city.{page_break}I wonder if\nI'll ever see it.{end_wait}
+06164	MsgXianInteriorsThereIsAMineInAltin	Altin's mine supplies\nmetal and precious\nstones.{end_wait}
+06165	MsgXianInteriorsAltinHasManyMenAllScary	Altin's miners are\ntough people.{page_break}Their work demands\nit of them.{end_wait}
+06166	MsgXianInteriorsMiningIsVeryHardWorkIt	Mining is dangerous.\nSkill matters more\nthan brute strength.{end_wait}
+06170	MsgXianInteriorsInWarriorBattlesYouFightWith	Warriors use weapons.\nOur students learn\nto evade and strike.{end_wait}
+06171	MsgXianXiansSpecialArmorNotSuited	Our armor is made\nfor quick movement.{page_break}It may not suit\nyour fighting style.{end_wait}
+06172	MsgXianInteriorsXianIsAVillageOfCraftsmen	We make much of\nwhat we need here.{page_break}Xian's craftsmen\ntake pride in that.{end_wait}
+06173	MsgXianWarriorsShouldLearnAboutTowns	A traveler should\nlearn the customs\nof each town.{page_break}Fighting isn't\nall there is.{end_wait}
+06174	MsgXianInteriorsNormallyManyMerchantsComeToThe	Merchants once came\nhere every week.{page_break}Now the road is quiet.\nSomething is wrong.{end_wait}
+06175	MsgXianInteriorsAllThePeopleWhoCameTo	Most of our guests\nare from Xian.{page_break}Where have all\nthe travelers gone?{end_wait}
+06176	MsgXianInteriorsWhenYouGoToANew	Respect the customs\nof the places\nyou visit.{end_wait}
+06177	MsgXianInteriorsWhenManyMerchantsComeMyBusiness	When merchants arrive,\nour tables fill.{page_break}Without them,\nwe barely survive.{end_wait}
+06178	MsgXianInteriorsThereAreFewerTravelersSoFewer	Fewer travelers\nmeans fewer meals\nserved here.{end_wait}
+06181	MsgXianMasterFehsSchoolCameWatch	Welcome to\nMaster Feh's school.{page_break}Are you here\nto observe?{end_now}
+06182	message	Then please be quiet.\nThe lesson has begun.{end_wait}
+06183	message	Even armed warriors\ncan learn from\nmartial artists.{end_wait}
+06184	MsgFuchinTempleStrongKicksAreVeryImportantKick	Kick from the hip.\nKeep your balance.\nThen strike again.{end_wait}
+06185	MsgFuchinTempleIWantToLearnSoI	I train every day.\nMy fists still ache.{page_break}Master Feh says\nthat means I must\ntrain carefully.{end_wait}
+06186	MsgXianFlexibilityJumpingVeryImportantIn	Speed and balance\nmatter as much\nas strength.{end_wait}
+06187	MsgFuchinTempleEveryoneInXianCanDoMartial	Many people in Xian\npractice martial arts.{page_break}Master Feh trains\nthe most dedicated.{end_wait}
+06188	MsgFuchinTempleJustListeningDoesNotMakeOne	Watching is useful.\nPractice is what\nmakes it yours.{end_wait}
+06189	MsgXianMasterFehVeryBusyDo	Master Feh is busy.\nDo you still wish\nto speak with him?{end_now}
