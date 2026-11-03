@@ -1,9 +1,9 @@
 # Fuchin Temple, Nyunpa's trial and passing, Xian village and martial arts school. Original chronology and branch-specific endings preserved.
 06029	MsgFuchinTempleIBeginningToThinkIllBe	The forest has cut us\noff from the road.{page_break}I fear I may never\nsee home again.{end_wait}
-06030	message	Did you know Mogall\nwas once open grassland?{end_now}
-06031	message	They say the trees\ngrew in a single night.{page_break}Nyunpa alone knows\nhow to cross safely.{end_wait}
-06032	message	I saw stones falling\nfrom the night sky.{page_break}The forest changed\nsoon after that.{end_wait}
-06033	MsgFuchinTempleOmOmBlueLightsInThe	Om...{pause_20_skippable} Om...\nThe northern sky\nburned blue.{page_break}Stones fell like rain.\nThe woods swallowed\nthe old road.{end_wait}
+06030	message	Did you hear how\ndangerous Mogall\nhas become?{end_now}
+06031	message	Travelers lose their way\namong the trees.{page_break}Nyunpa knows\nhow to pass safely.{end_wait}
+06032	message	I saw stones falling\nfrom the night sky.{page_break}Since then, the road\nhas felt less safe.{end_wait}
+06033	MsgFuchinTempleOmOmBlueLightsInThe	Om...{pause_20_skippable} Om...\nThe northern sky\nburned blue.{page_break}Stones fell like rain.\nNow even the woods\nseem restless.{end_wait}
 06034	MsgFuchinTempleGemsFromTheSkyBlueLights	The falling stones\nand strange blue light\ntrouble the monks.{page_break}Our oldest scrolls\nspeak of such signs.{end_wait}
 06035	MsgFuchinTempleNyunpaHasNotEatenInDays	Nyunpa has refused\nfood for days.{page_break}His hands tremble.\nHe says he must\ncontinue fasting.{end_wait}
 06036	MsgXianIsntNobleHimTrySave	Is it noble to give\nyour life seeking\nenlightenment?{end_now}
