@@ -1,70 +1,124 @@
 #!/usr/bin/env python3
-"""Rebuild Heart's battle sheet from the original, unsquashed source poses."""
+"""Rebuild Heart's battle sheet from the original, unsquashed source poses.
+
+Golden Sun's battle engine draws monster frames as 64x64, 8 bits per pixel.
+Every pixel is a raw index into the shared 224-colour sprite palette
+(games/tbs/src/system/memory/basic.png), index 0 is transparent, and the
+frames are packed one under another (64x768 = 12 frames) with no palette of
+their own.  So the sheet must use that exact palette and nothing else; a
+private 16-colour palette makes every index land on the wrong colour.
+
+Frame layout (games/tbs/src/graphics/sprite/spr_484.tsv steps by two, each
+frame is stored twice):
+  0-1   idle            2-3   idle, one pixel higher (breathing loop)
+  4-5   dash / leap     6-7   lunge (second leap frame)
+  8-9   cast            10-11 damage
+"""
 from pathlib import Path
+
+import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "assets" / "heart"
 DEST = ROOT / "games/tbs/src/graphics/monster/purple_beast.png"
+SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
-# Monster frames are 64x64, but Heart must remain at party scale.
-# The first two animation slots are the resting loop; do not alternate
-# a defensive stance into that loop. Other slots retain distinct poses.
-POSES = [1, 1, 3, 4, 5, 6]
-IDLE_HEIGHT = 36
-ACTION_HEIGHT = {3: 36, 4: 36, 5: 36, 6: 36}
-sheet = Image.new("RGBA", (64, 768), (0, 0, 0, 0))
-for index, number in enumerate(POSES):
+FRAME = 64
+FRAMES = 12
+IDLE_HEIGHT = 42  # rows; every pose uses the same scale so proportions match
+# (source pose number, mirror so she faces the party on the right, rise)
+LAYOUT = [
+    (1, True, 0), (1, True, 0),
+    (1, True, 1), (1, True, 1),
+    (5, False, 0), (5, False, 0),
+    (6, False, 0), (6, False, 0),
+    (3, False, 0), (3, False, 0),
+    (4, True, 0), (4, True, 0),
+]
+
+palette_image = Image.open(SHARED_PALETTE)
+palette = palette_image.getpalette()[:224 * 3]
+colors = np.array(palette, dtype=np.float64).reshape(-1, 3)
+
+
+def to_lab(rgb):
+    rgb = np.asarray(rgb, dtype=np.float64) / 255.0
+    rgb = np.where(rgb > 0.04045, ((rgb + 0.055) / 1.055) ** 2.4, rgb / 12.92)
+    m = np.array([[0.4124, 0.3576, 0.1805], [0.2126, 0.7152, 0.0722],
+                  [0.0193, 0.1192, 0.9505]])
+    xyz = rgb @ m.T / np.array([0.95047, 1.0, 1.08883])
+    f = np.where(xyz > 0.008856, np.cbrt(xyz), 7.787 * xyz + 16 / 116)
+    return np.stack([116 * f[..., 1] - 16, 500 * (f[..., 0] - f[..., 1]),
+                     200 * (f[..., 1] - f[..., 2])], axis=-1)
+
+
+# Index 0 is transparent; every other entry of the shared palette may be used.
+palette_lab = to_lab(colors)
+
+# One scale for every pose, taken from the idle pose, so idle, dash, lunge,
+# cast and damage keep the same proportions.
+idle_source = Image.open(SOURCE / "pose_128_1.png").convert("RGBA")
+idle_bounds = idle_source.getchannel("A").getbbox()
+if not idle_bounds:
+    raise ValueError("Heart idle pose is empty")
+SCALE = IDLE_HEIGHT / (idle_bounds[3] - idle_bounds[1])
+
+sheet = Image.new("RGBA", (FRAME, FRAME * FRAMES), (0, 0, 0, 0))
+for index, (number, mirror, rise) in enumerate(LAYOUT):
     src = Image.open(SOURCE / f"pose_128_{number}.png").convert("RGBA")
     bounds = src.getchannel("A").getbbox()
     if not bounds:
         raise ValueError(f"Heart pose {number} is empty")
     art = src.crop(bounds)
-    target_height = IDLE_HEIGHT if index < 2 else ACTION_HEIGHT[number]
-    # Preserve the source pose's aspect ratio without arbitrary compression.
-    target_width = max(1, round(art.width * target_height / art.height))
-    if target_width > 60:
-        target_width = 60
-        target_height = max(1, round(art.height * target_width / art.width))
-    art = art.resize((target_width, target_height), Image.Resampling.NEAREST)
-    frame = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
-    # Feet sit on the bottom row above the battle shadow.
-    frame.alpha_composite(art, ((64 - art.width) // 2, 64 - art.height))
-    sheet.alpha_composite(frame, (0, index * 128))
-    sheet.alpha_composite(frame, (0, index * 128 + 64))
+    if mirror:
+        art = art.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+    width = max(1, round(art.width * SCALE))
+    height = max(1, round(art.height * SCALE))
+    if width > FRAME or height > FRAME:
+        raise ValueError(f"pose {number} does not fit a frame at scale {SCALE:.3f}")
+    # Premultiply before resampling so the edge does not pick up black.
+    arr = np.asarray(art, dtype=np.float64)
+    alpha = arr[..., 3:] / 255.0
+    pre = Image.fromarray(np.dstack([arr[..., :3] * alpha, arr[..., 3:]]).astype(np.uint8), "RGBA")
+    pre = pre.resize((width, height), Image.Resampling.LANCZOS)
+    p = np.asarray(pre, dtype=np.float64)
+    a = np.clip(p[..., 3:] / 255.0, 1e-6, 1)
+    art = Image.fromarray(np.dstack([np.clip(p[..., :3] / a, 0, 255), p[..., 3:]]).astype(np.uint8), "RGBA")
+    frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
+    # Feet on the bottom row, body centred on the frame.
+    mask = np.asarray(art)[..., 3] >= 128
+    cx = (np.nonzero(mask)[1].mean() if mask.any() else width / 2)
+    x = int(round(FRAME / 2 - cx))
+    x = max(0, min(FRAME - width, x))
+    frame.alpha_composite(art, (x, FRAME - height - rise))
+    sheet.alpha_composite(frame, (0, index * FRAME))
 
-# Build a single deterministic 4bpp palette from VISIBLE pixels only.
-# The previous quantizer included the large transparent black background,
-# wasting a colour and shifting the intended sprite indices.
-visible = Image.new("RGBA", sheet.size, (0, 0, 0, 0))
-visible.alpha_composite(sheet)
-opaque_pixels = [pixel[:3] for pixel in visible.getdata() if pixel[3] >= 128]
-if not opaque_pixels:
-    raise ValueError("Heart battle sheet has no visible pixels")
-samples = Image.new("RGB", (len(opaque_pixels), 1))
-samples.putdata(opaque_pixels)
-reduced = samples.quantize(colors=15, method=Image.Quantize.MEDIANCUT)
-source_palette = reduced.getpalette()[:45]
-# Index zero is transparent; all six frames share indices 1..15.
-palette = [0, 0, 0] + [(channel // 8) * 8 for channel in source_palette]
-palette += [0] * (768 - len(palette))
-indexed = Image.new("P", sheet.size, 0)
+# Quantize each visible pixel to the nearest colour of the shared palette.
+data = np.asarray(sheet)
+visible = data[..., 3] >= 128
+lab = to_lab(data[..., :3][visible])
+distance = ((lab[:, None, :] - palette_lab[None, 1:, :]) ** 2).sum(axis=2)
+indices = np.zeros(visible.shape, dtype=np.uint8)
+indices[visible] = distance.argmin(axis=1).astype(np.uint8) + 1
+indexed = Image.fromarray(indices, "P")
 indexed.putpalette(palette)
-# The quantizer only saw opaque pixels, so walk those pixels in the
-# identical row-major order when mapping indices back into the sheet.
-indices = iter(reduced.getdata())
-alpha = visible.getchannel("A").load()
-output = indexed.load()
-for y in range(sheet.height):
-    for x in range(sheet.width):
-        if alpha[x, y] >= 128:
-            output[x, y] = next(indices) + 1
-# Transparent pixels must never consume one of the 15 visible colours.
-assert max(indexed.getdata()) <= 15
-assert sum(1 for index in indexed.getdata() if index) == len(opaque_pixels)
-assert next(indices, None) is None
-indexed.save(DEST)
-print(f"Rebuilt {DEST.relative_to(ROOT)} at party scale with shared 16-colour palette")
+
+# --- validation -----------------------------------------------------------
+assert indexed.size == (FRAME, FRAME * FRAMES), indexed.size
+assert indexed.getpalette()[:224 * 3] == palette
+assert indices.max() <= 223, "pixel outside the shared 224-colour palette"
+assert (indices[~visible] == 0).all(), "transparent pixels must be index 0"
+assert (indices[visible] != 0).all(), "visible pixels must not be index 0"
+assert indices.max() > 15, "sheet only uses the first 16 colours (4bpp bug)"
+for n in range(FRAMES):
+    f = indices[n * FRAME:(n + 1) * FRAME]
+    assert f.any(), f"frame {n} is empty"
+    ys, xs = np.nonzero(f)
+    assert ys.max() <= FRAME - 1 and xs.min() >= 0 and xs.max() < FRAME
+indexed.save(DEST, optimize=False)
+print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, scale {SCALE:.3f}, "
+      f"{len(set(indices[visible].tolist()))} colours from the shared palette")
 
 # Claude's portrait hook already points at ICON_66. Replace that placeholder
 # with the original 64x64 Heart mugshot; no changes to Mia or other portraits.
