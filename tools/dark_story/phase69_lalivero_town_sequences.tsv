@@ -3,7 +3,7 @@
 09877	message	Is this more of\ntheir work?{end_now}
 09878	message	That voice... It's\nIodem...{end_wait}
 09879	message	You survived!{end_wait}
-09880	message	They struck before\nwe were ready.\nWe barely held the gate.{end_wait}
+09880	message	They struck before\nwe were ready.\nWe couldn't hold the gate.{end_wait}
 09881	message	Were you fighting{pause_20_skippable} a\ngroup of six people?{end_wait}
 09882	message	There were...{pause_20_skippable} seven...{end_wait}
 09883	message	You survived as well!{end_wait}
@@ -29,7 +29,7 @@
 10383	message	You forgot already,\n{actor_name:1}? Iodem asked\nus to wait.{end_wait}
 10384	message	We have to leave soon.\nBut Iodem asked to\nspeak with us first.{end_wait}
 10385	message	We can spare a moment.\nIodem may know\nhow to help us.{end_wait}
-10386	message	He knows these waters.\nLet's hear what\nhe has to say.{end_wait}
+10386	message	Thank you for waiting.\nI owe you an explanation\nbefore you go.{end_wait}
 10387	message	There is something\nI must ask you about\nLemuria.{end_wait}
 10388	message	The ancient island\nBabi searched for\nall his life.{end_wait}
 10389	message	We came back from Venus\nwithout {actor_name:6}.\nWe couldn't find her.{end_wait}

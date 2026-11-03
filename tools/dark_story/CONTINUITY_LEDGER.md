@@ -520,3 +520,11 @@ The Manticore fight can target different party members. The first Mia-pass revis
 
 **Remaining narrative acceptance gates:** Confirm the Vale after-eruption departure and the optional Kalay-return dialogues do not mis-trigger; read books in each reachable location and state; confirm the Lalivero NPC talks and Mind Reads remain appropriately distinguished before/after Venus; test the Iodem Black Orb exit prompt both before and after wharf opening; test all three yes/no response variants on the ship's departure; ensure the post-clear Jenna–Kraden message cursor follows all original unedited lines between changed rows; confirm the new Ash Jenna coda only appears for players who met her and does not precede Iodem's farewells by force; check character portraits/text page breaks on hardware/emulator. A passing compiler verifies data validity, not a “10/10” playthrough.
 
+
+
+### Lalivero speaker and defeated-guard correction — 3 November 2026
+
+A second pass against `Lalivero_IodemGivesBlackOrb` in `games/tbs/src/scene/lalivero.c` found a source-speaker alignment issue that a syntactic validator cannot catch. Following Garet's 10382 question, Mia responds on one of the two lines 10383/10384, Ivan says 10385, and **Iodem himself speaks 10386** after stepping out of Faran's house. Earlier text used third person ("He knows these waters") and referred to the speaker as someone else. Message 10386 now begins in Iodem's own voice: "Thank you for waiting. I owe you an explanation before you go." The next Iodem message 10387 identifies Lemuria as the subject, without duplicated setup.
+
+At the pre-Venus arrival, the two wounded guards were defeated and Sheba was taken. A revised soldier's 09880 line had said they "barely held the gate"; this wrongly implies a successful defense. The final text explicitly states they **couldn't hold the gate**. Both corrections retain their original message IDs, control tokens, widths and event timing. The rest of the 66-line bookend editorial pass remains unchanged.
+
