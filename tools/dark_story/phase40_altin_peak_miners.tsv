@@ -3,8 +3,8 @@ N140	MsgDarkPeakMinerPlea	The supports gave way.\nMen are trapped behind\nthe fa
 N141	MsgDarkPeakMinerYes	Thank you. Quickly!\nThey won't last long\nin that water.{end_wait}
 N142	MsgDarkPeakMinerNo	Then find someone who\nwill help. I won't\nleave them here.{end_wait}
 N143	MsgDarkPeakMiaDig	The roof could fall\nagain. We must brace\nit before we dig.{end_wait}
-N144	MsgDarkPeakGaretDig	I'll find timbers.\nIsaac, help me set\nthem against the wall.{end_wait}
-N145	MsgDarkPeakMiaAlex	We can't rush blindly.\nBut every moment\nmatters to those men.{end_wait}
-N146	MsgDarkPeakIsaacDig	Brace the roof first.\nThen we move the stone.\nTogether.{end_wait}
-N147	MsgDarkPeakMinerThanks	You saved them.\nI heard them calling\nthrough the rock.{page_break}Please, take this.\nIt's all I can offer.{end_wait}
-N148	MsgDarkPeakMinerDone	They're outside now.\nThe mine can wait.\nTheir lives couldn't.{end_wait}
+N144	MsgDarkPeakGaretDig	I'll find some beams.\nIsaac, help me brace\nthe roof.{end_wait}
+N145	MsgDarkPeakMiaAlex	Watch for loose rock.\nI'll keep an eye\non the ceiling.{end_wait}
+N146	MsgDarkPeakIsaacDig	Brace the roof.\nThen clear the rocks.\nTogether.{end_wait}
+N147	MsgDarkPeakMinerThanks	I heard them calling\nthrough the rocks.{page_break}You got them out.\nHere. Take this.{end_wait}
+N148	MsgDarkPeakMinerDone	They're all outside.\nWe can go home.\nThe mine can wait.{end_wait}
