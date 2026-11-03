@@ -82,6 +82,8 @@ The initial pre-play inspection also found a **real chronology defect** in `Scen
 
 **Correction:** Removed the visited-area shortcut. `Scene_Arrive` already preserves the Mercury lit flag across area changes, and `MercuryLighthouseAerie_Initialize` sets it during the actual lit-beacon aerie sequence. Therefore the flag now reflects the real story event without a new save bit or alternate route. Added `check_mercury_lighthouse_chronology()` to the automated story contracts. **Game test:** enter/leave the lower Mercury Lighthouse *before* lighting the beacon, then complete the beacon and leave; confirm weather/story flags only advance afterward.
 
+**Old-save caveat:** An older test save produced by the buggy area-visited shortcut may already contain the falsely-set Mercury lit flag. The corrected engine does not retroactively clear that saved bit because doing so mid-beacon could corrupt a legitimate sequence. For meaningful narrative QA, **begin the new playthrough from a fresh save**, not one that may have entered Mercury on an older patch.
+
 ### Additional scene-source routing audit
 
 All **19 modified scene C files** were checked for named `Import_EventSetExitRequest` destinations against their actual `SCENE_EXIT` tables; no unmatched **named** exits were found. Scripted battle destinations were enumerated across Mercury, Imil, World Map, Kolima, Tolbi, Lamakan, Altin, Sol Sanctum and Mogall. This is a source-symbol cross-reference only: destination `0`, implicit default exits, party state at the destination and true runtime reachability are not proven by this scan.
