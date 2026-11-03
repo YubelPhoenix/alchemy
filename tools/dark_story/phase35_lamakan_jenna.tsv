@@ -1,6 +1,6 @@
 # Ash Jenna glimpsed in the Lamakan Desert after Mercury Lighthouse is lit.
-N106	MsgDarkLamakanJennaWatch	Look at the sand, Isaac.\nIt's still warm where they\nfell.{page_break}You failed to stop it.\nI only watched.{end_wait}
-N107	MsgDarkLamakanIsaacWait	Jenna, wait! Whatever this\nis, we can still stop it.\nCome back!{end_wait}
-N108	MsgDarkLamakanJennaUndo	Stop it? Sweet Isaac, I've\nseen what stopping it looks\nlike. It's a long grave.{end_wait}
-N109	MsgDarkLamakanJennaClimb	Keep chasing them. I'll be\nwarm when the last one\nburns.{end_wait}
-N110	MsgDarkLamakanIsaacSilent	...Jenna.{end_wait}
+N106	MsgDarkLamakanJennaWatch	The desert keeps its dead,\nIsaac. The sand covers\nevery trace.{page_break}You came too late.\nI watched it happen.{end_wait}
+N107	MsgDarkLamakanIsaacWait	Jenna! Wait.\nTell me what happened.\nPlease.{end_wait}
+N108	MsgDarkLamakanJennaUndo	You still think a kind\nword can put everything\nback where it was.{page_break}Look around you, Isaac.\nSome things stay broken.{end_wait}
+N109	MsgDarkLamakanJennaClimb	Keep following them.\nYou'll learn what it\ncosts to be too late.{end_wait}
+N110	MsgDarkLamakanIsaacSilent	...Jenna.\nWhat happened to you?{end_wait}
