@@ -704,7 +704,7 @@ struct ActorTemplate gSuhallaGateCheckpointActorTemplatesAfterAudience[] = {
     { SPRITE_IODEM, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_EAST, TALK_FACING_KEEP, 0 },
     // Ash Jenna, in the path north of the south entrance until she is beaten.
-    { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, FLAG_DARK_ASH_GATE_FOUGHT, MOVEMENT_TYPE_STAND,
+    { SPRITE_ASH_JENNA, FLAG_DARK_ASH_GATE_FOUGHT, MOVEMENT_TYPE_STAND,
         PIXELS(152), 0, PIXELS(456), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };

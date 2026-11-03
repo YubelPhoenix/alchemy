@@ -52,21 +52,24 @@ def to_lab(rgb):
 
 palette_lab = to_lab(colors)
 
-# Her sword, drawn over the poses: (hand x, hand y) -> (tip x, tip y) per step.
-# Battle monsters cannot hold equipment, so the blade is part of the art.
+# Her sword, drawn behind the poses so her fist closes over the grip:
+# (fist x, fist y) -> (tip x, tip y) per step. Battle monsters cannot hold
+# equipment, so the blade is part of the art.
+IDLE = ((41, 44), (52, 22))
 SWORD = {
-    0: ((40, 42), (52, 20)), 2: ((40, 42), (52, 20)), 4: ((40, 42), (52, 20)),
-    6: ((50, 44), (63, 38)),
-    8: ((45, 45), (58, 28)),
-    10: ((42, 22), (47, 4)),
-    12: ((38, 46), (57, 36)),
-    14: ((45, 42), (56, 27)),
+    0: IDLE, 2: IDLE, 4: IDLE,
+    6: ((49, 44), (63, 38)),
+    8: ((44, 43), (58, 28)),
+    10: ((42, 21), (47, 4)),
+    12: ((37, 46), (56, 36)),
+    14: ((44, 45), (56, 29)),
 }
 
 
-def draw_sword(frame, hand, tip, rise):
-    """Blade, gold crossguard, grip and pommel from the hand to the tip."""
-    draw = ImageDraw.Draw(frame)
+def sword_layer(hand, tip, rise):
+    """Pommel, grip, gold crossguard and blade, the grip centred on the fist."""
+    layer = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer)
     hx, hy = hand[0], hand[1] - rise
     tx, ty = tip[0], tip[1] - rise
     length = max(1.0, ((tx - hx) ** 2 + (ty - hy) ** 2) ** 0.5)
@@ -74,16 +77,18 @@ def draw_sword(frame, hand, tip, rise):
     px, py = -uy, ux  # perpendicular
     steel, edge, gold, leather = ((214, 222, 236, 255), (250, 252, 255, 255),
                                   (232, 184, 72, 255), (104, 64, 40, 255))
-    # grip and pommel behind the hand
-    draw.line([(hx - ux * 4, hy - uy * 4), (hx, hy)], fill=leather, width=2)
-    draw.ellipse([hx - ux * 5 - 1, hy - uy * 5 - 1, hx - ux * 5 + 1, hy - uy * 5 + 1], fill=gold)
-    # blade, two pixels wide with a bright edge
-    draw.line([(hx + ux * 2, hy + uy * 2), (tx, ty)], fill=steel, width=3)
-    draw.line([(hx + ux * 3 + px * 0.7, hy + uy * 3 + py * 0.7),
-               (tx + px * 0.7, ty + py * 0.7)], fill=edge, width=1)
-    # crossguard
-    draw.line([(hx + ux * 2 - px * 3, hy + uy * 2 - py * 3),
-               (hx + ux * 2 + px * 3, hy + uy * 2 + py * 3)], fill=gold, width=2)
+    draw.line([(hx - ux * 4, hy - uy * 4), (hx + ux * 3, hy + uy * 3)],
+              fill=leather, width=2)
+    draw.ellipse([hx - ux * 5 - 1, hy - uy * 5 - 1,
+                  hx - ux * 5 + 1, hy - uy * 5 + 1], fill=gold)
+    draw.line([(hx + ux * 4, hy + uy * 4), (tx, ty)], fill=steel, width=3)
+    draw.line([(hx + ux * 5 + px * 0.8, hy + uy * 5 + py * 0.8),
+               (tx + px * 0.8, ty + py * 0.8)], fill=edge, width=1)
+    draw.line([(hx + ux * 4 - px * 3.5, hy + uy * 4 - py * 3.5),
+               (hx + ux * 4 + px * 3.5, hy + uy * 4 + py * 3.5)],
+              fill=gold, width=2)
+    return layer
+
 
 sheet = Image.new("RGBA", (FRAME, FRAME * FRAMES), (0, 0, 0, 0))
 for index in range(FRAMES):
@@ -94,9 +99,9 @@ for index in range(FRAMES):
     if mirror:
         src = src.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
     frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
-    frame.alpha_composite(src, (0, -rise))
     hand, tip = SWORD[index - index % 2]
-    draw_sword(frame, hand, tip, rise)
+    frame.alpha_composite(sword_layer(hand, tip, rise))
+    frame.alpha_composite(src, (0, -rise))
     sheet.alpha_composite(frame, (0, index * FRAME))
 
 data = np.asarray(sheet)
