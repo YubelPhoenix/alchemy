@@ -32,27 +32,30 @@ for index, number in enumerate(POSES):
     sheet.alpha_composite(frame, (0, index * 128))
     sheet.alpha_composite(frame, (0, index * 128 + 64))
 
-# Monster graphics use 4bpp palettes: reserve index 0 for transparent
-# background and use a SINGLE 16-colour palette across every pose.
-# Quantizing 256 colours previously let the packer reinterpret palette
-# banks, producing the neon green/orange corruption seen in-game.
-rgb = Image.new("RGB", sheet.size, (0, 0, 0))
-rgb.paste(sheet, mask=sheet.getchannel("A"))
-reduced = rgb.quantize(colors=15, method=Image.Quantize.MEDIANCUT)
-old_palette = reduced.getpalette()[:45]
-palette = [0, 0, 0]
-for value in old_palette:
-    palette.append((value // 8) * 8)
+# Build a single deterministic 4bpp palette from VISIBLE pixels only.
+# The previous quantizer included the large transparent black background,
+# wasting a colour and shifting the intended sprite indices.
+visible = Image.new("RGBA", sheet.size, (0, 0, 0, 0))
+visible.alpha_composite(sheet)
+opaque_pixels = [pixel[:3] for pixel in visible.getdata() if pixel[3] >= 128]
+if not opaque_pixels:
+    raise ValueError("Heart battle sheet has no visible pixels")
+samples = Image.new("RGB", (len(opaque_pixels), 1))
+samples.putdata(opaque_pixels)
+reduced = samples.quantize(colors=15, method=Image.Quantize.MEDIANCUT)
+source_palette = reduced.getpalette()[:45]
+# Index zero is transparent; all six frames share indices 1..15.
+palette = [0, 0, 0] + [(channel // 8) * 8 for channel in source_palette]
 palette += [0] * (768 - len(palette))
 indexed = Image.new("P", sheet.size, 0)
 indexed.putpalette(palette)
-source_indices = reduced.load()
-alpha = sheet.getchannel("A").load()
-target = indexed.load()
+indices = iter(reduced.getdata())
 for y in range(sheet.height):
     for x in range(sheet.width):
-        if alpha[x, y] >= 128:
-            target[x, y] = source_indices[x, y] + 1
+        if visible.getpixel((x, y))[3] >= 128:
+            indexed.putpixel((x, y), next(indices) + 1)
+# Transparent pixels must never consume one of the 15 visible colours.
+assert max(indexed.getdata()) <= 15
 indexed.save(DEST)
 print(f"Rebuilt {DEST.relative_to(ROOT)} at party scale with shared 16-colour palette")
 
