@@ -1,77 +1,77 @@
-05235	MsgKolimaQuiet	It's quiet here.\nToo quiet.{end_wait}
-05237	message	That tree was a person.{end_wait}
-05238	message	Everyone here...\nThey've become trees.{end_wait}
-05239	message	Look at their clothes.\nThese are villagers.{end_wait}
+05235	MsgKolimaQuiet	It's quiet.\nWhere is everyone?{end_wait}
+05237	message	That tree...\nIt was a person.{end_wait}
+05238	message	The whole village...\nThey're all trees.{end_wait}
+05239	message	Look at the clothes.\nThese were people.{end_wait}
 05246	message	{text_effect:4}My mind!!!\nSomeone{pause_20_skippable} is attacking my{em_dash}{end_wait}
-05250	message	We have to leave!{end_wait}
-05252	message	Stay back!\nWe'll become trees!{end_wait}
-05257	MsgKolimaWasOurPsynergy	Our Psynergy saved us.{end_wait}
+05250	message	We have to get out!{end_wait}
+05252	message	Don't come closer!\nYou'll turn into\na tree, too!{end_wait}
+05257	MsgKolimaWasOurPsynergy	Our Psynergy\nprotected us.{end_wait}
 05258	message	What do you mean?{end_wait}
 05265	message	You're lying, {actor_name:1}!{end_wait}
-05266	message	I used to train\nuntil my head hurt.{end_wait}
-05267	message	Maybe it's easy for you.\nIt isn't for me.{end_wait}
-05268	message	Psynergy takes focus.\nYou know that.{end_wait}
-05270	message	Maybe some power\nacts on its own.{end_wait}
-05271	message	When we're in danger?{end_wait}
-05272	message	Like a sudden burst\nof strength in battle.{page_break}We can't summon it.\nNot yet.{end_wait}
+05266	message	I practiced until\nmy head ached.{end_wait}
+05267	message	Maybe it's easy\nfor you. Not for me.{end_wait}
+05268	message	It takes practice.\nYou know that.{end_wait}
+05270	message	Maybe some powers\nwork on their own.{end_wait}
+05271	message	When we're afraid?{end_wait}
+05272	message	Like finding strength\nwhen you're in danger.{page_break}But we can't do it\non command.{end_wait}
 05274	message	Could we use this power\nat will, {actor_name:1}?{end_now}
-05275	message	Then we should try.{end_wait}
-05276	message	You're not listening,\nare you?{end_wait}
+05275	message	Then let's find out.{end_wait}
+05276	message	Are you even\nlistening to me?{end_wait}
 05278	message	Hroom! Why do you\nremain unchanged?{end_wait}
 05299	message	We'll leave it to you,\n{actor_name:1}. Help them.{end_wait}
-05303	message	Then they'll stay trees\nuntil they die?{end_now}
-05305	message	We can't leave\nthem like this.{end_wait}
-05306	message	How do we help Tret\nand lift the curse?{end_wait}
-05307	message	I don't know yet.{end_wait}
+05303	message	They'll stay like\nthis forever?{end_now}
+05305	message	We can't leave\nthem here like this.{end_wait}
+05306	message	How do we save\nTret and the village?{end_wait}
+05307	message	I don't know.\nNot yet.{end_wait}
 05308	message	{actor_name:3}, please.\nWe need your help.{end_wait}
-05310	message	Promise you'll do\nall you can for Kolima.{end_wait}
+05310	message	Promise you'll help\nthe people of Kolima.{end_wait}
 05312	message	I thought you'd leave,\n{actor_name:1}.{end_wait}
-05313	message	But how do we save\nTret and Kolima?{end_wait}
+05313	message	How can we save\nTret and Kolima?{end_wait}
 05314	message	I wish I knew.{end_wait}
-05316	message	We keep looking.\nThere must be a way.{end_wait}
+05316	message	Then we keep looking.\nThere has to be a way.{end_wait}
 05317	message	Then let's go.{end_wait}
 05322	message	Hroom! He cannot\nanswer you, child.{end_wait}
-05337	message	Wait! We can't\nlet Tret die!{end_wait}
+05337	message	Wait! If Tret dies,\nwhat happens to\nthe villagers?{end_wait}
 05338	message	We still need him,\n{actor_name:1}.{end_wait}
 05342	message	{actor_name:1}, remember.{page_break}Kolima still needs us.{end_wait}
 05343	MsgTretTurnedPeopleKolima	I turned them into trees?\nThose people...\nWhat have I done?{end_wait}
-05347	message	Tret's too weak\nto lift the curse.{end_wait}
-05348	message	Then we heal him.{page_break}We can't abandon\nthose people.{end_wait}
-05349	message	Their lives depend\non what we do next.{end_wait}
-05350	message	Restore Tret.\nThen save Kolima.{end_wait}
+05347	message	Tret's too weak\nto undo the curse.{end_wait}
+05348	message	Then we help him.{page_break}The villagers are\nstill waiting.{end_wait}
+05349	message	They're counting\non us.{end_wait}
+05350	message	Help Tret first.\nThen Kolima.{end_wait}
 05352	message	Try the water!{end_wait}
 05353	message	It may restore\nhis strength.{end_wait}
-05359	message	Hrooom...\nThe pain is fading.\nI can think again.{end_wait}
-05362	message	Forgive me, Laurel.\nI let my anger\nconsume the forest.{end_wait}
-05363	message	You came back for me?\nAfter what I did?{end_now}
-05366	message	{actor_name:1}! The villagers!\nAsk him to help!{end_wait}
-05367	message	Tret has his strength.\nHe can help them.{end_wait}
-05368	message	Ask him to undo\nwhat he did.{end_wait}
-05369	message	Tret, the villagers\nare still suffering.\nCan you free them?{end_wait}
-05372	message	I never held\nsuch power before.{end_wait}
-05373	message	It came with the stones\nthat fell from the sky.{end_wait}
+05359	message	Hrooom...\nI can think again.\nThe pain is gone.{end_wait}
+05362	message	Laurel, forgive me.\nI let my anger\nhurt them all.{end_wait}
+05363	message	You came back?\nAfter what I did?{end_now}
+05366	message	{actor_name:1}, the villagers!\nAsk Tret to help!{end_wait}
+05367	message	Tret can help them\nnow. Ask him!{end_wait}
+05368	message	He has to undo\nwhat he did.{end_wait}
+05369	message	Tret, they're still\ntrapped. Can you\nfree them?{end_wait}
+05372	message	I never had\nthis power before.{end_wait}
+05373	message	It came when stones\nfell from the sky.{end_wait}
 05374	message	Stones from the sky...\nPsynergy Stones?{end_now}
-05375	message	Could they really\nhave caused this?{end_wait}
+05375	message	Could the stones\nreally do this?{end_wait}
 05376	message	I don't want to believe\nit, either.{end_wait}
 05378	message	The stones fell\namong my branches.{end_wait}
-05379	message	I was angry.\nI wanted them to feel\nwhat I had lost.{page_break}But I never meant\nfor this to happen.{end_wait}
+05379	message	The stones fell\nwhile I was angry.{page_break}I wanted them\nto feel my pain.{page_break}I never meant\nfor this to happen.{end_wait}
 05380	message	The stones fell\nwhile I was grieving.\nI welcomed their power.{end_wait}
-05381	message	They gave your anger\nstrength. But the choice\nwas still yours.{end_wait}
-05382	message	Yes. I must answer\nfor what I have done.{end_wait}
+05381	message	The stones made\nyour anger stronger.{page_break}But you still chose\nwhat you did.{end_wait}
+05382	message	Yes. And I must\nmake it right.{end_wait}
 05384	message	Only the elder trees\nwere touched by them.{end_wait}
 05385	message	Other trees too?{end_wait}
 05386	message	Then this may be\nhappening elsewhere.{end_wait}
-05387	message	You fought beasts\non your journey here.{end_wait}
-05388	message	Perhaps they were\nordinary animals once.{end_wait}
-05389	message	They were living things.{page_break}The stones changed them.\nWe don't know how.{end_wait}
+05387	message	You met strange\nbeasts on the road.{end_wait}
+05388	message	They may once have\nbeen ordinary animals.{end_wait}
+05389	message	They were alive.{page_break}The stones changed\nthem somehow.{end_wait}
 05390	message	Laurel, did the stones\nchange you too?{end_wait}
-05391	message	The stones changed me,\nbut they did not\ncommand my heart.{end_wait}
+05391	message	The stones changed me.\nThey didn't decide\nwhat I would do.{end_wait}
 05392	message	Laurel? What is it?{end_wait}
 05393	message	Wait. You'll see.{end_wait}
 05394	message	What did you find, Laurel?{end_wait}
 05395	message	The animals have changed.{page_break}And south of the river...{end_wait}
 05397	message	Another forest\nhas changed there.{end_wait}
-05399	message	That land is dangerous.{page_break}If you go, be careful.{end_wait}
+05399	message	That forest is\ndangerous.{page_break}Please be careful\nif you go there.{end_wait}
 05400	message	Then stay here.\nThere's no shame in it.{end_wait}
 05402	message	May the earth\nkeep you safe.{end_wait}
 05403	message	We've grown stronger,\n{actor_name:1}.{end_wait}
