@@ -1,6 +1,6 @@
 # Suhalla interiors: Iodem questions the wounded soldiers after Babi's audience.
 09707	MsgSuhallaIodem	Iodem...{end_wait}
-09708	message	You were ordered to\nescort the party back\nto Lalivero.{end_wait}
+09708	message	You were meant to escort\nthe soldiers to Babi\nLighthouse.{end_wait}
 09709	message	Iodem... What are\nyou doing here?{end_wait}
 09710	message	Babi ordered me to go\nto the lighthouse with\n{actor_name:1}.{end_wait}
 09711	message	You were escorting\n{actor_name:7} to Lalivero,\nweren't you?{end_wait}
