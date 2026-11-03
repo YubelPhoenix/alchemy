@@ -536,8 +536,9 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
 }
 
 /// Ash Jenna, grey and hostile, confronts the party in the rain after Colosso.
-/// She continues her account of the Wise One's destruction, needles Mia about
-/// the Manticore, and directs the party toward the next lighthouse.
+/// She *blames* the Wise One for the destruction of her own world, but her
+/// accusation is unverified. She threatens people who obstruct her, needles
+/// Mia about the Manticore, and warns of the next lighthouse.
 static void Tolbi_MeetAshJenna(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkTolbiJennaFound);

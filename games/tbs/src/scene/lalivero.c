@@ -168,10 +168,11 @@ static void Lalivero_TalkToTorch(void) {
   Djinn_JoinParty(ACTOR_TORCH, ELEMENT_MARS, DJINNI_INDEX(DJINNI_TORCH));
 }
 
-/// Optional post-Venus coda for the Jenna from another world. Only available
-/// after the Tolbi encounter, so Isaac can recognize her and the earlier
-/// accepted/refused answer can receive its final callback. This exchange
-/// changes neither the original ending nor any lighthouse or ship state.
+/// Optional post-Venus showdown with Ash Jenna, the evil alternate Jenna from
+/// the sprite-animation canon. Her claim to come from a destroyed world is
+/// unverified. She remains dangerous and unrepentant; this is NOT a redemption
+/// scene. It follows the Tolbi encounter and callbacks Isaac's Lamakan choice,
+/// without changing the original ending, lighthouse or ship state.
 static void Lalivero_TalkToAshJenna(void) {
   Event_Start();
   Actor_FaceActor(ACTOR_LALIVERO_ASH_JENNA, ACTOR_PARTY_LEADER, 0);

@@ -546,3 +546,18 @@ At the pre-Venus arrival, the two wounded guards were defeated and Sheba was tak
 **Story standards reaffirmed:** Darker means concrete loss, fear, duty and conflicting claims, not an isolated sinister phrase in every optional NPC line. The group retains human warmth and humor. The Wise One's alleged wrongdoing remains Ash Jenna's unproven claim, not a newly declared fact. Ash Jenna is an **evil, ruthless antagonist** from the sprite-animation canon, never redeemed by her optional Lalivero confrontation. Kegare and Heart are unrelated optional antagonists. The abandoned Bloom/sleeper/caravan/harbor-child/Ivan-voices arcs remain removed. Avoid unnecessary wholesale rewriting of already-effective original dialogue.
 
 **Outstanding gates:** The GitHub Actions dialogue validator/ROM compiler/IPS patch must pass for this commit. In-game story-acceptance pass must follow the six locations in order, each of the three ship choices with both replies, Vale homecoming branches, coda-present versus absent in post-Venus Lalivero, and Alex's final reveal after the Jenna–Kraden island scene. Text validation is not evidence of runtime portrait, animation, or choice compatibility.
+
+
+## Source-speaker and unsupported-hook audit — 3 November 2026
+
+The new stable check list and explicit source-to-speaker map are in `docs/ashfall-final-story-acceptance-matrix.md`. This is the next gate toward the requested narrative quality standard. It distinguishes verified source/TSV static behavior from runtime/emulator playthrough cases that are **not yet verified**.
+
+**Three specific fixes from the source/readback audit:**
+
+- **Lamakan `MsgDarkEchoMiner` (N203):** `LamakanDesert_AshJennaFinale` speaks this line through **ACTOR_GARET**, but an earlier villain-character revision put cruel Ash Jenna sarcasm in his mouth: “How very generous.” This incorrectly made Garet mock Isaac for choosing to stay with the frightened Altin miner. Rewritten in Garet's voice as recognition of Isaac's care. Remains gated on `FLAG_DARK_MINER_STAYED`; rescuing without staying does not show it, and the choice does not precommit Isaac's answer to Ash Jenna.
+- **Ash Jenna post-Venus `MsgDarkLaliveroAshBelief` (N308):** “He let us die” was an imprecise claim coming from a survivor. It now says the Wise One “let our world die.” This is still her **hostile accusation**, not narrator-certified truth. Her threat that she wants him afraid is unaffected.
+- **Heart aftermath `MsgDarkHeartPrize` (N132):** After Heart has been defeated and disappears permanently from this TBS route, “We will meet again” promised a scripted rematch that does not exist. Her revised last line is still wrathful and unforgiving but does not promise a specific future appearance. Her dialogue, target identity error (Matthew, not Isaac), combat and defeat flags remain intact.
+
+**Source commentary corrections:** `lamakan_desert.c` identifies Garet as N203's actual speaker and the alleged alternate-world origin as Ash Jenna's testimony, not established history. `tolbi.c` no longer presents the Wise One's culpability as a narrator fact. `lalivero.c` describes Ash Jenna as an evil, unrepentant antagonist from the sprite-animation canon, not as a redeemed alternate.
+
+**Invariant check:** Existing message IDs and context names, exact control-token multisets, 27-character/3-line display limits, all source event conditions and branches preserved. The complete build and IPS patch still need this revision's workflow result, and the broader full playthrough/choice matrix remains pending. Compilation alone must not be called a complete 10/10 quality pass.

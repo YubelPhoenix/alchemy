@@ -8,7 +8,7 @@ N198	MsgDarkFinaleGaret	Why come to Isaac?\nWhat can he do\nthat you couldn't?{e
 N199	MsgDarkFinaleJenna3	He gave you a task.\nYou can reach him.\nThat makes you useful.{page_break}I'll make him answer\nfor what happened.\nHelp me, or stand aside.{end_wait}
 N200	MsgDarkFinaleIvan	She wants Isaac to\nbring her closer to him.\nWe can't trust her.{end_wait}
 N201	MsgDarkFinaleMia	She may believe it.\nBut look what she's\nasking Isaac to do.{end_wait}
-N203	MsgDarkEchoMiner	You risked your life\nfor those miners.\nHow very generous.{end_wait}
+N203	MsgDarkEchoMiner	You stayed with that\nminer when he was afraid.\nI remember that, Isaac.{end_wait}
 N208	MsgDarkFinaleAsk	Help her confront\nthe Wise One?{end_now}
 N209	MsgDarkFinaleYesIsaac	I'll help find the truth.\nBut I won't hurt\nanyone for you.{end_wait}
 N210	MsgDarkFinaleYesJenna	We'll see how long\nyou hold to that\nwhen the time comes.{end_wait}

@@ -315,9 +315,11 @@ static void LamakanDesert_SayMia(void) {
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
 }
 
-/// After the Manticore, Ash Jenna reveals her origin and asks Isaac to help
-/// her confront the Wise One. The miner's rescue is remembered, but it does not
-/// decide Isaac's answer. Once.
+/// After the Manticore, the hostile Ash Jenna claims to come from a lost
+/// world and tries to recruit Isaac against the Wise One. Her accusation is
+/// unverified, and she is not redeemed. Garet (not Ash Jenna) voices the
+/// optional Altin miner callback, affirming Isaac's decision to stay.
+/// The rescue does not decide Isaac's answer. Once.
 static void LamakanDesert_AshJennaFinale(void) {
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
