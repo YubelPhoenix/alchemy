@@ -1,6 +1,6 @@
 # Lamakan confrontation: Ash Jenna's origin, her offer, and Isaac's response.
 N224	MsgDarkFinaleJennaMet	You came back. I wondered\nif you would.{end_wait}
-N225	MsgDarkFinaleIsaacMet	You watched us in the sand.\nYou knew what happened.\nWho are you?{end_wait}
+N225	MsgDarkFinaleIsaacMet	You spoke to us\nin the desert.\nWho are you?{end_wait}
 N195	MsgDarkFinaleJenna1	You kept walking, so you\nhave earned an answer. I'll\ntell you what I am.{end_wait}
 N196	MsgDarkFinaleIsaac1	You aren't our Jenna. So\nwho are you?{end_wait}
 N197	MsgDarkFinaleJenna2	I am a Jenna from a world\nthe Wise One destroyed.{page_break}I survived what he left.\nI will not let him do it\nto another world.{end_wait}
@@ -8,7 +8,7 @@ N198	MsgDarkFinaleGaret	Then what do you want from\nus? From Isaac?{end_wait}
 N199	MsgDarkFinaleJenna3	The beacons destroyed my\nworld. He will do it again.{page_break}I can help you stop him.\nBut you must decide whether\nyou trust me.{end_wait}
 N200	MsgDarkFinaleIvan	She believes what she's\nsaying, Isaac. But I don't\nthink she's told us all.{end_wait}
 N201	MsgDarkFinaleMia	If she's telling the truth,\nwe need to know more.\nRevenge won't guide us.{end_wait}
-N203	MsgDarkEchoMiner	You stayed with that miner\nuntil the end. I saw you.{end_wait}
+N203	MsgDarkEchoMiner	You helped those miners\nwhen you could have\nwalked away.{end_wait}
 N208	MsgDarkFinaleAsk	Take her offer?{end_now}
 N209	MsgDarkFinaleYesIsaac	All right. I'll help you\nmake him answer for what\nhe did.{end_wait}
 N210	MsgDarkFinaleYesJenna	Then stay close. The next\nbeacon will prove I was\nright.{end_wait}
