@@ -59,46 +59,46 @@
 06390	message	Others lost their\nhomes and their work.\nWe can spare a bed.{end_wait}
 06391	message	Some people have lost\neverything they owned.{page_break}They'll need help\nlong after the water\nis gone.{end_wait}
 06392	MsgAltinIdGiveAnythingForSomeoneTo	I'd give anything to have\nAltin back the way it was.{page_break}You look young, but if\nyou can fight, please help.\nWe can't do it alone.{end_wait}
-06393	MsgAltinICameFromXianICook	I came from Xian.\nI cook good food.\nEat up!{end_wait}
+06393	MsgAltinICameFromXianICook	I came here from Xian.\nI cook for the miners.\nPlease, eat something.{end_wait}
 06394	MsgAltinNoneOfUsCanGoHome	None of us can go\nhome until the\nwater subsides.{end_wait}
 06395	MsgAltinTheGuestsInRoomOneMoved	The guests in Room One\nwent home when the\nwaters receded.{end_wait}
 06396	MsgAltinTheGuestsInRoomTwoAlso	The guests in Room Two\nalso went home when the\nwaters receded.{end_wait}
 06397	MsgAltinWellComeThroughThisAllRight	We'll survive this.\nWe have to.{page_break}But saying that won't\nrebuild a single home.{end_wait}
 06398	MsgAltinIKnowTheyDontLookSo	I know they don't look\ntough, but they are\nwarriors,{page_break}so maybe they can\nhelp us.{end_wait}
-06399	MsgAltinIBecameACookAfterI	I became a cook after\nI came to Altin, but I\nstill cook well.{end_wait}
+06399	MsgAltinIBecameACookAfterI	I learned to cook\nbefore I came to Altin.{page_break}At least I can still\nfeed the people here.{end_wait}
 06400	MsgAltinMostOfTheVillageIsStill	Most of the village is\nstill submerged...{page_break}It will be a long time\nbefore Altin is what\nit was.{end_wait}
 06401	MsgAltinItLooksLikeTheWaterHas	The water has receded\na little,{page_break}but it will be a long\ntime before Altin is\nwhat it was.{end_wait}
 06402	MsgAltinNoMatterWhatHappensIdNever	No matter what happens,\nI will never abandon\nAltin.{end_wait}
 06403	MsgAltinOfCourseOurHouseWillBe	Our house is ruined.\nMy husband says we\nshould stay.{page_break}I don't know whether\nI have the strength.{end_wait}
 06404	MsgAltinLeavingAltinForTolbiWellThats	Leave Altin for Tolbi?\nWe don't even have\nthe money to travel.{end_wait}
-06405	MsgAltinNowIFinallyHaveAnExcuse	Now I finally have an\nexcuse to move to my\nfavorite town{em_dash}Tolbi!{end_wait}
+06405	MsgAltinNowIFinallyHaveAnExcuse	I used to dream of\nmoving to Tolbi.{page_break}Now I can't imagine\nleaving Altin behind.{end_wait}
 06406	MsgAltinNotManyPeopleComeUpSilk	Few people come up\nSilk Road to Altin.\nYou are an odd lot.{end_wait}
-06407	MsgAltinItsBeenALongTimeSince	It has been a long time\nsince I got a break from\nhousework. Funny.{end_wait}
+06407	MsgAltinItsBeenALongTimeSince	I used to complain\nabout housework.{page_break}I'd give anything\nfor an ordinary day.{end_wait}
 06408	MsgAltinOfCourseYouCantGoWest	You can't go west\nof the mountains\nwithout Silk Road.{end_wait}
-06409	MsgAltinIHateSittingAroundLikeThis	I hate sitting around\nlike this. I want to\ngo home!{end_wait}
-06423	MsgAltinThankYouSoMuchForDefeating	Thank you for defeating\nthe hydros statues\nin the mine.{end_wait}
+06409	MsgAltinIHateSittingAroundLikeThis	I'm tired of waiting.\nI want to go home.{page_break}But there's still\nwater in the street.{end_wait}
+06423	MsgAltinThankYouSoMuchForDefeating	Thank you for defeating\nthe water beasts\nin the mine.{end_wait}
 06424	MsgAltinDidSeeWaterGushingOut	Did you see water gush\nout when you slew those\nhydros creatures?{end_now}
 06425	message	I see... So the water\nmonsters were like\ngiant water tanks...{end_wait}
 06426	message	Really... Then how did\nthey carry all that\nwater?{end_wait}
-06427	MsgAltinOnceTheMineOpensAgainWell	Once the mine opens\nagain, we'll get back\non our feet.{end_wait}
+06427	MsgAltinOnceTheMineOpensAgainWell	Once the mine is safe,\nwe can return to work.{page_break}It won't be easy,\nbut we have to try.{end_wait}
 06428	MsgAltinTheyAlreadyStartedMiningTheUpper	The upper shafts are\nopen again.{page_break}No one will work below\nuntil we know they're\nsafe.{end_wait}
 06429	MsgAltinTheWaterDrainedOutOfThe	The water drained out\nthrough the cracks,\nas I expected.{page_break}The rain still falls,\nand the remaining water\nwill sit for a while.{end_wait}
-06430	MsgAltinThankGoodnessTheVillageIsFree	Thank goodness the\nvillage is free of\nthe monsters' water.{end_wait}
+06430	MsgAltinThankGoodnessTheVillageIsFree	The beasts are gone.\nAt last, the water\nis going down.{end_wait}
 06431	MsgAltinOnesWhoDefeatedWaterBeasts	Are you the ones who\ndefeated the water\nbeasts?{end_now}
-06432	message	We would be obliged if\nyou would also help\nrebuild the village.{end_wait}
-06433	message	I heard our rescuers\nwere young. I would like\nto meet them.{end_wait}
+06432	message	If you can spare time,\nwe still need help\nrebuilding the village.{end_wait}
+06433	message	They say our rescuers\nwere young travelers.{page_break}I wish I could\nthank them myself.{end_wait}
 06434	MsgAltinTheVillageWentRightBackTo	The monsters are gone,\nbut the damage remains.{page_break}It will take months\nto rebuild Altin.{end_wait}
 06435	MsgAltinSoThoseHydrosCreaturesReallyWere	The guardians became\nthose water beasts?{page_break}Then what changed\nthem in the first\nplace?{end_wait}
-06436	MsgAltinTrueFoundAncientRuinsIn	Is it true you found\nancient ruins in the\ndeepest part of the mine?{end_now}
-06437	message	Really? I always thought\nthat mine held some kind\nof secret.{end_wait}
-06438	message	Hmm, are you sure you\nwent down there?{page_break}Someone ought to\ngo and check.{end_wait}
+06436	MsgAltinTrueFoundAncientRuinsIn	Did you find ruins\nbeneath the mine?{end_now}
+06437	message	So it's true...\nThere's something\nancient down there.{end_wait}
+06438	message	Are you certain?\nPerhaps someone else\nshould investigate.{end_wait}
 06439	MsgAltinWeCanGoBackToWork	The upper mine is\nopen again.{page_break}There's work to do,\nbut we'll take it\none shaft at a time.{end_wait}
 06440	MsgAltinIWasAfraidMoreWaterWould	I feared the beasts\nwould release more\nwater when they fell.{page_break}I'm relieved I was\nwrong about that.{end_wait}
 06441	MsgAltinIHopeAltinMineWillThrive	I hope the mine can\nsupport Altin again.{page_break}We need steady work,\nnot another rush\nfor buried riches.{end_wait}
 06442	MsgAltinTheWaterSeepedIntoTheMine	Water soaked the\nmine shafts.{page_break}Loose stone could\nbring the ceiling\ndown on us.{end_wait}
 06443	MsgAltinItsSoHumidInsideThatCave	It's so humid inside\nthat cave. It feels\nawful and sticky!{end_wait}
 06444	MsgAltinThatStrangeChamberInTheMines	There's a chamber\ndeep in the mine.{page_break}I heard something\nstrange there. I won't\ngo back alone.{end_wait}
-06445	MsgAltinYouFoughtPrettyWellDespiteAll	You fought well despite\nall the foul water\nthe beasts spewed.{end_wait}
+06445	MsgAltinYouFoughtPrettyWellDespiteAll	You stood against\nthose water beasts.{page_break}I wouldn't have had\nthe courage.{end_wait}
 06446	MsgAltinThatMineIsFullOfHoles	The mine has cracks\nand deep chasms.{page_break}That's where much\nof the floodwater\nwent.{end_wait}
 06447	MsgAltinTheOldGuardianStatuesAlwaysCreeped	Those old statues\nalways frightened me.{page_break}I never thought\nI'd see them move.{end_wait}
 06448	MsgAltinIUsedToFindAllSorts	We found artifacts\nwhile digging.{page_break}Perhaps they came\nfrom the ruins\nbelow the mine.{end_wait}
@@ -120,18 +120,18 @@
 06464	MsgAltinIWonderIfMomAndPop	Did Mom and Pop know\nabout the monument\nin the mine?{end_wait}
 06465	MsgAltinYoullHaveFindPassageIn	With Silk Road blocked,\nyou'll need the passage\nthrough the mine.{end_wait}
 06466	MsgAltinIveHeardOfAPassageIn	I've heard there's\na western passage\nthrough the mine.{page_break}I've never met\nanyone who found it.{end_wait}
-06467	MsgAltinHowAboutArentImpressedBy	How about it? Are you\nimpressed by our armor\nselection?{end_wait}
-06468	MsgAltinWellIfYouAreImpressedThen	If you're impressed,\nthen buy something!{end_wait}
-06469	MsgAltinGirlFromXianBoughtLot	The girl from Xian\nbought a lot. Is she on\na journey?{end_wait}
-06470	MsgAltinTheGirlFromXianBoughtAll	The girl from Xian\nbought all the goods\nthat had been submerged.{end_wait}
+06467	MsgAltinHowAboutArentImpressedBy	What do you think\nof our armor?{end_wait}
+06468	MsgAltinWellIfYouAreImpressedThen	If it suits you,\nconsider buying some.{end_wait}
+06469	MsgAltinGirlFromXianBoughtLot	That girl from Xian\nbought supplies here.{page_break}She seemed ready\nfor a long journey.{end_wait}
+06470	MsgAltinTheGirlFromXianBoughtAll	The girl from Xian\nbought our damp stock.{page_break}She paid full price.\nI won't forget that.{end_wait}
 06471	MsgAltinThereSmallTempleWestAltin	There's a small temple\nwest of Altin Mine.{page_break}I wonder whether\nthe flood reached\nthat far.{end_wait}
 06472	MsgAltinThereIsAnEndlessDesertWest	Beyond the mountains\nlies a desert.{page_break}Take plenty of water\nif you intend\nto cross it.{end_wait}
 06473	MsgAltinWestOfTheMountainsIsVery	The desert west\nof here is brutal.{page_break}Travel early, rest\nwhen you can, and\nwatch your water.{end_wait}
-06474	MsgAltinThereFewBeastsInMine	A few beasts remain in\nthe mine, but they are\ndown deep, right?{end_now}
-06475	message	Good. Then we can mine\nthe upper passages.{end_wait}
-06476	message	If they're in the upper\npassages, we can't\nmine as we used to.{end_wait}
+06474	MsgAltinThereFewBeastsInMine	There are still beasts\nin the lower mine,\naren't there?{end_now}
+06475	message	Then the upper shafts\nmay be safe enough\nto reopen.{end_wait}
+06476	message	Then we must keep\nthe miners out until\nthe beasts are gone.{end_wait}
 06477	MsgAltinIThinkThatTempleWasCalled	I think it's called\nLama Temple.{page_break}People say its monks\nknow unusual arts.{end_wait}
-06478	MsgAltinYouWontBeAbleToGo	You can't go to the\ndesert for a while.\nSilk Road is blocked.{end_wait}
-06479	MsgAltinNoOneCanGoWestOf	No one can go west of\nthe mountains now.{end_wait}
+06478	MsgAltinYouWontBeAbleToGo	Silk Road is blocked.\nYou can't cross it\nfor now.{end_wait}
+06479	MsgAltinNoOneCanGoWestOf	No one can travel\nwest by Silk Road\nwhile it's blocked.{end_wait}
 06480	MsgAltinItWillTakeSomeTimeBefore	Altin won't recover\novernight.{page_break}But the water is\nfalling, and we can\nfinally begin.{end_wait}
 10660	MsgAltinThePotsAndPansAreRusted	The pots and pans\nare rusted...{end_wait}
