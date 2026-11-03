@@ -1,11 +1,11 @@
 # Ash Jenna confronts the party in Tolbi after Colosso.
-N74	MsgDarkTolbiJennaFound	You remember what I said\nin Lamakan. The Wise One\nhas noticed you, too.{page_break}He will not let you reach\nthe next lighthouse\nwithout watching.{end_wait}
-N75	MsgDarkTolbiIsaacGrey	We heard your warning\nin Lamakan. Why have\nyou come to Tolbi?{end_wait}
-N76	MsgDarkTolbiJennaAsh	The next lighthouse\nwill be lit.{page_break}And the Wise One\nwill be watching.\nHe always watches.{end_wait}
-N77	MsgDarkTolbiGaretFire	You said the Wise One\ndestroyed your world. Is\nthat what you fear here?{end_wait}
-N78	MsgDarkTolbiJennaPlease	I know what follows when\nhe gets what he wants. You\nwill learn soon enough.{end_wait}
-N79	MsgDarkTolbiMiaSneer	You came to frighten us.\nWe won't follow you\nblindly.{end_wait}
-N80	MsgDarkTolbiJennaMia	Still defending everyone,\nMia? You admitted you\nwanted the beast to suffer.{end_wait}
-N81	MsgDarkTolbiMiaPlace	I was angry. I won't deny\nit. But you don't get to\nturn that into my nature.{end_wait}
-N82	MsgDarkTolbiJennaGoing	Go to the next lighthouse,\nIsaac. You'll see what the\nWise One is hiding.{end_wait}
-N83	MsgDarkTolbiIsaacWait	Wait! What happened to\nyour world? What did he\ndo?{end_wait}
+N74	MsgDarkTolbiJennaFound	So you've come\nto Tolbi after all.{page_break}Still chasing answers,\nIsaac?{end_wait}
+N75	MsgDarkTolbiIsaacGrey	What do you want?\nYou said enough\nin Lamakan.{end_wait}
+N76	MsgDarkTolbiJennaAsh	The next beacon\nwill burn, too.{page_break}I think the Wise One\nis counting on it.{end_wait}
+N77	MsgDarkTolbiGaretFire	You said your world\nwas destroyed.\nWhy believe you?{end_wait}
+N78	MsgDarkTolbiJennaPlease	You don't have to\nbelieve me, Garet.\nJust keep watching.{end_wait}
+N79	MsgDarkTolbiMiaSneer	You came to scare us.\nWe're not giving up.{end_wait}
+N80	MsgDarkTolbiJennaMia	You were so angry\nwhen that beast fell,\nweren't you, Mia?{end_wait}
+N81	MsgDarkTolbiMiaPlace	I was angry.\nI won't deny it.\nBut I'm not like you.{end_wait}
+N82	MsgDarkTolbiJennaGoing	Keep going, Isaac.\nThe next lighthouse\nis waiting.{end_wait}
+N83	MsgDarkTolbiIsaacWait	Wait! Your world...\nWhat happened there?{end_wait}
