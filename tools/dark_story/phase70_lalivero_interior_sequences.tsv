@@ -1,41 +1,41 @@
 # Lalivero interiors: the report to Faran and the search for Sheba.
 # First account of the search and the fate of Idejima.
-10321	message	We were{pause_20_skippable} unable to\nfind any sign of her.{end_wait}
-10322	message	The sea is too rough\nfor us to search.{end_wait}
-10323	message	And on land, there is\nno trace of her...{end_wait}
-10324	message	Tolbi is responsible\nfor what happened to\n{actor_name:7}.{end_wait}
-10325	message	No apology can lessen\nthe grief I feel for\nyour loss, Faran...{end_wait}
-10326	message	All we can do for\n{actor_name:7} now is...\nhope.{end_wait}
-10327	message	But tell me, what of\n{actor_name:6} and the\nothers?{end_wait}
-10328	message	The same. We searched\neverywhere, but found\nno sign of them.{end_wait}
-10329	message	The lighthouse's shock\ntore the ground apart,\nand the ship...{end_wait}
-10330	message	Everything at Idejima,\nship included, was\nswept out to sea...{end_wait}
-10331	message	So Idejima itself\nwas washed out to sea?{end_now}
-10332	message	Incredible... Then the\ncave must have flooded\nas well?{end_wait}
-10333	message	But we believe {actor_name:6}\nand the others are\nstill alive.{end_wait}
-10334	message	They may have been\ncarried out to sea\nwith Idejima.{end_wait}
-10335	message	We will keep searching\nuntil we find {actor_name:6}.{end_wait}
-10336	message	Haven't we,\n{actor_name:1}?{end_now}
+10321	message	We searched...{pause_20_skippable} There\nwas no sign of her.{end_wait}
+10322	message	The sea is too rough.\nNo boat can get close\nto where she fell.{end_wait}
+10323	message	We searched the shore.\nThere was nothing.{end_wait}
+10324	message	Tolbi brought {actor_name:7}\ninto this. We cannot\ndeny our part in it.{end_wait}
+10325	message	I have no words that\ncan make this right,\nFaran.{end_wait}
+10326	message	We have not found\n{actor_name:7}. But that does\nnot mean she is gone.{end_wait}
+10327	message	And what of {actor_name:6}\nand the others?{end_wait}
+10328	message	We found no trace\nof them, either.{end_wait}
+10329	message	The shock from Venus\nsplit the land apart.\nThe ship...{end_wait}
+10330	message	Idejima broke away.\nThe ship went out\nto sea with it.{end_wait}
+10331	message	The whole peninsula\nwas swept out to sea?{end_now}
+10332	message	Then the passage\nbeneath the lighthouse\nmust be flooded.{end_wait}
+10333	message	We believe {actor_name:6}\nand the others\nmay still be alive.{end_wait}
+10334	message	If they reached\nthe ship, the current\nmay have carried them.{end_wait}
+10335	message	We will keep looking\nfor {actor_name:6}. We owe\nher that much.{end_wait}
+10336	message	Isn't that right,\n{actor_name:1}?{end_now}
 
 # Faran's response, the Adept discussion, and the farewell.
-10338	message	You need not worry\nabout {actor_name:7}...{end_wait}
-10339	message	We will find {actor_name:7}\nwithout fail...{end_wait}
-10340	message	{actor_name:7} has faced\ndanger before and\nsurvived.{end_wait}
-10341	message	But this time...\nIt would take a miracle.{end_wait}
-10342	message	Who could have known\nthe sea would rise just\nas she fell?{end_wait}
-10343	message	Would you truly call\nthat a miracle?{end_wait}
-10344	message	Was it a miracle, or\nmerely good fortune?{end_wait}
-10345	message	Call it coincidence,\nfor now.{end_wait}
-10346	message	Nothing is coincidence\nwhen it comes to this\nchild.{end_wait}
-10347	message	So you believe\n{actor_name:7} survived...?{end_wait}
-10348	message	Yes. I am certain.{end_wait}
-10349	message	Is that why you believe\n{actor_name:7} survived?\nBecause she's an Adept?{end_wait}
-10350	message	An Adept? What does\nthat mean?{end_wait}
-10351	message	Well, it's...{end_wait}
-10352	message	Someone with powers\nlike yours.{end_wait}
-10353	message	{actor_name:1}, you and your\nfriends are remarkable.{end_wait}
-10354	message	You entered the ancient\nruins and reached\nVenus Lighthouse.{end_wait}
-10355	message	But {actor_name:7} was different.\nShe could not enter\nthe ancient ruins.{end_wait}
+10338	message	Please do not give up\non {actor_name:7}.{end_wait}
+10339	message	We will search for\n{actor_name:7} as long as\nwe are able.{end_wait}
+10340	message	{actor_name:7} has survived\nthings no one else\ncould have endured.{end_wait}
+10341	message	But that fall...\nEven I cannot say\nwhat happened to her.{end_wait}
+10342	message	The sea rose as she\nfell. None of us\nexpected that.{end_wait}
+10343	message	You call that\na miracle?{end_wait}
+10344	message	Or was it only\na stroke of luck?{end_wait}
+10345	message	We cannot know yet.\nCall it chance.{end_wait}
+10346	message	I raised her.\nNothing about her\nwas ever ordinary.{end_wait}
+10347	message	Then you truly think\n{actor_name:7} is alive?{end_wait}
+10348	message	I have to believe\nshe is.{end_wait}
+10349	message	You believe {actor_name:7}\nsurvived because\nshe is an Adept?{end_wait}
+10350	message	An Adept? I have\nnever heard that word.{end_wait}
+10351	message	It's hard to explain.{end_wait}
+10352	message	Someone who can use\npowers like ours.{end_wait}
+10353	message	{actor_name:1}, your friends\nand you have done\nwhat we could not.{end_wait}
+10354	message	You found a way\nthrough the ruins\nto Venus Lighthouse.{end_wait}
+10355	message	But {actor_name:7} could not\npass through the ruins.\nWhy was that?{end_wait}
 10356	message	{actor_name:7} has powers\nunlike theirs. That is why\nshe could not enter.{end_wait}
 10357	message	I've told Faran this\nagain and again, but he\nstill will not believe me!{end_wait}
 10358	message	{actor_name:2}, that is\nunfair...{end_wait}
