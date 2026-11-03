@@ -1,7 +1,7 @@
 # Ash Jenna confronts the party in Tolbi after Colosso.
 N74	MsgDarkTolbiJennaFound	You remember what I said\nin Lamakan. The Wise One\nhas noticed you, too.{page_break}He will not let you reach\nthe next lighthouse\nwithout watching.{end_wait}
-N75	MsgDarkTolbiIsaacGrey	Ash Jenna. We know what\nyou told us in Lamakan.\nWhy are you here?{end_wait}
-N76	MsgDarkTolbiJennaAsh	I am watching what happens\nwhen the next lighthouse\nis lit.{page_break}The Wise One will be\nwaiting for you there. He\nalways is.{end_wait}
+N75	MsgDarkTolbiIsaacGrey	We heard your warning\nin Lamakan. Why have\nyou come to Tolbi?{end_wait}
+N76	MsgDarkTolbiJennaAsh	The next lighthouse\nwill be lit.{page_break}And the Wise One\nwill be watching.\nHe always watches.{end_wait}
 N77	MsgDarkTolbiGaretFire	You said the Wise One\ndestroyed your world. Is\nthat what you fear here?{end_wait}
 N78	MsgDarkTolbiJennaPlease	I know what follows when\nhe gets what he wants. You\nwill learn soon enough.{end_wait}
 N79	MsgDarkTolbiMiaSneer	You came to frighten us.\nWe won't follow you\nblindly.{end_wait}
