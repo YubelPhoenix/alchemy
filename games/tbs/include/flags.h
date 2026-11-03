@@ -2780,11 +2780,11 @@
 
 /// Ash Jenna's optional super boss in Vale has been fought and won
 /// (ValePlaza_TalkToAshJenna); a defeat clears it so she waits for a retry.
-#define FLAG_DARK_ASH_VALE_FOUGHT 0x8d8
+#define FLAG_DARK_ASH_VALE_FOUGHT 0x8dc
 
 /// Ash Jenna's fight at Suhalla Gate has been fought and won
 /// (SuhallaGate_TalkToAshJenna); a defeat clears it so she waits for a retry.
-#define FLAG_DARK_ASH_GATE_FOUGHT 0x8d9
+#define FLAG_DARK_ASH_GATE_FOUGHT 0x8dd
 
 /// Ash Jenna's Vale battle has been started and not yet settled
 /// (Vale_Initialize reads the result on return).
