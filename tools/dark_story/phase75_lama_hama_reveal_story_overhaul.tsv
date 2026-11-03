@@ -34,8 +34,8 @@
 06532	message	I have waited\nto teach you Reveal.{end_wait}
 06534	message	You will need Reveal\nto complete\nyour journey.{end_wait}
 06535	message	Jupiter Adepts may\nlearn it in time.{page_break}But time is\nwhat you lack.{end_wait}
-06536	message	Saturos is moving.{page_break}You cannot afford\nto lose his trail.{end_wait}
-06537	message	Saturos and his party\nblocked Silk Road.{end_wait}
+06536	message	Saturos is still moving.{page_break}Each delay puts\nmore lives at risk.{end_wait}
+06537	message	Saturos and his party\ntook the western road.{end_wait}
 06540	message	A terrible fate?\nWhat do you mean?{end_wait}
 06541	message	I cannot speak\nof that burden.{page_break}Please do not\nask me again.{end_wait}
 06542	message	We must speak\nof Reveal now.{end_wait}
@@ -49,7 +49,7 @@
 06552	message	Saturos and Menardi\nare Mars Adepts.{end_wait}
 06553	message	Their powers may\nshield them\nfrom the heat.{end_wait}
 06554	message	How can Reveal\nhelp us survive?{end_wait}
-06555	message	Reveal can uncover\noases hidden\nby the heat.{end_wait}
+06555	message	Reveal can expose\nwater hidden\nby a mirage.{end_wait}
 06556	message	Can't we just\nlook for water?{end_wait}
 06557	message	Do you know\nwhat a mirage is?{end_now}
 06558	message	The desert is full\nof false images.{page_break}Without Reveal,\nyou may pass\nreal water by.{end_wait}
@@ -73,7 +73,7 @@
 06587	message	Master Hama, wait!\nWhat about Reveal?{end_wait}
 06589	message	Feizhi's gift\nhas awakened.{page_break}I believe you\ncan learn as well.{end_wait}
 06590	message	Use Reveal\nto cross the desert.{end_wait}
-06591	message	Your power is new.{page_break}Some oases may\nremain hidden.{end_wait}
+06591	message	You have learned Reveal.{page_break}Trust it when\nthe desert deceives you.{end_wait}
 06595	message	No... Yet somehow\nshe feels familiar.{end_wait}
 06597	message	Then we should\nleave at once!{end_wait}
 06598	message	The desert may\nhave slowed them.{page_break}We must not\nlose more time.{end_wait}
