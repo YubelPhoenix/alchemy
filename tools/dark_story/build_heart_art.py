@@ -26,9 +26,13 @@ SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
 FRAMES = 12
-# The source poses are 128x128 pixel art, so exactly half size (idle ~48 rows)
-# keeps their pixels clean; every pose uses it so proportions always match.
-SCALE = 0.5
+# Source poses are 128x128. The battle frame is only 64x64, so fill it as far
+# as it goes: idle ~58 rows (0.6x).  sprites.tsv lowers SPR_484's draw scale to
+# 0x100 * 0.5 / 0.6 = 0xd5 so she appears on screen at the same size as before,
+# only with more of the original detail.  Every pose uses this scale; a pose
+# too wide for the frame (the lunge) is shrunk just enough to fit.
+SCALE = 0.6
+MAX_WIDTH = 62
 # (source pose number, mirror so she faces the party on the right, rise)
 LAYOUT = [
     (1, True, 0), (1, True, 0),
@@ -67,15 +71,16 @@ for index, (number, mirror, rise) in enumerate(LAYOUT):
     art = src.crop(bounds)
     if mirror:
         art = art.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-    width = max(1, round(art.width * SCALE))
-    height = max(1, round(art.height * SCALE))
+    scale = min(SCALE, MAX_WIDTH / art.width)
+    width = max(1, round(art.width * scale))
+    height = max(1, round(art.height * scale))
     if width > FRAME or height > FRAME:
-        raise ValueError(f"pose {number} does not fit a frame at scale {SCALE:.3f}")
+        raise ValueError(f"pose {number} does not fit a frame at scale {scale:.3f}")
     # Premultiply before resampling so the edge does not pick up black.
     arr = np.asarray(art, dtype=np.float64)
     alpha = arr[..., 3:] / 255.0
     pre = Image.fromarray(np.dstack([arr[..., :3] * alpha, arr[..., 3:]]).astype(np.uint8), "RGBA")
-    pre = pre.resize((width, height), Image.Resampling.BOX)
+    pre = pre.resize((width, height), Image.Resampling.LANCZOS)
     p = np.asarray(pre, dtype=np.float64)
     a = np.clip(p[..., 3:] / 255.0, 1e-6, 1)
     art = Image.fromarray(np.dstack([np.clip(p[..., :3] / a, 0, 255), p[..., 3:]]).astype(np.uint8), "RGBA")
@@ -111,7 +116,7 @@ for n in range(FRAMES):
     ys, xs = np.nonzero(f)
     assert ys.max() <= FRAME - 1 and xs.min() >= 0 and xs.max() < FRAME
 indexed.save(DEST, optimize=False)
-print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, scale {SCALE:.3f}, "
+print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, scale {SCALE:.2f}, "
       f"{len(set(indices[visible].tolist()))} colours from the shared palette")
 
 # Claude's portrait hook already points at ICON_66. Replace that placeholder
