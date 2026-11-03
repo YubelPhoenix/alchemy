@@ -572,3 +572,12 @@ The new stable check list and explicit source-to-speaker map are in `docs/ashfal
 
 **Do not overclaim:** A successful workflow verifies the updated game builds and these static contracts, *not* that custom graphics exactly match the animation, the overworld tint is attractive, the game is balanced, or that all event branches have been played. The full in-game acceptance matrix is still at `docs/ashfall-final-story-acceptance-matrix.md`. All authored alternate dialogue, hostility and original ending stay unchanged in this pass.
 
+
+
+## Creator's 3 November pre-play release gate
+
+The route-wide audit was recorded at `docs/ashfall-preplay-audit-2026-11-03.md`. Its 77 TSV source files contain 4,235 dialogue replacements; previous full build of `3860ca4` succeeded with IPS patch generation and story-contract checks. An audit of the direct numeric `FLAG_DARK_*` definitions found no collisions with other explicitly numeric flags. No active custom Bloom/sleeper/harbor-child myth dialogue was found in the complete TSV text scan; original Hammet's caravan, Feizhi's established development and a dreamer's ordinary waking state are not those cut plots.
+
+**Pre-play engine safety repair:** The global ash tint is already disabled by the scene manager, yet `PaletteFade_Initialize` still allocated nearly 900 bytes for its unscheduled frame cache in *every scene*. The cache and dead task are removed, and the original `sizeof(*work)` palette-fade allocation is restored in `color.c`. `check_story_contract.py` now asserts the no-cache invariant. This reduces unnecessary EWRAM pressure; it **does not prove** the reported A-button world-map freeze is fixed.
+
+**STOP/TEST FIRST:** The creator has observed a world-map freeze when pressing A, sometimes avoided after entering a town. Reproduce or exclude it in the fresh patch before a long playthrough, including after world-map Djinn capture and the Mercury solo-party interlude. The old `Djinn_JoinParty` diagnostic workaround remains and cannot be treated as a verified solution. In-game story/portrait/collision and branch tests are still required. No unplayed scene is signed off at 10/10.

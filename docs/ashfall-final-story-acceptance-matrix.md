@@ -1,6 +1,6 @@
 # Ashfall final story acceptance matrix
 
-> Status as of 3 November 2026. Static source and dialogue inspection is **not** a substitute for playing the patched ROM. An item marked PENDING is not accepted, even if dialogue validation and compilation succeed.
+> Status as of 3 November 2026. See the **current pre-play audit** at [Ashfall Pre-play Audit](ashfall-preplay-audit-2026-11-03.md), including the world-map A-button freeze and the dormant palette-cache cleanup. Static source/dialogue inspection is **not** a substitute for playing the patched ROM. An item marked PENDING is not accepted, even if compilation succeeds.
 
 ## The narrative contract
 

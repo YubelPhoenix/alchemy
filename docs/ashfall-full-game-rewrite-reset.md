@@ -2,7 +2,7 @@
 
 Branch: `dark-story-rewrite`
 Scope: the complete Golden Sun: The Broken Seal story, from the opening storm in Vale through the original ending and final ship departure.
-Status: rewrite charter; implementation proceeds in chronological, source-verified passes.
+Status: retained rewrite charter, reconciled with the pre-play audit on 3 November 2026. The active continuity ledger and pre-play audit supersede all abandoned-pitch references.
 
 ## Purpose
 
@@ -28,9 +28,9 @@ The rewrite will be performed in actual game order, with a continuity checkpoint
 2. **Vale departure, Bilibin and Kolima:** post-eruption states, Bilibin, Treasury, Barricade, Kolima, Tret, forest, Mind Read and all curse-dependent dialogue.
 3. **Imil and Mercury Lighthouse:** sick-village states, Mia's introduction, lighthouse progression, Aerie confrontation, healing fountain, Imil recovery and farewell.
 4. **Bilibin riverbank and western journey:** Gang of Three, Jill rescue states, Mogall Forest, Xian, Altin, mine and water-beast progression.
-5. **Altin Peak and Lamakan Desert:** miner rescue and aftermath, awakened/voice storyline, Manticore, Mia's aftermath, caravan choice, Ash Jenna's first revelation and all consequences.
+5. **Altin Peak and Lamakan Desert:** optional miner rescue and stay decision, Manticore, Mia's grounded aftermath, and Ash Jenna's first hostile revelation plus Isaac's accept/refuse choice. No awakened/voices or custom caravan plot.
 6. **Kalay and Karagol Sea:** palace visits, Layana/Ivan state, crossing, ship events and transition to Tolbi.
-7. **Tolbi, Colosso and Altmiller Cave:** festival states, Babi's absence and rescue, tournament progression, Colosso aftermath, Ash Jenna continuation, harbor storyline and optional Kegare access.
+7. **Tolbi, Colosso and Altmiller Cave:** festival states, Babi's absence and rescue, tournament progression, Colosso aftermath, Ash Jenna's hostile return, and optional Kegare. The old harbor-child subplot is removed.
 8. **Post-Tolbi journey:** Gondowan Passage, Suhalla, Babi Lighthouse and Lalivero, with all pre-/post-event variants.
 9. **Venus Lighthouse and Aerie:** approach, puzzles, confrontations, battles, beacon sequence, Sheba's fall and the immediate aftermath.
 10. **Return to Lalivero and finale:** Iodem's farewell, Black Orb, wharf, Lemurian ship, final scenes and ending.
@@ -41,12 +41,12 @@ The exact ordering of optional encounters and revisits will be confirmed against
 
 Before a custom storyline is expanded, its core facts must be written once and kept consistent across every appearance. At minimum, track:
 
-- the lighthouses, their effect on the awakened, and what lighting each beacon changes;
-- the awakened, the voices Ivan hears, and the relationship between separate encounters;
+- the original game's lighthouses, Psynergy Stones, changed wildlife and other established Alchemy phenomena, without inventing an "awakened" faction;
+- Ivan's actual original abilities and knowledge, without fabricated phantom voices or a disconnected sleeper/ghost plot;
 - Ash Jenna's identity, history, knowledge, objective, and progression from Lamakan through Tolbi and later scenes;
 - Mia's emotional progression, including the Manticore aftermath and her later decisions;
-- the harbor child and the cause and consequences of the voices at Tolbi;
-- Kegare's distinct identity and intention to imitate and replace Mia;
+- the *removed* harbor-child/caravan subplot, kept only as a non-reintroduction constraint; Tide Shard kindness scenes are optional and independent;
+- Kegare's distinct identity and intention to imitate Mia, independent of Ash Jenna and Heart;
 - Heart's distinct identity, purpose, battle, and dialogue;
 - all branch choices, flags, callbacks, and ending consequences.
 

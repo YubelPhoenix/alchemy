@@ -107,17 +107,13 @@ static inline void WorldState_TintPalettes(void) {
   PaletteFade_SetTarget(PALETTE_TINT_NONE, PALETTES_ALL);
 }
 
-/// The task that keeps the ash tint on whatever a scene puts on the screen
-/// after it has loaded (color.c).
-void PaletteFade_KeepAshTint(void);
-
-/// Kept for scenes that used to tint themselves: the ash tint is now applied
-/// to every scene as it loads (SceneManager_Run), so this does nothing.
+/// Compatibility hook for scenes written before the full-game review.
+/// The global ash-tint renderer was disabled; this function intentionally
+/// does nothing until a new visual design has been separately validated.
 static inline void WorldState_ApplyTintOnly(void) {}
 
-/// Starts the world's current weather: from stage 2 (Mercury Lighthouse lit)
-/// the endless rain. The ash tint from stage 1 on is applied to every scene by
-/// SceneManager_Run, so scenes no longer tint themselves.
+/// Starts the current weather effect: rain in scenes that opt in once the
+/// Mercury Lighthouse has been lit. No global grey tint is enabled.
 static inline void WorldState_Apply(void) {
   if (WorldState_GetStage() >= 2) {
     Weather_StartRain();

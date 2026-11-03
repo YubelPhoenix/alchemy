@@ -260,7 +260,19 @@ def check_story_text() -> None:
             "Garet's miner callback must not borrow Ash Jenna's contempt")
 
 
+def check_dormant_palette_cache_is_disabled() -> None:
+    color = read("games/tbs/src/overworld/overworld/color.c")
+    scene_manager = read("games/tbs/src/overworld/overworld/scene_manager.c")
+    require("ASH_TINT_BYTES" not in color,
+            "Dormant ash tint must not allocate unused EWRAM")
+    require("work = AllocHeapSlotEwram(HEAP_SLOT_PALETTE_FADE, sizeof(*work));" in color,
+            "Palette fade must use original heap allocation size")
+    require("PaletteFade_KeepAshTint" not in scene_manager,
+            "Disabled palette renderer must not be scheduled")
+
+
 def main() -> None:
+    check_dormant_palette_cache_is_disabled()
     check_visual_identity()
     check_flags_and_quest_order()
     check_optional_battles()
