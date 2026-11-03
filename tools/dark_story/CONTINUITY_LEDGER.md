@@ -338,3 +338,40 @@ Altin Peak's trapped-miner encounter remains, but it is now a conventional mine-
 Ash Jenna's motivation has been simplified. She is a Jenna from a world she says the Wise One destroyed, and she wants Isaac's help confronting him. The Lamakan scene presents this as her account and her offer, not as an objective explanation of a new supernatural system. The Tolbi encounter continues that conflict without sleepers, awakened people, harbor voices, or lighthouse doors.
 
 Isaac now makes one clear choice: accept or refuse Ash Jenna's offer. Mia does not abruptly abandon the party because of the miner decision. The old Bloom branch, Mogall door mercy flag, supernatural Ivan dialogue, and divided-ending departure have been retired.
+
+
+## Final editorial review — opening to ending (2 November 2026)
+
+This is a narrative editorial assessment of the existing rewrite text, **not** certification that every scene, branch, and event trigger has been playtested. The source-defined chronology and state maps above remain authoritative.
+
+### Story spine and editorial priorities
+
+1. **Vale storm and departure (phase1, phase2, phase5):** The storm's urgency and the family stakes are effective. Protect the contrast between ordinary family warmth and sudden catastrophe. Several departure NPCs deliver similar warnings or hopes; vary their concrete concerns instead of repeating "come home" or "be careful." Preserve all alternate answers and revisit flags.
+2. **Sol Sanctum (phase2_sanctum):** Kraden's curiosity and the party's caution are established, but puzzle exposition sometimes repeats what the player has just observed. Keep clues that guide gameplay; trim only redundant explanation after checking message triggers and control tokens. The first discovery should feel dangerous as well as wondrous.
+3. **Bilibin / Kolima / Imil / Mercury:** The strongest throughline is harm to ordinary people followed by partial recovery. Ensure Mia's compassion and responsibility are shown in action rather than delivered as repeated moral statements. Keep cursed/cured and pre-/post-Mercury dialogue states distinct.
+4. **Mogall / Xian / Altin / Lama / Lamakan:** The geographical order is established above. Avoid reintroducing the retired Bloom, supernatural hearing, or Mogall Alex scenes. The miners' recovery and Ash Jenna's warnings must not imply the same causal mechanism. Hama's Reveal scene should preserve the desert's mechanical instructions while allowing Ivan a recognizable voice.
+5. **Kalay / Tolbi / Colosso / Babi:** Babi's urgency is understandable but should not erase his responsibility for the cost borne by workers and Lalivero. Distinguish the period when Babi is missing from the later audience. Keep the optional kindness/miner callbacks subordinate to the main plot.
+6. **Suhalla / Babi Lighthouse / Lalivero:** The soldiers and civilians have increasingly specific perspectives. Review repeated descriptions of Sheba as a savior and avoid allowing certainty of her survival before anyone has evidence. The first and return visits to Lalivero must not share post-beacon knowledge.
+7. **Venus Aerie (phases61–63):** Highest-priority substantive revision. The confrontation currently devotes many consecutive exchanges to Felix's custody of Sheba and the Shaman's Rod; preserve the actual bargain and battle triggers, but sharpen Saturos and Menardi's tragic mission without inventing revelations the protagonists cannot yet know. Check the early beacon-order exchange (10071–10074): the line about Jupiter being last and Mars being 'before it' is ambiguous and needs comparison with original event meaning before editing. Avoid treating their deaths as a triumphant moral resolution.
+8. **Aerie fall and aftermath (phase63):** Separate the emotional beats of victory, the beacon lighting, Sheba's fall, Felix's leap, and Jenna's continuing absence. Current 10301 ('I forgot about Jenna') risks making Garet seem callous after the crisis; revise carefully with original speaker and branch context. Preserve the physical escape/puzzle state and all conditional replies.
+9. **Return to Lalivero / Black Orb / ship / ending (phases54–58, 69–70):** The new Iodem, Faran, ship and epilogue dialogue better preserves uncertainty. Avoid implying that Jenna is definitively safe. Keep the Idejima ship distinct from Babi's Lemurian vessel, and retain the promise to seek Lemuria as a separate obligation.
+10. **Ash Jenna (phases35, 47 and related custom encounters):** Her claim about the Wise One is testimony from a damaged alternate-world survivor, not established cosmological fact. Isaac's accept/refuse branch should change his expressed trust, not silently replace canonical plot obligations. Her presence must never be confused with the actual Jenna.
+
+### Character-voice checklist
+
+- **Isaac:** brief, purposeful responses; choices matter without making him omniscient.
+- **Garet:** urgency, warmth, occasional humor; avoid reducing him to a running joke or a constant scold.
+- **Ivan:** observant and questioning, not clairvoyant beyond established Jupiter abilities.
+- **Mia:** caring and practically decisive; avoid repetitive speeches about mercy.
+- **Felix:** protective of Jenna and Sheba, withholding information for grounded reasons, not arbitrary melodrama.
+- **Saturos / Menardi:** committed to the beacons because Prox is dying; desperation must coexist with responsibility for the harm they cause.
+- **Faran / Lalivero:** distinguish a father's fear from a town's political, religious, and economic anxieties.
+- **Ash Jenna:** wounded, persuasive, possibly unreliable; no Bloom or sleeper lore.
+
+### Release gates
+
+- Verify per-message placeholders, expanded name widths, style token ordering, page breaks, and ending controls with the project validator.
+- Audit conditional states against scene source; an entry's presence in a TSV is not proof it fires correctly.
+- Obtain a successful full build at the latest commit.
+- Test in game: Vale choices/revisits; Mercury and Kolima flags; Mogall/Altin/Lamakan custom gates; Colosso and Babi audience; both Lalivero visits; both Aerie battles; Sheba's fall; Black Orb/ship departure; ending.
+- Conduct a read-aloud pass for voice, pacing, and repeated exposition after the event/state tests. Only then describe the narrative as final.
