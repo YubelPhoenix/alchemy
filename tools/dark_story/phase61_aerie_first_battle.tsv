@@ -1,8 +1,8 @@
 # Venus Lighthouse Aerie: first confrontation, Sheba's hostage crisis, the Shaman's Rod bargain and first battle.
 10071	MsgVenusLongLastTime	At last. Venus\nLighthouse is within\nour reach.{end_wait}
 10072	message	With this beacon lit,\nonly two will remain.{end_wait}
-10073	message	No. Jupiter will be\nthe last, as Mars was\nbefore it.{end_wait}
-10074	message	Then Jupiter is the\nfinal obstacle.{end_wait}
+10073	message	Jupiter is next.\nMars comes last.{end_wait}
+10074	message	Then we cannot\nafford another delay.{end_wait}
 10075	message	You've followed us\na long way.{end_wait}
 10076	message	Why are you still here,\n{actor_name:5}?{end_wait}
 10077	message	I ordered you to\ngo ahead to the ship.{end_wait}
