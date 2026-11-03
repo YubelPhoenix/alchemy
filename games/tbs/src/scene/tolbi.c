@@ -508,8 +508,8 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
       Import_ActorSetAnimation(ACTOR_TOLBI_SCALPER, ANIM_STAND);
     }
   }
-  // Ash Jenna waits in the rain once Colosso is over and Mercury Lighthouse
-  // has returned from Lamakan's full confrontation, until she has spoken to the party.
+  // Ash Jenna waits in the rain after Colosso and her Lamakan
+  // confrontation, until she has spoken to the party in Tolbi.
   if (GameFlag_Get(FLAG_COLOSSO_OVER) != 0 &&
       GameFlag_Get(FLAG_DARK_FINALE_DONE) != 0 &&
       GameFlag_Get(FLAG_DARK_ASH_JENNA_TOLBI) == 0) {

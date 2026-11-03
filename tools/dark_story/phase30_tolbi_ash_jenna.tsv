@@ -5,9 +5,9 @@ N76	MsgDarkTolbiJennaAsh	The next beacon may burn.\nI watched the lights\nin my 
 N77	MsgDarkTolbiGaretFire	You told us what\nyou believe. Where's\nthe proof?{end_wait}
 N78	MsgDarkTolbiJennaPlease	I don't ask you to\ntrust me, Garet.\nJust keep looking.{end_wait}
 N79	MsgDarkTolbiMiaSneer	You've given us\nno reason to follow you.\nWe have our own road.{end_wait}
-N80	MsgDarkTolbiJennaMia	I saw you after\nthe Manticore, Mia.\nYou feared your own anger.{end_wait}
-N81	MsgDarkTolbiMiaPlace	I was afraid of\nwhat I might become.\nI still chose to stay.{end_wait}
-N82	MsgDarkTolbiJennaGoing	Then keep choosing.\nThe next lighthouse\nwill test all of you.{end_wait}
+N80	MsgDarkTolbiJennaMia	Your hands shook after\nthe Manticore, Mia.\nWere you afraid of it?{end_wait}
+N81	MsgDarkTolbiMiaPlace	My own anger.\nI told my friends.\nThey stayed with me.{end_wait}
+N82	MsgDarkTolbiJennaGoing	Then hold on to them.\nThe next lighthouse\nmay not spare you.{end_wait}
 N83	MsgDarkTolbiIsaacWait	You want us to watch.\nThen stop hiding\nwhat you know.{end_wait}
 
 N240	MsgDarkTolbiJennaAccepted	You said you'd help.\nDo you still mean\nto question the Wise One?{end_wait}

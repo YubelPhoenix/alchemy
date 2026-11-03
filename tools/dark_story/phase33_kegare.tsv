@@ -1,8 +1,8 @@
 # Kegare, a demon from another age who has taken Mia's visage.
-N102	MsgDarkKegareRise	I have watched you\nprotect Mia.\nNow I understand{page_break}why she trusts you.{end_wait}
-N103	MsgDarkKegareIsaac	You have Mia's face.\nWho are you?{end_wait}
-N104	MsgDarkKegareName	I am Kegare.\nI come from an age\nlong buried.{page_break}I learned her voice.\nI studied her face.\nNow I will take her place.{end_wait}
-N105	MsgDarkKegareIsaacReady	You are not Mia.\nAnd you never will be.{end_wait}
-N226	MsgDarkKegareMiaRefutes	You wear my face.\nYou know nothing\nof the life I've lived.{end_wait}
-N227	MsgDarkKegareThreatens	When I am done,\nthey will call me Mia.\nAnd forget you.{end_wait}
-N228	MsgDarkKegareMiaResolves	My face is not my life.\nMy choices made me.\nYou cannot steal them.{end_wait}
+N102	MsgDarkKegareRise	You all turn to Mia\nwhen someone is hurt.\nI've watched that.{page_break}I could make them\nturn to me instead.{end_wait}
+N103	MsgDarkKegareIsaac	You have her face.\nBut you're not Mia.\nWho are you?{end_wait}
+N104	MsgDarkKegareName	Kegare. I've waited\nthrough an age\nlong buried.{page_break}I learned her voice.\nI copied her face.\nNow I'll take her place.{end_wait}
+N105	MsgDarkKegareIsaacReady	You can look like her.\nShe is still here.\nWe know who she is.{end_wait}
+N226	MsgDarkKegareMiaRefutes	You learned my face.\nDid you learn the names\nof those I cared for?{end_wait}
+N227	MsgDarkKegareThreatens	They'll hear my voice\nand call me Mia.\nYou'll be forgotten.{end_wait}
+N228	MsgDarkKegareMiaResolves	In Imil, I stayed\nwhen they were sick.\nYou can't undo that.{end_wait}

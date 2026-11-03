@@ -1,13 +1,13 @@
 00790	message	Mia
-N59	MsgDarkDuelMiaStops	They took the Stars.\nNow Mercury is lit.\nCan I trust you?{end_wait}
-N60	MsgDarkDuelIsaacNoTime	Jenna and Kraden\nare hostages.\nHelp us get them back.{end_wait}
-N61	MsgDarkDuelMiaPlace	I swore to protect\nthis lighthouse.\nAnd I failed.{end_wait}
-N62	MsgDarkDuelIsaacRefuse	Then help us.\nWe can save them.{end_wait}
-N63	MsgDarkDuelMiaDraw	You're right.\nNo more arguing.{page_break}I'll follow Menardi.\nYou stop Saturos.{end_wait}
-N64	MsgDarkDuelSaturosAmused	Go ahead.\nIt changes nothing.{end_wait}
-N65	MsgDarkDuelMiaLost	I judged you wrong.\nI'm sorry, Isaac.{end_wait}
-N66	MsgDarkDuelMiaStop	Menardi has the\nhostages. I'll go\nbefore she escapes.{end_wait}
-N67	MsgDarkDuelIsaacNotEnemy	Be careful, Mia.\nJenna is with her.{end_wait}
-N68	MsgDarkDuelMiaTrust	I know. Keep Saturos\nhere. I'll bring\nthem back.{end_wait}
-N69	MsgDarkDuelMiaKeepUp	I won't let her\nleave without a fight.{end_wait}
-N70	MsgDarkDuelSaturosResumes	The healer is gone.\nNow face me.{end_wait}
+N59	MsgDarkDuelMiaStops	Mercury is lit.\nI failed to guard it.\nWhy should I trust you?{end_wait}
+N60	MsgDarkDuelIsaacNoTime	Jenna and Kraden\nare with Menardi.\nHelp us reach them.{end_wait}
+N61	MsgDarkDuelMiaPlace	I swore to protect\nthis lighthouse.\nI was too late.{end_wait}
+N62	MsgDarkDuelIsaacRefuse	Then come with us.\nWe may still save them.{end_wait}
+N63	MsgDarkDuelMiaDraw	You're right.\nWe have no time to argue.{page_break}I'll follow Menardi.\nYou stop Saturos.{end_wait}
+N64	MsgDarkDuelSaturosAmused	Go, healer.\nThe beacon is already lit.{end_wait}
+N65	MsgDarkDuelMiaLost	I was wrong about you,\nIsaac. I'm sorry.{end_wait}
+N66	MsgDarkDuelMiaStop	Menardi has Jenna.\nI must follow before\nthey get away.{end_wait}
+N67	MsgDarkDuelIsaacNotEnemy	Be careful, Mia.\nJenna's with them.{end_wait}
+N68	MsgDarkDuelMiaTrust	I know. I'll bring\nher back if I can.\nPlease trust me.{end_wait}
+N69	MsgDarkDuelMiaKeepUp	I'll be careful.\nShe has the hostages.\nI won't forget that.{end_wait}
+N70	MsgDarkDuelSaturosResumes	Your healer is gone.\nNow face me.{end_wait}

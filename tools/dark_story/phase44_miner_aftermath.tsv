@@ -1,7 +1,7 @@
 # Altin Peak: the miner's condition after the rescue.
-N169	MsgDarkPeakMinerAftermath	I heard the roof crack.\nI thought we'd die\nunder that stone.{page_break}My hands won't stop\nshaking.{end_wait}
-N170	MsgDarkPeakMinerShockIvan	He's still shaking.\nGive him a moment.\nDon't crowd him.{end_wait}
-N171	MsgDarkPeakMinerShockGaret	The others got out.\nBut he can barely\nstand.{end_wait}
-N172	MsgDarkPeakMinerStayAsk	Can you stay\nuntil I can walk?{end_now}
-N173	MsgDarkPeakMinerStay	Thank you.\nI just need a moment.\nThen I'll be ready.{end_wait}
-N174	MsgDarkPeakMinerLeave	The roof's not safe.\nLet's help him walk\noutside.{end_wait}
+N169	MsgDarkPeakMinerAftermath	I heard the rocks fall.\nI thought my friends\nwere buried for good.{page_break}My hands won't stop\nshaking yet.{end_wait}
+N170	MsgDarkPeakMinerShockIvan	He's heard us.\nGive him a moment\nto settle down.{end_wait}
+N171	MsgDarkPeakMinerShockGaret	We got the others out.\nWe'll get you out too.{end_wait}
+N172	MsgDarkPeakMinerStayAsk	I know I should move.\nCould you stay with me\na little longer?{end_now}
+N173	MsgDarkPeakMinerStay	Thank you. I can feel\nmy legs again.\nI'll be all right.{end_wait}
+N174	MsgDarkPeakMinerLeave	I'll walk beside you.\nLean on me if you need to.\nLet's get outside.{end_wait}
