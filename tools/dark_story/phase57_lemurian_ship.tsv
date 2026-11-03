@@ -1,17 +1,17 @@
 # Lemurian ship departure: the party leaves Gondowan and sets course for Lemuria.
-10494	MsgFieldLooksLikeFinally	This is it! We're really\nleaving Gondowan!\nWe're going to sea!{end_wait}
-10495	message	There isn't a map\nthat shows where we're\ngoing next.{end_wait}
-10496	message	When I left Imil,\nI never imagined I'd\ntravel this far.{end_wait}
-10497	message	Once we find {actor_name:6},\ndo you think we'll\nfinally go home?{end_now}
-10498	message	I hope you're right.\nI'd like to see Vale\nagain someday.{end_wait}
-10499	message	Maybe not. There's\nstill so much we\ndon't understand.{end_wait}
-10500	message	And Lemuria, {actor_name:2}?\nWe promised Babi\nwe'd find it.{end_wait}
-10503	message	I'd like to see it\nfor myself. Even the\nold maps are silent.{end_wait}
-10504	message	We must find {actor_name:6}.\nShould we do that\nbefore seeking Lemuria?{end_now}
-10506	message	Then we'll find a way\nto help {actor_name:6} and\nBabi both.{end_wait}
-10507	message	We've crossed a sea,\nbut never in a ship\nquite like this one.{end_wait}
-10508	message	Kraden wanted me to\nsee the sea. Well,\nI've seen plenty now!{end_wait}
-10509	message	Those waves look rough.\nCan this ship really\ncarry us through?{end_now}
-10510	message	Then I'll trust you.\nBut let's keep watch\non the weather.{end_wait}
-10511	message	At least we're agreed\nthere's some danger.\nWe'll be careful.{end_wait}
+10494	MsgFieldLooksLikeFinally	We're leaving Gondowan!\nReally leaving it!\n...I think I'm ready.{end_wait}
+10495	message	No chart tells us\nwhere this ship will\nlead. We'll find out.{end_wait}
+10496	message	When I left Imil,\nI hoped to be useful.\nI never imagined this.{end_wait}
+10497	message	If we find {actor_name:6},\ndo you think we\ncan go home?{end_now}
+10498	message	I hope so.\nI've missed Vale\nmore than I thought.{end_wait}
+10499	message	Then I guess we\nhave more road ahead.\nOr sea.{end_wait}
+10500	message	And Lemuria, {actor_name:2}?\nWe gave Babi\nour word.{end_wait}
+10503	message	Babi spent a lifetime\nlooking for that place.\nI want to see it.{end_wait}
+10504	message	Should we find\n{actor_name:6} before we sail\nto Lemuria?{end_now}
+10506	message	Then we'll try both.\nWe promised to help\n{actor_name:6} and Babi.{end_wait}
+10507	message	It's an old ship.\nThe sea may have\nchanged since it sailed.{end_wait}
+10508	message	I used to dream of\na voyage like this.\nJust not these waves!{end_wait}
+10509	message	Look at those waves.\nAre we certain\nthis ship can take them?{end_now}
+10510	message	I trust you.\nStill, we'll watch\nthe weather closely.{end_wait}
+10511	message	At least you're\nthinking of the risks.\nWe'll manage together.{end_wait}
 10514	message	{actor_name:6} is out there.\nWe won't leave her\nbehind.{end_wait}

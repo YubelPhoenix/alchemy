@@ -1,7 +1,7 @@
 02378	MsgValeJarEmpty	but found nothing.\nJust broken glass and\nash.{end_wait}
 03931	MsgValeHeyBoy	Hey...{pause_20_skippable} Boy...\nCome closer.{end_wait}
 03932	message	You have business with\nme, or are you lost?{end_now}
-04514	MsgValeValeFeelsEmpty	Vale feels quieter\nwithout you here.{end_wait}
+04514	MsgValeValeFeelsEmpty	Vale will be quieter\nwhen you leave.\nCome back safely.{end_wait}
 04515	MsgValeImNotSadJustGo	I'm not crying.\nJust go before I do.{end_wait}
 04516	MsgValeThisIsMyFarewellGift	Take this.\nYou'll need it out there.{end_wait}
 04517	message	{actor_name:1} took\nthe Herb.{end_wait}
@@ -25,7 +25,7 @@
 04542	MsgValeTheCulpritsHadStrangePowers	They say whoever caused\nthis had strange powers.{page_break}...{pause_20_skippable}Is that true?{end_now}
 04543	message	Then others can use\nPsynergy, too.{page_break}I don't know what\nthat means for us.{end_wait}
 04544	message	Then perhaps it's\nonly a rumor.{page_break}I'd like to believe it.{end_wait}
-04545	MsgValeImSoJealousOfYouBeing	Part of me envies you.\nI know I shouldn't.{end_wait}
+04545	MsgValeImSoJealousOfYouBeing	Part of me envies you.\nThen I remember\nwhy you're leaving.{end_wait}
 04546	MsgValeOnceYouLeaveTownTakeCare	Don't show your Psynergy\nto strangers.{page_break}Fear makes people cruel.{end_wait}
 04547	MsgValeIHadNoIdeaThatSuch	We guarded the Sanctum\nwithout knowing why.{page_break}Now it's too late\nto ask the elders.{end_wait}
 04571	MsgValeIsaacYoureGoingOnADifficult	{protagonist_name}, the road\nwill test you.{page_break}Don't let it change\nwho you are.{end_wait}
@@ -35,7 +35,7 @@
 04575	MsgValeNowThatJennaIsGoneWe	Since {actor_name:6} left,\nthe house feels empty.{page_break}No one can take\nher place.{end_wait}
 04576	MsgValeWhoCouldHaveKnownThatMasked	The masked man was\n{actor_name:5}.{page_break}I still can't\nunderstand it.{end_wait}
 04577	MsgValeIWonderIfFelixChangedMuch	I remember {actor_name:5}\nas a gentle boy.{page_break}Could {actor_name:6}\nchange that much too?{end_wait}
-04578	MsgValeFelixAndHisGangMustHave	{actor_name:5} left in haste.{page_break}Someone found a purse\nnear the road.{end_wait}
+04578	MsgValeFelixAndHisGangMustHave	People keep saying\n{actor_name:5} chose to go.{page_break}I wonder whether\nhe really had a choice.{end_wait}
 04579	MsgValeItsHardLettingMyPreciousGaret	I don't want\n{actor_name:2} to go.{page_break}But he has made\nup his mind.{end_wait}
 04580	MsgValeTheWiseOneChoseGaretHimself	The Wise One chose\n{actor_name:2}.{page_break}That doesn't make\nme less afraid.{end_wait}
 04581	MsgValeOnceGaretLeavesIWontBe	When {actor_name:2} leaves,\nI'll wait for news.{page_break}Every day until\nhe comes home.{end_wait}
@@ -43,21 +43,21 @@
 04585	MsgValeFelixInheritedHisFathersSkillWith	{actor_name:5} was gifted\nwith Psynergy.{page_break}I hope {actor_name:5}\nuses it to protect.{end_wait}
 04586	MsgValeJennaAnytimeYouFaceDangerJust	{actor_name:6}, stay strong.{page_break}Your mother's fire\nis still with you.{end_wait}
 04587	MsgValeWhyWouldFelixTakeHisSister	Why would {actor_name:5}\ntake {actor_name:6} away?{end_wait}
-04588	MsgValeWeAlmostLostTheTownOver	We nearly lost Vale\nbecause we kept secrets.{end_wait}
+04588	MsgValeWeAlmostLostTheTownOver	We guarded those secrets\nfor years and years.\nWhat were we protecting?{end_wait}
 04589	MsgValeIdLikeToBelieveThatOnly	I once believed Psynergy\nbelonged only to Vale.{page_break}I was wrong.{end_wait}
 04590	MsgValeIfOnlyIdGoneToSol	If I'd gone with\n{protagonist_name}...{page_break}Maybe I could\nhave helped.{end_wait}
 04591	MsgValeValesLawsStateThatYouCannot	Vale forbids using\nPsynergy outside.{page_break}Remember that,\n{protagonist_name}.{end_wait}
 04592	MsgValeIWishIWereTheOne	I wish I'd understood\nthe Sanctum sooner.{end_wait}
-10692	MsgValeBooksAboutContinents	There are books entitled\n\"Journey to the Northern\nContinent of Angara\"{page_break}and \"All About the\nSouthern Continent of\nGondowan.\"{page_break}{actor_name:1} learned that Mt.\nAleph sits at Angara's\nwestern edge. It burned.{end_wait}
+10692	MsgValeBooksAboutContinents	There are books entitled\n\"Journey to the Northern\nContinent of Angara\"{page_break}and \"All About the\nSouthern Continent of\nGondowan.\"{page_break}{actor_name:1} studied a map\nof Angara. Mt. Aleph\nlies near Vale.{end_wait}
 10693	MsgValeBookLawsOfVale	There's a book entitled\n\"The Laws of Vale,\" which\ndescribes Vale's customs.{page_break}\"Never leave the village\nwithout permission.{page_break}Never show Psynergy to\noutsiders. Never speak of\nthe Sanctum...\"{end_wait}
 10694	MsgValeBookPowerOfNature	There's a book entitled\n\"The Mighty Power of\nNature.\"{page_break}\"Beyond human reason,\nnature shows its power in\neruptions{page_break}and floods. It doesn't\nspare the innocent...\"{end_wait}
-10695	MsgValeBookPsynergyStone	There's a book entitled\n\"The Psynergy Stone.\"{page_break}\"Psynergy is restored by\ntouching a Psynergy Stone.\nSome say it feeds on us.\"{end_wait}
+10695	MsgValeBookPsynergyStone	There's a book entitled\n\"The Psynergy Stone.\"{page_break}\"Touching a Psynergy\nStone restores power\nto weary Adepts.\"{end_wait}
 10696	MsgValeAuntNotebook	There's a notebook\nbelonging to {actor_name:6}'s\naunt...{page_break}Sketches by {actor_name:6}'s\naunt and mother as girls.\nHappier days.{end_wait}
-10697	MsgValeBookMakingGreatVillage	There's a book entitled\n\"Making a Great Village.\"{page_break}Its margins are filled\nwith names crossed out.{end_wait}
+10697	MsgValeBookMakingGreatVillage	There's a book entitled\n\"Making a Great Village.\"{page_break}It lists repairs to\nroads and houses,\nand who will do them.{end_wait}
 10698	MsgValeNotebookStudyOfAlchemy	There's a notebook called\n\"Study of Alchemy.\"{page_break}\"To understand Alchemy,\none must understand the\nElemental Powers...\"{page_break}That's where the writing\nends. The rest of the page\nis scorched.{end_wait}
-10699	MsgValeBookAncientLemurians	There's a book entitled\n\"In Search of the Ancient\nLemurians.\"{page_break}Someone has underlined:\n\"They didn't vanish.\nThey were taken.\"{end_wait}
-10700	MsgValeBookFountainOfTolbi	There's a book entitled\n\"The Fountain\nof Tolbi.\"{page_break}\"The fountain of Tolbi\nwill test your luck...\nOr take it.\"{end_wait}
+10699	MsgValeBookAncientLemurians	There's a book entitled\n\"In Search of the Ancient\nLemurians.\"{page_break}The author marked\nseveral possible routes.\nNone is certain.{end_wait}
+10700	MsgValeBookFountainOfTolbi	There's a book entitled\n\"The Fountain of Tolbi.\"{page_break}\"Toss a Lucky Medal,\nand see whether fortune\nsmiles on you.\"{end_wait}
 10701	MsgValeEncyclopediaOfAlchemy	There's a book entitled\n\"Encyclopedia of Alchemy\"{page_break}\"All things are made of\nfour elements. Even we\nreturn to them...\"{end_wait}
-10702	MsgValeBookLegendOfAleph	There's a book entitled\n\"Legend of Mt. Aleph.\"{page_break}It says the mountain's\nname means the origin of\nall things. And its end...{end_wait}
-10703	MsgValeBookBeingAdept	There's a book entitled\n\"Being an Adept.\"{page_break}\"Hone your Psynergy. Do\nnot use it for evil. It\nremembers...\"{end_wait}
-10704	MsgValeBookTravelersEtiquette	There's a book entitled\n\"Etiquette for\nTravelers.\"{page_break}\"It's rude not to\nintroduce yourself to\nthe town's mayor.\"{page_break}Beneath it, in pencil:\n\"Also, check the exits.\"{end_wait}
+10702	MsgValeBookLegendOfAleph	There's a book entitled\n\"Legend of Mt. Aleph.\"{page_break}It says Aleph means\nthe origin of all things.\nFew agree on why.{end_wait}
+10703	MsgValeBookBeingAdept	There's a book entitled\n\"Being an Adept.\"{page_break}\"Practice with care.\nPower is no excuse\nfor cruelty.\"{end_wait}
+10704	MsgValeBookTravelersEtiquette	There's a book entitled\n\"Etiquette for\nTravelers.\"{page_break}\"Introduce yourself.\nLearn local customs\nbefore making demands.\"{page_break}A note in the margin:\n\"And thank your host.\"{end_wait}

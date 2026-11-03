@@ -1,7 +1,7 @@
 07174	MsgValeYouCameBack	Oh.{pause_20_skippable} It's you, {actor_name:1}.\nYou came back?{end_now}
-07175	message	Vale isn't quiet anymore.\nThe rain sees to that.{page_break}Still, I'm glad. Your\nmother, Dora, will be too.{end_wait}
-07176	message	Not for good? No.\nI suppose nobody stays.{end_wait}
-07177	MsgValeTheRumorWasTrue	I heard you were back.\nI hoped the rumor was\nwrong.{page_break}Will you tell us what\nyou saw out there?{end_wait}
+07175	message	The town looks much\nthe same. But the people\nhave changed.{page_break}I'm glad you're here.\nDora will be, too.{end_wait}
+07176	message	Just visiting, then?\nWe'll be here when\nyou come back.{end_wait}
+07177	MsgValeTheRumorWasTrue	I heard you'd returned.\nI almost didn't\nbelieve it.{page_break}Have you found\nwhat you went out\nto look for?{end_wait}
 07178	MsgValeWhenDidYouComeBack	{actor_name:1}! When did you\ncome back? After the\nway you left,{page_break}I thought I'd never\nsee you again.{page_break}I'm glad. Truly.{end_wait}
 07179	MsgValeOwItsGonnaBeYearsBefore	Ow!{pause_20_skippable} It'll be years\nbefore I'm grown up!\n{actor_name:1}'s back already!{page_break}Oh... only visiting?\nI thought the bad\nthings were over.{end_wait}
 07180	MsgValeWelcomeHomeIsaacOhWhatHappened	Welcome home, {actor_name:1}.\nOh...{pause_20_skippable} ...\nWhat happened?{page_break}Why are you walking\nwith a girl who isn't\n{actor_name:6}?{end_wait}
@@ -9,15 +9,15 @@
 07182	MsgValeIWishICouldLearnThe	I wish I knew the secret\nof good weapons. Then\nI might be of use.{end_wait}
 07183	MsgValeIGaveHimAFarewellGift	I gave him a farewell\ngift, thinking I'd\nnever see him again.{page_break}But here he is...{page_break}Where is {actor_name:6}? Wasn't\nhe to bring her back\nwith him?{end_wait}
 07184	MsgValeIPromisedIdBecomeAGreat	I promised I'd be a\ngreat blacksmith before\n{actor_name:1} came back.{page_break}It's a man's promise.\nI'm still working on\nit.{end_wait}
-07185	MsgValeThatShyGirlWithIsaacSure	That quiet girl with\n{actor_name:1}{pause_20_skippable} looks kind.\nI hope she is.{end_wait}
+07185	MsgValeThatShyGirlWithIsaacSure	That girl with\n{actor_name:1}{pause_20_skippable} looks tired.\nI hope she can rest.{end_wait}
 07186	MsgValeWhatHappenedToJennaHaventYou	What happened to {actor_name:6}?\nHaven't you found\nher yet?{end_wait}
 07187	MsgValeYouveGrownSoMuch	{actor_name:1}!{page_break}You've grown so much.\nI almost didn't\nrecognize you.{end_wait}
-07188	MsgValeCameBack2	Oh. It's you, {actor_name:1}.\nYou came back.{end_wait}
+07188	MsgValeCameBack2	Look at you, {actor_name:1}.\nYou've traveled farther\nthan most of us.{end_wait}
 07189	MsgValeHomeJustToStay	You've come all the way\nhome to stay?\nAre you sure?{end_now}
-07190	message	Ah. You don't want to\nsettle into comfort.{page_break}Then you're welcome\nhere, for as long as\nyou stay.{end_wait}
+07190	message	Then rest while you can.\nThere'll be plenty\nof road ahead.{page_break}You're welcome here\nas long as you need.{end_wait}
 07191	message	Good. You've come a long\nway. Now go home\nand rest.{end_wait}
-07192	MsgValeYouTraveledAroundTheEasternEdge	You went around the\neastern edge of the\ncontinent?{page_break}You must be\nexhausted.{end_wait}
-07193	MsgValeArentYouGladToSeeThe	At least the village\nhasn't changed. Be\nglad of that.{end_wait}
+07192	MsgValeYouTraveledAroundTheEasternEdge	You've traveled farther\nthan most folks here.{page_break}You must be tired.\nDid you rest at all?{end_wait}
+07193	MsgValeArentYouGladToSeeThe	The streets are the same.\nBut the houses hold\nnew worries now.{end_wait}
 07194	MsgValeDoraWasStruckWithIllness	Does {actor_name:1} know that\nDora has fallen ill?{end_wait}
 07195	MsgValeDoraWouldntLetHimStay	Maybe {actor_name:1} came back\nbecause Dora can't hide\nit anymore.{page_break}Only the mayor knows.\nShe asked us all not\nto say.{end_wait}
 07196	MsgValeIWonderIfIsaacWillContinue	Will {actor_name:1} go on\nwith the journey?\nIt must be hard.{end_wait}
@@ -58,9 +58,9 @@
 07231	message	You didn't hear? But you\nlook worried.{page_break}We'll look after your\nmother. Go on, rest.{end_wait}
 07232	MsgValeHopeDidntGet	I hope the road didn't\nmake you sick.{page_break}{actor_name:2} never eats enough\nnow. His mother worries.{end_wait}
 07233	MsgValeItMustBeNiceToBe	Young, with lovely\ngirls on the road...\nit must be nice.{end_wait}
-07234	MsgValeHisNewFriendsAreAllSo	His new friends are\npolite. That's the\nonly good news.{end_wait}
-07235	MsgValeItWasntTooSmartToTalk	We shouldn't have talked\nabout Dora without\nchecking for {actor_name:1}.{page_break}I wish we could tell\nhim the truth.{end_wait}
-07236	MsgValeGaretSeemsToHaveGrownUp	{actor_name:2} has grown up\nfast on this road.\nToo fast.{end_wait}
+07234	MsgValeHisNewFriendsAreAllSo	I like his new friends.\nThey listened when\nI told them to eat.{end_wait}
+07235	MsgValeItWasntTooSmartToTalk	We talked about Dora\nwithout noticing\n{actor_name:1} was near.{page_break}I hope we haven't\nmade things worse.{end_wait}
+07236	MsgValeGaretSeemsToHaveGrownUp	He made it home,\nbut {actor_name:2} looks older\nthan when he left.{end_wait}
 07270	MsgValeCoughCoughWho	{text_effect:4}Cough, cough{pause_20_skippable}{pause_20_skippable}! {reset_text_style}Who is it?{pause_20_skippable}\nIs it the innkeeper?{pause_20_skippable}{pause_20_skippable}\nIs it time to eat?{end_wait}
 07271	message	No? {text_effect:4}Cough...{reset_text_style}{pause_20_skippable}{pause_20_skippable}\nThen who{em_dash}{end_wait}
 07272	message	{actor_name:1}...{end_wait}

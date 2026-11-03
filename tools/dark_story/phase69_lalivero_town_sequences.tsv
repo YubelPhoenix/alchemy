@@ -3,7 +3,7 @@
 09877	message	Is this more of\ntheir work?{end_now}
 09878	message	That voice... It's\nIodem...{end_wait}
 09879	message	You survived!{end_wait}
-09880	message	We lost men at the gate.\nThe rest could barely\nstand when it ended.{end_wait}
+09880	message	They struck before\nwe were ready.\nWe barely held the gate.{end_wait}
 09881	message	Were you fighting{pause_20_skippable} a\ngroup of six people?{end_wait}
 09882	message	There were...{pause_20_skippable} seven...{end_wait}
 09883	message	You survived as well!{end_wait}
@@ -16,7 +16,7 @@
 09890	message	They left us where we\nfell and headed toward\nBabi Lighthouse.{end_wait}
 09891	message	Why the lighthouse?\nWhat is there that\nthey need so badly?{end_wait}
 09892	message	They mentioned the ruins\nbeneath the lighthouse...\nThen they were gone.{end_wait}
-09893	message	The ruins beneath it?\nThen this was never\nabout the tower.{end_wait}
+09893	message	The ruins are\nbeneath Babi's tower.\nWe have to go there.{end_wait}
 09894	message	And Faran, master of\nLalivero, followed them\ninto the ruins...{end_wait}
 09895	message	Faran went after them?\nHe should not have\ngone alone.{end_wait}
 09896	message	{actor_name:1}! We must reach\nBabi Lighthouse as well.{end_wait}
@@ -28,8 +28,8 @@
 # Iodem's Black Orb briefing.
 10383	message	You forgot already,\n{actor_name:1}? Iodem asked\nus to wait.{end_wait}
 10384	message	We have to leave soon.\nBut Iodem asked to\nspeak with us first.{end_wait}
-10385	message	We can spare a moment.\nLet's hear what he\nhas to say.{end_wait}
-10386	message	Iodem has news for us.\nWe should hear\nwhat he has to say.{end_wait}
+10385	message	We can spare a moment.\nIodem may know\nhow to help us.{end_wait}
+10386	message	He knows these waters.\nLet's hear what\nhe has to say.{end_wait}
 10387	message	There is something\nI must ask you about\nLemuria.{end_wait}
 10388	message	The ancient island\nBabi searched for\nall his life.{end_wait}
 10389	message	We came back from Venus\nwithout {actor_name:6}.\nWe couldn't find her.{end_wait}
@@ -56,13 +56,13 @@
 10411	message	Babi's ship waits\nat the wharf. The guard\nwill let you through.{end_wait}
 10412	message	Go safely. If you\nfind Lemuria, bring\nword to Tolbi.{end_wait}
 10413	message	{actor_name:1}, we're really\ngoing to sea. I never\nthought we'd get here.{end_wait}
-10414	message	Then we should go\nbefore the storm comes.{end_wait}
-10415	message	We're ready. Let's\nmake this journey\ncount.{end_wait}
+10414	message	The ship's ready.\nWe should leave\nwhile we can.{end_wait}
+10415	message	It's a long way out.\nWe'll stay together.\nLet's go.{end_wait}
 
 # The ship at Idejima was not Babi's.
 10417	message	Babi's ship is here,\nat Lalivero's wharf.{end_wait}
 10418	message	Then the ship we saw\nat Idejima wasn't his.\nWas it Saturos's?{end_wait}
 10419	message	Perhaps. We have no\nway to ask him now.{end_wait}
-10420	message	Yes...{pause_20_skippable} Saturos and\nMenardi are both dead.{end_wait}
+10420	message	Yes...{pause_20_skippable} We saw them\nfall at Venus.\nNeither came back.{end_wait}
 10421	message	But Babi's ship is\nstill here. We can\nfinally cross the sea.{end_wait}
 10422	message	If {actor_name:6} is alive,\nwe may yet find her.{end_wait}

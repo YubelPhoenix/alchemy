@@ -1,14 +1,14 @@
 # Post-game ending sequence: Jenna and Kraden adrift, then Alex arrives.
-10515	MsgWorldMapKradenHowLongWillIsland	Kraden... how much\nlonger can this island\nkeep drifting?{end_wait}
-10516	message	I wish I knew. I've\nnever seen a current\nbehave quite like this.{end_wait}
-10517	message	And you don't have\na theory? That's\nnot like you.{end_wait}
-10519	message	How can you think\nabout food at a\ntime like this?{end_wait}
-10520	message	Felix would know\nwhat to do...\nWouldn't he?{end_wait}
-10521	message	I don't know where\nFelix is.{pause_20_skippable} But I saw\nthe Venus beacon burn.{end_wait}
-10522	message	So did I. Then the\nland broke apart.\nWhat if he was there?{end_wait}
-10523	message	I wish I could tell\nyou, {actor_name:6}. I truly do.\nBut I can't know yet.{end_wait}
-10524	message	We don't know where\n{actor_name:5} is.{pause_20_skippable} But that\ndoesn't mean he's lost.{end_wait}
-10525	message	And {actor_name:1}... He was\nfollowing them to Venus.\nI hope he got away.{end_wait}
-10527	message	I wish I could see\n{actor_name:1} again. And\n{actor_name:5}... both of them.{end_wait}
-10528	message	There's something\nyou both need to see.{end_wait}
-10534	message	Oh, thank heavens.\nBoth of them... alive.\nWe found them.{end_wait}
+10515	MsgWorldMapKradenHowLongWillIsland	Kraden... How long\ncan this island keep\nus above the water?{end_wait}
+10516	message	Longer than I thought.\nBut I have no idea\nwhere we're drifting.{end_wait}
+10517	message	No idea?\nThat's not like you,\nKraden.{end_wait}
+10519	message	You want to eat?\nAt a time like this?{end_wait}
+10520	message	If Felix were here,\nhe'd know what to do.\nWouldn't he?{end_wait}
+10521	message	I don't know where\nFelix is.{pause_20_skippable} I saw the\nVenus beacon burning.{end_wait}
+10522	message	The shore broke apart\nafter the beacon lit.\nWhat if he was there?{end_wait}
+10523	message	I wish I knew,\n{actor_name:6}. I won't give you\nan answer I can't trust.{end_wait}
+10524	message	We haven't seen\n{actor_name:5} since the fall.{pause_20_skippable}\nBut we cannot give up.{end_wait}
+10525	message	And {actor_name:1}...\nHe was heading for\nVenus too. Is he safe?{end_wait}
+10527	message	If I could see\n{actor_name:1} and {actor_name:5}\njust once more...{end_wait}
+10528	message	Come with me.\nThere's something\nI want you to see.{end_wait}
+10534	message	They're alive...\nFelix and Sheba.\nBoth of them are alive!{end_wait}
