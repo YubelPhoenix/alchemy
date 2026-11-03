@@ -598,6 +598,11 @@ static void Tolbi_TalkToStrandedFather(void) {
       GameFlag_Set(FLAG_DARK_TIDE_TOLBI);
       Event_SetMessageId(MsgDarkTolbiIsaacGives);
       Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
+      Event_SetMessageId(MsgDarkTolbiBlessing);
+      Event_ShowMessageAndWait(ACTOR_TOLBI_STRANDED_FATHER, 0);
+    } else {
+      Event_SetMessageId(MsgDarkTolbiRefusal);
+      Event_ShowMessageAndWait(ACTOR_TOLBI_STRANDED_FATHER, 0);
     }
   }
   Event_End();
