@@ -49,13 +49,19 @@ palette = [0, 0, 0] + [(channel // 8) * 8 for channel in source_palette]
 palette += [0] * (768 - len(palette))
 indexed = Image.new("P", sheet.size, 0)
 indexed.putpalette(palette)
+# The quantizer only saw opaque pixels, so walk those pixels in the
+# identical row-major order when mapping indices back into the sheet.
 indices = iter(reduced.getdata())
+alpha = visible.getchannel("A").load()
+output = indexed.load()
 for y in range(sheet.height):
     for x in range(sheet.width):
-        if visible.getpixel((x, y))[3] >= 128:
-            indexed.putpixel((x, y), next(indices) + 1)
+        if alpha[x, y] >= 128:
+            output[x, y] = next(indices) + 1
 # Transparent pixels must never consume one of the 15 visible colours.
 assert max(indexed.getdata()) <= 15
+assert sum(1 for index in indexed.getdata() if index) == len(opaque_pixels)
+assert next(indices, None) is None
 indexed.save(DEST)
 print(f"Rebuilt {DEST.relative_to(ROOT)} at party scale with shared 16-colour palette")
 
