@@ -1,11 +1,11 @@
 # Lalivero main map: Sheba's absence, the aftermath of Venus Lighthouse, and the wharf.
 09903	MsgLaliveroOhhTheyTookShebaHeaded	{text_effect:4}No...{reset_text_style} They took {actor_name:7}\nand fled toward the ruins.\nFaran went after them.{end_wait}
-09904	MsgLaliveroActorIsOurOnlyHopeIf	Our hope rests on\n{actor_name:7}. If she is lost,\nwhat becomes of Lalivero?{end_wait}
-09905	MsgLaliveroThisAllHappenedBecauseTolbiTook	This began when Tolbi\ntook {actor_name:7} from us.\nWe should have resisted.{end_wait}
-09906	MsgLaliveroFaranFollowedActorImSureHell	Faran followed {actor_name:7}.\nHe will not abandon her.\nHe must bring her home.{end_wait}
+09904	MsgLaliveroActorIsOurOnlyHopeIf	Lalivero placed its hope\nin {actor_name:7}. But she\nis still a child.{page_break}We should have kept\nher safe. We failed her.{end_wait}
+09905	MsgLaliveroThisAllHappenedBecauseTolbiTook	Tolbi took {actor_name:7}\nfrom us. We let them.\nWe were afraid.{end_wait}
+09906	MsgLaliveroFaranFollowedActorImSureHell	Faran went after\n{actor_name:7}. He would never\nleave her behind.{end_wait}
 09907	MsgLaliveroTheRumblingAtTheRuinsMust	That rumble from the\nruins sounded like a\nwarning.{end_wait}
 09908	MsgLaliveroThereWasAnEarthquakeAtThe	The ground shook near\nthe ruins before all this.{page_break}I pray {actor_name:7} and the\nothers are still alive.{end_wait}
-09909	MsgLaliveroIfIWereBiggerIWould	If I were stronger, I\nwould have stood between\nthem and {actor_name:7}!{end_wait}
+09909	MsgLaliveroIfIWereBiggerIWould	I stood there and watched.\nI wanted to help, but\nmy legs would not move.{end_wait}
 09910	MsgLaliveroIBetActorCanUseHer	Maybe {actor_name:7} can use her\npowers to escape. She\nhas surprised us before.{end_wait}
 09976	MsgLaliveroBabisMostPreciousBelongingIsKept	Babi's most guarded\npossession is kept here.{page_break}No one is permitted\ninside.{end_wait}
 10445	MsgLaliveroIodemOfTolbiDoesntSeemToo	Iodem does not seem\ntroubled by the fall of\nBabi Lighthouse.{page_break}Perhaps he has never\nbelieved in Babi's cause.\nPerhaps he knows more.{end_wait}
@@ -21,14 +21,14 @@
 09902	MsgLaliveroTheyWereTerribleWeWereNo	They were stronger than\nwe expected. We could\nnot hold them back.{end_wait}
 09915	MsgLaliveroIfOnlyTheyDidntHaveActor	If {actor_name:7} had not been\nthere, perhaps we could\nhave fought them off.{page_break}But even then, we were\noutmatched.{end_wait}
 09916	MsgLaliveroTheyUsedFireOnUsThats	They turned fire on us.\nThere was no way to keep\nthe line together.{end_wait}
-09917	MsgLaliveroCursesWeCouldntStopActorAnd	We failed to stop them.\nWe failed {actor_name:7}...{end_wait}
+09917	MsgLaliveroCursesWeCouldntStopActorAnd	We could not stop them.\nWe could not protect\n{actor_name:7}.{end_wait}
 09918	MsgLaliveroWhatDoTheyPlanToDo	What will they do with\n{actor_name:7} in the ruins?{page_break}No. I cannot bear to\nimagine what they might\nintend.{end_wait}
-09919	MsgLaliveroWeNeverShouldHaveLetTolbi	We should never have let\nTolbi take {actor_name:7} away.\nWe should have fought.{end_wait}
+09919	MsgLaliveroWeNeverShouldHaveLetTolbi	We let Tolbi take\n{actor_name:7} away. I told\nmyself she'd be safe.{page_break}I wanted to believe it.\nThat was easier than\nstanding against Babi.{end_wait}
 09920	MsgLaliveroFaranStillDoesNotReturnWhat	Faran has not returned.\nWhat has he found inside\nthose ruins?{end_wait}
 09921	MsgLaliveroWeHaveSeenManyOmensOf	There have been signs of\ntrouble for some time.{page_break}We saw one when {actor_name:7}\nwas taken from us. We\nshould have understood.{end_wait}
 09922	MsgLaliveroTheStonesWeStackedForThe	The stones we set for\nthe lighthouse... Will\nthey hold after all this?{end_wait}
-09923	MsgLaliveroITriedToStepInFront	I tried to stand between\nthe attackers and her.{page_break}My hands shook. I could\nnot move when it mattered.{end_wait}
-09924	MsgLaliveroTheyAllHaveALessonComing	They will answer for this.{page_break}They will learn why\nLalivero holds {actor_name:7}\nso dear.{end_wait}
+09923	MsgLaliveroITriedToStepInFront	I stepped in front\nof the attackers.{page_break}Then I saw the fire.\nI froze. I could not\nmake myself move.{end_wait}
+09924	MsgLaliveroTheyAllHaveALessonComing	They took her from us.\nI will not forgive that.{page_break}But rage alone will\nnot bring {actor_name:7}\nback to Lalivero.{end_wait}
 09977	MsgLaliveroIWonderWhatBabisMostPrecious	I guard a secret I do\nnot understand myself.{page_break}What could Babi value\nso much that no one may\nsee it?{end_wait}
 10427	MsgLaliveroHaHaIThoughtTheyHad	I thought I would not\nrecover, but the wounds\nhave finally closed.{end_wait}
 10428	MsgLaliveroIWillNeverLetMyGuard	I will not lower my guard\nagain.{page_break}We must be ready to\nprotect Lalivero when\ndanger returns.{end_wait}
