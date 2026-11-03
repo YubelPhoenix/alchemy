@@ -38,22 +38,22 @@
 10292	message	{actor_name:7} fell when\nthe ground broke...{end_wait}
 10293	message	Did {actor_name:5} jump\nafter her?{end_wait}
 10294	message	From that height...\nHow could he survive?{end_wait}
-10295	message	Fool, {actor_name:5}!{pause_20_skippable} I cannot\nbelieve he still meant\nto awaken the beacons.{end_wait}
-10296	message	If the ground hadn't\nbroken, we might\nhave stopped him.{end_wait}
-10297	message	But he risked his life\nto save {actor_name:7}. We\ncannot ignore that.{end_wait}
+10295	message	{actor_name:5}...{pause_20_skippable}\nHe didn't even\nhesitate.{end_wait}
+10296	message	From this height,\nwe can't tell if\nthey survived.{end_wait}
+10297	message	He jumped to save\n{actor_name:7}.\nI hope he reached her.{end_wait}
 10298	message	{actor_name:1}, what now?\nWe can't stay here.{end_wait}
 10299	message	What can we do{pause_20_skippable}\nnow? What {text_effect:2}can{reset_text_style}\nwe do?{end_wait}
 10300	message	{actor_name:6} is still\nout there. And the\nothers, too.{end_wait}
-10301	message	{actor_name:6}...{pause_20_skippable}\nWe have to find her.{end_wait}
-10302	message	{actor_name:1}, listen!{pause_20_skippable}\nWe have to find\n{actor_name:6}!{end_wait}
-10303	message	{actor_name:1}...{pause_20_skippable} there\nyou are. Stay with us.{end_wait}
-10304	message	Should we go find\n{actor_name:6} and the others\nright away?{end_now}
-10305	message	At last, you agree\nwith me!{end_wait}
-10306	message	{actor_name:1}, {actor_name:6}\nneeds to know\nwhat happened to {actor_name:5}.{end_wait}
-10307	message	It will hurt.\nDon't let her hear\nit from a stranger.{end_wait}
-10308	message	You can't hide\nwhat happened to\n{actor_name:5} from {actor_name:6}.{end_wait}
-10309	message	If you will not tell\nher what happened to\n{actor_name:5}, who will?{end_wait}
-10310	message	Stay beside {actor_name:6}\nwhen she hears it.{end_wait}
+10301	message	{actor_name:6}...{pause_20_skippable}\nShe still doesn't\nknow any of this.{end_wait}
+10302	message	{actor_name:1}!{pause_20_skippable} Listen.\nWe still have to\nfind {actor_name:6}.{end_wait}
+10303	message	{actor_name:1}...{pause_20_skippable}\nThere you are.\nCan you stand?{end_wait}
+10304	message	We have to find\n{actor_name:6}. Will you\ncome with us?{end_now}
+10305	message	Thank you.\nWe can't give up now.{end_wait}
+10306	message	{actor_name:1}, we should\ntell {actor_name:6} about\n{actor_name:5} ourselves.{end_wait}
+10307	message	She'll need us.\nWe should be there\nwhen she hears.{end_wait}
+10308	message	We can't leave\n{actor_name:6} to wonder\nwhat happened to {actor_name:5}.{end_wait}
+10309	message	She deserves\nto hear about\n{actor_name:5} from us.{end_wait}
+10310	message	When we find {actor_name:6},\nwe should stay\nbeside her.{end_wait}
 10311	message	What's wrong, {actor_name:2}?{end_wait}
 10312	message	I was thinking...{pause_20_skippable}{pause_20_skippable}\nHow are we meant to\nclimb down from here?{end_wait}
 10313	message	You're right.{pause_20_skippable} Getting away\nfrom this place will be\ndifficult...{end_wait}
