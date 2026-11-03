@@ -372,6 +372,11 @@ static void Altin_TalkToHungryMother(void) {
       GameFlag_Set(FLAG_DARK_TIDE_ALTIN);
       Event_SetMessageId(MsgDarkAltinIsaacGives);
       Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
+      Event_SetMessageId(MsgDarkAltinBlessing);
+      Event_ShowMessageAndWait(ACTOR_HUNGRY_MOTHER, 0);
+    } else {
+      Event_SetMessageId(MsgDarkAltinRefusal);
+      Event_ShowMessageAndWait(ACTOR_HUNGRY_MOTHER, 0);
     }
   }
   Event_End();
