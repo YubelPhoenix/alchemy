@@ -26,7 +26,9 @@ SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
 FRAMES = 12
-IDLE_HEIGHT = 42  # rows; every pose uses the same scale so proportions match
+# The source poses are 128x128 pixel art, so exactly half size (idle ~48 rows)
+# keeps their pixels clean; every pose uses it so proportions always match.
+SCALE = 0.5
 # (source pose number, mirror so she faces the party on the right, rise)
 LAYOUT = [
     (1, True, 0), (1, True, 0),
@@ -56,14 +58,6 @@ def to_lab(rgb):
 # Index 0 is transparent; every other entry of the shared palette may be used.
 palette_lab = to_lab(colors)
 
-# One scale for every pose, taken from the idle pose, so idle, dash, lunge,
-# cast and damage keep the same proportions.
-idle_source = Image.open(SOURCE / "pose_128_1.png").convert("RGBA")
-idle_bounds = idle_source.getchannel("A").getbbox()
-if not idle_bounds:
-    raise ValueError("Heart idle pose is empty")
-SCALE = IDLE_HEIGHT / (idle_bounds[3] - idle_bounds[1])
-
 sheet = Image.new("RGBA", (FRAME, FRAME * FRAMES), (0, 0, 0, 0))
 for index, (number, mirror, rise) in enumerate(LAYOUT):
     src = Image.open(SOURCE / f"pose_128_{number}.png").convert("RGBA")
@@ -81,7 +75,7 @@ for index, (number, mirror, rise) in enumerate(LAYOUT):
     arr = np.asarray(art, dtype=np.float64)
     alpha = arr[..., 3:] / 255.0
     pre = Image.fromarray(np.dstack([arr[..., :3] * alpha, arr[..., 3:]]).astype(np.uint8), "RGBA")
-    pre = pre.resize((width, height), Image.Resampling.LANCZOS)
+    pre = pre.resize((width, height), Image.Resampling.BOX)
     p = np.asarray(pre, dtype=np.float64)
     a = np.clip(p[..., 3:] / 255.0, 1e-6, 1)
     art = Image.fromarray(np.dstack([np.clip(p[..., :3] / a, 0, 255), p[..., 3:]]).astype(np.uint8), "RGBA")
