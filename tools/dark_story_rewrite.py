@@ -61,12 +61,12 @@ def load_replacements(only=None) -> dict[str, tuple[str, str]]:
             rows[msgid] = (context, text)
             locations[msgid] = f"{file}:{number}"
     if duplicates:
-        details = "\\n".join(
+        details = "\n".join(
             f"  {msgid}: " + ", ".join(paths)
             for msgid, paths in sorted(duplicates.items())
         )
         raise SystemExit(
-            "Duplicate dialogue IDs (all collisions, with source locations):\\n"
+            "Duplicate dialogue IDs (all collisions, with source locations):\n"
             + details
         )
     return rows
