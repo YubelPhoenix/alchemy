@@ -44,3 +44,10 @@ These maps were checked against the corresponding scripted **source** functions,
 ## Release rubric
 
 **Narrative readiness is not measured by raw dialogue volume.** A release-quality pass must verify: consistent causality, accurate source speakers, no false environmental facts, no invented lore or exposition beyond what the character knows, earned choice callbacks, distinct voices and tonal contrast, and an ending that respects Golden Sun while leaving appropriate uncertainty for the next installment. Build/IPS success checks syntax and ROM viability; **full branch playtesting** is required before claiming 10/10.
+
+## Visual-identity and automated safety-contract addendum
+
+The three Ash Jenna **field** appearances must use the original Jenna character sprite, with the alternate actor's grey tint and unique ID. Kegare must visibly mimic Mia using the existing Mia character sprite, also as an independent NPC actor, while the true Mia stays in the party. These are **base-game sprite substitutions**, *not* the final custom sprite art from the creator's animation. Do not claim an exact visual recreation until the animation's actual art has been imported and checked.
+
+`tools/dark_story/check_story_contract.py` now enforces important source-level invariants on each dialogue/ROM build, including these identities, choice callbacks and battles that can be retried after defeat. This automated check must pass, but all **PENDING** playthrough tests above remain pending. Explicitly inspect whether showing two Mia appearances (real Mia versus Kegare) causes any palette, portrait, actor-collision, sprite-cache or animation conflict in Tolbi. Check the three Ash Jenna appearances for correct Jenna frames and grey coloring at real hardware resolution; their current sprite is provisional.
+

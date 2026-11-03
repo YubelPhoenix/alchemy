@@ -1161,9 +1161,10 @@ struct ActorTemplate gLaliveroActorTemplatesAfterLighthouse[] = {
         PIXELS(248), 0, PIXELS(80), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_BLANK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-64), 0, PIXELS(-64), FACING_SOUTH, TALK_FACING_KEEP, 0 },
-    // After the Black Orb: the optional Ash Jenna coda actor is hidden until
-    // Lalivero_Initialize confirms the Tolbi meeting and unfinished coda.
-    { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+    // After the Black Orb: the unrepentant alternate Jenna wears Jenna's
+    // recognizable field sprite, shaded grey, not a random NPC appearance.
+    // Lalivero_Initialize reveals her only after Tolbi and before the coda.
+    { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-64), 0, PIXELS(-64), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { ACTOR_GARET, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_EAST, TALK_FACING_PARTY, 0 },

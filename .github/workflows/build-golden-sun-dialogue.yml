@@ -16,6 +16,8 @@ on:
       - 'tools/dark_story_rewrite.py'
       - 'tools/dark_story/*.tsv'
       - 'tools/dark_story/build_heart_art.py'
+      - 'tools/dark_story/check_story_contract.py'
+      - '.github/workflows/build-golden-sun-dialogue.yml'
       - 'assets/heart/**'
 
 permissions:
@@ -46,6 +48,9 @@ jobs:
 
       - name: Apply and validate the dark-story dialogue pass
         run: python3 tools/dark_story_rewrite.py
+
+      - name: Check Ashfall story character, choice, and optional-encounter contracts
+        run: python3 tools/dark_story/check_story_contract.py
 
       - name: Restore Heart battle artwork without distortion
         run: |
