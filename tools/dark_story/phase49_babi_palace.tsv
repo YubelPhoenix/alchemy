@@ -5,7 +5,7 @@
 08206	MsgBabiPalaceMaybeIShouldntHaveEatenQuite	I ate too much before\ntraining. Now I can barely\nstand. Some fighter I am.{end_wait}
 08180	MsgBabiPalaceIfYoureEnteringColossoHurryAlong	If you're fighting, get\nto the colosseum. The\ntrials are nearly over.{page_break}The palace has no place\nfor a warrior who won't\nface the arena.{end_wait}
 08207	MsgBabiPalaceOnlyWarriorsWhoFightWellIn	The finals decide who\njoins Babi's guard. The\nstrong are taken in.{page_break}The rest go home, if\nthey're lucky enough to\nwalk away.{end_wait}
-08272	MsgBabiPalaceActorWasTakenHostageToForce	{actor_name:7} was taken to\nmake Lalivero build the\nlighthouse for Babi.{page_break}I hear her crying at\nnight. No one here has\nthe courage to help her.{end_wait}
+08272	MsgBabiPalaceActorWasTakenHostageToForce	{actor_name:7} was taken\nto force Lalivero\nto build for Babi.{page_break}We all know why\nshe is kept here.\nNo one speaks up.{end_wait}
 08766	MsgBabiPalaceWhatAreYouDoingHurryOver	Still here? The finals\nare about to begin. Get\nto the colosseum.{end_wait}
 08769	MsgTolbiCameRestBefore	You came here to recover\nbefore your next match,\ndidn't you?{page_break}Will you sleep now?{end_now}
 08775	MsgBabiPalaceBabiHasReturnedAndTheFinals	Lord Babi has returned.\nThe finals will begin\nsoon. At last.{end_wait}
@@ -17,7 +17,7 @@
 08884	MsgBabiPalaceTheSouthernContinentIsADangerous	The southern continent\nis not a gentle place.\nYou'll learn that soon.{page_break}Angara has its troubles,\nbut at least its roads\nare not trying to kill you.{end_wait}
 09039	MsgBabiPalaceBabisFaceIsVeryPaleLike	Babi's skin has gone\nwhite as old stone. He\nlooks almost like a corpse.{page_break}No one will speak of it.\nPerhaps they fear what\nhe might do if they did.{end_wait}
 09042	MsgTolbiFoundCloakBall	The Cloak Ball is\nnow yours.{end_wait}
-09049	MsgBabiPalaceTheGirlFromLaliveroIsNo	The girl from Lalivero\nhas gone. Soldiers are\ntaking her home.{page_break}They say the lighthouse\nneeds no more hostages.\nI doubt she believes it.{end_wait}
+09049	MsgBabiPalaceTheGirlFromLaliveroIsNo	The girl from Lalivero\nhas gone. Soldiers\nare taking her home.{page_break}I hope her people\ncan forgive what\nwe did to her.{end_wait}
 09050	MsgBabiPalaceIAmSurprisedActorWasAllowed	I'm surprised {actor_name:7} was\nallowed to return to\nLalivero.{page_break}At least she can see\nher own people again.\nThat should matter.{end_wait}
 08173	MsgBabiPalaceNormallyNoOnesAllowedIntoBabis	The palace is closed\nto visitors. Colosso is\nthe only exception.{page_break}Do not mistake that\nfor an invitation to\nwander wherever you please.{end_wait}
 08174	MsgBabiPalaceSomeOfTheRoomsInThe	Some rooms are open to\nColosso entrants. Lord\nBabi has allowed it.{page_break}Try to remember whose\nroof you're standing\nunder.{end_wait}
@@ -75,7 +75,7 @@
 08887	MsgBabiPalaceIWantThatLighthouseFinishedQuickly	I want the lighthouse\nfinished. Then I can\nleave Gondowan behind.{end_wait}
 09047	MsgBabiPalaceIfYouUseTheCloakBall	The Cloak Ball hides you\nfrom the eyes of beasts\nwhen you stand in shadow.{page_break}That is how I crossed\nAltmiller Cave without\nbeing seen.{end_wait}
 09048	MsgBabiPalaceWhyWouldAnAdeptLikeYou	Why would an Adept need\na Cloak Ball, {actor_name:1}?\nYou have other gifts.{end_wait}
-09038	MsgBabiPalaceSleepingALotHelpsToDelay	Sleep slows the draught's\neffect. It buys me time,\nbut not much.{page_break}If you reach Lemuria,\nbring back more. I cannot\nkeep living this way.{end_wait}
+09038	MsgBabiPalaceSleepingALotHelpsToDelay	The draught is nearly\ngone. I can feel\nmy strength fading.{page_break}If you reach Lemuria,\nbring back more.\nI need more time.{end_wait}
 09040	MsgBabiPalaceIWishIHadMetYou	I wish we had met sooner,\n{actor_name:1}. Perhaps\nthings might differ.{page_break}But some roads close\nlong before we see\nwhere they lead.{end_wait}
 09041	MsgBabiPalaceIfSomethingHappensToBabiWhat	If Babi dies, what becomes\nof Tolbi? No one speaks\nof what follows him.{page_break}I fear the answer is\nthat nothing here will\nchange for the better.{end_wait}
 09051	MsgBabiPalaceItSeemedOnlyNaturalThatActor	It seemed right that\n{actor_name:7} should return\nto Lalivero.{page_break}But who decided she\nwas free to go? I never\nheard an explanation.{end_wait}
