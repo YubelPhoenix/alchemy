@@ -1,0 +1,83 @@
+# Lama Temple and Hama: Xian to Altin continuity, Hsu rescue, Jupiter Reveal, desert warnings. Event endings preserved.
+06481	MsgSanctumSavedAltinFromMonstersClearly	You helped save Altin.{page_break}People here will\nremember your courage.{end_wait}
+06482	MsgSanctumAlmightyFateMustHaveHeardMe	I prayed for help.\nYou were the ones\nwho answered.{end_wait}
+06483	MsgAltinWatchFallingRocks	Mind the loose rock!{page_break}One wrong blow\ncould bring down\nthe ceiling.{end_wait}
+06486	MsgMountainHeWhoHasPowerSee	Those who see\nwhat eyes conceal\nmay find the truth.{page_break}So the inscription\nreads.{end_wait}
+06487	MsgAlpineCrossingLamaTempleThisIsLamaTempleWelcomeTravelers	Welcome to Lama Temple.{page_break}The desert ahead\nis merciless.\nRest before crossing.{end_wait}
+06488	MsgMountainYoungWarriorsDoComeFrom	Have you traveled\nfrom the east?{end_now}
+06489	message	Then you've crossed\nLamakan Desert.{page_break}You must be\nexhausted.{end_wait}
+06490	message	Did you visit Xian\non your journey?{end_now}
+06491	message	Master Feh of Xian\nknows Master Hama.{page_break}Their students\noften train here.{end_wait}
+06492	message	Then you've come\nto a good place.{page_break}Our masters teach\npatience and focus.{end_wait}
+06493	MsgMountainDoKnowMeditation	Do you know\nwhat meditation is?{end_now}
+06494	message	Close your eyes\nand quiet your breath.{page_break}Learn to listen\nwithout fear.{end_wait}
+06495	message	Clear your thoughts.\nBe still as stone.{page_break}That is where\ntraining begins.{end_wait}
+06496	MsgAlpineCrossingLamaTempleYouWhoSpeakToMeI	Your thoughts race\nwith worry.{page_break}Rest a moment.\nNo one is chasing\nyou here.{end_wait}
+06497	MsgMountainDidKnowMasterHamaGreatest	Have you heard\nof Master Hama?{end_now}
+06498	message	Then you know\nof Master Feh.{page_break}Hama's knowledge\ngoes beyond Chi.{end_wait}
+06499	message	Stay and observe.\nYou may learn\nsomething valuable.{end_wait}
+06500	MsgAlpineCrossingLamaTempleTheySeemToBeAnxiousThey	They look frightened.{page_break}The desert will\nshow them no mercy.{end_wait}
+06501	MsgAlpineCrossingLamaTempleTheySayAPersonCanOvercome	Training can prepare\nthe body for pain.{page_break}It cannot make\nus invincible.{end_wait}
+06503	MsgAlpineCrossingLamaTempleISenseImpureThoughtsFromThe	That monk is hungry.\nHe hasn't eaten\nsince yesterday.{end_wait}
+06504	MsgAlpineCrossingLamaTempleChiIsButAFragmentOf	Master Hama studies\nmore than Chi.{page_break}Her wisdom reaches\nfar beyond this temple.{end_wait}
+06505	MsgXianMasterHamaMeditatingPleaseExtremely	Master Hama is\nmeditating.{page_break}Please speak softly.{end_wait}
+06508	message	How could she know\nwe'd arrive today?{end_wait}
+06510	message	I expected you\nto come.{end_wait}
+06511	message	You were waiting\nfor us?{end_wait}
+06512	message	For a long time.{page_break}You seek\nthe Elemental Stars.{end_wait}
+06513	message	You know about\nthe Stars?{page_break}Who are you?{end_wait}
+06515	message	I'm not a Jupiter\nAdept! What are\nyou saying?{end_wait}
+06518	message	You can read\nthe thoughts\nof others, yes?{end_wait}
+06519	message	That gift belongs\nto Jupiter Adepts.{end_wait}
+06520	message	You knew we'd come.{page_break}Was that Psynergy?{end_wait}
+06522	message	Yes. Some Jupiter\nAdepts can sense\nwhat lies ahead.{end_wait}
+06526	message	You already possess\nthe gift.{page_break}You simply haven't\nlearned to use it.{end_wait}
+06527	message	Jupiter's power\ncan glimpse\nthe future?{end_wait}
+06532	message	I have waited\nto teach you Reveal.{end_wait}
+06534	message	You will need Reveal\nto complete\nyour journey.{end_wait}
+06535	message	Jupiter Adepts may\nlearn it in time.{page_break}But time is\nwhat you lack.{end_wait}
+06536	message	Saturos is moving.{page_break}You cannot afford\nto lose his trail.{end_wait}
+06537	message	Saturos and his party\nblocked Silk Road.{end_wait}
+06540	message	A terrible fate?\nWhat do you mean?{end_wait}
+06541	message	I cannot speak\nof that burden.{page_break}Please do not\nask me again.{end_wait}
+06542	message	We must speak\nof Reveal now.{end_wait}
+06543	message	Reveal will help\nyou cross Lamakan.{end_wait}
+06544	message	What makes the\ndesert so dangerous?{end_now}
+06547	message	Why do we need\nReveal out there?{end_wait}
+06548	message	The desert was\nalready deadly\nin ordinary heat.{end_wait}
+06549	message	Now something has\nmade the heat\neven worse.{end_wait}
+06550	message	Anyone who enters\nwithout preparation\nmay die there.{end_wait}
+06551	message	Then how did Saturos\nmake it across?{end_wait}
+06552	message	Saturos and Menardi\nare Mars Adepts.{end_wait}
+06553	message	Their powers may\nshield them\nfrom the heat.{end_wait}
+06554	message	How can Reveal\nhelp us survive?{end_wait}
+06555	message	Reveal can uncover\noases hidden\nby the heat.{end_wait}
+06556	message	Can't we just\nlook for water?{end_wait}
+06557	message	Do you know\nwhat a mirage is?{end_now}
+06558	message	The desert is full\nof false images.{page_break}Without Reveal,\nyou may pass\nreal water by.{end_wait}
+06559	message	Heat bends the air\nand hides the land.{page_break}Your eyes alone\nwill mislead you.{end_wait}
+06561	message	I don't intend\nto die out there!{end_wait}
+06565	message	I cannot promise\nthat it will work.{end_wait}
+06566	message	I once tried\nto pass a gift\nto a young girl.{page_break}It was not Reveal.{end_wait}
+06567	message	She was not\nan Adept.{end_wait}
+06568	message	I believed anyone\nwith a gift\ncould strengthen it.{end_wait}
+06569	message	But I saw\nno change in her.{end_wait}
+06571	message	Feizhi?\nWhy are you here?{end_wait}
+06573	message	What did you sense?{end_wait}
+06575	message	Hsu left the temple\nsome time ago.{end_wait}
+06576	message	I know.\nHe never returned\nto Xian.{end_wait}
+06577	message	The fallen rocks\nin the mountains...{end_wait}
+06578	message	I sensed danger.{page_break}I came through\nthe mine to ask\nfor help.{end_wait}
+06580	message	Why has this gift\nawakened only now?{end_wait}
+06581	message	A stone fell\nfrom the sky\nand struck me.{end_wait}
+06584	message	Then perhaps\nmy teaching\ndid reach you.{end_wait}
+06586	message	We must help Hsu.\nThere's no time\nto lose.{end_wait}
+06587	message	Master Hama, wait!\nWhat about Reveal?{end_wait}
+06589	message	Feizhi's gift\nhas awakened.{page_break}I believe you\ncan learn as well.{end_wait}
+06590	message	Use Reveal\nto cross the desert.{end_wait}
+06591	message	Your power is new.{page_break}Some oases may\nremain hidden.{end_wait}
+06595	message	No... Yet somehow\nshe feels familiar.{end_wait}
+06597	message	Then we should\nleave at once!{end_wait}
+06598	message	The desert may\nhave slowed them.{page_break}We must not\nlose more time.{end_wait}
+06599	message	We can't just\nleave them behind!{end_wait}
+06600	message	Master Hama may\nneed our help.{end_wait}
