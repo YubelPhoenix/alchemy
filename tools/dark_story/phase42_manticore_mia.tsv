@@ -1,6 +1,6 @@
 # Lamakan Desert: Mia is shaken by the Manticore, recognizes her anger, and asks the others to stay close.
 N149	MsgDarkManticoreMiaGloat	When it attacked,\nI wanted to hurt it.\nNot just stop it.{page_break}That frightened me.{end_wait}
-N150	MsgDarkManticoreGaretSmile	Mia, you were shaking\nafter it fell.{page_break}I thought you were hurt.\nYou wouldn't answer.{end_wait}
-N151	MsgDarkManticoreMiaPlace	I was angry, Garet.\nFor a moment, I forgot\nwhat mattered.{end_wait}
+N150	MsgDarkManticoreGaretSmile	Mia, you were quiet\nafter the fight.{page_break}I thought you fell.\nYou wouldn't answer.{end_wait}
+N151	MsgDarkManticoreMiaPlace	I was angry, Garet.\nI wasn't thinking\nabout keeping us safe.{end_wait}
 N152	MsgDarkManticoreMiaSoft	Isaac, give me a moment.\nI need to steady\nmy hands.{end_wait}
 N153	MsgDarkManticoreIsaacSupport	Take your time, Mia.\nWe're not leaving\nwithout you.{end_wait}
