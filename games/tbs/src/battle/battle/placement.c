@@ -313,7 +313,8 @@ void BattlePlacement_LayoutEnemies(u16 *actorIds, s32 count, s32 *xPositions,
     // Heart (enemy 109) stands closer to the party than the usual -80, so she
     // is not small and far off beside it.
     if (!IS_PLACEHOLDER_ID(actorIds[index]) &&
-        Unit_GetFar(actorIds[index])->id == 109) {
+        (Unit_GetFar(actorIds[index])->id == 109 ||
+         Unit_GetFar(actorIds[index])->id == 100)) {
       xPositions[index] = -62;
     }
     if (index != 0) {

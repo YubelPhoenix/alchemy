@@ -714,9 +714,10 @@ const struct EncounterZone gEncounterZones[] = {
         .weights = {10, 10, 10, 10, 10, 10, 10, 10},
     },
     // Mercury Lighthouse: slot 0 Mia alone against Menardi, slot 1 Isaac
-    // alone against Mia, slot 2 Ondra in Tolbi, slot 3 Heart in Kolima
+    // alone against Mia, slot 2 Ondra in Tolbi, slot 3 Heart in Kolima, slot 4
+    // Ash Jenna in Lamakan Desert
     {
-        .enemies = {382, 383, 384, 385, 382, 382, 382, 382},
+        .enemies = {382, 383, 384, 385, 386, 382, 382, 382},
         .weights = {10, 10, 10, 10, 10, 10, 10, 10},
     },
 };

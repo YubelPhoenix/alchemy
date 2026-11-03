@@ -315,6 +315,27 @@ static void LamakanDesert_SayMia(void) {
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
 }
 
+/// Ash Jenna challenges the party, then fights them: slot 4 of
+/// ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI (enemy 92, drawn with her own art). A
+/// win or a defeat returns to the Manticore pass, where
+/// LamakanDesert_Initialize plays her farewell, or offers the fight again.
+static void LamakanDesert_AshJennaTest(void) {
+  Event_SetMessageId(MsgDarkJennaTest);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkJennaTestIsaac);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_ASH_JENNA_FOUGHT);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  Event_SetAfterBattleDestination(
+      (s32)&SceneId_LamakanDesertManticore,
+      LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE);
+  Event_SetDefeatDestination((s32)&SceneId_LamakanDesertManticore,
+                             LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 4);
+}
+
 /// After the Manticore, the hostile Ash Jenna claims to come from a lost
 /// world and tries to recruit Isaac against the Wise One. Her accusation is
 /// unverified, and she is not redeemed. Garet (not Ash Jenna) voices the
@@ -367,6 +388,20 @@ static void LamakanDesert_AshJennaFinale(void) {
     LamakanDesert_SayMia();
     GameFlag_Set(FLAG_DARK_ASH_JENNA_REFUSED);
   }
+  // The final test: she will not leave until she has seen them fight.
+  LamakanDesert_AshJennaTest();
+  Event_End();
+}
+
+/// Ash Jenna's farewell after the party has beaten her: she says why she
+/// tested them, tells them to go on to Kalay and vanishes. Once.
+static void LamakanDesert_AshJennaAfterBattle(void) {
+  Event_Start();
+  Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(167), PIXELS(184));
+  Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_NORTH, 0);
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
+  Event_SetMessageId(MsgDarkJennaTestWin);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
   Event_SetMessageId(MsgDarkFinaleHook);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
   Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_EAST, 0);
@@ -1164,6 +1199,23 @@ s32 LamakanDesert_Initialize(void) {
       Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(167), PIXELS(184));
       Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_NORTH, 0);
       LamakanDesert_AshJennaFinale();
+    }
+  }
+  // Back from Ash Jenna's battle: a win plays her farewell; a defeat leaves
+  // her waiting and offers the fight again.
+  if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
+      GameFlag_Get(FLAG_DARK_ASH_JENNA_FOUGHT) != 0 &&
+      GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0) {
+    if (gSaveBlock.sequenceResult == -1) {
+      GameFlag_Clear(FLAG_DARK_ASH_JENNA_FOUGHT);
+      Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(167), PIXELS(184));
+      Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_NORTH, 0);
+      Event_Start();
+      Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
+      LamakanDesert_AshJennaTest();
+      Event_End();
+    } else {
+      LamakanDesert_AshJennaAfterBattle();
     }
   }
   return 0;

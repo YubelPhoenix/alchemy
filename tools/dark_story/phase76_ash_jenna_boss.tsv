@@ -1,0 +1,5 @@
+# Ash Jenna's final test in Lamakan Desert. Names enemy row 92 (message 747).
+00747	message	Ash Jenna
+N229	MsgDarkJennaTest	Before you follow me,\nI want to see what you\nare made of.{end_wait}
+N230	MsgDarkJennaTestIsaac	You're serious. Fine.\nIf this is what it takes,\nwe'll give you a fight.{end_wait}
+N231	MsgDarkJennaTestWin	Good. You didn't hold\nback, and neither did I.\nNow I know you'll last.{end_wait}

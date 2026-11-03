@@ -6,6 +6,8 @@ on:
     branches: [dark-story-rewrite]
     paths:
       - 'tools/dark_story/build_heart_art.py'
+      - 'tools/dark_story/build_ash_jenna_art.py'
+      - 'assets/ash_jenna/**'
       - 'assets/heart/**'
       - '.github/workflows/build-heart-art.yml'
 
@@ -24,6 +26,19 @@ jobs:
         run: python3 -m pip install --break-system-packages Pillow numpy
       - name: Generate Heart artwork independently of dialogue
         run: python3 tools/dark_story/build_heart_art.py
+      - name: Generate Ash Jenna artwork and check her sheet
+        run: |
+          python3 tools/dark_story/build_ash_jenna_art.py
+          python3 - <<'PY'
+          from PIL import Image
+          sheet = Image.open('games/tbs/src/graphics/monster/slime.png')
+          assert sheet.mode == 'P' and sheet.size == (64, 1024), (sheet.mode, sheet.size)
+          shared = Image.open('games/tbs/src/system/memory/basic.png').getpalette()[:224 * 3]
+          assert sheet.getpalette()[:224 * 3] == shared
+          used = set(sheet.getdata())
+          assert max(used) <= 223 and max(used) > 15, used
+          print('Ash Jenna artwork validated')
+          PY
       - name: Check sprite palette and frame dimensions
         run: |
           python3 - <<'PY'

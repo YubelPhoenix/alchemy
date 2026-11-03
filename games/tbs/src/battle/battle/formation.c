@@ -10,7 +10,7 @@
 extern u16 gBattleFormation_LevelMatchedEnemies[];
 
 /// The rows of gFormations.
-#define FORMATION_COUNT 386 // includes the scripted fights: Mia (380 to 383), Ondra (384), Heart (385)
+#define FORMATION_COUNT 387 // includes the scripted fights: Mia (380 to 383), Ondra (384), Heart (385), Ash Jenna (386)
 
 // How many name letters tell the enemies of one class apart: 26 in Japanese,
 // 9 in the localizations.

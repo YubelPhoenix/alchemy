@@ -574,11 +574,13 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 64,
     },
     {
-        .animation = 408,
-        .attackAnim = 5,
-        .palette = 4,
+        // Ash Jenna, drawn in the Slime's unused sprite slot (her own art in
+        // games/tbs/src/graphics/monster/slime.png), standing in the unused
+        // Wise Gryphon's class.
+        .animation = 477,
+        .attackAnim = 1,
         .defeatSound = 1,
-        .effectHeight = 64,
+        .effectHeight = 42,
     },
     {
         .animation = 403,

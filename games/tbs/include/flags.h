@@ -2778,4 +2778,7 @@
 /// collapse. Set after the scene; hides her on subsequent town entries.
 #define FLAG_DARK_ASH_JENNA_LALIVERO 0x8d8
 
+/// Ash Jenna's Lamakan fight has been started (LamakanDesert_AshJennaFinale).
+#define FLAG_DARK_ASH_JENNA_FOUGHT 0x8d8
+
 #endif
