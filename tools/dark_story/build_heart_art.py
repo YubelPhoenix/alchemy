@@ -27,3 +27,12 @@ for index, number in enumerate(POSES):
 indexed = sheet.convert("P", palette=Image.Palette.ADAPTIVE, colors=256)
 indexed.save(DEST)
 print(f"Rebuilt {DEST.relative_to(ROOT)} from six original Heart poses")
+
+# Claude's portrait hook already points at ICON_66. Replace that placeholder
+# with the original 64x64 Heart mugshot; no changes to Mia or other portraits.
+portrait = Image.open(SOURCE / "mugshot_64.png").convert("RGBA")
+if portrait.size != (64, 64):
+    raise ValueError(f"Heart mugshot must be 64x64, got {portrait.size}")
+portrait_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_66.png"
+portrait.convert("P", palette=Image.Palette.ADAPTIVE, colors=256).save(portrait_target)
+print(f"Rebuilt {portrait_target.relative_to(ROOT)} from original Heart mugshot")
