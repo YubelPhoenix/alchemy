@@ -1,6 +1,6 @@
 # Ash Jenna glimpsed in the Lamakan Desert after Mercury Lighthouse is lit.
-N106	MsgDarkLamakanJennaWatch	You look at every face\nas though the missing\nmight come back to you.{page_break}I did that once, too.{end_wait}
+N106	MsgDarkLamakanJennaWatch	You search every face\nhoping to find her.\nHow tiresome.{page_break}I remember that\nkind of hope.{end_wait}
 N107	MsgDarkLamakanIsaacWait	You look like Jenna.\nBut that can't be...\nWho are you?{end_wait}
-N108	MsgDarkLamakanJennaUndo	I thought I could save\nthem if I kept moving.{page_break}I was too late.{end_wait}
-N109	MsgDarkLamakanJennaClimb	Keep following them.\nThen ask what the\nbeacons are worth.{end_wait}
-N110	MsgDarkLamakanIsaacSilent	That's her face.\nBut it wasn't her voice.\nWho was she?{end_wait}
+N108	MsgDarkLamakanJennaUndo	I kept looking, too.\nUntil I saw what\nhope was worth.{page_break}Now I take what\nI came for.{end_wait}
+N109	MsgDarkLamakanJennaClimb	Keep chasing them.\nYou may live long\nenough to regret it.{end_wait}
+N110	MsgDarkLamakanIsaacSilent	She looked like Jenna.\nBut that smile...\nIt wasn't hers.{end_wait}

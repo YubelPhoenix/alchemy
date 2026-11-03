@@ -1,14 +1,14 @@
 # Ash Jenna confronts the party in Tolbi after Colosso.
-N74	MsgDarkTolbiJennaFound	You made it to Tolbi.\nI wondered if you'd\ncome this far.{page_break}What have you seen\nsince Lamakan, Isaac?{end_wait}
-N75	MsgDarkTolbiIsaacGrey	You told us to watch.\nWe did. What are you\nhere to tell us?{end_wait}
-N76	MsgDarkTolbiJennaAsh	The next beacon may burn.\nI watched the lights\nin my own world.{page_break}I think the Wise One\nknew the cost.\nI couldn't stop it.{end_wait}
-N77	MsgDarkTolbiGaretFire	You told us what\nyou believe. Where's\nthe proof?{end_wait}
-N78	MsgDarkTolbiJennaPlease	I don't ask you to\ntrust me, Garet.\nJust keep looking.{end_wait}
-N79	MsgDarkTolbiMiaSneer	You've given us\nno reason to follow you.\nWe have our own road.{end_wait}
-N80	MsgDarkTolbiJennaMia	Your hands shook after\nthe Manticore, Mia.\nWere you afraid of it?{end_wait}
+N74	MsgDarkTolbiJennaFound	You made it to Tolbi.\nI knew you'd keep\nchasing them.{page_break}Have you decided\nwhat their lives\nare worth, Isaac?{end_wait}
+N75	MsgDarkTolbiIsaacGrey	We know what you want.\nWhy are you here?{end_wait}
+N76	MsgDarkTolbiJennaAsh	The next beacon may\nburn before you catch\nthem.{page_break}I saw the beacons\nburn in my world.\nI won't beg this time.{end_wait}
+N77	MsgDarkTolbiGaretFire	You keep blaming him.\nWhere's your proof?{end_wait}
+N78	MsgDarkTolbiJennaPlease	I don't need a jury.\nIf people stand in\nmy way, they die.{end_wait}
+N79	MsgDarkTolbiMiaSneer	You'd kill anyone\nwho stood in your way?\nEven innocents?{end_wait}
+N80	MsgDarkTolbiJennaMia	Your hands shook after\nthe Manticore, Mia.\nDid you want more?{end_wait}
 N81	MsgDarkTolbiMiaPlace	My own anger.\nI told my friends.\nThey stayed with me.{end_wait}
-N82	MsgDarkTolbiJennaGoing	Then hold on to them.\nThe next lighthouse\nmay not spare you.{end_wait}
-N83	MsgDarkTolbiIsaacWait	You want us to watch.\nThen stop hiding\nwhat you know.{end_wait}
+N82	MsgDarkTolbiJennaGoing	You told them?\nHow trusting.\nRemember that feeling.{end_wait}
+N83	MsgDarkTolbiIsaacWait	Leave Mia out of it.\nWe're done listening.{end_wait}
 
-N240	MsgDarkTolbiJennaAccepted	You said you'd help.\nDo you still mean\nto question the Wise One?{end_wait}
-N241	MsgDarkTolbiJennaRefused	You refused my offer.\nBut you kept watching.\nWhat did you find?{end_wait}
+N240	MsgDarkTolbiJennaAccepted	You agreed to help.\nDon't imagine you\ncan choose the cost.{end_wait}
+N241	MsgDarkTolbiJennaRefused	You refused me.\nBut you'll still\nhave to choose.{end_wait}

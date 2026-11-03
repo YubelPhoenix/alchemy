@@ -1,21 +1,21 @@
 # Lamakan confrontation: Ash Jenna's origin, her offer, and Isaac's response.
-N224	MsgDarkFinaleJennaMet	You came back.\nI wondered if you'd\nrecognize me.{end_wait}
+N224	MsgDarkFinaleJennaMet	You came back.\nI knew you wouldn't\nleave a mystery alone.{end_wait}
 N225	MsgDarkFinaleIsaacMet	I saw you before.\nYou look like Jenna.\nTell me who you are.{end_wait}
-N195	MsgDarkFinaleJenna1	You kept going,\njust as I thought.\nI owe you an answer.{end_wait}
+N195	MsgDarkFinaleJenna1	You kept going,\njust as I thought.\nGood, Isaac.{end_wait}
 N196	MsgDarkFinaleIsaac1	I know Jenna.\nYou have her face.\nWho are you?{end_wait}
 N197	MsgDarkFinaleJenna2	I'm Jenna. Not yours.\nThe beacons in my world\nwere all lit.{page_break}Then our home was gone.\nThe Wise One did nothing.\nI was there to see it.{end_wait}
 N198	MsgDarkFinaleGaret	Why come to Isaac?\nWhat can he do\nthat you couldn't?{end_wait}
-N199	MsgDarkFinaleJenna3	He gave you a task.\nYou're the one he may\nbe willing to hear.{page_break}I need to know why\nmy world was left to die.\nHelp me ask him.{end_wait}
-N200	MsgDarkFinaleIvan	It may be her truth.\nBut we only have\nher word for it.{end_wait}
-N201	MsgDarkFinaleMia	If she's right,\nwe need to know.\nBut we need evidence.{end_wait}
-N203	MsgDarkEchoMiner	You stayed for\nthose miners when we\ncould have moved on.{end_wait}
-N208	MsgDarkFinaleAsk	Help her question\nthe Wise One?{end_now}
-N209	MsgDarkFinaleYesIsaac	I'll face him with you.\nBut I won't condemn\nhim without proof.{end_wait}
-N210	MsgDarkFinaleYesJenna	Then when the next\nbeacon burns, watch\nwhat changes.{end_wait}
-N211	MsgDarkFinaleYesIvan	Isaac, I want answers\ntoo. Just don't mistake\nher pain for proof.{end_wait}
-N212	MsgDarkFinaleYesJenna2	Don't trust me blindly.\nJust remember what\nI asked you to notice.{end_wait}
-N213	MsgDarkFinaleNoIsaac	No. I'll find out\nwhat happened first.\nThen I'll decide.{end_wait}
-N214	MsgDarkFinaleRefusalJenna	Then find your proof.\nI hope you can bear\nwhat you discover.{end_wait}
-N215	MsgDarkFinaleRefusalIvan	We can argue later.\nKalay is still ahead.{end_wait}
-N216	MsgDarkFinaleRefusalMia	She may be wrong.\nThat doesn't mean\nwe shouldn't look.{end_wait}
-N221	MsgDarkFinaleHook	Your Jenna and Kraden\nare still with Menardi.\nFelix travels with them.{page_break}The road goes to Kalay.\nGo after your friends.\nWe'll speak again.{end_wait}
+N199	MsgDarkFinaleJenna3	He gave you a task.\nYou can reach him.\nThat makes you useful.{page_break}I'll make him answer\nfor what happened.\nHelp me, or stand aside.{end_wait}
+N200	MsgDarkFinaleIvan	She wants Isaac to\nbring her closer to him.\nWe can't trust her.{end_wait}
+N201	MsgDarkFinaleMia	She may believe it.\nBut look what she's\nasking Isaac to do.{end_wait}
+N203	MsgDarkEchoMiner	You risked your life\nfor those miners.\nHow very generous.{end_wait}
+N208	MsgDarkFinaleAsk	Help her confront\nthe Wise One?{end_now}
+N209	MsgDarkFinaleYesIsaac	I'll help find the truth.\nBut I won't hurt\nanyone for you.{end_wait}
+N210	MsgDarkFinaleYesJenna	We'll see how long\nyou hold to that\nwhen the time comes.{end_wait}
+N211	MsgDarkFinaleYesIvan	Isaac, be careful.\nShe has Jenna's face,\nnot Jenna's heart.{end_wait}
+N212	MsgDarkFinaleYesJenna2	Remember my face,\nIsaac. You'll need it\nwhen the time comes.{end_wait}
+N213	MsgDarkFinaleNoIsaac	No. I won't help\nyou hunt someone\non your word alone.{end_wait}
+N214	MsgDarkFinaleRefusalJenna	Refuse all you like.\nYou'll still have to\nlive with what comes.{end_wait}
+N215	MsgDarkFinaleRefusalIvan	We need to go.\nJenna's still with them.{end_wait}
+N216	MsgDarkFinaleRefusalMia	Don't let her put\nher anger in your\nhands, Isaac.{end_wait}
+N221	MsgDarkFinaleHook	Your Jenna and Kraden\nare still with Menardi.\nFelix travels with them.{page_break}The road goes to Kalay.\nI'd hurry if I were you.\nWe'll meet again.{end_wait}
