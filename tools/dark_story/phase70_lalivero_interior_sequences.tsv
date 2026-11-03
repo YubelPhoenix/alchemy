@@ -18,13 +18,13 @@
 10336	message	Isn't that right,\n{actor_name:1}?{end_now}
 
 # Faran's response, the Adept discussion, and the farewell.
-10338	message	Please do not give up\non {actor_name:7}.{end_wait}
-10339	message	We will search for\n{actor_name:7} as long as\nwe are able.{end_wait}
+10338	message	Thank you.\nPlease keep looking\nfor {actor_name:7}.{end_wait}
+10339	message	I understand.\nWe'll keep searching\nfor {actor_name:7}.{end_wait}
 10340	message	{actor_name:7} has survived\nthings no one else\ncould have endured.{end_wait}
 10341	message	But that fall...\nEven I cannot say\nwhat happened to her.{end_wait}
 10342	message	The sea rose as she\nfell. None of us\nexpected that.{end_wait}
-10343	message	You call that\na miracle?{end_wait}
-10344	message	Or was it only\na stroke of luck?{end_wait}
+10343	message	I want to call it\na miracle. But I\ncan't know yet.{end_wait}
+10344	message	Perhaps it was luck.\nEither way, I hope\nshe survived.{end_wait}
 10345	message	We cannot know yet.\nCall it chance.{end_wait}
 10346	message	I raised her.\nNothing about her\nwas ever ordinary.{end_wait}
 10347	message	Then you truly think\n{actor_name:7} is alive?{end_wait}
