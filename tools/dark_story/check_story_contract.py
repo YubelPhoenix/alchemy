@@ -35,7 +35,7 @@ def scene(name: str) -> str:
 def function(source: str, name: str) -> str:
     """Get the function body, including nested if/else blocks, without a C parser."""
     match = re.search(
-        r"\b(?:static\s+)?(?:void|s32|int)\s+"
+        r"\b(?:static\s+)?(?:void|s32|int|const\s+struct\s+(?:ActorTemplate|Trigger)\s*\*)\s*"
         + re.escape(name)
         + r"\s*\(\s*void\s*\)\s*\{",
         source,
@@ -285,7 +285,65 @@ def check_mercury_lighthouse_chronology() -> None:
             "World-stage weather must read the genuine lit flag")
 
 
+def check_lalivero_first_postvenus_entry() -> None:
+    source = scene("lalivero.c")
+    helper = function(source, "Lalivero_IsPostVenusState")
+    for requirement in [
+        "FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED",
+        "ENTRANCE_FROM_AERIE",
+        "ENTRANCE_FROM_AERIE_QUIETLY",
+    ]:
+        require(requirement in helper,
+                "First post-Venus Lalivero must recognize " + requirement)
+    require(
+        "Lalivero_IsPostVenusState()" in
+        function(source, "Lalivero_GetActorTemplates"),
+        "Post-Venus actors must be selected before Lalivero_Initialize",
+    )
+    require(
+        "Lalivero_IsPostVenusState()" in
+        function(source, "Lalivero_GetTriggers"),
+        "Post-Venus event triggers must load on the first return",
+    )
+    require(
+        "GameFlag_Set(FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED)" in
+        function(source, "Lalivero_Initialize"),
+        "Post-Venus arrival must save its state after entering",
+    )
+
+
+def check_named_scene_exit_wiring() -> None:
+    # Only direct literal requests can be checked without evaluating the C
+    # scene interpreter; dynamic, computed, and default exits remain manual.
+    edited_scenes = [
+        "altin.c", "altin_peak.c", "imil.c", "kolima.c",
+        "lalivero.c", "lamakan_desert.c", "mercury_lighthouse_aerie.c",
+        "mogall_forest.c", "sol_sanctum_corridor.c",
+        "sol_sanctum_elemental_star_room.c", "sol_sanctum_eruption.c",
+        "sol_sanctum_luna_sol_rooms.c", "sol_sanctum_statue.c",
+        "tolbi.c", "vale.c", "vale_stormy_night.c", "vault.c",
+        "vault_revisit.c", "world_map.c",
+    ]
+    inspected = 0
+    for filename in edited_scenes:
+        source = scene(filename)
+        destinations = set(re.findall(
+            r"Import_EventSetExitRequest\(\s*([A-Z_][A-Z0-9_]*)\s*\)",
+            source,
+        ))
+        for destination in destinations:
+            require(re.search(
+                r"\bSCENE_EXIT\s*\(\s*" + re.escape(destination)
+                + r"\s*,", source,
+            ) is not None,
+                    f"Unmapped named exit in {filename}: {destination}")
+            inspected += 1
+    require(inspected > 15, "Exit check did not inspect enough source exits")
+
+
 def main() -> None:
+    check_lalivero_first_postvenus_entry()
+    check_named_scene_exit_wiring()
     check_mercury_lighthouse_chronology()
     check_dormant_palette_cache_is_disabled()
     check_visual_identity()

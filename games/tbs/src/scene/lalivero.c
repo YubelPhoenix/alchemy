@@ -238,10 +238,19 @@ const struct SceneExitRegion *Lalivero_GetRegions(void) { return NULL; }
 
 const u32 *Lalivero_GetExits(void) { return gLaliveroExits; }
 
-/// The townsfolk, who stand differently once the party is back from Venus
-/// Lighthouse.
+/// The actor and trigger tables are chosen BEFORE Lalivero_Initialize runs.
+/// On the first entrance back from Venus the permanent story flag may still
+/// be unset; recognize the entry itself so Ash Jenna, the north exit sign,
+/// and the Black Orb exist in the correct post-Venus roster from frame one.
+static s32 Lalivero_IsPostVenusState(void) {
+  return GameFlag_Get(FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED) != 0 ||
+         gSaveBlock.entrance == ENTRANCE_FROM_AERIE ||
+         gSaveBlock.entrance == ENTRANCE_FROM_AERIE_QUIETLY;
+}
+
+/// The townsfolk, who stand differently once the party is back from Venus.
 const struct ActorTemplate *Lalivero_GetActorTemplates(void) {
-  if (GameFlag_Get(FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED) != 0) {
+  if (Lalivero_IsPostVenusState()) {
     return gLaliveroActorTemplatesAfterLighthouse;
   }
   return gLaliveroActorTemplates;
@@ -881,7 +890,7 @@ static void Lalivero_TurnBackToTheShip(void) {
 /// What the party can talk to, touch and search, which changes once they are
 /// back from Venus Lighthouse.
 const struct Trigger *Lalivero_GetTriggers(void) {
-  if (GameFlag_Get(FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED) != 0) {
+  if (Lalivero_IsPostVenusState()) {
     return gLaliveroTriggersAfterLighthouse;
   }
   return gLaliveroTriggers;

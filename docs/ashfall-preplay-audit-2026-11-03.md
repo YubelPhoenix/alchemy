@@ -101,3 +101,12 @@ In `MercuryLighthouseAerie_SaturosFallsAndMiaRuns`, Isaac's solo-duel preparatio
 
 This risk is separate from the game-breaking world-map A-menu freeze. Neither can be signed off by compilation or text audit alone.
 
+
+### PREPLAY FIX — first post-Venus Lalivero actor and trigger selection
+
+A further source-order audit discovered that `SceneManager_Run` loads **interaction triggers** and **actor templates** before it calls the town initializer. Before this fix, both `Lalivero_GetActorTemplates` and `Lalivero_GetTriggers` only checked `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED`, but `Lalivero_Initialize` set that flag **on the first actual return** (`ENTRANCE_FROM_AERIE` and `ENTRANCE_FROM_AERIE_QUIETLY`). Thus the very first post-Venus entry could load Lalivero's first-visit actor roster and trigger table: that roster lacks the custom post-Venus Ash Jenna actor, while the initializer could attempt to position and tint her when the Tolbi event had occurred. This was a concrete actor-availability and scene-initialization hazard; it also risked using the wrong wharf/north-exit interactions.
+
+**Repair:** Added a shared `Lalivero_IsPostVenusState()` predicate which recognizes either the persisted `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED` **or the two post-Venus entry types**, and used it in **both getters**. The initializer still sets the permanent flag in its existing place, so later reentries behave as before. Added CI contracts for both getter paths and all post-Venus entry forms. **In-game test:** reach Lalivero for the first time directly after Venus with Ash Jenna previously met in Tolbi; confirm the coda actor, sign, wharf guard, Black Orb and exit interactions behave. Test a second entrance after leaving town and loading a save.
+
+This static correction does not independently prove that the first post-Venus entrance can be reached in every gameplay path; inspect it during the actual playthrough.
+

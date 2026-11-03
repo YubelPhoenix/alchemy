@@ -586,3 +586,8 @@ The route-wide audit was recorded at `docs/ashfall-preplay-audit-2026-11-03.md`.
 
 The final source audit caught a real discrepancy: `Scene_Arrive` had used `FLAG_AREA_VISITED(0x13)` to set `FLAG_MERCURY_LIGHTHOUSE_LIT`, causing a simple pre-beacon visit to enable post-Mercury world state. The area-visit shortcut is removed. The lit flag is already preserved across scene/area changes, and the proper Aerie initializer sets it when the beacon actually lights. New CI contract `check_mercury_lighthouse_chronology` rejects any future reintroduction of the shortcut. The pre-play audit report documents required before/after-beacon testing. Also inspected all 19 changed scene C files for unmatched named scene exits: none found. This does not establish dynamic battle routing correctness or clear the reported A-button freeze.
 
+
+### Pre-play first-return Lalivero actor selection fix
+
+`SceneManager_Run` calls the town's `triggers()` and `actorTemplates()` **before** `Lalivero_Initialize`. The original getters looked only at a persistent `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED` that the initializer itself sets when entering from the Venus aerie. That can select first-visit tables on the first post-Venus entry, including no optional Ash Jenna actor despite a later coda initialization attempting to operate on her. Both getters now use `Lalivero_IsPostVenusState()`, checking the saved flag **or** `ENTRANCE_FROM_AERIE` / `ENTRANCE_FROM_AERIE_QUIETLY`, with the old flag assignment retained. The story contract guards correct early table selection and source-local named scene exits in all 19 modified scene C files. Actual event/actor tests in emulator remain mandatory.
+
