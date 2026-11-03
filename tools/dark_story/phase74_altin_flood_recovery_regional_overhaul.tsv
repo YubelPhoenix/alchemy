@@ -1,2 +1,2 @@
-# Altin recovery supplemental entry. The overlapping flood dialogue already lives in phase29_altin.tsv and phase41_altin_peak_mood.tsv; do not duplicate IDs.
-06411	MsgSanctumPleaseSaveTheHelplessInAltin	Please help\nthe people of Altin.\nThey have nowhere to go.{end_wait}
+# Altin recovery dialogue is maintained in phase2_sanctum.tsv and the regional Altin files.
+# This file intentionally defines no replacement IDs to prevent duplicate 06411.
