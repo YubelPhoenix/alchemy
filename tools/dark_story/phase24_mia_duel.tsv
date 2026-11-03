@@ -1,13 +1,13 @@
 00790	message	Mia
 N59	MsgDarkDuelMiaStops	Mercury is lit.\nI failed to guard it.\nWhy should I trust you?{end_wait}
-N60	MsgDarkDuelIsaacNoTime	Jenna and Kraden\nare with Menardi.\nHelp us reach them.{end_wait}
+N60	MsgDarkDuelIsaacNoTime	Menardi has Jenna\nand Kraden. We're here\nto bring them home.{end_wait}
 N61	MsgDarkDuelMiaPlace	I swore to protect\nthis lighthouse.\nI was too late.{end_wait}
-N62	MsgDarkDuelIsaacRefuse	Then come with us.\nWe may still save them.{end_wait}
-N63	MsgDarkDuelMiaDraw	You're right.\nWe have no time to argue.{page_break}I'll follow Menardi.\nYou stop Saturos.{end_wait}
+N62	MsgDarkDuelIsaacRefuse	Then help us now.\nMenardi is escaping.\nWe can still reach her.{end_wait}
+N63	MsgDarkDuelMiaDraw	I don't know if\nI can trust you.\nBut they need help.{page_break}I'll follow Menardi.\nYou keep Saturos here.{end_wait}
 N64	MsgDarkDuelSaturosAmused	Go, healer.\nThe beacon is already lit.{end_wait}
-N65	MsgDarkDuelMiaLost	I was wrong about you,\nIsaac. I'm sorry.{end_wait}
-N66	MsgDarkDuelMiaStop	Menardi has Jenna.\nI must follow before\nthey get away.{end_wait}
+N65	MsgDarkDuelMiaLost	I stopped you\nwhile Menardi escaped.\nThat was my mistake.{end_wait}
+N66	MsgDarkDuelMiaStop	She's heading\nfor the far ledge.\nI can still catch her.{end_wait}
 N67	MsgDarkDuelIsaacNotEnemy	Be careful, Mia.\nJenna's with them.{end_wait}
 N68	MsgDarkDuelMiaTrust	I know. I'll bring\nher back if I can.\nPlease trust me.{end_wait}
-N69	MsgDarkDuelMiaKeepUp	I'll be careful.\nShe has the hostages.\nI won't forget that.{end_wait}
+N69	MsgDarkDuelMiaKeepUp	If I can't free them,\nI won't leave them\nalone with her.{end_wait}
 N70	MsgDarkDuelSaturosResumes	Your healer is gone.\nNow face me.{end_wait}

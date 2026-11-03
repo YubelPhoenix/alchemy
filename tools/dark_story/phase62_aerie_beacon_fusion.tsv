@@ -56,8 +56,8 @@
 10246	message	No escape now!{pause_20_skippable}\nNot from this!{end_wait}
 10247	message	They're becoming\none...{end_wait}
 10248	message	Everyone, get back!\nNow!{end_wait}
-10249	MsgVenusPairDefeated	How...{pause_20_skippable} How could\nwe be defeated?{end_wait}
-10250	message	We had the power...{pause_20_skippable}\nHow did they beat us?{end_wait}
+10249	MsgVenusPairDefeated	Venus is lit...{pause_20_skippable}\nBut two beacons\nare still dark.{end_wait}
+10250	message	Saturos...{pause_20_skippable}\nWho will save\nour people now?{end_wait}
 10251	message	They're down.\nWe survived.{end_wait}
 10252	message	We defeated them...{pause_20_skippable}\nbut did we truly win?{end_now}
 10253	message	But the beacon\nis still burning.{end_wait}

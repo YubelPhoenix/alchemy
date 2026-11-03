@@ -6,9 +6,9 @@ N77	MsgDarkTolbiGaretFire	You keep blaming him.\nWhere's your proof?{end_wait}
 N78	MsgDarkTolbiJennaPlease	I don't need a jury.\nIf people stand in\nmy way, they die.{end_wait}
 N79	MsgDarkTolbiMiaSneer	You'd kill anyone\nwho stood in your way?\nEven innocents?{end_wait}
 N80	MsgDarkTolbiJennaMia	Your hands shook after\nthe Manticore, Mia.\nDid you want more?{end_wait}
-N81	MsgDarkTolbiMiaPlace	My own anger.\nI told my friends.\nThey stayed with me.{end_wait}
+N81	MsgDarkTolbiMiaPlace	I did. I hated it.\nThat's why I told them.\nI won't hide it.{end_wait}
 N82	MsgDarkTolbiJennaGoing	You told them?\nHow trusting.\nRemember that feeling.{end_wait}
-N83	MsgDarkTolbiIsaacWait	Leave Mia out of it.\nWe're done listening.{end_wait}
+N83	MsgDarkTolbiIsaacWait	That's enough.\nMia doesn't owe you\nan explanation.{end_wait}
 
 N240	MsgDarkTolbiJennaAccepted	You agreed to help.\nDon't imagine you\ncan choose the cost.{end_wait}
 N241	MsgDarkTolbiJennaRefused	You refused me.\nBut you'll still\nhave to choose.{end_wait}

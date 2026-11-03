@@ -1,5 +1,5 @@
 # Tolbi, after Ash Jenna: Mia admits that Ash Jenna's taunts unsettled her.
 N115	MsgDarkMiaTolbiConcern	She saw you afraid.\nShe didn't see you\nstand up again.{end_wait}
-N116	MsgDarkMiaTolbiAdmit	She saw enough.\nI wanted to hurt\nthat beast, Isaac.{end_wait}
+N116	MsgDarkMiaTolbiAdmit	What she said hurt.\nBecause part of it\nwas true.{end_wait}
 N117	MsgDarkMiaTolbiSupport	But you told us.\nWe know what happened.\nAnd we're still here.{end_wait}
-N118	MsgDarkMiaTolbiResolve	Then I'll keep going.\nNot to prove her wrong.\nBecause you need me.{end_wait}
+N118	MsgDarkMiaTolbiResolve	Then I'll keep going.\nNot to prove her wrong.\nThere's work left to do.{end_wait}

@@ -1,20 +1,20 @@
 # Optional hostile Ash Jenna confrontation after Venus Lighthouse. She is the evil Jenna from the sprite animation: unrepentant, dangerous, not redeemed. The original game ending remains unchanged.
-N300	MsgDarkLaliveroAshWatch	There you are, Isaac.\nI came to see\nwhat Venus would do.{end_wait}
+N300	MsgDarkLaliveroAshWatch	You survived.\nI wondered whether\nyou'd come back.{end_wait}
 N301	MsgDarkLaliveroIsaacFall	The lighthouse broke.\n{actor_name:7} fell. {actor_name:5}\njumped after her.{end_wait}
-N302	MsgDarkLaliveroAshSurvival	So they may be dead.\nHow dreadful for you.{end_wait}
-N303	MsgDarkLaliveroIsaacSearch	We don't know.\nWe're going to find\nthem.{end_wait}
-N304	MsgDarkLaliveroAshSearch	You still think you\ncan save everyone.\nHow exhausting.{end_wait}
-N305	MsgDarkLaliveroIsaacResolve	I won't leave them\nwithout looking.{end_wait}
-N306	MsgDarkLaliveroAshWaiting	I watched the light\ntear the coast apart.\nBeautiful, wasn't it?{end_wait}
-N307	MsgDarkLaliveroIsaacWiseOne	You think that\nwas beautiful?{end_wait}
-N308	MsgDarkLaliveroAshBelief	In my world, the\nbeacons burned too.{page_break}He let our world die.\nIf he's watching now,\nI hope he sees me.{end_wait}
-N309	MsgDarkLaliveroIsaacEvidence	We still don't know\nwhat destroyed\nyour world.{end_wait}
-N310	MsgDarkLaliveroAshBurden	You want evidence.\nI want him afraid.\nWe're not alike.{end_wait}
-N311	MsgDarkLaliveroIsaacAccepted	I said I'd help\nfind the truth.{page_break}Not hurt people\nto get answers.{end_wait}
-N312	MsgDarkLaliveroIsaacRefused	I refused to help.\nI won't change\nmy mind now.{page_break}And I won't let\nyou hurt my friends.{end_wait}
-N313	MsgDarkLaliveroAshJenna	Your {actor_name:6} and Kraden\nare still missing.\nGo chase them.{end_wait}
-N314	MsgDarkLaliveroIsaacOthers	And Felix and Sheba.\nWe're not leaving\nthem behind.{end_wait}
-N315	MsgDarkLaliveroAshOwnPath	Go, then.{page_break}If he won't answer,\nI'll make him regret it.{end_wait}
-N316	MsgDarkLaliveroIsaacProof	If you threaten\nmy friends, I'll\nstand against you.{end_wait}
-N317	MsgDarkLaliveroAshFarewell	You can try, {actor_name:1}.{page_break}But don't mistake me\nfor the girl you lost.{end_wait}
-N318	MsgDarkLaliveroIsaacPromise	I know you're not.\nAnd I won't let you\nhurt my friends.{end_wait}
+N302	MsgDarkLaliveroAshSurvival	And you couldn't\ncatch either of them.\nThat must hurt.{end_wait}
+N303	MsgDarkLaliveroIsaacSearch	We don't know\nwhat happened below.\nWe're going to look.{end_wait}
+N304	MsgDarkLaliveroAshSearch	You'll search the sea\nwithout even knowing\nwhether they live.{end_wait}
+N305	MsgDarkLaliveroIsaacResolve	They deserve a search.\nEven if we find\nnothing.{end_wait}
+N306	MsgDarkLaliveroAshWaiting	The coast broke open.\nI watched the ruin spread.\nI wanted more.{end_wait}
+N307	MsgDarkLaliveroIsaacWiseOne	People live here.\nYou wanted more?{end_wait}
+N308	MsgDarkLaliveroAshBelief	In my world, the\nbeacons burned too.{page_break}He let our world die.\nI want him to feel\nwhat I felt.{end_wait}
+N309	MsgDarkLaliveroIsaacEvidence	You still don't know\nwhat destroyed\nyour world.{end_wait}
+N310	MsgDarkLaliveroAshBurden	I don't need proof.\nI need him to suffer.\nThat is the difference.{end_wait}
+N311	MsgDarkLaliveroIsaacAccepted	I agreed to help\nfind the truth.{page_break}I never agreed\nto your revenge.{end_wait}
+N312	MsgDarkLaliveroIsaacRefused	I refused you then.\nI heard your answer.{page_break}Nothing I've seen\nhas changed my mind.{end_wait}
+N313	MsgDarkLaliveroAshJenna	Your {actor_name:6} and Kraden\nare still missing.\nGo on. Run after them.{end_wait}
+N314	MsgDarkLaliveroIsaacOthers	And Felix and Sheba.\nThey're not names\nI can just forget.{end_wait}
+N315	MsgDarkLaliveroAshOwnPath	You count every name.{page_break}I'd leave this town\nto burn for one\nchance at him.{end_wait}
+N316	MsgDarkLaliveroIsaacProof	These people did\nnothing to you.\nLeave them out of this.{end_wait}
+N317	MsgDarkLaliveroAshFarewell	And when you must\nchoose, {actor_name:1},{page_break}who will you\nleave behind?{end_wait}
+N318	MsgDarkLaliveroIsaacPromise	I may have to choose.\nBut you don't get\nto decide who matters.{end_wait}
