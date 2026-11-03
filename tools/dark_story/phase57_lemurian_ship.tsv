@@ -1,17 +1,17 @@
 # Lemurian ship departure: the party leaves Gondowan and sets course for Lemuria.
-10494	MsgFieldLooksLikeFinally	Gondowan is behind us.\nWe cannot turn back.{end_wait}
-10495	message	We've come so far.\nSomehow the end still\nfeels out of reach.{end_wait}
-10496	message	I keep thinking about\nhow things were\nbefore we left Vale.{end_wait}
-10497	message	If we find {actor_name:6},\nwill this finally\nbe over?{end_now}
-10498	message	Finding her won't\nundo what happened.\nWe still have choices.{end_wait}
-10499	message	A choice? After all\nwe've been through?{end_wait}
-10500	message	You haven't forgotten\nLemuria, have you,\n{actor_name:2}?{end_wait}
-10503	message	I wonder what Lemuria\nis really like.{end_wait}
-10504	message	We can't just leave\n{actor_name:6} out there,\ncan we?{end_now}
-10506	message	{actor_name:6} won't thank you\nfor saying that!{end_wait}
-10507	message	I've never been\nthis far from land.\nIt's unsettling.{end_wait}
-10508	message	Kraden wanted me\nto see the sea.\nNow I understand why.{end_wait}
-10509	message	These waves are rough.\nCan this ship really\ncarry us through?{end_now}
-10510	message	It's a Lemurian ship.\nIf any vessel can,\nthis one should.{end_wait}
-10511	message	I hope you're right.\nWe're far from shore.{end_wait}
-10514	message	{actor_name:6} is out there.\nWe can't stop now.{end_wait}
+10494	MsgFieldLooksLikeFinally	This is it! We're really\nleaving Gondowan!\nWe're going to sea!{end_wait}
+10495	message	There isn't a map\nthat shows where we're\ngoing next.{end_wait}
+10496	message	When I left Imil,\nI never imagined I'd\ntravel this far.{end_wait}
+10497	message	Once we find {actor_name:6},\ndo you think we'll\nfinally go home?{end_now}
+10498	message	I hope you're right.\nI'd like to see Vale\nagain someday.{end_wait}
+10499	message	Maybe not. There's\nstill so much we\ndon't understand.{end_wait}
+10500	message	And Lemuria, {actor_name:2}?\nWe promised Babi\nwe'd find it.{end_wait}
+10503	message	I'd like to see it\nfor myself. Even the\nold maps are silent.{end_wait}
+10504	message	We must find {actor_name:6}.\nShould we do that\nbefore seeking Lemuria?{end_now}
+10506	message	Then we'll find a way\nto help {actor_name:6} and\nBabi both.{end_wait}
+10507	message	We've crossed a sea,\nbut never in a ship\nquite like this one.{end_wait}
+10508	message	Kraden wanted me to\nsee the sea. Well,\nI've seen plenty now!{end_wait}
+10509	message	Those waves look rough.\nCan this ship really\ncarry us through?{end_now}
+10510	message	Then I'll trust you.\nBut let's keep watch\non the weather.{end_wait}
+10511	message	At least we're agreed\nthere's some danger.\nWe'll be careful.{end_wait}
+10514	message	{actor_name:6} is out there.\nWe won't leave her\nbehind.{end_wait}
