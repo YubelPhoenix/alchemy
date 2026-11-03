@@ -32,7 +32,7 @@
 10286	MsgVenusWhyHappeningProtectVenusLighthouse	Why is this happening?\nIs the power trying to\nprotect Venus Lighthouse?{end_wait}
 10287	message	I'm{pause_20_skippable} slipping...{pause_20_skippable}{pause_20_skippable}\nI cannot{pause_20_skippable}{pause_20_skippable} hold on{pause_20_skippable}\nany longer.{end_wait}
 10288	message	No!{pause_20_skippable} Don't let go!\nYou'll fall!{end_wait}
-10289	message	Farewell, {actor_name:5},{pause_20_skippable}\n{pause_20_skippable} and thank you.{end_wait}
+10289	message	{actor_name:5}...{pause_20_skippable}\n{pause_20_skippable}Thank you.{end_wait}
 10290	message	{text_effect:2}{actor_name:7}!!!{reset_text_style}{pause_20_skippable} No!\nI will not let you die!{end_wait}
 10291	message	!!!{end_wait}
 10292	message	{actor_name:7} fell when\nthe ground broke...{end_wait}
