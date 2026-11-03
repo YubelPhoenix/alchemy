@@ -1,0 +1,53 @@
+name: Validate Heart battle artwork
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [dark-story-rewrite]
+    paths:
+      - 'tools/dark_story/build_heart_art.py'
+      - 'assets/heart/**'
+      - '.github/workflows/build-heart-art.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-heart-art:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out Heart sources
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - name: Install Pillow
+        run: python3 -m pip install --break-system-packages Pillow
+      - name: Generate Heart artwork independently of dialogue
+        run: python3 tools/dark_story/build_heart_art.py
+      - name: Check sprite palette and frame dimensions
+        run: |
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          sprite = Image.open('games/tbs/src/graphics/monster/purple_beast.png')
+          assert sprite.mode == 'P', sprite.mode
+          assert sprite.size == (64, 768), sprite.size
+          used = set(sprite.getdata())
+          assert min(used) == 0 and max(used) <= 15, used
+          palette = sprite.getpalette()
+          assert len(palette) >= 48
+          assert all(c % 8 == 0 for c in palette[:48])
+          for idx in range(6):
+              top = sprite.crop((0, idx * 128, 64, idx * 128 + 64))
+              bottom = sprite.crop((0, idx * 128 + 64, 64, (idx + 1) * 128))
+              assert top.tobytes() == bottom.tobytes(), idx
+          print(f'Heart artwork validated: {sprite.size}, {len(used)} indexed colors')
+          PY
+      - name: Upload Heart artwork preview
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: heart-artwork-preview
+          path: |
+            games/tbs/src/graphics/monster/purple_beast.png
+            games/tbs/src/graphics/ui/icons/icon_66.png
+          retention-days: 14
