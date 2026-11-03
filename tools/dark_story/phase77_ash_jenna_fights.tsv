@@ -1,9 +1,9 @@
 # Ash Jenna's two fights: the optional super boss in Vale and the one at Suhalla Gate.
-N330	MsgDarkAshValeGreet	You came back.\nDoes this place still\nfeel like home?{end_wait}
-N331	MsgDarkAshValeIsaac	It does.\nAnd you don't belong\nhere.{end_wait}
-N332	MsgDarkAshValeChallenge	Neither did the dead.\nBut here we are.\nDraw your sword.{end_wait}
-N333	MsgDarkAshValeBeaten	You beat me.\nVale still burned.\nRemember that.{end_wait}
-N334	MsgDarkAshGateGreet	I asked them to move.\nThey drew their swords.\nNow look at them.{end_wait}
-N335	MsgDarkAshGateIsaac	You hurt them\nbecause they stood\nin your way?{end_wait}
-N336	MsgDarkAshGateChallenge	They made a choice.\nNow make yours.\nFight or turn back.{end_wait}
-N337	MsgDarkAshGateBeaten	Go on. Help them.\nYou'll never reach\neveryone in time.{end_wait}
+N330	MsgDarkAshValeGreet	Back in Vale, Isaac.\nStill looking for\nwhat you lost?{end_wait}
+N331	MsgDarkAshValeIsaac	I came to see\nmy family.\nWhy are you here?{end_wait}
+N332	MsgDarkAshValeChallenge	To see if you can\nprotect what's left.\nDraw your sword.{end_wait}
+N333	MsgDarkAshValeBeaten	You've grown stronger.\nIt won't bring back\nwhat you lost.{end_wait}
+N334	MsgDarkAshGateGreet	The guards are down.\nYour friends are ahead.\nAnd here you are.{end_wait}
+N335	MsgDarkAshGateIsaac	You're blocking\nthe only way through.\nMove.{end_wait}
+N336	MsgDarkAshGateChallenge	No. You want to\nreach them? Then\nget past me.{end_wait}
+N337	MsgDarkAshGateBeaten	Go on, then.\nSee how many you\ncan still save.{end_wait}
