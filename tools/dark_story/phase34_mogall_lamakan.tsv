@@ -1,5 +1,5 @@
 # Mogall's route marker and the Lamakan Desert's heat and ash-thick air.
-06118	MsgMogallForestBrokenSign	The broken sign reads:{page_break}North: Fuchin Temple\nSouth: Mogall Forest{end_wait}
+06118	MsgMogallForestBrokenSign	The broken sign reads:{page_break}North: Fuchin Temple\nSouth: Mogall Prairie...{end_wait}
 06675	message	The sand burns through\nmy boots. We can't\nstay here long.{end_wait}
 06676	message	Every step sinks.\nThere's no firm ground\nanywhere.{end_wait}
 06677	message	I can't catch my breath.\nThe heat is making\nme dizzy.{end_wait}
