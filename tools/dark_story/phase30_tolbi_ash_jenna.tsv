@@ -1,7 +1,7 @@
 # Ash Jenna confronts the party in Tolbi after Colosso.
 N74	MsgDarkTolbiJennaFound	You made it to Tolbi.\nI knew you'd keep\nchasing them.{page_break}Have you decided\nwhat their lives\nare worth, Isaac?{end_wait}
 N75	MsgDarkTolbiIsaacGrey	We know what you want.\nWhy are you here?{end_wait}
-N76	MsgDarkTolbiJennaAsh	The next beacon may\nburn before you catch\nthem.{page_break}I saw the beacons\nburn in my world.\nI won't beg this time.{end_wait}
+N76	MsgDarkTolbiJennaAsh	The next beacon may\nburn before you catch\nthem.{page_break}I saw the beacons\nburn in my world.\nI won't wait this time.{end_wait}
 N77	MsgDarkTolbiGaretFire	You keep blaming him.\nWhere's your proof?{end_wait}
 N78	MsgDarkTolbiJennaPlease	I don't need a jury.\nIf people stand in\nmy way, they die.{end_wait}
 N79	MsgDarkTolbiMiaSneer	You'd kill anyone\nwho stood in your way?\nEven innocents?{end_wait}
