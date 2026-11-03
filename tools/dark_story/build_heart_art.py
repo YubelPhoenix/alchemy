@@ -31,8 +31,11 @@ print(f"Rebuilt {DEST.relative_to(ROOT)} from six original Heart poses")
 # Claude's portrait hook already points at ICON_66. Replace that placeholder
 # with the original 64x64 Heart mugshot; no changes to Mia or other portraits.
 portrait = Image.open(SOURCE / "mugshot_64.png").convert("RGBA")
-if portrait.size != (64, 64):
-    raise ValueError(f"Heart mugshot must be 64x64, got {portrait.size}")
+# This icon atlas requires each entry to be 32x32 with at most 16 colours.
+# Preserve the original proportions rather than stretching the mugshot.
+portrait.thumbnail((32, 32), Image.Resampling.NEAREST)
+canvas = Image.new("RGBA", (32, 32), (0, 0, 0, 0))
+canvas.alpha_composite(portrait, ((32 - portrait.width) // 2, (32 - portrait.height) // 2))
 portrait_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_66.png"
-portrait.convert("P", palette=Image.Palette.ADAPTIVE, colors=256).save(portrait_target)
+canvas.convert("P", palette=Image.Palette.ADAPTIVE, colors=16).save(portrait_target)
 print(f"Rebuilt {portrait_target.relative_to(ROOT)} from original Heart mugshot")
