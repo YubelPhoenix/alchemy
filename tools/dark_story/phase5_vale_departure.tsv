@@ -7,16 +7,16 @@
 04517	message	{actor_name:1} took\nthe Herb.{end_wait}
 04518	MsgValeYouMustSaveJenna	You must save {actor_name:6}!{pause_20_skippable}\nBring her home, {actor_name:1}!{end_wait}
 04519	MsgValeComeBackAsAStrongWarrior	Come back alive,\n{actor_name:1}.{page_break}I'll have a proper\nforge waiting.{end_wait}
-04520	MsgValeIWantedJennaToBeMy	I hoped {actor_name:6} would\njoin our family.{page_break}I don't know what\nto hope for now.{end_wait}
-04521	MsgValeTheVisitorsCausedTheEruption	Those strangers came.\nThen the mountain burned.{page_break}Now {actor_name:6} is gone.{end_wait}
+04520	MsgValeIWantedJennaToBeMy	I thought {actor_name:6}\nmight join our family.{page_break}Now I only hope\nshe's safe.{end_wait}
+04521	MsgValeTheVisitorsCausedTheEruption	Those strangers came.\nThe mountain burned.{page_break}And now {actor_name:6}\nis missing.{end_wait}
 04522	MsgValeTheMaskedManWasFelix	That masked man...\nHe was {actor_name:5}, right?{end_now}
 04523	message	What if {actor_name:6} knew\nmore than she told us?{end_wait}
 04524	message	What?{pause_20_skippable} But didn't {actor_name:6}\nsee his face?{end_now}
 04525	message	If he's her brother,\nwhat does {actor_name:6} know?{end_wait}
 04526	message	That's not what you\ntold the elders.{end_wait}
 04527	MsgValeWereASmallHotelAndWe	We still keep rooms\nready for travelers.{page_break}Even now.{end_wait}
-04528	MsgValeIsaacPleaseTakeCareOfMy	{actor_name:1}, please bring my\ngrandson {actor_name:2} home\nalive.{end_wait}
-04529	MsgValeReceivingAQuestDirectlyFromThe	The Wise One chose you.\nI don't know if that's\na blessing.{end_wait}
+04528	MsgValeIsaacPleaseTakeCareOfMy	{actor_name:1}, look after\n{actor_name:2} for me.{page_break}And let him look\nafter you, too.{end_wait}
+04529	MsgValeReceivingAQuestDirectlyFromThe	The Wise One chose you.\nI wish I knew why.{end_wait}
 04531	MsgValeAsMothersDoraAndIWill	Dora and I will worry\nuntil you're home.{page_break}That's what mothers do.{end_wait}
 04538	MsgValeIHeardThatJennaBrotherFelix	I heard that {actor_name:6}{possessive_suffix}\nbrother {actor_name:5} lives...{page_break}But why is he with the\nmen who raided Sol\nSanctum?{end_wait}
 04539	MsgValePleaseReturnMyPreciousGranddaughterJenna	Please bring back my\ngranddaughter, {actor_name:6}.\n{pause_20_skippable}I'll be waiting.{end_wait}
@@ -25,20 +25,20 @@
 04542	MsgValeTheCulpritsHadStrangePowers	They say whoever caused\nthis had strange powers.{page_break}...{pause_20_skippable}Is that true?{end_now}
 04543	message	Then others can use\nPsynergy, too.{page_break}I don't know what\nthat means for us.{end_wait}
 04544	message	Then perhaps it's\nonly a rumor.{page_break}I'd like to believe it.{end_wait}
-04545	MsgValeImSoJealousOfYouBeing	You get to leave Vale.\nI shouldn't envy you.{end_wait}
+04545	MsgValeImSoJealousOfYouBeing	Part of me envies you.\nI know I shouldn't.{end_wait}
 04546	MsgValeOnceYouLeaveTownTakeCare	Don't show your Psynergy\nto strangers.{page_break}Fear makes people cruel.{end_wait}
 04547	MsgValeIHadNoIdeaThatSuch	We guarded the Sanctum\nwithout knowing why.{page_break}Now it's too late\nto ask the elders.{end_wait}
 04571	MsgValeIsaacYoureGoingOnADifficult	{protagonist_name}, the road\nwill test you.{page_break}Don't let it change\nwho you are.{end_wait}
-04572	MsgValeIfYouFaceAnyHardshipIn	If you need to return,\ncome home.{page_break}No one will call\nyou a coward.{end_wait}
+04572	MsgValeIfYouFaceAnyHardshipIn	If you need to\ncome home, come home.{page_break}No one here will\nthink less of you.{end_wait}
 04573	MsgValeSoIfThatWasFelixWho	If {actor_name:5} took\n{actor_name:6} away...{page_break}why are you the one\nwho must follow?{end_wait}
 04574	MsgValeIWillThinkOfJennaAs	I'll keep {actor_name:6}\nin my thoughts.{page_break}Please come back,\n{protagonist_name}.{end_wait}
 04575	MsgValeNowThatJennaIsGoneWe	Since {actor_name:6} left,\nthe house feels empty.{page_break}No one can take\nher place.{end_wait}
 04576	MsgValeWhoCouldHaveKnownThatMasked	The masked man was\n{actor_name:5}.{page_break}I still can't\nunderstand it.{end_wait}
 04577	MsgValeIWonderIfFelixChangedMuch	I remember {actor_name:5}\nas a gentle boy.{page_break}Could {actor_name:6}\nchange that much too?{end_wait}
 04578	MsgValeFelixAndHisGangMustHave	{actor_name:5} left in haste.{page_break}Someone found a purse\nnear the road.{end_wait}
-04579	MsgValeItsHardLettingMyPreciousGaret	I don't want to let\n{actor_name:2} go.{page_break}But I can't keep\nhim here.{end_wait}
-04580	MsgValeTheWiseOneChoseGaretHimself	The Wise One chose\n{actor_name:2}.{page_break}I wish that made\nme less afraid.{end_wait}
-04581	MsgValeOnceGaretLeavesIWontBe	When {actor_name:2} leaves,\nI'll wait for news.{page_break}Every day, until\nhe comes home.{end_wait}
+04579	MsgValeItsHardLettingMyPreciousGaret	I don't want\n{actor_name:2} to go.{page_break}But he has made\nup his mind.{end_wait}
+04580	MsgValeTheWiseOneChoseGaretHimself	The Wise One chose\n{actor_name:2}.{page_break}That doesn't make\nme less afraid.{end_wait}
+04581	MsgValeOnceGaretLeavesIWontBe	When {actor_name:2} leaves,\nI'll wait for news.{page_break}Every day until\nhe comes home.{end_wait}
 04582	MsgValeIAmConcernedForGaretBut	I worry about\n{actor_name:2}.{page_break}I'll try to trust\nhis judgment.{end_wait}
 04585	MsgValeFelixInheritedHisFathersSkillWith	{actor_name:5} was gifted\nwith Psynergy.{page_break}I hope {actor_name:5}\nuses it to protect.{end_wait}
 04586	MsgValeJennaAnytimeYouFaceDangerJust	{actor_name:6}, stay strong.{page_break}Your mother's fire\nis still with you.{end_wait}
