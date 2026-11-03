@@ -133,6 +133,10 @@ static void SuhallaGate_AshJennaSays(void) {
 /// Ash Jenna at the gate: an ordinary boss fight. A defeat comes back here and
 /// she waits to be fought again.
 static void SuhallaGate_TalkToAshJenna(void) {
+  // Do not interrupt Iodem's investigation of the wounded guards.
+  // The boss is available only after that scene sets its completion flag.
+  if (GameFlag_Get(FLAG_SUHALLA_GATE_ATTACK_SEEN) == 0)
+    return;
   Event_Start();
   Event_SetMessageId(MsgDarkAshGateGreet);
   SuhallaGate_AshJennaSays();
