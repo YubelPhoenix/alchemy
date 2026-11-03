@@ -10,7 +10,7 @@
 09715	message	If {actor_name:7} was harmed,\nwhat becomes of the\nlighthouse?{end_wait}
 09716	message	{actor_name:7} was the reason\nLalivero agreed to help\nbuild it.{end_wait}
 09717	message	We placed {actor_name:7}\nin your care. Her safety\nwas your duty.{page_break}Tell me how you lost her.{end_wait}
-09718	message	Iodem...{pause_20_skippable} She was not\nwith us when the storm\nstruck.{end_wait}
+09718	message	Iodem...{pause_20_skippable} {actor_name:7} was not\nwith us when the storm\nstruck.{end_wait}
 09719	message	Are you certain?{end_wait}
 09720	message	We kept {actor_name:7} away\nfrom the worst of it.\nThen we were separated.{end_wait}
 09721	message	Then you did what you\ncould. But where is\n{actor_name:7} now?{end_wait}
