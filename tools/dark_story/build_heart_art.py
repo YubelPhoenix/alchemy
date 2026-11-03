@@ -21,7 +21,8 @@ for index, number in enumerate(POSES):
         raise ValueError(f"Heart pose {number} is empty")
     art = src.crop(bounds)
     target_height = IDLE_HEIGHT if index < 2 else ACTION_HEIGHT[number]
-    # Keep each pose's original aspect ratio. Different source poses must\n    # not be independently squashed to arbitrary tiny heights.\n    target_width = max(1, round(art.width * target_height / art.height))
+    # Preserve the source pose's aspect ratio without arbitrary compression.
+    target_width = max(1, round(art.width * target_height / art.height))
     if target_width > 60:
         target_width = 60
         target_height = max(1, round(art.height * target_width / art.width))
