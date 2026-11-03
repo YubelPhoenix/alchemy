@@ -1,6 +1,6 @@
-05581	message	Match me?{pause_20_skippable} You can't even\nimagine what I carry.{end_now}
-05583	message	You still want to fight?\nThen you're fools, and\nI am sorry for it.{end_wait}
-05584	message	Then so be it. Come, and\nlearn what I must do!{end_wait}
+05581	message	Do you think\nyou can stop me?{pause_20_skippable}{end_now}
+05583	message	Then why are you\nstill standing here?{end_wait}
+05584	message	I won't let you pass.\nReady yourselves.{end_wait}
 05587	message	I must finish this\nquickly... Come at me!{end_wait}
 05732	message	I'm going with\n{actor_name:1}. They need me.{end_wait}
 05733	message	I wish I could stay.\nBut there's more\nI have to do.{end_wait}
