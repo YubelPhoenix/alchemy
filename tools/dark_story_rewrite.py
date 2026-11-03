@@ -45,6 +45,8 @@ def load_replacements(only=None) -> dict[str, tuple[str, str]]:
     files = [Path(f) for f in only] if only else sorted(DATA_DIR.glob("*.tsv"))
     if not files:
         raise SystemExit(f"No dialogue files found in {DATA_DIR}/.")
+    duplicates: dict[str, list[str]] = {}
+    locations: dict[str, str] = {}
     for file in files:
         for number, line in enumerate(file.read_text(encoding="utf-8").splitlines(), 1):
             if not line.strip() or line.startswith("#"):
@@ -54,8 +56,19 @@ def load_replacements(only=None) -> dict[str, tuple[str, str]]:
                 raise SystemExit(f"{file}:{number}: expected ID<TAB>CONTEXT<TAB>TEXT.")
             msgid, context, text = parts
             if msgid in rows:
-                raise SystemExit(f"{file}:{number}: duplicate dialogue ID {msgid}.")
+                duplicates.setdefault(msgid, [locations[msgid]]).append(f"{file}:{number}")
+                continue
             rows[msgid] = (context, text)
+            locations[msgid] = f"{file}:{number}"
+    if duplicates:
+        details = "\\n".join(
+            f"  {msgid}: " + ", ".join(paths)
+            for msgid, paths in sorted(duplicates.items())
+        )
+        raise SystemExit(
+            "Duplicate dialogue IDs (all collisions, with source locations):\\n"
+            + details
+        )
     return rows
 
 
