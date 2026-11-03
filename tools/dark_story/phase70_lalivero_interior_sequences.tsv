@@ -36,27 +36,27 @@
 10353	message	{actor_name:1}, your friends\nand you have done\nwhat we could not.{end_wait}
 10354	message	You found a way\nthrough the ruins\nto Venus Lighthouse.{end_wait}
 10355	message	But {actor_name:7} could not\npass through the ruins.\nWhy was that?{end_wait}
-10356	message	{actor_name:7} has powers\nunlike theirs. That is why\nshe could not enter.{end_wait}
-10357	message	I've told Faran this\nagain and again, but he\nstill will not believe me!{end_wait}
-10358	message	{actor_name:2}, that is\nunfair...{end_wait}
+10356	message	{actor_name:7} has powers\nunlike ours. That may\nexplain the ruins.{end_wait}
+10357	message	I've tried to tell\nFaran, but he won't\nlisten to me!{end_wait}
+10358	message	{actor_name:2}, please.\nHe's worried sick.{end_wait}
 10359	message	We cannot stay here.\nWe have to go.{end_wait}
-10360	message	Of course. I did not\nmean to keep you...{end_wait}
-10361	message	That did not come\nout as I intended...{end_wait}
-10362	message	While we speak,\n{actor_name:6} and the others\nare still lost at sea.{end_wait}
-10363	message	I understand. You cannot\nafford to wait.{end_wait}
+10360	message	Of course. I didn't\nmean to delay you.{end_wait}
+10361	message	I'm sorry. That came\nout wrong.{end_wait}
+10362	message	Every moment here\nis time we could spend\nsearching for {actor_name:6}.{end_wait}
+10363	message	I understand.\nYou have to go.{end_wait}
 10364	message	The sea has been rough\nsince the beacon was lit.\nBe careful!{end_wait}
-10365	message	You, too. Farewell.{end_wait}
-10366	message	Take care...\nand farewell!{end_wait}
-10367	message	Thank you. I hope your\nsearch for {actor_name:7}\nends in success.{end_wait}
+10365	message	You, too. Goodbye.{end_wait}
+10366	message	Take care...\nAnd come back safely.{end_wait}
+10367	message	Thank you. I hope\nyou find {actor_name:7}.\nI truly do.{end_wait}
 
 # Alternate report when the party did not see the ship at Idejima.
-10369	message	The same. We searched\neverywhere, but found\nno sign of them.{end_wait}
-10370	message	The shock from the\nlighthouse tore the\nground apart...{end_wait}
+10369	message	We searched the shore.\nThere was no sign\nof any of them.{end_wait}
+10370	message	The shock from Venus\ntore the land apart.{end_wait}
 10371	message	Then Idejima itself\nwas swept out to sea...{end_wait}
-10372	message	My goodness... Then\n{actor_name:6} and the others\nmust have...{end_wait}
-10373	message	{actor_name:5} said he sent\n{actor_name:6} ahead to the\nship from the lighthouse.{end_wait}
-10374	message	But we believe they\nsurvived.{end_wait}
-10375	message	They may have been\ncarried out to sea\nwith Idejima...{end_wait}
-10376	message	We will keep searching\nfor {actor_name:6}.{end_wait}
+10372	message	Then {actor_name:6} and\nthe others...\nOh, no.{end_wait}
+10373	message	{actor_name:5} sent {actor_name:6}\ntoward the ship\nbefore we arrived.{end_wait}
+10374	message	We have no proof,\nbut they may have\nsurvived.{end_wait}
+10375	message	If they reached\nthe ship, they may\nbe out at sea.{end_wait}
+10376	message	We'll keep looking\nfor {actor_name:6}.{end_wait}
 10377	message	Isn't that right,\n{actor_name:1}?{end_now}
-10378	message	You will find {actor_name:6}.\nI believe that...\nFarewell.{end_wait}
+10378	message	You'll find {actor_name:6}.\nI have to believe it.\nFarewell.{end_wait}
