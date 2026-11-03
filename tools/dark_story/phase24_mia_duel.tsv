@@ -1,13 +1,13 @@
 00790	message	Mia
-N59	MsgDarkDuelMiaStops	You lost the Stars.\nWhy should I trust you\nwith Mercury's light?{end_wait}
-N60	MsgDarkDuelIsaacNoTime	Jenna and Kraden\nare still their hostages.\nWe need to act together.{end_wait}
-N61	MsgDarkDuelMiaPlace	I swore to guard\nthis lighthouse.\nI cannot fail again.{end_wait}
-N62	MsgDarkDuelIsaacRefuse	Then stand with us.\nWe can still save them.{end_wait}
-N63	MsgDarkDuelMiaDraw	You're right.\nWe have no time to waste.{page_break}I'll stop Menardi.\nYou face Saturos.{end_wait}
-N64	MsgDarkDuelSaturosAmused	Go, then.\nIt changes nothing.{end_wait}
-N65	MsgDarkDuelMiaLost	I doubted you, Isaac.\nI was wrong.{end_wait}
-N66	MsgDarkDuelMiaStop	I can still reach her.\nDon't follow me.{end_wait}
-N67	MsgDarkDuelIsaacNotEnemy	Mia, be careful.\nShe's holding Jenna.{end_wait}
-N68	MsgDarkDuelMiaTrust	I know. Keep Saturos\naway from the captives.\nI'll face Menardi.{end_wait}
-N69	MsgDarkDuelMiaKeepUp	I won't let her\ntake them without a fight.{end_wait}
-N70	MsgDarkDuelSaturosResumes	The healer has gone.\nNow face me.{end_wait}
+N59	MsgDarkDuelMiaStops	They took the Stars.\nNow Mercury is lit.\nCan I trust you?{end_wait}
+N60	MsgDarkDuelIsaacNoTime	Jenna and Kraden\nare hostages.\nHelp us get them back.{end_wait}
+N61	MsgDarkDuelMiaPlace	I swore to protect\nthis lighthouse.\nAnd I failed.{end_wait}
+N62	MsgDarkDuelIsaacRefuse	Then help us.\nWe can save them.{end_wait}
+N63	MsgDarkDuelMiaDraw	You're right.\nNo more arguing.{page_break}I'll follow Menardi.\nYou stop Saturos.{end_wait}
+N64	MsgDarkDuelSaturosAmused	Go ahead.\nIt changes nothing.{end_wait}
+N65	MsgDarkDuelMiaLost	I judged you wrong.\nI'm sorry, Isaac.{end_wait}
+N66	MsgDarkDuelMiaStop	Menardi has the\nhostages. I'll go\nbefore she escapes.{end_wait}
+N67	MsgDarkDuelIsaacNotEnemy	Be careful, Mia.\nJenna is with her.{end_wait}
+N68	MsgDarkDuelMiaTrust	I know. Keep Saturos\nhere. I'll bring\nthem back.{end_wait}
+N69	MsgDarkDuelMiaKeepUp	I won't let her\nleave without a fight.{end_wait}
+N70	MsgDarkDuelSaturosResumes	The healer is gone.\nNow face me.{end_wait}
