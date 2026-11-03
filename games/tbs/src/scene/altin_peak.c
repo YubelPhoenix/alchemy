@@ -427,6 +427,8 @@ static void AltinPeak_TalkToTrappedMiner(void) {
   } else {
     Event_SetMessageId(MsgDarkPeakMinerPlea);
     if (Event_AskYesNo(ACTOR_JUNCTION_ROOM_MINER, 0) == 0) {
+      Event_SetMessageId(MsgDarkPeakMinerYes);
+      Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
       Event_SetMessageId(MsgDarkPeakMiaDig);
       GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
       Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
@@ -459,6 +461,9 @@ static void AltinPeak_TalkToTrappedMiner(void) {
         GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
       }
       GameFlag_Set(FLAG_DARK_MINERS_FREED);
+    } else {
+      Event_SetMessageId(MsgDarkPeakMinerNo);
+      Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
     }
   }
   Event_End();
