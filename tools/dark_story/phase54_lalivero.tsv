@@ -5,7 +5,7 @@
 09906	MsgLaliveroFaranFollowedActorImSureHell	Faran went after\n{actor_name:7}. He would never\nleave her behind.{end_wait}
 09907	MsgLaliveroTheRumblingAtTheRuinsMust	That rumble from the\nruins sounded like a\nwarning.{end_wait}
 09908	MsgLaliveroThereWasAnEarthquakeAtThe	The ground shook near\nthe ruins before all this.{page_break}I pray {actor_name:7} and the\nothers are still alive.{end_wait}
-09909	MsgLaliveroIfIWereBiggerIWould	I stood there and watched.\nI wanted to help, but\nmy legs would not move.{end_wait}
+09909	MsgLaliveroIfIWereBiggerIWould	I saw them take\n{actor_name:7}. I wanted to help,\nbut I could not move.{end_wait}
 09910	MsgLaliveroIBetActorCanUseHer	Maybe {actor_name:7} can use her\npowers to escape. She\nhas surprised us before.{end_wait}
 09976	MsgLaliveroBabisMostPreciousBelongingIsKept	Babi's most guarded\npossession is kept here.{page_break}No one is permitted\ninside.{end_wait}
 10445	MsgLaliveroIodemOfTolbiDoesntSeemToo	Iodem does not seem\ntroubled by the fall of\nBabi Lighthouse.{page_break}Perhaps he has never\nbelieved in Babi's cause.\nPerhaps he knows more.{end_wait}
