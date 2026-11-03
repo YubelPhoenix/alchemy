@@ -1,21 +1,21 @@
 # Lamakan confrontation: Ash Jenna's origin, her offer, and Isaac's response.
-N224	MsgDarkFinaleJennaMet	You came back. I wondered\nif you would.{end_wait}
+N224	MsgDarkFinaleJennaMet	You came back.\nI wasn't sure you would.{end_wait}
 N225	MsgDarkFinaleIsaacMet	You spoke to us\nin the desert.\nWho are you?{end_wait}
-N195	MsgDarkFinaleJenna1	You kept walking, so you\nhave earned an answer. I'll\ntell you what I am.{end_wait}
-N196	MsgDarkFinaleIsaac1	You aren't our Jenna. So\nwho are you?{end_wait}
-N197	MsgDarkFinaleJenna2	I am a Jenna from a world\nthe Wise One destroyed.{page_break}I survived what he left.\nI will not let him do it\nto another world.{end_wait}
-N198	MsgDarkFinaleGaret	Then what do you want from\nus? From Isaac?{end_wait}
-N199	MsgDarkFinaleJenna3	The beacons destroyed my\nworld. He will do it again.{page_break}I can help you stop him.\nBut you must decide whether\nyou trust me.{end_wait}
-N200	MsgDarkFinaleIvan	She believes what she's\nsaying, Isaac. But I don't\nthink she's told us all.{end_wait}
-N201	MsgDarkFinaleMia	If she's telling the truth,\nwe need to know more.\nRevenge won't guide us.{end_wait}
-N203	MsgDarkEchoMiner	You helped those miners\nwhen you could have\nwalked away.{end_wait}
+N195	MsgDarkFinaleJenna1	You kept going.\nYou deserve to know\nwhat I am.{end_wait}
+N196	MsgDarkFinaleIsaac1	You're not Jenna.\nTell us who you are.{end_wait}
+N197	MsgDarkFinaleJenna2	I am Jenna. Not yours.\nIn my world, the Wise One\nlet everything burn.{page_break}I lived through it.\nI won't watch it\nhappen again.{end_wait}
+N198	MsgDarkFinaleGaret	What do you want\nfrom us? From Isaac?{end_wait}
+N199	MsgDarkFinaleJenna3	The beacons brought\nmy world to ruin.{page_break}I believe he'll do\nthe same to yours.\nHelp me stop him.{end_wait}
+N200	MsgDarkFinaleIvan	She believes it, Isaac.\nBut there's something\nshe isn't telling us.{end_wait}
+N201	MsgDarkFinaleMia	If that's true, we\nneed to understand why.\nNot just strike back.{end_wait}
+N203	MsgDarkEchoMiner	You stayed to help\nthose miners. You could\nhave left them.{end_wait}
 N208	MsgDarkFinaleAsk	Take her offer?{end_now}
-N209	MsgDarkFinaleYesIsaac	All right. I'll help you\nmake him answer for what\nhe did.{end_wait}
-N210	MsgDarkFinaleYesJenna	Then stay close. The next\nbeacon will prove I was\nright.{end_wait}
-N211	MsgDarkFinaleYesIvan	Isaac, are you certain\nthis is the path we should\ntake?{end_wait}
-N212	MsgDarkFinaleYesJenna2	Then I will see you at the\nnext lighthouse. Don't\nmake me wait.{end_wait}
-N213	MsgDarkFinaleNoIsaac	No. We don't know enough\nto follow you. We'll find\nour own way.{end_wait}
-N214	MsgDarkFinaleRefusalJenna	Then keep walking. The\nWise One will not wait for\nyou to catch up.{end_wait}
-N215	MsgDarkFinaleRefusalIvan	We should keep moving,\nIsaac. We still have to\nreach Kalay.{end_wait}
-N216	MsgDarkFinaleRefusalMia	Then we keep looking. I\nwon't pretend this is easy.\nBut the choice is ours.{end_wait}
-N221	MsgDarkFinaleHook	Your Jenna, Kraden and\nFelix are still Menardi's\nprisoners.{page_break}The Wise One has noticed\nyou now, so hurry to Kalay.{end_wait}
+N209	MsgDarkFinaleYesIsaac	I'll hear you out.\nBut I won't follow\nyou blindly.{end_wait}
+N210	MsgDarkFinaleYesJenna	Then watch the next\nbeacon. You'll see\nwhat I mean.{end_wait}
+N211	MsgDarkFinaleYesIvan	Isaac, are you sure?\nWe still know so little.{end_wait}
+N212	MsgDarkFinaleYesJenna2	I'll be waiting at\nthe next lighthouse.\nDon't lose your nerve.{end_wait}
+N213	MsgDarkFinaleNoIsaac	No. We won't gamble\non a story we can't\nverify.{end_wait}
+N214	MsgDarkFinaleRefusalJenna	Then find your own\nanswers. The Wise One\nwon't wait for you.{end_wait}
+N215	MsgDarkFinaleRefusalIvan	We should go, Isaac.\nKalay is still ahead.{end_wait}
+N216	MsgDarkFinaleRefusalMia	We can doubt her and\nstill take her warning\nseriously.{end_wait}
+N221	MsgDarkFinaleHook	Your Jenna, Kraden,\nand Felix are still\nwith Menardi.{page_break}The Wise One knows\nyou're moving. Get\nto Kalay.{end_wait}
