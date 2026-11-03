@@ -34,8 +34,8 @@ portrait = Image.open(SOURCE / "mugshot_64.png").convert("RGBA")
 # This icon atlas requires each entry to be 32x32 with at most 16 colours.
 # Preserve the original proportions rather than stretching the mugshot.
 portrait.thumbnail((32, 32), Image.Resampling.NEAREST)
-canvas = Image.new("RGBA", (32, 32), (0, 0, 0, 0))
+canvas = Image.new("RGBA", (32, 32), (0, 0, 0, 255))
 canvas.alpha_composite(portrait, ((32 - portrait.width) // 2, (32 - portrait.height) // 2))
 portrait_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_66.png"
-canvas.convert("P", palette=Image.Palette.ADAPTIVE, colors=16).save(portrait_target)
+canvas.convert("RGB").quantize(colors=16, method=Image.Quantize.MEDIANCUT).save(portrait_target)
 print(f"Rebuilt {portrait_target.relative_to(ROOT)} from original Heart mugshot")
