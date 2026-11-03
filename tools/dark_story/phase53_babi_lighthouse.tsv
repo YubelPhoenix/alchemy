@@ -4,7 +4,7 @@
 09912	MsgBabiLighthouseThereWereStrangeFolkGoingTo	Strangers entered the\nruins. Faran followed\nthem inside.{end_wait}
 09913	MsgBabiLighthouseItsOddThatBabiWouldBuild	Babi chose a strange\nplace for his lighthouse.{page_break}Perhaps the old ruins\nmade a convenient\nfoundation.{end_wait}
 09914	MsgBabiLighthouseCuttingTheseStonesAndStackingThem	Cutting and hauling\nthese stones is hard\nwork.{page_break}If Babi wants it built\nfaster, he can come\nand lift them himself.{end_wait}
-09925	MsgBabiLighthouseThereWasABigFightThat	There was a fight here.\nSome people were taken\nafterward.{page_break}A terrible business,\nbut at least the work\nhas stopped for now.{end_wait}
+09925	MsgBabiLighthouseThereWasABigFightThat	There was a fight here.\nThe strangers forced\ntheir way into the ruins.{page_break}We could not stop them.\nNow the work has ceased,\nand no one feels safe.{end_wait}
 09926	MsgBabiLighthouseIfFaranWentAfterThemThen	If Faran followed them,\nthis is serious.{page_break}If the trouble spreads,\nwe may never finish\nthe lighthouse.{end_wait}
 09927	MsgBabiLighthouseWhyWouldTheyWantToRush	Why force the work to\nmove so quickly?{page_break}Perhaps Babi wants more\nthan a beacon. Perhaps\nhe seeks power at sea.{end_wait}
 09928	MsgBabiLighthouseNowThatIThinkOfIt	Now that I remember,\nthere was a strange cave\nin the quarry.{end_wait}
@@ -21,7 +21,7 @@
 09994	message	Oh! Iodem...{end_wait}
 09995	message	Faran!{end_wait}
 10001	message	Will you go for us?{end_wait}
-10021	MsgBabiLighthouseIAmCountingOnYouIsaac	I trust you,\n{actor_name:1}. Open the door\nand prove I was right.{end_wait}
+10021	MsgBabiLighthouseIAmCountingOnYouIsaac	I trust you,\n{actor_name:1}. Please find\na way through.{end_wait}
 10022	MsgBabiLighthouseWhenISawThemTheyHad	When I saw them, they\nwere already beyond the\ndoor.{page_break}I swear it is true.\nYou have to believe me!{end_wait}
 10023	MsgBabiLighthouseIAmSorryButNotEven	I'm sorry, but even\n{actor_name:7} has never passed\nthrough this door.{page_break}No one has ever found\na way to open it.{end_wait}
 10024	MsgBabiLighthouseThisAllStartedWhenActorWas	This began when {actor_name:7}\nwas taken away to Tolbi.{page_break}If anything happens to\n{actor_name:7}, Lalivero will\nnot let it go unanswered.{end_wait}
@@ -83,14 +83,14 @@
 10033	message	After all these years...\nIt truly opened.{end_wait}
 10034	message	How did you manage\nto open it?{end_wait}
 10035	message	I cannot explain it.\nOur Psynergy answered\nwhere strength could not.{end_wait}
-10036	message	We did it because{pause_20_skippable}{pause_20_skippable}\nwe are who we are!{end_wait}
+10036	message	We found the way.\nThat is what matters!{end_wait}
 10037	message	There is no time\nfor explanations now.{end_wait}
 10038	message	We can answer your\nquestions later. Sheba\nis still in danger.{end_wait}
 10039	message	Then go. Do not waste\nanother moment. Bring\n{actor_name:7} back to us.{end_wait}
 10040	message	Come, Faran. We must\nreach {actor_name:7} before\nit is too late.{end_wait}
 10043	message	Why would the door\nclose again?{end_wait}
-10044	message	It is meant to keep out\nthose who have no\nPsynergy.{end_wait}
-10045	message	Anyone without Psynergy\nwould be in danger\nbeyond that door.{end_wait}
+10044	message	The door answers to\nPsynergy. That much\nis clear.{end_wait}
+10045	message	If you cannot open it,\nyou cannot follow us.\nIt is too dangerous.{end_wait}
 10046	message	Then leave the rest\nto us. We will go on.{end_wait}
 10047	message	You expect us to remain\nhere and do nothing?{end_now}
 10048	message	We cannot open the door.\nFollowing you would only\nput you at risk.{end_wait}
