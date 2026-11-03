@@ -3,7 +3,7 @@ N330	MsgDarkAshValeGreet	Back in Vale, Isaac.\nStill looking for\nwhat you lost?
 N331	MsgDarkAshValeIsaac	I came to see\nmy family.\nWhy are you here?{end_wait}
 N332	MsgDarkAshValeChallenge	To see if you can\nprotect what's left.\nDraw your sword.{end_wait}
 N333	MsgDarkAshValeBeaten	You've grown stronger.\nIt won't bring back\nwhat you lost.{end_wait}
-N334	MsgDarkAshGateGreet	The guards are down.\nYour friends are ahead.\nAnd here you are.{end_wait}
+N334	MsgDarkAshGateGreet	The guards are down.\nThe ones you chase\nare farther ahead.{end_wait}
 N335	MsgDarkAshGateIsaac	You're blocking\nthe only way through.\nMove.{end_wait}
 N336	MsgDarkAshGateChallenge	No. You want to\nreach them? Then\nget past me.{end_wait}
 N337	MsgDarkAshGateBeaten	Go on, then.\nSee how many you\ncan still save.{end_wait}
