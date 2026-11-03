@@ -428,3 +428,8 @@ This connected editorial pass rewrites 157 existing dialogue messages in the ove
 ### Technical and final-acceptance boundaries
 
 Only dialogue TSV payloads and this ledger were edited in this pass; no actor IDs, event conditions, battle slots, items, text message IDs, or engine source were changed. All edited text was locally checked against the exact multiset of existing runtime/control tokens, three lines per page, and a width ceiling of 27 visible characters with eight-character actor-name expansion. The full project validator, ROM compilation, successful patch generation, scripted event variants, and real gameplay remain separate release gates. A passing workflow is not proof the complete story is a 10/10.
+
+
+### Immediate in-context line readback — 3 November 2026
+
+The Venus pass received a focused post-commit correction: Menardi's consecutive lines 10081–10082 no longer make her answer her own question; Felix now recognizes that Wind is **their prisoner** in 10093 instead of claiming there is no Wind Adept when Sheba is standing there; and Garet's 10202 Yes/No prompt asks Isaac clearly whether they must stop Felix. These are strictly dialogue amendments with the original text controls preserved; in-game behavior remains to be tested.

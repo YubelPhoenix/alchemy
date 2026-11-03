@@ -9,8 +9,8 @@
 10078	message	I sent {actor_name:6} and the\nothers ahead to Idejima.{end_wait}
 10079	message	Then what brings\nyou back here?{end_wait}
 10080	message	I gave my word.\nI won't break it.{end_wait}
-10081	message	Your word? To whom?{end_wait}
-10082	message	To {actor_name:7}, of course.{end_wait}
+10081	message	A promise, you say?{end_wait}
+10082	message	You mean {actor_name:7}.{end_wait}
 10083	message	Then why is {actor_name:7}\nstill here?{end_wait}
 10084	message	You said she could\nleave when we reached\nVenus Lighthouse.{end_wait}
 10085	message	So that's why\nyou came back.{end_wait}
@@ -21,7 +21,7 @@
 10090	message	The first two beacons\ntaught me what\nthe next one needs.{end_wait}
 10091	message	Then you know\nour problem.{end_wait}
 10092	message	Each lighthouse needs\nan Adept of its\nown element.{end_wait}
-10093	message	We have Earth, Fire,\nand Water among us...{pause_20_skippable}\nbut no Wind Adept.{end_wait}
+10093	message	We have Earth, Fire,\nand Water among us...{pause_20_skippable}\nbut Wind is our prisoner.{end_wait}
 10094	message	So you've understood{pause_20_skippable}.{end_wait}
 10095	message	And you need {actor_name:7}\nto enter Jupiter\nLighthouse?{end_wait}
 10096	message	Yes, {actor_name:5}.\nWithout Wind, Jupiter\nwill stay closed.{end_wait}

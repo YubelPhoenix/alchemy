@@ -9,7 +9,7 @@
 10199	message	The other beacons\nmust still be lit.{end_wait}
 10200	message	After all this...\nyou'll continue?{end_wait}
 10201	message	I know you won't\naccept that.{pause_20_skippable}\nBut{pause_20_skippable} I cannot turn back.{end_wait}
-10202	message	Do we have to stop\nhim too, right?{end_now}
+10202	message	He'll light them all.\nDo we have to stop\nhim too?{end_now}
 10203	message	Do as you must, {actor_name:1},{pause_20_skippable}\nbut I won't give up\nmy purpose.{end_wait}
 10204	message	I can't hand {actor_name:7}\nover while she's\nstill in danger.{end_wait}
 10205	message	You think{pause_20_skippable} you've\nbeaten us for good?{pause_20_skippable}{end_wait}
