@@ -462,3 +462,8 @@ Purpose: Mia remains an Imil healer and Mercury Adept: capable, kind, and occasi
 Validation scope: 47 existing dialogue message payloads revised in eight TSVs; original IDs and the exact text-control token multisets preserved; maximum three display lines per page and 27 visible characters per line checked. One incorrect Tolbi source comment left by the earlier Lamakan-gate repair was corrected without executable logic changes.
 
 Still required: replay Mercury battle/return branches, both Altin rescue questions, Manticore aftermath and its Ash Jenna handoff, both orders of the optional Tolbi encounters, Kegare defeat/retry, portraits and text layout; run the complete validator and build; verify the story in an actual playthrough. This checkpoint is not a claim of completed narrative acceptance.
+
+
+### Manticore target-variation QA correction — 3 November 2026
+
+The Manticore fight can target different party members. The first Mia-pass revision of N149 specified that the beast attacked Garet, although the combat script does not guarantee that event. The revised line says it attacked the party, preserving Mia's frightening anger without inventing a fixed battle target. All original text controls remain unchanged. This was caught during a later source-knowledge pass and still needs gameplay verification.
