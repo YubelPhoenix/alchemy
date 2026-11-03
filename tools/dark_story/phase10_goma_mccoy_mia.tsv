@@ -21,5 +21,5 @@
 05528	message	There may be places ahead\nthat I can't pass alone.{end_wait}
 05529	message	Only the Mercury Clan may\nenter this place. Not you.{end_wait}
 05530	message	But I can't do this\nalone. Not now.{page_break}You'll come with me.\nDon't mistake it for\ntrust.{end_wait}
-05547	message	Those children are still\nalive?{end_wait}
-05548	message	You came all this way\nfor {actor_name:6} and Kraden?{end_wait}
+05547	message	So the children\nsurvived Mt. Aleph.{end_wait}
+05548	message	You came this far\nfor {actor_name:6} and Kraden?{end_wait}
