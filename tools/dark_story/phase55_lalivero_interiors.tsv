@@ -32,17 +32,17 @@
 10337	MsgLaliveroDoNotWorryAboutSheba	Do not lose hope for\n{actor_name:7}. I pray you can\nfind {actor_name:6} as well.{end_wait}
 10368	MsgLaliveroTellOthers	And what of {actor_name:6}?\nWhat became of the\nothers who went with you?{end_wait}
 09942	MsgLaliveroInteriorsActorIfThePowerThatYou	{actor_name:7}, if your power is\nreal, then use it now.{page_break}Please escape. I do not\nknow how much longer\nwe can wait.{end_wait}
-09943	MsgLaliveroInteriorsActorIsTheSaviorOfLalivero	{actor_name:7} is Lalivero's\nhope. I will not doubt\nher.{page_break}No one but {actor_name:7}\nhas shown such strength\nand grace.{end_wait}
+09943	MsgLaliveroInteriorsActorIsTheSaviorOfLalivero	I won't give up on\n{actor_name:7}. Not now.\nShe's our hope.{page_break}But hope isn't all.\nWe owe {actor_name:7}\nmore than prayers.{end_wait}
 09944	MsgLaliveroInteriorsALegendarySaviorWillAppearIn	A savior was meant to\ncome from the heavens...{page_break}I was foolish to think\nthat {actor_name:7} could be\nthat person.{end_wait}
 09945	MsgLaliveroInteriorsIdLikeToBelieveInActor	I want to believe in\n{actor_name:7}.{page_break}Please, {actor_name:7}, escape.\nFind a way out of there.{end_wait}
 09946	MsgLaliveroInteriorsEvenThoughSheFellOutOf	She fell from the sky\nand suffered no wound.{page_break}They cannot hold\n{actor_name:7} forever.{end_wait}
-09947	MsgLaliveroInteriorsIfSomethingHappensToActorWhat	If {actor_name:7} is lost, what\nwill become of Lalivero?{end_wait}
+09947	MsgLaliveroInteriorsIfSomethingHappensToActorWhat	If we lose {actor_name:7},\nwhat will Faran\nand his family do?{end_wait}
 09948	MsgLaliveroInteriorsWhenIodemGetsHereHesGoing	When Iodem arrives, he\nwill have to answer for\nwhat Tolbi has done.{page_break}I wonder if this town\nwill ever be safe again.{end_wait}
 09949	MsgLaliveroInteriorsItsBeenSoLongSinceI	I had forgotten how good\nit feels to rest.{end_wait}
 09950	MsgLaliveroInteriorsIWonderHowActorKnewAbout	How did {actor_name:7} know of\nthe caves beneath the\nruins?{page_break}Her visions cannot\nall be true... can they?{end_wait}
 09951	MsgLaliveroInteriorsThoseCavesAreTooDangerousFor	Those caves are too\nperilous for me.{page_break}If I were a warrior,\nI would search them for\ntheir hidden treasure.{end_wait}
 09958	MsgLaliveroInteriorsTheLaliveransAreATimidPeople	Lalivero is not a town\nof fighters. Few will\nstand against Tolbi.{end_wait}
-09960	MsgLaliveroInteriorsICantRescueActorIfI	I cannot rescue {actor_name:7}.\nIf only I had the nerve...{page_break}Perhaps I could have\nmade a difference.{end_wait}
+09960	MsgLaliveroInteriorsICantRescueActorIfI	I want to go after\n{actor_name:7}, but I've\nnever held a sword.{page_break}I can bring supplies.\nThat much I can do.{end_wait}
 09962	MsgLaliveroInteriorsIfAnythingHappensToActorIll	If {actor_name:7} is harmed...{page_break}I will never trade with\nanyone from Angara again.{end_wait}
 09975	MsgLaliveroInteriorsIBetBabisTowerWillBe	Babi's tower will fall.\nA thing built on pride\ncannot stand forever.{end_wait}
 10686	MsgLaliveroInteriorsShesMakingMushroomSoupInLalivero	A pot of mushroom soup.{page_break}The cook has added local\nbeans and herbs. It has\na rich, earthy smell.{end_wait}
@@ -53,12 +53,12 @@
 10452	MsgLaliveroInteriorsIShudderToThinkWhatWould	I cannot bear to think\nwhat would happen if\nLalivero were swept away.{end_wait}
 10453	MsgLaliveroInteriorsWereLuckyThatWeLiveNorth	We were fortunate to be\non the northern side of\nthe lighthouse.{page_break}Had we lived beyond it,\nwe might not be here.{end_wait}
 10454	MsgLaliveroInteriorsEveryoneSaysThatActorIsOkay	They say {actor_name:7} is safe.\nCan we trust that?{end_wait}
-10455	MsgLaliveroInteriorsIRealizedHowThoughtlessIWas	I did not understand\nhow much we needed\n{actor_name:7}.{page_break}Now I see how much\nthis town depends on her.{end_wait}
+10455	MsgLaliveroInteriorsIRealizedHowThoughtlessIWas	I used to tell\n{actor_name:7} what this\ntown needed of her.{page_break}I never asked\nwhat she needed\nfrom us.{end_wait}
 10456	MsgLaliveroInteriorsIfSheIsIndeedTheChild	If she truly carries the\ngods' blessing, she will\nsurvive this.{end_wait}
-10457	MsgLaliveroInteriorsWeWantToBelieveInSomething	We need something to\nbelieve in now.{page_break}If {actor_name:7} were here,\nI would know what to do.{end_wait}
-10458	MsgLaliveroInteriorsActorShouldBeFineSheWas	{actor_name:7} will survive.\nShe fell from the sky\nonce and was unharmed.{page_break}The lighthouse is high,\nbut she has endured\nworse than this.{end_wait}
-10459	MsgLaliveroInteriorsActorWillWakeWhenTheBeacon	When the beacon at Venus\nLighthouse shines again,\n{actor_name:7} will wake.{page_break}Then Lalivero may finally\nbe free of Tolbi's hold.{end_wait}
-10460	MsgLaliveroInteriorsSeeingActorDiveMustHaveBeen	Seeing {actor_name:7} dive into\nthe sea must have been\nlike watching a star fall.{end_wait}
+10457	MsgLaliveroInteriorsWeWantToBelieveInSomething	If {actor_name:7}\nwere here, I'd ask\nwhat she thought.{page_break}But she's not.\nWe have to choose\nwhat comes next.{end_wait}
+10458	MsgLaliveroInteriorsActorShouldBeFineSheWas	{actor_name:7} survived\none terrible fall.\nI remember that.{page_break}But the sea is vast.\nI don't know\nwhat to hope.{end_wait}
+10459	MsgLaliveroInteriorsActorWillWakeWhenTheBeacon	They say Venus's\nlight will bring\n{actor_name:7} back.{page_break}I want to believe it.\nBut none of us knows\nwhat the sea has done.{end_wait}
+10460	MsgLaliveroInteriorsSeeingActorDiveMustHaveBeen	We saw {actor_name:7}\nfall toward the sea.\nIt happened so fast.{end_wait}
 10461	MsgLaliveroInteriorsICantWaitUntilActorIs	I long for {actor_name:7} to\nreturn.{page_break}Everyone in Lalivero\nis waiting for her.{end_wait}
 10462	MsgLaliveroInteriorsBabiLighthouseCrumbledWhenAllThe	Babi Lighthouse fell when\nthe earth shook.{page_break}The ruins are unstable.\nNo one should enter them.{end_wait}
 10463	MsgLaliveroInteriorsIAlwaysWantedABreakBut	I wanted time away\nfrom work, but this\nendless quiet is worse.{end_wait}
@@ -75,7 +75,7 @@
 09939	MsgLaliveroInteriorsWeReceivedActorFromTheSky	We received {actor_name:7} from\nthe heavens and raised\nher as our own.{page_break}Faran will find her.\nI know he will.{end_wait}
 09952	MsgLaliveroInteriorsItsSoPainfulToEvenThink	It hurts to imagine\nanything happening to\n{actor_name:7}.{page_break}I would take her place\nwithout hesitation.{end_wait}
 09953	MsgLaliveroInteriorsIJustWishSomeoneWouldPlease	I only want someone\nto bring my sister\n{actor_name:7} home.{end_wait}
-09954	MsgLaliveroInteriorsThatCoupleRaisedActorAsThough	That family raised {actor_name:7}\nas their own child.{page_break}Her loss would wound\nall of Lalivero, not\n{actor_name:7}'s family alone.{end_wait}
+09954	MsgLaliveroInteriorsThatCoupleRaisedActorAsThough	Faran and his wife\nraised {actor_name:7}\nas their own.{page_break}The town calls her\nits hope. To them,\n{actor_name:7} is family.{end_wait}
 09969	MsgLaliveroInteriorsWeMustObeyTolbiThatsWhat	We obeyed Tolbi, and\nthat is how {actor_name:7} was\nlost to us.{page_break}Babi is the one who\nmust answer for this.{end_wait}
 09970	MsgLaliveroInteriorsWhyDidThisHaveToHappen	Why did this happen\nto {actor_name:7}? I wish I\ncould wake from it.{end_wait}
 09971	MsgLaliveroInteriorsHousecleaningChangingSheetsItsAllDone	The rooms are clean.\nThe sheets are changed.\nEverything is in order.{page_break}And yet I cannot focus.\nMy thoughts keep drifting\nto the girl.{end_wait}
