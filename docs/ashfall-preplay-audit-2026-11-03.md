@@ -90,3 +90,12 @@ The same 19 scene sources were searched for active `FLAG_DARK_*` / `MsgDark*` re
 
 **The combined pre-play changes** include engine palette-memory cleanup *and* the Mercury-visited chronology repair. The newest commit after both changes must pass its own dialogue, story-contract, compiler and IPS workflow before its patch is considered the recommended playtest build.
 
+
+### OPEN, HIGH GAMEPLAY IMPACT — Mercury scripted solo levels and full inventory
+
+In `MercuryLighthouseAerie_SaturosFallsAndMiaRuns`, Isaac's solo-duel preparation uses `MIA_DUEL_ISAAC_LEVEL 14` and the solo Mia vs Menardi transition uses **`MIA_DUEL_MIA_LEVEL 24`** with `Unit_LevelUpTo`. The associated source then reconstructs the party without a corresponding level-restore call. This suggests a **permanent level advantage for Mia** (and potentially Isaac), far above normal Mercury-era progression. The solo Menardi enemy is explicitly level 24, HP 600, ATK 120, and the fight has its own scripted formation; the leveling looks intentional for the boss, but its **downstream game balance has not been established**.
+
+`MercuryLighthouseAerie_ArmMia` attempts to add and equip `ITEM_TIDEGLASS_BLADE`, but returns immediately if Mia's inventory has no free slot. That can deprive Mia of the intended duel weapon. **Playtest:** keep at least one inventory slot free before the Mercury confrontation; record Mia/Isaac levels and equipment beforehand and again after reunion. Test whether Menardi remains reasonably winnable, and whether Mia's level makes Kolima/Altin fights trivial afterward. A balance redesign requires actual combat testing; do not silently nerf the boss or erase player inventory to work around it.
+
+This risk is separate from the game-breaking world-map A-menu freeze. Neither can be signed off by compilation or text audit alone.
+

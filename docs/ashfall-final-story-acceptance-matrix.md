@@ -51,3 +51,8 @@ The three Ash Jenna **field** appearances must use the original Jenna character 
 
 `tools/dark_story/check_story_contract.py` now enforces important source-level invariants on each dialogue/ROM build, including these identities, choice callbacks and battles that can be retried after defeat. This automated check must pass, but all **PENDING** playthrough tests above remain pending. Explicitly inspect whether showing two Mia appearances (real Mia versus Kegare) causes any palette, portrait, actor-collision, sprite-cache or animation conflict in Tolbi. Check the three Ash Jenna appearances for correct Jenna frames and grey coloring at real hardware resolution; their current sprite is provisional.
 
+
+### Mercury combat-balance pre-play check (still PENDING)
+
+The mandatory Isaac and Mia solo-duel code calls `Unit_LevelUpTo` for Isaac at **14** and Mia at **24**, and no post-victory normalization is present in the scene. The Mia–Menardi fight uses a dedicated level-24/600-HP enemy. Mia's special weapon may be skipped if her inventory is full. **Save before the confrontation; leave Mia an open item slot; verify levels/gear before and after the party reunion and gauge whether later battles remain engaging.** This is a documented balance risk, not a source-verified game crash or a reason to invent a new route.
+
