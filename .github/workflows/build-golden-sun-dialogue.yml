@@ -57,7 +57,6 @@ jobs:
           python3 -m pip install --break-system-packages Pillow numpy numpy
           python3 tools/dark_story/build_heart_art.py
           python3 tools/dark_story/build_ash_jenna_art.py
-          python3 tools/dark_story/build_ash_jenna_overworld.py
 
       - name: Build pinned toolchain and host tools
         run: make bootstrap CARGO=false

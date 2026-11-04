@@ -7,7 +7,6 @@ on:
     paths:
       - 'tools/dark_story/build_heart_art.py'
       - 'tools/dark_story/build_ash_jenna_art.py'
-      - 'tools/dark_story/build_ash_jenna_overworld.py'
       - 'assets/ash_jenna/**'
       - 'assets/heart/**'
       - '.github/workflows/build-heart-art.yml'
@@ -30,7 +29,6 @@ jobs:
       - name: Generate Ash Jenna artwork and check her sheet
         run: |
           python3 tools/dark_story/build_ash_jenna_art.py
-          python3 tools/dark_story/build_ash_jenna_overworld.py
           python3 - <<'PY'
           from PIL import Image
           sheet = Image.open('games/tbs/src/graphics/monster/slime.png')
