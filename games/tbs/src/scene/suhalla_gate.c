@@ -283,6 +283,13 @@ s32 Scene_Initialize(void) {
     }
     if (gSaveBlock.entrance == SUHALLA_GATE_CHECKPOINT_FROM_WORLD_MAP_EAST)
       GameFlag_Set(FLAG_SUHALLA_GATE_ENTERED_FROM_EAST);
+    // Ash Jenna stays out of sight until Iodem's investigation is over, so she
+    // never stands in the cutscene's way.
+    if (GameFlag_Get(FLAG_BABI_SPOKE_AFTER_COLOSSO) != 0 &&
+        GameFlag_Get(FLAG_SUHALLA_GATE_ATTACK_SEEN) == 0) {
+      Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+      Actor_SetPosition(ACTOR_ASH_JENNA, PIXELS(0), PIXELS(0));
+    }
     // Back from Ash Jenna's battle.
     if (GameFlag_Get(FLAG_DARK_ASH_GATE_PENDING) != 0)
       SuhallaGate_AshJennaAftermath();
@@ -477,6 +484,9 @@ static void SuhallaGate_IodemQuestionsGuards(void) {
   MapGrid_CopyCellAttributes(9, 26, 2, 1, destinationColumn, 26);
 #endif
   GameFlag_Set(FLAG_SUHALLA_GATE_ATTACK_SEEN);
+  // Now Ash Jenna steps into the passage.
+  Actor_SetPosition(ACTOR_ASH_JENNA, PIXELS(152), PIXELS(456));
+  Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA, SPRITE_COLOR_NORMAL);
   Event_End();
 }
 
