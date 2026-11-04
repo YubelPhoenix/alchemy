@@ -485,7 +485,7 @@ static void SuhallaGate_IodemQuestionsGuards(void) {
 #endif
   GameFlag_Set(FLAG_SUHALLA_GATE_ATTACK_SEEN);
   // Now Ash Jenna steps into the passage.
-  Actor_SetPosition(ACTOR_ASH_JENNA, PIXELS(152), PIXELS(456));
+  Actor_SetPosition(ACTOR_ASH_JENNA, PIXELS(152), PIXELS(388));
   Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA, SPRITE_COLOR_NORMAL);
   Event_End();
 }
@@ -722,9 +722,9 @@ struct ActorTemplate gSuhallaGateCheckpointActorTemplatesAfterAudience[] = {
 #endif
     { SPRITE_IODEM, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_EAST, TALK_FACING_KEEP, 0 },
-    // Ash Jenna, in the path north of the south entrance until she is beaten.
+    // Ash Jenna, up by the wounded guards (off the stairs) until she is beaten.
     { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, FLAG_DARK_ASH_GATE_FOUGHT, MOVEMENT_TYPE_STAND,
-        PIXELS(152), 0, PIXELS(456), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+        PIXELS(152), 0, PIXELS(388), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 

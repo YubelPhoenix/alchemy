@@ -7,3 +7,4 @@ N334	MsgDarkAshGateGreet	The guards are down.\nThe ones you chase\nare farther a
 N335	MsgDarkAshGateIsaac	You're blocking\nthe only way through.\nMove.{end_wait}
 N336	MsgDarkAshGateChallenge	No. You want to\nreach them? Then\nget past me.{end_wait}
 N337	MsgDarkAshGateBeaten	Go on, then.\nSee how many you\ncan still save.{end_wait}
+00655	MsgEnemyName	Ash Jenna
