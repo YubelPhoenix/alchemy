@@ -3,6 +3,10 @@
 
 #include "songs.h"
 
+/// Ash Jenna's colour: red, green and blue rotated (her hair turns violet),
+/// so she no longer reads as another character. One place to change it.
+#define SPRITE_COLOR_ASH SPRITE_COLOR_BRG
+
 // Ash Jenna's way of coming and going: a warp sound and a quick flicker of
 // white and grey. Event scripts only (it waits frames). The scene sets her
 // place and flags itself.
@@ -15,7 +19,7 @@ static inline void AshWarp_Out(s32 actorId) {
   for (beat = 0; beat < 4; beat++) {
     Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_WHITE);
     Event_WaitFrames(3);
-    Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_GREY);
+    Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_ASH);
     Event_WaitFrames(3);
   }
   Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_WHITE);
@@ -33,12 +37,12 @@ static inline void AshWarp_In(s32 actorId) {
   Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_WHITE);
   Event_WaitFrames(4);
   for (beat = 0; beat < 3; beat++) {
-    Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_GREY);
+    Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_ASH);
     Event_WaitFrames(3);
     Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_WHITE);
     Event_WaitFrames(3);
   }
-  Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_GREY);
+  Actor_ConfigureSpriteColor(actorId, SPRITE_COLOR_ASH);
 }
 
 #endif

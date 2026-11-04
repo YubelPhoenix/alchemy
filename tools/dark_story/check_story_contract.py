@@ -119,16 +119,16 @@ def check_visual_identity() -> None:
     )
     require(
         all(
-            f"Actor_ConfigureSpriteColor({actor}, SPRITE_COLOR_GREY)" in source
+            f"Actor_ConfigureSpriteColor({actor}, SPRITE_COLOR_ASH)" in source
             for actor, source in [
                 ("ACTOR_LAMAKAN_ASH_JENNA", lamakan),
                 ("ACTOR_TOLBI_ASH_JENNA", tolbi),
             ]
         ),
-        "Alternate Jenna must retain her distinguishable grey tint",
+        "Alternate Jenna must retain her distinguishable recolor",
     )
-    require("SPRITE_COLOR_GREY" in function(lalivero, "Lalivero_TalkToAshJenna")
-            or "SPRITE_COLOR_GREY" in lalivero,
+    require("SPRITE_COLOR_ASH" in function(lalivero, "Lalivero_TalkToAshJenna")
+            or "SPRITE_COLOR_ASH" in lalivero,
             "Alternate Jenna's Lalivero tint must remain configured")
 
 

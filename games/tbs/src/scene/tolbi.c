@@ -516,7 +516,7 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
       GameFlag_Get(FLAG_DARK_ASH_JENNA_TOLBI) == 0) {
     Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(232), PIXELS(256));
     Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
-    Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_GREY);
+    Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_ASH);
   }
   return 0;
 }

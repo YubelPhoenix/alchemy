@@ -323,7 +323,7 @@ static void LamakanDesert_SayMia(void) {
 /// The rescue does not decide Isaac's answer. Once.
 static void LamakanDesert_AshJennaFinale(void) {
   Event_Start();
-  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_ASH);
   if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0) {
     // Isaac has already seen her watching the desert; acknowledge that meeting.
     Event_SetMessageId(MsgDarkFinaleJennaMet);
@@ -387,7 +387,7 @@ static void LamakanDesert_MeetAshJenna(void) {
     return;
   }
   Event_Start();
-  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_GREY);
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_ASH);
   Event_SetMessageId(MsgDarkLamakanJennaWatch);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);

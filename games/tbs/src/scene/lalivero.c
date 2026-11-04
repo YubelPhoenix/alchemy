@@ -958,7 +958,7 @@ s32 Lalivero_Initialize(void) {
       Actor_SetPosition(ACTOR_LALIVERO_ASH_JENNA, PIXELS(128), PIXELS(240));
       Actor_FaceDirection(ACTOR_LALIVERO_ASH_JENNA, FACING_SOUTH, 0);
       Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA,
-                                 SPRITE_COLOR_GREY);
+                                 SPRITE_COLOR_ASH);
     }
   } else {
     // The first visit: the two soldiers lie on the ground, drawn under the
