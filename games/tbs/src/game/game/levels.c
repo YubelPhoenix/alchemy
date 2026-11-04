@@ -59,6 +59,22 @@ enum { PSYNERGY_FROM_CLASS = 0x8000, PSYNERGY_FROM_ITEM = 0x4000 };
 #define PSYNERGY_ACTION_AT(slots, index) (((u16 *)(slots))[(index) * 2])
 #endif
 
+/// Moves only one of the four heroes learns, whatever their class: a class
+/// is shared by anyone whose Djinni put them in it, and without these the four
+/// end the game with the same list. Each row is {ability, level}; every hero's
+/// own-element moves are chosen to suit their element and kept out of their
+/// class lines.
+static const struct ClassAbility sSignatureMoves[4][9] = {
+    // Isaac: earth and steel
+    {{179, 5}, {164, 10}, {180, 22}, {165, 26}, {181, 40}, {166, 50}},
+    // Garet: fire and bombs
+    {{182, 6}, {167, 12}, {160, 16}, {183, 20}, {168, 28}, {184, 44}, {169, 50}},
+    // Ivan: wind and lightning
+    {{185, 4}, {191, 8}, {188, 10}, {177, 14}, {186, 22}, {189, 30}, {187, 46}, {190, 52}},
+    // Mia: water, frost and ward
+    {{36, 6}, {30, 10}, {128, 14}, {37, 22}, {129, 26}, {31, 28}, {38, 42}, {32, 48}},
+};
+
 /// Rebuilds a character's Psynergy list: drops the actions its class and items
 /// gave, closes up the list, adds every class action learned by its level and
 /// the action of each equipped item that grants one, and closes it up again.
@@ -129,6 +145,30 @@ s32 Unit_RefreshPsynergy(s32 unitId) {
     }
     if (slot == 32)
       break;
+  }
+
+  // Then the hero's own moves, learned at their levels.
+  if (unitId >= 0 && unitId < 4) {
+    for (sourceIndex = 0; sourceIndex < 9; sourceIndex++) {
+      classAbility = (struct ClassAbility *)&sSignatureMoves[unitId][sourceIndex];
+      if (classAbility->ability == 0 || unit->level < classAbility->level)
+        continue;
+      slot = 0;
+      while (slot < 32 && (PSYNERGY_ACTION_AT(abilities, slot) &
+                           PSYNERGY_ABILITY_MASK) != classAbility->ability)
+        slot++;
+      if (slot != 32)
+        continue;
+      for (slot = 0; slot < 32; slot++) {
+        if (PSYNERGY_ACTION_AT(abilities, slot) == 0) {
+          PSYNERGY_ACTION_AT(abilities, slot) =
+              classAbility->ability | originFlag;
+          break;
+        }
+      }
+      if (slot == 32)
+        break;
+    }
   }
 
   for (sourceIndex = 0; sourceIndex < INVENTORY_SLOTS; sourceIndex++) {
