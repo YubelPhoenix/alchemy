@@ -57,6 +57,7 @@
 #include "animspr.h"
 #include "event_layer.h"
 #include "event_inline.h"
+#include "ash_warp.h"
 #include "iwram_call.h"
 #include "field_effect.h"
 #include "text/msg_ids.h"
@@ -554,7 +555,10 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Actor_FaceDirection(ACTOR_JENNA, FACING_NORTHWEST + FACING_STEP, 30);
   Actor_FaceDirection(ACTOR_FELIX, FACING_NORTHEAST, 0);
   SolSanctumEruption_RaiseAndShrinkActor(ACTOR_JENNA);
-  SolSanctumEruption_RaiseAndShrinkActor(ACTOR_FELIX);
+  // Felix has no power over the air: he does not rise like the others, he
+  // is whisked away where he stands.
+  AshWarp_Out(ACTOR_FELIX);
+  Actor_SetPosition(ACTOR_FELIX, 0, 0);
   Actor_FaceDirection(ACTOR_SATUROS, FACING_SOUTHWEST + FACING_STEP, 40);
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 30);
   Actor_SetAnimationAndWait(ACTOR_SATUROS, ANIM_SHAKE_HEAD);
