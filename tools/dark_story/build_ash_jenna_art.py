@@ -93,8 +93,15 @@ print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, "
 portrait = Image.open(SOURCE / "mugshot.png").convert("RGB")
 if portrait.size != (32, 32):
     portrait = portrait.resize((32, 32), Image.Resampling.LANCZOS)
-icon = portrait.quantize(colors=16, method=Image.Quantize.MEDIANCUT)
-icon_palette = icon.getpalette()
+# Palette index 0 is the portrait's transparent colour (the other mugshots never
+# use it), so the picture takes fifteen colours, numbered from 1, with no dither.
+small = portrait.quantize(colors=15, method=Image.Quantize.MEDIANCUT,
+                          dither=Image.Dither.NONE)
+small_palette = small.getpalette()[:45]
+pixels = np.asarray(small, dtype=np.uint8) + 1
+icon = Image.fromarray(pixels, "P")
+icon_palette = [0, 0, 0] + small_palette
+icon_palette += [0] * (48 - len(icon_palette))  # exactly sixteen colours
 for i in range(0, len(icon_palette), 3):
     for channel in range(3):
         icon_palette[i + channel] = (icon_palette[i + channel] // 8) * 8
