@@ -1711,14 +1711,25 @@ static void Vale_TalkToAshJenna(void) {
 /// and goes; after a defeat she waits.
 static void Vale_AshJennaAftermath(void) {
   GameFlag_Clear(FLAG_DARK_ASH_VALE_PENDING);
-  if (gSaveBlock.sequenceResult == -1) {
-    return;
-  }
   Event_Start();
+  // The party comes back where it stood to face her, not at the village
+  // entrance.
+  Actor_SetPosition(ACTOR_PARTY_LEADER, PIXELS(400), PIXELS(832));
+  Actor_SetPosition(ACTOR_GARET, PIXELS(416), PIXELS(848));
+  Actor_SetPosition(ACTOR_IVAN, PIXELS(384), PIXELS(848));
+  Actor_SetPosition(ACTOR_MIA, PIXELS(400), PIXELS(864));
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_GARET, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_IVAN, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
   MapGrid_CenterOnFollowedPoint();
   WaitFrames(1);
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
+  if (gSaveBlock.sequenceResult == -1) {
+    Event_End();
+    return;
+  }
   Event_SetMessageId(MsgDarkAshValeBeaten);
   Vale_AshJennaSays();
   Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA_AFTER_KALAY, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
