@@ -15,7 +15,7 @@ import re
 import sys
 from pathlib import Path
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[2]
 TBS = ROOT / "games/tbs/src"
@@ -117,6 +117,29 @@ def parse_grid(path):
     return grid
 
 
+def snake(name):
+    return re.sub(r"(?<!^)(?=[A-Z])", "_", name).lower()
+
+
+def parse_actors(scenes):
+    """Placed people and things in a scene's source: (label, x, z) in pixels."""
+    found, seen = [], set()
+    for scene in scenes:
+        f = TBS / f"scene/{snake(scene)}.c"
+        if not f.exists():
+            continue
+        text = f.read_text()
+        for m in re.finditer(r"\{\s*(SPRITE_\w+),[^{}]*?MOVEMENT_TYPE_\w+,\s*PIXELS\((-?\d+)\),\s*[^,]+,\s*PIXELS\((-?\d+)\)", text):
+            key = (m.group(1), m.group(2), m.group(3))
+            if int(m.group(2)) < 0 or int(m.group(3)) < 0:
+                continue  # parked off the map until an event brings it in
+            if key in seen:
+                continue
+            seen.add(key)
+            found.append((m.group(1)[7:].replace("_", " ").lower(), int(m.group(2)), int(m.group(3))))
+    return found
+
+
 def parse_header(mapname):
     s = (TBS / f"map/{mapname}/map.s").read_text()
     h = re.search(r"map_header ([^\n]+)", s).group(1).split(",")
@@ -182,36 +205,63 @@ def draw_layer(img, mapname, layer, pal, sheets, behavior=False):
                 d.text((cx * 16 + 1, cy * 16 + 3), f"{beh:x}", fill=(255, 255, 0))
 
 
-def render_map(mapname, layers, pal, sheets, behavior=False, marks=()):
+def render_map(mapname, layers, pal, sheets, behavior=False, marks=(), actors=()):
     h, _ = parse_header(mapname)
     wc, hc = (h[2] - h[0]) // 2, (h[3] - h[1]) // 2
-    backdrop = (58, 58, 70)  # shows where every layer is clear (the game sets its own backdrop colour)
+    backdrop = (214, 208, 190)  # a plain floor colour; the game sets its own
     img = Image.new("RGB", (wc * 16, hc * 16), backdrop)
     # The back layer (priority 3) first, the front (priority 1) last.
     for L in sorted(layers, key=lambda l: -h[4 + l]):
         draw_layer(img, mapname, L, pal, sheets, behavior)
+    # Crop to where something is drawn (plus the placed actors), keeping the
+    # ruler in the map's own pixels.
+    bg = Image.new("RGB", img.size, backdrop)
+    from PIL import ImageChops
+    box = ImageChops.difference(img, bg).getbbox() or (0, 0, img.width, img.height)
+    pts = [(x, z) for _, x, z in list(actors) + list(marks)]
+    x0 = min([box[0]] + [x - 24 for x, _ in pts])
+    y0 = min([box[1]] + [z - 40 for _, z in pts])
+    x1 = max([box[2]] + [x + 24 for x, _ in pts])
+    y1 = max([box[3]] + [z + 24 for _, z in pts])
+    x0, y0 = max(0, x0 // 32 * 32), max(0, y0 // 32 * 32)
+    x1, y1 = min(img.width, -(-x1 // 32) * 32), min(img.height, -(-y1 // 32) * 32)
+    img = img.crop((x0, y0, x1, y1))
     scale = 2
     img = img.resize((img.width * scale, img.height * scale), Image.NEAREST)
-    margin = 34
-    out = Image.new("RGB", (img.width + margin, img.height + margin), (10, 10, 14))
+    font = ImageFont.load_default(size=15)
+    small = ImageFont.load_default(size=12)
+    margin = 44
+    legend = [f"{i + 1}. {n}  at {x}, {z}" for i, (n, x, z) in enumerate(actors)]
+    legend += [f"*  {n}  at {x}, {z}" for x, z, n in marks]
+    rows = max(1, -(-len(legend) // 2))
+    foot = 16 + rows * 20 if legend else 8
+    out = Image.new("RGB", (img.width + margin, img.height + margin + foot), (24, 24, 32))
     out.paste(img, (margin, margin))
     d = ImageDraw.Draw(out)
-    for px in range(0, wc * 16 + 1, 16):
+    for px in range(x0 // 32 * 32, x1 + 1, 32):
         major = px % 64 == 0
-        x = margin + px * scale
-        d.line([(x, margin if major else margin), (x, out.height)], fill=(255, 255, 255, 90) if major else (70, 70, 90), width=1)
+        x = margin + (px - x0) * scale
+        d.line([(x, margin), (x, margin + img.height)], fill=(255, 255, 255) if major else (120, 120, 140), width=2 if major else 1)
         if major:
-            d.text((x + 2, 4), str(px), fill=(255, 220, 120))
-    for pz in range(0, hc * 16 + 1, 16):
+            d.text((x + 3, 12), str(px), fill=(255, 230, 130), font=font)
+    for pz in range(y0 // 32 * 32, y1 + 1, 32):
         major = pz % 64 == 0
-        y = margin + pz * scale
-        d.line([(margin, y), (out.width, y)], fill=(255, 255, 255) if major else (70, 70, 90), width=1)
+        y = margin + (pz - y0) * scale
+        d.line([(margin, y), (margin + img.width, y)], fill=(255, 255, 255) if major else (120, 120, 140), width=2 if major else 1)
         if major:
-            d.text((2, y + 2), str(pz), fill=(255, 220, 120))
+            d.text((2, y + 3), str(pz), fill=(255, 230, 130), font=font)
+    d.text((2, 2), "x ->", fill=(180, 180, 200), font=small)
+    for i, (n, ax, az) in enumerate(actors):
+        x, y = margin + (ax - x0) * scale, margin + (az - y0) * scale
+        d.ellipse([x - 11, y - 11, x + 11, y + 11], fill=(220, 30, 30), outline=(255, 255, 255), width=2)
+        d.text((x, y), str(i + 1), fill=(255, 255, 255), font=font, anchor="mm")
     for mx, mz, label in marks:
-        x, y = margin + mx * scale, margin + mz * scale
-        d.ellipse([x - 5, y - 5, x + 5, y + 5], outline=(255, 0, 0), width=2)
-        d.text((x + 7, y - 6), f"{label} {mx},{mz}", fill=(255, 80, 80))
+        x, y = margin + (mx - x0) * scale, margin + (mz - y0) * scale
+        d.ellipse([x - 11, y - 11, x + 11, y + 11], fill=(30, 90, 220), outline=(255, 255, 255), width=2)
+        d.text((x, y), "*", fill=(255, 255, 255), font=font, anchor="mm")
+    for i, line in enumerate(legend):
+        col, row = divmod(i, rows)
+        d.text((margin + col * (out.width - margin) // 2, margin + img.height + 10 + row * 20), line, fill=(255, 255, 255), font=small)
     return out
 
 
@@ -249,7 +299,7 @@ def main():
         sheets = [tile_sheet(names.get(r, "")) for r in row[2:6]]
         files = []
         try:
-            im = render_map(mapname, [int(L) for L in a.layers], pal, sheets, a.behavior, marks)
+            im = render_map(mapname, [int(L) for L in a.layers], pal, sheets, a.behavior, marks, parse_actors(scenes))
         except Exception as e:  # keep going; report
             print(f"{mapname}: {e}", file=sys.stderr)
             continue
