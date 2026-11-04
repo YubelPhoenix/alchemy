@@ -152,7 +152,10 @@ def parse_actors(scenes):
 def cell_heights(mapname):
     """Each shape row's rough ground height in pixels (the game works it out per pixel)."""
     rows = []
-    for ln in (TBS / f"map/{mapname}/shapes.tsv").read_text().splitlines()[1:]:
+    f = TBS / f"map/{mapname}/shapes.tsv"
+    if not f.exists():  # the map borrows another's table; treat the ground as level
+        return rows
+    for ln in f.read_text().splitlines()[1:]:
         if ln.strip():
             k, a, b, c = [int(x) for x in ln.split("\t")][:4]
             k &= 15
@@ -202,7 +205,7 @@ def draw_layer(img, mapname, layer, pal, sheets, behavior=False):
                 for x in range(8):
                     ci = px[x, y]
                     # Pure magenta is the palette's "nothing here" colour.
-                    if ci and pal[bank][ci] != (248, 0, 248):
+                    if ci and ci < len(pal[bank]) and pal[bank][ci] != (248, 0, 248):
                         tp[x, y] = pal[bank][ci] + (255,)
         if hf:
             t = t.transpose(Image.FLIP_LEFT_RIGHT)
