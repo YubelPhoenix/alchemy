@@ -236,42 +236,53 @@ def render_map(mapname, layers, pal, sheets, behavior=False, marks=(), actors=()
     x0, y0 = max(0, x0 // 32 * 32), max(0, y0 // 32 * 32)
     x1, y1 = min(img.width, -(-x1 // 32) * 32), min(img.height, -(-y1 // 32) * 32)
     img = img.crop((x0, y0, x1, y1))
+    # Wash the picture out a little so the labels stand out from it.
+    img = Image.blend(img, Image.new("RGB", img.size, (236, 232, 220)), 0.35)
     scale = 2
     img = img.resize((img.width * scale, img.height * scale), Image.NEAREST)
     font = ImageFont.load_default(size=15)
-    small = ImageFont.load_default(size=12)
-    margin = 44
+    small = ImageFont.load_default(size=13)
+    margin, banner = 44, 30
     legend = [f"{i + 1}. {n}  at {x}, {z}" for i, (n, x, z) in enumerate(actors)]
     legend += [f"*  {n}  at {x}, {z}" for x, z, n in marks]
     rows = max(1, -(-len(legend) // 2))
     foot = 16 + rows * 20 if legend else 8
-    out = Image.new("RGB", (img.width + margin, img.height + margin + foot), (24, 24, 32))
-    out.paste(img, (margin, margin))
+    top = banner + margin
+    out = Image.new("RGB", (img.width + margin, img.height + top + foot), (24, 24, 32))
+    out.paste(img, (margin, top))
     d = ImageDraw.Draw(out)
-    for px in range(x0 // 32 * 32, x1 + 1, 32):
-        major = px % 64 == 0
+    d.text((8, 7), "Every number is in pixels, written x, z.  Use them as PIXELS(x) and PIXELS(z).  "
+           "Red circles are people already placed here.", fill=(255, 255, 255), font=small)
+
+    def label(x, y, text):
+        for ox, oy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+            d.text((x + ox, y + oy), text, fill=(0, 0, 0), font=small)
+        d.text((x, y), text, fill=(255, 255, 255), font=small)
+
+    gx0, gz0 = -(-x0 // 64) * 64, -(-y0 // 64) * 64
+    for px in range(gx0, x1 + 1, 64):
         x = margin + (px - x0) * scale
-        d.line([(x, margin), (x, margin + img.height)], fill=(255, 255, 255) if major else (120, 120, 140), width=2 if major else 1)
-        if major:
-            d.text((x + 3, 12), str(px), fill=(255, 230, 130), font=font)
-    for pz in range(y0 // 32 * 32, y1 + 1, 32):
-        major = pz % 64 == 0
-        y = margin + (pz - y0) * scale
-        d.line([(margin, y), (margin + img.width, y)], fill=(255, 255, 255) if major else (120, 120, 140), width=2 if major else 1)
-        if major:
-            d.text((2, y + 3), str(pz), fill=(255, 230, 130), font=font)
-    d.text((2, 2), "x ->", fill=(180, 180, 200), font=small)
+        d.line([(x, top), (x, top + img.height)], fill=(60, 60, 90), width=1)
+        d.text((x + 3, banner + 14), str(px), fill=(255, 230, 130), font=font)
+    for pz in range(gz0, y1 + 1, 64):
+        y = top + (pz - y0) * scale
+        d.line([(margin, y), (margin + img.width, y)], fill=(60, 60, 90), width=1)
+        d.text((2, y + 3), str(pz), fill=(255, 230, 130), font=font)
+    # Every crossing says where it is, so no ruler reading is needed.
+    for px in range(gx0, x1, 64):
+        for pz in range(gz0, y1, 64):
+            label(margin + (px - x0) * scale + 3, top + (pz - y0) * scale + 3, f"{px},{pz}")
     for i, (n, ax, az) in enumerate(actors):
-        x, y = margin + (ax - x0) * scale, margin + (az - y0) * scale
+        x, y = margin + (ax - x0) * scale, top + (az - y0) * scale
         d.ellipse([x - 11, y - 11, x + 11, y + 11], fill=(220, 30, 30), outline=(255, 255, 255), width=2)
         d.text((x, y), str(i + 1), fill=(255, 255, 255), font=font, anchor="mm")
     for mx, mz, label in marks:
-        x, y = margin + (mx - x0) * scale, margin + (mz - y0) * scale
+        x, y = margin + (mx - x0) * scale, top + (mz - y0) * scale
         d.ellipse([x - 11, y - 11, x + 11, y + 11], fill=(30, 90, 220), outline=(255, 255, 255), width=2)
         d.text((x, y), "*", fill=(255, 255, 255), font=font, anchor="mm")
     for i, line in enumerate(legend):
         col, row = divmod(i, rows)
-        d.text((margin + col * (out.width - margin) // 2, margin + img.height + 10 + row * 20), line, fill=(255, 255, 255), font=small)
+        d.text((margin + col * (out.width - margin) // 2, top + img.height + 10 + row * 20), line, fill=(255, 255, 255), font=small)
     return out
 
 
