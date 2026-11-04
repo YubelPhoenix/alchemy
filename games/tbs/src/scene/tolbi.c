@@ -1012,9 +1012,10 @@ struct ActorTemplate gTolbiActorTemplates[] = {
     // The stranded farmer who asks for his family's fare.
     { SPRITE_MAN_CARRYING_A_PACK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(232), 0, PIXELS(296), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
-    // Kegare impersonates Mia; use Mia's sprite on her separate actor ID.
-    // Parked until Tolbi_ApplyEntryState brings her out.
-    { ACTOR_MIA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+    // Kegare impersonates Mia; a woman in blue, drawn grey, parked until
+    // Tolbi_ApplyEntryState brings her out. Not ACTOR_MIA's own identity: Mia
+    // is in the party here, and a second actor with her identity never shows.
+    { SPRITE_WOMAN_IN_BLUE_DRESS, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     { SCENE_TABLE_END },
 };

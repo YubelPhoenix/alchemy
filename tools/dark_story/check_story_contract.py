@@ -113,9 +113,9 @@ def check_visual_identity() -> None:
         "Post-Venus Ash Jenna must use Jenna's recognizable field sprite",
     )
     require(
-        re.search(r"// Kegare impersonates Mia;.*?\{\s*ACTOR_MIA\s*,\s*CONDITION_ALWAYS",
+        re.search(r"// Kegare impersonates Mia;.*?\{\s*SPRITE_WOMAN_IN_BLUE_DRESS\s*,\s*CONDITION_ALWAYS",
                   template(tolbi, "gTolbiActorTemplates"), re.S) is not None,
-        "Kegare must visibly mimic Mia, on a separate actor ID",
+        "Kegare must visibly mimic Mia with her own sprite (Mia is in the party)",
     )
     require(
         all(
