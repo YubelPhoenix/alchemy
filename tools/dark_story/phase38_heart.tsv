@@ -3,11 +3,11 @@
 00759	message	Kegare
 N123	MsgDarkHeartShock	Matthew...\nNo. It can't be.\nNot that face again.{end_wait}
 N124	MsgDarkHeartIsaacName	My name is Isaac.\nI don't know Matthew.\nYou've mistaken me.{end_wait}
-N125	MsgDarkHeartSameFace	That face... those eyes.\nI know what I saw.\nYou can't fool me.{end_wait}
+N125	MsgDarkHeartSameFace	Matthew did this to me.\nHe ruined my face.\nAnd you have his eyes.{end_wait}
 N126	MsgDarkHeartGaretGhost	I paid for that defeat.\nEvery scar is a debt.\nAnd you will pay.{end_wait}
 N127	MsgDarkHeartHatred	I won't lose again.\nNot to you, Matthew.\nNot this time.{end_wait}
 N128	MsgDarkHeartIsaacReady	I'm not your enemy.\nBut I won't let you\nhurt anyone else.{end_wait}
 N129	MsgDarkHeartBeaten	No... Not again...\nAfter everything...\nAfter what I became...{end_wait}
 N130	MsgDarkHeartIsaacNotHim	It's over.\nYou can't keep fighting.\nI'm not Matthew.{end_wait}
-N131	MsgDarkHeartWorld	Liar... I know those eyes.\nThat same damned face...{page_break}I lost my pride.\nMy face. Everything.\nI'll never forgive you.{end_wait}
+N131	MsgDarkHeartWorld	Liar... I know those eyes.\nThat same damned face...{page_break}Matthew scarred my face.\nI carry his cruelty\nevery time I wake.{end_wait}
 N132	MsgDarkHeartPrize	You don't get to decide.\nI won't forgive that face.\nNot while I live.{end_wait}
