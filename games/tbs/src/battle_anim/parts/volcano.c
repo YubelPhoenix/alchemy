@@ -93,8 +93,14 @@ void BattleAnim_RunVolcano(struct BattleAnimArgs *args) {
   // Trails keep half of each pixel a frame.
   ANIM_START_TRANSFER(work, CANVAS_COPY_AND_FADE, CANVAS_FADE_HALF);
 
+  gBattleCamera->flipCaster = 0;
   for (frame = 0; frame != VOLCANO_FRAMES; frame++) {
     camera = gBattleCamera;
+    // Magma Storm from an enemy: once the camera has swung part way round,
+    // the caster's sprite (kind 44, which never mirrors by itself) turns too.
+    if (work->args->variant == ANIM_VARIANT_STRONGEST &&
+        work->args->side == ANIM_SIDE_ENEMIES && frame == 24)
+      camera->flipCaster = FLIP_CASTER_ON;
     if (work->args->variant == ANIM_VARIANT_STRONGEST && frame < 64) {
       if (work->args->side == ANIM_SIDE_ENEMIES)
         camera->yaw = camera->yaw + 192;
@@ -216,6 +222,7 @@ void BattleAnim_RunVolcano(struct BattleAnimArgs *args) {
 
   ANIM_RELEASE_BLITTERS();
   Task_Remove(BattleAnim_ProcessPendingGraphicsTransfer);
+  gBattleCamera->flipCaster = 0;
   BattleAnim_EndCanvasLayer();
 }
 

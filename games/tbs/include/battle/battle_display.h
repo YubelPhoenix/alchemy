@@ -15,6 +15,8 @@
 
 /// The battle camera: its eye, the focus it turns about, and its pitch, yaw
 /// and distance. It lives in the HEAP_SLOT_CAMERA heap slot.
+#define FLIP_CASTER_ON 0xA5
+
 struct BattleCamera {
   /// The eye, 16.16 fixed-point pixels: written each frame distance behind
   /// the focus along the turned view.
@@ -28,7 +30,10 @@ struct BattleCamera {
   u8 unusedAfterDistance[16]; ///< no code names it
   u16 pitch;                  ///< 1/65536 turns
   u16 yaw;                    ///< 1/65536 turns
-  u8 unusedAfterYaw[20];      ///< no code names it
+  /// FLIP_CASTER_ON while Magma Storm turns an enemy caster round (the
+  /// ash-jenna kind-44 sprites then draw mirrored); BattleAnim_RunVolcano sets it.
+  u8 flipCaster;
+  u8 unusedAfterYaw[19];      ///< no code names it
 };
 
 STATIC_ASSERT(sizeof(struct BattleCamera) == 0x4c);

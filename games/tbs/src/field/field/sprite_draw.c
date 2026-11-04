@@ -3,6 +3,7 @@
 // Part of field.c.
 
 #include "../field_internal.h"
+#include "battle_display.h"
 
 /// Draws one anim's frame into a sprite's pixel buffer (Render_DecodeFrame,
 /// run from RAM).
@@ -182,6 +183,11 @@ s32 Sprite_ComposeFrame(struct Sprite *animation, u16 dir) {
       break;
     default:
       facing = 0;
+      // Kind 44 (Ash Jenna and Heart in battle) never mirrors, except
+      // during an enemy Magma Storm's camera swing.
+      if (layer->kind == 44 && gBattleCamera != 0 &&
+          gBattleCamera->flipCaster == FLIP_CASTER_ON)
+        facing = 0x80;
       break;
     }
     frame += facing & 7;
