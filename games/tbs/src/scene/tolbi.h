@@ -145,9 +145,6 @@ enum TolbiActorId {
   /// A stranded farmer (SPRITE_MAN_CARRYING_A_PACK) whose family cannot get
   /// home (Tolbi_TalkToStrandedFather).
   ACTOR_TOLBI_STRANDED_FATHER = 34,
-  /// Kegare, a demon from another age wearing Mia's visage; the optional
-  /// superboss appears in Tolbi only after Colosso is over.
-  ACTOR_TOLBI_KEGARE = 35,
 };
 
 /// The metatile behaviors Tolbi's coord and examine triggers answer besides the

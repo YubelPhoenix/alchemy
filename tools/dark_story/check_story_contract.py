@@ -114,7 +114,7 @@ def check_visual_identity() -> None:
     )
     require(
         re.search(r"// Kegare impersonates Mia;.*?\{\s*SPRITE_WOMAN_IN_BLUE_DRESS\s*,\s*CONDITION_ALWAYS",
-                  template(tolbi, "gTolbiActorTemplates"), re.S) is not None,
+                  template(scene("vault_revisit.c"), "gVaultRevisit_ActorTemplates"), re.S) is not None,
         "Kegare must visibly mimic Mia with her own sprite (Mia is in the party)",
     )
     require(
@@ -223,12 +223,13 @@ def check_optional_battles() -> None:
             "Only Heart's successful aftermath marks her defeated")
 
     tolbi = scene("tolbi.c")
-    kegare = function(tolbi, "Tolbi_TalkToKegare")
+    vault = scene("vault_revisit.c")
+    kegare = function(vault, "VaultRevisit_TalkToKegare")
     require("Event_SetDefeatDestination" in kegare
             and "Event_SetAfterBattleDestination" in kegare,
-            "Kegare must return to Tolbi after either outcome")
-    require("GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT)" in tolbi
-            and "gSaveBlock.sequenceResult > 0" in tolbi,
+            "Kegare must return to Vault after either outcome")
+    require("GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT)" in vault
+            and "gSaveBlock.sequenceResult > 0" in vault,
             "A lost Kegare battle must allow retry")
 
 

@@ -518,37 +518,6 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
     Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
     Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_GREY);
   }
-  // Kegare appears only after Colosso, until her optional battle is won.
-  // A BEATEN flag without WON was never earned (the fight did not run), so she
-  // comes back.
-  if (GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) != 0 &&
-      GameFlag_Get(FLAG_DARK_KEGARE_WON) == 0) {
-    GameFlag_Clear(FLAG_DARK_KEGARE_BEATEN);
-  }
-  if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0) {
-    if (GameFlag_Get(FLAG_DARK_KEGARE_PENDING) != 0 &&
-        !(gSaveBlock.sequenceResult > 0 && gSaveBlock.sequenceResult != 999)) {
-      // The party lost or fled (sequenceResult is -1, or 999 for a flight):
-      // she is still waiting, and the fight can be tried again.
-      GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
-      GameFlag_Clear(FLAG_DARK_KEGARE_PENDING);
-    } else if (GameFlag_Get(FLAG_DARK_KEGARE_PENDING) != 0) {
-      // Back from a battle with enemies defeated: she is beaten.
-      GameFlag_Set(FLAG_DARK_KEGARE_BEATEN);
-      GameFlag_Set(FLAG_DARK_KEGARE_WON);
-      GameFlag_Clear(FLAG_DARK_KEGARE_PENDING);
-    } else if (GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) == 0) {
-      // The battle never ran: she is still waiting.
-      GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
-    }
-  }
-  if (GameFlag_Get(FLAG_COLOSSO_OVER) != 0 &&
-      GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) == 0 &&
-      GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) == 0) {
-    Actor_SetPosition(ACTOR_TOLBI_KEGARE, PIXELS(264), PIXELS(296));
-    Actor_FaceDirection(ACTOR_TOLBI_KEGARE, FACING_NORTH, 0);
-    Actor_ConfigureSpriteColor(ACTOR_TOLBI_KEGARE, SPRITE_COLOR_GREY);
-  }
   return 0;
 }
 
@@ -632,36 +601,6 @@ static void Tolbi_TalkToStrandedFather(void) {
       Event_ShowMessageAndWait(ACTOR_TOLBI_STRANDED_FATHER, 0);
     }
   }
-  Event_End();
-}
-
-/// Kegare, a demon from another age wearing Mia's face, challenges the party.
-/// Her battle is slot 2 of ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI; a win returns
-/// to Tolbi with FLAG_DARK_KEGARE_FOUGHT set, and she is gone.
-static void Tolbi_TalkToKegare(void) {
-  Event_Start();
-  Event_SetMessageId(MsgDarkKegareRise);
-  Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
-  Event_SetMessageId(MsgDarkKegareIsaac);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  Event_SetMessageId(MsgDarkKegareName);
-  Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
-  Event_SetMessageId(MsgDarkKegareMiaRefutes);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  Event_SetMessageId(MsgDarkKegareThreatens);
-  Event_ShowMessageThenWait(ACTOR_TOLBI_KEGARE, 0, 20);
-  Event_SetMessageId(MsgDarkKegareMiaResolves);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  Event_SetMessageId(MsgDarkKegareIsaacReady);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  GameFlag_Set(FLAG_DARK_KEGARE_FOUGHT);
-  GameFlag_Set(FLAG_DARK_KEGARE_PENDING);
-  gFieldWork->transition =
-      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
-  Event_SetAfterBattleDestination((s32)&SceneId_Tolbi, 0);
-  Event_SetDefeatDestination((s32)&SceneId_Tolbi, 0);
-  Battle_SetType(BATTLE_TYPE_SCRIPTED);
-  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 2);
   Event_End();
 }
 
@@ -1010,11 +949,6 @@ struct ActorTemplate gTolbiActorTemplates[] = {
     // The stranded farmer who asks for his family's fare.
     { SPRITE_MAN_CARRYING_A_PACK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(232), 0, PIXELS(296), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
-    // Kegare impersonates Mia; a woman in blue, drawn grey, parked until
-    // Tolbi_ApplyEntryState brings her out. Not ACTOR_MIA's own identity: Mia
-    // is in the party here, and a second actor with her identity never shows.
-    { SPRITE_WOMAN_IN_BLUE_DRESS, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
-        PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1162,7 +1096,6 @@ struct Trigger gTolbiTriggersFinalsDay[] = {
 
 /// After Colosso has ended.
 struct Trigger gTolbiTriggersAfterColosso[] = {
-    { TRIGGER_TALK, ACTOR_TOLBI_KEGARE, CONDITION_ALWAYS, EVENT(Tolbi_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { TRIGGER_TALK, ACTOR_TOLBI_ASH_JENNA, CONDITION_ALWAYS, EVENT(Tolbi_MeetAshJenna) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
