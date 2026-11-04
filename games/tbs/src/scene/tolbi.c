@@ -526,12 +526,13 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   }
   if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0) {
     if (GameFlag_Get(FLAG_DARK_KEGARE_PENDING) != 0 &&
-        gSaveBlock.sequenceResult == -1) {
-      // The party lost: she is still waiting, and the fight can be tried again.
+        !(gSaveBlock.sequenceResult > 0 && gSaveBlock.sequenceResult != 999)) {
+      // The party lost or fled (sequenceResult is -1, or 999 for a flight):
+      // she is still waiting, and the fight can be tried again.
       GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
       GameFlag_Clear(FLAG_DARK_KEGARE_PENDING);
     } else if (GameFlag_Get(FLAG_DARK_KEGARE_PENDING) != 0) {
-      // Back from a battle that was not lost: she is beaten.
+      // Back from a battle with enemies defeated: she is beaten.
       GameFlag_Set(FLAG_DARK_KEGARE_BEATEN);
       GameFlag_Set(FLAG_DARK_KEGARE_WON);
       GameFlag_Clear(FLAG_DARK_KEGARE_PENDING);
