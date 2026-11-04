@@ -103,6 +103,7 @@
 #include "call.h"
 #include "event_layer.h"
 #include "event_inline.h"
+#include "ash_warp.h"
 #include "scene_tables.h"
 #include "iwram_call.h"
 #include "text/msg_ids.h"
@@ -1734,9 +1735,7 @@ static void Vale_AshJennaAftermath(void) {
   }
   Event_SetMessageId(MsgDarkAshValeBeaten);
   Vale_AshJennaSays();
-  Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA_AFTER_KALAY, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
-  Event_WaitFrames(40);
-  Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA_AFTER_KALAY, SPRITE_COLOR_HIDDEN);
+  AshWarp_Out(ACTOR_ASH_JENNA_AFTER_KALAY);
   Actor_SetPosition(ACTOR_ASH_JENNA_AFTER_KALAY, PIXELS(0), PIXELS(0));
   GameFlag_Set(FLAG_DARK_ASH_VALE_FOUGHT);
   // Release the fixed camera before player control returns.

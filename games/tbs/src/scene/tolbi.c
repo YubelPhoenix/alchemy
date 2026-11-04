@@ -60,6 +60,7 @@
 #include "call.h"
 #include "event_layer.h"
 #include "event_inline.h"
+#include "ash_warp.h"
 #include "world_state.h"
 #include "text/msg_ids.h"
 #include "types.h"
@@ -587,10 +588,7 @@ static void Tolbi_MeetAshJenna(void) {
   // She turns away and fades into the rain.
   Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_EAST, 0);
   Event_WaitFrames(20);
-  Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA,
-                             SPRITE_COLOR_GREY | SPRITE_COLOR_BLINK);
-  Event_WaitFrames(40);
-  Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+  AshWarp_Out(ACTOR_TOLBI_ASH_JENNA);
   Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_ASH_JENNA_TOLBI);
   // Mia admits that Ash Jenna's personal attack unsettled her, but the

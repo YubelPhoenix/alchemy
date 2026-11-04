@@ -45,6 +45,7 @@
 #include "event_layer.h"
 #include "scene_tables.h"
 #include "event_inline.h"
+#include "ash_warp.h"
 #include "field_effect.h"
 #include "item_ids.h"
 #include "text/msg_ids.h"
@@ -221,10 +222,7 @@ static void Lalivero_TalkToAshJenna(void) {
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Actor_FaceDirection(ACTOR_LALIVERO_ASH_JENNA, FACING_EAST, 0);
   Event_WaitFrames(20);
-  Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA,
-                             SPRITE_COLOR_GREY | SPRITE_COLOR_BLINK);
-  Event_WaitFrames(40);
-  Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+  AshWarp_Out(ACTOR_LALIVERO_ASH_JENNA);
   Actor_SetPosition(ACTOR_LALIVERO_ASH_JENNA, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_ASH_JENNA_LALIVERO);
   Event_End();

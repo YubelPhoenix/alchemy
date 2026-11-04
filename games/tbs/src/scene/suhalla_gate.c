@@ -58,6 +58,7 @@
 #include "djinn_ids.h"
 #include "types.h"
 #include "event_layer.h"
+#include "ash_warp.h"
 #include "scene_ids.h"
 #include "text/msg_ids.h"
 #include "ability_ids.h"
@@ -184,9 +185,7 @@ static void SuhallaGate_AshJennaAftermath(void) {
   }
   Event_SetMessageId(MsgDarkAshGateBeaten);
   SuhallaGate_AshJennaSays();
-  Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
-  Event_WaitFrames(40);
-  Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+  AshWarp_Out(ACTOR_ASH_JENNA);
   Actor_SetPosition(ACTOR_ASH_JENNA, PIXELS(0), PIXELS(0));
   GameFlag_Set(FLAG_DARK_ASH_GATE_FOUGHT);
   // Release the fixed camera before player control returns.

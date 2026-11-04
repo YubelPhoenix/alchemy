@@ -74,6 +74,7 @@
 #include "scene_ids.h"
 #include "iwram_call.h"
 #include "event_inline.h"
+#include "ash_warp.h"
 #include "world_state.h"
 #include "field_effect.h"
 #include "save_block.h"
@@ -371,10 +372,7 @@ static void LamakanDesert_AshJennaFinale(void) {
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
   Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_EAST, 0);
   Event_WaitFrames(20);
-  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA,
-                             SPRITE_COLOR_GREY | SPRITE_COLOR_BLINK);
-  Event_WaitFrames(40);
-  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+  AshWarp_Out(ACTOR_LAMAKAN_ASH_JENNA);
   Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_FINALE_DONE);
   GameFlag_Clear(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
@@ -397,10 +395,7 @@ static void LamakanDesert_MeetAshJenna(void) {
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
   Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_EAST, 0);
   Event_WaitFrames(20);
-  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA,
-                             SPRITE_COLOR_GREY | SPRITE_COLOR_BLINK);
-  Event_WaitFrames(40);
-  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_HIDDEN);
+  AshWarp_Out(ACTOR_LAMAKAN_ASH_JENNA);
   Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(-9), PIXELS(488));
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_MET);
