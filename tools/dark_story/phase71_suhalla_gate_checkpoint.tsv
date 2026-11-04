@@ -3,26 +3,26 @@
 09806	MsgSuhallaWantGoBabi	Are you heading to\nBabi Lighthouse?{end_now}
 09810	MsgSuhallaObeyBabiOrders	I never ask why Babi\nhas ordered me to guard\nthis passage.{page_break}A soldier follows\norders. I do as I am\ntold.{end_wait}
 09811	MsgSuhallaSeeColossoNextYear	I wonder if Colosso\nhas ended for the year...{page_break}I wish I could have\nseen it. Perhaps\nnext year...{end_wait}
-09812	MsgSuhallaMeaning	What is the meaning\nof this!?{end_wait}
+09812	MsgSuhallaMeaning	What happened here?\nWho attacked this gate?{end_wait}
 09831	MsgSuhallaSendHelpFromTower	Oh...{pause_20_skippable} There's no use.\nI don't think I can\nstand.{page_break}Please, send help from\nBabi Lighthouse when\nyou reach it.{end_wait}
 09832	MsgSuhallaPityColossoVictor	It's a shame a Colosso\nvictor should end up\nlike this...{page_break}When I find them,\nI'll make them answer\nfor what they've done!{end_wait}
 09833	MsgSuhallaAshamedBeforeIodem	Damn it... I can't bear\nto let Iodem see me\nlike this...{page_break}I'd rather crawl into\na hole and hide.{end_wait}
 09834	MsgSuhallaSurvivedAttack	I thought I was dead!\nI'm lucky to be alive\nat all...{page_break}Those strange men with\nwild hair... They were\nfar too powerful.{end_wait}
-09813	message	Uh...{pause_20_skippable} Is...{pause_20_skippable}\nIs that Iodem...?{end_wait}
-09814	message	What happened here\nat the gate?{end_wait}
-09815	message	A group of strangers\ncame to the gate. They\nhad no travel papers.{page_break}We tried to turn them\naway. They forced\ntheir way through.{end_wait}
-09816	message	I-Io{pause_20_skippable}dem...{end_wait}
-09817	message	We tried to stop them...\nbut they were{pause_20_skippable}\ntoo strong for us!{end_wait}
-09818	message	They{pause_20_skippable} wielded strange\npowers...{pause_20_skippable} We were\nno match for them.{end_wait}
-09819	message	It had to be {actor_name:5}!{end_now}
-09820	message	Yeah... No one else\ncould have done this.{end_wait}
-09821	message	You know your own enemy,\nIodem. Who else could\nhave done this?{end_wait}
-09822	message	Once we find {actor_name:7},\nwe must hunt down the\nmonsters who did this.{end_wait}
-09823	message	We must reach Babi\nLighthouse at once!{end_wait}
-09824	message	Yes{pause_20_skippable}, but we cannot\nleave the soldiers\nhere...{end_wait}
-09825	message	We're all right.{pause_20_skippable} Don't\nworry about us! Go\nafter them{pause_20_skippable}, please...{end_wait}
-09826	message	But we can't just...{end_wait}
-09827	message	We lost the fight, but\nwe will{pause_20_skippable} survive...\n{pause_20_skippable}Now go!{end_wait}
-09828	message	If they've done anything\nto the lighthouse...\nIt would be our...{end_wait}
-09829	message	He's right. We've got\nto stop them!{end_wait}
-09830	message	We're going after them,\naren't we, {actor_name:1}?{end_wait}
+09813	message	Iodem... We tried\nto hold the passage.{end_wait}
+09814	message	Start at the beginning.\nTell me what you saw.{end_wait}
+09815	message	Strangers came without\npapers. We ordered\nthem to turn back.{page_break}They struck before\nwe could raise\nthe alarm.{end_wait}
+09816	message	We never had\na chance...{end_wait}
+09817	message	They moved through us\nas if we weren't\neven there.{end_wait}
+09818	message	Fire... and a power\nI couldn't name.\nThen everything went dark.{end_wait}
+09819	message	Could {actor_name:5} have\nbeen among them?{end_now}
+09820	message	Then he may already\nbe near the lighthouse.{end_wait}
+09821	message	We cannot know yet.\nBut someone forced\nthis passage.{end_wait}
+09822	message	And {actor_name:7} is still\nmissing. We cannot\nforget her.{end_wait}
+09823	message	The lighthouse may be\nin danger. We must\nmove quickly.{end_wait}
+09824	message	Not while these men\nlie here wounded.{end_wait}
+09825	message	We can hold on.\nYou have to go...\nbefore it's too late.{end_wait}
+09826	message	But leaving you\nlike this...{end_wait}
+09827	message	We've survived worse\nthan this. Please...\nkeep going.{end_wait}
+09828	message	If the lighthouse\nfalls, Lalivero\nwill pay the price.{end_wait}
+09829	message	Then we cannot\nwaste another moment.{end_wait}
+09830	message	{actor_name:1}, are you ready?\nWe go together.{end_wait}
