@@ -44,7 +44,7 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .animation = 477,
         .attackAnim = 1,
         .defeatSound = 1,
-        .effectHeight = 30,
+        .effectHeight = 42,
     },
     {
         .animation = 453,
@@ -584,7 +584,7 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .animation = 477,
         .attackAnim = 1,
         .defeatSound = 1,
-        .effectHeight = 30,
+        .effectHeight = 42,
     },
     {
         .animation = 403,
