@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Reshuffle which enemy groups appear in which random-encounter zone.
+"""Reshuffle which enemy groups appear in which random-encounter zone, with one
+rare out-of-place wildcard per zone.
 
 Only zones with a nonzero rate change (scripted, mimic, Djinn and event zones
 are left alone). Each formation keeps a home level (the mean level of the
@@ -7,7 +8,7 @@ zones it appears in today) and may only be moved into a zone whose level is
 within BAND of it, so difficulty stays about where it was. Every slot keeps
 its weight; only the formation in it changes. Deterministic (SEED).
 
-Run once; the result is committed in games/tbs/src/overworld/encounter_zones.c.
+Run once on the original table (git show 759f8dd8^:...); the result is committed in games/tbs/src/overworld/encounter_zones.c.
 """
 import random
 import re
@@ -17,7 +18,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 PATH = ROOT / "games/tbs/src/overworld/encounter_zones.c"
 SEED = 2026
-BAND = 3
+BAND = 4
+# One rare slot per zone (its lowest weight) is a wildcard: a group from
+# WILD_LOW to WILD_HIGH levels above the zone, so now and then something
+# far out of place turns up. Not in the first zones (level under WILD_MIN).
+WILD_MIN = 5
+WILD_LOW = 4
+WILD_HIGH = 8
 
 text = PATH.read_text()
 start = text.index("gEncounterZones[]")
@@ -33,6 +40,7 @@ for m in zone_re.finditer(body):
         "rate": int(m.group(1)),
         "level": int(m.group(2)),
         "en": [int(x) for x in m.group(3).split(",") if x.strip()],
+        "w": [int(x) for x in m.group(4).split(",") if x.strip()],
     })
 
 random_zones = [z for z in zones if z["rate"] > 0]
@@ -51,6 +59,13 @@ for z in random_zones:
         near = sorted(pool, key=lambda f: abs(home[f] - z["level"]))[
             :max(len(z["en"]) * 2, 8)]
     picks = rng.sample(near, len(z["en"]))
+    wild = [f for f in pool
+            if z["level"] + WILD_LOW <= home[f] <= z["level"] + WILD_HIGH
+            and f not in picks]
+    if z["level"] >= WILD_MIN and wild and len(z["w"]) == len(picks):
+        low = min(z["w"])
+        slot = max(i for i, w in enumerate(z["w"]) if w == low)
+        picks[slot] = rng.choice(wild)
     changed += sum(a != b for a, b in zip(picks, z["en"]))
     z["new"] = picks
 

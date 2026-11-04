@@ -12,77 +12,77 @@ const struct EncounterZone gEncounterZones[] = {
     {
         .rate = 37,
         .level = 1,
-        .enemies = {10, 17, 24, 25},
+        .enemies = {10, 17, 24, 31},
         .weights = {4, 8, 8, 4},
     },
     // SolSanctumReliefs (entrances 1, 2)
     {
         .rate = 35,
         .level = 1,
-        .enemies = {10, 14, 25, 21},
+        .enemies = {10, 14, 27, 25},
         .weights = {8, 4, 4, 8},
     },
     // SolSanctumReliefs (entrances 3, 6, 7)
     {
         .rate = 35,
         .level = 1,
-        .enemies = {26, 25, 23, 22},
+        .enemies = {21, 36, 26, 25},
         .weights = {8, 8, 4, 4},
     },
     // Sol Sanctum Maze
     {
         .rate = 35,
         .level = 1,
-        .enemies = {14, 7, 9, 10},
+        .enemies = {37, 34, 35, 23},
         .weights = {4, 4, 8, 8},
     },
     // SolSanctumReliefs (entrance 10)
     {
         .rate = 35,
         .level = 2,
-        .enemies = {16, 37, 10, 22},
+        .enemies = {51, 23, 7, 12},
         .weights = {12, 8, 4, 4},
     },
     // Sol Sanctum Luna Sol Rooms
     {
         .rate = 35,
         .level = 2,
-        .enemies = {7, 37, 32, 23},
+        .enemies = {14, 26, 13, 51},
         .weights = {4, 4, 12, 8},
     },
     // World Map: terrain kind 1, grassland and beach
     {
         .rate = 25,
         .level = 3,
-        .enemies = {31, 21, 36, 24, 18, 52, 53, 55},
+        .enemies = {7, 54, 31, 21, 36, 24, 33, 60},
         .weights = {2, 2, 3, 3, 4, 4, 4, 3},
     },
     // World Map: terrain kind 1, forest
     {
         .rate = 9,
         .level = 3,
-        .enemies = {35, 55, 11, 32, 9, 25, 52, 16},
+        .enemies = {35, 55, 64, 11, 32, 12, 59, 57},
         .weights = {2, 2, 2, 2, 3, 7, 2, 3},
     },
     // Goma Cave Pond
     {
         .rate = 30,
         .level = 4,
-        .enemies = {26, 52, 16, 65, 60},
+        .enemies = {26, 52, 16, 65, 70},
         .weights = {3, 3, 9, 3, 6},
     },
     // Goma Cave Pillar
     {
         .rate = 30,
         .level = 5,
-        .enemies = {50, 16, 54, 73, 61, 59, 21},
+        .enemies = {63, 10, 72, 71, 86, 80, 127},
         .weights = {2, 2, 2, 2, 8, 5, 2},
     },
     // GomaCaveStream
     {
         .rate = 30,
         .level = 5,
-        .enemies = {56, 70, 68, 63, 23, 59, 64},
+        .enemies = {90, 22, 80, 142, 89, 75, 84},
         .weights = {2, 2, 5, 2, 8, 8, 14},
     },
     // Event battles: Vale, Vault, World Map
@@ -94,161 +94,161 @@ const struct EncounterZone gEncounterZones[] = {
     {
         .rate = 25,
         .level = 6,
-        .enemies = {90, 87, 75, 68, 61, 70, 51, 62},
+        .enemies = {65, 89, 57, 69, 95, 62, 64, 100},
         .weights = {4, 4, 4, 4, 4, 2, 2, 2},
     },
     // World Map: terrain kind 2, forest
     {
         .rate = 9,
         .level = 6,
-        .enemies = {73, 66, 69, 70, 90, 21, 96, 37},
+        .enemies = {60, 83, 24, 87, 164, 79, 65, 92},
         .weights = {1, 1, 1, 1, 1, 2, 2, 2},
     },
     // KolimaTunnel
     {
         .rate = 35,
         .level = 6,
-        .enemies = {88, 31, 92, 23, 83, 70, 80, 26},
+        .enemies = {32, 79, 72, 59, 126, 25, 95, 92},
         .weights = {1, 2, 2, 1, 1, 5, 5, 5},
     },
     // Kolima Forest Bridge
     {
         .rate = 40,
         .level = 6,
-        .enemies = {83, 77, 63, 66, 32, 93, 37, 27},
+        .enemies = {34, 73, 78, 61, 77, 62, 79, 129},
         .weights = {10, 8, 6, 4, 2, 1, 1, 1},
     },
     // Kolima Forest Clearing
     {
         .rate = 40,
         .level = 7,
-        .enemies = {87, 92, 74, 90, 75, 93, 80, 60},
+        .enemies = {125, 90, 77, 124, 104, 101, 126, 135},
         .weights = {4, 8, 6, 6, 4, 2, 1, 1},
     },
     // Kolima Forest River
     {
         .rate = 40,
         .level = 7,
-        .enemies = {81, 70, 89, 63, 99, 88, 78, 92},
+        .enemies = {74, 71, 21, 24, 54, 98, 120, 149},
         .weights = {2, 4, 6, 6, 8, 6, 2, 1},
     },
     // Kolima Forest Tree
     {
         .rate = 40,
         .level = 7,
-        .enemies = {75, 70, 72, 55, 62, 61, 31, 33},
+        .enemies = {196, 70, 102, 99, 106, 103, 95, 24},
         .weights = {1, 2, 4, 6, 8, 8, 4, 2},
     },
     // Tret Tree Branch (entrances 1 to 3)
     {
         .rate = 45,
         .level = 7,
-        .enemies = {52, 88, 84, 74, 79, 77, 68, 55},
+        .enemies = {74, 78, 98, 35, 96, 106, 70, 132},
         .weights = {2, 2, 6, 2, 4, 6, 3, 1},
     },
     // Tret Tree Interiors (entrances 1, 11, 16, 21 to 29)
     {
         .rate = 45,
         .level = 7,
-        .enemies = {60, 92, 77, 74, 78, 97, 72, 81},
+        .enemies = {94, 101, 31, 71, 103, 86, 35, 189},
         .weights = {1, 2, 6, 5, 5, 4, 2, 1},
     },
     // Tret Tree Interiors (entrances 2 to 5, 12, 13, 31, 32)
     {
         .rate = 45,
         .level = 8,
-        .enemies = {95, 125, 50, 120, 68, 70, 80, 104},
+        .enemies = {148, 62, 106, 32, 54, 31, 144, 132},
         .weights = {1, 2, 4, 6, 6, 4, 3, 2},
     },
     // Tret Tree Branch (any entrance)
     {
         .rate = 45,
         .level = 8,
-        .enemies = {54, 79, 97, 98, 103, 83, 65, 126},
+        .enemies = {145, 152, 77, 59, 36, 132, 80, 93},
         .weights = {1, 1, 4, 6, 3, 6, 4, 4},
     },
     // Tret Tree Interiors (entrances 6 to 9, 14, 51 to 59)
     {
         .rate = 45,
         .level = 8,
-        .enemies = {126, 60, 78, 120, 99, 81, 52, 94},
+        .enemies = {31, 190, 141, 136, 124, 61, 132, 73},
         .weights = {1, 1, 2, 3, 4, 6, 10, 8},
     },
     // BilibinCaveRapier (any entrance)
     {
         .rate = 30,
         .level = 8,
-        .enemies = {66, 124, 82, 73, 54, 61, 100, 77},
+        .enemies = {142, 60, 143, 126, 83, 53, 101, 152},
         .weights = {6, 6, 4, 4, 2, 2, 1, 1},
     },
     // BilibinCaveIce (any entrance)
     {
         .rate = 30,
         .level = 8,
-        .enemies = {57, 79, 125, 36, 53, 124, 126, 89},
+        .enemies = {142, 86, 183, 100, 97, 63, 129, 70},
         .weights = {2, 2, 2, 4, 4, 5, 7, 7},
     },
     // BilibinCaveRapier (entrances 5, 6)
     {
         .rate = 30,
         .level = 9,
-        .enemies = {143, 61, 78, 84, 66, 55, 88, 100},
+        .enemies = {37, 62, 102, 57, 161, 97, 98, 51},
         .weights = {1, 1, 1, 1, 1, 2, 2, 2},
     },
     // BilibinCaveIce (entrance 5)
     {
         .rate = 30,
         .level = 9,
-        .enemies = {71, 50, 95, 132, 69, 81, 130, 68},
+        .enemies = {133, 127, 94, 90, 206, 153, 64, 131},
         .weights = {1, 1, 1, 1, 1, 2, 2, 2},
     },
     // World Map: terrain kind 21, snowfield (behavior 5)
     {
         .rate = 25,
         .level = 9,
-        .enemies = {134, 92, 61, 122, 72},
+        .enemies = {145, 185, 71, 69, 148},
         .weights = {3, 3, 5, 5, 5},
     },
     // World Map: terrain kind 21, snowfield (behavior 6)
     {
         .rate = 9,
         .level = 9,
-        .enemies = {69, 94, 134, 121, 104},
+        .enemies = {122, 186, 96, 125, 149},
         .weights = {2, 2, 4, 4, 4},
     },
     // Mercury Lighthouse Entrance, MercuryLighthouseLower
     {
         .rate = 40,
         .level = 9,
-        .enemies = {71, 136, 78, 103, 51, 64, 104, 60},
+        .enemies = {56, 142, 104, 163, 75, 72, 53, 141},
         .weights = {6, 4, 2, 1, 4, 4, 2, 6},
     },
     // MercuryLighthouseLower and MercuryLighthouseMiddle
     {
         .rate = 40,
         .level = 9,
-        .enemies = {56, 99, 100, 53, 143, 135, 130, 96},
+        .enemies = {124, 180, 129, 50, 65, 135, 78, 134},
         .weights = {2, 1, 2, 2, 4, 4, 6, 8},
     },
     // MercuryLighthouseMiddle and MercuryLighthouseUpper
     {
         .rate = 40,
         .level = 10,
-        .enemies = {123, 148, 90, 149, 75, 102, 100, 121},
+        .enemies = {72, 185, 75, 104, 88, 123, 142, 122},
         .weights = {1, 1, 2, 2, 3, 4, 8, 8},
     },
     // MercuryLighthouseUpper and MercuryLighthouseExterior
     {
         .rate = 40,
         .level = 11,
-        .enemies = {100, 98, 131, 126, 92, 120, 133, 167},
+        .enemies = {135, 124, 94, 222, 93, 104, 150, 154},
         .weights = {1, 2, 2, 1, 2, 4, 8, 8},
     },
     // MercuryLighthouseExterior (entrances 3, 4)
     {
         .rate = 40,
         .level = 11,
-        .enemies = {161, 122, 141, 143, 81, 129, 104, 79},
+        .enemies = {121, 150, 93, 230, 161, 152, 146, 84},
         .weights = {1, 2, 2, 1, 2, 4, 8, 8},
     },
     // Event battles: Tret Tree, Mercury Lighthouse
@@ -260,112 +260,112 @@ const struct EncounterZone gEncounterZones[] = {
     {
         .rate = 20,
         .level = 11,
-        .enemies = {104, 101, 82, 83},
+        .enemies = {162, 120, 81, 195},
         .weights = {3, 3, 3, 3},
     },
     // World Map: terrain kind 31, forest
     {
         .rate = 9,
         .level = 11,
-        .enemies = {160, 103, 164, 79},
+        .enemies = {68, 80, 149, 207},
         .weights = {1, 1, 1, 1},
     },
     // FuchinFallsCaveEntrance and FuchinFallsCaveZephyr
     {
         .rate = 38,
         .level = 11,
-        .enemies = {95, 120, 149, 155, 126, 160, 86, 88},
+        .enemies = {142, 164, 193, 94, 71, 131, 90, 234},
         .weights = {4, 4, 4, 8, 6, 4, 2, 1},
     },
     // FuchinFallsCaveDragonsEye
     {
         .rate = 38,
         .level = 11,
-        .enemies = {102, 148, 96, 120, 127, 106, 154, 82},
+        .enemies = {234, 98, 83, 186, 120, 166, 167, 122},
         .weights = {1, 2, 2, 3, 6, 6, 3, 2},
     },
     // FuchinFallsCaveDragonStatue
     {
         .rate = 38,
         .level = 11,
-        .enemies = {148, 133, 89, 101, 165, 95, 122, 124},
+        .enemies = {106, 186, 166, 86, 81, 104, 145, 92},
         .weights = {1, 1, 2, 3, 4, 4, 6, 8},
     },
     // MogallForestSign
     {
         .rate = 42,
         .level = 11,
-        .enemies = {152, 130, 122, 89, 99, 126, 123, 121},
+        .enemies = {195, 75, 131, 94, 190, 187, 82, 208},
         .weights = {6, 6, 6, 3, 2, 1, 1, 1},
     },
     // MogallForestQuartz
     {
         .rate = 42,
         .level = 12,
-        .enemies = {102, 191, 195, 141, 99, 129, 131, 86},
+        .enemies = {129, 191, 86, 131, 134, 99, 126, 205},
         .weights = {1, 1, 3, 6, 6, 3, 1, 1},
     },
     // MogallForestKillerApe
     {
         .rate = 42,
         .level = 12,
-        .enemies = {98, 181, 149, 163, 124, 89, 152, 121},
+        .enemies = {78, 232, 125, 152, 84, 90, 123, 79},
         .weights = {1, 1, 2, 2, 3, 4, 5, 5},
     },
     // World Map: terrain kind 3, grassland, desert and beach
     {
         .rate = 25,
         .level = 12,
-        .enemies = {152, 195, 192, 129, 101, 141},
+        .enemies = {94, 90, 207, 186, 189, 223},
         .weights = {3, 3, 1, 3, 1, 1},
     },
     // World Map: terrain kind 3, forest
     {
         .rate = 9,
         .level = 12,
-        .enemies = {195, 129, 143, 136, 103, 99},
+        .enemies = {161, 193, 196, 256, 194, 81},
         .weights = {1, 1, 2, 1, 2, 2},
     },
     // AltinPeakRailTunnel, AltinPeakSecondWaterBeast, AltinPeakSouthEntrance
     {
         .rate = 45,
         .level = 12,
-        .enemies = {135, 99, 166, 122, 100, 94, 152, 124},
+        .enemies = {150, 134, 193, 120, 192, 162, 153, 255},
         .weights = {6, 6, 4, 2, 1, 1, 1, 1},
     },
     // AltinPeakThirdWaterBeast and AltinPeakPool
     {
         .rate = 45,
         .level = 13,
-        .enemies = {125, 203, 162, 153, 120, 155, 206, 122},
+        .enemies = {102, 257, 187, 134, 160, 143, 152, 94},
         .weights = {1, 1, 2, 4, 3, 4, 2, 2},
     },
     // AltinPeakSpritz, AltinPeakJunction, AltinPeakFallingRocks and AltinPeakWestExit
     {
         .rate = 42,
         .level = 13,
-        .enemies = {151, 150, 120, 99, 186, 207, 187, 196},
+        .enemies = {166, 231, 142, 149, 143, 102, 144, 164},
         .weights = {1, 1, 2, 3, 4, 4, 8, 8},
     },
     // LamakanDesertEast
     {
         .rate = 40,
         .level = 13,
-        .enemies = {99, 106, 124, 148, 100, 161, 127, 104},
+        .enemies = {202, 88, 193, 150, 126, 195, 94, 225},
         .weights = {5, 5, 4, 3, 3, 2, 1, 1},
     },
     // LamakanDesertSmog
     {
         .rate = 40,
         .level = 14,
-        .enemies = {184, 164, 165, 205, 196, 146, 144, 191},
+        .enemies = {230, 127, 102, 129, 205, 167, 226, 268},
         .weights = {1, 2, 3, 6, 6, 4, 2, 1},
     },
     // LamakanDesertManticore
     {
         .rate = 40,
         .level = 14,
-        .enemies = {154, 167, 181, 182, 186, 180, 121, 150},
+        .enemies = {101, 189, 259, 129, 167, 187, 183, 182},
         .weights = {1, 1, 1, 2, 3, 4, 4, 5},
     },
     // Event battles: Mogall Forest, Altin Peak, Lamakan Desert
@@ -377,56 +377,56 @@ const struct EncounterZone gEncounterZones[] = {
     {
         .rate = 25,
         .level = 15,
-        .enemies = {166, 201, 155, 235, 187, 185, 206, 149},
+        .enemies = {195, 153, 136, 148, 226, 122, 232, 268},
         .weights = {4, 4, 4, 4, 4, 2, 2, 2},
     },
     // World Map: terrain kind 4, forest
     {
         .rate = 9,
         .level = 15,
-        .enemies = {206, 181, 230, 191, 236, 162, 182, 164},
+        .enemies = {161, 142, 154, 269, 233, 164, 226, 207},
         .weights = {2, 2, 2, 2, 3, 4, 4, 4},
     },
     // ValeCaveKite (entrances 1 to 4)
     {
         .rate = 40,
         .level = 15,
-        .enemies = {235, 226, 180, 144, 221, 208, 185, 142},
+        .enemies = {162, 181, 141, 233, 131, 146, 227, 277},
         .weights = {6, 6, 6, 4, 4, 1, 1, 1},
     },
     // ValeCaveKite (entrances 8 to 10)
     {
         .rate = 40,
         .level = 15,
-        .enemies = {164, 207, 167, 236, 220, 223, 225, 149},
+        .enemies = {222, 162, 184, 223, 181, 126, 120, 271},
         .weights = {4, 4, 4, 6, 6, 2, 2, 2},
     },
     // ValeCaveLogs (entrances 1 to 3)
     {
         .rate = 40,
         .level = 15,
-        .enemies = {165, 223, 184, 166, 196, 142, 193, 167},
+        .enemies = {126, 153, 284, 143, 193, 187, 154, 229},
         .weights = {2, 2, 2, 3, 3, 5, 5, 5},
     },
     // ValeCaveLogs (entrances 4, 5)
     {
         .rate = 40,
         .level = 15,
-        .enemies = {154, 194, 144, 220, 149, 152, 202, 232},
+        .enemies = {164, 184, 282, 189, 186, 204, 231, 227},
         .weights = {1, 1, 1, 2, 2, 5, 5, 5},
     },
     // VaultCavePassage
     {
         .rate = 40,
         .level = 16,
-        .enemies = {167, 162, 180, 221, 195, 226, 230, 192},
+        .enemies = {235, 202, 182, 166, 226, 165, 250, 259},
         .weights = {8, 8, 8, 4, 4, 4, 2, 2},
     },
     // VaultCaveVambrace and VaultCaveMouth
     {
         .rate = 40,
         .level = 16,
-        .enemies = {161, 204, 225, 180, 195, 203, 201, 230},
+        .enemies = {208, 254, 282, 145, 180, 152, 201, 181},
         .weights = {2, 2, 2, 4, 4, 4, 8, 8},
     },
     // Event battles: Tolbi ship
@@ -445,56 +445,56 @@ const struct EncounterZone gEncounterZones[] = {
     {
         .rate = 25,
         .level = 18,
-        .enemies = {196, 260, 222, 252, 195, 189, 192, 231},
+        .enemies = {230, 202, 193, 182, 223, 270, 279, 315},
         .weights = {6, 6, 6, 6, 3, 3, 3, 3},
     },
     // World Map: terrain kind 5, forest
     {
         .rate = 9,
         .level = 18,
-        .enemies = {181, 252, 255, 231, 253, 232, 221, 201},
+        .enemies = {185, 261, 259, 320, 194, 285, 190, 256},
         .weights = {3, 3, 3, 3, 6, 6, 6, 6},
     },
     // AltmillerCaveEntrance
     {
         .rate = 40,
         .level = 17,
-        .enemies = {190, 195, 181, 255, 202, 231, 226, 222},
+        .enemies = {194, 223, 189, 192, 162, 236, 225, 277},
         .weights = {6, 6, 4, 4, 4, 2, 1, 1},
     },
     // AltmillerCaveBabi
     {
         .rate = 40,
         .level = 17,
-        .enemies = {201, 205, 189, 250, 234, 185, 192, 232},
+        .enemies = {182, 260, 191, 261, 222, 259, 195, 280},
         .weights = {4, 4, 6, 6, 4, 4, 2, 1},
     },
     // AltmillerCaveVialChest
     {
         .rate = 40,
         .level = 18,
-        .enemies = {182, 251, 229, 201, 206, 250, 230, 205},
+        .enemies = {220, 181, 278, 270, 255, 262, 260, 282},
         .weights = {3, 3, 4, 6, 6, 4, 2, 1},
     },
     // AltmillerCaveSquall
     {
         .rate = 40,
         .level = 18,
-        .enemies = {183, 252, 180, 250, 196, 226, 262, 195},
+        .enemies = {284, 277, 207, 250, 203, 191, 181, 272},
         .weights = {2, 2, 4, 4, 6, 5, 5, 3},
     },
     // AltmillerCaveCookieChest
     {
         .rate = 40,
         .level = 18,
-        .enemies = {253, 229, 190, 257, 221, 255, 208, 195},
+        .enemies = {282, 278, 257, 189, 285, 204, 194, 231},
         .weights = {2, 2, 3, 3, 4, 6, 6, 4},
     },
     // AltmillerCaveDraught (entrances 50, 51)
     {
         .rate = 40,
         .level = 18,
-        .enemies = {232, 202, 206, 193, 208, 207, 225, 250},
+        .enemies = {227, 201, 274, 251, 279, 186, 271, 269},
         .weights = {1, 1, 1, 2, 2, 4, 6, 6},
     },
     // Event battles: Colosso
@@ -507,77 +507,77 @@ const struct EncounterZone gEncounterZones[] = {
     {
         .rate = 30,
         .level = 19,
-        .enemies = {255, 262, 256, 275, 269, 232, 224, 222},
+        .enemies = {259, 313, 235, 196, 254, 226, 274, 227},
         .weights = {3, 3, 4, 4, 5, 5, 6, 6},
     },
     // GondowanCaveRiver (any entrance)
     {
         .rate = 30,
         .level = 20,
-        .enemies = {281, 261, 230, 271, 220, 256, 273, 284},
+        .enemies = {262, 332, 227, 311, 235, 275, 310, 255},
         .weights = {3, 3, 4, 4, 5, 5, 6, 6},
     },
     // GondowanCaveRiver (entrances 1, 2)
     {
         .rate = 30,
         .level = 20,
-        .enemies = {222, 281, 232, 225, 253, 257, 274, 250},
+        .enemies = {235, 323, 205, 282, 316, 285, 257, 314},
         .weights = {3, 3, 4, 4, 5, 5, 6, 6},
     },
     // GondowanCave (entrances 1 to 3)
     {
         .rate = 30,
         .level = 20,
-        .enemies = {229, 226, 221, 274, 234, 278, 253, 277},
+        .enemies = {229, 331, 274, 226, 222, 233, 253, 259},
         .weights = {3, 3, 4, 4, 5, 5, 6, 6},
     },
     // LunpaFortressCave (entrances 1, 2)
     {
         .rate = 35,
         .level = 21,
-        .enemies = {222, 273, 272, 284},
+        .enemies = {255, 254, 312, 339},
         .weights = {2, 2, 2, 2},
     },
     // LunpaFortressCave (any entrance)
     {
         .rate = 35,
         .level = 21,
-        .enemies = {282, 315, 316, 252},
+        .enemies = {260, 254, 232, 338},
         .weights = {2, 2, 2, 2},
     },
     // LunpaFortressToadonpa (entrances 1, 2)
     {
         .rate = 35,
         .level = 21,
-        .enemies = {281, 226, 225, 251},
+        .enemies = {235, 322, 310, 335},
         .weights = {2, 2, 2, 2},
     },
     // World Map: terrain kind 6, grassland, desert and beach
     {
         .rate = 25,
         .level = 22,
-        .enemies = {281, 278, 317, 272, 275, 252, 268, 261},
+        .enemies = {274, 332, 330, 311, 272, 255, 251, 339},
         .weights = {4, 4, 3, 3, 3, 3, 3, 3},
     },
     // World Map: terrain kind 6, forest
     {
         .rate = 9,
         .level = 22,
-        .enemies = {274, 323, 316, 322, 279, 259, 281, 268},
+        .enemies = {275, 341, 269, 332, 227, 268, 334, 277},
         .weights = {2, 2, 3, 3, 3, 4, 4, 4},
     },
     // SuhallaDesertNorth
     {
         .rate = 40,
         .level = 22,
-        .enemies = {323, 250, 321, 312, 285, 279, 316, 261},
+        .enemies = {251, 284, 314, 260, 256, 269, 335, 338},
         .weights = {4, 4, 4, 5, 3, 4, 2, 2},
     },
     // SuhallaDesertSouth
     {
         .rate = 40,
         .level = 22,
-        .enemies = {315, 251, 262, 277, 316, 260, 261, 322},
+        .enemies = {260, 261, 342, 278, 314, 273, 330, 221},
         .weights = {2, 2, 2, 4, 3, 4, 4, 4},
     },
     // Event battles: Crossbone Isle
@@ -590,91 +590,91 @@ const struct EncounterZone gEncounterZones[] = {
     {
         .rate = 30,
         .level = 23,
-        .enemies = {271, 323, 259, 313, 268, 332, 285, 278},
+        .enemies = {330, 284, 278, 256, 335, 313, 323, 340},
         .weights = {6, 6, 6, 3, 3, 2, 2, 2},
     },
     // SuhallaGateDew (any entrance)
     {
         .rate = 30,
         .level = 24,
-        .enemies = {329, 273, 333, 280, 272, 270, 310, 322},
+        .enemies = {341, 312, 311, 262, 315, 275, 259, 282},
         .weights = {2, 3, 3, 6, 6, 3, 3, 3},
     },
     // GatewayCave (entrances 1, 2)
     {
         .rate = 30,
         .level = 24,
-        .enemies = {270, 268, 314, 281, 285, 271, 312, 321},
+        .enemies = {272, 337, 332, 316, 321, 331, 334, 259},
         .weights = {1, 1, 2, 2, 2, 3, 3, 3},
     },
     // GatewayCave (any entrance)
     {
         .rate = 30,
         .level = 24,
-        .enemies = {322, 271, 330, 328, 280, 312, 320, 333},
+        .enemies = {279, 341, 282, 310, 260, 278, 320, 323},
         .weights = {2, 2, 3, 3, 3, 6, 6, 6},
     },
     // VenusLighthouseGroundFloor (any entrance)
     {
         .rate = 40,
         .level = 25,
-        .enemies = {273, 272, 330, 313, 310},
+        .enemies = {334, 335, 313, 269, 330},
         .weights = {4, 4, 4, 4, 4},
     },
     // VenusLighthouseGroundFloor (entrances 20 to 26, 30 to 32)
     {
         .rate = 40,
         .level = 25,
-        .enemies = {284, 279, 314, 322, 331},
+        .enemies = {340, 277, 329, 259, 270},
         .weights = {4, 4, 4, 4, 4},
     },
     // BabiLighthouseEntry, BabiLighthouseLuff, BabiLighthouseStoneDoor, TunnelRuinsLadyStatues (entrances 1 to 3)
     {
         .rate = 35,
         .level = 25,
-        .enemies = {334, 315, 314, 330, 320, 333, 273, 274},
+        .enemies = {273, 311, 279, 320, 278, 333, 274, 285},
         .weights = {6, 6, 6, 4, 4, 4, 2, 2},
     },
     // TunnelRuinsGreatStatue, TunnelRuinsLadyStatues (entrances 8 to 11)
     {
         .rate = 35,
         .level = 25,
-        .enemies = {328, 284, 316, 333, 321, 319, 274, 272},
+        .enemies = {269, 331, 316, 341, 328, 339, 332, 330},
         .weights = {3, 3, 4, 6, 6, 4, 3, 3},
     },
     // TunnelRuinsLadyStatues (entrances 12, 15 to 17)
     {
         .rate = 35,
         .level = 26,
-        .enemies = {329, 339, 333, 337, 343, 314, 328, 319},
+        .enemies = {277, 274, 269, 311, 321, 270, 280, 334},
         .weights = {3, 3, 3, 4, 4, 4, 6, 6},
     },
     // VenusLighthouseFirstFloor (any entrance)
     {
         .rate = 34,
         .level = 27,
-        .enemies = {333, 322, 344, 331, 338, 341, 321, 339},
+        .enemies = {339, 331, 317, 330, 337, 340, 321, 338},
         .weights = {4, 4, 3, 3, 3, 3, 2, 2},
     },
     // VenusLighthouseFirstFloor (entrances 19, 20), VenusLighthouseSecondFloor
     {
         .rate = 32,
         .level = 28,
-        .enemies = {344, 331, 330, 333, 323, 322, 340, 338},
+        .enemies = {334, 333, 339, 331, 342, 343, 337, 323},
         .weights = {3, 3, 4, 4, 3, 3, 2, 2},
     },
     // VenusLighthouseThirdFloor
     {
         .rate = 30,
         .level = 29,
-        .enemies = {344, 342, 340, 343, 337, 339, 338, 341},
+        .enemies = {320, 339, 323, 319, 343, 334, 342, 337},
         .weights = {2, 2, 3, 3, 4, 4, 3, 3},
     },
     // VenusLighthouseFourthFloor
     {
         .rate = 30,
         .level = 30,
-        .enemies = {342, 337, 344, 340, 338, 341, 339, 343},
+        .enemies = {344, 338, 339, 342, 340, 343, 337, 341},
         .weights = {2, 2, 2, 3, 3, 3, 4, 4},
     },
     // Event battles: Suhalla Desert, Venus Lighthouse Aerie, World Map
