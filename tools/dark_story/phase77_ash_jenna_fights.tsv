@@ -1,5 +1,5 @@
 # Ash Jenna's two fights: the optional super boss in Vale and the one at Suhalla Gate.
-N330	MsgDarkAshValeGreet	There you are, Isaac.\nI wondered how long\nyou'd keep me waiting.{page_break}Vale still looks so\npeaceful. It would\nburn beautifully.{end_wait}
+N330	MsgDarkAshValeGreet	There you are, Isaac.\nI wondered how long\nyou'd keep me waiting.{page_break}Vale still looks so\npeaceful. It would\nburn beautifully.{page_break}I fought in another\nworld once. Its heroes\nthought they could win.{end_wait}
 N331	MsgDarkAshValeIsaac	My mother lives here.\nYou won't touch her.{end_wait}
 N332	MsgDarkAshValeChallenge	Then make me stop.\nI want to see your face\nwhen you fail her.{end_wait}
 N333	MsgDarkAshValeBeaten	You won. How sweet.\nNow spend every night\nwondering when I'll return.{end_wait}
