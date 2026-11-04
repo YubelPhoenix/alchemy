@@ -976,9 +976,14 @@ static void SolSanctumElementalStarRoom_FelixTakesStars(void) {
   Actor_RunRepeatedMotion(ACTOR_GARET, 3);
   Event_WaitFrames(10);
   Actor_FaceDirection(ACTOR_GARET, FACING_SOUTHEAST + FACING_STEP, 0);
-  // Felix walks over from where he stood; he does not warp.
-  Actor_SetSpeed(ACTOR_FELIX, PIXELS(1) / 2, PIXELS(1) / 4);
-  Actor_WalkToAndWait(ACTOR_FELIX, 392, 454);
+  // A cut, not a walk: crossing the chamber floor in a straight line would
+  // carry him over the gaps as if he floated.
+  Event_FinishScreenTransition();
+  Event_WaitTransitionFrames();
+  Actor_SetPosition(ACTOR_FELIX, PIXELS(392), PIXELS(454));
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   Actor_FaceDirection(ACTOR_GARET, FACING_NORTH + FACING_STEP, 10);
   Actor_StartRepeatedMotion(ACTOR_GARET, 2);
   Actor_ShowEmote(ACTOR_GARET, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 40);
@@ -1074,8 +1079,7 @@ static void SolSanctumElementalStarRoom_FelixTakesStars(void) {
   Actor_SetAnimationAndWait(ACTOR_FELIX, ANIM_NOD);
   Event_WaitFrames(10);
   SolSanctumElementalStarRoom_ShowMessageAndWait(ACTOR_FELIX, 30);
-  Actor_SetSpeed(ACTOR_FELIX, PIXELS(1) / 2, PIXELS(1) / 4);
-  Actor_WalkToAndWait(ACTOR_FELIX, 460, 360);
+  // He stays where he stands; LineUpCaptors puts him back by Jenna.
   Event_WaitFrames(30);
   FieldCamera_FollowActor(ACTOR_GARET, 1);
   FieldCamera_WaitForArrival();
