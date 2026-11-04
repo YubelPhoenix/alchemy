@@ -31,8 +31,8 @@ FRAME = 64
 FRAMES = 16
 # Frame -> supplied pose; the other frame of each pair is a copy.
 # The supplied poses are about 57 rows tall, well over the party's roughly 38,
-# so each frame is scaled down about its feet (bottom centre).
-SCALE = 0.70
+# so each frame is scaled down (0.70 looked small in game, 0.85 is the middle) about its feet (bottom centre).
+SCALE = 0.85
 STEPS = {0: "idle", 2: "idle", 4: "idle", 6: "dash", 8: "attack",
          10: "cast", 12: "cast", 14: "damage"}
 
