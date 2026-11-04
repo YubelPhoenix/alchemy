@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Build Ash Jenna's overworld sprite from her four original standing poses.
 
-She takes over SPR_093 (sprite id 0x5d, SPRITE_ASH_JENNA), a spare overworld
-sprite no scene places.  An overworld sprite of draw kind 3 is a stack of 32x32
+She takes over SPR_094 (sprite id 0x5e, SPRITE_ASH_JENNA), one of the sprite table's
+empty rows, so no other actor shares it. (SPR_090 to SPR_093 are the four
+elements' Djinn; never reuse those.)  An overworld sprite of draw kind 3 is a stack of 32x32
 frames at 8 bits per pixel (raw indices into the shared 224-colour palette,
 index 0 transparent); each animation step is three frames: front, side
 (facing right; the engine mirrors it for left) and back.  Her sheet follows
-SPR_042's layout: eleven steps, 33 frames.  spr_093.tsv is a copy of
+SPR_042's layout: eleven steps, 33 frames.  spr_094.tsv is a copy of
 spr_042.tsv, so the animation scripts match.
 
   assets/ash_jenna/overworld_1.png  facing left   (mirrored for the side frame)
@@ -87,7 +88,7 @@ assert indices.max() <= 223 and indices.max() > 15
 assert (indices[~visible] == 0).all() and (indices[visible] != 0).all()
 for n in range(33):
     assert indices[n * FRAME:(n + 1) * FRAME].any(), f"frame {n} is empty"
-indexed.save(SPRITES / "spr_093.png", optimize=False)
-shutil.copyfile(SPRITES / "spr_042.tsv", SPRITES / "spr_093.tsv")
-print(f"Rebuilt spr_093.png: 33 frames, "
+indexed.save(SPRITES / "spr_094.png", optimize=False)
+shutil.copyfile(SPRITES / "spr_042.tsv", SPRITES / "spr_094.tsv")
+print(f"Rebuilt spr_094.png: 33 frames, "
       f"{len(set(indices[visible].tolist()))} colours from the shared palette")

@@ -746,9 +746,10 @@ enum SpriteId {
   /// ★ Named from what the player sees: an island of green hills around a
   /// mountain (spr_504.png)
   SPRITE_WORLD_MAP_ISLAND = 0x1f8,
-  /// Ash Jenna's overworld sprite, in the spare spr_093.png
-  /// (tools/dark_story/build_ash_jenna_overworld.py from assets/ash_jenna/).
-  SPRITE_ASH_JENNA = 0x5d
+  /// Ash Jenna's overworld sprite, spr_094.png, an empty row of the sprite
+  /// table (tools/dark_story/build_ash_jenna_overworld.py from
+  /// assets/ash_jenna/). Not 0x5d: SPR_090 to SPR_093 are the Djinn.
+  SPRITE_ASH_JENNA = 0x5e
 };
 
 /// SPRITE_STUMP's animations beyond its standing frame (spr_212.tsv).
