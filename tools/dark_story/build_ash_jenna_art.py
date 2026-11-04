@@ -31,9 +31,12 @@ FRAMES = 16
 STEPS = {
     0: (1, False, 0), 2: (1, False, 1), 4: (1, False, 0),
     6: (2, False, 0), 8: (4, False, 0),
-    10: (3, True, 0), 12: (6, False, 0),
-    14: (5, True, 0),
+    10: (1, False, 0), 12: (6, False, 0),
+    14: (6, False, 0),
 }
+# The poses are drawn about 56 rows tall, a head taller than the party's battle
+# sprites, so every frame is scaled down about its feet (bottom centre).
+SCALE = 0.72
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
 colors = np.array(palette, dtype=np.float64).reshape(-1, 3)
@@ -60,9 +63,9 @@ SWORD = {
     0: IDLE, 2: IDLE, 4: IDLE,
     6: ((49, 44), (63, 38)),
     8: ((44, 43), (58, 28)),
-    10: ((42, 21), (47, 4)),
+    10: ((41, 44), (47, 20)),
     12: ((37, 46), (56, 36)),
-    14: ((44, 45), (56, 29)),
+    14: ((37, 46), (49, 26)),
 }
 
 
@@ -102,6 +105,11 @@ for index in range(FRAMES):
     hand, tip = SWORD[index - index % 2]
     frame.alpha_composite(sword_layer(hand, tip, rise))
     frame.alpha_composite(src, (0, -rise))
+    small = frame.resize((round(FRAME * SCALE), round(FRAME * SCALE)),
+                         Image.Resampling.LANCZOS)
+    frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
+    frame.alpha_composite(small, ((FRAME - small.width) // 2,
+                                  FRAME - small.height))
     sheet.alpha_composite(frame, (0, index * FRAME))
 
 data = np.asarray(sheet)
