@@ -1,8 +1,8 @@
 # Ash Jenna's two fights: the optional super boss in Vale and the one at Suhalla Gate.
-N330	MsgDarkAshValeGreet	So this is Vale.\nI see why you came back.\nIt feels almost safe.{page_break}I fought in another\nworld once. They had\nplaces like this, too.{end_wait}
-N331	MsgDarkAshValeIsaac	You're not welcome here.\nThese people haven't\ndone anything to you.{end_wait}
-N332	MsgDarkAshValeChallenge	Does that matter?\nI haven't hurt anyone\nhere. Not yet.{page_break}Go on, Isaac.\nCheck on your mother.\nI'll wait.{end_wait}
-N333	MsgDarkAshValeBeaten	All right. You won.\nAnd Vale is still here.\nEnjoy that feeling.{page_break}Go home, Isaac.\nYour mother must be\nworried about you.{end_wait}
+N330	MsgDarkAshValeGreet	Vale hasn't changed.\nI remember the roads.\nI remember the faces.{page_break}I fought in another\nworld once, Isaac.\nBut this was my home.{end_wait}
+N331	MsgDarkAshValeIsaac	Then why are you here?\nThese are people\nyou grew up with.{end_wait}
+N332	MsgDarkAshValeChallenge	That's why I'm here.\nI know their names.\nI know where they live.{page_break}And I know what\nit would do to you\nif I hurt them.{end_wait}
+N333	MsgDarkAshValeBeaten	Still protecting them.\nYou haven't changed\nat all, Isaac.{page_break}Go home. Your mother\nis waiting for you.\nI remember her, too.{end_wait}
 N334	MsgDarkAshGateGreet	Look at these soldiers.\nAll that courage,\nand none of it mattered.{page_break}I could finish them.\nBut watching you choose\nwho to save is better.{end_wait}
 N335	MsgDarkAshGateIsaac	Get away from them.\nYour fight is with me.{page_break}You want me to choose\nwho gets left behind.\nI know your game.{end_wait}
 N336	MsgDarkAshGateChallenge	Oh, Isaac. You still\nthink you get to\nmake the rules?{page_break}Then come closer.\nLet's see how many\nmore I can break.{end_wait}
