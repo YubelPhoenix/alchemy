@@ -123,7 +123,7 @@
 03797	message	I'm scared too.\nBut I won't leave him.{end_wait}
 03798	MsgValeOnlyTwoSurvived	Only two of us made it...\nand I don't know why.{end_wait}
 03799	message	The Sanctum...\nWe were not prepared.{end_wait}
-03800	message	It's a miracle we two\nwalked out of it alive.{end_wait}
+03800	message	We barely escaped\nwith our lives.{end_wait}
 03801	message	That switch...\nIt was a trap. Had to be.{end_wait}
 03802	message	But could a single trap\nreally cause a storm like\nthis?{end_wait}
 03803	message	...That's the power of\nAlchemy. It's frightening.{end_wait}
