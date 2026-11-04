@@ -149,6 +149,17 @@ def parse_actors(scenes):
     return found
 
 
+def cell_heights(mapname):
+    """Each shape row's rough ground height in pixels (the game works it out per pixel)."""
+    rows = []
+    for ln in (TBS / f"map/{mapname}/shapes.tsv").read_text().splitlines()[1:]:
+        if ln.strip():
+            k, a, b, c = [int(x) for x in ln.split("\t")][:4]
+            k &= 15
+            rows.append(a if k == 0 else (a + b) / 2 if k in (1, 2) else max(a, b))
+    return rows
+
+
 def parse_header(mapname):
     s = (TBS / f"map/{mapname}/map.s").read_text()
     h = re.search(r"map_header ([^\n]+)", s).group(1).split(",")
@@ -215,6 +226,47 @@ def draw_layer(img, mapname, layer, pal, sheets, behavior=False):
                 d.text((cx * 16 + 1, cy * 16 + 3), f"{beh:x}", fill=(255, 255, 0))
 
 
+def walkability(mapname, x0, y0, x1, y1, scale, margin, top, size):
+    """A see-through layer marking walls, steep edges and doors on the ground layer."""
+    h, layers = parse_header(mapname)
+    grid = parse_grid(TBS / f"map/{mapname}/map.txt")
+    heights = cell_heights(mapname)
+    lx, ly = layers[0][0] // 2, layers[0][1] // 2
+    wc, hc = (h[2] - h[0]) // 2, (h[3] - h[1]) // 2
+    ov = Image.new("RGBA", size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(ov)
+    cs = 16 * scale
+
+    def at(cx, cy):
+        if 0 <= cx < wc and 0 <= cy < hc and ly + cy < len(grid) and lx + cx < len(grid[0]):
+            return grid[ly + cy][lx + cx]
+        return None
+
+    def height(c):
+        return heights[c[2]] if c[2] < len(heights) else 0
+
+    for cy in range(y0 // 16, -(-y1 // 16)):
+        for cx in range(x0 // 16, -(-x1 // 16)):
+            c = at(cx, cy)
+            if c is None:
+                continue
+            px, py = margin + (cx * 16 - x0) * scale, top + (cy * 16 - y0) * scale
+            beh = c[1]
+            if beh == 255:
+                d.rectangle([px, py, px + cs - 1, py + cs - 1], fill=(220, 30, 30, 120))
+                continue
+            if 1 <= beh <= 239:
+                d.rectangle([px + 1, py + 1, px + cs - 2, py + cs - 2], outline=(40, 120, 255, 255), width=3)
+            elif 252 <= beh <= 254:
+                d.rectangle([px + 1, py + 1, px + cs - 2, py + cs - 2], outline=(255, 215, 0, 255), width=3)
+            for nx, ny, edge in ((cx + 1, cy, (px + cs, py, px + cs, py + cs)),
+                                 (cx, cy + 1, (px, py + cs, px + cs, py + cs))):
+                n = at(nx, ny)
+                if n is not None and n[1] != 255 and abs(height(n) - height(c)) > 8:
+                    d.line(edge, fill=(255, 140, 0, 255), width=4)
+    return ov
+
+
 def render_map(mapname, layers, pal, sheets, behavior=False, marks=(), actors=()):
     h, _ = parse_header(mapname)
     wc, hc = (h[2] - h[0]) // 2, (h[3] - h[1]) // 2
@@ -242,7 +294,7 @@ def render_map(mapname, layers, pal, sheets, behavior=False, marks=(), actors=()
     img = img.resize((img.width * scale, img.height * scale), Image.NEAREST)
     font = ImageFont.load_default(size=15)
     small = ImageFont.load_default(size=13)
-    margin, banner = 44, 30
+    margin, banner = 44, 36
     legend = [f"{i + 1}. {n}  at {x}, {z}" for i, (n, x, z) in enumerate(actors)]
     legend += [f"*  {n}  at {x}, {z}" for x, z, n in marks]
     rows = max(1, -(-len(legend) // 2))
@@ -250,9 +302,14 @@ def render_map(mapname, layers, pal, sheets, behavior=False, marks=(), actors=()
     top = banner + margin
     out = Image.new("RGB", (img.width + margin, img.height + top + foot), (24, 24, 32))
     out.paste(img, (margin, top))
+    out = out.convert("RGBA")
+    out.alpha_composite(walkability(mapname, x0, y0, x1, y1, scale, margin, top, out.size))
+    out = out.convert("RGB")
     d = ImageDraw.Draw(out)
-    d.text((8, 7), "Every number is in pixels, written x, z.  Use them as PIXELS(x) and PIXELS(z).  "
-           "Red circles are people already placed here.", fill=(255, 255, 255), font=small)
+    d.text((8, 4), "Numbers are pixels, written x, z: use them as PIXELS(x) and PIXELS(z).  Red circles: people already here.",
+           fill=(255, 255, 255), font=small)
+    d.text((8, 18), "Red cells: wall.   Orange line: too steep to step over.   Blue frame: door or event cell.   "
+           "Yellow frame: ledge, climb or jump.   Plain: walkable.", fill=(255, 220, 150), font=small)
 
     def label(x, y, text):
         for ox, oy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
