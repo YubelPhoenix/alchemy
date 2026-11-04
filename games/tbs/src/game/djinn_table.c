@@ -10,47 +10,46 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     // Grave
     {
         .abilityId = ABILITY_DJINNI_FIRST,
-        .hp = 8,
-        .pp = 4,
-        .atk = 3,
-        .def = 1,
-    },
-    // Barrow
-    {
-        .abilityId = 301,
-        .hp = 9,
-        .def = 3,
-        .agi = 2,
-        .luck = 1,
-    },
-    // Shard
-    {
-        .abilityId = 302,
-        .hp = 10,
-        .pp = 3,
-        .def = 1,
-        .agi = 3,
-    },
-    // Briar
-    {
-        .abilityId = 303,
         .hp = 12,
         .pp = 4,
         .def = 4,
         .luck = 1,
     },
+    // Barrow
+    {
+        .abilityId = 301,
+        .hp = 9,
+        .pp = 3,
+        .def = 1,
+        .agi = 3,
+    },
+    // Shard
+    {
+        .abilityId = 302,
+        .hp = 8,
+        .pp = 4,
+        .atk = 3,
+        .def = 1,
+    },
+    // Briar
+    {
+        .abilityId = 303,
+        .hp = 9,
+        .def = 3,
+        .agi = 2,
+        .luck = 1,
+    },
     // Blight
     {
         .abilityId = 304,
-        .hp = 10,
-        .atk = 3,
+        .hp = 12,
+        .atk = 4,
         .def = 1,
-        .luck = 1,
     },
     // Mire
     {
         .abilityId = 305,
-        .hp = 9,
+        .hp = 10,
         .pp = 3,
         .def = 1,
         .agi = 3,
@@ -58,9 +57,10 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     // Bane
     {
         .abilityId = 306,
-        .hp = 12,
-        .atk = 4,
+        .hp = 10,
+        .atk = 3,
         .def = 1,
+        .luck = 1,
     },
     // =
     {
@@ -117,54 +117,54 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     // Murk
     {
         .abilityId = 320,
-        .hp = 9,
-        .pp = 5,
-        .def = 3,
-    },
-    // Sleet
-    {
-        .abilityId = 321,
         .hp = 12,
         .pp = 1,
         .atk = 3,
         .luck = 1,
     },
-    // Pall
+    // Sleet
     {
-        .abilityId = 322,
-        .hp = 11,
-        .pp = 1,
-        .atk = 4,
-    },
-    // Leech
-    {
-        .abilityId = 323,
-        .hp = 8,
-        .pp = 5,
-        .agi = 3,
-    },
-    // Hail
-    {
-        .abilityId = 324,
-        .hp = 9,
-        .pp = 1,
-        .atk = 4,
-        .luck = 1,
-    },
-    // Venom
-    {
-        .abilityId = 325,
+        .abilityId = 321,
         .hp = 8,
         .pp = 4,
         .def = 2,
         .luck = 2,
     },
-    // Tears
+    // Pall
     {
-        .abilityId = 326,
+        .abilityId = 322,
+        .hp = 9,
+        .pp = 5,
+        .def = 3,
+    },
+    // Leech
+    {
+        .abilityId = 323,
         .hp = 13,
         .pp = 5,
         .agi = 4,
+    },
+    // Hail
+    {
+        .abilityId = 324,
+        .hp = 11,
+        .pp = 1,
+        .atk = 4,
+    },
+    // Venom
+    {
+        .abilityId = 325,
+        .hp = 8,
+        .pp = 5,
+        .agi = 3,
+    },
+    // Tears
+    {
+        .abilityId = 326,
+        .hp = 9,
+        .pp = 1,
+        .atk = 4,
+        .luck = 1,
     },
     // =
     {
@@ -221,56 +221,56 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     // Pyre
     {
         .abilityId = 340,
-        .hp = 10,
-        .atk = 3,
-        .agi = 2,
-        .luck = 2,
-    },
-    // Fever
-    {
-        .abilityId = 341,
-        .hp = 8,
-        .atk = 4,
-        .agi = 2,
-    },
-    // Cinder
-    {
-        .abilityId = 342,
-        .hp = 12,
-        .pp = 3,
-        .atk = 1,
-        .def = 3,
-        .luck = 1,
-    },
-    // Scorch
-    {
-        .abilityId = 343,
-        .hp = 8,
-        .atk = 4,
-    },
-    // Ash
-    {
-        .abilityId = 344,
         .hp = 9,
         .pp = 4,
         .atk = 1,
         .def = 2,
         .agi = 2,
     },
+    // Fever
+    {
+        .abilityId = 341,
+        .hp = 9,
+        .atk = 4,
+        .luck = 1,
+    },
+    // Cinder
+    {
+        .abilityId = 342,
+        .hp = 8,
+        .atk = 4,
+    },
+    // Scorch
+    {
+        .abilityId = 343,
+        .hp = 12,
+        .pp = 3,
+        .atk = 1,
+        .def = 3,
+        .luck = 1,
+    },
+    // Ash
+    {
+        .abilityId = 344,
+        .hp = 10,
+        .atk = 3,
+        .agi = 2,
+        .luck = 2,
+    },
     // Flare
     {
         .abilityId = 345,
-        .hp = 14,
-        .pp = 3,
-        .atk = 1,
-        .def = 2,
+        .hp = 8,
+        .atk = 4,
+        .agi = 2,
     },
     // Brand
     {
         .abilityId = 346,
-        .hp = 9,
-        .atk = 4,
-        .luck = 1,
+        .hp = 14,
+        .pp = 3,
+        .atk = 1,
+        .def = 2,
     },
     // =
     {
@@ -327,14 +327,15 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     // Wail
     {
         .abilityId = 360,
-        .hp = 9,
-        .atk = 2,
+        .hp = 11,
+        .pp = 3,
         .agi = 3,
+        .luck = 1,
     },
     // Shriek
     {
         .abilityId = 361,
-        .hp = 12,
+        .hp = 11,
         .pp = 5,
         .def = 2,
         .agi = 1,
@@ -343,40 +344,39 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     // Specter
     {
         .abilityId = 362,
-        .hp = 11,
-        .pp = 3,
-        .agi = 3,
-        .luck = 1,
-    },
-    // Smog
-    {
-        .abilityId = 363,
-        .hp = 9,
-        .atk = 3,
-        .agi = 1,
-    },
-    // Raven
-    {
-        .abilityId = 364,
-        .hp = 8,
-        .pp = 4,
-        .agi = 4,
-    },
-    // Squall
-    {
-        .abilityId = 365,
         .hp = 10,
         .atk = 5,
         .agi = 1,
     },
-    // Omen
+    // Smog
     {
-        .abilityId = 366,
-        .hp = 11,
+        .abilityId = 363,
+        .hp = 12,
         .pp = 5,
         .def = 2,
         .agi = 1,
         .luck = 1,
+    },
+    // Raven
+    {
+        .abilityId = 364,
+        .hp = 9,
+        .atk = 3,
+        .agi = 1,
+    },
+    // Squall
+    {
+        .abilityId = 365,
+        .hp = 8,
+        .pp = 4,
+        .agi = 4,
+    },
+    // Omen
+    {
+        .abilityId = 366,
+        .hp = 9,
+        .atk = 2,
+        .agi = 3,
     },
     // =
     {

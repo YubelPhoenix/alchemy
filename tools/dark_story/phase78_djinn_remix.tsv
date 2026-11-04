@@ -1,0 +1,29 @@
+# Djinn remix: each Djinni's description follows the effect it was dealt.
+01638	MsgDjinnEffect	Use gravity to hold a foe.
+01639	message	Attack with nature's venom.
+01640	message	Attack a foe and steal HP.
+01641	message	Strike a blow that can cleave stone.
+01642	message	Tangle foes to drop Agility.
+01643	message	Create a mighty earthen barrier.
+01644	message	Revive a downed ally.
+01658	message	Restore party HP with soothing mist.
+01659	message	Revive a downed ally.
+01660	message	Heal all party ailments.
+01661	message	Drench a foe to drop its Attack.
+01662	message	Restore HP with calming water.
+01663	message	Freeze a foe to drop its Defense.
+01664	message	Lull a foe into deep sleep.
+01678	message	Boost party Defense with a heat aura.
+01679	message	Block damage to party with a firewall.
+01680	message	Restore party PP with passion's flames.
+01681	message	Wrap a foe in feverish delusion.
+01682	message	Boost party Attack with flame's fury.
+01683	message	Penetrate defense with a melting blast.
+01684	message	Stun a foe with a blast attack.
+01698	message	Boost party Resistance.
+01699	message	Boost party Agility with swift wind.
+01700	message	Paralyze a foe with a storm.
+01701	message	Attack with mighty wind gusts.
+01702	message	Veil a foe's vision in smoke.
+01703	message	Seal a foe's Psynergy.
+01704	message	Attack twice next round.
