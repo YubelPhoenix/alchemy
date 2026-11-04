@@ -1,13 +1,13 @@
 # Heart (Chalice), the Kolima secret boss. Also names rows 101 and 104.
 00756	message	Heart
 00759	message	Kegare
-N123	MsgDarkHeartShock	Matthew...\nNo. It can't be.\nNot that face again.{end_wait}
-N124	MsgDarkHeartIsaacName	My name is Isaac.\nI don't know Matthew.\nYou've mistaken me.{end_wait}
-N125	MsgDarkHeartSameFace	Matthew... You did this.\nYou ruined my face.\nDon't deny it!{end_wait}
-N126	MsgDarkHeartGaretGhost	I paid for that defeat.\nEvery scar is a debt.\nAnd you will pay.{end_wait}
-N127	MsgDarkHeartHatred	I won't lose again.\nNot to you, Matthew.\nNot this time.{end_wait}
-N128	MsgDarkHeartIsaacReady	I'm not your enemy.\nBut I won't let you\nhurt anyone else.{end_wait}
-N129	MsgDarkHeartBeaten	No... Not again...\nAfter everything...\nAfter what I became...{end_wait}
-N130	MsgDarkHeartIsaacNotHim	It's over.\nYou can't keep fighting.\nI'm not Matthew.{end_wait}
+N123	MsgDarkHeartShock	Matthew...\nNo. It can't be.\nNot that face again.{page_break}I followed that face\nthrough nightmares.\nNow it's standing here.{end_wait}
+N124	MsgDarkHeartIsaacName	My name is Isaac.\nI don't know Matthew.\nYou've mistaken me.{page_break}Whatever he did,\nI wasn't there.\nPlease, listen to me.{end_wait}
+N125	MsgDarkHeartSameFace	Matthew... You did this.\nYou ruined my face.\nDon't deny it!{page_break}I remember the pain.\nI remember your eyes.\nYou won't lie to me.{end_wait}
+N126	MsgDarkHeartGaretGhost	I paid for that defeat.\nEvery scar is a debt.\nAnd you will pay.{page_break}I hid my face from\nthe world because of you.\nLook at me now!{end_wait}
+N127	MsgDarkHeartHatred	I won't lose again.\nNot to you, Matthew.\nNot this time.{page_break}I learned to live\nwith what you made me.\nCan you say the same?{end_wait}
+N128	MsgDarkHeartIsaacReady	I'm not your enemy.\nBut I won't let you\nhurt anyone else.{page_break}I can't undo the past.\nI can stop you from\nhurting people now.{end_wait}
+N129	MsgDarkHeartBeaten	No... Not again...\nAfter everything...\nAfter what I became...{page_break}Why do you always\nget to walk away\nwhile I stay broken?{end_wait}
+N130	MsgDarkHeartIsaacNotHim	It's over.\nYou can't keep fighting.\nI'm not Matthew.{page_break}You don't have to\nforgive him. But I'm\nnot the one you fought.{end_wait}
 N131	MsgDarkHeartWorld	Liar! I'd know those eyes\nanywhere, Matthew!{page_break}You scarred my face.\nI see what you did\nevery time I wake.{end_wait}
-N132	MsgDarkHeartPrize	You don't get to decide.\nI won't forgive that face.\nNot while I live.{end_wait}
+N132	MsgDarkHeartPrize	You don't get to decide.\nI won't forgive that face.\nNot while I live.{page_break}Run if you want.\nI'll find you again,\nMatthew. I swear it.{end_wait}
