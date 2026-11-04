@@ -114,6 +114,15 @@ def parse_grid(path):
         for c, tok in enumerate(line.split()):
             if ay + r < gh and ax + c < gw:
                 grid[ay + r][ax + c] = cell(tok)
+    # A cell holding 0xfff is a placeholder: the first time a picture shows up
+    # the grid stores no number, and the pictures are numbered in order of
+    # first appearance, row by row (map/README.md, "Placeholder metatiles").
+    nxt = 0
+    for row in grid:
+        for c in row:
+            if c[0] & 0xFFF == 0xFFF:
+                c[0] = (c[0] & ~0xFFF) | nxt
+                nxt += 1
     return grid
 
 
@@ -181,7 +190,8 @@ def draw_layer(img, mapname, layer, pal, sheets, behavior=False):
             for y in range(8):
                 for x in range(8):
                     ci = px[x, y]
-                    if ci:
+                    # Pure magenta is the palette's "nothing here" colour.
+                    if ci and pal[bank][ci] != (248, 0, 248):
                         tp[x, y] = pal[bank][ci] + (255,)
         if hf:
             t = t.transpose(Image.FLIP_LEFT_RIGHT)
