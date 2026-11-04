@@ -153,7 +153,7 @@
 03833	message	Don't be weird, {actor_name:2}.{end_wait}
 03841	message	Keep up, or I'll leave you\nbehind.{end_wait}
 03843	MsgValeGoodJob	That's... good. Thank you,\n{actor_name:1}.{end_wait}
-03846	message	You remind me of Kyle,\n{actor_name:1}. More every day.{end_wait}
+03846	message	You're looking more like\nyour father every day,\n{actor_name:1}.{end_wait}
 03847	message	What's it, {actor_name:1}?\nDo you still think about\nthat night?{end_now}
 03850	MsgValeWorkingYourselvesBone	You and {actor_name:2} work\nyourselves to the bone,\nchasing Psynergy.{end_wait}
 03851	message	Would anything have been\ndifferent if you had been\nstronger? Be honest.{end_now}
