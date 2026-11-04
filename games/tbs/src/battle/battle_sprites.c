@@ -653,7 +653,7 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
     },
     {
         // Ondra, who has Mia's own battle sprite (BATTLE_CHARACTER(MIA)).
-        .animation = 303,
+        .animation = 487,
         .attackAnim = 1,
         .defeatSound = 1,
         .effectHeight = 42,

@@ -316,7 +316,8 @@ Resource_DirectoryTable:
 	overlays 3C3, 3C4, 3C5, 3C6, 3C7, 3C8, 3C9, 3CA, 3CB, 3CC, 3CD, 3CE
 @ XXX (no evidence): whether these rows were left for later resources; they
 @ are empty and nothing reads them.
-	unused 25
+	resource KegareSprites, Monster_KegareSprites
+	unused 24
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp

@@ -204,3 +204,6 @@ Monster_RedWarriorSprites:
 	.global Monster_SwordGirlSprites
 Monster_SwordGirlSprites:
 	.incbin "games/tbs/src/graphics/monster/sword_girl.frames.lz"
+	.global Monster_KegareSprites
+Monster_KegareSprites:
+	.incbin "games/tbs/src/graphics/monster/kegare.frames.lz"
