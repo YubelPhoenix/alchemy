@@ -30,9 +30,10 @@ SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 FRAME = 64
 FRAMES = 16
 # Frame -> supplied pose; the other frame of each pair is a copy.
-# The supplied poses are about 57 rows tall, well over the party's roughly 38,
-# so each frame is scaled down (0.70 looked small in game, 0.85 is the middle) about its feet (bottom centre).
-SCALE = 0.85
+# The supplied poses are drawn at full size (about 57 rows tall); the size on
+# screen comes from SPR_477's scale column in sprites.tsv (0xb6, which puts her
+# idle pose at Menardi's 40 or so rows), so the art itself is not resampled.
+SCALE = 1.0
 STEPS = {0: "idle", 2: "idle", 4: "idle", 6: "dash", 8: "attack",
          10: "cast", 12: "cast", 14: "damage"}
 
