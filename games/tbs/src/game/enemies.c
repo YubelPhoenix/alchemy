@@ -25,7 +25,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
         // A lighter set of the same: blade and flame, nothing past Eruption.
-        .abilities = {194, 222, 223, ABILITY_ATTACK, 52, 48, 49, 421},
+        .abilities = {512, 222, 223, ABILITY_ATTACK, 52, 48, 49, 421},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 1500,
         .item = ITEM_ELIXIR,
@@ -1785,7 +1785,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .actionStrategy = ACTION_STRATEGY_FALLING,
         // Sword and fire, the common moves first (ACTION_STRATEGY_FALLING): her
         // blade, Heat Wave, Meltdown, then the big spells at the end.
-        .abilities = {52, 194, 422, 223, ABILITY_ATTACK, 50, 59, 169},
+        .abilities = {52, 512, 422, 223, ABILITY_ATTACK, 50, 59, 169},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 4000,
         .item = ITEM_ELIXIR,
