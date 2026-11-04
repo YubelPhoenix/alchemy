@@ -6,5 +6,5 @@ N333	MsgDarkAshValeBeaten	You won. How sweet.\nNow spend every night\nwondering 
 N334	MsgDarkAshGateGreet	Look at these soldiers.\nAll that courage,\nand none of it mattered.{page_break}I could finish them.\nBut watching you choose\nwho to save is better.{end_wait}
 N335	MsgDarkAshGateIsaac	Get away from them.\nYour fight is with me.{page_break}You want me to choose\nwho gets left behind.\nI know your game.{end_wait}
 N336	MsgDarkAshGateChallenge	Oh, Isaac. You still\nthink you get to\nmake the rules?{page_break}Then come closer.\nLet's see how many\nmore I can break.{end_wait}
-N337	MsgDarkAshGateBeaten	You beat me, Isaac.\nDoes that make you\nfeel like a hero?{page_break}Those men are still\nbleeding. Go on.\nSave them.\nI'll remember how\neasy you are to hurt.{end_wait}
+N337	MsgDarkAshGateBeaten	You beat me, Isaac.\nDoes that make you\nfeel like a hero?{page_break}Those men are still\nbleeding. Go on.\nSave them.{page_break}I'll remember how\neasy you are to hurt.{end_wait}
 00655	MsgEnemyName	Ash Jenna
