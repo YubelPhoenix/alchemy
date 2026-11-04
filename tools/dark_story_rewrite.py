@@ -20,6 +20,15 @@ import sys
 PO_PATH = Path("games/tbs/text/en.po")
 DATA_DIR = Path("tools/dark_story")
 MAX_WIDTH = 27
+# The Djinni ability descriptions (ability 300-306, 320-326, 340-346 and
+# 360-366, message 1338 + id) are one-line texts in a wider box; their rows only
+# deal the game's own descriptions between Djinn, so they may run longer.
+DJINN_DESCRIPTION_IDS = {
+    str(1338 + n).zfill(5)
+    for first in (300, 320, 340, 360)
+    for n in range(first, first + 7)
+}
+DESCRIPTION_MAX_WIDTH = 48
 MAX_LINES = 3
 
 CONTROL_RE = re.compile(r"\{[^{}]+\}")
@@ -112,10 +121,11 @@ def validate(msgid: str, original: str, new: str) -> None:
             raise SystemExit(f"Dialogue {msgid}, page {page_no}: {len(lines)} display lines (maximum {MAX_LINES}).")
         for line_no, line in enumerate(lines, start=1):
             width = visible_width(line)
-            if width > MAX_WIDTH:
+            limit = DESCRIPTION_MAX_WIDTH if msgid in DJINN_DESCRIPTION_IDS else MAX_WIDTH
+            if width > limit:
                 raise SystemExit(
                     f"Dialogue {msgid}, page {page_no}, line {line_no}: "
-                    f"{width} visible characters (maximum {MAX_WIDTH}): {line}"
+                    f"{width} visible characters (maximum {limit}): {line}"
                 )
 
 
