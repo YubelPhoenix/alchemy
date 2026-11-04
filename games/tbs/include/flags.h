@@ -2780,22 +2780,22 @@
 
 /// Ash Jenna's optional super boss in Vale has been fought and won
 /// (ValePlaza_TalkToAshJenna); a defeat clears it so she waits for a retry.
-#define FLAG_DARK_ASH_VALE_FOUGHT 0x8dc
+#define FLAG_DARK_ASH_VALE_FOUGHT 0x8e1
 
 /// Ash Jenna's fight at Suhalla Gate has been fought and won
 /// (SuhallaGate_TalkToAshJenna); a defeat clears it so she waits for a retry.
-#define FLAG_DARK_ASH_GATE_FOUGHT 0x8dd
+#define FLAG_DARK_ASH_GATE_FOUGHT 0x8e2
 
 /// Ash Jenna's Vale battle has been started and not yet settled
 /// (Vale_Initialize reads the result on return).
-#define FLAG_DARK_ASH_VALE_PENDING 0x8da
+#define FLAG_DARK_ASH_VALE_PENDING 0x8e3
 
 /// While one of Ash Jenna's messages is shown, her mugshot (icon 67) is the
 /// speaker's portrait (Portrait_GetForSpeaker).
-#define FLAG_DARK_ASH_JENNA_SPEAKING 0x8d5
+#define FLAG_DARK_ASH_JENNA_SPEAKING 0x8e0
 
 /// Ash Jenna's Suhalla Gate battle has been started and not yet settled
 /// (Scene_Initialize reads the result on return).
-#define FLAG_DARK_ASH_GATE_PENDING 0x8db
+#define FLAG_DARK_ASH_GATE_PENDING 0x8e4
 
 #endif
