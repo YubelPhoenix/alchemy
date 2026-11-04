@@ -1,8 +1,8 @@
 # Kegare, a demon from another age who has taken Mia's visage.
-N102	MsgDarkKegareRise	You all turn to Mia\nwhen someone is hurt.\nI've watched that.{page_break}I could make them\nturn to me instead.{end_wait}
-N103	MsgDarkKegareIsaac	You have her face.\nBut you're not Mia.\nWho are you?{end_wait}
-N104	MsgDarkKegareName	Kegare. A demon from\nanother world, long\nbeyond your reach.{page_break}I learned her voice.\nI copied her face.\nNow I'll take her place.{end_wait}
-N105	MsgDarkKegareIsaacReady	You can look like her.\nShe is still here.\nWe know who she is.{end_wait}
-N226	MsgDarkKegareMiaRefutes	You learned my face.\nDid you learn the names\nof those I cared for?{end_wait}
-N227	MsgDarkKegareThreatens	They'll hear my voice\nand call me Mia.\nYou'll be forgotten.{end_wait}
-N228	MsgDarkKegareMiaResolves	In Imil, I stayed\nwhen they were sick.\nYou can't undo that.{end_wait}
+N102	MsgDarkKegareRise	You all turn to Mia\nwhen someone is hurt.\nI've watched that.{page_break}You trust her hands.\nYou trust her voice.\nTrust is so fragile.{page_break}I could make them\nturn to me instead.{end_wait}
+N103	MsgDarkKegareIsaac	You have her face.\nBut you're not Mia.\nWho are you?{page_break}You speak like her,\nbut something in you\nis wrong.{end_wait}
+N104	MsgDarkKegareName	Kegare. A demon from\nanother world, long\nbeyond your reach.{page_break}I learned her voice.\nI copied her face.\nNow I'll take her place.{page_break}And when they call\nfor Mia in the dark,\nI'll be the one who comes.{end_wait}
+N105	MsgDarkKegareIsaacReady	You can look like her.\nShe is still here.\nWe know who she is.{page_break}You can't take away\nthe life she's lived\nby stealing her face.{end_wait}
+N226	MsgDarkKegareMiaRefutes	You learned my face.\nDid you learn the names\nof those I cared for?{page_break}Did you sit with them\nthrough fever and fear?\nDid you stay until dawn?{end_wait}
+N227	MsgDarkKegareThreatens	They'll hear my voice\nand call me Mia.\nYou'll be forgotten.{page_break}They won't know the\ndifference until\nit's far too late.{end_wait}
+N228	MsgDarkKegareMiaResolves	In Imil, I stayed\nwhen they were sick.\nYou can't undo that.{page_break}You may borrow my face.\nYou cannot borrow\nwhat I chose to do.{end_wait}
