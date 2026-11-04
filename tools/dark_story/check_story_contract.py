@@ -228,7 +228,7 @@ def check_optional_battles() -> None:
             and "Event_SetAfterBattleDestination" in kegare,
             "Kegare must return to Tolbi after either outcome")
     require("GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT)" in tolbi
-            and "gSaveBlock.sequenceResult == -1" in tolbi,
+            and "gSaveBlock.sequenceResult > 0" in tolbi,
             "A lost Kegare battle must allow retry")
 
 
