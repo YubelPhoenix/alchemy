@@ -1727,6 +1727,8 @@ static void Vale_AshJennaAftermath(void) {
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
   if (gSaveBlock.sequenceResult == -1) {
+    // Release the fixed camera before player control returns.
+    FieldCamera_MoveTo(-1, -1, -1, 0);
     Event_End();
     return;
   }
@@ -1737,6 +1739,8 @@ static void Vale_AshJennaAftermath(void) {
   Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA_AFTER_KALAY, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_ASH_JENNA_AFTER_KALAY, PIXELS(0), PIXELS(0));
   GameFlag_Set(FLAG_DARK_ASH_VALE_FOUGHT);
+  // Release the fixed camera before player control returns.
+  FieldCamera_MoveTo(-1, -1, -1, 0);
   Event_End();
 }
 
