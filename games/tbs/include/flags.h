@@ -2737,6 +2737,12 @@
 #define FLAG_DARK_KEGARE_FOUGHT 0x8b6
 /// Kegare has been beaten, and her spoils given: she does not return.
 #define FLAG_DARK_KEGARE_BEATEN 0x8b7
+/// Kegare's battle has just been started and not yet returned from. A file
+/// with FLAG_DARK_KEGARE_FOUGHT set but not this one never reached the battle.
+#define FLAG_DARK_KEGARE_PENDING 0x8e5
+/// Kegare was really beaten (a return from her battle that was not a defeat);
+/// a BEATEN flag without it is stale and is cleared, so she comes back.
+#define FLAG_DARK_KEGARE_WON 0x8e6
 
 /// Ash Jenna stands in the Lamakan Desert's Manticore pass (set on entry while
 /// the glimpse is pending, cleared otherwise: the trigger table is shared).

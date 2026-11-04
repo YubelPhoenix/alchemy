@@ -518,12 +518,27 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
     Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_GREY);
   }
   // Kegare appears only after Colosso, until her optional battle is won.
-  if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0 &&
-      gSaveBlock.sequenceResult == -1) {
-    // The party lost: she is still waiting, and the fight can be tried again.
-    GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
-  } else if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0) {
-    GameFlag_Set(FLAG_DARK_KEGARE_BEATEN);
+  // A BEATEN flag without WON was never earned (the fight did not run), so she
+  // comes back.
+  if (GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) != 0 &&
+      GameFlag_Get(FLAG_DARK_KEGARE_WON) == 0) {
+    GameFlag_Clear(FLAG_DARK_KEGARE_BEATEN);
+  }
+  if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0) {
+    if (GameFlag_Get(FLAG_DARK_KEGARE_PENDING) != 0 &&
+        gSaveBlock.sequenceResult == -1) {
+      // The party lost: she is still waiting, and the fight can be tried again.
+      GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
+      GameFlag_Clear(FLAG_DARK_KEGARE_PENDING);
+    } else if (GameFlag_Get(FLAG_DARK_KEGARE_PENDING) != 0) {
+      // Back from a battle that was not lost: she is beaten.
+      GameFlag_Set(FLAG_DARK_KEGARE_BEATEN);
+      GameFlag_Set(FLAG_DARK_KEGARE_WON);
+      GameFlag_Clear(FLAG_DARK_KEGARE_PENDING);
+    } else if (GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) == 0) {
+      // The battle never ran: she is still waiting.
+      GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
+    }
   }
   if (GameFlag_Get(FLAG_COLOSSO_OVER) != 0 &&
       GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) == 0 &&
@@ -641,6 +656,7 @@ static void Tolbi_TalkToKegare(void) {
   Event_SetMessageId(MsgDarkKegareIsaacReady);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   GameFlag_Set(FLAG_DARK_KEGARE_FOUGHT);
+  GameFlag_Set(FLAG_DARK_KEGARE_PENDING);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
   Event_SetAfterBattleDestination((s32)&SceneId_Tolbi, 0);
