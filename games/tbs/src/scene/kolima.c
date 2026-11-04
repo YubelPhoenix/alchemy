@@ -1974,8 +1974,8 @@ static void Kolima_TalkToHeart(void) {
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
   Event_SetAfterBattleDestination((s32)&SceneId_Kolima, 0);
-  // A defeat comes back here too (the leader revived), and not as a win.
-  Event_SetDefeatDestination((s32)&SceneId_Kolima, 0);
+  // A defeat goes to the restart point (the last Sanctum).
+  Event_SetDefeatDestination(-1, -1);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 3);
   Event_End();

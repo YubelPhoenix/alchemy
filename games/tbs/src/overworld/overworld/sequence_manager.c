@@ -121,6 +121,18 @@ void Scene_ReturnFromSequence(s32 result) {
         Unit_UpdateGauges(unit);
       }
     }
+    // Losing to a superboss (Ash Jenna at Suhalla Gate or Vale, Kegare, Heart)
+    // sends the party to the restart point like any defeat. Their fight flags
+    // are cleared so the loss is never mistaken for a win later, and the
+    // fight can be tried again.
+    GameFlag_ClearFar(FLAG_DARK_ASH_VALE_PENDING);
+    GameFlag_ClearFar(FLAG_DARK_ASH_GATE_PENDING);
+    if (GameFlag_GetFar(FLAG_DARK_HEART_BEATEN) == 0)
+      GameFlag_ClearFar(FLAG_DARK_HEART_FOUGHT);
+    if (GameFlag_GetFar(FLAG_DARK_KEGARE_BEATEN) == 0) {
+      GameFlag_ClearFar(FLAG_DARK_KEGARE_FOUGHT);
+      GameFlag_ClearFar(FLAG_DARK_KEGARE_PENDING);
+    }
     sceneId = gSaveBlock.defeatScene;
     entrance = gSaveBlock.defeatEntrance;
     if (sceneId == -1 && entrance == -1) {

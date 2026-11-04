@@ -152,7 +152,8 @@ static void SuhallaGate_TalkToAshJenna(void) {
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
   Event_SetAfterBattleDestination((s32)&SceneId_SuhallaGateCheckpoint, 0);
-  Event_SetDefeatDestination((s32)&SceneId_SuhallaGateCheckpoint, 0);
+  // A defeat goes to the restart point (the last Sanctum).
+  Event_SetDefeatDestination(-1, -1);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 5);
   Event_End();

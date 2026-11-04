@@ -215,7 +215,7 @@ def check_optional_battles() -> None:
     aftermath = function(kolima, "Kolima_HeartAftermath")
     require("Event_SetDefeatDestination" in heart
             and "Event_SetAfterBattleDestination" in heart,
-            "Heart must return to Kolima after either outcome")
+            "Heart must send a defeat to the restart point (Sanctum), not back to Kolima")
     require("GameFlag_Clear(FLAG_DARK_HEART_FOUGHT)" in entry
             and "gSaveBlock.sequenceResult == -1" in entry,
             "A lost Heart battle must allow a retry")
@@ -227,7 +227,12 @@ def check_optional_battles() -> None:
     kegare = function(vault, "VaultRevisit_TalkToKegare")
     require("Event_SetDefeatDestination" in kegare
             and "Event_SetAfterBattleDestination" in kegare,
-            "Kegare must return to Vault after either outcome")
+            "Kegare must send a defeat to the restart point (Sanctum), not back to Vault")
+    seq = (ROOT / "games/tbs/src/overworld/overworld/sequence_manager.c").read_text()
+    require("Event_SetDefeatDestination(-1, -1)" in kegare
+            and all(f in seq for f in ("FLAG_DARK_ASH_VALE_PENDING", "FLAG_DARK_ASH_GATE_PENDING",
+                                       "FLAG_DARK_HEART_FOUGHT", "FLAG_DARK_KEGARE_PENDING")),
+            "A superboss defeat must clear its fight flags")
     require("GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT)" in vault
             and "gSaveBlock.sequenceResult > 0" in vault,
             "A lost Kegare battle must allow retry")
