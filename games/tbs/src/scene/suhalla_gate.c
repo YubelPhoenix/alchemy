@@ -161,14 +161,25 @@ static void SuhallaGate_TalkToAshJenna(void) {
 /// words and goes; after a defeat she waits.
 static void SuhallaGate_AshJennaAftermath(void) {
   GameFlag_Clear(FLAG_DARK_ASH_GATE_PENDING);
-  if (gSaveBlock.sequenceResult == -1) {
-    return;
-  }
   Event_Start();
+  // The party comes back where it stood to face her, not at the gate's
+  // south entrance.
+  Actor_SetPosition(ACTOR_PARTY_LEADER, PIXELS(152), PIXELS(424));
+  Actor_SetPosition(ACTOR_GARET, PIXELS(168), PIXELS(440));
+  Actor_SetPosition(ACTOR_IVAN, PIXELS(136), PIXELS(440));
+  Actor_SetPosition(ACTOR_MIA, PIXELS(152), PIXELS(456));
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_GARET, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_IVAN, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
   MapGrid_CenterOnFollowedPoint();
   WaitFrames(1);
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
+  if (gSaveBlock.sequenceResult == -1) {
+    Event_End();
+    return;
+  }
   Event_SetMessageId(MsgDarkAshGateBeaten);
   SuhallaGate_AshJennaSays();
   Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
