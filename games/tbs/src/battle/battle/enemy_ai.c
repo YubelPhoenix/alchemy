@@ -118,6 +118,7 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
       (unit->aiActionIndex & AI_PUNISHED) == 0 &&
       BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN) {
     unit->aiActionIndex |= AI_PUNISHED;
+    sSummonRushPunished = 1;
     BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
     BattleMessage_WaitForAdvance();
     MessageArgument_ClearAllFar();

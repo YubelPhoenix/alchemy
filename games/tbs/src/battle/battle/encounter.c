@@ -34,6 +34,10 @@
 /// and releases heap block 10. A broken link also sets flag
 /// FLAG_AREA_TEMP_E8, which the Battle Arena reads
 /// (BattleArena_RunRoundResult).
+/// Set when Ash Jenna in Vale punished a summon rush (BattleAI_ChooseAction), so
+/// that she taunts the party if it goes down.
+static u8 sSummonRushPunished;
+
 s32 Battle_Run(s32 enemyGroup) {
   struct BattleCamera *camera;
   s32 *focus;
@@ -164,6 +168,7 @@ s32 Battle_Run(s32 enemyGroup) {
   }
 
   // The units, the windows and the background.
+  sSummonRushPunished = 0;
   BattleUnit_Collect();
   BattleUnit_RefreshPlacement();
   DjinnRecovery_Reconcile();
@@ -356,6 +361,10 @@ party_lost:
   else
     BattleMessage_ShowAndWaitFar(MsgPartyDefeated);
   BattleMessage_WaitForAdvance();
+  if (sSummonRushPunished != 0) {
+    BattleMessage_ShowAndWaitFar(MsgDarkAshValePunished);
+    BattleMessage_WaitForAdvance();
+  }
   Sound_PlaySongFar(SONG_FADE_OUT_BGM);
   ScreenFade_ToBlack(30);
   result = BATTLE_OUTCOME_LOST;
