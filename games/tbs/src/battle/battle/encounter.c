@@ -34,24 +34,33 @@
 /// and releases heap block 10. A broken link also sets flag
 /// FLAG_AREA_TEMP_E8, which the Battle Arena reads
 /// (BattleArena_RunRoundResult).
-/// Set when Ash Jenna in Vale punished a summon rush (BattleAI_ChooseAction), so
-/// that she taunts the party if it goes down.
-static u8 sSummonRushPunished;
-
 /// The row of Ash Jenna, the optional super boss of Vale, in gEnemy_Definitions
-/// (her unit id is ENEMY_ID_FIRST more).
+/// (her unit's id is ENEMY_ID_FIRST more).
 #define ENEMY_ASH_JENNA_VALE 92
 /// The ability she answers a summon rush with (Outer Space).
 #define ABILITY_OUTER_SPACE 514
 /// Standby Djinn, plus Djinn the party has chosen to unleash this round, that
 /// count as a summon rush. A chosen summon counts at once.
 #define PUNISH_RUSH_DJINN 3
-/// Unit.aiActionIndex bit: she has already given her answer. The bit is
-/// among those BattleAIState leaves unused.
+/// Unit.aiActionIndex bits, among those BattleAIState leaves unused: she has
+/// already given her answer; BattleTurnOrder_Sort saw a rush this round.
 #define AI_PUNISHED 0x80000000u
-/// Set by BattleTurnOrder_Sort for a round in which the party is rushing
-/// summons; BattleAI_ChooseAction then has her answer.
-static u8 sSummonRushDetected;
+#define AI_RUSH 0x40000000u
+/// An enemy of the battle is unit 0x80 + its place; at most six.
+#define ENEMY_UNIT_FIRST 0x80
+
+/// Ash Jenna of Vale's unit, or NULL when she is not in this battle.
+static struct Unit *BattleAshJennaVale_Find(void) {
+  s32 place;
+
+  for (place = 0; place < 6; place++) {
+    struct Unit *unit = Unit_GetFar(ENEMY_UNIT_FIRST + place);
+
+    if (unit != 0 && unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
+      return unit;
+  }
+  return 0;
+}
 
 s32 Battle_Run(s32 enemyGroup) {
   struct BattleCamera *camera;
@@ -183,7 +192,6 @@ s32 Battle_Run(s32 enemyGroup) {
   }
 
   // The units, the windows and the background.
-  sSummonRushPunished = 0;
   BattleUnit_Collect();
   BattleUnit_RefreshPlacement();
   DjinnRecovery_Reconcile();
@@ -376,9 +384,13 @@ party_lost:
   else
     BattleMessage_ShowAndWaitFar(MsgPartyDefeated);
   BattleMessage_WaitForAdvance();
-  if (sSummonRushPunished != 0) {
-    BattleMessage_ShowAndWaitFar(MsgDarkAshValePunished);
-    BattleMessage_WaitForAdvance();
+  {
+    struct Unit *ashJenna = BattleAshJennaVale_Find();
+
+    if (ashJenna != 0 && (ashJenna->aiActionIndex & AI_PUNISHED) != 0) {
+      BattleMessage_ShowAndWaitFar(MsgDarkAshValePunished);
+      BattleMessage_WaitForAdvance();
+    }
   }
   Sound_PlaySongFar(SONG_FADE_OUT_BGM);
   ScreenFade_ToBlack(30);

@@ -107,10 +107,9 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
   punish = 0;
   if (retry != 0 && unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
       (unit->aiActionIndex & AI_PUNISHED) == 0 &&
-      (sSummonRushDetected != 0 ||
+      ((unit->aiActionIndex & AI_RUSH) != 0 ||
        BattleDjinn_CountStandby(0, 0) >= PUNISH_RUSH_DJINN)) {
-    unit->aiActionIndex |= AI_PUNISHED;
-    sSummonRushPunished = 1;
+    unit->aiActionIndex = (unit->aiActionIndex | AI_PUNISHED) & ~AI_RUSH;
     BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
     BattleMessage_WaitForAdvance();
     MessageArgument_ClearAllFar();
