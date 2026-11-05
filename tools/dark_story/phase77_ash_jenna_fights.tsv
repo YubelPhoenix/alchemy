@@ -8,3 +8,4 @@ N335	MsgDarkAshGateIsaac	You're using their pain\nto get at me.\nThat's why you'
 N336	MsgDarkAshGateChallenge	Good. You noticed.\nNow fight me while\nthey lie there.{page_break}Every moment here\nis one they won't\nget back.{end_wait}
 N337	MsgDarkAshGateBeaten	You won, Isaac.\nDoes that make you\nfeel like a hero?{page_break}Those men are still\nwaiting for help.\nGo on. Hurry.{page_break}I hope you didn't\ntake too long.{end_wait}
 00655	MsgEnemyName	Ash Jenna
+N338	MsgDarkAshValePunish	I know your plan.\nIt won't work.

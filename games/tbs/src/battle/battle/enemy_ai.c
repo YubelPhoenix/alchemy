@@ -15,6 +15,16 @@ struct BattleAIState {
   unsigned remaining : 28; ///< not used here
 };
 
+/// The enemy id of Ash Jenna, the optional super boss of Vale.
+#define ENEMY_ASH_JENNA_VALE 92
+/// The ability she answers a summon rush with (Outer Space).
+#define ABILITY_OUTER_SPACE 514
+/// Standby Djinn that make her act.
+#define PUNISH_STANDBY_DJINN 4
+/// Unit.aiActionIndex bit: she has already given her answer. The bit is
+/// among those BattleAIState leaves unused.
+#define AI_PUNISHED 0x80000000u
+
 /// Chooses an enemy's action (a party member's is chosen in the menu): one of
 /// the eight in its definition, picked by its action strategy, with an item
 /// instead where its item mask says so, and a target worth the ability. A
@@ -56,6 +66,7 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
   s32 flags;
   u8 effect;
   u8 targetMode;
+  s32 punish;
 
   /// Picks a place in the action list from a 0-255 roll and eight weights:
   /// the first place whose running total passes the roll, else place 0.
@@ -98,6 +109,20 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
   selectionMemory = (struct BattleAIState *)&unit->aiActionIndex;
   actionStrategy = &enemy->actionStrategy;
   itemActionMask = &enemy->itemActions;
+
+  // Ash Jenna, the super boss of Vale, punishes a summon rush: once the party
+  // has four or more Djinn on standby (a summon needs them), she says so at
+  // her next turn and answers with Outer Space instead of her usual move.
+  punish = 0;
+  if (retry != 0 && unit->id == ENEMY_ASH_JENNA_VALE &&
+      (unit->aiActionIndex & AI_PUNISHED) == 0 &&
+      BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN) {
+    unit->aiActionIndex |= AI_PUNISHED;
+    BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
+    BattleMessage_WaitForAdvance();
+    MessageArgument_ClearAllFar();
+    punish = 1;
+  }
 
   // A place in the action list, by the enemy's strategy.
 select_again:
@@ -142,6 +167,10 @@ select_again:
   useItem = (*itemActionMask >> selection) & 1;
   useItem &= itemsAllowed;
   abilityId = enemy->abilities[selection];
+  if (punish != 0) {
+    abilityId = ABILITY_OUTER_SPACE;
+    useItem = 0;
+  }
   request->command = COMMAND_ENEMY_ABILITY;
   if (useItem != 0 && retry != 0) {
     if (!(INVENTORY_ITEM_ID_MASK & unit->inventory[0])) {
