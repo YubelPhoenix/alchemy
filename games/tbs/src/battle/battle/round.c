@@ -344,18 +344,6 @@ void BattleTurnOrder_Sort(struct BattleAction *entries, s32 count) {
     if (queued >= PUNISH_RUSH_DJINN)
       sSummonRushDetected = 1;
   }
-  if (sSummonRushDetected != 0) {
-    for (actionIndex = 0; actionIndex < count; actionIndex++) {
-      s32 unitId = entries[actionIndex].unitId;
-
-      if (unitId == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
-          (Unit_GetFar(unitId)->aiActionIndex & AI_PUNISHED) == 0) {
-        entries[actionIndex].priority += DJINN_FIRST_PRIORITY;
-        break;
-      }
-    }
-  }
-
   for (actionIndex = 0; actionIndex < count; actionIndex++) {
     struct BattleAction *entry = &entries[actionIndex];
 
@@ -393,6 +381,42 @@ void BattleTurnOrder_Sort(struct BattleAction *entries, s32 count) {
       }
     }
   } while (swapCount != 0);
+
+  // A rush: Ash Jenna moves up to just behind the first action, ahead of the
+  // rest of the party (her line cannot be the very first thing of a round).
+  // If that first action is already a summon, she goes in front of it.
+  if (sSummonRushDetected != 0) {
+    for (actionIndex = 0; actionIndex < count; actionIndex++) {
+      if (entries[actionIndex].unitId == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
+          (Unit_GetFar(entries[actionIndex].unitId)->aiActionIndex &
+           AI_PUNISHED) == 0) {
+        s32 target = 1;
+
+        if (count < 2 || entries[0].command == COMMAND_SUMMON)
+          target = 0;
+        if (actionIndex == 0 && target == 1) {
+          struct BattleAction temporary;
+
+          Iwram_CopyWords(&temporary, &entries[0], sizeof(struct BattleAction));
+          Iwram_CopyWords(&entries[0], &entries[1], sizeof(struct BattleAction));
+          Iwram_CopyWords(&entries[1], &temporary, sizeof(struct BattleAction));
+          break;
+        }
+        while (actionIndex > target) {
+          struct BattleAction temporary;
+
+          Iwram_CopyWords(&temporary, &entries[actionIndex],
+                          sizeof(struct BattleAction));
+          Iwram_CopyWords(&entries[actionIndex], &entries[actionIndex - 1],
+                          sizeof(struct BattleAction));
+          Iwram_CopyWords(&entries[actionIndex - 1], &temporary,
+                          sizeof(struct BattleAction));
+          actionIndex--;
+        }
+        break;
+      }
+    }
+  }
 }
 
 /// The header a link battle sends before its actions: how many there are,
