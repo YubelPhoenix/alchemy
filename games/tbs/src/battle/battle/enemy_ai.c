@@ -15,7 +15,8 @@ struct BattleAIState {
   unsigned remaining : 28; ///< not used here
 };
 
-/// The enemy id of Ash Jenna, the optional super boss of Vale.
+/// The row of Ash Jenna, the optional super boss of Vale, in gEnemy_Definitions
+/// (her unit id is ENEMY_ID_FIRST more).
 #define ENEMY_ASH_JENNA_VALE 92
 /// The ability she answers a summon rush with (Outer Space).
 #define ABILITY_OUTER_SPACE 514
@@ -154,20 +155,22 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
 
   // Ash Jenna, the super boss of Vale, punishes a summon rush: if the party
   // holds twelve or more Djinn with none recovering (all ready, set or on
-  // standby) or has four or more on standby, she says so at her next turn and answers with
-  // Outer Space instead of her usual move.
+  // standby) or has four or more on standby, she says so at her next turn.
+  // From then on every action of hers is Outer Space, until the party is down.
   punish = 0;
-  if (retry != 0 && unit->id == ENEMY_ASH_JENNA_VALE &&
-      (unit->aiActionIndex & AI_PUNISHED) == 0 &&
-      ((BattleAI_CountHeldDjinn() >= PUNISH_HELD_DJINN &&
-        BattleAI_CountRecoveringDjinn() == 0) ||
-       BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN)) {
-    unit->aiActionIndex |= AI_PUNISHED;
-    sSummonRushPunished = 1;
-    BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
-    BattleMessage_WaitForAdvance();
-    MessageArgument_ClearAllFar();
-    punish = 1;
+  if (retry != 0 && unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE) {
+    if ((unit->aiActionIndex & AI_PUNISHED) != 0) {
+      punish = 1;
+    } else if ((BattleAI_CountHeldDjinn() >= PUNISH_HELD_DJINN &&
+                BattleAI_CountRecoveringDjinn() == 0) ||
+               BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN) {
+      unit->aiActionIndex |= AI_PUNISHED;
+      sSummonRushPunished = 1;
+      BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
+      BattleMessage_WaitForAdvance();
+      MessageArgument_ClearAllFar();
+      punish = 1;
+    }
   }
 
   // A place in the action list, by the enemy's strategy.
