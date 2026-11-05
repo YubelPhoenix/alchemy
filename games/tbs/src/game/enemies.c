@@ -24,8 +24,8 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 41,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // A lighter set of the same: blade and flame, nothing past Eruption.
-        .abilities = {343, 222, 223, ABILITY_ATTACK, 52, 45, 49, 421},
+        // Strong fire, but short of the Vale fight: no Supernova or Pyroclasm.
+        .abilities = {226, 223, 49, ABILITY_ATTACK, 52, 50, 169, 422},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 1500,
         .item = ITEM_ELIXIR,
