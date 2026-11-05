@@ -26,48 +26,6 @@ struct BattleAIState {
 /// among those BattleAIState leaves unused.
 #define AI_PUNISHED 0x80000000u
 
-/// The fewest Djinn a party must hold, all of them ready, to be punished: with
-/// fewer it cannot call the large summons anyway.
-#define PUNISH_HELD_DJINN 12
-
-/// Counts the Djinn held by the party's members, set or not.
-static s32 BattleAI_CountHeldDjinn(void) {
-  u16 partyMembers[10];
-  s32 partySize;
-  s32 slot;
-  s32 element;
-  s32 total;
-
-  partySize = BattleParty_PrepareMembers(partyMembers);
-  total = 0;
-  for (slot = 0; slot < partySize; slot++) {
-    struct Unit *member = Unit_GetFar(partyMembers[slot]);
-
-    for (element = 0; element < ELEMENT_COUNT; element++)
-      total += member->djinnHeldCounts[element];
-  }
-  return total;
-}
-
-/// Counts the party's Djinn that are recovering (a positive number of turns, or
-/// just used by a summon): not ready to be set or called.
-static s32 BattleAI_CountRecoveringDjinn(void) {
-  struct DjinnRecoveryList *list =
-      &((struct DjinnRecoveryTable *)Djinn_GetRecoveryTableFar(
-            DJINN_RECOVERY_PARTY))
-           ->list;
-  s32 index;
-  s32 total;
-
-  total = 0;
-  for (index = 0; index < list->count; index++) {
-    if (list->entries[index].turns > 0 ||
-        list->entries[index].turns == DJINN_RECOVERY_SUMMONED)
-      total++;
-  }
-  return total;
-}
-
 /// Chooses an enemy's action (a party member's is chosen in the menu): one of
 /// the eight in its definition, picked by its action strategy, with an item
 /// instead where its item mask says so, and a target worth the ability. A
@@ -153,24 +111,20 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
   actionStrategy = &enemy->actionStrategy;
   itemActionMask = &enemy->itemActions;
 
-  // Ash Jenna, the super boss of Vale, punishes a summon rush: if the party
-  // holds twelve or more Djinn with none recovering (all ready, set or on
-  // standby) or has four or more on standby, she says so at her next turn.
-  // From then on every action of hers is Outer Space, until the party is down.
+  // Ash Jenna, the super boss of Vale, punishes a summon rush: once four or
+  // more of the party's Djinn are on standby (a summon needs them), she says
+  // so at her next turn and answers with Outer Space instead of her usual
+  // move. She does it once; after that she fights as before.
   punish = 0;
-  if (retry != 0 && unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE) {
-    if ((unit->aiActionIndex & AI_PUNISHED) != 0) {
-      punish = 1;
-    } else if ((BattleAI_CountHeldDjinn() >= PUNISH_HELD_DJINN &&
-                BattleAI_CountRecoveringDjinn() == 0) ||
-               BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN) {
-      unit->aiActionIndex |= AI_PUNISHED;
-      sSummonRushPunished = 1;
-      BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
-      BattleMessage_WaitForAdvance();
-      MessageArgument_ClearAllFar();
-      punish = 1;
-    }
+  if (retry != 0 && unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
+      (unit->aiActionIndex & AI_PUNISHED) == 0 &&
+      BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN) {
+    unit->aiActionIndex |= AI_PUNISHED;
+    sSummonRushPunished = 1;
+    BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
+    BattleMessage_WaitForAdvance();
+    MessageArgument_ClearAllFar();
+    punish = 1;
   }
 
   // A place in the action list, by the enemy's strategy.
