@@ -253,7 +253,7 @@
 04302	message	No. Not again.{end_wait}
 04303	message	The water's gone!{end_wait}
 04304	message	The chamber is failing.\nWe have to get out!{end_wait}
-04305	message	This isn't a curse.{page_break}The Stars held this\nplace together.{end_wait}
+04305	message	The Stars kept this\nplace in balance.\nNow it's coming apart!{end_wait}
 04306	message	It's stopped...\nWhat was that?{end_wait}
 04307	message	What is that thing?{end_wait}
 04308	message	No... stay back!{end_wait}
