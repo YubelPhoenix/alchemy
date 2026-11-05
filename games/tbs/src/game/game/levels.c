@@ -77,12 +77,12 @@ static const struct ClassAbility sSignatureMoves[4][9] = {
 
 /// The field Psynergy every story gate needs, split by hero so each keeps it
 /// whatever their class: Isaac Growth and Move, Ivan Whirlwind, Mind Read and
-/// Reveal, Mia Frost, Douse, Force and Lift. Rows are {ability, level}.
+/// Reveal, Mia Frost and Douse. Force and Lift come from items. Rows are {ability, level}.
 static const struct ClassAbility sFieldMoves[4][8] = {
     {{12, 1}, {140, 1}},
     {{0, 0}},
     {{78, 1}, {141, 1}, {144, 1}},
-    {{24, 1}, {33, 1}, {142, 1}, {143, 1}},
+    {{24, 1}, {33, 1}},
 };
 
 /// Rebuilds a character's Psynergy list: drops the actions its class and items
