@@ -24,8 +24,8 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 41,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // Strong fire, but short of the Vale fight: no Supernova or Pyroclasm.
-        .abilities = {226, 223, 49, ABILITY_ATTACK, 52, 50, 169, 422},
+        // Close to end game, so she has Supernova (59) and Pyroclasm (53) too.
+        .abilities = {226, 223, 59, ABILITY_ATTACK, 52, 50, 53, 422},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 2000,
         .item = ITEM_ELIXIR,
