@@ -555,10 +555,10 @@ static void SolSanctumEruption_PlayHostageEvent(void) {
   Actor_FaceDirection(ACTOR_JENNA, FACING_NORTHWEST + FACING_STEP, 30);
   Actor_FaceDirection(ACTOR_FELIX, FACING_NORTHEAST, 0);
   SolSanctumEruption_RaiseAndShrinkActor(ACTOR_JENNA);
-  // Felix has no power over the air: he does not rise like the others, he
-  // is whisked away where he stands.
-  AshWarp_Out(ACTOR_FELIX);
-  Actor_SetPosition(ACTOR_FELIX, 0, 0);
+  // Felix walks to the portal and goes up through it like the others.
+  Actor_SetSpeed(ACTOR_FELIX, PIXELS(1), PIXELS(1) / 2);
+  Actor_WalkToAndWait(ACTOR_FELIX, 471, 290);
+  SolSanctumEruption_RaiseAndShrinkActor(ACTOR_FELIX);
   Actor_FaceDirection(ACTOR_SATUROS, FACING_SOUTHWEST + FACING_STEP, 40);
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 30);
   Actor_SetAnimationAndWait(ACTOR_SATUROS, ANIM_SHAKE_HEAD);
