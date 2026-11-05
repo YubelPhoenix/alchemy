@@ -15,17 +15,6 @@ struct BattleAIState {
   unsigned remaining : 28; ///< not used here
 };
 
-/// The row of Ash Jenna, the optional super boss of Vale, in gEnemy_Definitions
-/// (her unit id is ENEMY_ID_FIRST more).
-#define ENEMY_ASH_JENNA_VALE 92
-/// The ability she answers a summon rush with (Outer Space).
-#define ABILITY_OUTER_SPACE 514
-/// Standby Djinn that make her act.
-#define PUNISH_STANDBY_DJINN 4
-/// Unit.aiActionIndex bit: she has already given her answer. The bit is
-/// among those BattleAIState leaves unused.
-#define AI_PUNISHED 0x80000000u
-
 /// Chooses an enemy's action (a party member's is chosen in the menu): one of
 /// the eight in its definition, picked by its action strategy, with an item
 /// instead where its item mask says so, and a target worth the ability. A
@@ -111,14 +100,15 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
   actionStrategy = &enemy->actionStrategy;
   itemActionMask = &enemy->itemActions;
 
-  // Ash Jenna, the super boss of Vale, punishes a summon rush: once four or
-  // more of the party's Djinn are on standby (a summon needs them), she says
-  // so at her next turn and answers with Outer Space instead of her usual
-  // move. She does it once; after that she fights as before.
+  // Ash Jenna, the super boss of Vale, punishes a summon rush (see
+  // BattleTurnOrder_Sort, which also lets her act first that round): she says
+  // so and answers with Outer Space instead of her usual move. She does it
+  // once; after that she fights as before.
   punish = 0;
   if (retry != 0 && unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
       (unit->aiActionIndex & AI_PUNISHED) == 0 &&
-      BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN) {
+      (sSummonRushDetected != 0 ||
+       BattleDjinn_CountStandby(0, 0) >= PUNISH_RUSH_DJINN)) {
     unit->aiActionIndex |= AI_PUNISHED;
     sSummonRushPunished = 1;
     BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);

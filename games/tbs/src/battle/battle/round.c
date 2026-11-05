@@ -326,6 +326,36 @@ void BattleTurnOrder_Sort(struct BattleAction *entries, s32 count) {
   s32 sortIndex;
   s32 swapCount;
 
+  // Ash Jenna in Vale acts first in a round where the party is rushing
+  // summons: a summon is chosen, or enough Djinn are on standby or about to
+  // be unleashed. BattleAI_ChooseAction gives her answer.
+  sSummonRushDetected = 0;
+  {
+    s32 queued = BattleDjinn_CountStandby(0, 0);
+
+    for (actionIndex = 0; actionIndex < count; actionIndex++) {
+      if (entries[actionIndex].unitId > ALLY_MAX)
+        continue;
+      if (entries[actionIndex].command == COMMAND_SUMMON)
+        sSummonRushDetected = 1;
+      else if (entries[actionIndex].command == COMMAND_DJINN)
+        queued++;
+    }
+    if (queued >= PUNISH_RUSH_DJINN)
+      sSummonRushDetected = 1;
+  }
+  if (sSummonRushDetected != 0) {
+    for (actionIndex = 0; actionIndex < count; actionIndex++) {
+      s32 unitId = entries[actionIndex].unitId;
+
+      if (unitId == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
+          (Unit_GetFar(unitId)->aiActionIndex & AI_PUNISHED) == 0) {
+        entries[actionIndex].priority += DJINN_FIRST_PRIORITY;
+        break;
+      }
+    }
+  }
+
   for (actionIndex = 0; actionIndex < count; actionIndex++) {
     struct BattleAction *entry = &entries[actionIndex];
 

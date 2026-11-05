@@ -38,6 +38,21 @@
 /// that she taunts the party if it goes down.
 static u8 sSummonRushPunished;
 
+/// The row of Ash Jenna, the optional super boss of Vale, in gEnemy_Definitions
+/// (her unit id is ENEMY_ID_FIRST more).
+#define ENEMY_ASH_JENNA_VALE 92
+/// The ability she answers a summon rush with (Outer Space).
+#define ABILITY_OUTER_SPACE 514
+/// Standby Djinn, plus Djinn the party has chosen to unleash this round, that
+/// count as a summon rush. A chosen summon counts at once.
+#define PUNISH_RUSH_DJINN 3
+/// Unit.aiActionIndex bit: she has already given her answer. The bit is
+/// among those BattleAIState leaves unused.
+#define AI_PUNISHED 0x80000000u
+/// Set by BattleTurnOrder_Sort for a round in which the party is rushing
+/// summons; BattleAI_ChooseAction then has her answer.
+static u8 sSummonRushDetected;
+
 s32 Battle_Run(s32 enemyGroup) {
   struct BattleCamera *camera;
   s32 *focus;
