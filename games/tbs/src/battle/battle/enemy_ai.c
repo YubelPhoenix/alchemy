@@ -25,8 +25,9 @@ struct BattleAIState {
 /// among those BattleAIState leaves unused.
 #define AI_PUNISHED 0x80000000u
 
-/// The Djinn the party holds in all: 28 means every one has been found.
-#define PUNISH_HELD_DJINN 28
+/// The fewest Djinn a party must hold, all of them ready, to be punished: with
+/// fewer it cannot call the large summons anyway.
+#define PUNISH_HELD_DJINN 12
 
 /// Counts the Djinn held by the party's members, set or not.
 static s32 BattleAI_CountHeldDjinn(void) {
@@ -43,6 +44,25 @@ static s32 BattleAI_CountHeldDjinn(void) {
 
     for (element = 0; element < ELEMENT_COUNT; element++)
       total += member->djinnHeldCounts[element];
+  }
+  return total;
+}
+
+/// Counts the party's Djinn that are recovering (a positive number of turns, or
+/// just used by a summon): not ready to be set or called.
+static s32 BattleAI_CountRecoveringDjinn(void) {
+  struct DjinnRecoveryList *list =
+      &((struct DjinnRecoveryTable *)Djinn_GetRecoveryTableFar(
+            DJINN_RECOVERY_PARTY))
+           ->list;
+  s32 index;
+  s32 total;
+
+  total = 0;
+  for (index = 0; index < list->count; index++) {
+    if (list->entries[index].turns > 0 ||
+        list->entries[index].turns == DJINN_RECOVERY_SUMMONED)
+      total++;
   }
   return total;
 }
@@ -133,13 +153,14 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
   itemActionMask = &enemy->itemActions;
 
   // Ash Jenna, the super boss of Vale, punishes a summon rush: if the party
-  // has every Djinni (a party that holds them all can call any summon) or four
-  // or more are on standby, she says so at her next turn and answers with
+  // holds twelve or more Djinn with none recovering (all ready, set or on
+  // standby) or has four or more on standby, she says so at her next turn and answers with
   // Outer Space instead of her usual move.
   punish = 0;
   if (retry != 0 && unit->id == ENEMY_ASH_JENNA_VALE &&
       (unit->aiActionIndex & AI_PUNISHED) == 0 &&
-      (BattleAI_CountHeldDjinn() >= PUNISH_HELD_DJINN ||
+      ((BattleAI_CountHeldDjinn() >= PUNISH_HELD_DJINN &&
+        BattleAI_CountRecoveringDjinn() == 0) ||
        BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN)) {
     unit->aiActionIndex |= AI_PUNISHED;
     sSummonRushPunished = 1;
