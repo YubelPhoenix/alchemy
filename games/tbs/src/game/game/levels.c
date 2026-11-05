@@ -75,15 +75,14 @@ static const struct ClassAbility sSignatureMoves[4][9] = {
     {{36, 6}, {30, 10}, {128, 14}, {37, 22}, {129, 26}, {31, 28}, {38, 42}, {32, 48}},
 };
 
-/// The field Psynergy every story gate needs (Move, Mind Read, Force, Lift,
-/// Reveal), plus each hero's own (Growth, Whirlwind, Frost and Douse). The mixed
-/// classes no longer carry these, so a hero can never lose one by changing
-/// class. Rows are {ability, level}.
+/// The field Psynergy every story gate needs, split by hero so each keeps it
+/// whatever their class: Isaac Growth and Move, Ivan Whirlwind, Mind Read and
+/// Reveal, Mia Frost, Douse, Force and Lift. Rows are {ability, level}.
 static const struct ClassAbility sFieldMoves[4][8] = {
-    {{12, 1}, {140, 1}, {141, 1}, {142, 1}, {143, 1}, {144, 1}},
-    {{140, 1}, {141, 1}, {142, 1}, {143, 1}, {144, 1}},
-    {{78, 1}, {140, 1}, {141, 1}, {142, 1}, {143, 1}, {144, 1}},
-    {{24, 1}, {33, 1}, {140, 1}, {141, 1}, {142, 1}, {143, 1}, {144, 1}},
+    {{12, 1}, {140, 1}},
+    {{0, 0}},
+    {{78, 1}, {141, 1}, {144, 1}},
+    {{24, 1}, {33, 1}, {142, 1}, {143, 1}},
 };
 
 /// Rebuilds a character's Psynergy list: drops the actions its class and items
