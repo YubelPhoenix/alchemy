@@ -59,6 +59,15 @@ jobs:
           python3 tools/dark_story/build_ash_jenna_art.py
           python3 tools/dark_story/build_kegare_art.py
 
+      - name: Stamp this build so older saves resume at their restart point
+        run: |
+          # A save stores absolute ROM addresses (actor scripts); a build that
+          # moves data would break them. The game resumes a save from another
+          # build at its restart point, which needs a different stamp per build.
+          stamp="$(date -u +%y%m%d%H%M%S)"
+          sed -i "/TBS_EDITION_EN/{n;s/\"[0-9]\{12\}/\"$stamp/}" games/tbs/src/system/resource/directory.s
+          grep -n -A1 TBS_EDITION_EN games/tbs/src/system/resource/directory.s | tail -2
+
       - name: Build pinned toolchain and host tools
         run: make bootstrap CARGO=false
 

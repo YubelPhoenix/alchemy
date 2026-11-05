@@ -326,7 +326,7 @@ Resource_BuildStamp:
 	.asciz "010628184502\n"
 	.endif
 	.ifdef TBS_EDITION_EN
-	.asciz "010918151347\n"
+	.asciz "261105000000\n"
 	.endif
 	.ifdef TBS_EDITION_FR
 	.asciz "011219190202\n"
