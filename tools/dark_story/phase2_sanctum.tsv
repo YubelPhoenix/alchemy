@@ -219,7 +219,7 @@
 04268	message	She's right. The Stars\nstill matter.{end_wait}
 04269	message	Is that acceptable?{page_break}Felix won't let us\nhurt you, Jenna.\nHe made that clear.{end_wait}
 04270	message	{actor_name:5} is our guarantee.\nNow give us the Elemental\nStars.{end_wait}
-04271	message	They have Kraden and\nJenna. What do we do?{end_now}
+04271	message	Should we give them\nthe Stars to save\nJenna and Kraden?{end_now}
 04272	MsgSolSanctumGuessTakeElemental	I suppose I should carry\nthe Elemental Stars to\nthem.{end_wait}
 04273	message	{actor_name:1} handed over the\nElemental Stars.{end_wait}
 04274	MsgSolSanctumDontHandOver	If you don't hand them\nover, they won't let\n{actor_name:6} go!{end_wait}
