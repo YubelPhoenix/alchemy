@@ -75,6 +75,17 @@ static const struct ClassAbility sSignatureMoves[4][9] = {
     {{36, 6}, {30, 10}, {128, 14}, {37, 22}, {129, 26}, {31, 28}, {38, 42}, {32, 48}},
 };
 
+/// The field Psynergy every story gate needs (Move, Mind Read, Force, Lift,
+/// Reveal), plus each hero's own (Growth, Whirlwind, Frost and Douse). The mixed
+/// classes no longer carry these, so a hero can never lose one by changing
+/// class. Rows are {ability, level}.
+static const struct ClassAbility sFieldMoves[4][8] = {
+    {{12, 1}, {140, 1}, {141, 1}, {142, 1}, {143, 1}, {144, 1}},
+    {{140, 1}, {141, 1}, {142, 1}, {143, 1}, {144, 1}},
+    {{78, 1}, {140, 1}, {141, 1}, {142, 1}, {143, 1}, {144, 1}},
+    {{24, 1}, {33, 1}, {140, 1}, {141, 1}, {142, 1}, {143, 1}, {144, 1}},
+};
+
 /// Rebuilds a character's Psynergy list: drops the actions its class and items
 /// gave, closes up the list, adds every class action learned by its level and
 /// the action of each equipped item that grants one, and closes it up again.
@@ -149,8 +160,10 @@ s32 Unit_RefreshPsynergy(s32 unitId) {
 
   // Then the hero's own moves, learned at their levels.
   if (unitId >= 0 && unitId < 4) {
-    for (sourceIndex = 0; sourceIndex < 9; sourceIndex++) {
-      classAbility = (struct ClassAbility *)&sSignatureMoves[unitId][sourceIndex];
+    s32 pass;
+    for (pass = 0; pass < 2; pass++)
+    for (sourceIndex = 0; sourceIndex < (pass ? 8 : 9); sourceIndex++) {
+      classAbility = (struct ClassAbility *)(pass ? &sFieldMoves[unitId][sourceIndex] : &sSignatureMoves[unitId][sourceIndex]);
       if (classAbility->ability == 0 || unit->level < classAbility->level)
         continue;
       slot = 0;
