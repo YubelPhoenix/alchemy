@@ -37,6 +37,8 @@
 /// Set when Ash Jenna in Vale punished a summon rush (BattleAI_ChooseAction), so
 /// that she taunts the party if it goes down.
 static u8 sSummonRushPunished;
+/// Set with it until her warning line has been shown.
+static u8 sSummonRushLinePending;
 
 s32 Battle_Run(s32 enemyGroup) {
   struct BattleCamera *camera;
@@ -169,6 +171,7 @@ s32 Battle_Run(s32 enemyGroup) {
 
   // The units, the windows and the background.
   sSummonRushPunished = 0;
+  sSummonRushLinePending = 0;
   BattleUnit_Collect();
   BattleUnit_RefreshPlacement();
   DjinnRecovery_Reconcile();

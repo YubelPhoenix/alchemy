@@ -121,9 +121,9 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
       BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN) {
     unit->aiActionIndex |= AI_PUNISHED;
     sSummonRushPunished = 1;
-    BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
-    BattleMessage_WaitForAdvance();
-    MessageArgument_ClearAllFar();
+    // Her line is shown once her turn is set up (BattleStaging_DispatchAction),
+    // not now, while the last attacker is still standing at her side.
+    sSummonRushLinePending = 1;
     punish = 1;
   }
 
