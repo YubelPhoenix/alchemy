@@ -61,15 +61,6 @@ s32 BattleStaging_DispatchAction(struct BattleAction *request, s32 delay) {
   actingUnit[0] = request->unitId;
   actingUnit[1] = BATTLE_UNIT_LIST_END;
   BattleHighlight_SetModes(actingUnit, HIGHLIGHT_SELECTED);
-  // Ash Jenna's warning to a summon rush (BattleAI_ChooseAction), shown now
-  // that her turn is set up and the units have had a moment to settle.
-  if (sSummonRushLinePending != 0) {
-    sSummonRushLinePending = 0;
-    WaitFrames(30);
-    BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
-    BattleMessage_WaitForAdvance();
-    MessageArgument_ClearAllFar();
-  }
   result = BattleTurn_Build(request, &battle->turn);
   if (result == 0) {
     switch (battle->turn.staging) {
