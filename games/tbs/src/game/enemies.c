@@ -25,7 +25,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
         // A lighter set of the same: blade and flame, nothing past Eruption.
-        .abilities = {343, 222, 223, ABILITY_ATTACK, 52, 48, 49, 421},
+        .abilities = {343, 222, 223, ABILITY_ATTACK, 52, 45, 49, 421},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 1500,
         .item = ITEM_ELIXIR,
