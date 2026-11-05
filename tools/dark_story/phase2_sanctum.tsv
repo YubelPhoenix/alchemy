@@ -270,7 +270,7 @@
 04319	message	{actor_name:5} is right. We can't\nfight that thing.{end_wait}
 04320	message	We can't take it now.\nWe'll return.{end_wait}
 04321	message	And {actor_name:1} and {actor_name:2}?\nYou can't leave them\nhere!{end_wait}
-04322	message	They won't survive\nif we stay here.{end_wait}
+04322	message	The chamber is falling\napart. They won't\nmake it out alive.{end_wait}
 04323	message	They might survive.\nWe can't know yet.{end_wait}
 04324	message	Then tell me\nwhat you propose.{end_wait}
 04325	message	We take this \"{actor_name:6}\"\nwith us. If they live,\nthey'll want her back.{page_break}And if they want her back,\nthey'll bring us the Star.{end_wait}
