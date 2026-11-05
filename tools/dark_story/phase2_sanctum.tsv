@@ -283,7 +283,7 @@
 04332	message	Leave {actor_name:6} here and she\ndies. Is that what you\nwant, {actor_name:5}?{end_wait}
 04333	message	Let's go, {actor_name:5}.\nSomething is watching us.\nI don't like it.{end_wait}
 04334	message	{actor_name:5}... please.{end_wait}
-04335	message	Please. I want to leave.{end_wait}
+04335	message	Good. Then we're leaving.\nNo more delays.{end_wait}
 04336	message	Move. Quickly!{end_wait}
 04337	message	Don't you push my sister!{end_wait}
 04338	message	Who do you think you're\ntalking to? You owe us\nyour life!{end_wait}
