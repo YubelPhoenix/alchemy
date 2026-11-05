@@ -25,6 +25,28 @@ struct BattleAIState {
 /// among those BattleAIState leaves unused.
 #define AI_PUNISHED 0x80000000u
 
+/// The Djinn the party holds in all: 28 means every one has been found.
+#define PUNISH_HELD_DJINN 28
+
+/// Counts the Djinn held by the party's members, set or not.
+static s32 BattleAI_CountHeldDjinn(void) {
+  u16 partyMembers[10];
+  s32 partySize;
+  s32 slot;
+  s32 element;
+  s32 total;
+
+  partySize = BattleParty_PrepareMembers(partyMembers);
+  total = 0;
+  for (slot = 0; slot < partySize; slot++) {
+    struct Unit *member = Unit_GetFar(partyMembers[slot]);
+
+    for (element = 0; element < ELEMENT_COUNT; element++)
+      total += member->djinnHeldCounts[element];
+  }
+  return total;
+}
+
 /// Chooses an enemy's action (a party member's is chosen in the menu): one of
 /// the eight in its definition, picked by its action strategy, with an item
 /// instead where its item mask says so, and a target worth the ability. A
@@ -110,13 +132,15 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
   actionStrategy = &enemy->actionStrategy;
   itemActionMask = &enemy->itemActions;
 
-  // Ash Jenna, the super boss of Vale, punishes a summon rush: once the party
-  // has four or more Djinn on standby (a summon needs them), she says so at
-  // her next turn and answers with Outer Space instead of her usual move.
+  // Ash Jenna, the super boss of Vale, punishes a summon rush: if the party
+  // has every Djinni (a party that holds them all can call any summon) or four
+  // or more are on standby, she says so at her next turn and answers with
+  // Outer Space instead of her usual move.
   punish = 0;
   if (retry != 0 && unit->id == ENEMY_ASH_JENNA_VALE &&
       (unit->aiActionIndex & AI_PUNISHED) == 0 &&
-      BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN) {
+      (BattleAI_CountHeldDjinn() >= PUNISH_HELD_DJINN ||
+       BattleDjinn_CountStandby(0, 0) >= PUNISH_STANDBY_DJINN)) {
     unit->aiActionIndex |= AI_PUNISHED;
     sSummonRushPunished = 1;
     BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
