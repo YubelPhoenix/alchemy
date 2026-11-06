@@ -964,8 +964,10 @@ struct ActorTemplate gTolbiActorTemplates[] = {
     { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     // The stranded farmer who asks for his family's fare.
+    // Keep him away from Sarah's talk radius; their original adjacent
+    // positions could cause Isaac to select the farmer when approaching Sarah.
     { SPRITE_MAN_CARRYING_A_PACK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
-        PIXELS(232), 0, PIXELS(296), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
+        PIXELS(232), 0, PIXELS(360), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     // Sarah, waiting in the street until she is beaten.
     { SPRITE_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, MOVEMENT_TYPE_STAND,
         PIXELS(264), 0, PIXELS(296), FACING_SOUTH, TALK_FACING_PARTY, 0 },
