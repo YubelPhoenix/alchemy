@@ -2595,14 +2595,14 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .agi = 200,
         .luck = 40,
         .turns = 3,
-        .elementPreset = 44,
+        .elementPreset = 40,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // A gun, and no Psynergy: only PP-free moves (ACTION_STRATEGY_FALLING
-        // takes the common ones first): her ordinary attack, Barrage, Quick
-        // Strike, Stun Voltage, Shuriken, Rapid Smash, Astral Blast, then
-        // Shining Star last.
-        .abilities = {ABILITY_ATTACK, 225, 163, 229, 177, 234, 195, 238},
+        // A human with a gun, not an Adept: weapon skills only, no Psynergy
+        // (ACTION_STRATEGY_FALLING takes the common ones first): her ordinary
+        // attack, Quick Strike, Barrage, Shuriken, Rapid Smash, then Sonic
+        // Smash last.
+        .abilities = {ABILITY_ATTACK, 163, ABILITY_ATTACK, 225, 177, 234, 234, 235},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 4200,
         .item = ITEM_ELIXIR,
