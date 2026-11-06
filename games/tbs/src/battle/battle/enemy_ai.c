@@ -103,7 +103,7 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
 
   // Ash Jenna, the super boss of Vale, punishes a summon rush (see
   // BattleTurnOrder_Sort, which also lets her act first that round): she says
-  // so and answers with Outer Space instead of her usual move. She does it
+  // so and answers with Annihilation (one party member falls) instead of her usual move. She does it
   // once; after that she fights as before.
   punish = 0;
   if (retry != 0 && unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
@@ -168,7 +168,7 @@ select_again:
             .abilities[selection & 7];
   }
   if (punish != 0) {
-    abilityId = ABILITY_OUTER_SPACE;
+    abilityId = ABILITY_ANNIHILATION;
     useItem = 0;
   }
   request->command = COMMAND_ENEMY_ABILITY;
