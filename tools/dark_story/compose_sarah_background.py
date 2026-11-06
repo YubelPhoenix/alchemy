@@ -96,8 +96,6 @@ roi = canvas[top:top + new_h, left:left + new_w].astype(np.float64)
 canvas[top:top + new_h, left:left + new_w] = (
     roi * (1 - alpha) + small * alpha).astype(np.uint8)
 
-# Grade it to a dusk: the sky darkened from the top (it was nearly white), the
-# colour pulled toward violet and slightly desaturated, to fit the dark story.
 # The plateau gets a fine grain so it reads as stone, not flat blocks.
 rng = np.random.default_rng(7)
 grain = rng.normal(0, 7, (1080 - PLATEAU_TOP + 30, w, 1))
@@ -105,15 +103,7 @@ canvas[PLATEAU_TOP - 10:] = np.clip(
     canvas[PLATEAU_TOP - 10:].astype(np.float64)
     + np.pad(grain, ((10, 0), (0, 0), (0, 0)))[:1080 - PLATEAU_TOP + 10]
     .repeat(3, axis=2), 0, 255).astype(np.uint8)
-graded = canvas.astype(np.float64) / 255.0
-ys = np.linspace(0, 1, 1080)[:, None, None]
-dim = 0.42 + 0.50 * np.clip(ys / 0.8, 0, 1)         # darker toward the top
-graded = graded ** 1.25 * dim
-grey = graded.mean(axis=2, keepdims=True)
-graded = grey + (graded - grey) * 0.85               # slightly desaturated
-graded = graded * np.array([1.0, 0.92, 1.12])        # toward violet
-graded = np.clip(graded + np.array([0.01, 0.0, 0.03]) * (1 - ys), 0, 1)
-canvas = (graded * 255).astype(np.uint8)
+# The picture keeps its own colours: no dusk grade.
 
 Image.fromarray(canvas).save(DEST)
 print(f"Wrote {DEST.relative_to(ROOT)}")
