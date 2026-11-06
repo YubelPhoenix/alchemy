@@ -15,7 +15,7 @@ DEST = ROOT / "games/tbs/src/graphics/battle_bg"
 WIDTH, HEIGHT = 256, 120
 
 # name -> vertical offset of the crop as a fraction of the spare height
-BACKGROUNDS = {"heart": 0.12, "sarah": 1.0, "kegare": 0.9, "ash": 0.7}
+BACKGROUNDS = {"heart": 0.12, "sarah": 1.0, "kegare": 0.9, "ash": 0.33}
 
 for name, offset in BACKGROUNDS.items():
     art = Image.open(SOURCE / f"{name}.png").convert("RGB")
