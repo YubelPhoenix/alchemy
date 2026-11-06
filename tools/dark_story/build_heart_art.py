@@ -11,9 +11,9 @@ private 16-colour palette makes every index land on the wrong colour.
 
 Frame layout (games/tbs/src/graphics/sprite/spr_484.tsv steps by two, each
 frame is stored twice):
-  0-1   idle            2-3   idle, one pixel higher (breathing loop)
-  4-5   dash / leap     6-7   lunge (second leap frame)
-  8-9   cast            10-11 damage
+  0-1   idle            2-3   idle (second drawing)   4-5  idle (third drawing)
+  6-7   dash / leap     8-9   lunge (second leap frame)
+  10-11 cast            12-13 damage
 """
 from pathlib import Path
 
@@ -26,14 +26,15 @@ DEST = ROOT / "games/tbs/src/graphics/monster/purple_beast.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
-FRAMES = 12
+FRAMES = 14
 # The supplied poses are drawn at 64x64, the frame's own size, so they are not
 # resampled: the size on screen comes from SPR_484's scale column in
 # sprites.tsv (0xac, which puts her idle pose, 60 rows, at Menardi's 40 or so).
 # (pose, mirror so she faces the party on the right, rise)
 LAYOUT = [
-    ("idle", True, 0), ("idle", True, 0),
-    ("idle", True, 1), ("idle", True, 1),
+    ("idle1", True, 0), ("idle1", True, 0),
+    ("idle2", True, 0), ("idle2", True, 0),
+    ("idle3", True, 0), ("idle3", True, 0),
     ("dash", False, 0), ("dash", False, 0),
     ("lunge", False, 0), ("lunge", False, 0),
     ("cast", False, 0), ("cast", False, 0),
@@ -67,6 +68,23 @@ for index, (name, mirror, rise) in enumerate(LAYOUT):
     bounds = src.getchannel("A").getbbox()
     if not bounds:
         raise ValueError(f"Heart pose {name} is empty")
+    if name.startswith("idle"):
+        # The three idle drawings keep their own heights (the breathing bob):
+        # all are placed by where the first one lands.
+        first = Image.open(SOURCE / "idle1.png").convert("RGBA")
+        fb = first.getchannel("A").getbbox()
+        fart = first.crop(fb)
+        if mirror:
+            fart = fart.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        fmask = np.asarray(fart)[..., 3] >= 128
+        fcx = np.nonzero(fmask)[1].mean()
+        fx = max(0, min(FRAME - fart.size[0], int(round(FRAME / 2 - fcx))))
+        full = src.transpose(Image.Transpose.FLIP_LEFT_RIGHT) if mirror else src
+        left = (FRAME - fb[2]) if mirror else fb[0]
+        frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
+        frame.alpha_composite(full, (fx - left, FRAME - fart.size[1] - fb[1]))
+        sheet.alpha_composite(frame, (0, index * FRAME))
+        continue
     art = src.crop(bounds)
     if mirror:
         art = art.transpose(Image.Transpose.FLIP_LEFT_RIGHT)

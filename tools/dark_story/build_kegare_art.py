@@ -36,7 +36,7 @@ FRAMES = 16
 # idle pose at Menardi's 40 or so rows), so the art itself is not resampled.
 SCALE = 1.0
 STEPS_MIA = {"damage": 12}
-STEPS = {0: "idle", 2: "idle", 4: "idle", 6: "dash", 8: "attack",
+STEPS = {0: "idle1", 2: "idle2", 4: "idle3", 6: "dash", 8: "attack",
          10: "cast", 12: "cast", 14: "damage"}
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
@@ -70,13 +70,15 @@ for index in range(FRAMES):
     if src.size != (FRAME, FRAME):
         raise ValueError(f"{pose} must be {FRAME}x{FRAME}")
     bottom = src.getchannel("A").getbbox()[3]
+    if pose.startswith("idle"):
+        # the three idle drawings keep their own heights (the breathing bob)
+        bottom = Image.open(SOURCE / "idle1.png").getchannel("A").getbbox()[3]
     frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
     frame.alpha_composite(src, (0, FRAME - bottom))
     side = round(FRAME * SCALE)
     small = frame.resize((side, side), Image.Resampling.LANCZOS)
     frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
-    rise = 1 if index in (2, 3) else 0   # idle breathing: frames 2-3 one pixel higher
-    frame.alpha_composite(small, ((FRAME - side) // 2, FRAME - side - rise))
+    frame.alpha_composite(small, ((FRAME - side) // 2, FRAME - side))
     sheet.alpha_composite(frame, (0, index * FRAME))
 
 data = np.asarray(sheet)
