@@ -12,7 +12,7 @@
 04841	message	You robbed people\nduring the eruption.{page_break}Some of them\nhad lost everything.{end_wait}
 04842	message	I told you we should\nhave left days ago.{end_wait}
 04843	message	You were caught.\nThat's what matters.{end_wait}
-04850	MsgVaultSeeThatsHappened	So this is where\nthey hid everything.{end_wait}
+04850	MsgVaultSeeThatsHappened	I see... So you're\ntrying to recover the\nElemental Stars.{end_wait}
 04851	message	Mayor, we found\nthe thieves.{end_wait}
 04852	message	The inn took you in.{page_break}And you repaid this town\nby stealing from it.{end_wait}
 04853	message	Their doors were open!{page_break}We thought{em_dash}Ow!\nAll right!{end_wait}
