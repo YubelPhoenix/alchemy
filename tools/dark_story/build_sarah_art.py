@@ -32,7 +32,7 @@ FRAME = 64
 FRAMES = 16
 # Frame -> supplied pose; the other frame of each pair is a copy.
 MIRROR = {"dash"}  # drawn facing left; she runs right, at the party
-STEPS = {0: "idle", 2: "idle", 4: "idle", 6: "dash", 8: "attack",
+STEPS = {0: "idle", 2: "idle", 4: "idle", 6: "dash", 8: "dash",
          10: "cast", 12: "cast", 14: "damage"}
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
