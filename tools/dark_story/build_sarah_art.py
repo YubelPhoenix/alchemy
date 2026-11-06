@@ -32,7 +32,7 @@ FRAME = 64
 FRAMES = 16
 # Frame -> supplied pose; the other frame of each pair is a copy.
 MIRROR = {"dash"}  # drawn facing left; she runs right, at the party
-STEPS = {0: "idle", 2: "idle", 4: "idle", 6: "dash", 8: "attack",
+STEPS = {0: "idle1", 2: "idle2", 4: "idle3", 6: "dash", 8: "attack",
          10: "cast", 12: "cast2", 14: "damage"}
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
@@ -97,9 +97,10 @@ for index in range(FRAMES):
     if src.size != (FRAME, FRAME):
         raise ValueError(f"{pose} must be {FRAME}x{FRAME}")
     bottom = src.getchannel("A").getbbox()[3]
+    if pose.startswith("idle"):
+        bottom = 60   # the three idle drawings keep their own heights (the bob)
     frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
-    rise = 1 if index in (2, 3) else 0   # idle breathing: frames 2-3 one pixel higher
-    frame.alpha_composite(src, (0, FRAME - bottom - rise))
+    frame.alpha_composite(src, (0, FRAME - bottom))
     sheet.alpha_composite(frame, (0, index * FRAME))
 
 data = np.asarray(sheet)
