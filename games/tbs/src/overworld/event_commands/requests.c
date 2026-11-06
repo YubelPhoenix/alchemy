@@ -27,6 +27,9 @@ void Field_RequestBattleFromEncounterTable(s32 zoneNo, s32 slotNo) {
   // Sarah (slot 1), in all four of her fights, fights on her cliff.
   if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI && slot == 1)
     gSaveBlock.special = (u16)(s32)&ResourceId_SarahBackdrop;
+  // Kegare (slot 2) fights in her throne room.
+  if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI && slot == 2)
+    gSaveBlock.special = (u16)(s32)&ResourceId_KegareBackdrop;
   if (work->mode == ACTOR_SYSTEM_WORLD_MAP) {
     struct Actor *leader = Actor_Lookup(gSaveBlock.leaderActorId);
 

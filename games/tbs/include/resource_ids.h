@@ -124,6 +124,7 @@ extern char ResourceId_DesertBackdrop;
 extern char ResourceId_DuskCloudsBackdrop;
 extern char ResourceId_HeartBackdrop;
 extern char ResourceId_SarahBackdrop;
+extern char ResourceId_KegareBackdrop;
 extern char ResourceId_AerialViewBackdrop; ///< Drawn only by Judgment.
 
 /// Lucky Wheels' frame (LuckyWheels_Run): 16 colours for BG palette 10,
