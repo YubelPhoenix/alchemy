@@ -163,3 +163,7 @@ Battle_SarahBackdrop:
 Battle_KegareBackdrop:
 	.incbin "games/tbs/src/graphics/battle_bg/kegare.gbapal"
 	.incbin "games/tbs/src/graphics/battle_bg/kegare.bitmap.d7"
+	.global Battle_AshBackdrop
+Battle_AshBackdrop:
+	.incbin "games/tbs/src/graphics/battle_bg/ash.gbapal"
+	.incbin "games/tbs/src/graphics/battle_bg/ash.bitmap.d7"

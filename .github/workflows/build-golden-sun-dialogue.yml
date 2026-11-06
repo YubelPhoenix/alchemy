@@ -61,6 +61,7 @@ jobs:
           python3 tools/dark_story/build_sarah_art.py
           python3 tools/dark_story/build_sarah_overworld.py
           python3 tools/dark_story/compose_sarah_background.py
+          python3 tools/dark_story/compose_ash_background.py
           python3 tools/dark_story/build_battle_backgrounds.py
 
       - name: Stamp this build so older saves resume at their restart point

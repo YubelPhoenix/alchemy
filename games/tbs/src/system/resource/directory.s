@@ -321,7 +321,8 @@ Resource_DirectoryTable:
 	resource HeartBackdrop, Battle_HeartBackdrop
 	resource SarahBackdrop, Battle_SarahBackdrop
 	resource KegareBackdrop, Battle_KegareBackdrop
-	unused 20
+	resource AshBackdrop, Battle_AshBackdrop
+	unused 19
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp

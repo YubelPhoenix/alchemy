@@ -30,6 +30,10 @@ void Field_RequestBattleFromEncounterTable(s32 zoneNo, s32 slotNo) {
   // Kegare (slot 2) fights in her throne room.
   if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI && slot == 2)
     gSaveBlock.special = (u16)(s32)&ResourceId_KegareBackdrop;
+  // Ash Jenna's super boss fight in Vale (slot 4) burns under her own sky; her
+  // Suhalla Gate fight (slot 5) keeps the gate's.
+  if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI && slot == 4)
+    gSaveBlock.special = (u16)(s32)&ResourceId_AshBackdrop;
   if (work->mode == ACTOR_SYSTEM_WORLD_MAP) {
     struct Actor *leader = Actor_Lookup(gSaveBlock.leaderActorId);
 
