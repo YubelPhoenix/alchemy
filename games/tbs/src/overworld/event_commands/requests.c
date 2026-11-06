@@ -26,9 +26,9 @@ void Field_RequestBattleFromEncounterTable(s32 zoneNo, s32 slotNo) {
     // Heart: under dusk clouds.
     if (slot == 3)
       gSaveBlock.special = (u16)(s32)&ResourceId_DuskCloudsBackdrop;
-    // Sarah, in all four of her fights: on Altin Peak's cliffs.
+    // Sarah, in all four of her fights: on the grasslands.
     if (slot == 1)
-      gSaveBlock.special = (u16)(s32)&ResourceId_AltinPeakBackdrop;
+      gSaveBlock.special = (u16)(s32)&ResourceId_GrasslandBackdrop;
     // Kegare: in the Sol Sanctum.
     if (slot == 2)
       gSaveBlock.special = (u16)(s32)&ResourceId_SolSanctumBackdrop;
