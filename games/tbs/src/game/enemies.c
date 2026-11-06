@@ -2529,19 +2529,20 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     {
         .name = "              ",
         .level = 24,
-        .hp = 750,
+        .hp = 600,
         .pp = 120,
         .atk = 120,
         .def = 40,
-        .agi = 48,
+        .agi = 40,
         .luck = 20,
-        .turns = 2,
-        // Menardi presses the fight: two actions a turn, her Mars Psynergy
-        // (Flare Wall, Fire, Fireball, Flare Storm) as often as her blade.
+        .turns = 1,
+        // Menardi presses the fight with her Mars Psynergy (Flare Wall, Fire,
+        // Fireball) more often than her blade, but still one action a turn:
+        // this is an early fight.
         .elementPreset = 40,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_EVEN,
-        .abilities = {ABILITY_ATTACK, 49, 46, ABILITY_ATTACK, 48, 49, 47, ABILITY_ATTACK},
+        .abilities = {ABILITY_ATTACK, 49, 46, ABILITY_ATTACK, 48, 49, 46, ABILITY_ATTACK},
         .weakEffects = {ABILITY_EFFECT_DEFENSE_DOWN_2, ABILITY_EFFECT_DEFENSE_DOWN},
         .coins = 400,
         .experience = 300,
