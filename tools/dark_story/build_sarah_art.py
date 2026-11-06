@@ -5,7 +5,7 @@ She has her own monster resource (SarahSprites, SPR_488, games/tbs/src/
 graphics/monster/sarah.png), like Kegare.  Battle monsters are 64x64 frames at
 8 bits per pixel, raw indices into the shared 224-colour sprite palette
 (games/tbs/src/system/memory/basic.png); index 0 is transparent.  The sheet is
-10 frames tall; spr_488.tsv steps through frames 0, 2, 4, 6 and 8,
+12 frames tall; spr_488.tsv steps through frames 0, 2, 4, 6, 8 and 10,
 so every frame is stored twice.
 
   Each pose is dropped so its lowest row sits on the frame's bottom row.  Her
@@ -14,9 +14,10 @@ so every frame is stored twice.
 
   0         idle (standing; also the run-up's start)
   2         rise (the leap's first half)
-  4         attack (the leap's landing, held while the blow plays)
-  6         cast (raised-spear pose for her casting moves)
-  8         damage
+  4         dive (falling spear first onto the target)
+  6         attack (the leap's landing, held while the blow plays)
+  8         cast (raised-spear pose for her casting moves)
+  10        damage
 """
 from pathlib import Path
 
@@ -29,10 +30,10 @@ DEST = ROOT / "games/tbs/src/graphics/monster/sarah.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
-FRAMES = 10
+FRAMES = 12
 # Frame -> supplied pose; the other frame of each pair is a copy.
-MIRROR = set()  # the game shows the sheet as drawn: poses are drawn facing left, toward the party
-STEPS = {0: "idle_new", 2: "rise", 4: "attack_leap", 6: "idle1", 8: "damage"}
+MIRROR = {"dive"}  # drawn diving to the right; the lunge toward the target is left
+STEPS = {0: "idle_new", 2: "rise", 4: "dive", 6: "attack_leap", 8: "idle1", 10: "damage"}
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
 colors = np.array(palette, dtype=np.float64).reshape(-1, 3)
@@ -51,7 +52,7 @@ def to_lab(rgb):
 
 palette_lab = to_lab(colors)
 
-CLEAN = {"damage", "rise", "attack_leap"}   # their drawings carry stray speckle
+CLEAN = {"damage", "rise", "attack_leap", "dive"}   # their drawings carry stray speckle
 
 
 def despeckle(img):
