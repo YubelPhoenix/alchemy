@@ -21,19 +21,22 @@ void Field_RequestBattleFromEncounterTable(s32 zoneNo, s32 slotNo) {
   work->encounter = Encounter_GetFormationAtSlot(zone, slot);
   if (zone == ENCOUNTER_ZONE_SCRIPTED && slot == 0)
     gSaveBlock.special = (s32)&ResourceId_VenusLighthouseAerieStormBackdrop;
-  // Heart (slot 3) fights under her own moonlit meadow.
-  if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI && slot == 3)
-    gSaveBlock.special = (u16)(s32)&ResourceId_HeartBackdrop;
-  // Sarah (slot 1), in all four of her fights, fights on her cliff.
-  if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI && slot == 1)
-    gSaveBlock.special = (u16)(s32)&ResourceId_SarahBackdrop;
-  // Kegare (slot 2) fights in her throne room.
-  if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI && slot == 2)
-    gSaveBlock.special = (u16)(s32)&ResourceId_KegareBackdrop;
-  // Ash Jenna's super boss fight in Vale (slot 4) burns under her own sky; her
-  // Suhalla Gate fight (slot 5) keeps the gate's.
-  if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI && slot == 4)
-    gSaveBlock.special = (u16)(s32)&ResourceId_AshBackdrop;
+  // Bosses fight on backgrounds from the game that suit them.
+  if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI) {
+    // Heart: under dusk clouds.
+    if (slot == 3)
+      gSaveBlock.special = (u16)(s32)&ResourceId_DuskCloudsBackdrop;
+    // Sarah, in all four of her fights: on Altin Peak's cliffs.
+    if (slot == 1)
+      gSaveBlock.special = (u16)(s32)&ResourceId_AltinPeakBackdrop;
+    // Kegare: in the Sol Sanctum.
+    if (slot == 2)
+      gSaveBlock.special = (u16)(s32)&ResourceId_SolSanctumBackdrop;
+    // Ash Jenna's Vale super boss fight: under the Vale storm. Her Suhalla
+    // Gate fight (slot 5) keeps the gate's.
+    if (slot == 4)
+      gSaveBlock.special = (u16)(s32)&ResourceId_ValeStormBackdrop;
+  }
   if (work->mode == ACTOR_SYSTEM_WORLD_MAP) {
     struct Actor *leader = Actor_Lookup(gSaveBlock.leaderActorId);
 

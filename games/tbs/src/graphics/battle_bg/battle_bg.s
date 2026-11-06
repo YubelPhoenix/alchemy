@@ -151,19 +151,3 @@ Battle_DuskCloudsBackdrop:
 Battle_AerialViewBackdrop:
 	.incbin "games/tbs/src/graphics/battle_bg/aerial_view.gbapal"
 	.incbin "games/tbs/src/graphics/battle_bg/aerial_view.bitmap.d7"
-	.global Battle_HeartBackdrop
-Battle_HeartBackdrop:
-	.incbin "games/tbs/src/graphics/battle_bg/heart.gbapal"
-	.incbin "games/tbs/src/graphics/battle_bg/heart.bitmap.d7"
-	.global Battle_SarahBackdrop
-Battle_SarahBackdrop:
-	.incbin "games/tbs/src/graphics/battle_bg/sarah.gbapal"
-	.incbin "games/tbs/src/graphics/battle_bg/sarah.bitmap.d7"
-	.global Battle_KegareBackdrop
-Battle_KegareBackdrop:
-	.incbin "games/tbs/src/graphics/battle_bg/kegare.gbapal"
-	.incbin "games/tbs/src/graphics/battle_bg/kegare.bitmap.d7"
-	.global Battle_AshBackdrop
-Battle_AshBackdrop:
-	.incbin "games/tbs/src/graphics/battle_bg/ash.gbapal"
-	.incbin "games/tbs/src/graphics/battle_bg/ash.bitmap.d7"
