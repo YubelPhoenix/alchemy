@@ -1,15 +1,15 @@
 # Sarah: a human with a gun, met four times (Vault, Kalay, Tolbi, Lalivero), stronger each time.
-N340	MsgDarkSarahGreet	You again, Isaac.\nStill traveling east?{page_break}I heard a rumor here.\nA girl with golden hair\nand violet eyes.{end_wait}
-N341	MsgDarkSarahIsaac	Is she someone\nyou know, Sarah?{end_wait}
-N342	MsgDarkSarahChallenge	Someone I must find.\nI can't say more.{page_break}You've grown stronger.\nLet's see if you can\nstand against me now.{end_wait}
-N343	MsgDarkSarahBeaten	You've improved.\nI can see that.{page_break}If you hear anything\nabout the girl,\nremember our talk.{end_wait}
-N344	MsgDarkSarahVaultGreet	You there. Isaac, yes?\nI'm Sarah, a knight\nfrom the Western lands.{page_break}I'm seeking a girl.\nShort golden hair.\nPurple eyes.{page_break}No? Then draw your sword.\nI want to see how\nyou handle yourself.{end_wait}
-N345	MsgDarkSarahVaultBeaten	Enough. You fought well.\nI'll remember you.{page_break}If our roads cross\nagain, we'll see\nwhat you've learned.{end_wait}
-N346	MsgDarkSarahTolbiGreet	Isaac. I found a lead.\nA girl like the one\nI've been seeking.{page_break}They say she's staying\nunder Babi's care.\nDo you know anything?{end_wait}
-N347	MsgDarkSarahTolbiIsaac	Why are you\nlooking for her?{end_wait}
-N348	MsgDarkSarahTolbiChallenge	I gave my word.\nThat's all I'll say.{page_break}You're not stepping\naside, are you?\nThen face me.{end_wait}
-N349	MsgDarkSarahTolbiBeaten	You still won't yield.\nI can respect that.{page_break}But if you meet her,\nlet me speak to her.\nJust once.{end_wait}
-N350	MsgDarkSarahLaliveroGreet	Isaac. You're here.\nAnd so is the trail\nI've followed for years.{page_break}A girl matching\nthat description\nwas seen near here.{end_wait}
-N351	MsgDarkSarahLaliveroIsaac	You still haven't\ntold me what happens\nwhen you find her.{end_wait}
-N352	MsgDarkSarahLaliveroChallenge	I've followed rumors\nall this way. I've yet\nto see her myself.{page_break}If she's the one,\nI have a duty to her.\nI won't tell you more.{page_break}If you mean to stop me,\nIsaac, then draw.\nOne last time.{end_wait}
-N353	MsgDarkSarahLaliveroBeaten	That's enough.\nYou made your point.{page_break}I don't even know\nif she's the girl\nI'm looking for.{page_break}I owe her the truth.\nI need to find it\nbefore I act.{end_wait}
+N340	MsgDarkSarahGreet	Isaac. I spoke to a\ntraveler here in Kalay.\nHe claims he saw her.{page_break}But when I asked where,\nhe couldn't tell me.\nIt's always the same.{end_wait}
+N341	MsgDarkSarahIsaac	Then why follow\nanother rumor?{end_wait}
+N342	MsgDarkSarahChallenge	Because one of them\nmight be true.{page_break}You've grown stronger\nsince Vault. Let me see\nwhat you've learned.{end_wait}
+N343	MsgDarkSarahBeaten	Well fought, Isaac.\nYou've improved.{page_break}The rumor may be false.\nStill, I can't ignore it.\nNot yet.{end_wait}
+N344	MsgDarkSarahVaultGreet	My name is Sarah.\nI'm a knight from the\nWestern Continent.{page_break}I'm looking for a girl.\nShort golden hair.\nPurple eyes.{page_break}I have a long road ahead.\nI need to stay sharp.{page_break}You carry a sword.\nShow me your guard.{end_wait}
+N345	MsgDarkSarahVaultBeaten	You held your ground.\nI won't forget that.{page_break}If you hear of the girl,\nremember what I told you.\nThat's all I ask.{end_wait}
+N346	MsgDarkSarahTolbiGreet	I followed another lead\nhere to Tolbi.{page_break}A girl matching my\ndescription may have\npassed through.{page_break}No one can tell me\nwhere she went next.{end_wait}
+N347	MsgDarkSarahTolbiIsaac	And if you find her?\nWhat happens then?{end_wait}
+N348	MsgDarkSarahTolbiChallenge	I don't know.\nI've tried to answer\nthat for myself.{page_break}But I can't turn back\non another rumor.{page_break}One more match, Isaac.\nI need to know I'm\nready to go on.{end_wait}
+N349	MsgDarkSarahTolbiBeaten	You're still ahead of me.\nI won't deny it.{page_break}If you meet her,\ndon't tell her my name.\nNot until I can explain.{end_wait}
+N350	MsgDarkSarahLaliveroGreet	I heard of a girl\nwho passed this way.\nI came as soon as I could.{page_break}The description fits.\nBut I haven't seen\nher myself.{end_wait}
+N351	MsgDarkSarahLaliveroIsaac	How can you be sure\nshe's the one you're\nlooking for?{end_wait}
+N352	MsgDarkSarahLaliveroChallenge	I can't. That's what\nI've been afraid to say.{page_break}I've followed rumors,\nnot the girl herself.\nI may have been wrong.{page_break}But I have to be ready\nif I find her.\nOne last match, Isaac.{end_wait}
+N353	MsgDarkSarahLaliveroBeaten	Enough. You've won.\nI won't ask for\nanother fight.{page_break}I haven't seen her.\nNot even once.\nOnly heard rumors.{page_break}I need more than\nsomeone else's word.\nI'll find out myself.{end_wait}
