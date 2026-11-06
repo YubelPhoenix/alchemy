@@ -53,9 +53,18 @@
         ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 1);                               \
   } while (0)
 
+/// She turns and walks off east, then is gone (her place is parked off the
+/// map); no warp flicker, she is a human.
+#define SARAH_WALK_AWAY(actorId)                                               \
+  do {                                                                         \
+    Actor_FaceDirection((actorId), FACING_EAST, 10);                           \
+    Actor_WalkByAndWait((actorId), 112, 0);                                    \
+    Actor_ConfigureSpriteColor((actorId), SPRITE_COLOR_HIDDEN);                \
+  } while (0)
+
 /// Back from her battle, in the scene she was fought in: the party stands
 /// where it faced her; a defeat leaves her waiting, a win has her say her
-/// last words, flicker away and set `foughtFlag`.
+/// last words, walk away and set `foughtFlag`.
 #define SARAH_AFTERMATH(actorId, leaderX, leaderY, beatenMessage, foughtFlag)  \
   do {                                                                         \
     GameFlag_Clear(FLAG_DARK_SARAH_PENDING);                                   \
@@ -71,7 +80,7 @@
       Event_End();                                                             \
     } else {                                                                   \
       SARAH_SAYS((actorId), (beatenMessage));                                  \
-      AshWarp_Out(actorId);                                                    \
+      SARAH_WALK_AWAY(actorId);                                                \
       Actor_SetPosition((actorId), PIXELS(0), PIXELS(0));                      \
       GameFlag_Set(foughtFlag);                                                \
       FieldCamera_MoveTo(-1, -1, -1, 0);                                       \

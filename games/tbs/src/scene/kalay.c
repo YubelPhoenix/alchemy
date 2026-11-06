@@ -130,6 +130,7 @@
 
 #include "flags.h"
 #include "ash_warp.h"
+#include "sarah_fight.h"
 #include "djinn_ids.h"
 #include "songs.h"
 #include "audio_engine_symbols.h"
@@ -535,7 +536,7 @@ static void Kalay_SarahAftermath(void) {
   }
   Event_SetMessageId(MsgDarkSarahBeaten);
   Kalay_SarahSays();
-  AshWarp_Out(ACTOR_SARAH);
+  SARAH_WALK_AWAY(ACTOR_SARAH);
   Actor_SetPosition(ACTOR_SARAH, PIXELS(0), PIXELS(0));
   GameFlag_Set(FLAG_DARK_SARAH_FOUGHT);
   FieldCamera_MoveTo(-1, -1, -1, 0);
