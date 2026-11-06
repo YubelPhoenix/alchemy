@@ -58,6 +58,8 @@ jobs:
           python3 tools/dark_story/build_heart_art.py
           python3 tools/dark_story/build_ash_jenna_art.py
           python3 tools/dark_story/build_kegare_art.py
+          python3 tools/dark_story/build_sarah_art.py
+          python3 tools/dark_story/build_sarah_overworld.py
 
       - name: Stamp this build so older saves resume at their restart point
         run: |

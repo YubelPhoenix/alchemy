@@ -2583,23 +2583,28 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .itemChance = 1,
         .experience = 1732,
     },
-    // Mia, as Isaac fights her alone on the Mercury Lighthouse
+    // Sarah, the optional super boss of Kalay (Kalay_TalkToSarah). Takes the
+    // place of the removed Isaac-vs-Mia Mia (formation 383, zone 105 slot 1).
     {
         .name = "              ",
-        .level = 12,
-        .hp = 230,
-        .pp = 60,
-        .atk = 42,
-        .def = 18,
-        .agi = 24,
-        .luck = 15,
-        .turns = 1,
-        .elementPreset = 40,
+        .level = 45,
+        .hp = 11000,
+        .pp = 500,
+        .atk = 445,
+        .def = 175,
+        .agi = 200,
+        .luck = 40,
+        .turns = 3,
+        .elementPreset = 41,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
-        .abilities = {ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_FROST, ABILITY_ATTACK, ABILITY_ATTACK, ABILITY_FROST, ABILITY_ATTACK, ABILITY_ATTACK},
-        .weakEffects = {ABILITY_EFFECT_DEFENSE_DOWN_2, ABILITY_EFFECT_DEFENSE_DOWN},
-        .coins = 150,
-        .experience = 120,
+        .actionStrategy = ACTION_STRATEGY_FALLING,
+        // Spear first (ACTION_STRATEGY_FALLING), then the heavy spells last.
+        .abilities = {ABILITY_ATTACK, 431, ABILITY_ATTACK, 52, 223, 176, 59, 169},
+        .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
+        .coins = 4200,
+        .item = ITEM_ELIXIR,
+        .itemChance = 1,
+        .experience = 4800,
     },
     // Tornado Lizard
     {

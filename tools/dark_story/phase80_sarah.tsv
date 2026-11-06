@@ -1,0 +1,6 @@
+# Sarah, the optional super boss in Kalay (Kalay_TalkToSarah).
+N340	MsgDarkSarahGreet	Kalay is loud today.\nNobody here looks up.\nNobody sees me.{page_break}You do, though.\nYou stopped. You\nlooked right at me.{end_wait}
+N341	MsgDarkSarahIsaac	Who are you?\nYou aren't from Kalay.{end_wait}
+N342	MsgDarkSarahChallenge	Sarah. That's all\nthat's left of me.\nI was never finished.{page_break}Nobody wrote an ending\nfor me. So I'll take\none from you instead.{end_wait}
+N343	MsgDarkSarahBeaten	So that's how it feels\nto lose. I wasn't\nmade to find out.{page_break}Keep walking, Isaac.\nSomeone will write\nyour ending for you.{end_wait}
+N344	MsgDarkSarahNotYet	You're not ready.\nCome back with the\nfull company.{end_wait}

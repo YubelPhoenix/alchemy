@@ -129,6 +129,7 @@
 #include "heap.h"
 
 #include "flags.h"
+#include "ash_warp.h"
 #include "djinn_ids.h"
 #include "songs.h"
 #include "audio_engine_symbols.h"
@@ -216,6 +217,10 @@ enum KalayTownActorId {
   /// Circles in the air until Catch pulls it in.
   /// ★ Named from the game: "Nut" (MsgItemName)
   ACTOR_TOWN_NUT,
+  /// Sarah, the optional super boss (Kalay_TalkToSarah), until she is beaten
+  /// (FLAG_DARK_SARAH_FOUGHT). Her row follows the Nut's; the tour group's
+  /// rows are added after her.
+  ACTOR_SARAH,
   /// The tour group, ACTOR_FIRST_TOURIST and the six after it, then
   /// ACTOR_OURANOS: in row order a chef (SPRITE_CHEF), a young woman in
   /// green, a young man with brown hair, a woman with fair hair, a woman with a
@@ -476,6 +481,68 @@ const struct Trigger *Kalay_GetTriggers(void) {
     return gKalay_TunnelTriggers;
   }
   return gKalay_NoTriggers;
+}
+
+/// Sarah's next message, shown with her own mugshot.
+static void Kalay_SarahSays(void) {
+  GameFlag_Set(FLAG_DARK_SARAH_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_SARAH, 0, 20);
+  GameFlag_Clear(FLAG_DARK_SARAH_SPEAKING);
+}
+
+/// Sarah in Kalay: a battle Isaac can pick or leave. She only fights once Mia
+/// has joined; a defeat comes back here and she waits to be fought again.
+static void Kalay_TalkToSarah(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkSarahGreet);
+  Kalay_SarahSays();
+  if (GameFlag_Get(FLAG_MIA_JOINED_PARTY) == 0) {
+    Event_SetMessageId(MsgDarkSarahNotYet);
+    Kalay_SarahSays();
+    Event_End();
+    return;
+  }
+  Event_SetMessageId(MsgDarkSarahIsaac);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
+  Event_SetMessageId(MsgDarkSarahChallenge);
+  Kalay_SarahSays();
+  GameFlag_Set(FLAG_DARK_SARAH_PENDING);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  Event_SetAfterBattleDestination((s32)&SceneId_Kalay, 0);
+  // A defeat goes to the restart point (the last Sanctum).
+  Event_SetDefeatDestination(-1, -1);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 1);
+  Event_End();
+}
+
+/// Back from Sarah's battle: after a win she says her last words and goes;
+/// after a defeat she waits.
+static void Kalay_SarahAftermath(void) {
+  GameFlag_Clear(FLAG_DARK_SARAH_PENDING);
+  Event_Start();
+  // The party comes back where it stood to face her, not at the door it
+  // entered by.
+  Actor_SetPosition(ACTOR_PARTY_LEADER, PIXELS(300), PIXELS(342));
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  if (gSaveBlock.sequenceResult == -1) {
+    // Release the fixed camera before player control returns.
+    FieldCamera_MoveTo(-1, -1, -1, 0);
+    Event_End();
+    return;
+  }
+  Event_SetMessageId(MsgDarkSarahBeaten);
+  Kalay_SarahSays();
+  AshWarp_Out(ACTOR_SARAH);
+  Actor_SetPosition(ACTOR_SARAH, PIXELS(0), PIXELS(0));
+  GameFlag_Set(FLAG_DARK_SARAH_FOUGHT);
+  FieldCamera_MoveTo(-1, -1, -1, 0);
+  Event_End();
 }
 
 /// A man in Kalay tells why he moved there: he left Tolbi, afraid of Babi, who
@@ -1187,6 +1254,8 @@ static void Kalay_CatchTownNut(void) {
 
 /// Every scene of the overlay sets FLAG_KALAY_REACHED, then prepares its own
 /// people and cells.
+static void Kalay_SarahAftermath(void);
+
 s32 Kalay_Initialize(void) {
   s32 sceneId;
 
@@ -1202,6 +1271,11 @@ s32 Kalay_Initialize(void) {
     Kalay_StartWindowTransition();
   } else if (sceneId == (s32)&SceneId_KalayTunnelTreasureRoom) {
     Kalay_PrepareTunnel();
+  }
+  // Back from Sarah's battle.
+  if (sceneId == (s32)&SceneId_Kalay &&
+      GameFlag_Get(FLAG_DARK_SARAH_PENDING) != 0) {
+    Kalay_SarahAftermath();
   }
   return 0;
 }
@@ -2793,6 +2867,9 @@ struct ActorTemplate gKalay_TownActorTemplates[] = {
         PIXELS(440), 0, PIXELS(88), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_BLANK, CONDITION_ALWAYS, MOVEMENT_TYPE_RESET_ACTION,
         PIXELS(56), 0, PIXELS(332), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    // Sarah, waiting in the square until she is beaten.
+    { SPRITE_SARAH, FLAG_DARK_SARAH_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(300), 0, PIXELS(318), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -2897,6 +2974,7 @@ struct Trigger gKalay_TownTriggers[] = {
     { TRIGGER_TALK, ACTOR_WEAPON_MERCHANT, CONDITION_ALWAYS, EVENT(Kalay_TalkToWeaponMerchant) },
     { TRIGGER_TALK, ACTOR_ARMOR_MERCHANT, CONDITION_ALWAYS, EVENT(Kalay_TalkToArmorMerchant) },
     { TRIGGER_TALK, ACTOR_ITEM_MERCHANT, CONDITION_ALWAYS, EVENT(Kalay_TalkToItemMerchant) },
+    { TRIGGER_TALK, ACTOR_SARAH, FLAG_DARK_SARAH_FOUGHT, EVENT(Kalay_TalkToSarah) },
     { PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_WELCOMING_SOLDIER, CONDITION_ALWAYS, MSGNO(MsgKalayWarriorHonestEyes) },
     { PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_SOLDIER_PROTECTING_THE_PEACE, CONDITION_ALWAYS, MSGNO(MsgKalayGuardsJudgeVisitors) },
     { PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_YOUNG_MAN_ON_HAMMET_THE_MERCHANT, CONDITION_ALWAYS, MSGNO(MsgKalayHammetPeaceAndLiberty) },

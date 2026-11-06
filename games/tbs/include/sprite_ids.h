@@ -523,9 +523,11 @@ enum SpriteId {
   /// ★ Named from what the player sees: a woman with red-brown hair in a pink
   /// dress and a white apron (spr_128.png)
   SPRITE_WOMAN_IN_PINK_APRON = 0x80,
-  /// ★ Named from what the player sees: a man with fair hair in a blue
-  /// feathered cap, holding a lute (spr_129.png)
-  SPRITE_MAN_WITH_LUTE = 0x81,
+  /// Sarah, the optional super boss of Kalay: The Lost Age's unfinished
+  /// blonde girl in a green skirt, built by tools/dark_story/
+  /// build_sarah_overworld.py in the place of the lute player of the Bilibin
+  /// cottage (spr_129.png).
+  SPRITE_SARAH = 0x81,
   /// ★ Named from what the player sees: a young man with brown hair and a
   /// white headband in a white top and blue trousers (spr_130.png)
   SPRITE_YOUTH_WITH_HEADBAND = 0x82,

@@ -317,7 +317,8 @@ Resource_DirectoryTable:
 @ XXX (no evidence): whether these rows were left for later resources; they
 @ are empty and nothing reads them.
 	resource KegareSprites, Monster_KegareSprites
-	unused 24
+	resource SarahSprites, Monster_SarahSprites
+	unused 23
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp

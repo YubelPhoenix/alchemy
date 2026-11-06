@@ -817,8 +817,10 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 42,
     },
     {
-        // Mia fighting Isaac: her own party battle sprite (BATTLE_CHARACTER(MIA)).
-        .animation = 303,
+        // Sarah, the optional super boss of Kalay (her own art in
+        // games/tbs/src/graphics/monster/sarah.png), in the place of Mia
+        // fighting Isaac.
+        .animation = 488,
         .attackAnim = 1,
         .defeatSound = 1,
         .effectHeight = 42,

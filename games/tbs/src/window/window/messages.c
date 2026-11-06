@@ -536,6 +536,9 @@ s32 Portrait_GetForSpeaker(u32 value) {
   // Ash Jenna's mugshot is icon 67, numbered 128 + 51 here.
   if (GameFlag_GetFar(FLAG_DARK_ASH_JENNA_SPEAKING) != 0)
     return 128 + 51;
+  // Sarah's mugshot is icon 68, numbered 128 + 52 here.
+  if (GameFlag_GetFar(FLAG_DARK_SARAH_SPEAKING) != 0)
+    return 128 + 52;
 
   // Both maps are {speaker, portrait} pairs ending in -1 (window/scales.c).
   if (value < 20) {
@@ -595,9 +598,13 @@ struct Window *Portrait_OpenWindow(s32 speaker, s32 portraitOption, s32 x,
   // Heart speaks alone: a portrait left up by an earlier speaker (Garet's)
   // would otherwise stay beside hers.
   if (GameFlag_GetFar(FLAG_DARK_HEART_SPEAKING) != 0 ||
-      GameFlag_GetFar(FLAG_DARK_ASH_JENNA_SPEAKING) != 0) {
-    s32 own = GameFlag_GetFar(FLAG_DARK_HEART_SPEAKING) != 0 ? 128 + 50
-                                                              : 128 + 51;
+      GameFlag_GetFar(FLAG_DARK_ASH_JENNA_SPEAKING) != 0 ||
+      GameFlag_GetFar(FLAG_DARK_SARAH_SPEAKING) != 0) {
+    s32 own = GameFlag_GetFar(FLAG_DARK_HEART_SPEAKING) != 0
+                  ? 128 + 50
+                  : (GameFlag_GetFar(FLAG_DARK_ASH_JENNA_SPEAKING) != 0
+                         ? 128 + 51
+                         : 128 + 52);
     s32 slot;
 
     for (slot = 0; slot < 2; slot++) {

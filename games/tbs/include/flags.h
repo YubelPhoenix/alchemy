@@ -2804,4 +2804,16 @@
 /// (Scene_Initialize reads the result on return).
 #define FLAG_DARK_ASH_GATE_PENDING 0x8e4
 
+/// Sarah, Kalay's optional super boss, has been fought and won; a defeat
+/// clears it so she waits for a retry.
+#define FLAG_DARK_SARAH_FOUGHT 0x8e5
+
+/// Sarah's Kalay battle has been started and not yet settled (Kalay's
+/// initializer reads the result on return).
+#define FLAG_DARK_SARAH_PENDING 0x8e6
+
+/// While one of Sarah's messages is shown, her mugshot (icon 68) is the
+/// speaker's portrait (Portrait_GetForSpeaker).
+#define FLAG_DARK_SARAH_SPEAKING 0x8e7
+
 #endif
