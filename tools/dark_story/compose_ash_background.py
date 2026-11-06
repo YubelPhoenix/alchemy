@@ -34,7 +34,7 @@ rows = np.arange(h)[:, None]
 depth = np.clip((rows - PLATFORM_TOP) / need, 0, 1)
 # Ground gets slightly darker toward the bottom, with soft broad variation
 # plus fine stone speckle.
-lum = 1.15 - 0.35 * depth + noise(48, 0.05) + noise(12, 0.04) + noise(3, 0.03)
+lum = 2.1 - 0.5 * depth + noise(48, 0.05) + noise(12, 0.04) + noise(3, 0.03)
 ground = np.clip(base[None, None, :] * lum[:, :, None], 0, 255)
 ground[..., 1] *= 1.0 + 0.06 * np.clip(noise(64, 1.0), -1, 1)   # faint moss
 
@@ -43,5 +43,7 @@ FADE = 44
 alpha = np.clip((rows - (PLATFORM_TOP - FADE // 2)) / FADE, 0, 1)
 alpha = alpha * alpha * (3 - 2 * alpha)
 out = img * (1 - alpha[:, :, None]) + ground * alpha[:, :, None]
+# Lift the whole picture so the battlers read against it on a GBA screen.
+out = 255.0 * (np.clip(out, 0, 255) / 255.0) ** 0.78
 Image.fromarray(np.clip(out, 0, 255).astype(np.uint8)).save(DEST)
 print(f"Wrote {DEST.relative_to(ROOT)}")
