@@ -31,3 +31,15 @@ Keep Hammet cautious, pragmatic, and politically aware. Preserve the bridge's de
 - Read each full scene, including preceding and following lines and original control tokens.
 - Implement the approved revised text without altering message IDs or event control commands.
 - Build the game, re-test the scene, and update each row's status from **Reported** to **Implemented / Verified** only after confirmation.
+
+## Dialogue change acceptance rule (27-character limit)
+
+Before approving Ashfall dialogue, check every display line in the complete event, not only changed words:
+
+- At most **27 visible characters per ordinary dialogue line**, **3 lines per page**. Literal `\n` starts a line and `{page_break}` starts a new page.
+- Preserve original message ID/context, ending and formatting control tokens, and runtime placeholders. Dynamic names must reserve enough display width.
+- The existing build workflow runs `python3 tools/dark_story_rewrite.py`, rejecting overflow, invalid page counts, duplicate IDs, context mismatches, and altered control tokens **before compilation**. The game still needs in-engine visual verification.
+
+**Mia scene acceptance:** Entries N15–N36 in `tools/dark_story/phase7_mia_thieves.tsv`, branch `dark-story-rewrite`, commit `b38655f`, have no width or page-count violations. Longest line: 27 characters in N19. Commit `9281acef` passed the full workflow; the later wording changes need their own completed build.
+
+**Known unrelated failures:** Nov 6 GCC 2.95.2 download failed due to a connection reset; older artwork jobs failed for missing `cv2`. Neither is a dialogue-length violation.
