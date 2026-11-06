@@ -155,3 +155,7 @@ Battle_AerialViewBackdrop:
 Battle_HeartBackdrop:
 	.incbin "games/tbs/src/graphics/battle_bg/heart.gbapal"
 	.incbin "games/tbs/src/graphics/battle_bg/heart.bitmap.d7"
+	.global Battle_SarahBackdrop
+Battle_SarahBackdrop:
+	.incbin "games/tbs/src/graphics/battle_bg/sarah.gbapal"
+	.incbin "games/tbs/src/graphics/battle_bg/sarah.bitmap.d7"
