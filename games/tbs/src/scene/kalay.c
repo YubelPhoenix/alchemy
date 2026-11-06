@@ -1271,7 +1271,9 @@ s32 Kalay_Initialize(void) {
   }
   // Back from Sarah's battle.
   if (sceneId == (s32)&SceneId_Kalay &&
-      GameFlag_Get(FLAG_DARK_SARAH_PENDING) != 0) {
+      GameFlag_Get(FLAG_DARK_SARAH_PENDING) != 0 &&
+      GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT0) != 0 &&
+      GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT1) == 0) {
     Kalay_SarahAftermath();
   }
   return 0;

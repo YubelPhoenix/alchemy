@@ -79,6 +79,7 @@
 #include "djinn_ids.h"
 #include "character_ids.h"
 #include "songs.h"
+#include "sarah_fight.h"
 
 enum { VAULT_DRIFT_RATE = PIXELS(1) / 10 };
 
@@ -148,7 +149,10 @@ enum {
   ACTOR_SAP = 23,
   /// The silent, cloaked watcher, placed off the map until her glimpse
   /// (Vault_WatcherAppears).
-  ACTOR_VAULT_WATCHER = 24
+  ACTOR_VAULT_WATCHER = 24,
+  /// Sarah, her first fight (stage 0, level 6), until she is beaten
+  /// (FLAG_DARK_SARAH_VAULT_FOUGHT). The last row of both template tables.
+  ACTOR_VAULT_SARAH = 26
 };
 
 static void Vault_ShowStandingActorMessage(s32 actorId);
@@ -1003,7 +1007,21 @@ s32 Scene_Initialize(void) {
       }
     }
   }
+  // Back from Sarah's battle.
+  if (SARAH_PENDING_AT(0)) {
+    SARAH_AFTERMATH(ACTOR_VAULT_SARAH, 365, 366, MsgDarkSarahVaultBeaten,
+                    FLAG_DARK_SARAH_VAULT_FOUGHT);
+  }
   return 0;
+}
+
+/// Sarah in Vault, her first fight (stage 0, level 6): a battle Isaac can
+/// pick or leave. A defeat comes back here and she waits.
+static void Vault_TalkToSarah(void) {
+  Event_Start();
+  SARAH_SAYS(ACTOR_VAULT_SARAH, MsgDarkSarahVaultGreet);
+  SARAH_START_BATTLE(0, SceneId_Vault);
+  Event_End();
 }
 
 #include "common/actor_distance.h"
@@ -1390,6 +1408,9 @@ struct ActorTemplate gVault_ActorTemplates[] = {
         PIXELS(344), 0, PIXELS(96), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SPRITE_GAROH_HOODED_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    // Sarah, waiting in the village until she is beaten.
+    { SPRITE_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(365), 0, PIXELS(342), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1428,10 +1449,14 @@ struct ActorTemplate gVault_ActorTemplatesAfterThieves[] = {
         PIXELS(344), 0, PIXELS(96), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SPRITE_GAROH_HOODED_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    // Sarah, waiting in the village until she is beaten.
+    { SPRITE_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(365), 0, PIXELS(342), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
 struct Trigger gVault_Triggers[] = {
+    { TRIGGER_TALK, ACTOR_VAULT_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, EVENT(Vault_TalkToSarah) },
     { TRIGGER_STEP, MB_VAULT_SOUTH_GATE, CONDITION_ALWAYS, EVENT(Vault_IvanStaysBehind) },
     { TRIGGER_STEP, MB_VAULT_NORTH_GATE, CONDITION_ALWAYS, EVENT(Vault_IvanStaysBehind) },
     { TRIGGER_STEP, MB_VAULT_BRIDGE_END, CONDITION_ALWAYS, EVENT(Vault_RaisePathToBridge) },
@@ -1481,6 +1506,7 @@ struct Trigger gVault_Triggers[] = {
 };
 
 struct Trigger gVault_TriggersAfterThieves[] = {
+    { TRIGGER_TALK, ACTOR_VAULT_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, EVENT(Vault_TalkToSarah) },
     { TRIGGER_STEP, MB_VAULT_SOUTH_GATE, CONDITION_ALWAYS, EVENT(Vault_IvanStaysBehind) },
     { TRIGGER_STEP, MB_VAULT_NORTH_GATE, CONDITION_ALWAYS, EVENT(Vault_IvanStaysBehind) },
     { TRIGGER_STEP, MB_VAULT_BRIDGE_END, CONDITION_ALWAYS, EVENT(Vault_RaisePathToBridge) },

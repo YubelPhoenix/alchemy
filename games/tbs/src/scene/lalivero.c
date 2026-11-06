@@ -46,6 +46,7 @@
 #include "scene_tables.h"
 #include "event_inline.h"
 #include "ash_warp.h"
+#include "sarah_fight.h"
 #include "field_effect.h"
 #include "item_ids.h"
 #include "text/msg_ids.h"
@@ -146,7 +147,11 @@ enum LaliveroActorId {
   ACTOR_BLACK_ORB,
   /// Ash Jenna's optional farewell near the wharf after Venus Lighthouse.
   /// Placed only in the post-Venus template, following the Black Orb.
-  ACTOR_LALIVERO_ASH_JENNA
+  ACTOR_LALIVERO_ASH_JENNA,
+  /// Sarah, her last fight (stage 3, level 27), waiting by the wharf until she
+  /// is beaten (FLAG_DARK_SARAH_LALIVERO_FOUGHT). Placed only in the
+  /// post-Venus template, after Ash Jenna.
+  ACTOR_LALIVERO_SARAH
 };
 
 /// The door into the Lalivero Sanctum, a gate two cells wide.
@@ -894,6 +899,17 @@ const struct Trigger *Lalivero_GetTriggers(void) {
   return gLaliveroTriggers;
 }
 
+/// Sarah in Lalivero, her last fight (stage 3, level 27): a battle Isaac can
+/// pick or leave. A defeat comes back here and she waits.
+static void Lalivero_TalkToSarah(void) {
+  Event_Start();
+  SARAH_SAYS(ACTOR_LALIVERO_SARAH, MsgDarkSarahLaliveroGreet);
+  SARAH_ISAAC_SAYS(MsgDarkSarahLaliveroIsaac);
+  SARAH_SAYS(ACTOR_LALIVERO_SARAH, MsgDarkSarahLaliveroChallenge);
+  SARAH_START_BATTLE(3, SceneId_Lalivero);
+  Event_End();
+}
+
 /// Sets Lalivero up as the party enters: the Black Orb Iodem will hold out,
 /// the wounded soldiers of the first visit (and its event), or the sign at
 /// the north exit after Venus Lighthouse.
@@ -959,6 +975,12 @@ s32 Lalivero_Initialize(void) {
       Actor_FaceDirection(ACTOR_LALIVERO_ASH_JENNA, FACING_SOUTH, 0);
       Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA,
                                  SPRITE_COLOR_ASH);
+    }
+    // Back from Sarah's battle.
+    if (SARAH_PENDING_AT(3)) {
+      SARAH_AFTERMATH(ACTOR_LALIVERO_SARAH, 176, 264,
+                      MsgDarkSarahLaliveroBeaten,
+                      FLAG_DARK_SARAH_LALIVERO_FOUGHT);
     }
   } else {
     // The first visit: the two soldiers lie on the ground, drawn under the
@@ -1173,6 +1195,9 @@ struct ActorTemplate gLaliveroActorTemplatesAfterLighthouse[] = {
     // Lalivero_Initialize reveals her only after Tolbi and before the coda.
     { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-64), 0, PIXELS(-64), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    // Sarah, waiting by the wharf until she is beaten.
+    { SPRITE_SARAH, FLAG_DARK_SARAH_LALIVERO_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(176), 0, PIXELS(240), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { ACTOR_GARET, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_EAST, TALK_FACING_PARTY, 0 },
     { ACTOR_IVAN, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
@@ -1247,6 +1272,8 @@ struct Trigger gLaliveroTriggersAfterLighthouse[] = {
     // A completed coda cannot retrigger; the actor is only placed after Tolbi.
     { TRIGGER_TALK, ACTOR_LALIVERO_ASH_JENNA, FLAG_DARK_ASH_JENNA_LALIVERO,
       EVENT(Lalivero_TalkToAshJenna) },
+    { TRIGGER_TALK, ACTOR_LALIVERO_SARAH, FLAG_DARK_SARAH_LALIVERO_FOUGHT,
+      EVENT(Lalivero_TalkToSarah) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 1, CONDITION_ALWAYS, EVENT(Lalivero_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 2, CONDITION_ALWAYS, EVENT(Lalivero_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 3, CONDITION_ALWAYS, EVENT(Lalivero_EnterDoor) },

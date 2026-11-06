@@ -61,6 +61,7 @@
 #include "event_layer.h"
 #include "event_inline.h"
 #include "ash_warp.h"
+#include "sarah_fight.h"
 #include "world_state.h"
 #include "text/msg_ids.h"
 #include "types.h"
@@ -518,7 +519,23 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
     Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
     Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_ASH);
   }
+  // Back from Sarah's battle.
+  if (SARAH_PENDING_AT(2)) {
+    SARAH_AFTERMATH(ACTOR_TOLBI_SARAH, 264, 320, MsgDarkSarahTolbiBeaten,
+                    FLAG_DARK_SARAH_TOLBI_FOUGHT);
+  }
   return 0;
+}
+
+/// Sarah in Tolbi, her third fight (stage 2, level 21): a battle Isaac can
+/// pick or leave. A defeat comes back here and she waits.
+static void Tolbi_TalkToSarah(void) {
+  Event_Start();
+  SARAH_SAYS(ACTOR_TOLBI_SARAH, MsgDarkSarahTolbiGreet);
+  SARAH_ISAAC_SAYS(MsgDarkSarahTolbiIsaac);
+  SARAH_SAYS(ACTOR_TOLBI_SARAH, MsgDarkSarahTolbiChallenge);
+  SARAH_START_BATTLE(2, SceneId_Tolbi);
+  Event_End();
 }
 
 /// Ash Jenna, grey and hostile, confronts the party in the rain after Colosso.
@@ -949,11 +966,15 @@ struct ActorTemplate gTolbiActorTemplates[] = {
     // The stranded farmer who asks for his family's fare.
     { SPRITE_MAN_CARRYING_A_PACK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(232), 0, PIXELS(296), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
+    // Sarah, waiting in the street until she is beaten.
+    { SPRITE_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(264), 0, PIXELS(296), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
 /// During the festival, before the finals.
 struct Trigger gTolbiTriggersFestival[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, EVENT(Tolbi_TalkToSarah) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -1024,6 +1045,7 @@ struct Trigger gTolbiTriggersFestival[] = {
 
 /// On finals day.
 struct Trigger gTolbiTriggersFinalsDay[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, EVENT(Tolbi_TalkToSarah) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -1096,6 +1118,7 @@ struct Trigger gTolbiTriggersFinalsDay[] = {
 
 /// After Colosso has ended.
 struct Trigger gTolbiTriggersAfterColosso[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, EVENT(Tolbi_TalkToSarah) },
     { TRIGGER_TALK, ACTOR_TOLBI_STRANDED_FATHER, CONDITION_ALWAYS, EVENT(Tolbi_TalkToStrandedFather) },
     { TRIGGER_TALK, ACTOR_TOLBI_ASH_JENNA, CONDITION_ALWAYS, EVENT(Tolbi_MeetAshJenna) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },

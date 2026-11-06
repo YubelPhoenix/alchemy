@@ -145,6 +145,9 @@ enum TolbiActorId {
   /// A stranded farmer (SPRITE_MAN_CARRYING_A_PACK) whose family cannot get
   /// home (Tolbi_TalkToStrandedFather).
   ACTOR_TOLBI_STRANDED_FATHER = 34,
+  /// Sarah, her third fight (stage 2, level 21), waiting until she is beaten
+  /// (FLAG_DARK_SARAH_TOLBI_FOUGHT).
+  ACTOR_TOLBI_SARAH = 35,
 };
 
 /// The metatile behaviors Tolbi's coord and examine triggers answer besides the
