@@ -87,7 +87,7 @@ def despeckle(img):
 
 # Poses drawn smaller than her standing pose (the landing is a crouch) are
 # enlarged about their feet so she keeps her size through the leap.
-ENLARGE = {"attack_leap": 1.15}
+ENLARGE = {}   # tried 1.15 on attack_leap: too soft, reverted
 
 
 def enlarge(img, factor):
