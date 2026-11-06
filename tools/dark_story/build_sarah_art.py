@@ -31,7 +31,7 @@ SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 FRAME = 64
 FRAMES = 16
 # Frame -> supplied pose; the other frame of each pair is a copy.
-MIRROR = {"idle", "dash", "cast", "damage"}
+MIRROR = set()  # the poses are used as drawn
 STEPS = {0: "idle", 2: "idle", 4: "idle", 6: "dash", 8: "attack",
          10: "cast", 12: "cast", 14: "damage"}
 

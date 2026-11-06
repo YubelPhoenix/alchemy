@@ -354,8 +354,13 @@ gScene_BattleBackgroundRules:
 	backdrop GomaCaveBackdrop, GatewayCave
 	backdrop BabiLighthouseBackdrop, BabiLighthouseEntry, BabiLighthouseLuff, BabiLighthouseStoneDoor, CrossboneIsleBane
 	backdrop TunnelRuinsBackdrop, TunnelRuinsGreatStatue, TunnelRuinsLadyStatues
-	backdrop InteriorBackdrop, Lalivero, TimberRoomsB, TimberRoomsC
+	backdrop InteriorBackdrop, TimberRoomsB, TimberRoomsC
 	backdrop VenusLighthouseBackdrop, VenusLighthouseGroundFloor, VenusLighthouseFirstFloor, VenusLighthouseSecondFloor, VenusLighthouseThirdFloor, VenusLighthouseFourthFloor
 	backdrop VenusLighthouseAerieBackdrop, VenusLighthouseAerie
+	@ Sarah's fights in the open (Vault, Kalay, Tolbi, Lalivero): the world
+	@ map's outdoor backdrops instead of the last one listed (the cave).
+	backdrop GrasslandBackdrop, Vault
+	backdrop DesertBackdrop, Kalay
+	backdrop BeachBackdrop, Tolbi, Lalivero
 	backdrop GomaCaveBackdrop
 	.4byte 0	@ end
