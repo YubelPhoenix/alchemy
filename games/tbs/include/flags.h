@@ -2816,7 +2816,7 @@
 /// speaker's portrait (Portrait_GetForSpeaker).
 #define FLAG_DARK_SARAH_SPEAKING 0x8e7
 
-/// Sarah's stage, two bits: 0 Vault (level 6), 1 Kalay (15), 2 Tolbi (21),
+/// Sarah's stage, two bits: 0 Vault (level 7), 1 Kalay (15), 2 Tolbi (21),
 /// 3 Lalivero (27). A scene sets them just before her battle
 /// (BattleUnit_Set and BattleSpoils read them).
 #define FLAG_DARK_SARAH_STAGE_BIT0 0x8e8

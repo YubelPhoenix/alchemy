@@ -23,14 +23,15 @@ struct SarahStage {
 };
 
 static const struct SarahStage gSarahStages[4] = {
-    // Vault: introduces her and tests basic combat (levels 5 to 7).
-    {6, 1, 380, 58, 22, 36, 10, 150, 60},
+    // Vault: introduces her and tests basic combat; a party under level 5
+    // struggles, one at 7 wins (party levels 5 to 7).
+    {7, 1, 520, 68, 26, 42, 12, 150, 80},
     // Kalay: party coordination and Djinn management (14 to 16).
-    {15, 1, 1100, 135, 52, 78, 18, 500, 200},
+    {16, 2, 1500, 150, 58, 85, 20, 500, 260},
     // Tolbi: defensive play and tactical decisions (19 to 22).
-    {21, 2, 2200, 215, 82, 108, 26, 900, 400},
+    {22, 2, 3000, 235, 90, 115, 28, 900, 520},
     // Lalivero: the final, challenging duel (25 to 28).
-    {27, 2, 4200, 310, 115, 150, 34, 1500, 700},
+    {28, 2, 6000, 335, 125, 160, 36, 1500, 900},
 };
 
 #endif

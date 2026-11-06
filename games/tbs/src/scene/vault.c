@@ -150,7 +150,7 @@ enum {
   /// The silent, cloaked watcher, placed off the map until her glimpse
   /// (Vault_WatcherAppears).
   ACTOR_VAULT_WATCHER = 24,
-  /// Sarah, her first fight (stage 0, level 6), until she is beaten
+  /// Sarah, her first fight (stage 0, level 7), until she is beaten
   /// (FLAG_DARK_SARAH_VAULT_FOUGHT). The last row of both template tables.
   ACTOR_VAULT_SARAH = 26
 };
@@ -1015,7 +1015,7 @@ s32 Scene_Initialize(void) {
   return 0;
 }
 
-/// Sarah in Vault, her first fight (stage 0, level 6): a battle Isaac can
+/// Sarah in Vault, her first fight (stage 0, level 7): a battle Isaac can
 /// pick or leave. A defeat comes back here and she waits.
 static void Vault_TalkToSarah(void) {
   Event_Start();

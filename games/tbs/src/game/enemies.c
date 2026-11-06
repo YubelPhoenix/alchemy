@@ -2588,12 +2588,12 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     // place of the removed Isaac-vs-Mia Mia (formation 383, zone 105 slot 1).
     {
         .name = "              ",
-        .level = 27,
-        .hp = 4200,
+        .level = 28,
+        .hp = 6000,
         .pp = 0,
-        .atk = 310,
-        .def = 115,
-        .agi = 150,
+        .atk = 335,
+        .def = 125,
+        .agi = 160,
         .luck = 40,
         .turns = 2,
         .elementPreset = 40,
@@ -2608,7 +2608,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .coins = 1500,
         .item = ITEM_ELIXIR,
         .itemChance = 1,
-        .experience = 700,
+        .experience = 900,
     },
     // Tornado Lizard
     {

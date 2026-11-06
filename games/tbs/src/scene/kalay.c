@@ -501,7 +501,7 @@ static void Kalay_TalkToSarah(void) {
   Event_SetMessageId(MsgDarkSarahChallenge);
   Kalay_SarahSays();
   GameFlag_Set(FLAG_DARK_SARAH_PENDING);
-  // Her second fight: stage 1 (level 15).
+  // Her second fight: stage 1 (level 16).
   GameFlag_Set(FLAG_DARK_SARAH_STAGE_BIT0);
   GameFlag_Clear(FLAG_DARK_SARAH_STAGE_BIT1);
   gFieldWork->transition =
