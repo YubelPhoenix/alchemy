@@ -2595,11 +2595,14 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .agi = 200,
         .luck = 40,
         .turns = 3,
-        .elementPreset = 41,
+        .elementPreset = 44,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // Spear first (ACTION_STRATEGY_FALLING), then the heavy spells last.
-        .abilities = {ABILITY_ATTACK, 431, ABILITY_ATTACK, 52, 223, 176, 59, 169},
+        // A gun and Jupiter's bolts: every move is a shot (ACTION_STRATEGY_FALLING
+        // takes the common ones first): her ordinary attack, Barrage, Stun
+        // Voltage, Flash Bolt, Storm Ray, Shine Plasma, Destruct Ray, then
+        // Spark Plasma last.
+        .abilities = {ABILITY_ATTACK, 225, 229, 67, 70, 73, 71, 74},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 4200,
         .item = ITEM_ELIXIR,

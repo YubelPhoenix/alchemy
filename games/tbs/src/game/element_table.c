@@ -460,6 +460,17 @@ const struct EnemyElementPreset gEnemy_ElementPresetTable[] = {
             PRESET_STATS(110, 48),
         },
     },
+    // Sarah's: Mars's high-level preset (41) with Jupiter on top instead.
+    {
+        .first = ELEMENT_JUPITER,
+        .digits = {9, 7, 9, 14},
+        .values = {
+            PRESET_STATS(100, 127),
+            PRESET_STATS(95, 72),
+            PRESET_STATS(100, 127),
+            PRESET_STATS(110, 175),
+        },
+    },
 };
 
 const s16 gElement_PowerResistCurve[5][2] = {
