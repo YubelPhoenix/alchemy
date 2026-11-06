@@ -521,7 +521,7 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   }
   // Back from Sarah's battle.
   if (SARAH_PENDING_AT(2)) {
-    SARAH_AFTERMATH(ACTOR_TOLBI_SARAH, 264, 320, MsgDarkSarahTolbiBeaten,
+    SARAH_AFTERMATH(ACTOR_TOLBI_SARAH, 232, 320, MsgDarkSarahTolbiBeaten,
                     FLAG_DARK_SARAH_TOLBI_FOUGHT);
   }
   return 0;
@@ -968,9 +968,11 @@ struct ActorTemplate gTolbiActorTemplates[] = {
     // positions could cause Isaac to select the farmer when approaching Sarah.
     { SPRITE_MAN_CARRYING_A_PACK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(232), 0, PIXELS(360), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
-    // Sarah, waiting in the street until she is beaten.
+    // Sarah, waiting in the street until she is beaten. She stands where the
+    // farmer used to, well clear of the Spring gate's visitor (302,296), whose
+    // talk trigger was answering when Isaac spoke to her from the east.
     { SPRITE_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, MOVEMENT_TYPE_STAND,
-        PIXELS(264), 0, PIXELS(296), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+        PIXELS(232), 0, PIXELS(296), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
