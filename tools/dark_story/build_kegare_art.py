@@ -5,7 +5,7 @@ She has her own monster resource (KegareSprites, SPR_487, games/tbs/src/
 graphics/monster/kegare.png); the damage frame is Mia's (SPR_303 frame 12).  Battle monsters are 64x64 frames at 8 bits per pixel,
 raw indices into the shared 224-colour sprite palette
 (games/tbs/src/system/memory/basic.png); index 0 is transparent.  The sheet is
-16 frames tall; spr_477.tsv steps through frames 0, 2, 4, 6, 8, 10, 12 and 14,
+10 frames tall; spr_477.tsv steps through frames 0, 2, 4, 6 and 8,
 so every frame is stored twice.
 
   The poses already carry her sword; each is dropped so its lowest row sits on
@@ -29,15 +29,14 @@ DEST = ROOT / "games/tbs/src/graphics/monster/kegare.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
-FRAMES = 16
+FRAMES = 10
 # Frame -> supplied pose; the other frame of each pair is a copy.
 # The supplied poses are drawn at full size (about 57 rows tall); the size on
 # screen comes from SPR_477's scale column in sprites.tsv (0xb6, which puts her
 # idle pose at Menardi's 40 or so rows), so the art itself is not resampled.
 SCALE = 1.0
 STEPS_MIA = {"damage": 12}
-STEPS = {0: "idle1", 2: "idle2", 4: "idle3", 6: "dash", 8: "attack",
-         10: "cast", 12: "cast", 14: "damage"}
+STEPS = {0: "idle1", 2: "dash", 4: "attack", 6: "cast", 8: "damage"}
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
 colors = np.array(palette, dtype=np.float64).reshape(-1, 3)
