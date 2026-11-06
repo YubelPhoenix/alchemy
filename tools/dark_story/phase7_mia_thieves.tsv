@@ -9,7 +9,7 @@ N19	MsgDarkMiaThievesThiefB	Not for us. Come quietly\nand we'll keep it that way
 N20	MsgDarkMiaThievesSerious	Then put your knives\naway. I'm not coming\nwith you.{end_wait}
 N21	MsgDarkMiaThievesChiefArrives	Three of you... beaten\nby a healer? Useless.{end_wait}
 N22	MsgDarkMiaThievesChiefWarning	Keep her there, boy.\nThis won't take long.{end_wait}
-N23	MsgDarkMiaThievesWalkAway	They're still breathing.\nHelp them. You don't have\nto make this worse.{end_wait}
+N23	MsgDarkMiaThievesWalkAway	Your men are beaten.\nYou can still walk away.{end_wait}
 N24	MsgDarkMiaThievesChiefRefuses	I've come too far to\nturn back now.{end_wait}
 N25	MsgDarkMiaThievesWhoSent	Who sent you?{end_wait}
 N26	MsgDarkMiaThievesChiefLies	Nobody. We heard you\nhad medicines we could\nsell. That's all.{end_wait}
@@ -17,8 +17,8 @@ N27	MsgDarkMiaThievesNotBuying	You didn't ask for any.\nYou came straight for me
 N28	MsgDarkMiaThievesChiefSlips	We watched the village.\nWe knew you'd take\nthis road.{end_wait}
 N29	MsgDarkMiaThievesGold	The girl who hired us\nsaid you'd be alone.\nThat's all I know.{end_wait}
 N30	MsgDarkMiaThievesWhatLook	What girl?{end_wait}
-N31	MsgDarkMiaThievesRedHair	Red hair. We didn't\nget her name.{end_wait}
-N32	MsgDarkMiaThievesColdEyes	And her eyes...\nShe looked at us like\nwe'd already failed.{end_wait}
+N31	MsgDarkMiaThievesRedHair	Red hair. Burnt clothes.\nOne of her eyes glowed.{end_wait}
+N32	MsgDarkMiaThievesColdEyes	She looked at us like\nwe'd already failed.{end_wait}
 N33	MsgDarkMiaThievesNotFromImil	I don't know who she is.\nBut Imil has enough to\nendure without this.{end_wait}
 N34	MsgDarkMiaThievesLeave	Take your men and go.\nDon't come back.{end_wait}
 N35	MsgDarkMiaThievesChiefAgrees	All right! We're going!{end_wait}
