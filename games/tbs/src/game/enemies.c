@@ -2599,11 +2599,10 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 40,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // A human with a gun, not an Adept: weapon skills only, no Psynergy
-        // (ACTION_STRATEGY_FALLING takes the common ones first): her ordinary
-        // attack, Quick Strike, Barrage, Shuriken, Rapid Smash, then Sonic
-        // Smash last.
-        .abilities = {ABILITY_ATTACK, 163, ABILITY_ATTACK, 225, 177, 234, 234, 235},
+        // A human with a gun, not an Adept: weapon skills only. Her moves in
+        // each fight come from sarah_stage.h (BattleEnemy_ChooseAction); this
+        // is the last fight's.
+        .abilities = {ABILITY_ATTACK, 225, 234, 223, 365, 232, 235, 238},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 1500,
         .item = ITEM_ELIXIR,

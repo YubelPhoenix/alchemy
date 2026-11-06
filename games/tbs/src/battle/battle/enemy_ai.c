@@ -3,6 +3,7 @@
 // Part of battle.c.
 
 #include "../battle_internal.h"
+#include "sarah_stage.h"
 
 /// An enemy's memory of its action choice, kept in Unit.aiActionIndex (0 in
 /// every row of enemies.c, so it starts cleared). Only
@@ -159,6 +160,13 @@ select_again:
   useItem = (*itemActionMask >> selection) & 1;
   useItem &= itemsAllowed;
   abilityId = enemy->abilities[selection];
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_SARAH) {
+    // Sarah's moves grow with her fights (gSarahStages).
+    abilityId =
+        gSarahStages[(GameFlag_GetFar(FLAG_DARK_SARAH_STAGE_BIT0) != 0) |
+                     ((GameFlag_GetFar(FLAG_DARK_SARAH_STAGE_BIT1) != 0) << 1)]
+            .abilities[selection & 7];
+  }
   if (punish != 0) {
     abilityId = ABILITY_OUTER_SPACE;
     useItem = 0;
