@@ -7,7 +7,7 @@ N344	MsgDarkSarahVaultGreet	My name is Sarah.\nI'm a knight from the\nWestern Co
 N345	MsgDarkSarahVaultBeaten	You held your ground.\nI won't forget that.{page_break}If you hear of the girl,\nremember what I told you.\nThat's all I ask.{end_wait}
 N346	MsgDarkSarahTolbiGreet	I followed another lead\nhere to Tolbi.{page_break}A girl matching my\ndescription may have\npassed through.{page_break}No one can tell me\nwhere she went next.{end_wait}
 N347	MsgDarkSarahTolbiIsaac	And if you find her?\nWhat happens then?{end_wait}
-N348	MsgDarkSarahTolbiChallenge	I don't know.\nI've tried to answer\nthat for myself.{page_break}But I can't turn back\non another rumor.{page_break}One more match, Isaac.\nI need to know I'm\nready to go on.{end_wait}
+N348	MsgDarkSarahTolbiChallenge	I don't know.\nI've tried to answer\nthat for myself.{page_break}I haven't seen her.\nI can't decide what\nI'll do until I have.{page_break}One more match, Isaac.\nI need to know I'm\nready to go on.{end_wait}
 N349	MsgDarkSarahTolbiBeaten	You're still ahead of me.\nI won't deny it.{page_break}If you meet her,\ndon't tell her my name.\nNot until I can explain.{end_wait}
 N350	MsgDarkSarahLaliveroGreet	I heard of a girl\nwho passed this way.\nI came as soon as I could.{page_break}The description fits.\nBut I haven't seen\nher myself.{end_wait}
 N351	MsgDarkSarahLaliveroIsaac	How can you be sure\nshe's the one you're\nlooking for?{end_wait}
