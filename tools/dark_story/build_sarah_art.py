@@ -5,19 +5,18 @@ She has her own monster resource (SarahSprites, SPR_488, games/tbs/src/
 graphics/monster/sarah.png), like Kegare.  Battle monsters are 64x64 frames at
 8 bits per pixel, raw indices into the shared 224-colour sprite palette
 (games/tbs/src/system/memory/basic.png); index 0 is transparent.  The sheet is
-16 frames tall; spr_488.tsv steps through frames 0, 2, 4, 6, 8, 10, 12 and 14,
+10 frames tall; spr_488.tsv steps through frames 0, 2, 4, 6 and 8,
 so every frame is stored twice.
 
   Each pose is dropped so its lowest row sits on the frame's bottom row.  Her
-  idle, dash, cast and damage poses are drawn facing left, so they are
-  mirrored to face the party on the right; the attack lunges right already.
+  rise and attack are drawn facing left, which is how the game shows them
+  lunging at the party.
 
-  0, 2      idle (two drawn poses, looped)
-  4         attack end (the follow-through after the thrust)
-  6         dash
-  8         attack
-  10, 12    cast
-  14        damage
+  0         idle (standing; also the run-up's start)
+  2         rise (the leap's first half)
+  4         attack (the leap's landing, held while the blow plays)
+  6         cast (her gun moves fire from this pose)
+  8         damage
 """
 from pathlib import Path
 
@@ -30,11 +29,10 @@ DEST = ROOT / "games/tbs/src/graphics/monster/sarah.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
-FRAMES = 16
+FRAMES = 10
 # Frame -> supplied pose; the other frame of each pair is a copy.
-MIRROR = {"attack_end"}  # the game draws enemy sheets mirrored: rise and attack are used as drawn (facing left), attack end is flipped to match
-STEPS = {0: "idle_new", 2: "idle2", 4: "attack_end", 6: "rise", 8: "attack_leap",
-         10: "idle1", 12: "idle1", 14: "damage"}
+MIRROR = set()  # the game shows the sheet as drawn: poses are drawn facing left, toward the party
+STEPS = {0: "idle_new", 2: "rise", 4: "attack_leap", 6: "idle1", 8: "damage"}
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
 colors = np.array(palette, dtype=np.float64).reshape(-1, 3)
@@ -53,7 +51,7 @@ def to_lab(rgb):
 
 palette_lab = to_lab(colors)
 
-CLEAN = {"dash", "damage", "rise", "attack_leap", "attack_end"}   # their drawings carry stray speckle
+CLEAN = {"damage", "rise", "attack_leap"}   # their drawings carry stray speckle
 
 
 def despeckle(img):
