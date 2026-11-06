@@ -53,7 +53,7 @@ def to_lab(rgb):
 
 palette_lab = to_lab(colors)
 
-CLEAN = {"dash", "damage"}   # their drawings carry stray speckle
+CLEAN = {"dash", "damage", "rise", "attack_leap", "attack_end"}   # their drawings carry stray speckle
 
 
 def despeckle(img):
