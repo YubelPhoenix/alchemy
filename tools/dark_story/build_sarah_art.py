@@ -32,7 +32,7 @@ SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 FRAME = 64
 FRAMES = 16
 # Frame -> supplied pose; the other frame of each pair is a copy.
-MIRROR = {"dash"}  # drawn facing left; she runs right, at the party
+MIRROR = set()  # the poses are used as drawn (a flipped dash ran backwards)
 STEPS = {0: "idle1", 2: "idle2", 4: "attack_end", 6: "dash", 8: "attack",
          10: "cast", 12: "cast2", 14: "damage"}
 
