@@ -310,7 +310,13 @@ static inline void BattleAnim_RunVolleyWithAction(struct BattleAnimArgs *args,
   struct Actor *user;
 
   user = GetBattleObjectSlotFar(args->user)->actor;
-  Actor_SelectAnimationFar(user, POSE_LEAP);
+  // Sarah shoots these from her gun pose; everyone else leaps.
+  if (GetBattleObjectSlotFar(args->user)->resource ==
+      (u16)(s32)&ResourceId_SarahSprites) {
+    Actor_SelectAnimationFar(user, POSE_CAST);
+  } else {
+    Actor_SelectAnimationFar(user, POSE_LEAP);
+  }
   Actor_SetAnimationSpeedFar(user, PROJECTILE_VOLLEY_ANIMATION_STEP_FAST);
   BattleAnim_RunProjectileVolley(args, mode);
   Actor_SetAnimationSpeedFar(user, PROJECTILE_VOLLEY_ANIMATION_STEP_NORMAL);

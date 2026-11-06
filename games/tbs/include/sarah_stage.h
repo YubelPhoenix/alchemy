@@ -32,17 +32,18 @@ static const struct SarahStage gSarahStages[4] = {
      {1, 1, 1, 163, 1, 163, 177, 163}},
     // Kalay: party coordination and Djinn management (14 to 16).
     {16, 2, 1500, 150, 58, 85, 20, 500, 260,
-     // Adds Rapid Smash, Vorpal Slash and Barrage (her gun): focus and cover.
-     {1, 163, 177, 234, 1, 228, 234, 225}},
+     // Adds Rapid Smash and Vorpal Slash, and Heat Wave (rapid gunfire).
+     {1, 163, 177, 234, 1, 228, 234, 194}},
     // Tolbi: defensive play and tactical decisions (19 to 22).
     {22, 2, 3000, 235, 90, 115, 28, 900, 520,
-     // Adds Cyclone Slash, Sonic Smash and Helm Splitter: guard, wait, choose
-     // the moment.
-     {1, 163, 225, 228, 234, 232, 235, 162}},
+     // Adds Cyclone Slash, Sonic Smash and Helm Splitter, with Heat Wave and
+     // Cutting Edge (her gun): guard, wait, choose the moment.
+     {1, 193, 194, 228, 234, 232, 235, 162}},
     // Lalivero: the final, challenging duel (25 to 28).
     {28, 2, 6000, 335, 125, 160, 36, 1500, 900,
-     // All of it, Annihilation last.
-     {1, 225, 234, 228, 235, 232, 162, 178}},
+     // All of it, with her gun's Heat Wave and Cutting Edge, Annihilation
+     // last.
+     {1, 194, 234, 228, 235, 193, 162, 178}},
 };
 
 #endif
