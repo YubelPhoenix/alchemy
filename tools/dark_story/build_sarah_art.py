@@ -85,12 +85,32 @@ def despeckle(img):
     return Image.fromarray(out.astype(np.uint8), "RGBA")
 
 
+# Poses drawn smaller than her standing pose (the landing is a crouch) are
+# enlarged about their feet so she keeps her size through the leap.
+ENLARGE = {"attack_leap": 1.15}
+
+
+def enlarge(img, factor):
+    box = img.getchannel("A").getbbox()
+    crop = img.crop(box)
+    size = (round(crop.width * factor), round(crop.height * factor))
+    big = crop.resize(size, Image.Resampling.LANCZOS)
+    alpha = big.getchannel("A").point(lambda v: 255 if v >= 128 else 0)
+    big.putalpha(alpha)
+    out = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    left = min(max((box[0] + box[2] - size[0]) // 2, 0), img.width - size[0])
+    out.alpha_composite(big, (left, box[3] - size[1]))
+    return out
+
+
 sheet = Image.new("RGBA", (FRAME, FRAME * FRAMES), (0, 0, 0, 0))
 for index in range(FRAMES):
     pose = STEPS[index - index % 2]
     src = Image.open(SOURCE / f"{pose}.png").convert("RGBA")
     if pose in CLEAN:
         src = despeckle(src)
+    if pose in ENLARGE:
+        src = enlarge(src, ENLARGE[pose])
     if pose in MIRROR:
         src = src.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
     if src.size != (FRAME, FRAME):
