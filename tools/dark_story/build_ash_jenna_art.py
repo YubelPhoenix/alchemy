@@ -65,7 +65,8 @@ for index in range(FRAMES):
     side = round(FRAME * SCALE)
     small = frame.resize((side, side), Image.Resampling.LANCZOS)
     frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
-    frame.alpha_composite(small, ((FRAME - side) // 2, FRAME - side))
+    rise = 1 if index in (2, 3) else 0   # idle breathing: frames 2-3 one pixel higher
+    frame.alpha_composite(small, ((FRAME - side) // 2, FRAME - side - rise))
     sheet.alpha_composite(frame, (0, index * FRAME))
 
 data = np.asarray(sheet)

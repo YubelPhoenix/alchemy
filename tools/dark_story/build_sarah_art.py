@@ -62,7 +62,8 @@ for index in range(FRAMES):
         raise ValueError(f"{pose} must be {FRAME}x{FRAME}")
     bottom = src.getchannel("A").getbbox()[3]
     frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
-    frame.alpha_composite(src, (0, FRAME - bottom))
+    rise = 1 if index in (2, 3) else 0   # idle breathing: frames 2-3 one pixel higher
+    frame.alpha_composite(src, (0, FRAME - bottom - rise))
     sheet.alpha_composite(frame, (0, index * FRAME))
 
 data = np.asarray(sheet)
