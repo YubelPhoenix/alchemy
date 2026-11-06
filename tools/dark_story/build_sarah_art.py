@@ -34,7 +34,7 @@ FRAMES = 16
 # Frame -> supplied pose; the other frame of each pair is a copy.
 MIRROR = set()  # the poses are used as drawn (a flipped dash ran backwards)
 STEPS = {0: "idle1", 2: "idle2", 4: "attack_end", 6: "dash", 8: "attack",
-         10: "cast", 12: "cast2", 14: "damage"}
+         10: "idle1", 12: "idle1", 14: "damage"}
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
 colors = np.array(palette, dtype=np.float64).reshape(-1, 3)
