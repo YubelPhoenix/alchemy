@@ -18,7 +18,7 @@ This document tracks issues found during the in-game test. **A logged issue is n
 
 | AFD-010 | Vault inn — thieves discovered upstairs | "So you found us. Hammet's boy brought company. You should have stayed downstairs." (playthrough transcription) | Continuity error: Ivan is at the mayor's house, not accompanying Isaac and Garet; thieves should not refer to Ivan bringing anyone | Reported; proposed: "So, you found us. You two should have stayed downstairs." Verify occupants/choice branches before implementation |
 
-| AFD-011 | Vault inn — Ivan uses Mind Read on Isaac after thieves fight | "So this is where they hid everything." (playthrough transcription) | Ambiguous referent ("this"/"everything") and unclear knowledge transfer via Mind Read; verify whether Isaac recalls the hiding spot or the stolen goods are visible | Reported; candidate if Ivan learns of the stash from Isaac: "So that's where they hid the stolen goods." Do not implement until scene staging and next lines are checked |
+| AFD-011 | Vault inn — Ivan uses Mind Read on Isaac after thieves fight | "So this is where they hid everything." (playthrough transcription) | Plot progression error: Ivan reads Isaac's mind to learn about his journey, not the location of the thieves' stolen goods. Dialogue must acknowledge the events in Vale and Isaac's pursuit of the Elemental Stars | Correction proposed: "I see... So you're trying to recover the Elemental Stars." Pending exact adjacent dialogue and branch verification; not implemented in game |
 
 ### AFD-008 editorial direction (not implemented)
 
