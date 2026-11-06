@@ -2598,11 +2598,11 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 44,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // A gun and Jupiter's bolts: every move is a shot (ACTION_STRATEGY_FALLING
-        // takes the common ones first): her ordinary attack, Barrage, Stun
-        // Voltage, Flash Bolt, Storm Ray, Shine Plasma, Destruct Ray, then
-        // Spark Plasma last.
-        .abilities = {ABILITY_ATTACK, 225, 229, 67, 70, 73, 71, 74},
+        // A gun, and no Psynergy: only PP-free moves (ACTION_STRATEGY_FALLING
+        // takes the common ones first): her ordinary attack, Barrage, Quick
+        // Strike, Stun Voltage, Shuriken, Rapid Smash, Astral Blast, then
+        // Shining Star last.
+        .abilities = {ABILITY_ATTACK, 225, 163, 229, 177, 234, 195, 238},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 4200,
         .item = ITEM_ELIXIR,
