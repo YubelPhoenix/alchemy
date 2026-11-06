@@ -822,9 +822,9 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         // fighting Isaac.
         .animation = 488,
         .attackAnim = 1,
-        // She leaps up and comes down on her target (the hop is 36 pixels at
-        // its top, landing as her 21-frame POSE_LEAP ends).
-        .attackHop = 7,
+        // She leaps up and comes down on her target (the hop is 27 pixels at
+        // its top, landing as her 18-frame POSE_LEAP ends).
+        .attackHop = 6,
         .defeatSound = 1,
         .effectHeight = 42,
     },
