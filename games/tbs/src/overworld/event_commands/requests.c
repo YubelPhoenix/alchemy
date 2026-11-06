@@ -21,6 +21,9 @@ void Field_RequestBattleFromEncounterTable(s32 zoneNo, s32 slotNo) {
   work->encounter = Encounter_GetFormationAtSlot(zone, slot);
   if (zone == ENCOUNTER_ZONE_SCRIPTED && slot == 0)
     gSaveBlock.special = (s32)&ResourceId_VenusLighthouseAerieStormBackdrop;
+  // Heart (slot 3) fights under her own moonlit meadow.
+  if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI && slot == 3)
+    gSaveBlock.special = (u16)(s32)&ResourceId_HeartBackdrop;
   if (work->mode == ACTOR_SYSTEM_WORLD_MAP) {
     struct Actor *leader = Actor_Lookup(gSaveBlock.leaderActorId);
 

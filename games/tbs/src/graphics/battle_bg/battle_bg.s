@@ -151,3 +151,7 @@ Battle_DuskCloudsBackdrop:
 Battle_AerialViewBackdrop:
 	.incbin "games/tbs/src/graphics/battle_bg/aerial_view.gbapal"
 	.incbin "games/tbs/src/graphics/battle_bg/aerial_view.bitmap.d7"
+	.global Battle_HeartBackdrop
+Battle_HeartBackdrop:
+	.incbin "games/tbs/src/graphics/battle_bg/heart.gbapal"
+	.incbin "games/tbs/src/graphics/battle_bg/heart.bitmap.d7"
