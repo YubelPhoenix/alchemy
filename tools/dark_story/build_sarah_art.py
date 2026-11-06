@@ -12,7 +12,8 @@ so every frame is stored twice.
   idle, dash, cast and damage poses are drawn facing left, so they are
   mirrored to face the party on the right; the attack lunges right already.
 
-  0, 2, 4   idle
+  0, 2      idle (two drawn poses, looped)
+  4         attack end (the follow-through after the thrust)
   6         dash
   8         attack
   10, 12    cast
@@ -32,7 +33,7 @@ FRAME = 64
 FRAMES = 16
 # Frame -> supplied pose; the other frame of each pair is a copy.
 MIRROR = {"dash"}  # drawn facing left; she runs right, at the party
-STEPS = {0: "idle1", 2: "idle2", 4: "idle3", 6: "dash", 8: "attack",
+STEPS = {0: "idle1", 2: "idle2", 4: "attack_end", 6: "dash", 8: "attack",
          10: "cast", 12: "cast2", 14: "damage"}
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
