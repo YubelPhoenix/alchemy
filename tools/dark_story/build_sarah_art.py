@@ -15,7 +15,7 @@ so every frame is stored twice.
   0         idle (standing; also the run-up's start)
   2         rise (the leap's first half)
   4         attack (the leap's landing, held while the blow plays)
-  6         cast (her gun moves fire from this pose)
+  6         cast (raised-spear pose for her casting moves)
   8         damage
 """
 from pathlib import Path

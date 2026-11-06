@@ -124,7 +124,6 @@ extern char ResourceId_DesertBackdrop;
 extern char ResourceId_DuskCloudsBackdrop;
 extern char ResourceId_AerialViewBackdrop; ///< Drawn only by Judgment.
 /// Sarah's battle sprite (a monster resource).
-extern char ResourceId_SarahSprites;
 
 /// Lucky Wheels' frame (LuckyWheels_Run): 16 colours for BG palette 10,
 /// then the picture.
