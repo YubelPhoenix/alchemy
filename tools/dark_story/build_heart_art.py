@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Rebuild Heart's battle sheet from the original, unsquashed source poses.
+"""Rebuild Heart's battle sheet and mugshot from her supplied 64x64 poses
+(assets/heart/v2).
 
 Golden Sun's battle engine draws monster frames as 64x64, 8 bits per pixel.
 Every pixel is a raw index into the shared 224-colour sprite palette
@@ -20,27 +21,23 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = ROOT / "assets" / "heart"
+SOURCE = ROOT / "assets" / "heart" / "v2"
 DEST = ROOT / "games/tbs/src/graphics/monster/purple_beast.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
 FRAMES = 12
-# Source poses are 128x128. The battle frame is only 64x64, so fill it as far
-# as it goes: idle ~58 rows (0.6x).  sprites.tsv lowers SPR_484's draw scale to
-# 0x100 * 0.5 / 0.6 = 0xd5 so she appears on screen at the same size as before,
-# only with more of the original detail.  Every pose uses this scale; a pose
-# too wide for the frame (the lunge) is shrunk just enough to fit.
-SCALE = 0.6
-MAX_WIDTH = 62
-# (source pose number, mirror so she faces the party on the right, rise)
+# The supplied poses are drawn at 64x64, the frame's own size, so they are not
+# resampled: the size on screen comes from SPR_484's scale column in
+# sprites.tsv (0xac, which puts her idle pose, 60 rows, at Menardi's 40 or so).
+# (pose, mirror so she faces the party on the right, rise)
 LAYOUT = [
-    (1, True, 0), (1, True, 0),
-    (1, True, 1), (1, True, 1),
-    (5, False, 0), (5, False, 0),
-    (6, False, 0), (6, False, 0),
-    (3, False, 0), (3, False, 0),
-    (4, True, 0), (4, True, 0),
+    ("idle", True, 0), ("idle", True, 0),
+    ("idle", True, 1), ("idle", True, 1),
+    ("dash", False, 0), ("dash", False, 0),
+    ("lunge", False, 0), ("lunge", False, 0),
+    ("cast", False, 0), ("cast", False, 0),
+    ("damage", True, 0), ("damage", True, 0),
 ]
 
 palette_image = Image.open(SHARED_PALETTE)
@@ -63,29 +60,19 @@ def to_lab(rgb):
 palette_lab = to_lab(colors)
 
 sheet = Image.new("RGBA", (FRAME, FRAME * FRAMES), (0, 0, 0, 0))
-for index, (number, mirror, rise) in enumerate(LAYOUT):
-    src = Image.open(SOURCE / f"pose_128_{number}.png").convert("RGBA")
+for index, (name, mirror, rise) in enumerate(LAYOUT):
+    src = Image.open(SOURCE / f"{name}.png").convert("RGBA")
+    if src.size != (FRAME, FRAME):
+        raise ValueError(f"Heart pose {name} is {src.size}, expected 64x64")
     bounds = src.getchannel("A").getbbox()
     if not bounds:
-        raise ValueError(f"Heart pose {number} is empty")
+        raise ValueError(f"Heart pose {name} is empty")
     art = src.crop(bounds)
     if mirror:
         art = art.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-    scale = min(SCALE, MAX_WIDTH / art.width)
-    width = max(1, round(art.width * scale))
-    height = max(1, round(art.height * scale))
-    if width > FRAME or height > FRAME:
-        raise ValueError(f"pose {number} does not fit a frame at scale {scale:.3f}")
-    # Premultiply before resampling so the edge does not pick up black.
-    arr = np.asarray(art, dtype=np.float64)
-    alpha = arr[..., 3:] / 255.0
-    pre = Image.fromarray(np.dstack([arr[..., :3] * alpha, arr[..., 3:]]).astype(np.uint8), "RGBA")
-    pre = pre.resize((width, height), Image.Resampling.LANCZOS)
-    p = np.asarray(pre, dtype=np.float64)
-    a = np.clip(p[..., 3:] / 255.0, 1e-6, 1)
-    art = Image.fromarray(np.dstack([np.clip(p[..., :3] / a, 0, 255), p[..., 3:]]).astype(np.uint8), "RGBA")
+    width, height = art.size
     frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
-    # Feet on the bottom row, body centred on the frame.
+    # Feet (or the lowest row) on the bottom row, body centred on the frame.
     mask = np.asarray(art)[..., 3] >= 128
     cx = (np.nonzero(mask)[1].mean() if mask.any() else width / 2)
     x = int(round(FRAME / 2 - cx))
@@ -116,17 +103,15 @@ for n in range(FRAMES):
     ys, xs = np.nonzero(f)
     assert ys.max() <= FRAME - 1 and xs.min() >= 0 and xs.max() < FRAME
 indexed.save(DEST, optimize=False)
-print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, scale {SCALE:.2f}, "
+print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, "
       f"{len(set(indices[visible].tolist()))} colours from the shared palette")
 
 # Claude's portrait hook already points at ICON_66. Replace that placeholder
-# with the original 64x64 Heart mugshot; no changes to Mia or other portraits.
-portrait = Image.open(SOURCE / "mugshot_64.png").convert("RGBA")
+# with the supplied 32x32 Heart mugshot; no changes to Mia or other portraits.
 # This icon atlas requires each entry to be 32x32 with at most 16 colours.
-# Preserve the original proportions rather than stretching the mugshot.
-portrait.thumbnail((32, 32), Image.Resampling.NEAREST)
-canvas = Image.new("RGBA", (32, 32), (0, 0, 0, 255))
-canvas.alpha_composite(portrait, ((32 - portrait.width) // 2, (32 - portrait.height) // 2))
+canvas = Image.open(SOURCE / "mugshot_32.png").convert("RGB")
+if canvas.size != (32, 32):
+    raise ValueError(f"Heart mugshot is {canvas.size}, expected 32x32")
 portrait_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_66.png"
 # GBA icon palettes require opaque RGB channels aligned to eight.
 # Quantize first, then snap palette entries to valid GBA levels.
@@ -137,4 +122,4 @@ for i in range(0, len(palette), 3):
         palette[i + channel] = (palette[i + channel] // 8) * 8
 icon.putpalette(palette)
 icon.save(portrait_target)
-print(f"Rebuilt {portrait_target.relative_to(ROOT)} from original Heart mugshot")
+print(f"Rebuilt {portrait_target.relative_to(ROOT)} from the Heart mugshot")
