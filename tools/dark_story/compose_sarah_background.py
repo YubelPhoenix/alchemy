@@ -38,6 +38,12 @@ mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((9, 9), np.uint8))
 count, labels, stats, _ = cv2.connectedComponentsWithStats(mask)
 biggest = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
 mask = (labels == biggest).astype(np.uint8)
+# Fill the holes inside it (light rock that failed the colour test would
+# otherwise show the sky through the ledge).
+flood = mask.copy() * 255
+fill = np.zeros((h + 2, w + 2), np.uint8)
+cv2.floodFill(flood, fill, (0, 0), 128)
+mask = ((flood != 128)).astype(np.uint8)
 mask = cv2.dilate(mask, np.ones((5, 5), np.uint8))
 # The old foreground band (grey, full width, from y ~ 975) stays out of it.
 mask[975:, :] = 0
@@ -46,9 +52,19 @@ bx, by, bw, bh = cv2.boundingRect(mask)
 cliff = img[by:by + bh, bx:bx + bw].astype(np.uint8)
 cliff_mask = mask[by:by + bh, bx:bx + bw] * 255
 
-# Fill what the cliff leaves behind from the scenery around it.
-scenery = cv2.inpaint(img.astype(np.uint8), mask * 255, 9, cv2.INPAINT_TELEA)
-canvas = scenery.copy()
+# Fill what the cliff leaves behind from the forest beside it: the same rows of
+# columns 460 to 790, mirrored and tiled across the hole so the vertical
+# gradient matches, feathered at the edges. (cv2.inpaint smeared the valley.)
+canvas = img.astype(np.uint8).copy()
+donor = canvas[:, 460:790]
+tile = np.concatenate([donor, donor[:, ::-1]], axis=1)
+reps = int(np.ceil(w / tile.shape[1])) + 1
+strip = np.tile(tile, (1, reps, 1))[:, :w]
+hole = cv2.dilate(mask, np.ones((9, 9), np.uint8)).astype(np.float64)
+hole[PLATEAU_TOP - 10:] = 1.0
+soft = cv2.GaussianBlur(hole, (0, 0), 4)[..., None]
+canvas = (canvas * (1 - soft) + strip * soft).astype(np.uint8)
+scenery = canvas.copy()
 
 # Plateau: the foreground rock (rows 985 to 1080) stretched up to PLATEAU_TOP,
 # its top edge gently uneven.
