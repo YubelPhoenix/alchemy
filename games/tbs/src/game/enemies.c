@@ -2602,7 +2602,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         // A human with a gun, not an Adept: weapon skills only. Her moves in
         // each fight come from sarah_stage.h (BattleEnemy_ChooseAction); this
         // is the last fight's.
-        .abilities = {ABILITY_ATTACK, 225, 234, 228, 235, 232, 162, 237},
+        .abilities = {ABILITY_ATTACK, 225, 234, 228, 235, 232, 162, 178},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 1500,
         .item = ITEM_ELIXIR,

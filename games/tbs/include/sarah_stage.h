@@ -41,8 +41,8 @@ static const struct SarahStage gSarahStages[4] = {
      {1, 163, 225, 228, 234, 232, 235, 162}},
     // Lalivero: the final, challenging duel (25 to 28).
     {28, 2, 6000, 335, 125, 160, 36, 1500, 900,
-     // All of it, Titan Blade last.
-     {1, 225, 234, 228, 235, 232, 162, 237}},
+     // All of it, Annihilation last.
+     {1, 225, 234, 228, 235, 232, 162, 178}},
 };
 
 #endif
