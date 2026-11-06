@@ -47,18 +47,6 @@
 /// An enemy of the battle is unit 0x80 + its place; at most six.
 #define ENEMY_UNIT_FIRST 0x80
 
-/// Ash Jenna of Vale's unit, or NULL when she is not in this battle.
-static struct Unit *BattleAshJennaVale_Find(void) {
-  s32 place;
-
-  for (place = 0; place < 6; place++) {
-    struct Unit *unit = Unit_GetFar(ENEMY_UNIT_FIRST + place);
-
-    if (unit != 0 && unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
-      return unit;
-  }
-  return 0;
-}
 
 s32 Battle_Run(s32 enemyGroup) {
   struct BattleCamera *camera;
@@ -382,14 +370,6 @@ party_lost:
   else
     BattleMessage_ShowAndWaitFar(MsgPartyDefeated);
   BattleMessage_WaitForAdvance();
-  {
-    struct Unit *ashJenna = BattleAshJennaVale_Find();
-
-    if (ashJenna != 0 && (ashJenna->aiActionIndex & AI_PUNISHED) != 0) {
-      BattleMessage_ShowAndWaitFar(MsgDarkAshValePunished);
-      BattleMessage_WaitForAdvance();
-    }
-  }
   Sound_PlaySongFar(SONG_FADE_OUT_BGM);
   ScreenFade_ToBlack(30);
   result = BATTLE_OUTCOME_LOST;
