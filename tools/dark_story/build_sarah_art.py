@@ -52,10 +52,46 @@ def to_lab(rgb):
 
 palette_lab = to_lab(colors)
 
+CLEAN = {"dash", "damage"}   # their drawings carry stray speckle
+
+
+def despeckle(img):
+    """Drops isolated pixels and recolours lone off-colour ones from their
+    neighbours' median, leaving the drawing's edges alone."""
+    a = np.asarray(img.convert("RGBA")).astype(np.int32).copy()
+    h, w, _ = a.shape
+    opaque = a[..., 3] >= 128
+    out = a.copy()
+    for y in range(h):
+        for x in range(w):
+            ys = slice(max(y - 1, 0), min(y + 2, h))
+            xs = slice(max(x - 1, 0), min(x + 2, w))
+            nb = opaque[ys, xs].copy()
+            nb[y - ys.start, x - xs.start] = False
+            count = int(nb.sum())
+            if opaque[y, x]:
+                if count <= 1:                    # a lone dot
+                    out[y, x, 3] = 0
+                    continue
+                cols = a[ys, xs, :3][nb]
+                med = np.median(cols, axis=0)
+                if np.abs(a[y, x, :3] - med).sum() > 150:
+                    near = (np.abs(cols - a[y, x, :3]).sum(axis=1) < 60).sum()
+                    if near == 0:                 # nothing like it nearby
+                        out[y, x, :3] = med
+            elif count >= 7:                      # a pinhole
+                cols = a[ys, xs, :3][nb]
+                out[y, x, :3] = np.median(cols, axis=0)
+                out[y, x, 3] = 255
+    return Image.fromarray(out.astype(np.uint8), "RGBA")
+
+
 sheet = Image.new("RGBA", (FRAME, FRAME * FRAMES), (0, 0, 0, 0))
 for index in range(FRAMES):
     pose = STEPS[index - index % 2]
     src = Image.open(SOURCE / f"{pose}.png").convert("RGBA")
+    if pose in CLEAN:
+        src = despeckle(src)
     if pose in MIRROR:
         src = src.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
     if src.size != (FRAME, FRAME):
