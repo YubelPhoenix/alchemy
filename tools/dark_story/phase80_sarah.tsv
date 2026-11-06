@@ -1,6 +1,15 @@
-# Sarah, the optional super boss in Kalay (Kalay_TalkToSarah).
-N340	MsgDarkSarahGreet	Kalay is loud today.\nNobody here looks up.\nNobody sees me.{page_break}You do, though.\nYou stopped. You\nlooked right at me.{end_wait}
-N341	MsgDarkSarahIsaac	Who are you?\nYou aren't from Kalay.{end_wait}
-N342	MsgDarkSarahChallenge	Sarah. That's all\nthat's left of me.\nI was never finished.{page_break}Nobody wrote an ending\nfor me. So I'll take\none from you instead.{end_wait}
-N343	MsgDarkSarahBeaten	So that's how it feels\nto lose. I wasn't\nmade to find out.{page_break}Keep walking, Isaac.\nSomeone will write\nyour ending for you.{end_wait}
-N344	MsgDarkSarahNotYet	You're not ready.\nCome back with the\nfull company.{end_wait}
+# Sarah: a human with a gun, met four times (Vault, Kalay, Tolbi, Lalivero), stronger each time.
+N340	MsgDarkSarahGreet	Kalay is loud today.\nNobody here looks up.\nBut you did.{page_break}We met in Vault. You\nremember. You had a\nweaker stance back then.{end_wait}
+N341	MsgDarkSarahIsaac	You again. Why are you\nfollowing us?{end_wait}
+N342	MsgDarkSarahChallenge	I'm not following.\nI'm measuring.{page_break}Show me how your friends\nfight beside you. Show\nme what the Djinn can do.{end_wait}
+N343	MsgDarkSarahBeaten	Better. You covered\neach other this time.\nThat's what I came for.{page_break}Keep going, Isaac.\nI'll find you again.{end_wait}
+N344	MsgDarkSarahVaultGreet	You walk like someone\nwho has never been shot\nat. Stand still.{page_break}I want to see how you\nfight. Nothing personal.\nCome on.{end_wait}
+N345	MsgDarkSarahVaultBeaten	Not bad for a first\nround. You hit harder\nthan you look.{page_break}My name is Sarah.\nRemember it. I'll be\nback to check on you.{end_wait}
+N346	MsgDarkSarahTolbiGreet	Tolbi. Crowds, noise,\ncoins. A good place to\nlose track of someone.{page_break}Not you, though.\nI always find you.{end_wait}
+N347	MsgDarkSarahTolbiIsaac	Who sent you, Sarah?\nWhat do you want?{end_wait}
+N348	MsgDarkSarahTolbiChallenge	Nobody sent me.\nI'm just curious how\nlong you can last.{page_break}Guard. Wait. Choose\nyour moment. That's\nthe lesson today.{end_wait}
+N349	MsgDarkSarahTolbiBeaten	You waited. You\nchose. Good.{page_break}One more time,\nIsaac. In Lalivero.\nDon't be late.{end_wait}
+N350	MsgDarkSarahLaliveroGreet	You came. I wasn't\nsure you would.{page_break}No tricks this time.\nNo lessons. Just you,\nme, and what's left.{end_wait}
+N351	MsgDarkSarahLaliveroIsaac	Then tell me the truth.\nWho are you?{end_wait}
+N352	MsgDarkSarahLaliveroChallenge	Someone who was\nnever finished.\nNever given a name.{page_break}I took one anyway.\nSarah. And I'm done\nbeing measured.{end_wait}
+N353	MsgDarkSarahLaliveroBeaten	So that's how it ends.\nNot with a bang. With\nsomeone standing.{page_break}Go on. Finish what\nyou started, Isaac.\nSomeone has to.{end_wait}

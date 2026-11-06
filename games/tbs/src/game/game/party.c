@@ -3,6 +3,7 @@
 // Part of game.c.
 
 #include "../game_internal.h"
+#include "sarah_stage.h"
 
 // The letter that tells apart enemies of one kind: digits from 1 abroad, the
 // alphabet in Japan.
@@ -63,6 +64,22 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   unit->baseAgility = enemy->agi;
   unit->baseLuck = enemy->luck;
   unit->baseActionCount = enemy->turns;
+  if (index == ENEMY_ROW_SARAH) {
+    // Sarah grows with each of her four fights; the row holds the last.
+    const struct SarahStage *stage =
+        &gSarahStages[(GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT0) != 0) |
+                      ((GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT1) != 0) << 1)];
+
+    unit->level = stage->level;
+    unit->baseHp = stage->hp;
+    unit->hp = stage->hp;
+    unit->hpMax = stage->hp;
+    unit->baseAttack = stage->atk;
+    unit->baseDefense = stage->def;
+    unit->baseAgility = stage->agi;
+    unit->baseLuck = stage->luck;
+    unit->baseActionCount = stage->turns;
+  }
   unit->baseHpRegen = enemy->hpRegen;
   unit->basePpRegen = enemy->ppRegen;
   Message_DecodeRawFar(index + MsgEnemyName, name, 15);

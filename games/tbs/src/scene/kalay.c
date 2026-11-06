@@ -490,23 +490,20 @@ static void Kalay_SarahSays(void) {
   GameFlag_Clear(FLAG_DARK_SARAH_SPEAKING);
 }
 
-/// Sarah in Kalay: a battle Isaac can pick or leave. She only fights once Mia
-/// has joined; a defeat comes back here and she waits to be fought again.
+/// Sarah in Kalay, her second fight (stage 1, level 15): a battle Isaac can
+/// pick or leave; a defeat comes back here and she waits to be fought again.
 static void Kalay_TalkToSarah(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkSarahGreet);
   Kalay_SarahSays();
-  if (GameFlag_Get(FLAG_MIA_JOINED_PARTY) == 0) {
-    Event_SetMessageId(MsgDarkSarahNotYet);
-    Kalay_SarahSays();
-    Event_End();
-    return;
-  }
   Event_SetMessageId(MsgDarkSarahIsaac);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
   Event_SetMessageId(MsgDarkSarahChallenge);
   Kalay_SarahSays();
   GameFlag_Set(FLAG_DARK_SARAH_PENDING);
+  // Her second fight: stage 1 (level 15).
+  GameFlag_Set(FLAG_DARK_SARAH_STAGE_BIT0);
+  GameFlag_Clear(FLAG_DARK_SARAH_STAGE_BIT1);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
   Event_SetAfterBattleDestination((s32)&SceneId_Kalay, 0);

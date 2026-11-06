@@ -2583,18 +2583,19 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .itemChance = 1,
         .experience = 1732,
     },
-    // Sarah, the optional super boss of Kalay (Kalay_TalkToSarah). Takes the
+    // Sarah, met four times (Vault, Kalay, Tolbi, Lalivero); this row is the last, stronger-staged
+    // fights are scaled by BattleUnit_Set from sarah_stage.h. Takes the
     // place of the removed Isaac-vs-Mia Mia (formation 383, zone 105 slot 1).
     {
         .name = "              ",
-        .level = 45,
-        .hp = 11000,
-        .pp = 500,
-        .atk = 445,
-        .def = 175,
-        .agi = 200,
+        .level = 27,
+        .hp = 4200,
+        .pp = 0,
+        .atk = 310,
+        .def = 115,
+        .agi = 150,
         .luck = 40,
-        .turns = 3,
+        .turns = 2,
         .elementPreset = 40,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
@@ -2604,10 +2605,10 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         // Smash last.
         .abilities = {ABILITY_ATTACK, 163, ABILITY_ATTACK, 225, 177, 234, 234, 235},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
-        .coins = 4200,
+        .coins = 1500,
         .item = ITEM_ELIXIR,
         .itemChance = 1,
-        .experience = 4800,
+        .experience = 700,
     },
     // Tornado Lizard
     {
