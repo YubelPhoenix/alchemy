@@ -14,12 +14,12 @@
 05510	message	We call it Ply. It is\ndrawn through meditation.{end_wait}
 05515	message	Whoever entered the\nlighthouse will answer\nto me.{end_wait}
 05522	message	You're going farther\ninto the lighthouse,\naren't you?{end_now}
-05523	message	You don't have to explain\neverything to me.{end_wait}
-05524	message	But you helped me get\nthis far. You must have\nyour reasons.{end_wait}
-05525	message	You'll keep going,\nwon't you?{end_now}
-05526	message	Please. Someone is inside.\nWill you help me?{end_now}
-05528	message	Someone made it inside.\nI have to find out\nwhat they're doing here.{end_wait}
-05529	message	My family guarded this\nlighthouse for generations.\nI can't leave it now.{end_wait}
-05530	message	I can't do this alone.\nIf you'll have me,\nI'd like to go with you.{end_wait}
+05523	message	Don't tell me it's nothing.\nYou didn't come this far\nby accident.{end_wait}
+05524	message	You've got your reasons.\nI have mine.{end_wait}
+05525	message	Are you going on, or not?{end_now}
+05526	message	Someone's inside.\nI'm not turning back.\nAre you coming?{end_now}
+05528	message	Someone got inside.\nI'm going to find out why.{end_wait}
+05529	message	My family guarded this\nlighthouse for generations.\nI won't abandon it.{end_wait}
+05530	message	I'm going with you.\nI know this place.\nYou'll need my help.{end_wait}
 05547	message	So the children\nsurvived Mt. Aleph.{end_wait}
 05548	message	You came this far\nfor {actor_name:6} and Kraden?{end_wait}
