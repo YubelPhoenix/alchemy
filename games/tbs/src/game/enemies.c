@@ -16,7 +16,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .level = 33,
         .hp = 2800,
         .pp = 300,
-        .atk = 310,
+        .atk = 250,
         .def = 130,
         .agi = 140,
         .luck = 28,
@@ -24,8 +24,8 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 41,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // Close to end game, so she has Supernova (59) and Pyroclasm (53) too.
-        .abilities = {226, 223, 59, ABILITY_ATTACK, 52, 50, 53, 422},
+        // Pyroclasm (53) stays; Supernova is gone, it was too much at this point.
+        .abilities = {226, 223, ABILITY_ATTACK, ABILITY_ATTACK, 52, 50, 53, 422},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 2000,
         .item = ITEM_ELIXIR,

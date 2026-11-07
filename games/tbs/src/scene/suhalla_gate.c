@@ -190,9 +190,10 @@ static void SuhallaGate_AshJennaAftermath(void) {
   WaitFrames(1);
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
+  // Release the fixed camera now: while it is held, the bottom rows of the
+  // map stay scrambled from the battle until it lets go.
+  FieldCamera_MoveTo(-1, -1, -1, 0);
   if (gSaveBlock.sequenceResult == -1) {
-    // Release the fixed camera before player control returns.
-    FieldCamera_MoveTo(-1, -1, -1, 0);
     Event_End();
     return;
   }
