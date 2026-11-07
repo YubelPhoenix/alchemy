@@ -534,6 +534,17 @@ s32 Kolima_Initialize(void) {
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_FIRST_SPARKLE + 2), 0);
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_FIRST_SPARKLE + 3), 0);
 
+  // Heart only appears once the curse is lifted, and stays a black silhouette
+  // until she is beaten. Until then she is hidden and parked off the map, so
+  // she is not in the cursed village or in Tret's tree curse scene.
+  if (GameFlag_Get(FLAG_KOLIMA_CURSE_LIFTED) == 0 ||
+      GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0) {
+    Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_HIDDEN);
+    Actor_SetPosition(ACTOR_HEART, PIXELS(-9), PIXELS(488));
+  } else {
+    Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLACK);
+  }
+
   table = gKolima_EntryActions;
   Actor_SetScript(ACTOR_FIRST_SPARKLE, table);
   Actor_SetScript(ACTOR_FIRST_SPARKLE + 1, table);
@@ -567,11 +578,6 @@ s32 Kolima_Initialize(void) {
     Actor_ReleaseById(ACTOR_MIA_PSYNERGY_FIELD);
     Actor_ReleaseById(ACTOR_GARET_PSYNERGY_FIELD);
     Event_CallWithLastActiveActorId(gKolima_EntryScript);
-  }
-
-  // Heart stands as a black silhouette until she is beaten.
-  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) == 0) {
-    Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLACK);
   }
 
   // Back from Heart's battle: she speaks her last words and goes.
