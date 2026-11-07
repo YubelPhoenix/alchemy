@@ -160,11 +160,8 @@ void BattleBackground_Init(void) {
 /// Heart's backdrop: the palette entries the floor's tile seams use
 /// (tools/dark_story/build_heart_floor.py reserves 120 to 127).
 #define HEART_CRACK_CORE 120
-/// Falling rain: four palette entries, the phases along each painted streak
-/// (tools/dark_story/build_heart_floor.py); one is lit at a time, so a drop
-/// runs down every streak. Sky and floor are the entries below them.
-#define HEART_RAIN_FIRST 112
-#define HEART_RAIN_FRAMES 2
+/// The sky and floor are the entries below the ripples' (and the tile seams').
+#define HEART_SKY_ENTRIES 112
 /// Rain on the floor: four palette entries, each a ring size of the ripples
 /// (tools/dark_story/build_heart_floor.py); one is lit at a time.
 #define HEART_RIPPLE_FIRST 124
@@ -215,13 +212,10 @@ void Heart_StepBackdropGlow(void) {
   {
     // the ring size that is lit now, and the other three at the floor's colour
     s32 lit = (gVBlankCount / HEART_RIPPLE_FRAMES) & 3;
-    s32 drop = (gVBlankCount / HEART_RAIN_FRAMES) & 3;
 
     for (k = 0; k < 4; k++) {
       BATTLE_BG_PALETTE[HEART_RIPPLE_FIRST + k] =
           k == lit ? 0x6f5b : battle->palette[HEART_RIPPLE_FIRST + k];
-      BATTLE_BG_PALETTE[HEART_RAIN_FIRST + k] =
-          k == drop ? 0x7bbc : battle->palette[HEART_RAIN_FIRST + k];
     }
   }
   {
@@ -247,7 +241,7 @@ void Heart_StepBackdropGlow(void) {
     gain = strike[index];
     // the sky and floor brighten by a share of the strike (half for a big
     // one, a sixth for a distant one), so the bolt is the brightest thing
-    for (i = 0; i < HEART_RAIN_FIRST; i++) {
+    for (i = 0; i < HEART_SKY_ENTRIES; i++) {
       u32 pixel = source[i];
       s32 red = (pixel & 31) + gain / skyShare;
       s32 green = ((pixel >> 5) & 31) + gain / skyShare;

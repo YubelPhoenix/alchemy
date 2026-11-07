@@ -71,13 +71,12 @@ for r in range(floor_rows):
         row = row * (1 - 0.55 * m) + np.array([120.0, 88.0, 150.0]) * 0.55 * m
     out[HORIZON + r] = row
 
-# Glowing tile seams, falling rain and rain ripples. They are painted after
+# Glowing tile seams and rain ripples. They are painted after
 # the floor is quantised, with palette entries reserved for them; the battle
 # code (background.c, Heart_StepBackdropGlow) animates them:
 #   120-123  the tile seams, four phases from the horizon outward
 #   124-127  rain ripples on the floor: four ring sizes in turn, each ripple
 #            starting at its own point in the cycle
-#   112-115  falling rain streaks: four phases along each streak
 NQ = 112
 CORE = 120
 img = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
@@ -91,23 +90,6 @@ for y in range(HORIZON + 3, H):
     idx[y, xs] = CORE + ph
 for k in range(4):
     pal[(CORE + k) * 3:(CORE + k) * 3 + 3] = [200, 72, 248]
-# Falling rain: thin slanted streaks (the GIF's slant, top-left to bottom-right)
-# over sky and floor. A streak's eight pixels use entries 112 + (j // 2 + start)
-# % 4; the game lights one of the four at a time, so a bright drop runs down
-# each streak, each starting at a different point.
-RAIN = 112
-for k in range(4):
-    pal[(RAIN + k) * 3:(RAIN + k) * 3 + 3] = [150, 128, 176]
-sr = np.random.default_rng(33)
-for n in range(170):
-    sx = int(sr.integers(0, W))
-    sy = int(sr.integers(-4, H - 2))
-    start = int(sr.integers(0, 4))
-    for j in range(8):
-        x = (sx + int(round(j * 0.4))) % W
-        y = sy + j
-        if 0 <= y < H and idx[y, x] < 112:
-            idx[y, x] = RAIN + (j // 2 + start) % 4
 # Rain landing on the glass: small expanding rings. A ripple draws its four
 # ring sizes (stage 0 to 3) with entries 124 + (stage + start) % 4; the game lights
 # one of those four entries at a time, so the ripple shows a different ring
