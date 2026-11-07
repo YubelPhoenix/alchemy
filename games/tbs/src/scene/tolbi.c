@@ -521,7 +521,7 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   }
   // Back from Sarah's battle.
   if (SARAH_PENDING_AT(2)) {
-    SARAH_AFTERMATH(ACTOR_TOLBI_SARAH, 232, 320, MsgDarkSarahTolbiBeaten,
+    SARAH_AFTERMATH_VANISH(ACTOR_TOLBI_SARAH, 232, 320, MsgDarkSarahTolbiBeaten,
                     FLAG_DARK_SARAH_TOLBI_FOUGHT);
   }
   return 0;

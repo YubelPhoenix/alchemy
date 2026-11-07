@@ -978,7 +978,7 @@ s32 Lalivero_Initialize(void) {
     }
     // Back from Sarah's battle.
     if (SARAH_PENDING_AT(3)) {
-      SARAH_AFTERMATH(ACTOR_LALIVERO_SARAH, 176, 264,
+      SARAH_AFTERMATH_VANISH(ACTOR_LALIVERO_SARAH, 176, 264,
                       MsgDarkSarahLaliveroBeaten,
                       FLAG_DARK_SARAH_LALIVERO_FOUGHT);
     }
