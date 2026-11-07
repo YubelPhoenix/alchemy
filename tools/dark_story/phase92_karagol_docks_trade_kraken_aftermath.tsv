@@ -1,29 +1,21 @@
 # Kalay-Tolbi docks: Silk Road blockage, passenger logistics, Kraken aftermath and post-Colosso shutdown.
 07416	MsgKalayWantGoToTolbi	Do you want to travel to\nTolbi?{end_now}
-07419	MsgKalayTolbiDocksWeCantTakeSilkRoadSo	Silk Road is closed. The\nship's our only way across,\nand the fare is steep.{end_wait}
-07420	MsgKalayTolbiDocksYouCantTakeSilkRoadMuch	Scouts keep going up Silk\nRoad and turning back. No\none's made it through.{end_wait}
 07421	MsgKalayGoingTakeShip	Are you taking the ship?{end_now}
 07422	MsgKalayPassMessageDaughter	When you reach Tolbi, tell\nmy daughter we're all\nright. And tell her mother{page_break}thinks the fare is much too\nhigh.{end_wait}
-07424	MsgKalayTolbiDocksWithSilkRoadClosedEveryoneWill	With Silk Road blocked, the\ncaptain can name his price.\nI don't like it.{end_wait}
 07425	MsgKalayTolbiDocksICantBelieveHowExpensiveTickets	A year's savings for\ntickets? I thought Colosso\nwould be the expensive{page_break}part.{end_wait}
-07426	MsgKalayTolbiDocksWellIsntThisGreatWeCant	I came to meet my daughter\nin Tolbi. Now the ship fare\nmight keep us apart.{end_wait}
-07427	MsgKalayTolbiDocksWeveSpentAYearPlanningThis	A year planning this trip.\nOne rockslide and\neverything fell apart.{end_wait}
 07428	MsgKalayLookingForTickets	Are you here to buy\ntickets?{end_now}
 07435	MsgKalayHandInTicketPlank	Give your ticket to the\nsailor at the plank. No\nticket, no boarding.{end_wait}
 07436	MsgKalayTolbiDocksHmmmThatsStrangeIsntTheReplacement	The other ship still hasn't\ncome? I thought we'd have\nsailed by now.{end_wait}
 07437	MsgKalayTolbiDocksOnceWeveCrossedTheKaragolWell	Once we cross the Karagol,\nwe'll finally see Tolbi.\nI've looked forward to it{page_break}for months.{end_wait}
-07438	MsgKalayTolbiDocksIFeelSortOfBadThat	I hate charging this much\nfor a ticket. The captain\nsays we have no choice.{end_wait}
 07439	MsgKalayTolbiDocksIfYouveAlreadyBoughtYourTicket	If you've got a ticket,\nboard now. Don't keep the\ncrew waiting.{end_wait}
 07440	MsgKalayTolbiDocksTheShipWontLeaveHereTill	We can't sail until the\nother ship arrives. That's\nthe rule, however long we{page_break}wait.{end_wait}
 07441	MsgKalayTolbiDocksLetsGetGoingImNotGetting	I'd like to get moving\nwhile my knees can still\nmanage the stairs.{end_wait}
 07442	MsgKalayTolbiDocksTodayThereAreSupposedToBe	The tour group is late. We\ncan't check the tickets\nuntil everyone arrives.{end_wait}
 07443	MsgKalayTolbiDocksTheShipWillBeOpenUntil	You can look around the\nship before boarding. Just\nkeep clear of the crew.{end_wait}
-07444	MsgKalayTolbiDocksTheCaptainsInAGoodMood	A full ship puts the\ncaptain in a good mood.\nMakes my shift easier too.{end_wait}
 07445	MsgKalayTolbiDocksTheCaptainsInAGoodMoodThats	The captain's letting\nvisitors aboard early.\nDon't make him regret it.{end_wait}
 07446	MsgKalayTicketsPlease	Tickets, please. One at a\ntime.{end_wait}
 07449	MsgKalayAfterHandingOverTicket	Hand over your ticket and\nyou can go aboard.{end_wait}
 07451	MsgKalayHaveTicketsGiveHim	Bought tickets already?\nGive them to the sailor at\nthe plank.{end_wait}
-07453	MsgKalayTolbiDocksSilkRoadIsBlockedSoThe	Silk Road's blocked, so\neveryone seems to be taking\nthis ship.{end_wait}
 07454	MsgKalayTolbiDocksTheReplacementShipHasntArrivedSo	The replacement ship hasn't\narrived. We can't sail\nwithout it.{end_wait}
 07455	MsgKalayBoardWaitSetSail	Please board and wait.\nWe'll tell you when we can\nleave.{end_wait}
 07456	MsgKalayWantGoAshore	Do you want to go ashore?{end_now}
