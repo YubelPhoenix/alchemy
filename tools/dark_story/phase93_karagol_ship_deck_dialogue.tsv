@@ -1,6 +1,5 @@
 # Ship deck: delay, passengers, mercenaries, rowing, attacks, island and landing.
 # Original runtime tokens and style controls preserved; mismatches excluded for scene-level review.
-07460	MsgTolbiShipDeckThereAreALotOfPassengers	There are so many\npassengers. Can the crew\neven get all of us across{page_break}the Karagol?{end_wait}
 07461	MsgTolbiShipDeckTheReplacementShipFromTolbiShould	The replacement ship from\nTolbi should be here by\nnow. I keep watching the{page_break}horizon.{end_wait}
 07462	MsgTolbiShipWonderCouldHaveHappened	A ship doesn't just vanish.\nSomething must have\nhappened out there.{end_wait}
 07478	MsgTolbiShipToldWereLeavingSoonSet	I've told you already. We\nsail when the replacement\nship arrives.{end_wait}
