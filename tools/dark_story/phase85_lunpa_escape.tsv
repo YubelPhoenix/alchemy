@@ -23,9 +23,9 @@
 09507	message	I remembered something\nHammet taught me\nabout trading.{end_wait}
 09508	message	To trade in Lunpa?\nAfter all this?{end_wait}
 09509	message	No. Something\nmore important than that.{end_wait}
-09510	message	"Don't judge a customer\nby the way they look."{end_wait}
-09511	message	"Don't turn back\njust because the road\nlooks dangerous."{end_wait}
-09512	message	"If people are waiting\nfor what you carry,{page_break}you owe it to them\nto try to reach them."{end_wait}
+09510	message	Don't judge a customer\nby the way they look.{end_wait}
+09511	message	Don't turn back\njust because the road\nlooks dangerous.{end_wait}
+09512	message	If people are waiting\nfor what you carry,{page_break}you owe it to them\nto try to reach them.{end_wait}
 09513	message	So you came for\nthe people of Lunpa,\ndespite Dodonpa?{end_wait}
 09514	message	And found us instead.\nI suppose that's fate.{end_wait}
 09515	message	But you knew\nthe guards might refuse\na merchant from Kalay.{end_wait}
