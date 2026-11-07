@@ -131,7 +131,8 @@ portrait_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_66.png"
 # GBA icon palettes require opaque RGB channels aligned to eight.
 # Quantize first, then snap palette entries to valid GBA levels.
 icon = canvas.convert("RGB").quantize(colors=16, method=Image.Quantize.MEDIANCUT)
-palette = icon.getpalette()
+palette = icon.getpalette()[:48]
+palette += [0] * (48 - len(palette))  # the icon atlas wants exactly sixteen colours
 for i in range(0, len(palette), 3):
     for channel in range(3):
         palette[i + channel] = (palette[i + channel] // 8) * 8

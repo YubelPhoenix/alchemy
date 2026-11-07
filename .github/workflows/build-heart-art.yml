@@ -32,7 +32,7 @@ jobs:
           python3 - <<'PY'
           from PIL import Image
           sheet = Image.open('games/tbs/src/graphics/monster/slime.png')
-          assert sheet.mode == 'P' and sheet.size == (64, 1024), (sheet.mode, sheet.size)
+          assert sheet.mode == 'P' and sheet.size == (64, 640), (sheet.mode, sheet.size)
           shared = Image.open('games/tbs/src/system/memory/basic.png').getpalette()[:224 * 3]
           assert sheet.getpalette()[:224 * 3] == shared
           used = set(sheet.getdata())
