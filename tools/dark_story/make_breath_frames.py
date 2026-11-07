@@ -25,6 +25,15 @@ for source, dest in JOBS:
         if y in (int(h * 0.35), int(h * 0.62)):
             rows.append(art[y])
     new = np.stack(rows)
+    # the lower body sways: from the waist down to just above the feet, the
+    # rows shift one pixel (two near the hem), so the cloak, skirt and legs
+    # move with the breath while the feet stay planted
+    n = new.shape[0]
+    for y in range(int(n * 0.62), n - 5):
+        shift = 2 if y > n * 0.82 else 1
+        row = np.zeros_like(new[y])
+        row[shift:] = new[y][:-shift]       # no wrap-around at the edge
+        new[y] = row
     assert t - 2 >= 0, (source, t)
     out = Image.new("RGBA", src.size, (0, 0, 0, 0))
     out.alpha_composite(Image.fromarray(new), (l, b - new.shape[0]))
