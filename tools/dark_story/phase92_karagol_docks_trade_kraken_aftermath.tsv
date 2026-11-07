@@ -1,0 +1,77 @@
+# Kalay-Tolbi docks: Silk Road blockage, passenger logistics, Kraken aftermath and post-Colosso shutdown.
+07416	MsgKalayWantGoToTolbi	Do you want to travel to\nTolbi?{end_now}
+07419	MsgKalayTolbiDocksWeCantTakeSilkRoadSo	Silk Road is closed. The\nship's our only way across,\nand the fare is steep.{end_wait}
+07420	MsgKalayTolbiDocksYouCantTakeSilkRoadMuch	Scouts keep going up Silk\nRoad and turning back. No\none's made it through.{end_wait}
+07421	MsgKalayGoingTakeShip	Are you taking the ship?{end_now}
+07422	MsgKalayPassMessageDaughter	When you reach Tolbi, tell\nmy daughter we're all\nright. And tell her mother{page_break}thinks the fare is much too\nhigh.{end_wait}
+07424	MsgKalayTolbiDocksWithSilkRoadClosedEveryoneWill	With Silk Road blocked, the\ncaptain can name his price.\nI don't like it.{end_wait}
+07425	MsgKalayTolbiDocksICantBelieveHowExpensiveTickets	A year's savings for\ntickets? I thought Colosso\nwould be the expensive{page_break}part.{end_wait}
+07426	MsgKalayTolbiDocksWellIsntThisGreatWeCant	I came to meet my daughter\nin Tolbi. Now the ship fare\nmight keep us apart.{end_wait}
+07427	MsgKalayTolbiDocksWeveSpentAYearPlanningThis	A year planning this trip.\nOne rockslide and\neverything fell apart.{end_wait}
+07428	MsgKalayLookingForTickets	Are you here to buy\ntickets?{end_now}
+07435	MsgKalayHandInTicketPlank	Give your ticket to the\nsailor at the plank. No\nticket, no boarding.{end_wait}
+07436	MsgKalayTolbiDocksHmmmThatsStrangeIsntTheReplacement	The other ship still hasn't\ncome? I thought we'd have\nsailed by now.{end_wait}
+07437	MsgKalayTolbiDocksOnceWeveCrossedTheKaragolWell	Once we cross the Karagol,\nwe'll finally see Tolbi.\nI've looked forward to it{page_break}for months.{end_wait}
+07438	MsgKalayTolbiDocksIFeelSortOfBadThat	I hate charging this much\nfor a ticket. The captain\nsays we have no choice.{end_wait}
+07439	MsgKalayTolbiDocksIfYouveAlreadyBoughtYourTicket	If you've got a ticket,\nboard now. Don't keep the\ncrew waiting.{end_wait}
+07440	MsgKalayTolbiDocksTheShipWontLeaveHereTill	We can't sail until the\nother ship arrives. That's\nthe rule, however long we{page_break}wait.{end_wait}
+07441	MsgKalayTolbiDocksLetsGetGoingImNotGetting	I'd like to get moving\nwhile my knees can still\nmanage the stairs.{end_wait}
+07442	MsgKalayTolbiDocksTodayThereAreSupposedToBe	The tour group is late. We\ncan't check the tickets\nuntil everyone arrives.{end_wait}
+07443	MsgKalayTolbiDocksTheShipWillBeOpenUntil	You can look around the\nship before boarding. Just\nkeep clear of the crew.{end_wait}
+07444	MsgKalayTolbiDocksTheCaptainsInAGoodMood	A full ship puts the\ncaptain in a good mood.\nMakes my shift easier too.{end_wait}
+07445	MsgKalayTolbiDocksTheCaptainsInAGoodMoodThats	The captain's letting\nvisitors aboard early.\nDon't make him regret it.{end_wait}
+07446	MsgKalayTicketsPlease	Tickets, please. One at a\ntime.{end_wait}
+07449	MsgKalayAfterHandingOverTicket	Hand over your ticket and\nyou can go aboard.{end_wait}
+07451	MsgKalayHaveTicketsGiveHim	Bought tickets already?\nGive them to the sailor at\nthe plank.{end_wait}
+07453	MsgKalayTolbiDocksSilkRoadIsBlockedSoThe	Silk Road's blocked, so\neveryone seems to be taking\nthis ship.{end_wait}
+07454	MsgKalayTolbiDocksTheReplacementShipHasntArrivedSo	The replacement ship hasn't\narrived. We can't sail\nwithout it.{end_wait}
+07455	MsgKalayBoardWaitSetSail	Please board and wait.\nWe'll tell you when we can\nleave.{end_wait}
+07456	MsgKalayWantGoAshore	Do you want to go ashore?{end_now}
+07459	MsgKalayFinishedOutHereBoardShip	If you're finished here,\nplease board the ship.{end_wait}
+07945	MsgKalayHearScaryTrip	They say monsters attacked\nyou at sea. I don't think I\ncould get on that ship{page_break}again.{end_now}
+07948	MsgKalayTolbiDocksSighIThinkWereDoneSailing	We've lost a ship already.\nI don't know when we can\nrisk another voyage.{end_wait}
+07949	MsgKalayTolbiDocksIGuessWeWontBeSeeing	My family's back in Angara.\nI don't know when I'll see\nthem again.{end_wait}
+07950	MsgKalayTolbiDocksIThinkThatMissingShipMust	People keep blaming a\nKraken for the missing\nship. No one's shown me{page_break}proof.{end_wait}
+07951	MsgKalayTolbiDocksImSorryButWeJustCant	Ticket sales are closed.\nThe sea is too dangerous\nfor another crossing.{end_wait}
+07952	MsgKalayTolbiDocksWeRentedOutOurHouseFor	We rented our house for\nColosso. Now the ship won't\nsail and we have nowhere to{page_break}go.{end_wait}
+07953	MsgKalayTolbiDocksWeRentedOutOurHouseIf	If we can't get home, we'll\nbe sleeping on the dock. We\nalready rented out our{page_break}house.{end_wait}
+07954	MsgKalayTolbiDocksSighWeCouldHaveMadeLots	I thought we'd make a\nfortune selling tickets.\nNot this year.{end_wait}
+07955	MsgKalayTolbiDocksMaybeWellStayHereUntilThe	I'm not going anywhere\nuntil the captain gives us\nan answer.{end_wait}
+07956	MsgKalayTolbiDocksAreWeSupposedToSleepOn	They can't expect us to\nsleep on the floor. We paid\ngood money.{end_wait}
+07957	MsgKalayTouristsLookUpset	Those tourists look\nmiserable. After that\ncrossing, I can't blame{page_break}them.{end_now}
+07960	MsgKalaySilkRoadBlocked	Silk Road was closed, so I\nthought my parents might\ncome by ship. No sign of{page_break}them yet.{end_wait}
+07964	MsgKalayThanksMessageParents	You passed on their\nmessage? Thank you. I was\nbeginning to think they'd{page_break}forgotten me.{end_wait}
+07965	MsgKalayTolbiDocksIfYoureGoingToTolbiKeep	Tolbi's west of here. At\nleast that road is still\nopen.{end_wait}
+07966	MsgKalayTolbiDocksItsBeenQuiteSomeTimeSince	The tour group went west\nsome time ago. The docks\nhave been quiet since.{end_wait}
+07967	MsgKalayTolbiDocksAfterSeeingTheLooksOnThe	After what happened on the\ncrossing, I think I'll stay\non shore a while.{end_wait}
+07968	MsgKalayTolbiDocksItWasAHardCrossingVery	It was a terrible crossing.\nI hope my family never has\nto make it.{end_wait}
+07969	MsgKalayTolbiDocksIGetTheFeelingThatIt	Nobody wants to sail after\nthat. Can you blame them?{end_wait}
+07970	MsgKalayTolbiDocksYouCrossedTheSeaJustFor	You crossed that water just\nto see Colosso? I'd need a\nbetter reason.{end_wait}
+08067	MsgKalayTolbiDocksTheShipWontBeLeavingHere	Too many creatures at sea.\nThe captain won't risk\nanother crossing.{end_wait}
+08068	MsgKalayTolbiDocksAhhhImBoredWhenAreWe	We've been waiting all day.\nNobody knows when we'll\nleave.{end_wait}
+08069	MsgKalayTolbiDocksTheShipHasntReturnedSoWe	The ship hasn't come back.\nEven with passengers, we\ncouldn't sail.{end_wait}
+08070	MsgKalayTolbiDocksOhHoHoWithoutAShip	No ships, no business. I\nnever thought the sea could\nshut us down like this.{end_wait}
+08071	MsgKalayTolbiDocksImGladIOnlyWorkOn	I work on the docks, not at\nsea. Even so, I worry about\nevery crew that leaves.{end_wait}
+08072	MsgKalayTolbiDocksIWonderIfMonstersGotEveryone	What if the missing ship\nnever comes back? I can't\nstop thinking about it.{end_wait}
+08073	MsgKalayIncredibleOcean	So this is the ocean Kraden\nspoke about? It's bigger\nthan I imagined.{end_wait}
+09185	MsgKalayTolbiDocksThereAreManyHereWhoWant	Colosso is over and people\nwant to go home. But no\ncaptain will take them.{end_wait}
+09186	MsgKalayTolbiDocksHangingAroundHereLikeThisAnd	There's only so long you\ncan stare at water before\nyou lose your mind.{end_wait}
+09187	MsgKalayTolbiDocksIfBothTheCaptainAndKaja	If the captain and Kaja\nboth say no, the ship stays\nhere. Arguing won't help.{end_wait}
+09188	MsgKalayTolbiDocksIfKajaAndTheOthersSay	If Kaja says the sea is\nsafe, maybe the captain\nwill sail again.{end_wait}
+09189	MsgKalayTolbiDocksImStuckIWantToCross	I need to get across the\nKaragol. At this point I'd\ntake almost any boat.{end_wait}
+09190	MsgKalayTolbiDocksYeahTheShipsNotGoingAnywhere	Someone offered the crew a\npile of money. They still\nwouldn't leave. I can't{page_break}blame them.{end_wait}
+09191	MsgKalayTolbiDocksTheKaragolSeaLooksSoCalm	The Karagol looks calm from\nhere. That's what frightens\nme.{end_wait}
+09192	MsgKalayTolbiDocksWeveGotPassengersButNobodysSailing	Tickets in my hand, no boat\nleaving. Some business this\nis.{end_wait}
+09193	MsgKalayTolbiDocksTheCaptainMustBeAStubborn	You'd think a captain would\nsail for that much money.\nHe must know something we{page_break}don't.{end_wait}
+09213	MsgKalayTolbiDocksTourGroupsShouldTakeCareOf	Tours are supposed to get\nyou there and back. The\nship won't sail. What do{page_break}you want us to do?{end_wait}
+09214	MsgKalayTolbiDocksToHeckWithYouImStaying	I'm not leaving this dock\nuntil my ship does.{end_wait}
+09215	MsgKalayTolbiDocksSighIWonderWhenWellBe	How am I supposed to get\nhome? I've asked the sailor\nthree times.{end_wait}
+09216	MsgKalayTolbiDocksWellBeCountingOnYouIf	If something happens again,\nwe're counting on you,\nMaster.{end_wait}
+09217	MsgKalayTolbiDocksAsLongAsWereStuckHere	If we're stranded, someone\nwill need guards. I might\nas well earn my keep.{end_wait}
+09218	MsgKalayTolbiDocksSighIfIKnewItWould	I wish we'd never bought\nthose tickets. I can barely\npay for supper now.{end_wait}
+09219	MsgKalayTolbiDocksIfTheydJustLetTheShip	The passengers keep\nshouting. I wish the\ncaptain would just decide.{end_wait}
+09220	MsgKalayTolbiDocksIfImGoingToBeStuck	If we're stuck here, I\nshould find work before my\ncoins run out.{end_wait}
+09221	MsgKalayTolbiDocksGrrrWhyDontYouGetUp	Complaining won't get us\nhome. Get up and do\nsomething.{end_wait}
+09222	MsgKalayTolbiDocksAsLongAsYoureHereWe	As long as you're here,\nthey'll leave us alone.\nDon't go anywhere.{end_wait}
+09223	MsgKalayTolbiDocksThisTourWasntWellOrganizedThats	I promised to protect this\ntour, not spend my life on\na dock. I don't know what{page_break}to think anymore.{end_wait}
+09224	MsgKalayTolbiDocksIWonderIfGrandmaIsDoing	I wonder if Grandma has\nenough firewood. I should\nbe home by now.{end_wait}
