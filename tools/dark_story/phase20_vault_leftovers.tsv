@@ -40,9 +40,9 @@
 07415	MsgVaultPrisonerThoughts	I need to master my\ntemper. It's the only\nthing I can still control.{end_wait}
 07417	message	The Silk Road's closed.\nNothing gets through.{page_break}If you're going to Tolbi,\nyou'll have to cross\nthe Karagol Sea.{end_wait}
 07419	MsgKalayTolbiDocksWeCantTakeSilkRoadSo	Silk Road is closed. The\nship's our only way across,\nand the fare is steep.{end_wait}
-07420	MsgKalayTolbiDocksYouCantTakeSilkRoadMuch	Scouts keep going up Silk\nRoad and turning back. No\none's made it through.{end_wait}
+07420	MsgKalayTolbiDocksYouCantTakeSilkRoadMuch	People walk up Silk Road\nand come back again.\nNo one's made it through.{end_wait}
 07424	MsgKalayTolbiDocksWithSilkRoadClosedEveryoneWill	With Silk Road blocked, the\ncaptain can name his price.\nI don't like it.{end_wait}
-07426	MsgKalayTolbiDocksWellIsntThisGreatWeCant	I came to meet my daughter\nin Tolbi. Now the ship fare\nmight keep us apart.{end_wait}
+07426	MsgKalayTolbiDocksWellIsntThisGreatWeCant	My daughter left Tolbi\nto meet us at the docks.\nI hope she isn't waiting.{end_wait}
 07427	MsgKalayTolbiDocksWeveSpentAYearPlanningThis	A year planning this trip.\nOne rockslide and\neverything fell apart.{end_wait}
 07438	MsgKalayTolbiDocksIFeelSortOfBadThat	I hate charging this much\nfor a ticket. The captain\nsays we have no choice.{end_wait}
 07444	MsgKalayTolbiDocksTheCaptainsInAGoodMood	A full ship puts the\ncaptain in a good mood.\nMakes my shift easier too.{end_wait}
