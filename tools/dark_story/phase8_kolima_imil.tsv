@@ -1,7 +1,7 @@
 04911	MsgGomaGotWowThatsPrettyImpressive	You found it? Impressive.{page_break}Keep looking. There may\nbe more like it.{end_wait}
 05007	MsgGomaNoUsePsynergy	No luck. Our Psynergy\nisn't strong enough to\nmove that stump.{end_wait}
 05244	MsgKolimaSparklyStuffOnGround	That dust on the ground...\nWhat is it?{end_wait}
-05256	MsgKolimaKnowThoseFieldsWere	Do you know what\nthose fields once grew?{end_wait}
+05256	MsgKolimaKnowThoseFieldsWere	Those barriers...\nWere they Psynergy?{end_wait}
 05277	MsgKolimaWatchOutItsHappeningAgain	Get back!\nIt's happening again!{end_wait}
 05300	MsgKolimaHesAsStumpedAsWe	He's as lost as we are,\nbut he'll help.{end_wait}
 05302	MsgKolimaYoureIsaacThereIsntMuch	You're right,\n{actor_name:1}. There's nothing\nmore we can do.{end_wait}
