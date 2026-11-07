@@ -157,7 +157,7 @@ void BattleBackground_Init(void) {
   state->mode = BATTLE_BACKGROUND_NONE;
 }
 
-/// Heart's backdrop: the palette entries the floor's fissures use
+/// Heart's backdrop: the palette entries the floor's tile seams use
 /// (tools/dark_story/build_heart_floor.py reserves 120 to 127).
 #define HEART_CRACK_CORE 120
 #define HEART_CRACK_HALO 124
@@ -175,8 +175,8 @@ static u16 Heart_GlowColor(s32 red, s32 green, s32 blue, s32 wave,
   return (blue << 10) | (green << 5) | red;
 }
 
-/// Heart's backdrop only: pulses the glowing fissures, a wave running along
-/// each one, and now and then flashes the whole sky and floor like lightning.
+/// Heart's backdrop only: pulses the glowing tile seams, a wave running out
+/// from the horizon, and now and then flashes the whole sky and floor like lightning.
 /// Runs every VBlank while her battle lasts. It writes only while the
 /// background is zoomed and undimmed, so the battle animations that take the
 /// palette over are left alone. Added by BattleBackground_Load, removed by
@@ -199,7 +199,7 @@ void Heart_StepBackdropGlow(void) {
     s32 wave = t < 32 ? t : 63 - t;
 
     BATTLE_BG_PALETTE[HEART_CRACK_CORE + k] =
-        Heart_GlowColor(31, 17, 6, wave, scale);
+        Heart_GlowColor(24, 9, 31, wave, scale);
     BATTLE_BG_PALETTE[HEART_CRACK_HALO + k] =
         Heart_GlowColor(14, 5, 12, wave, scale);
   }

@@ -35,6 +35,7 @@ def periodic_noise(rows, seed, bands):
     return n / len(bands)
 
 floor_rows = H - HORIZON
+grout = np.zeros((H, W), bool)   # the tile seams, which glow in the game
 noise = periodic_noise(floor_rows, 3, [3, 5, 8, 13, 21, 34])
 base = np.array([40.0, 27.0, 60.0])
 xs_all = np.arange(W)
@@ -57,11 +58,13 @@ for r in range(floor_rows):
         x_line = (W / 2) + (x_bottom - W / 2) * t
         dx = np.abs(((xs_all - x_line + W / 2) % W) - W / 2)
         row = row - (dx < 0.9)[:, None] * np.array([26.0, 18.0, 34.0])
+        grout[HORIZON + r] |= dx < 0.9
     # horizontal grout rows, spaced wider toward the viewer
     for k in range(1, 6):
         yk = int(HORIZON + floor_rows * (k / 6.0) ** 1.7)
         if yk == HORIZON + r:
             row = row - np.array([22.0, 15.0, 30.0])
+            grout[HORIZON + r, :] = True
     # misty horizon instead of a hard rim
     if r < 7:
         m = (1 - r / 7.0) ** 1.5
@@ -74,42 +77,19 @@ for r in range(floor_rows):
 img = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
 q = img.quantize(colors=120, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
 idx = np.array(q)
-cr = np.random.default_rng(11)
-CORE = 120    # 120-123: cores, four phases along each crack
-HALO = 124    # 124-127: the faint glow beside a core, same four phases
-def crack(x, y, steps, drift):
-    pts = []
-    for n in range(steps):
-        pts.append((x % W, y))
-        y += 1 if cr.random() < 0.75 else 0
-        x += int(cr.integers(-1, 2)) + drift
-        if y >= H:
-            break
-    return pts
-paths = []
-for sx, sy in [(20, 80), (62, 76), (104, 84), (150, 78), (196, 82), (236, 76)]:
-    p0 = crack(sx, sy, int(cr.integers(48, 64)), int(cr.integers(-1, 2)) * 0)
-    paths.append(p0)
-    # a branch splitting off partway
-    bx, by = p0[len(p0) // 2]
-    paths.append(crack(bx, by, int(cr.integers(14, 26)), 1 if cr.random() < 0.5 else -1))
-for path in paths:
-    for n, (x, y) in enumerate(path):
-        if y < HORIZON + 2:
-            continue
-        ph = (n // 3) % 4
-        for dx in (-1, 1):
-            if idx[y, (x + dx) % W] < 120:
-                idx[y, (x + dx) % W] = HALO + ph
-        idx[y, x] = CORE + ph
+CORE = 120    # 120-123: the tile seams, four phases from the horizon outward
+HALO = 124    # 124-127: unused (kept so the glow code stays simple)
+for y in range(HORIZON + 3, H):
+    ph = ((y - HORIZON) // 4) % 4
+    xs = np.nonzero(grout[y])[0]
+    idx[y, xs] = CORE + ph
 q = Image.fromarray(idx.astype(np.uint8), "P")
-pal = Image_pal = None
 pal = list(img.quantize(colors=120, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).getpalette()[:360])
 pal += [0] * (384 - len(pal))
 # placeholder glow colours; the game animates them
 for k in range(4):
-    pal[(CORE + k) * 3:(CORE + k) * 3 + 3] = [248, 120, 48]
-    pal[(HALO + k) * 3:(HALO + k) * 3 + 3] = [96, 40, 88]
+    pal[(CORE + k) * 3:(CORE + k) * 3 + 3] = [200, 72, 248]
+    pal[(HALO + k) * 3:(HALO + k) * 3 + 3] = [96, 40, 120]
 # the graphics encoder only takes exact RGB555 colours (multiples of 8)
 pal = [min(248, int(round(v / 8.0)) * 8) for v in pal]
 q.putpalette(pal)
