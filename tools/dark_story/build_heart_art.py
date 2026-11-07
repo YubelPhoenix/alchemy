@@ -28,13 +28,13 @@ FRAME = 64
 FRAMES = 10
 # The supplied poses are drawn at 64x64, the frame's own size, so they are not
 # resampled: the size on screen comes from SPR_484's scale column in
-# sprites.tsv (0xac, which puts her idle pose, 60 rows, at Menardi's 40 or so).
+# sprites.tsv (0xb8, which puts her idle pose, 56 rows, at Menardi's 40 or so).
 # (pose, mirror so she faces the party on the right, rise)
 LAYOUT = [
     ("idle1", True, 0), ("idle1", True, 0),
-    ("dash", False, 0), ("dash", False, 0),
-    ("lunge", False, 0), ("lunge", False, 0),
-    ("cast", False, 0), ("cast", False, 0),
+    ("dash", True, 0), ("dash", True, 0),
+    ("lunge", True, 0), ("lunge", True, 0),
+    ("cast", True, 0), ("cast", True, 0),
     ("damage", True, 0), ("damage", True, 0),
 ]
 
