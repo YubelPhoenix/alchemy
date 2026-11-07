@@ -1,0 +1,56 @@
+# Karagol ship cabins 074xx-076xx: travelers, rowers, Kaja, missing anchor charm, and the decision to sail.
+07462	MsgTolbiShipWonderCouldHaveHappened	The ship from Tolbi should\nhave come by now. I wonder\nwhat's happened to it.{end_wait}
+07472	MsgTolbiShipItsTooLateHireMercenaries	We should've hired guards\ndays ago. Now there's no\ntime to find anyone.{end_wait}
+07473	MsgTolbiShipButWeCantSendShip	The captain won't leave\nwithout warriors aboard. He\nsays the Karagol is too{page_break}dangerous.{end_wait}
+07474	MsgTolbiShipInteriorsIWonderIfThereAreAny	Surely there are fighters\namong the passengers. We\nonly need a few willing to{page_break}help.{end_wait}
+07475	MsgTolbiShipInteriorsThisIsAChanceToMake	They're paying well for\nguards. A man could earn a\ndecent purse on one{page_break}crossing.{end_wait}
+07476	MsgTolbiShipInteriorsSendingOutAShipWhenIts	There are things in that\nwater. Sending this ship\nout now feels like asking{page_break}for trouble.{end_wait}
+07477	MsgTolbiShipInteriorsIfWeDontSetSailNow	If we turn back now,\neveryone will say Kaja was\nafraid. I won't let that{page_break}happen.{end_wait}
+07502	MsgTolbiShipLongerWeSitHereMore	The longer we wait, the\nmore I worry we'll miss\nColosso. We bought these{page_break}tickets for a reason.{end_wait}
+07503	MsgTolbiShipInteriorsApparentlyWeCantTakeSilkRoad	Silk Road is closed, so we\nhad to buy passage. I feel\nsorry for those who{page_break}couldn't afford it.{end_wait}
+07504	MsgTolbiShipTheresWholeBunchReallyMuscular	Look at the men belowdecks!\nThey pull the oars, don't\nthey? No wonder they're{page_break}built like that.{end_wait}
+07505	MsgTolbiShipInteriorsYoureGoingToTolbiToSee	You're going to Colosso\ntoo? I've seen festivals\nbefore, but they say{page_break}nothing compares to Tolbi.{end_wait}
+07506	MsgTolbiShipInteriorsMaybeIShouldJustForgetAbout	Perhaps we should go back.\nThis whole trip is turning\ninto a mess.{end_wait}
+07507	MsgTolbiShipInteriorsTheyreJustTakingAdvantageOfUs	They know Silk Road is\nclosed, so they charge what\nthey like. What choice did{page_break}we have?{end_wait}
+07508	MsgTolbiShipInteriorsMusclesRipplingEverywhereLooksGreatIf	All those strong men rowing\nbelow! If the Colosso\nfighters look like that, I{page_break}can't wait.{end_wait}
+07509	MsgTolbiShipInteriorsWeLeftTheOldLadyBack	We left Grandmother at\nhome. She'd make us spend\nthe whole festival looking{page_break}after her.{end_wait}
+07510	MsgTolbiShipIfWeArentGoingSet	If we're not leaving soon,\nI'm getting off this ship.\nI'm tired of being told to{page_break}wait.{end_wait}
+07545	MsgTolbiShipInteriorsWeCanLeaveAsSoonAs	We're ready to row. Give\nthe order and we'll get\nthis ship moving.{end_wait}
+07546	MsgTolbiShipInteriorsEveryoneRowsInTimeWithThis	Hear the drum? Every stroke\nfollows its beat. Lose the\nrhythm and the whole bench{page_break}suffers.{end_wait}
+07547	MsgTolbiShipInteriorsRowingIsAMansJob	Rowing's hard work! That's\nwhat makes a strong sailor.{end_wait}
+07548	MsgTolbiShipInteriorsWereTheOnesWhoMakeThe	We pull the oars. Without\nus, this ship doesn't move\nan inch.{end_wait}
+07549	MsgTolbiShipInteriorsOnceWeCastOffYouJust	Once we're away from shore,\nleave the rowing to us. We\nknow our work.{end_wait}
+07550	MsgTolbiShipInteriorsYouCanOnlyDoHardWork	You can't pull an oar\nforever. Make your money\nwhile your back can take{page_break}it.{end_wait}
+07551	MsgTolbiShipInteriorsHmmmIWonderWhenWereGoing	I wish the captain would\nmake up his mind. We've\nbeen ready for hours.{end_wait}
+07552	MsgTolbiShipInteriorsICantWaitUntilWeGet	When we reach Tolbi, I'm\ngoing straight to the\nmarket. I've had enough of{page_break}this hold.{end_wait}
+07553	MsgTolbiShipInteriorsIHearTheresAnIsleIn	They say there's an island\nin the Karagol. I've never\nseen it myself, and I've{page_break}crossed many times.{end_wait}
+07554	MsgTolbiShipInteriorsFromTheSeaItLooksLike	From the water, the coast\nnear Silk Road looks\ndrowned. I wouldn't try{page_break}that route now.{end_wait}
+07555	MsgTolbiShipInteriorsEnoughIsEnoughLetsSetOff	Enough waiting. If we're\ngoing, let's go!{end_wait}
+07556	MsgTolbiShipInteriorsILoveItWhenTheOars	When the oars hit together,\nit feels like the drum is\nmoving the whole ship.{end_wait}
+07557	MsgTolbiShipInteriorsEveryoneDownHereGetsSoCompetitive	The rowers try to outdo\neach other every voyage.\nSomeone always ends up with{page_break}sore arms.{end_wait}
+07558	MsgTolbiShipInteriorsTheseBigMusclesAreASign	See these arms? Years on an\noar will do that. Not much\nuse in a sword fight,{page_break}though.{end_wait}
+07559	MsgTolbiShipInteriorsWellSeeToItThatThey	We do our best to keep the\ncrossing smooth. The\npassengers rarely notice{page_break}how hard that is.{end_wait}
+07560	MsgTolbiShipInteriorsYouveGotToSaveUpLots	Save part of your pay while\nyou're young. You won't be\npulling oars when you're{page_break}old.{end_wait}
+07561	MsgTolbiShipInteriorsIDontFeelLikeRowingAll	I don't like the feeling I\nhave about this crossing.\nThe water seems wrong{page_break}today.{end_wait}
+07562	MsgTolbiShipInteriorsSpendYourMoneyWhileYoureYoung	Earn your money, then enjoy\nit while you're young.\nThat's what I say.{end_wait}
+07563	MsgTolbiShipInteriorsItSeemsLikeThereWouldBe	An island out there? I bet\nthere's something buried on\nit. There always is in{page_break}stories.{end_wait}
+07564	MsgTolbiShipInteriorsHaHahIfYouWantTo	Want to see Tolbi? Then get\naboard. We can't sail with\nyou standing on the dock!{end_wait}
+07569	MsgTolbiShipNowWantSeeCaptainToo	You want to bother the\ncaptain too? He's already\nhad enough visitors today.{end_now}
+07571	MsgTolbiShipYoureTryingLaunchShip	You're asking us to launch\nwithout the other ship?\nHave you spoken to the{page_break}captain?{end_wait}
+07629	MsgTolbiShipBadLuckLosingMyLucky	My anchor charm is gone!\nI've taken it on every\nvoyage. I won't sail until{page_break}it's found.{end_wait}
+07630	MsgTolbiShipInteriorsRightWhenWeFoundSomeWarriors	We finally found guards,\nand now the captain won't\nleave without his charm.{page_break}Wonderful.{end_wait}
+07631	MsgTolbiShipInteriorsICantBelieveHimRefusingTo	One missing trinket has\nstopped an entire ship. I\ncan hardly believe it.{end_wait}
+07632	MsgTolbiShipInteriorsIHadNoIdeaHeWas	I knew the captain was\ncareful. I didn't know he\nbelieved that charm could{page_break}keep us safe.{end_wait}
+07633	MsgTolbiShipYouCameAskCaptainSet	You came to ask the captain\nto sail, didn't you? He's\nin a terrible mood.{end_now}
+07636	MsgTolbiShipIfShipFromTolbiHad	If the ship from Tolbi had\narrived, perhaps I'd risk\nit. Without my anchor{page_break}charm? Never.{end_wait}
+07637	MsgTolbiShipInteriorsTheShipWontLeaveDockUntil	The captain says no charm,\nno voyage. We may as well\ncarry our bags ashore.{end_wait}
+07638	MsgTolbiShipInteriorsThisIsRidiculousTheShipCant	We're losing an entire day\nover a good-luck charm. Has\nanyone told the passengers?{end_wait}
+07639	MsgTolbiShipInteriorsThatThingCouldntHaveGottenLost	It didn't walk off by\nitself. Someone must have\ntaken that anchor charm.{end_wait}
+07640	MsgTolbiShipInteriorsIDontThinkAnyoneWouldSteal	I doubt anyone stole it.\nIt'll turn up once we\nsearch the cabins properly.{end_wait}
+07641	MsgTolbiShipInteriorsIfTheShipDoesntLeaveSoon	If we don't sail soon, the\nfinals will start without\nus.{end_wait}
+07642	MsgTolbiShipInteriorsIWaitedTooLongIllGet	I hid the charm on top of\nthe mast. It was only a\njoke. Now I don't know how{page_break}to admit it.{end_wait}
+07643	MsgTolbiShipItsMyLuckyAnchor	My anchor charm! Where did\nyou find it?{end_wait}
+07686	MsgTolbiShipWeDontKnowMightHappen	We still have a long\ncrossing ahead. Keep your\neyes open. I don't want any{page_break}surprises.{end_wait}
+07687	MsgTolbiShipInteriorsAsLongAsWeHaveThe	The anchor charm is back.\nNow even the captain has\nstopped worrying. I wish I{page_break}could.{end_wait}
+07698	MsgTolbiShipInteriorsYouAllAgreedToHelpOf	You agreed to help the\ncrew. When they need more\nhands on the oars, I expect{page_break}you to keep your word.{end_wait}
+07699	MsgTolbiShipTheseProudWarriorsNotGoing	Those fighters look proud\nof themselves. Let's see\nhow they like pulling an{page_break}oar.{end_wait}
