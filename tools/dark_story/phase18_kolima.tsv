@@ -10,7 +10,7 @@
 05265	message	You're lying, {actor_name:1}!{end_wait}
 05266	message	I practiced until\nmy head ached.{end_wait}
 05267	message	Maybe it's easy\nfor you. Not for me.{end_wait}
-05268	message	It takes practice.\nYou know that.{end_wait}
+05268	message	No. Psynergy takes focus.\nIt doesn't just happen.{end_wait}
 05270	message	Maybe some powers\nwork on their own.{end_wait}
 05271	message	When we're afraid?{end_wait}
 05272	message	Like finding strength\nwhen you're in danger.{page_break}But we can't do it\non command.{end_wait}
