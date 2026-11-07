@@ -73,8 +73,8 @@ def main():
                 encoded.append("1")
         cells.append(" ".join(encoded))
     source.write_text(
-        "grid:128x128\\tat:0,0\\tfill:fff:ff\\n"
-        + "\\n".join(cells) + "\\n"
+        "grid:128x128\tat:0,0\tfill:fff:ff\n"
+        + "\n".join(cells) + "\n"
     )
     print(source)
 
