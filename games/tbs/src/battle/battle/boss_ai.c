@@ -17,6 +17,7 @@
 /// Set a switch to 0 to give that boss back the stock AI.
 #define BOSS_AI_KEGARE 1
 #define BOSS_AI_ASH_JENNA 1
+#define BOSS_AI_HEART 1
 
 /// Unit.aiActionIndex bits no boss may use: the stock action cycle's
 /// (BattleAIState) and Ash Jenna's rush flags (AI_PUNISHED, AI_RUSH).
@@ -44,8 +45,8 @@ enum KegareSlot {
 #define KEGARE_HEAVY_THIS_ROUND_BIT (1u << 7)
 #define KEGARE_HEAVY_ROUNDS_SHIFT 8
 #define KEGARE_HEAL_WAIT_SHIFT 10
-#define KEGARE_BITS                                                           \
-  (KEGARE_HEAVY_THIS_ROUND_BIT | (3u << KEGARE_HEAVY_ROUNDS_SHIFT) |          \
+#define KEGARE_BITS                                                            \
+  (KEGARE_HEAVY_THIS_ROUND_BIT | (3u << KEGARE_HEAVY_ROUNDS_SHIFT) |           \
    (7u << KEGARE_HEAL_WAIT_SHIFT))
 STATIC_ASSERT((KEGARE_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((KEGARE_BITS & BOSS_LAST_AIM_BITS) == 0);
@@ -116,7 +117,8 @@ static void BossAI_KegareBeginRound(void) {
     } else {
       rounds = 0;
     }
-    memory &= ~(KEGARE_HEAVY_THIS_ROUND_BIT | (3u << KEGARE_HEAVY_ROUNDS_SHIFT));
+    memory &=
+        ~(KEGARE_HEAVY_THIS_ROUND_BIT | (3u << KEGARE_HEAVY_ROUNDS_SHIFT));
     kegare->aiActionIndex = memory | (rounds << KEGARE_HEAVY_ROUNDS_SHIFT);
   }
 #endif
@@ -149,9 +151,8 @@ static void BossAI_KegareNoteTurn(struct BattleAction *request, s32 result) {
   wait = (memory >> KEGARE_HEAL_WAIT_SHIFT) & 7;
   if (wait != 0)
     wait--;
-  if (abilityId ==
-      ((struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id))
-          ->abilities[KEGARE_PLY_WELL])
+  if (abilityId == ((struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id))
+                       ->abilities[KEGARE_PLY_WELL])
     wait = KEGARE_HEAL_WAIT;
   if (BossAI_KegareIsHeavy(unit, abilityId))
     memory |= KEGARE_HEAVY_THIS_ROUND_BIT;
@@ -170,8 +171,7 @@ static void BossAI_KegareNoteTurn(struct BattleAction *request, s32 result) {
 /// last two rounds did not both have one, and Ply Well only when she is low
 /// and has not healed lately. A move the limits refuse becomes one of her
 /// light moves. Returns her place in her action list.
-static s32 BossAI_KegareChooseSlot(struct Unit *unit, s32 slot,
-                                   s32 firstPick) {
+static s32 BossAI_KegareChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
 #if BOSS_AI_KEGARE
   u32 memory = unit->aiActionIndex;
   u32 wait = (memory >> KEGARE_HEAL_WAIT_SHIFT) & 7;
@@ -184,8 +184,8 @@ static s32 BossAI_KegareChooseSlot(struct Unit *unit, s32 slot,
   s32 mayBeHeavy;
   s32 open = 0;
 
-  mayHeal = wait == 0 &&
-            unit->hp * 100 < unit->hpMax * KEGARE_HEAL_BELOW_PERCENT;
+  mayHeal =
+      wait == 0 && unit->hp * 100 < unit->hpMax * KEGARE_HEAL_BELOW_PERCENT;
   mayBeHeavy = (memory & KEGARE_HEAVY_THIS_ROUND_BIT) == 0 &&
                heavyRounds < KEGARE_HEAVY_ROUNDS_LIMIT;
 
@@ -448,7 +448,8 @@ static void BossAI_AshBeginRound(void) {
 
 /// Records Ash Jenna's turn when it was really staged. The punish turn
 /// (Annihilation, her summon-rush answer) is not recorded at all.
-static void BossAI_AshNoteTurn(struct Unit *unit, struct BattleAction *request) {
+static void BossAI_AshNoteTurn(struct Unit *unit,
+                               struct BattleAction *request) {
 #if BOSS_AI_ASH_JENNA
   struct EnemyDefinition *enemy =
       (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
@@ -502,8 +503,8 @@ static s32 BossAI_AshChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   if (firstPick && roll >= ASH_MISTAKE_CHANCE &&
       (memory & (ASH_RECOVERED_BIT | ASH_BUFFED_BIT)) &&
       react < ASH_REACT_CHANCE)
-    slot = (memory & ASH_MELTDOWN_THIS_ROUND_BIT) ? ASH_DEMON_FIRE
-                                                   : ASH_MELTDOWN;
+    slot =
+        (memory & ASH_MELTDOWN_THIS_ROUND_BIT) ? ASH_DEMON_FIRE : ASH_MELTDOWN;
 
   if (BossAI_AshIsBig(slot) && !mayBeBig) {
     slot = (roll & 1) ? ASH_ERUPTION : ASH_ATTACK;
@@ -531,12 +532,328 @@ static s32 BossAI_AshChooseTarget(struct Unit *user, const s32 *targetPositions,
 #endif
 }
 
+/// Heart's places in her action list (enemies.c).
+enum HeartSlot {
+  HEART_DEMON_NIGHT = 0,
+  HEART_DARK_BLESSING = 1,
+  HEART_DEMON_FIRE = 2,
+  HEART_DEATH_PLUNGE = 3,
+  HEART_HEARTRENDER = 4,
+  HEART_OUTER_SPACE = 5,
+  HEART_ANNIHILATION = 6,
+  HEART_ATTACK = 7
+};
+
+/// Heart's memory in Unit.aiActionIndex: bits 25..20 the party places that
+/// were down when the round began | 19 a payoff was used this round | 18 a
+/// hard disable this round | 17 a big move this round | 16..14 rounds begun so
+/// far, up to 7 | 13..10 rounds until Annihilation may be tried again |
+/// 9..8 calm rounds before the next warning | 7..6 turns she has taken this
+/// round | 5 the warning was given last round, so a payoff may come now |
+/// 4 the warning was given this round.
+/// A warning is Heartrender, which does no damage and is her only use of it.
+/// A payoff is Outer Space, Death Plunge or Annihilation, and comes in the
+/// round after the warning, never as her first turn of it, so what the party
+/// chose after seeing the warning acts before it.
+#define HEART_WARNED_BIT (1u << 4)
+#define HEART_PAYOFF_READY_BIT (1u << 5)
+#define HEART_TURNS_SHIFT 6
+#define HEART_CALM_SHIFT 8
+#define HEART_ANNIHILATION_WAIT_SHIFT 10
+#define HEART_ROUNDS_SHIFT 14
+#define HEART_BIG_BIT (1u << 17)
+#define HEART_DISABLE_BIT (1u << 18)
+#define HEART_PAYOFF_USED_BIT (1u << 19)
+#define HEART_DOWN_SHIFT 20
+#define HEART_BITS (0x03fffff0u)
+STATIC_ASSERT((HEART_BITS & BOSS_RESERVED_BITS) == 0);
+STATIC_ASSERT((HEART_BITS & BOSS_LAST_AIM_BITS) == 0);
+/// Rounds after an Annihilation before she may try it again: the next try is
+/// seven rounds on, so six rounds pass between.
+#define HEART_ANNIHILATION_WAIT 7
+/// Annihilation is never tried until this round.
+#define HEART_ANNIHILATION_FIRST_ROUND 4
+/// Out of 256: how often she keeps the stock choice, and how often a round
+/// that may begin with the warning does.
+#define HEART_MISTAKE_CHANCE 51
+#define HEART_WARNING_CHANCE 128
+/// Calm rounds after a payoff round before the next warning may come.
+#define HEART_CALM_ROUNDS 1
+/// The party must have at least this percent of its HP for her to warn.
+#define HEART_WARNING_ABOVE_PERCENT 40
+
+/// Heart, or 0.
+static struct Unit *BossAI_FindHeart(void) {
+  s32 index;
+  s32 unitId;
+  struct Unit *unit;
+
+  for (index = 0; gBattleWork->enemyIds[index] != BATTLE_UNIT_LIST_END;
+       index++) {
+    unitId = gBattleWork->enemyIds[index];
+    if (unitId == BATTLE_UNIT_REMOVED)
+      continue;
+    unit = Unit_GetFar(unitId);
+    if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART)
+      return unit;
+  }
+  return 0;
+}
+
+/// Starts a round for Heart: the warning of last round becomes this round's
+/// permission for a payoff, her per-round memory is cleared, and the party
+/// places that are down are noted, which is how a member revived during the
+/// round is told from one who was standing.
+static void BossAI_HeartBeginRound(void) {
+#if BOSS_AI_HEART
+  struct Unit *heart = BossAI_FindHeart();
+  struct BattleWork *work = gBattleWork;
+  u32 memory;
+  u32 calm;
+  u32 wait;
+  u32 rounds;
+  u32 down = 0;
+  s32 index;
+  s32 wasReady;
+
+  if (heart == 0)
+    return;
+  memory = heart->aiActionIndex;
+  wasReady = (memory & HEART_PAYOFF_READY_BIT) != 0;
+  calm = (memory >> HEART_CALM_SHIFT) & 3;
+  wait = (memory >> HEART_ANNIHILATION_WAIT_SHIFT) & 15;
+  rounds = (memory >> HEART_ROUNDS_SHIFT) & 7;
+  if (calm != 0)
+    calm--;
+  if (wasReady)
+    calm = HEART_CALM_ROUNDS;
+  if (wait != 0)
+    wait--;
+  if (rounds < 7)
+    rounds++;
+  for (index = 0; work->partyUnits[index] != BATTLE_UNIT_LIST_END && index < 6;
+       index++) {
+    if (work->partyUnits[index] != BATTLE_UNIT_REMOVED &&
+        Unit_GetFar(work->partyUnits[index])->hp == 0)
+      down |= 1u << index;
+  }
+  memory &= ~HEART_BITS;
+  memory |=
+      (heart->aiActionIndex & HEART_WARNED_BIT) ? HEART_PAYOFF_READY_BIT : 0;
+  memory |= (calm << HEART_CALM_SHIFT) |
+            (wait << HEART_ANNIHILATION_WAIT_SHIFT) |
+            (rounds << HEART_ROUNDS_SHIFT) | (down << HEART_DOWN_SHIFT);
+  heart->aiActionIndex = memory;
+#endif
+}
+
+/// Records Heart's turn when it was really staged.
+static void BossAI_HeartNoteTurn(struct Unit *unit,
+                                 struct BattleAction *request) {
+#if BOSS_AI_HEART
+  struct EnemyDefinition *enemy =
+      (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
+  u32 memory = unit->aiActionIndex;
+  u32 turns = (memory >> HEART_TURNS_SHIFT) & 3;
+  s32 abilityId;
+  s32 slot;
+
+  if (request->command != COMMAND_ENEMY_ABILITY &&
+      request->command != COMMAND_PSYNERGY &&
+      request->command != COMMAND_ATTACK)
+    return;
+  abilityId = request->parameter;
+  if (request->command == COMMAND_ATTACK)
+    abilityId = ABILITY_ATTACK;
+  if (turns < 3)
+    turns++;
+  memory &= ~(3u << HEART_TURNS_SHIFT);
+  memory |= turns << HEART_TURNS_SHIFT;
+  for (slot = 0; slot < 8; slot++) {
+    if (enemy->abilities[slot] != abilityId)
+      continue;
+    switch (slot) {
+    case HEART_HEARTRENDER:
+      memory |= HEART_WARNED_BIT;
+      break;
+    case HEART_DARK_BLESSING:
+      memory |= HEART_BIG_BIT;
+      break;
+    case HEART_OUTER_SPACE:
+      memory |= HEART_BIG_BIT | HEART_PAYOFF_USED_BIT;
+      break;
+    case HEART_DEATH_PLUNGE:
+      memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
+      break;
+    case HEART_ANNIHILATION:
+      memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
+      memory &= ~(15u << HEART_ANNIHILATION_WAIT_SHIFT);
+      memory |= (u32)HEART_ANNIHILATION_WAIT << HEART_ANNIHILATION_WAIT_SHIFT;
+      break;
+    }
+    break;
+  }
+  unit->aiActionIndex = BossAI_RememberAim(memory, request);
+#endif
+}
+
+/// Heart's pick. A round in which she may warn begins, some of the time, with
+/// Heartrender; in the round after it she picks one payoff (Outer Space,
+/// Death Plunge or Annihilation, weighted 40, 25 and 35 among those allowed)
+/// as one of her later turns. Her limits apply to every pick, and a move they
+/// refuse becomes Demon Night, Demon Fire or Attack: Heartrender only warns;
+/// a payoff only follows a warning, not as her first turn, once a round, and
+/// not on a re-pick; Annihilation needs round 4 or later, no one down, seven
+/// rounds since the last try and at most one member unable to act, and
+/// Death Plunge at most one unable to act; Outer Space at most one down; Dark
+/// Blessing once a round and not in a warning or payoff round; and no Haunt
+/// move once half the living party is haunted.
+static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
+#if BOSS_AI_HEART
+  u32 memory = unit->aiActionIndex;
+  u32 turns = (memory >> HEART_TURNS_SHIFT) & 3;
+  u32 rounds = (memory >> HEART_ROUNDS_SHIFT) & 7;
+  u32 wait = (memory >> HEART_ANNIHILATION_WAIT_SHIFT) & 15;
+  u32 calm = (memory >> HEART_CALM_SHIFT) & 3;
+  struct BossPartyView view;
+  s32 roll = Battle_RandomFar() & 0xff;
+  s32 roll2 = Battle_RandomFar() & 0xff;
+  s32 ready = (memory & HEART_PAYOFF_READY_BIT) != 0;
+  s32 warned = (memory & HEART_WARNED_BIT) != 0;
+  s32 payoffRound =
+      ready && turns >= 1 && firstPick && (memory & HEART_PAYOFF_USED_BIT) == 0;
+  s32 mayWarn;
+  s32 mayAnnihilate;
+  s32 mayDeathPlunge;
+  s32 mayOuterSpace;
+  s32 total;
+  s32 light[3] = {HEART_DEMON_NIGHT, HEART_DEMON_FIRE, HEART_ATTACK};
+
+  BossAI_ViewParty(&view);
+  mayWarn = firstPick && turns == 0 && !ready && !warned && calm == 0 &&
+            view.down <= 1 &&
+            view.hp * 100 >= view.hpMax * HEART_WARNING_ABOVE_PERCENT;
+  mayAnnihilate = payoffRound && rounds >= HEART_ANNIHILATION_FIRST_ROUND &&
+                  wait == 0 && view.down == 0 && view.unavailable <= 1 &&
+                  (memory & HEART_DISABLE_BIT) == 0;
+  mayDeathPlunge =
+      payoffRound && view.unavailable <= 1 && (memory & HEART_DISABLE_BIT) == 0;
+  mayOuterSpace =
+      payoffRound && view.down <= 1 && (memory & HEART_BIG_BIT) == 0;
+
+  if (firstPick && roll >= HEART_MISTAKE_CHANCE) {
+    if (mayWarn && roll2 < HEART_WARNING_CHANCE) {
+      slot = HEART_HEARTRENDER;
+    } else if (payoffRound) {
+      total = (mayOuterSpace ? 40 : 0) + (mayDeathPlunge ? 25 : 0) +
+              (mayAnnihilate ? 35 : 0);
+      if (total > 0) {
+        s32 pick = (roll2 * total) >> 8;
+
+        if (mayOuterSpace && pick < 40) {
+          slot = HEART_OUTER_SPACE;
+        } else {
+          pick -= mayOuterSpace ? 40 : 0;
+          if (mayDeathPlunge && pick < 25)
+            slot = HEART_DEATH_PLUNGE;
+          else
+            slot = HEART_ANNIHILATION;
+        }
+      }
+    }
+  }
+
+  switch (slot) {
+  case HEART_HEARTRENDER:
+    if (!mayWarn)
+      slot = light[roll % 3];
+    break;
+  case HEART_OUTER_SPACE:
+    if (!mayOuterSpace)
+      slot = light[roll % 3];
+    break;
+  case HEART_DEATH_PLUNGE:
+    if (!mayDeathPlunge)
+      slot = light[roll % 3];
+    break;
+  case HEART_ANNIHILATION:
+    if (!mayAnnihilate)
+      slot = light[roll % 3];
+    break;
+  case HEART_DARK_BLESSING:
+    if ((memory & HEART_BIG_BIT) != 0 || warned || ready)
+      slot = light[roll % 3];
+    break;
+  }
+  if ((slot == HEART_DEMON_NIGHT || slot == HEART_DEMON_FIRE) &&
+      view.alive > 0 && view.haunted * 2 >= view.alive)
+    slot = HEART_ATTACK;
+#endif
+  return slot;
+}
+
+/// Heart's aim. A single-target disable or an instant death (Death Plunge,
+/// Annihilation) skips a member who was down when the round began (so one
+/// revived this round is safe from it), and one who is already asleep or
+/// stunned; with no one left it picks again. Every other move aims at a
+/// member other than the one she aimed at last, when there is another.
+static s32 BossAI_HeartChooseTarget(struct Unit *user,
+                                    struct AbilityDefinition *action,
+                                    const s32 *unitIds,
+                                    const s32 *targetPositions, s32 count) {
+#if BOSS_AI_HEART
+  u32 down = (user->aiActionIndex >> HEART_DOWN_SHIFT) & 0x3f;
+  s32 last = (s32)((user->aiActionIndex >> BOSS_LAST_AIM_SHIFT) & 7) - 1;
+  s32 allowed[6];
+  s32 allowedCount = 0;
+  s32 index;
+  struct Unit *member;
+  s32 place;
+  s32 hard = action->effect == ABILITY_EFFECT_STUN ||
+             action->effect == ABILITY_EFFECT_INSTANT_DEATH;
+
+  if (!hard)
+    return BossAI_AimAwayFromLast(user, targetPositions, count);
+  for (index = 0; index < count && allowedCount < 6; index++) {
+    member = Unit_GetFar(unitIds[index]);
+    place = targetPositions[index] & 7;
+    if (member->hp == 0 || member->sleep != 0 || member->stun != 0)
+      continue;
+    if (place < 6 && (down & (1u << place)) != 0)
+      continue;
+    allowed[allowedCount++] = index;
+  }
+  if (allowedCount == 0)
+    return BOSS_AIM_NONE;
+  if (allowedCount > 1 && last >= 0) {
+    s32 kept[6];
+    s32 keptCount = 0;
+
+    for (index = 0; index < allowedCount; index++) {
+      if ((targetPositions[allowed[index]] & 7) != last)
+        kept[keptCount++] = allowed[index];
+    }
+    if (keptCount > 0) {
+      s32 i;
+
+      for (i = 0; i < keptCount; i++)
+        allowed[i] = kept[i];
+      allowedCount = keptCount;
+    }
+  }
+  return allowed[(Random16() * allowedCount) >> 16];
+#else
+  return BOSS_AIM_STOCK;
+#endif
+}
+
 /// Starts a round for the bosses: their per-round memory is cleared and their
 /// view of the party brought up to date. Called once a round by
 /// BattleTurnOrder_Sort, before anyone acts.
 void BossAI_BeginRound(void) {
   BossAI_KegareBeginRound();
   BossAI_AshBeginRound();
+  BossAI_HeartBeginRound();
 }
 
 /// Records a turn that was really staged (result 0). Called by
@@ -551,6 +868,8 @@ void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
   unit = Unit_GetFar(request->unitId);
   if (unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
     BossAI_AshNoteTurn(unit, request);
+  else if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART)
+    BossAI_HeartNoteTurn(unit, request);
 }
 
 /// A boss's pick of a place in its action list. Returns slot unchanged for
@@ -562,6 +881,8 @@ s32 BossAI_ChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
     return BossAI_KegareChooseSlot(unit, slot, firstPick);
   if (unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
     return BossAI_AshChooseSlot(unit, slot, firstPick);
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART)
+    return BossAI_HeartChooseSlot(unit, slot, firstPick);
   return slot;
 }
 
@@ -574,10 +895,12 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
                         s32 count) {
   struct Unit *user = Unit_GetFar(userId);
 
-  (void)action;
   if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)
     return BossAI_KegareChooseTarget(unitIds, targetPositions, count, userId);
   if (user->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE && userId > ALLY_MAX)
     return BossAI_AshChooseTarget(user, targetPositions, count);
+  if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART && userId > ALLY_MAX)
+    return BossAI_HeartChooseTarget(user, action, unitIds, targetPositions,
+                                    count);
   return BOSS_AIM_STOCK;
 }
