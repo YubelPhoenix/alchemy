@@ -1,5 +1,4 @@
 # Karagol ship cabins 074xx-076xx: travelers, rowers, Kaja, missing anchor charm, and the decision to sail.
-07462	MsgTolbiShipWonderCouldHaveHappened	The ship from Tolbi should\nhave come by now. I wonder\nwhat's happened to it.{end_wait}
 07472	MsgTolbiShipItsTooLateHireMercenaries	We should've hired guards\ndays ago. Now there's no\ntime to find anyone.{end_wait}
 07473	MsgTolbiShipButWeCantSendShip	The captain won't leave\nwithout warriors aboard. He\nsays the Karagol is too{page_break}dangerous.{end_wait}
 07474	MsgTolbiShipInteriorsIWonderIfThereAreAny	Surely there are fighters\namong the passengers. We\nonly need a few willing to{page_break}help.{end_wait}
