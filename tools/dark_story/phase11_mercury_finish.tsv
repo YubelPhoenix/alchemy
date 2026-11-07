@@ -2,6 +2,3 @@
 05583	message	Then why are you\nstill standing here?{end_wait}
 05584	message	I won't let you pass.\nReady yourselves.{end_wait}
 05587	message	I must finish this\nquickly... Come at me!{end_wait}
-05732	message	I'm going with\n{actor_name:1}. They need me.{end_wait}
-05733	message	I wish I could stay.\nBut there's more\nI have to do.{end_wait}
-05742	message	Very well. Imil is in your\nhands, Megan, Justin.{end_wait}

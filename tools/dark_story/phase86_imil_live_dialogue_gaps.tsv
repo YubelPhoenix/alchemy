@@ -7,6 +7,5 @@
 05422	message	I exercise every morning.\nEven in this cold.{page_break}Not sure it helps,\nbut I feel better moving.{end_wait}
 05423	MsgImilMiaShouldHereByNow	{text_effect:4}She must be with someone\nworse off than me...{page_break}{actor_name:4}, please hurry.{end_wait}
 05689	MsgMercuryDontHideTruth	You're trying to enter,\naren't you? Please...\njust be honest.{end_now}
-05743	message	They'll be all right here.\nI have to trust them.{end_wait}
 05746	MsgImilIWillBeAKindGirl	When someone is hurt,\n{actor_name:4} always helps them.{page_break}When I grow up,\nI want to be like her.{end_wait}
 05748	MsgImilImSorryMiaButICant	I wish {actor_name:4} would rest.\nShe's always helping us.{end_wait}
