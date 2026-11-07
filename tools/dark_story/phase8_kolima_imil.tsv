@@ -6,17 +6,17 @@
 05300	MsgKolimaHesAsStumpedAsWe	He's as lost as we are,\nbut he'll help.{end_wait}
 05302	MsgKolimaYoureIsaacThereIsntMuch	You're right,\n{actor_name:1}. There's nothing\nmore we can do.{end_wait}
 05311	MsgKolimaThatsReliefIsaacThoughtYoud	Thank goodness,\n{actor_name:1}.{pause_20_skippable} I thought you'd\nabandoned Kolima.{end_wait}
-05320	MsgKolimaHealingWatersMercuryLighthouseMight	Mercury Lighthouse\nmay hold the cure.{page_break}But its spring\nhas been dry for years.{end_wait}
-05324	MsgKolimaControlTretsHeartShallNot	I won't let you\nharm Tret again!{end_wait}
+05320	MsgKolimaHealingWatersMercuryLighthouseMight	The water at Mercury\nLighthouse might save him.{page_break}But its spring ran dry.\nI have nowhere to turn.{end_wait}
+05324	MsgKolimaControlTretsHeartShallNot	You don't get to save him.\nNot after what your kind\ndid to these woods!{end_wait}
 05341	MsgTretDoingNowsNot	What are you doing,\n{actor_name:1}?! This is no time\nto fool around!{end_wait}
 05371	MsgKolimaShouldDoPeopleKolimaCursed	The curse has lifted.\nKolima is free.{end_wait}
-05377	MsgKolimaWasIndeedAngryPeopleHad	I was angry.{page_break}Men came with axes\nand struck at my roots.{end_wait}
-05401	MsgKolimaOweGreatDebtHaveSaved	You saved this forest.\nAnd you saved me.{end_wait}
+05377	MsgKolimaWasIndeedAngryPeopleHad	They cut deeper each year.\nI could feel the forest\nthinning around me.{end_wait}
+05401	MsgKolimaOweGreatDebtHaveSaved	You saved Kolima.\nYou saved me from myself.{page_break}I won't forget that.{end_wait}
 05404	MsgKolimaNowHaveSuchPowerAxe	I have strength again.{page_break}But strength alone\nwon't keep us safe.{end_wait}
 05405	MsgKolimaForestKolimaAlive	The forest still lives.{page_break}We'll guard it\nwith greater care.{end_wait}
 05406	MsgKolimaKnowCannotStopButPlease	I won't stop you.{page_break}Be careful\nbeyond the river.{end_wait}
 05407	MsgKolimaMustHorribleBeyondRiverAm	The road ahead\nis dangerous.{page_break}Take care, {actor_name:1}.{end_wait}
-05413	MsgKolimaLeaveBeforeForest	Leave before\nthe forest falls.{end_wait}
+05413	MsgKolimaLeaveBeforeForest	Please, don't stay here.\nI can't promise these woods\nwill spare you.{end_wait}
 05749	MsgKolimaIfICouldSpeakIdTell	If I could speak,\nI'd warn them to run.{end_wait}
 05750	MsgKolimaHowCouldAnyoneTurnAGirl	I can hear them talking.{page_break}They don't know\nI'm still here.{end_wait}
 05751	MsgKolimaThisIsADreamItHas	This can't be real.\nIt can't.{end_wait}
