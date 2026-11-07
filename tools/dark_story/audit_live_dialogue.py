@@ -52,6 +52,7 @@ def read_catalogue() -> dict[str, tuple[str, str]]:
 
 def read_replacements() -> dict[str, tuple[str, str, str]]:
     result = {}
+    duplicates = []
     for file in sorted(REWRITES.glob("*.tsv")):
         for number, line in enumerate(file.read_text(encoding="utf-8").splitlines(), 1):
             if not line or line.startswith("#"):
@@ -61,8 +62,11 @@ def read_replacements() -> dict[str, tuple[str, str, str]]:
                 raise ValueError(f"{file}:{number}: malformed TSV")
             key, ctx, value = cells
             if key in result:
-                raise ValueError(f"{file}:{number}: duplicate replacement {key}")
+                duplicates.append(f"{key}: {result[key][2]} and {file}:{number}")
+                continue
             result[key] = (ctx, value, str(file))
+    if duplicates:
+        raise ValueError("Duplicate dialogue IDs:\n" + "\n".join(duplicates))
     return result
 
 
