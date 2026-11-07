@@ -1,0 +1,64 @@
+# Ship deck: delay, passengers, mercenaries, rowing, attacks, island and landing.
+# Original runtime tokens and style controls preserved; mismatches excluded for scene-level review.
+07460	MsgTolbiShipDeckThereAreALotOfPassengers	There are so many\npassengers. Can the crew\neven get all of us across{page_break}the Karagol?{end_wait}
+07461	MsgTolbiShipDeckTheReplacementShipFromTolbiShould	The replacement ship from\nTolbi should be here by\nnow. I keep watching the{page_break}horizon.{end_wait}
+07462	MsgTolbiShipWonderCouldHaveHappened	A ship doesn't just vanish.\nSomething must have\nhappened out there.{end_wait}
+07478	MsgTolbiShipToldWereLeavingSoonSet	I've told you already. We\nsail when the replacement\nship arrives.{end_wait}
+07479	MsgTolbiShipIfWeDontLeaveSoon	If we wait much longer,\nwe'll miss Colosso. Who's\ngoing to answer for that?{end_wait}
+07480	MsgTolbiShipDeckIWonderWhatsGoingOnWeve	We've been standing here\nfor hours. Why won't anyone\ntell us what's wrong?{end_wait}
+07481	MsgTolbiShipDeckIWonderIfImTheOnly	I came all this way for\nColosso. Surely I'm not the\nonly one.{end_wait}
+07482	MsgTolbiShipDeckTheKaragolIsLikeAHumongous	The Karagol is surrounded\nby land, but the water can\nstill turn rough. Don't{page_break}underestimate it.{end_wait}
+07483	MsgTolbiShipDeckWhenAreWeGoingWhenAre	He keeps asking when we\nleave. I wish I knew so\nhe'd stop asking me.{end_wait}
+07484	MsgTolbiShipDeckHmmmThisIsSoFrustratingWhy	I don't mind waiting. I\nmind being told nothing.{end_wait}
+07485	MsgTolbiShipDeckTravelingByShipIsFasterThan	A ship beats walking around\nthe Karagol. We should be\npatient.{end_wait}
+07486	MsgTolbiShipDeckMostOfThePeopleGoingTo	Most of the Colosso crowd\nleft days ago. We're\nfalling behind.{end_wait}
+07487	MsgTolbiShipDeckTheKaragolSeaIsPrettyFoggy	There's fog over the water\nagain. I can't even see the\nfar shore.{end_wait}
+07498	MsgTolbiShipDeckWeApologizeForAnyTroubleThat	We're sorry about the\ndelay. The crew is doing\nwhat it can to get everyone{page_break}safely across.{end_wait}
+07500	MsgTolbiShipDeckThereIsNothingToFearAs	As long as the anchor charm\nis aboard, this ship will\nbe safe. Or so the crew{page_break}says.{end_wait}
+07535	MsgTolbiShipSomebodyStopThem	Someone has to stop them\nbefore somebody gets hurt!{end_wait}
+07536	MsgTolbiShipTheyCantPlanningMutiny	They're threatening the\ncrew. Is this a mutiny?{end_wait}
+07537	MsgTolbiShipDeckThoseWarriorsGotTiredOfWaiting	Those two warriors have\ngone to confront the\ncaptain. This won't end{page_break}well.{end_wait}
+07538	MsgTolbiShipDeckIWonderIfThoseTwoAre	Are they really trying to\ntake over the ship? I\nthought they were here for{page_break}Colosso.{end_wait}
+07539	MsgTolbiShipDeckHaHahThoseMercenariesAreGoing	Ha! Those mercenaries are\nspeaking to the captain for\nus. Maybe he'll listen.{end_wait}
+07540	MsgTolbiShipDeckUsingForceToLaunchTheShip	Forcing the ship to sail\ncould get us all killed.\nHow can they not see that?{end_wait}
+07541	MsgTolbiShipDeckTheyWereJustAboutToLaunch	We were finally getting\nready to leave, and now\nthis. I should've stayed{page_break}home.{end_wait}
+07542	MsgTolbiShipDeckThoseThugsAreTooImpatientTrying	Those two are losing\npatience. It's one thing to\ncomplain and another to{page_break}threaten sailors.{end_wait}
+07543	MsgTolbiShipDeckHeeHeeIfWeCanGet	If arguing gets us moving,\nfine. I just want to reach\nTolbi.{end_wait}
+07544	MsgTolbiShipDeckThoseGuysSeemPrettySureOf	They look sure they can\nfight. That doesn't mean\nthey know how to sail.{end_wait}
+07565	MsgTolbiShipDidntDoAnything	I didn't do anything. Why\nis everyone looking at me?{end_wait}
+07567	MsgTolbiShipDeckOhAtTheRiskOfSounding	I've already told you. I\nhad nothing to do with\nthis.{end_wait}
+07568	MsgTolbiShipDeckIHidTheAnchorCharmNo	I hid the anchor charm on\ntop of the mast. No one\nwould look there.{end_wait}
+07688	MsgTolbiShipNowWeHaveProtectShip	With fighters aboard, maybe\nwe'll be safe. The captain\nstill looks worried.{end_wait}
+07689	MsgTolbiShipHaveMakeThemPromiseHelp	Before we sail, everyone\nmust agree to help row if\nthe crew needs us.{end_wait}
+07690	MsgTolbiShipDeckIfWeJustPromiseToHelp	They only want our promise\nto row. That sounds easy\nenough.{end_wait}
+07691	MsgTolbiShipDeckIllAgreeToAnythingEvenRowing	I'll row all day if that's\nwhat it takes to get off\nthis dock.{end_wait}
+07692	MsgTolbiShipDeckThatSeaDogKajaIsA	Kaja doesn't look like a\nman you argue with. I said\nI'd help row.{end_wait}
+07693	MsgTolbiShipDeckAreYouSeriousAboutSettingSail	You're really setting sail?\nI heard a sailor say he saw\nshapes moving beneath the{page_break}water.{end_wait}
+07694	MsgTolbiShipDeckItProbablyWontMakeAnyDifference	Making promises won't stop\nsea monsters. I hope the\ncaptain has a better plan.{end_wait}
+07695	MsgTolbiShipDeckUltimatelyTheyreJustBeingThreatenedInto	They're frightening us into\nhelping. If danger comes, I\ndon't know what we'll do.{end_wait}
+07696	MsgTolbiShipDeckBesidesRowingIsAMansJob	I didn't pay for a ticket\nto pull an oar. Let the\nsailors do it.{end_wait}
+07697	MsgTolbiShipDeckUsHelpWithTheRowingGet	Us? Row the ship? I came\nhere as a passenger, not a\ndeckhand.{end_wait}
+07799	MsgTolbiShipDeckYouMustFeelAwfullyImportantOrdering	You've got orders for\neveryone, haven't you? I\nstill have work to finish.{end_wait}
+07828	MsgTolbiShipDeckAnOarsmanWasInjuredByA	An oarsman was hurt by a\nsea monster? Someone else\nwill have to take his{page_break}place.{end_wait}
+07856	MsgTolbiShipDeckItLooksLikeAnotherOarsmanWas	Another rower is injured.\nWe need to find someone\nstrong enough to take over.{end_wait}
+07860	MsgTolbiShipDeckWeHaveNoIdeaWhenThose	If those creatures attack\nagain, we may not have\nenough crew left to fight.{end_wait}
+07861	MsgTolbiShipDeckUhnnnWhenILookAtThe	I keep watching the water\nand feeling sick. I don't\nknow how much longer I can{page_break}fight.{end_wait}
+07909	MsgTolbiShipCanSeeLand	Land! I can see the shore!{end_wait}
+07911	MsgTolbiShipMadeFinallyLucky	We're alive. I thought that\nlast attack would finish\nus.{end_wait}
+07912	MsgTolbiShipOtherPassengersAlready	The passengers are already\nleaving. Not one stopped to\nthank the crew.{end_wait}
+07913	MsgTolbiShipDontRowAnymore	No more rowing? My hands\nare going to ache for a\nweek.{end_wait}
+07914	MsgTolbiShipOhhhHaventWorkout	I haven't worked that hard\nin years. I'll feel it\ntomorrow.{end_wait}
+07915	MsgTolbiShipRowingShipMore	I didn't think I'd enjoy\nrowing. I might try it\nagain, when there are no{page_break}monsters.{end_wait}
+07916	MsgTolbiShipTotallyLostOcean	I paid for an ocean\ncrossing and spent most of\nit staring at an oar.{end_wait}
+07917	MsgTolbiShipMakeOldMan	You had an old man row the\nship, and now you're\npicking a fight on shore?{page_break}Have some shame.{end_wait}
+07918	MsgTolbiShipThanksHardWork	You kept us alive. Thank\nyou for everything you did.{end_wait}
+07935	MsgTolbiShipDeckYouLookinForSeanAndOuranos	Looking for Sean and\nOuranos? They went ahead to\nTolbi with the tour.{end_wait}
+07936	MsgTolbiShipHeadedColosso	You're headed to Colosso\ntoo?{end_now}
+07939	MsgTolbiShipDeckThisGroupThatCameOnOur	That last group of\npassengers made trouble\nfrom the moment they{page_break}boarded.{end_wait}
+07941	MsgTolbiShipDeckImJustGoingToHangOut	I'm staying in Tolbi a\nwhile. I need a few days\naway from the water.{end_wait}
+07942	MsgTolbiShipDeckIWonderWhatHappenedToThat	I wonder what became of\nthose strange passengers\nwho went on to Tolbi.{end_wait}
+07971	MsgTolbiShipFinallyReachedTolbi	So this is Tolbi. After\nthat crossing, I never\nthought I'd see it.{end_wait}
+08020	MsgTolbiShipDeckKajaAndTheCaptainAreProfessionals	Kaja and the captain know\nthese waters. We should\nlisten to them.{end_wait}
+08028	MsgTolbiShipDeckTheresNoTellingWhatKindOf	There may be creatures on\nthat island. Don't wander\ntoo far from the shore.{end_wait}
+08030	MsgTolbiShipDeckIWantToBeASailor	Someday I'll read the wind\nand waves like Kaja. Right\nnow I can barely stand on{page_break}deck.{end_wait}
+08031	MsgTolbiShipDeckIGiveUpWhatAreWe	I don't know what else we\ncan do. We're stranded\nuntil someone finds a way{page_break}out.{end_wait}
