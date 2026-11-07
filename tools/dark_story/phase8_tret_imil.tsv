@@ -19,21 +19,21 @@
 05294	message	Go deep into the forest.\nFind Tret while you can.{end_wait}
 05295	message	Enough, Laurel.\nNo human can be trusted.{page_break}I'd sooner die\nthan put my life\nin their hands.{end_wait}
 05304	message	I expected more from you,\n{actor_name:1}...{pause_20_skippable} How can you\ngive up so easily?{end_wait}
-05318	message	It's you...{pause_20_skippable} Soon we all\nwither with Tret.{page_break}The forest is no place\nfor you now. Leave.{end_wait}
-05319	message	Go now... before the\nforest dies.{end_wait}
-05323	message	All in Tret's realm\nanswers to me!{end_wait}
-05325	message	Tret, the forest, Kolima:\nall of it withers with\nme!{end_wait}
-05327	message	You hoped to find my\nkinder self?{end_wait}
-05328	message	Fools!{pause_20_skippable}{page_break}You should never have\ncome. Now you'll never\nleave!{end_wait}
-05329	message	Your power shielded you\nin the forest,{page_break}but here you stand in\nthe heart of mine!{end_wait}
-05330	message	Here you'll all become\ntrees, and wither with\nthe rest of us!{end_wait}
-05333	message	Was I...{pause_20_skippable} I see...{pause_20_skippable}\nMy heart was nearly\nlost to rage.{end_wait}
-05335	message	I thank you.{pause_20_skippable} I couldn't\nleave this world with so\nmuch hatred in my heart.{end_wait}
-05336	message	Now I can leave this\nworld without regret.{pause_20_skippable}\nFarewell, warriors.{end_wait}
-05340	message	Why not leave me to die?\nDo you need something\nfrom me?{end_now}
-05344	message	Hroom! I must free them\nbefore they die with the\nforest!{end_wait}
-05345	message	I can't...{pause_20_skippable} My power no\nlonger reaches Kolima...{end_wait}
-05361	message	As you recovered, so did\nour forest...{end_wait}
+05318	message	You came back... Tret's\nvoice is almost gone.{page_break}When he dies,\nthese woods die with him.{end_wait}
+05319	message	Please. Leave while\nthere's still time.{end_wait}
+05323	message	The roots obey me now.\nSo does this forest.{end_wait}
+05325	message	Let Kolima wither.\nThey watched us die\nand kept on cutting.{end_wait}
+05327	message	You came looking\nfor the gentle old Tret?\nHe's gone.{end_wait}
+05328	message	You had your warning.\nNow you'll never leave.{end_wait}
+05329	message	Your power held the curse\nback out there.{page_break}Here, even the ground\nanswers to me.{end_wait}
+05330	message	You'll take root here,\njust like the others.\nThen you'll rot.{end_wait}
+05333	message	I remember the axes.\nThen nothing but anger.{end_wait}
+05335	message	Thank you. I couldn't bear\nto die as that thing.{end_wait}
+05336	message	My roots are failing.\nThere's little time left.{page_break}Go. I'll remember\nwhat you did for me.{end_wait}
+05340	message	If you've come to save me,\nI'm afraid you're too late.{end_now}
+05344	message	Then I must free them.\nThey won't die\nfor my anger.{end_wait}
+05345	message	I can't reach them.\nMy strength won't carry\nthat far anymore.{end_wait}
+05361	message	Your branches are moving.\nThe forest is healing!{end_wait}
 05419	message	Fair warning: there's a\nbad sickness going around.{page_break}Keep your hood up and\nyour hands clean.{end_wait}
 05420	message	I don't know you. Are\nyou sure you're not\nlying to me?{end_wait}
 05462	message	{actor_name:4} is a gifted\nhealer.{page_break}I'm one of her\napprentices. She teaches\nme everything.{page_break}She can be stern. But\nshe means well.{end_wait}
