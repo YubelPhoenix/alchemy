@@ -1,0 +1,67 @@
+# Karagol ship cabins 079xx-080xx: Kraken aftermath, crew injuries, lost course, island landing, passenger disputes and Tolbi arrival.
+07900	MsgTolbiShipIfThoseMonstersComeBack	If those creatures come\nback, give them another\nfight they won't forget!{end_wait}
+07901	MsgTolbiShipBoatsRockingMuchImCertain	The ship won't stop\nrocking. I can't tell if\nthe monsters are gone or{page_break}waiting beneath us.{end_wait}
+07902	MsgTolbiShipHadIdeaThereWereMany	I had no idea there were so\nmany creatures in the\nKaragol. Who could have{page_break}warned us?{end_wait}
+07903	MsgTolbiShipWereSurroundedByMonstersStill	No land in sight, and more\nmonsters in the water. How\nmuch farther can we go?{end_wait}
+07904	MsgTolbiShipInteriorsIWonderIfTheyllMakeUs	Will they put us back on\nthe oars once the fighting\nstops? I can barely move my{page_break}hands.{end_wait}
+07923	MsgTolbiShipInteriorsIDontThinkAnyoneWillBe	After what happened, I\ndoubt any rower will agree\nto cross the Karagol again{page_break}soon.{end_wait}
+07924	MsgTolbiShipInteriorsYouFolksReallyFoughtWell	You all fought well. I saw\nwhat you did for the crew.{end_wait}
+07925	MsgTolbiShipInteriorsALotOfOarsmenWereInjured	Half our rowers are hurt.\nNo captain will risk\nanother voyage until the{page_break}water is safe.{end_wait}
+07926	MsgTolbiShipInteriorsAreWeSafeItsAllBecause	It's over? We survived\nbecause you fought those\nthings off. Thank you.{end_wait}
+07927	MsgTolbiShipInteriorsIveBeenAnOarsmanAllMy	I've spent my life pulling\noars, but this was the\nworst crossing I've ever{page_break}made.{end_wait}
+07928	MsgTolbiShipInteriorsYouGoOnAheadJustWhen	Go on without me. I twisted\nmy back when the ship\nlurched, and I can hardly{page_break}stand.{end_wait}
+07929	MsgTolbiShipInteriorsWeCantFindAnyoneToReplace	We can't find enough\nhealthy men to replace the\ninjured oarsmen. Not after{page_break}that attack.{end_wait}
+07930	MsgTolbiShipInteriorsImJustGladTheKrakenDidnt	The Kraken didn't get me.\nThat alone is enough to\nmake me grateful.{end_wait}
+07931	MsgTolbiShipInteriorsSureThePaysGoodButIt	Good pay doesn't mean much\nwhen you're carried off the\nship on a stretcher.{end_wait}
+07932	MsgTolbiShipInteriorsIsaacAndHisPalsWereSo	{actor_name:1} and his friends\nfaced that thing without\nturning back. I'll remember{page_break}that.{end_wait}
+07933	MsgTolbiShipInteriorsIFeelBetterNowIWas	I'm feeling better now. I\nthink my knees have finally\nstopped shaking.{end_wait}
+07934	MsgTolbiShipInteriorsImInNoRushAnywayThis	I'm in no hurry to leave.\nIt may be a long time\nbefore I board another{page_break}ship.{end_wait}
+07943	MsgTolbiShipInteriorsWhenTheWatersAreThisDangerous	The sea isn't safe enough\nto sail. I'll stay in Tolbi\nand see Colosso while I{page_break}can.{end_wait}
+07944	MsgTolbiShipInteriorsSeeOurShipSurvivedAnAttack	See? We survived the\nKraken. I knew that lucky\nanchor charm would keep us{page_break}safe!{end_wait}
+07977	MsgTolbiShipReachedIslandRowers	Island ahead! Rowers, rest\nyour arms. We need to find\nout where we are.{end_wait}
+07981	MsgTolbiShipShipWentOff	We've drifted off course.\nThe captain brought us here\nto check our position.{end_wait}
+07987	MsgTolbiShipInteriorsIveBeenSailingForManyYears	I've sailed these waters\nfor years. I don't remember\nan island like this.{end_wait}
+07988	MsgTolbiShipInteriorsWowIHaveABlisterOn	I hit that drum until my\nhand blistered. I hope\nnobody asks for another{page_break}song.{end_wait}
+07989	MsgTolbiShipInteriorsIWonderIfItsOkayTo	Are we safe leaving the\nship in this cove? The\nwater is still moving{page_break}strangely.{end_wait}
+07990	MsgTolbiShipInteriorsStoppingAgainAndAgainLikeThis	Stopping every few hours is\nworse than rowing all day.\nI can't get a rhythm going.{end_wait}
+07991	MsgTolbiShipInteriorsLetsSeeIslandsInTheKaragol	There are islands in the\nKaragol, but I can't place\nthis one on any map I've{page_break}seen.{end_wait}
+07992	MsgTolbiShipInteriorsWhenWereRowingWeCanJust	I ought to be glad we're\nresting. Instead, sitting\nstill makes me nervous.{end_wait}
+07993	MsgTolbiShipInteriorsItsCrazyToHaveInexperiencedPassengers	We put people who've never\nheld an oar at the benches.\nWe were lucky to get this{page_break}far.{end_wait}
+07994	MsgTolbiShipInteriorsItWasHardForMeAll	I worked the whole crossing\nwithout a break. Now I can\nbarely straighten my back.{end_wait}
+07995	MsgTolbiShipInteriorsISureHopeAnotherMonsterDoesnt	What if those creatures\nfollowed us here? I'd\nrather stay near the crew.{end_wait}
+07996	MsgTolbiShipInteriorsLooksLikeImGoingToHave	My arms will be sore for\ndays. I haven't worked that\nhard since I was young.{end_wait}
+07997	MsgTolbiShipInteriorsCouldThisBeThatIslandThats	People say this island\nhides treasure. After\nseeing the monsters, I'm{page_break}not going ashore to look.{end_wait}
+07998	MsgTolbiShipInteriorsMaybeItsTimeForMeTo	Perhaps it's time I\nretired. I don't need\nanother voyage like this{page_break}one.{end_wait}
+07999	MsgTolbiShipInteriorsYouCantGoOntoTheIsland	Don't leave the ship! We\ndon't know what lives on\nthat island.{end_wait}
+08000	MsgTolbiShipInteriorsButThereWereMonstersAtSea	We faced monsters at sea.\nHow much worse could the\nshore be?{end_wait}
+08001	MsgTolbiShipInteriorsWeveBeenCoopedUpOnThat	We've been shut belowdecks\ntoo long. Let us at least\nwalk on the beach.{end_wait}
+08002	MsgTolbiShipInteriorsThereCouldBeMonstersHereSo	There could be creatures in\nthe trees. We shouldn't\nsend passengers ashore{page_break}unguarded.{end_wait}
+08003	MsgTolbiShipInteriorsTheShipKeepsShakingSheCant	The hull keeps creaking.\nI'd rather put my feet on\nground that stays still.{end_wait}
+08004	MsgTolbiShipInteriorsWhyShouldWeHaveToWait	Land is right there. Why\nmust we keep waiting aboard\nthis ship?{end_wait}
+08005	MsgTolbiShipInteriorsIfThereAreMonstersImNot	If monsters live on that\nisland, I'm staying right\nwhere I am.{end_wait}
+08006	MsgTolbiShipInteriorsIDontHearThePassengersScreaming	Listen. The passengers have\nstopped shouting. I wonder\nif that's good or bad.{end_wait}
+08007	MsgTolbiShipDontFeelDontTalkMe	I feel sick. Please, don't\nmake me talk.{end_wait}
+08008	MsgTolbiShipHateArguing	I wish everyone would stop\narguing. It isn't helping\nus find the way.{end_wait}
+08009	MsgTolbiShipInteriorsWhatToDoImWorriedAbout	I don't want the passengers\nhurt, but we can't keep\nthem locked below forever.{end_wait}
+08010	MsgTolbiShipInteriorsButWhyShouldWeStayOnboard	There's land a few steps\naway. Why shouldn't we be\nallowed to go there?{end_wait}
+08011	MsgTolbiShipInteriorsImSickOfThisShipIm	I've had enough of this\nship. I'll take my chances\non the shore.{end_wait}
+08012	MsgTolbiShipInteriorsLandMonstersICanHandleSea	I can fight things that\nwalk on land. The creatures\nin that water were another{page_break}matter.{end_wait}
+08013	MsgTolbiShipInteriorsIveBeenWobblingOnThisBoat	I've been at sea so long I\nkeep swaying even when I\nstand still.{end_wait}
+08014	MsgTolbiShipInteriorsGoAheadTryAndStopMe	Try and stop me! I'm going\nashore whether the captain\nlikes it or not!{end_wait}
+08015	MsgTolbiShipInteriorsJustDontMakeMeFaceThat	I don't care what lives on\nthat island. I don't want\nto see another Kraken.{end_wait}
+08016	MsgTolbiShipInteriorsSoAnyoneKnowIfThereAre	Has anyone checked the\nisland for monsters? I want\nan answer before I step{page_break}off.{end_wait}
+08017	MsgTolbiShipInteriorsOhhThatsCreepy	Something about that island\ngives me the creeps. I\ncan't explain it.{end_wait}
+08018	MsgTolbiShipInteriorsInAPerfectWorldThereWouldnt	Please let the shore be\nempty. I don't have another\nfight left in me.{end_wait}
+08037	MsgTolbiShipInteriorsWeMayHaveTakenTheWrong	We lost our course, but\nwe've come a long way.\nTolbi can't be far now.{end_wait}
+08038	MsgTolbiShipInteriorsWereLookingIntoTheShipsPosition	The crew is checking the\nship's position. We'll have\nan answer as soon as we{page_break}can.{end_wait}
+08039	MsgTolbiShipInteriorsImReallySurprisedThatThereIs	I've crossed the Karagol\nmany times and never knew\nthis island existed.{end_wait}
+08040	MsgTolbiShipInteriorsTheWindsDirectionAndTheHigh	Look at the wind and the\nsea. We must be getting\nclose to Tolbi.{end_wait}
+08056	MsgTolbiShipSorryEveryoneButWeNeed	We need to switch the left\nand right rowing teams. The\nuneven strokes pulled us{page_break}off course.{end_wait}
+08059	MsgTolbiShipImSpreadingGoodwillWhereverTravel	I try to spread goodwill\nwherever I go. It doesn't\nalways make the road{page_break}easier.{end_wait}
+08060	MsgTolbiShipInteriorsEvenThoughImOpposedToViolence	I dislike fighting, yet I'm\neager to see Colosso. I\nknow that sounds strange.{end_wait}
+08061	MsgTolbiShipShipsCrewReadyForAnything	The crew can handle\nwhatever comes. I'll be\nhere cheering them on.{page_break}Someone else can row.{end_wait}
+08062	MsgTolbiShipInteriorsICantRowButIAm	I can't help at an oar, but\nI can at least hope this\nship gets everyone safely{page_break}home.{end_wait}
+08063	MsgTolbiShipShipsCrewReadyAnything	The sailors know their\nwork. I'll stand with them.\nJust don't ask me to take{page_break}an oar.{end_wait}
+08064	MsgTolbiShipInteriorsIsThisCruelOrdealPartOf	Was this terrible voyage\nsome test meant for me? I\nhope I've passed it.{end_wait}
+08065	MsgTolbiShipGoodShipHasArrivedSafely	We reached the shore alive.\nAfter everything, that is\nworth celebrating.{end_wait}
+08066	MsgTolbiShipInteriorsWeMadeItToColossoIn	We made it to Tolbi in time\nfor Colosso. I'm too tired\nto enjoy it yet.{end_wait}
