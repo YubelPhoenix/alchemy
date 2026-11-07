@@ -42,20 +42,24 @@
 05716	message	The legend was right.\nThe fountain flows\nwith the beacon lit.{page_break}Winter will return.\nBut we'll have\nthe water this time.{end_wait}
 05717	message	I'll cook a feast\nfor you tonight.{end_wait}
 05722	MsgImilINeverToldMiaThatI	I never told {actor_name:4}\nthat I liked her...{page_break}Maybe it's for\nthe best.{end_wait}
-05723	MsgImilMia	{actor_name:4}...{end_wait}
-05724	message	We were afraid\nyou'd never come back!{end_wait}
-05725	message	I'm sorry I worried\nyou both.{end_wait}
-05726	message	{actor_name:4}, the lighthouse!\nIts beacon is lit!{end_wait}
-05727	message	You knew already,\n{actor_name:4}?{end_wait}
-05728	message	What's wrong?{pause_20_skippable}\nYou look worried,\n{actor_name:4}.{end_wait}
-05729	message	I...{pause_20_skippable}\nThere's something\nI must tell you.{end_wait}
-05730	message	What is it, Mia?\nYou can tell us.{end_wait}
-05731	message	Well...{pause_20_skippable}\nI don't know where\nto begin.{end_wait}
-05734	message	You said the world\ncould be in danger\nif the beacon lit.{end_wait}
-05735	message	Is that why you're\nleaving? To protect\neveryone?{end_wait}
-05736	message	Yes.{pause_20_skippable}\nI have to go.{end_wait}
-05737	message	Then we can't\nask you to stay.{end_wait}
-05738	message	We won't stop you.{page_break}If people need you,\nyou have to help them.{end_wait}
-05739	message	Thank you.{pause_20_skippable}\nI'll miss you both.{end_wait}
-05740	message	We're Mercury Clan,\ntoo. We'll keep\nImil safe.{page_break}Don't worry about us.{end_wait}
-05741	message	I'll work hard and\nlearn to heal as well\nas you, {actor_name:4}!{end_wait}
+05723	MsgImilMia	{actor_name:4}! You're back!{end_wait}
+05724	message	We saw the light...\nWe thought we'd lost you.{end_wait}
+05725	message	I'm here. Are you both\nall right?{end_wait}
+05726	message	{actor_name:4}, the beacon's\nburning! We can see it!{end_wait}
+05727	message	You already knew...\ndidn't you, {actor_name:4}?{end_wait}
+05728	message	Why won't you tell us\nwhat happened, {actor_name:4}?{end_wait}
+05729	message	There's something\nI need to tell you.{end_wait}
+05730	message	Please. Just tell us.{end_wait}
+05731	message	I can't stay here.{end_wait}
+05734	message	You said the world\ncould be in danger\nif the beacons were lit.{end_wait}
+05735	message	Then you're leaving\nto stop that from\nhappening?{end_wait}
+05736	message	Yes.{pause_20_skippable} Before anyone\nelse gets hurt.{end_wait}
+05737	message	Then... we'll\nhandle things here.{end_wait}
+05738	message	We're scared, too.\nBut we won't stop you.{page_break}Someone has to\nstay and help Imil.{end_wait}
+05739	message	I know.{pause_20_skippable}\nI wouldn't trust Imil\nto anyone else.{end_wait}
+05740	message	We'll keep the\nSanctum running.\nYou have my word.{end_wait}
+05741	message	I'll keep practicing\nuntil I can heal like\nyou, {actor_name:4}!{end_wait}
+05732	message	I'm going with\n{actor_name:1}. We have to\nstop the other beacons.{end_wait}
+05733	message	I know what this means\nfor Imil. I wouldn't go\nif we had another choice.{end_wait}
+05742	message	Don't rush to prove it.\nJust take care of\nwhoever comes through.{end_wait}
+05743	message	All right. We leave now.\nKeep each other safe.{end_wait}
