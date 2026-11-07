@@ -1,0 +1,12 @@
+# Imil/Mercury verified live dialogue gaps; source context audited 2026-11-07.
+# 05592-05670 are old Mercury aftermath texts bypassed by the Ashfall event path.
+# 05688 is an item pickup message; 05744 is not in the active farewell sequence.
+05417	MsgImilBrrrrrChooImFreezingMia	{text_effect:4}Brr...{pause_20_skippable} Achoo!{page_break}Has {actor_name:4} come yet?\nI can't stop shaking.{end_wait}
+05418	MsgImilHiNewInImil	Hey! You're new here,\naren't you?{end_now}
+05421	MsgImilOneTwoThreeFour	One...{pause_20_skippable} two...{pause_20_skippable}\nThree...{pause_20_skippable} four!{end_wait}
+05422	message	I exercise every morning.\nEven in this cold.{page_break}Not sure it helps,\nbut I feel better moving.{end_wait}
+05423	MsgImilMiaShouldHereByNow	{text_effect:4}She must be with someone\nworse off than me...{page_break}{actor_name:4}, please hurry.{end_wait}
+05689	MsgMercuryDontHideTruth	You're trying to enter,\naren't you? Please...\njust be honest.{end_now}
+05743	message	They'll be all right here.\nI have to trust them.{end_wait}
+05746	MsgImilIWillBeAKindGirl	When someone is hurt,\n{actor_name:4} always helps them.{page_break}When I grow up,\nI want to be like her.{end_wait}
+05748	MsgImilImSorryMiaButICant	I wish {actor_name:4} would rest.\nShe's always helping us.{end_wait}
