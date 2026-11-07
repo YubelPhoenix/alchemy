@@ -39,7 +39,8 @@ LAYOUT = (
 )
 TILES = {"#": "0:ff", ".": "0", "=": "14", "E": "56:ff", "I": "56:ff",
          "S": "56:ff", "H": "56:ff", "X": "56:ff", "W": "3e:ff",
-         "M": "3e:ff", "G": "0:1", "n": "0"}
+         "M": "3e:ff", "G": "0:1", "n": "0",
+         "w": "14:e1", "m": "14:e2", "d": "0:e3"}
 TARGETS = [(15, 31), (16, 16), (16, 10), (12, 16), (20, 17),
            (15, 24), (8, 17), (18, 11), (24, 19)]
 DEST = Path(__file__).resolve().parents[1] / "games/tbs/src/map/map_180/map.txt"
@@ -59,7 +60,17 @@ def source():
                     seen.add((X,Y))
                     queue.append((X,Y))
     assert all(point in seen for point in TARGETS), "Unreachable landmark"
-    rows = [" ".join(TILES[c] for c in row) for row in LAYOUT]
+    # Activation tiles sit beside solid scenery, not on it.
+    # Only this map gives these three behaviors their event meanings.
+    marked = [list(row) for row in LAYOUT]
+    for x, y, original, marker in [
+        (16, 17, "=", "w"),  # approach to the well at (16, 16)
+        (16, 11, "=", "m"),  # approach to the memorial at (16, 10)
+        (6, 6, ".", "d"),   # approach to the sealed house
+    ]:
+        assert marked[y][x] == original, "Aster trigger drift"
+        marked[y][x] = marker
+    rows = [" ".join(TILES[c] for c in row) for row in marked]
     return "grid:128x128\tat:0,0\tfill:0:ff\n" + "\n".join(rows) + "\n"
 def main():
     parser = argparse.ArgumentParser()
