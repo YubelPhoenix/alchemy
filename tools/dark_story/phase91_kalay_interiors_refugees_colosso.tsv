@@ -28,7 +28,7 @@
 06882	MsgKalayInteriorsArentYouGoingToColossoYou	You look like fighters. I\nbet you've thought about\nentering Colosso at least{page_break}once.{end_wait}
 06883	MsgKalayDoKnowAboutContinentSouth	Do you know much about the\ncontinent south of Tolbi?{end_now}
 06886	MsgKalayInteriorsIBetterGetReadyTheColosso	We leave for Tolbi shortly.\nI've checked my bags twice,\nand I've still forgotten{page_break}something.{end_wait}
-06887	MsgKalayInteriorsWeFledFromGondowanToThe	We fled Gondowan and left\nLalivero behind. I never\nimagined we'd have to go so{page_break}far to feel safe.{end_wait}
+06887	MsgKalayInteriorsWeFledFromGondowanToThe	We fled Lalivero when\nTolbi's men came.{page_break}We still miss our home.{end_wait}
 06888	MsgKalayInteriorsLaliveroWhereImFromIsThe	Lalivero is bigger than\nmost towns on Gondowan.\nKalay is busy enough, but I{page_break}still miss home.{end_wait}
 06889	MsgKalayInteriorsIfYouAreEnteringColossoYou	Thinking of entering\nColosso? Too bad for you.\nBoth of us are competing{page_break}this year.{end_wait}
 06890	MsgKalayInteriorsWereSoStrongMakingTheFinals	Ouranos and I will reach\nthe finals. Then we'll\nsettle which of us is{page_break}stronger.{end_wait}
