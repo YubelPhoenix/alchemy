@@ -157,9 +157,105 @@ void BattleBackground_Init(void) {
   state->mode = BATTLE_BACKGROUND_NONE;
 }
 
+/// Heart's backdrop: the palette entries the floor's fissures use
+/// (tools/dark_story/build_heart_floor.py reserves 120 to 127).
+#define HEART_CRACK_CORE 120
+#define HEART_CRACK_HALO 124
+/// Frames between lightning strikes at the soonest, and the random spread.
+#define HEART_LIGHTNING_MIN 360
+#define HEART_LIGHTNING_SPREAD 480
+
+static u16 sHeartGlowClock;
+static u16 sHeartNextStrike;
+static u16 sHeartStrikeFrame;
+static u16 sHeartRandom = 0x2f6b;
+
+/// One channel of a colour pulsed between dim and bright: wave is 0 to 31.
+static u16 Heart_GlowColor(s32 red, s32 green, s32 blue, s32 wave,
+                           s32 scale) {
+  red = (red * (8 + wave) / 39) * scale >> 16;
+  green = (green * (8 + wave) / 39) * scale >> 16;
+  blue = (blue * (8 + wave) / 39) * scale >> 16;
+  return (blue << 10) | (green << 5) | red;
+}
+
+/// Heart's backdrop only: pulses the glowing fissures, a wave running along
+/// each one, and now and then flashes the whole sky and floor like lightning.
+/// Runs every VBlank while her battle lasts. It writes only while the
+/// background is zoomed and undimmed, so the battle animations that take the
+/// palette over are left alone. Added by BattleBackground_Load, removed by
+/// BattleBackground_Free.
+void Heart_StepBackdropGlow(void) {
+  struct BattleWork *battle = gBattleWork;
+  struct BattleBackgroundWork *view =
+      HEAP_SLOT_BLOCK(HEAP_SLOT_BATTLE_BACKGROUND);
+  s32 scale;
+  s32 k;
+
+  if (battle == NULL || view == NULL || view->mode != BATTLE_BACKGROUND_ZOOMED)
+    return;
+  scale = battle->brightness;
+  if (scale > Q16_ONE)
+    scale = Q16_ONE;
+  sHeartGlowClock++;
+  for (k = 0; k < 4; k++) {
+    // a triangle wave, 0 to 31, a quarter turn apart along each crack
+    s32 t = (sHeartGlowClock * 2 + k * 16) & 63;
+    s32 wave = t < 32 ? t : 63 - t;
+
+    BATTLE_BG_PALETTE[HEART_CRACK_CORE + k] =
+        Heart_GlowColor(31, 17, 6, wave, scale);
+    BATTLE_BG_PALETTE[HEART_CRACK_HALO + k] =
+        Heart_GlowColor(14, 5, 12, wave, scale);
+  }
+  if (scale != Q16_ONE)
+    return;
+  if (sHeartStrikeFrame == 0) {
+    if (sHeartNextStrike == 0) {
+      sHeartRandom = sHeartRandom * 25173 + 13849;
+      sHeartNextStrike = HEART_LIGHTNING_MIN +
+                         (sHeartRandom >> 4) % HEART_LIGHTNING_SPREAD;
+    }
+    if (--sHeartNextStrike == 0)
+      sHeartStrikeFrame = 1;
+  }
+  if (sHeartStrikeFrame != 0) {
+    // two flickering flashes: up fast, down slow, a pause, then a smaller one
+    static const u8 strike[] = {10, 22, 28, 20, 12, 6, 0, 0, 0, 12, 18, 10, 4};
+    u16 *source = battle->palette;
+    u16 *destination = BATTLE_BG_PALETTE;
+    s32 gain = strike[sHeartStrikeFrame - 1];
+    s32 i;
+
+    for (i = 0; i < 120; i++) {
+      u32 pixel = source[i];
+      s32 red = (pixel & 31) + gain;
+      s32 green = ((pixel >> 5) & 31) + gain;
+      s32 blue = ((pixel >> 10) & 31) + gain + (gain >> 1);
+
+      if (red > 31)
+        red = 31;
+      if (green > 31)
+        green = 31;
+      if (blue > 31)
+        blue = 31;
+      destination[i] = (blue << 10) | (green << 5) | red;
+    }
+    sHeartStrikeFrame++;
+    if (sHeartStrikeFrame > sizeof strike) {
+      sHeartStrikeFrame = 0;
+      // put the sky and floor back exactly
+      Dma_Set(source, destination, DMA_COPY_HALFWORDS(120), REG_DMA3);
+    }
+  }
+}
+
 /// Frees the zoomed background's scanline work; called by
 /// Battle_Run as the battle ends.
-void BattleBackground_Free(void) { FreeHeapSlot(HEAP_SLOT_BATTLE_SCANLINES); }
+void BattleBackground_Free(void) {
+  Task_Remove(Heart_StepBackdropGlow);
+  FreeHeapSlot(HEAP_SLOT_BATTLE_SCANLINES);
+}
 
 /// The bit decoder BattleBackground_Load copies to RAM and runs.
 typedef void (*BitDecoder)(const u8 *source, void *destination);
@@ -215,6 +311,14 @@ void BattleBackground_Load(s32 mode, s32 resourceId, s32 level) {
   Iwram_ClearWords((BG_SCREEN_BLOCK(31) + 0x7c0), 64);
   if (view->mode == BATTLE_BACKGROUND_NONE)
     Task_Add(BattleBackground_ShowZoomedPage, TASK_PASS_VBLANK + 127);
+  // Heart's floor glows and the sky flashes.
+  if ((u16)resourceId == (u16)(s32)&ResourceId_HeartBackdrop) {
+    sHeartGlowClock = 0;
+    sHeartNextStrike = 240;
+    sHeartStrikeFrame = 0;
+    Task_Remove(Heart_StepBackdropGlow);
+    Task_Add(Heart_StepBackdropGlow, TASK_PASS_VBLANK);
+  }
   view->mode = mode;
   if (mode == BATTLE_BACKGROUND_FIXED)
     REG_BG1CNT = BATTLE_BG1CNT;

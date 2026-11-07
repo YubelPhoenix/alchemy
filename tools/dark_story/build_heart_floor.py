@@ -68,11 +68,50 @@ for r in range(floor_rows):
         row = row * (1 - 0.55 * m) + np.array([120.0, 88.0, 150.0]) * 0.55 * m
     out[HORIZON + r] = row
 
-# soft vertical vignette at the sides keeps the wrap seam invisible
+# Glowing fissures in the glass. They are painted after the floor is quantised,
+# with palette entries 120-127 reserved for them: the battle code
+# (background.c, Heart_StepBackdropGlow) pulses these eight colours.
 img = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
-q = img.quantize(colors=128, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
-pal = q.getpalette()[:384]
+q = img.quantize(colors=120, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
+idx = np.array(q)
+cr = np.random.default_rng(11)
+CORE = 120    # 120-123: cores, four phases along each crack
+HALO = 124    # 124-127: the faint glow beside a core, same four phases
+def crack(x, y, steps, drift):
+    pts = []
+    for n in range(steps):
+        pts.append((x % W, y))
+        y += 1 if cr.random() < 0.75 else 0
+        x += int(cr.integers(-1, 2)) + drift
+        if y >= H:
+            break
+    return pts
+paths = []
+for sx, sy in [(20, 80), (62, 76), (104, 84), (150, 78), (196, 82), (236, 76)]:
+    p0 = crack(sx, sy, int(cr.integers(48, 64)), int(cr.integers(-1, 2)) * 0)
+    paths.append(p0)
+    # a branch splitting off partway
+    bx, by = p0[len(p0) // 2]
+    paths.append(crack(bx, by, int(cr.integers(14, 26)), 1 if cr.random() < 0.5 else -1))
+for path in paths:
+    for n, (x, y) in enumerate(path):
+        if y < HORIZON + 2:
+            continue
+        ph = (n // 3) % 4
+        for dx in (-1, 1):
+            if idx[y, (x + dx) % W] < 120:
+                idx[y, (x + dx) % W] = HALO + ph
+        idx[y, x] = CORE + ph
+q = Image.fromarray(idx.astype(np.uint8), "P")
+pal = Image_pal = None
+pal = list(img.quantize(colors=120, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).getpalette()[:360])
 pal += [0] * (384 - len(pal))
+# placeholder glow colours; the game animates them
+for k in range(4):
+    pal[(CORE + k) * 3:(CORE + k) * 3 + 3] = [248, 120, 48]
+    pal[(HALO + k) * 3:(HALO + k) * 3 + 3] = [96, 40, 88]
+# the graphics encoder only takes exact RGB555 colours (multiples of 8)
+pal = [min(248, int(round(v / 8.0)) * 8) for v in pal]
 q.putpalette(pal)
 q.save(OUT)
-print("wrote", OUT, q.size, len(q.getcolors()), "colours")
+print("wrote", OUT, q.size, len(set(idx.flatten().tolist())), "colours used")
