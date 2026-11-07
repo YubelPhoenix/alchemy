@@ -1,0 +1,102 @@
+09485	MsgLunpaThinkSawSomeone	Did you see that?\nSomeone moved over there.{end_wait}
+09486	message	I saw it too.\nStay alert.{end_wait}
+09487	message	Could Dodonpa's men\nhave followed us?{end_now}
+09488	message	Then we'd better\nstop them here.\nHammet can't run.{end_wait}
+09489	message	If not the guards,\nthen who is it?{end_wait}
+09490	MsgLunpaMoment	Wait! Don't move!{end_wait}
+09491	message	Bunza? Is that you?{end_wait}
+09492	message	That voice...\nIt can't be...{end_wait}
+09493	message	Hammet! You're alive!{end_wait}
+09494	MsgLunpaDodonpaNeverIntention	Then Dodonpa never\nmeant to release you?{end_wait}
+09495	message	No. {actor_name:3} and his\nfriends\ncame to free me.{end_wait}
+09496	message	Once {actor_name:1} decided,\nwe went in together.\nWe weren't leaving him.{end_wait}
+09497	message	Hey, {actor_name:3}!\nDon't make it sound like\n{actor_name:1} did everything!{end_wait}
+09498	message	I didn't mean that!\n{actor_name:4} helped, and\nyou did too!{end_wait}
+09499	message	Thank you, {actor_name:1},\n{actor_name:2}, and {actor_name:4}.\nAll of you.{end_wait}
+09500	message	And you, {actor_name:3}.\nMost of all.{end_wait}
+09501	message	You found the cave,\nBunza. How?{end_wait}
+09502	message	Even the guards\ndidn't know we were here.\nWell done, Bunza.{end_wait}
+09503	message	It wasn't planned.\nI stumbled onto it.{end_wait}
+09504	message	I nearly turned back\nbefore I reached Lunpa.{end_wait}
+09505	message	We knew the thieves\nwere holding Hammet.\nI was afraid.{end_wait}
+09506	message	Then why come at all?{end_wait}
+09507	message	I remembered something\nHammet taught me\nabout trading.{end_wait}
+09508	message	To trade in Lunpa?\nAfter all this?{end_wait}
+09509	message	No. Something\nmore important than that.{end_wait}
+09510	message	"Don't judge a customer\nby the way they look."{end_wait}
+09511	message	"Don't turn back\njust because the road\nlooks dangerous."{end_wait}
+09512	message	"If people are waiting\nfor what you carry,{page_break}you owe it to them\nto try to reach them."{end_wait}
+09513	message	So you came for\nthe people of Lunpa,\ndespite Dodonpa?{end_wait}
+09514	message	And found us instead.\nI suppose that's fate.{end_wait}
+09515	message	But you knew\nthe guards might refuse\na merchant from Kalay.{end_wait}
+09516	message	They did. I never\ngot past the gate.{end_wait}
+09517	message	And still you stayed?{end_wait}
+09518	message	Then there was a commotion\nat the fortress.\nI couldn't ignore it.{end_wait}
+09519	message	That must've been\nDonpa's diversion.{end_wait}
+09520	message	I thought it might\nhave something to do\nwith Hammet.{end_wait}
+09521	message	I had to be certain.\nSo I kept looking.{end_wait}
+09522	message	And you found this cave?{end_wait}
+09523	message	But that gate\nonly opens from inside.\nHow did you get through?{end_wait}
+09524	message	I didn't.\nThen it moved,\nand I hid behind a rock.{end_wait}
+09525	message	We gave you a fright,\ndidn't we?{end_wait}
+09526	message	I was more relieved\nthan afraid.\nHammet was with you.{end_wait}
+09527	message	You sound worried,\nBunza. What's wrong?{end_wait}
+09528	message	Dodonpa's men are\nsearching the roads.\nThey're everywhere.{end_wait}
+09529	message	They may not be\nlooking for Hammet.\nBut if they see him...{end_wait}
+09530	message	They'll take him back.\nWe have to leave now.{end_wait}
+09531	message	We need a way out\nthat won't draw attention.\nNot another fight.{end_wait}
+09532	message	What do you think,\n{actor_name:1}? Stay and fight?{end_now}
+09533	message	We barely made it\nout of that fortress.\nHammet needs rest.{end_wait}
+09534	message	Fighting an entire gang\nout here would be\na terrible risk.{end_wait}
+09535	MsgLunpaBunza	Then what's our way out,\nBunza?{end_wait}
+09536	message	I brought a wagon.\nIt's just outside.{end_wait}
+09537	message	A wagon?{end_wait}
+09538	message	I can take everyone\nback to Kalay.\nCome with me.{end_wait}
+09539	message	The guards will search\nany wagon leaving Lunpa.\nWon't they?{end_wait}
+09540	message	They've seen mine\non the road for days.\nI look like any trader.{end_wait}
+09541	message	So your wagon\nwon't seem unusual.\nThat could work.{end_wait}
+09542	message	Exactly, {actor_name:2}.\nNo one suspects me.\nNot yet.{end_wait}
+09543	MsgLunpaLetsTakeWagon	Then let's get Hammet\nhome to Kalay.{end_wait}
+09544	message	Should we ride\nwith them?{end_now}
+09545	MsgLunpaGaretAsksIfNotRiding	You don't want\nto take the wagon?{end_now}
+09546	MsgLunpaMiaAsksIfRidingAfter	Changed your mind?\nAre we riding or not?{end_now}
+09547	MsgLunpaTotallyConfusedChanged	You're changing it again?\nMake a decision!{end_wait}
+09548	message	We're wasting daylight.\nAre we going?{end_now}
+09549	MsgLunpaGaretAsksAboutUnfinishedBusiness	Is there something\nyou still need\nto do in Lunpa?{end_now}
+09550	MsgLunpaInsistStick	Then I'm staying\nwith you. No argument.{end_wait}
+09551	message	You two aren't staying\nalone. I'm not leaving you.{end_wait}
+09552	message	Hammet, I'll stay\nwith {actor_name:1}.\nThey still need me.{end_wait}
+09553	message	You should go with them,\n{actor_name:3}. They're your\nfriends.{page_break}I'll be safe now.{end_wait}
+09554	message	I wish we could travel\nhome together.{page_break}But I understand.\nBe careful, {actor_name:3}.{end_wait}
+09555	message	There they go...{end_wait}
+09556	message	I hope Bunza gets\nHammet safely to Kalay.{end_wait}
+09557	message	He knows the road.\nThey'll make it.{end_wait}
+09558	message	Then we have work to do.\nCome on, {actor_name:1}.{end_wait}
+09559	MsgLunpaBunzaAsksAboutUnfinishedBusiness	Anything else you need\nto do before we leave?{end_now}
+09560	MsgLunpaDontUnfinishedBusiness	If you're finished here,\nwe should get going.\nKalay is waiting.{end_wait}
+09561	message	Layana will be relieved\nto see you again.{end_wait}
+09562	message	I want to see her.\nI've kept her waiting\nlong enough.{end_wait}
+09563	message	Then we're off to Kalay.{end_wait}
+09564	MsgLunpaGaretAsksAboutThingsTo	Still something to do\nhere in Lunpa?{end_now}
+09565	MsgLunpaGaretChecksNothingLeft	Don't tell me you've\nchanged your mind again.\nWe're ready to go!{end_now}
+09566	MsgLunpaMeaningWontRide	So you won't\nride in the wagon?{end_wait}
+09567	message	I'm sorry, {actor_name:1}.\nHammet can't stay\non these roads.{end_wait}
+09568	message	Will you stay here\nand finish your business?{end_now}
+09569	MsgLunpaThankHelpDodonpa	Thank you for teaching\nmy son a lesson.\nI know what he did.{end_wait}
+09570	message	Please accept this.\nI know it can't repay\nthe harm he's caused.{end_wait}
+09571	message	See that they receive\nthis gift from me.{end_wait}
+09572	message	Deep in these caves\nlives a strange creature.{page_break}I fought it years ago.\nIt may be useful to you.{end_wait}
+09573	message	It's yours now.\nTake care of it.{end_wait}
+09574	MsgLunpaDonpaGrateful	Donpa's grateful.\nHe won't forget\nwhat you did for us.{end_wait}
+09575	MsgLunpaWellWorriedDodonpa	I want to believe\nDodonpa has changed.\nI don't know if he has.{end_wait}
+09576	MsgLunpaDifficultDonpaRight	Donpa's own son\nbrought this on him.{page_break}I wouldn't wish\nsuch a decision\non any father.{end_wait}
+09577	MsgLunpaFatherStayAngry	I know he's done wrong.\nBut he's still my son.{page_break}Part of me wants\nto open that cell\nand bring him home.{end_wait}
+09578	MsgLunpaHammetStillInside	The merchant from Kalay\nis still somewhere\ndown here.{page_break}No one's coming\nto rescue him.{end_wait}
+09579	MsgLunpaDodonpaSecretlyInside	Dodonpa's in this cell.\nOnly a few guards know.{page_break}We'd better keep\nour mouths shut.{end_wait}
+09580	MsgLunpaWrongTurnOver	I was wrong, Dad!\nI'll never do it again!\nJust let me out!{end_wait}
+09581	MsgLunpaCantBelieveWhen	They put me here...\nThey'll regret this.{page_break}When I get out,\nI'll make them pay.\nEvery last one.{end_wait}
+09835	MsgLunpaTravelingPriest	I've spent years\ntraveling the world\nand helping others.{end_wait}
+09836	MsgLunpaInteriorsTravelingPriestThoughts	Gondowan is barren.\nCliffs, sand, and stone.\nStill, people live there.{end_wait}
+10682	MsgLunpaInteriorsFirstOven	Thieves' Stew.\nThe smell is hard\nto mistake.{end_wait}
+10683	MsgLunpaInteriorsSecondOven	Thieves' Cookies.\nWhy are they shaped\nlike Dodonpa's face?{end_wait}
+10721	MsgLunpaWellFrogs	Frogs are croaking\ndeep inside the well.{end_wait}
