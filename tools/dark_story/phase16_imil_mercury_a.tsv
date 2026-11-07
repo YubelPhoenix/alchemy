@@ -75,8 +75,8 @@
 05518	MsgMercuryLetMePass	I have to get past it.{end_wait}
 05519	MsgMercuryLighthouseThePathIsBlockedAgainWhat	It's blocked again.{page_break}There must be\nanother way.{end_wait}
 05520	MsgMercuryLighthouseThisStatueWasntHereBeforeI	This statue was moved.{page_break}Alex... why?{end_wait}
-05521	MsgMercurySavedMeAgain	You saved me again.{end_wait}
-05527	MsgMercuryThoughtSo	I thought so...{end_wait}
+05521	MsgMercurySavedMeAgain	You helped me again.\nThank you.{end_wait}
+05527	MsgMercuryThoughtSo	Then we should keep moving.{end_wait}
 05531	message	The Adept {actor_name:4} joined\nyour party!{end_wait}
 05532	MsgMercuryLighthouseAlreadyLit	The beacon's burning!\nWe're too late!{end_wait}
 05533	message	No...{end_wait}
