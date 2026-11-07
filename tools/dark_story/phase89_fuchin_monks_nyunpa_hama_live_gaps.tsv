@@ -1,5 +1,4 @@
 # Fuchin Temple, Master Nyunpa, Feizhi, and Hama scene-context rewrites.
-06026	MsgXianHowDidGetHereBridge	You came this way?\nThen the bridge must\nbe open again.{end_now}
 06052	MsgXianFollowThemDoNot	You mean to follow\nthe creatures,\ndon't you?{end_now}
 06060	MsgXianMustSurviveTestGrottoBefore	To cross Mogall Forest,\nyou must pass the grotto.{page_break}Will you take the test?{end_now}
 06078	MsgXianExcellentIsaac	Well done, {actor_name:1}.{end_wait}
