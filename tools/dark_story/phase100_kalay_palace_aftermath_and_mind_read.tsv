@@ -1,24 +1,9 @@
 # Kalay palace post-revelation guards, Layana's uncertainty and Mind Read, rescue flags.
 # Retain all original question and placeholder tokens.
-07041	MsgHammetPalaceDodonpaIsAVeryShrewdMan	Dodonpa may have spies in\nKalay. If we send soldiers\nnow, he'll know before they{page_break}reach Lunpa.{end_wait}
-07042	MsgHammetPalaceTheTownsfolkDontKnowAboutLord	The townspeople still don't\nknow Hammet was taken, do\nthey?{end_wait}
-07043	MsgKalayLordHammetWillReleasedSoon	Lord Hammet will be home\nsoon, won't he?{end_now}
 07044	message	I hope so. Layana's been\nholding herself together\nfor everyone else's sake.{end_wait}
 07045	message	You might have said yes.\nShe needed to hear\nsomething kind.{end_wait}
-07046	MsgHammetPalaceLayanaIsPuttingUpAStrong	Layana keeps her voice\nsteady around the guards.\nI've heard her crying after{page_break}they leave.{end_wait}
-07047	MsgHammetPalaceMerchantsAreSupposedToBeProtected	Merchants are supposed to\nbe safe on Angara's roads.\nDodonpa knows the law. He{page_break}just doesn't care.{end_wait}
-07048	MsgKalayHasLegacyLordHammetsSilk	Without Lord Hammet, will\nthe silk trade survive?{end_now}
 07049	message	Don't say that! Lady Layana\nalready has enough to worry\nabout.{end_wait}
 07050	message	You're right. I shouldn't\nhave spoken as though he\nwasn't coming home.{end_wait}
-07051	MsgHammetPalaceIsThisTheRightDecisionHammet	Hammet, am I protecting you\nby waiting? Or am I only\nafraid?{end_wait}
-07052	MsgHammetPalaceImSureTheVillagersWouldPanic	If the town knew Hammet was\na hostage, people would\npanic. We have to keep{page_break}calm.{end_wait}
-07053	MsgHammetPalaceEveryonesWorriedAboutLordHammetBut	Everyone feels that\nsomething's wrong. Nobody\nknows what they're allowed{page_break}to say.{end_wait}
-07054	MsgHammetPalaceLadyLayanaWasCryingAgainLast	I heard Lady Layana crying\nlast night. This morning\nshe greeted us as though{page_break}nothing had happened.{end_wait}
-07055	MsgHammetPalaceAndToThinkIAlmostWent	I almost joined Hammet's\nlast caravan. I think about\nthat every day.{end_wait}
-07056	MsgHammetPalaceLordHammetIsALegendAmong	Hammet built Kalay from a\ncrossroads. We can't\nimagine it without him.{end_wait}
-07057	MsgKalayIsaacSneakedIntoLunpaThats	{actor_name:1}, you went into\nLunpa? That was a dangerous\nthing to do.{end_wait}
 07058	message	But knowing Hammet is alive\nand unharmed means more\nthan you realize.{end_wait}
 07059	message	Thank you, {actor_name:1}.\nPlease, don't risk going\nback into Lunpa.{end_wait}
 07060	message	You still have your own\nquest. Don't abandon it for\nour sake.{end_wait}
-07061	MsgHammetPalaceDodonpaPlansToUseHammetTo	Dodonpa will keep demanding\nmoney as long as Hammet is\nhis prisoner. We may have{page_break}to pay until we can free\nhim.{end_wait}
-07062	MsgHammetPalaceIDontCareAboutTheMoney	I don't care how much money\nwe lose. I just want Hammet\nhome.{end_wait}
