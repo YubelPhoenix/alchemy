@@ -160,7 +160,11 @@ void BattleBackground_Init(void) {
 /// Heart's backdrop: the palette entries the floor's tile seams use
 /// (tools/dark_story/build_heart_floor.py reserves 120 to 127).
 #define HEART_CRACK_CORE 120
-#define HEART_CRACK_HALO 124
+/// The distant bolts: entry HEART_BOLT_FIRST + 2 * bolt is the bolt itself and
+/// the next one the glare where it strikes the floor. Sky and floor are the
+/// entries below it.
+#define HEART_BOLT_FIRST 112
+#define HEART_BOLT_COUNT 3
 /// Lightning: every HEART_LIGHTNING_PERIOD frames there is one strike, at a
 /// scrambled moment inside the period. It reads gVBlankCount, so it needs no
 /// state of its own (IWRAM is full).
@@ -200,8 +204,6 @@ void Heart_StepBackdropGlow(void) {
 
     BATTLE_BG_PALETTE[HEART_CRACK_CORE + k] =
         Heart_GlowColor(24, 9, 31, wave, scale);
-    BATTLE_BG_PALETTE[HEART_CRACK_HALO + k] =
-        Heart_GlowColor(14, 5, 12, wave, scale);
   }
   if (scale != Q16_ONE)
     return;
@@ -225,11 +227,13 @@ void Heart_StepBackdropGlow(void) {
       return;
     }
     gain = strike[index];
-    for (i = 0; i < 120; i++) {
+    // the sky and floor brighten by half the strike, so the bolt stays the
+    // brightest thing on screen
+    for (i = 0; i < HEART_BOLT_FIRST; i++) {
       u32 pixel = source[i];
-      s32 red = (pixel & 31) + gain;
-      s32 green = ((pixel >> 5) & 31) + gain;
-      s32 blue = ((pixel >> 10) & 31) + gain + (gain >> 1);
+      s32 red = (pixel & 31) + gain / 2;
+      s32 green = ((pixel >> 5) & 31) + gain / 2;
+      s32 blue = ((pixel >> 10) & 31) + gain / 2 + (gain >> 2);
 
       if (red > 31)
         red = 31;
@@ -238,6 +242,21 @@ void Heart_StepBackdropGlow(void) {
       if (blue > 31)
         blue = 31;
       destination[i] = (blue << 10) | (green << 5) | red;
+    }
+    // this strike's bolt lights up to near white, and the floor glares
+    // where it lands (the first is the bolt, the second the glare)
+    for (i = 0; i < 2; i++) {
+      s32 entry = HEART_BOLT_FIRST + 2 * (s32)(epoch % HEART_BOLT_COUNT) + i;
+      u32 pixel = source[entry];
+      s32 reach = i == 0 ? gain : gain / 2;
+      s32 red = (pixel & 31);
+      s32 green = ((pixel >> 5) & 31);
+      s32 blue = ((pixel >> 10) & 31);
+
+      red += (31 - red) * reach / 28;
+      green += (30 - green) * reach / 28;
+      blue += (31 - blue) * reach / 28;
+      destination[entry] = (blue << 10) | (green << 5) | red;
     }
   }
 }
