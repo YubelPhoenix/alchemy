@@ -1,0 +1,20 @@
+# Fuchin Temple, Master Nyunpa, Feizhi, and Hama scene-context rewrites.
+06026	MsgXianHowDidGetHereBridge	You came this way?\nThen the bridge must\nbe open again.{end_now}
+06052	MsgXianFollowThemDoNot	You mean to follow\nthe creatures,\ndon't you?{end_now}
+06060	MsgXianMustSurviveTestGrottoBefore	To cross Mogall Forest,\nyou must pass the grotto.{page_break}Will you take the test?{end_now}
+06078	MsgXianExcellentIsaac	Well done, {actor_name:1}.{end_wait}
+06088	MsgXianCanReadMindsKnowCurious	I can read your mind.\nAnd you're curious,\naren't you?{end_now}
+06089	MsgXianMonstersWaitInHidingWould	Hidden beasts will flee\nif you reveal them.{page_break}But would you attack them\njust for being there?{end_now}
+06095	MsgFuchinTempleNowThatIHavePassedMy	You have my teaching now.\nThe forest is your test.{page_break}Take care, {actor_name:1}.\nFight only if you must.{end_wait}
+06099	MsgFuchinTempleOhIsaacWhatTookYouSo	So you've come back,\n{actor_name:1}.{page_break}Master Nyunpa no longer\nanswers when we call.{end_wait}
+06102	MsgXianNowHeTrulyBeyondWorlds	He gave up so much\nfor his discipline.{page_break}Is he truly at peace?\nI wish I knew.{end_now}
+06111	MsgXianIsaacAmCountingOnBring	I... need you, {actor_name:1}...{page_break}Bring peace back,\nif you can...{end_wait}
+06112	MsgXianDontTryHard	You're still curious.\nThat's a good thing.{page_break}But listen before\nyou make up your mind.{end_now}
+06684	MsgXianImTravelingAroundWorldSpread	I visit one village\nafter another.{page_break}People are more willing\nto listen than you'd think.{end_wait}
+06685	MsgFuchinTempleSinceImHereIdLikeTo	I wanted to learn\nwhat Fuchin teaches.{page_break}Seems I have a lot\nof hard work ahead.{end_wait}
+06665	MsgFuchinTempleMasterHamaIsMeditatingAskingFor	Master Hama has been\nmeditating for hours.{page_break}She's worried about\nyour journey.{end_wait}
+06666	MsgFuchinTempleTheFutureHoldsManyHardshipsBut	The road won't be kind\nto you from here.{page_break}Don't give up\nwhen it gets difficult.{end_wait}
+06672	MsgFuchinTempleIDoNotThinkMasterHama	I don't think Master Hama\nwants {actor_name:3} to leave.{end_wait}
+06673	MsgFuchinTempleICannotSeeYourFutureClearly	Your future isn't clear\nto me.{page_break}Perhaps I'm too close\nto see it properly.{end_wait}
+06250	MsgFuchinTempleFeizhiIKnowIKnowHow	Feizhi, I know\nyou're worried for Hsu.{page_break}But speak with Master Feh.\nHe needs to hear you.{end_wait}
+06262	MsgFuchinTempleFeizhiIKnowHowYouFeel	Feizhi, Master Feh\nis worried too.{page_break}Please don't shut him out.{end_wait}
