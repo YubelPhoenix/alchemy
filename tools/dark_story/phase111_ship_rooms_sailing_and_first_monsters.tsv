@@ -1,0 +1,54 @@
+# Karagol ship cabins 077xx: rowing terms, early voyage, orders, injured crew, passenger fear and monster attacks. All original text effects retained.
+07704	MsgTolbiShipInteriorsAllThatMoneyOnTicketsAnd	I paid all that money for a\nticket, and now they expect\nme to row? Is that what a{page_break}passenger does?{end_wait}
+07705	MsgTolbiShipYouGoingRow	Are you going to help row?{end_now}
+07708	MsgTolbiShipInteriorsINeverThoughtIdGetTo	At my age, I thought I'd be\nsitting on deck. Instead\nthey're handing me an oar.{end_wait}
+07709	MsgTolbiShipInteriorsIfSomethingHappensToOurOarsmen	If the rowers are hurt,\nwe'll need replacements.\nUntil then, I'm ready to{page_break}fight off whatever comes.{end_wait}
+07710	MsgTolbiShipInteriorsDoTheyHonestlyThinkImGoing	Me, row? I paid for a seat,\nnot a day's work.{end_wait}
+07711	MsgTolbiShipInteriorsImSureItdBeEasierTo	Guarding the ship sounds\neasier than pulling an oar\nfor hours. I might regret{page_break}saying that.{end_wait}
+07712	MsgTolbiShipInteriorsWellShootMaybeWeShouldHave	Maybe we should have stayed\nin Kalay. We could've been\nhome by now.{end_wait}
+07713	MsgTolbiShipInteriorsAskingThePassengersToHelpOut	Passengers rowing their own\nship. I have a feeling this\nvoyage won't go smoothly.{end_wait}
+07719	MsgTolbiShipOurReplacementNeverArrivedBut	The replacement never came.\nWe're leaving anyway. I\nhope the captain knows what{page_break}he's doing.{end_wait}
+07739	MsgTolbiShipCastOff	Cast off! Get us clear!{end_wait}
+07740	MsgTolbiShipRowThoseOars	Pull! All of you, pull!{end_wait}
+07741	MsgTolbiShipWereOff	We're moving! Keep the oars\nsteady!{end_wait}
+07744	MsgTolbiShipMonsters	Monsters? Where?{end_wait}
+07747	MsgTolbiShipImTurning	I'm turning her! Brace\nyourselves!{end_wait}
+07750	MsgTolbiShipMonstersBelowdecks	Monsters belowdecks!\nSomeone get down here!{end_wait}
+07752	MsgTolbiShipWhereGoingSlay	{actor_name:1}, where are you\ngoing? The creatures are\nattacking my men! Help{page_break}them!{end_wait}
+07754	MsgTolbiShipInteriorsMonstersFromTheDeepAreAttacking	The captain was right.\nThere are monsters in the\nwater, and they're coming{page_break}aboard!{end_wait}
+07755	MsgTolbiShipInteriorsCurseThoseBeastsTheyGotOne	One of our rowers is down!\nWe can't lose any more men!{end_wait}
+07756	MsgTolbiShipInteriorsWeOarsmenMayBeStrongBut	I can pull an oar all day.\nThat doesn't mean I know\nhow to fight a thing like{page_break}that!{end_wait}
+07757	MsgTolbiShipInteriorsFightingOffTheMonstersIsYour	You're the fighters! Get\nthat monster off the ship\nbefore it reaches us!{end_wait}
+07758	MsgTolbiShipInteriorsFoulBeastIMayBeTrembling	{text_effect:4}My hands are shaking.\nI want to see it fall.{page_break}{text_effect:4}Go on, {actor_name:1}!{end_wait}
+07759	MsgTolbiShipInteriorsIfIWerentSoTiredId	After a full day rowing, I\ncan barely lift my arms.\nOtherwise I'd fight it{page_break}myself.{end_wait}
+07760	MsgTolbiShipInteriorsCursesIWantToSmackThat	I could swing this oar at\nthe beast. But if it\nbreaks, how will we get{page_break}home?{end_wait}
+07761	MsgTolbiShipInteriorsWhoIsThatThingGoingTo	Who is it going to grab\nnext? It keeps turning this\nway!{end_wait}
+07762	MsgTolbiShipInteriorsIfYouDontDoABetter	Do something! If we lose\nthe rowers, this ship will\nstop dead in the water!{end_wait}
+07763	MsgTolbiShipInteriorsWhyArentYouDoingAnythingTo	It's right there! What are\nyou waiting for?{end_wait}
+07764	MsgTolbiShipInteriorsIfWeLoseAnyMoreOarsmen	Another injured rower.\nWe're already losing speed.\nWe can't keep this up!{end_wait}
+07765	MsgTolbiShipInteriorsWeDontEvenKnowIfAttacking	I don't even know if swords\ncan hurt those things. What\nif they come back?{end_wait}
+07766	MsgTolbiShipInteriorsIfTheSeaMonstersGetUs	If those creatures reach\nthe benches, no one's going\nto keep rowing.{end_wait}
+07767	MsgTolbiShipInteriorsImScaredThoseSeaMonstersAre	{text_effect:4}I want my mother! I don't\ncare who hears me!{end_wait}
+07768	MsgTolbiShipInteriorsFightingSeaMonstersIsForWarriors	You wanted a fight, didn't\nyou? Well, there it is.\nLeave me out of it!{end_wait}
+07769	MsgTolbiShipInteriorsTheSeaMonstersAreSoTough	I struck one with my oar.\nIt barely noticed. What are\nwe supposed to do?{end_wait}
+07770	MsgTolbiShipInteriorsIDontCareWhoElseThe	Save me first! I don't care\nabout the others. Just get\nit away from me!{end_wait}
+07771	MsgTolbiShipInteriorsPleaseJustStayHereAndProtect	Please don't leave me here.\nIt can reach this bench!{end_wait}
+07772	MsgTolbiShipInteriorsWereSurroundedByDangerOnAll	{text_effect:4}They're making us row while\nthe monsters are attacking!\nSomeone has to stop them!{end_wait}
+07773	MsgTolbiShipInteriorsAhhhhSeaMonstersRealLiveSea	{text_effect:4}I've traveled all over\nAngara, but I've never seen\na monster like that. I wish{page_break}I hadn't.{end_wait}
+07774	MsgTolbiShipInteriorsWhaHeyYouThisIsNo	{text_effect:4}What are you doing talking\nto me? There's a monster\nbelowdecks!{end_wait}
+07775	MsgTolbiShipInteriorsAahIHaveToRowThis	{text_effect:4}I only agreed to row\nbecause you asked. Now a\nsea monster is trying to{page_break}eat me!{end_wait}
+07776	MsgTolbiShipInteriorsHHeyIsaacShouldntYouBe	{text_effect:4}{actor_name:1}, could you hurry?\nIt's getting closer!{end_wait}
+07777	MsgTolbiShipInteriorsYaaahhhIImNotAfraidOf	{text_effect:4}I'm not afraid. I'm just\nnot a fighter right now.\nI'm an oarsman. There's a{page_break}difference!{end_wait}
+07778	MsgTolbiShipInteriorsTheOarsmenAreInDireStraights	{text_effect:4}The rowers are in trouble!\nHit that thing before it\ndrags someone away!{end_wait}
+07779	MsgTolbiShipInteriorsIICantDoThisFighting	{text_effect:4}I can't fight that. I was\nhired to row, not die\ntrying to protect a ship!{end_wait}
+07780	MsgTolbiShipInteriorsIDontCareWhatHappensNow	{text_effect:4}When we reach land, I'm\nnever touching an oar\nagain.{end_wait}
+07781	MsgTolbiShipInteriorsSeaMonstersAreTerriblyFerocious	Those things are faster\nthan they look! Don't let\none get behind you!{end_wait}
+07782	MsgTolbiShipInteriorsIfIWereAWarriorI	If I still had my sword,\nI'd fight it. At least I\nthink I would.{end_wait}
+07783	MsgTolbiShipInteriorsIWonderIfThisWarriorHas	I hope the warrior knows\nwhat he's doing. None of us\ncan help him now.{end_wait}
+07784	MsgTolbiShipInteriorsWereSureInAFixSay	What a mess. And they still\nwant another rower? You'd\nbetter choose someone{page_break}strong.{end_wait}
+07785	MsgTolbiShipInteriorsImSoOutOfMyWits	I'm so frightened I can't\neven feel my hands. They're\nstill gripping the oar.{end_wait}
+07786	MsgTolbiShipInteriorsTheseSeaMonstersLookAwfullyStrong	I'd rather spend the rest\nof the day rowing than face\none of those creatures.{end_wait}
+07787	MsgTolbiShipInteriorsPleaseOhPleaseLetMeMake	Just let us reach the\nshore. I'll never ask for\nanother voyage.{end_wait}
+07788	MsgTolbiShipInteriorsWhyDidSeaMonstersHaveTo	I waited years to take this\ntrip. Why did the monsters\nhave to come on my first{page_break}crossing?{end_wait}
+07789	MsgTolbiShipInteriorsIdRatherBeEatenByA	I said rowing would kill\nme. Now I think the\nmonsters will get there{page_break}first.{end_wait}
+07790	MsgTolbiShipHeyAreYouOk	Hey! Are you hurt? Can you\nstand?{end_wait}
