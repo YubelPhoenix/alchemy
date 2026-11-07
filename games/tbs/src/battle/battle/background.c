@@ -161,14 +161,10 @@ void BattleBackground_Init(void) {
 /// (tools/dark_story/build_heart_floor.py reserves 120 to 127).
 #define HEART_CRACK_CORE 120
 #define HEART_CRACK_HALO 124
-/// Frames between lightning strikes at the soonest, and the random spread.
-#define HEART_LIGHTNING_MIN 360
-#define HEART_LIGHTNING_SPREAD 480
-
-static u16 sHeartGlowClock;
-static u16 sHeartNextStrike;
-static u16 sHeartStrikeFrame;
-static u16 sHeartRandom = 0x2f6b;
+/// Lightning: every HEART_LIGHTNING_PERIOD frames there is one strike, at a
+/// scrambled moment inside the period. It reads gVBlankCount, so it needs no
+/// state of its own (IWRAM is full).
+#define HEART_LIGHTNING_PERIOD 600
 
 /// One channel of a colour pulsed between dim and bright: wave is 0 to 31.
 static u16 Heart_GlowColor(s32 red, s32 green, s32 blue, s32 wave,
@@ -197,10 +193,9 @@ void Heart_StepBackdropGlow(void) {
   scale = battle->brightness;
   if (scale > Q16_ONE)
     scale = Q16_ONE;
-  sHeartGlowClock++;
   for (k = 0; k < 4; k++) {
     // a triangle wave, 0 to 31, a quarter turn apart along each crack
-    s32 t = (sHeartGlowClock * 2 + k * 16) & 63;
+    s32 t = (gVBlankCount * 2 + k * 16) & 63;
     s32 wave = t < 32 ? t : 63 - t;
 
     BATTLE_BG_PALETTE[HEART_CRACK_CORE + k] =
@@ -210,23 +205,26 @@ void Heart_StepBackdropGlow(void) {
   }
   if (scale != Q16_ONE)
     return;
-  if (sHeartStrikeFrame == 0) {
-    if (sHeartNextStrike == 0) {
-      sHeartRandom = sHeartRandom * 25173 + 13849;
-      sHeartNextStrike = HEART_LIGHTNING_MIN +
-                         (sHeartRandom >> 4) % HEART_LIGHTNING_SPREAD;
-    }
-    if (--sHeartNextStrike == 0)
-      sHeartStrikeFrame = 1;
-  }
-  if (sHeartStrikeFrame != 0) {
+  {
     // two flickering flashes: up fast, down slow, a pause, then a smaller one
     static const u8 strike[] = {10, 22, 28, 20, 12, 6, 0, 0, 0, 12, 18, 10, 4};
+    u32 epoch = gVBlankCount / HEART_LIGHTNING_PERIOD;
+    s32 index = (s32)(gVBlankCount % HEART_LIGHTNING_PERIOD) -
+                (s32)(120 + (epoch * 2654435761u >> 20) % 360);
     u16 *source = battle->palette;
     u16 *destination = BATTLE_BG_PALETTE;
-    s32 gain = strike[sHeartStrikeFrame - 1];
+    s32 gain;
     s32 i;
 
+    if (index < 0 || index > (s32)sizeof strike)
+      return;
+    if (index == (s32)sizeof strike) {
+      // put the sky and floor back exactly
+      for (i = 0; i < 120; i++)
+        destination[i] = source[i];
+      return;
+    }
+    gain = strike[index];
     for (i = 0; i < 120; i++) {
       u32 pixel = source[i];
       s32 red = (pixel & 31) + gain;
@@ -240,12 +238,6 @@ void Heart_StepBackdropGlow(void) {
       if (blue > 31)
         blue = 31;
       destination[i] = (blue << 10) | (green << 5) | red;
-    }
-    sHeartStrikeFrame++;
-    if (sHeartStrikeFrame > sizeof strike) {
-      sHeartStrikeFrame = 0;
-      // put the sky and floor back exactly
-      Dma_Set(source, destination, DMA_COPY_HALFWORDS(120), REG_DMA3);
     }
   }
 }
@@ -313,9 +305,6 @@ void BattleBackground_Load(s32 mode, s32 resourceId, s32 level) {
     Task_Add(BattleBackground_ShowZoomedPage, TASK_PASS_VBLANK + 127);
   // Heart's floor glows and the sky flashes.
   if ((u16)resourceId == (u16)(s32)&ResourceId_HeartBackdrop) {
-    sHeartGlowClock = 0;
-    sHeartNextStrike = 240;
-    sHeartStrikeFrame = 0;
     Task_Remove(Heart_StepBackdropGlow);
     Task_Add(Heart_StepBackdropGlow, TASK_PASS_VBLANK);
   }
