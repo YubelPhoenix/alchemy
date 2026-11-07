@@ -61,7 +61,7 @@ jobs:
           for line in (
               "Hey! You're new here,",
               "Lunpa's closed. You still",
-              "They'll be all right here.",
+              "All right. We leave now.",
           ):
               if line not in catalogue:
                   raise SystemExit("Missing Ashfall dialogue fingerprint: " + line)
