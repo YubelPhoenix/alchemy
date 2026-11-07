@@ -303,11 +303,12 @@ void BattleBackground_Load(s32 mode, s32 resourceId, s32 level) {
   Iwram_ClearWords((BG_SCREEN_BLOCK(31) + 0x7c0), 64);
   if (view->mode == BATTLE_BACKGROUND_NONE)
     Task_Add(BattleBackground_ShowZoomedPage, TASK_PASS_VBLANK + 127);
-  // Heart's floor glows and the sky flashes.
-  if ((u16)resourceId == (u16)(s32)&ResourceId_HeartBackdrop) {
-    Task_Remove(Heart_StepBackdropGlow);
+  // Heart's floor glows and the sky flashes, but only while her own backdrop
+  // is loaded: a summon that loads another sky (Thor's dusk clouds, say) stops
+  // it, and the reload of her backdrop afterwards starts it again.
+  Task_Remove(Heart_StepBackdropGlow);
+  if ((u16)resourceId == (u16)(s32)&ResourceId_HeartBackdrop)
     Task_Add(Heart_StepBackdropGlow, TASK_PASS_VBLANK);
-  }
   view->mode = mode;
   if (mode == BATTLE_BACKGROUND_FIXED)
     REG_BG1CNT = BATTLE_BG1CNT;
