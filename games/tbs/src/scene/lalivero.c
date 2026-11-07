@@ -146,12 +146,14 @@ enum LaliveroActorId {
   /// ★ Named from the game: "Black Orb" (MsgItemName)
   ACTOR_BLACK_ORB,
   /// Ash Jenna's optional farewell near the wharf after Venus Lighthouse.
-  /// Placed only in the post-Venus template, following the Black Orb.
-  ACTOR_LALIVERO_ASH_JENNA,
+  /// Her row uses Jenna's own actor id (a party member's row takes that id and
+  /// no placed slot, Event_SpawnActorTemplates).
+  ACTOR_LALIVERO_ASH_JENNA = ACTOR_JENNA,
   /// Sarah, her last fight (stage 3, level 27), waiting by the wharf until she
   /// is beaten (FLAG_DARK_SARAH_LALIVERO_FOUGHT). Placed only in the
-  /// post-Venus template, after Ash Jenna.
-  ACTOR_LALIVERO_SARAH
+  /// post-Venus template, in the slot after the Black Orb (Ash Jenna's row
+  /// takes no slot).
+  ACTOR_LALIVERO_SARAH = ACTOR_BLACK_ORB + 1
 };
 
 /// The door into the Lalivero Sanctum, a gate two cells wide.

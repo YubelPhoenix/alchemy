@@ -168,7 +168,7 @@ enum {
   /// Ash Jenna (ACTOR_JENNA), glimpsed in LamakanDesertManticore's pass once
   /// Saturos has been defeated at Mercury (LamakanDesert_MeetAshJenna). Only that scene
   /// places her, as its third actor.
-  ACTOR_LAMAKAN_ASH_JENNA = ACTOR_FIRST_PLACED + 2
+  ACTOR_LAMAKAN_ASH_JENNA = ACTOR_JENNA
 };
 
 /// The desert's two Psynergy Stones, area temp flags: each is back once

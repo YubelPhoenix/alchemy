@@ -139,15 +139,16 @@ enum TolbiActorId {
   /// The "Missing Person" poster, placed with Babi's sprite (SPRITE_BABI).
   /// ★ Named from the game: "Missing Person" (MsgTolbiSeenAnyoneWho)
   ACTOR_TOLBI_MISSING_PERSON_POSTER = 32,
-  /// Ash Jenna (ACTOR_JENNA, drawn grey), who waits in the rain after Colosso
+  /// Ash Jenna (ACTOR_JENNA, drawn grey: a party member's row takes that id and
+  /// no placed slot, Event_SpawnActorTemplates), who waits in the rain after Colosso
   /// once Mercury Lighthouse is lit (Tolbi_MeetAshJenna).
-  ACTOR_TOLBI_ASH_JENNA = 33,
+  ACTOR_TOLBI_ASH_JENNA = ACTOR_JENNA,
   /// A stranded farmer (SPRITE_MAN_CARRYING_A_PACK) whose family cannot get
   /// home (Tolbi_TalkToStrandedFather).
-  ACTOR_TOLBI_STRANDED_FATHER = 34,
+  ACTOR_TOLBI_STRANDED_FATHER = 33,
   /// Sarah, her third fight (stage 2, level 21), waiting until she is beaten
   /// (FLAG_DARK_SARAH_TOLBI_FOUGHT).
-  ACTOR_TOLBI_SARAH = 35,
+  ACTOR_TOLBI_SARAH = 34,
 };
 
 /// The metatile behaviors Tolbi's coord and examine triggers answer besides the
