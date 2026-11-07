@@ -13,13 +13,13 @@
 05509	message	It's a gift of the\nMercury Clan, passed down\nthrough our blood.{end_wait}
 05510	message	We call it Ply. It is\ndrawn through meditation.{end_wait}
 05515	message	Whoever entered the\nlighthouse will answer\nto me.{end_wait}
-05522	message	Do you have business in\nmy lighthouse as well?{end_now}
-05523	message	Tell me the truth.{end_wait}
-05524	message	Strangers don't risk this\nmuch for a place they\ndon't know. Why?{end_wait}
-05525	message	You have an errand in my\nlighthouse. Don't you?{end_now}
-05526	message	The truth.{pause_20_skippable} Now.{end_now}
-05528	message	There may be places ahead\nthat I can't pass alone.{end_wait}
-05529	message	Only the Mercury Clan may\nenter this place. Not you.{end_wait}
-05530	message	But I can't do this\nalone. Not now.{page_break}You'll come with me.\nDon't mistake it for\ntrust.{end_wait}
+05522	message	You're going farther\ninto the lighthouse,\naren't you?{end_now}
+05523	message	You don't have to explain\neverything to me.{end_wait}
+05524	message	But you helped me get\nthis far. You must have\nyour reasons.{end_wait}
+05525	message	You'll keep going,\nwon't you?{end_now}
+05526	message	Please. Someone is inside.\nWill you help me?{end_now}
+05528	message	Someone made it inside.\nI have to find out\nwhat they're doing here.{end_wait}
+05529	message	My family guarded this\nlighthouse for generations.\nI can't leave it now.{end_wait}
+05530	message	I can't do this alone.\nIf you'll have me,\nI'd like to go with you.{end_wait}
 05547	message	So the children\nsurvived Mt. Aleph.{end_wait}
 05548	message	You came this far\nfor {actor_name:6} and Kraden?{end_wait}
