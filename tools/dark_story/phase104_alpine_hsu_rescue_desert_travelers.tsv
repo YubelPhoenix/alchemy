@@ -1,0 +1,29 @@
+# Alpine crossing: Hsu's injury, rescue, workers after clearing, Lama Temple visitors and Lamakan gameplay hints.
+06329	MsgMountainDoDoWarriorShouldReturn	Should I go back to Xian? I\ncan't be much help standing\nhere, can I?{end_now}
+06502	MsgAlpineCrossingLamaTempleIAmHungry	... ... I haven't eaten\nsince morning. I'm\nstarving.{end_wait}
+06607	MsgMountainHsuOkay	Hsu! Can you hear me? Say\nsomething!{end_wait}
+06612	MsgAlpineCrossingLamaTempleWellIsaacAdeptsYouCameTo	{actor_name:1}! You came! Hsu's\npinned between the rocks.\nWe can't move them{page_break}ourselves.{end_wait}
+06613	MsgAlpineCrossingLamaTempleBeStrongHsuWeWillHelp	Stay with us, Hsu! We're\ngoing to get you out!{end_wait}
+06614	MsgAlpineCrossingLamaTempleIAmTrappedBetweenTheseTwo	I'm trapped between the\nboulders. I can't move my\nleg. At least they didn't{page_break}crush me.{end_wait}
+06615	MsgAlpineCrossingLamaTempleHowShouldWeMoveTheBoulders	Those rocks are too heavy.\nHow are we supposed to move\nthem?{end_wait}
+06616	MsgAlpineCrossingLamaTempleHsuTiresHeLooksExhaustedI	Hsu's getting weaker. We\ncan't leave him here much\nlonger.{end_wait}
+06617	MsgAlpineCrossingLamaTempleIWantToScreamButFeizhi	I want to shout for help,\nbut Feizhi's frightened\nenough already.{end_wait}
+06618	MsgMountainIsaacDidLiftBoulder	{actor_name:1}, you moved it? How\ndid you lift a rock that\nsize?{end_wait}
+06633	MsgMountainAdeptsLetMeThankAgain	I haven't forgotten what\nyou did for Hsu. Thank you.\nAll of you.{end_wait}
+06660	MsgAlpineCrossingLamaTempleItIsVeryDangerousToCross	If you're crossing Lamakan\nDesert, take plenty of\nwater. People get lost{page_break}there.{end_wait}
+06661	MsgAlpineCrossingLamaTempleTheEvilDesertIsHotterThan	The heat in Lamakan is\nunbearable. Find the oases\nbefore you go any farther.{end_wait}
+06662	MsgAlpineCrossingLamaTempleIBelieveItIsPossibleTo	Master Hama teaches that\nmeditation can sharpen a\nperson's sight of what lies{page_break}ahead.{end_wait}
+06663	MsgAlpineCrossingLamaTempleIWillBeMostThankfulOnce	The desert wasn't always so\ndangerous. I hope it\nreturns to normal someday.{end_wait}
+06664	MsgAlpineCrossingLamaTempleWhenYourTemperatureReachesItsMaximum	Watch your temperature in\nthe desert. When it reaches\nthe limit, the heat starts{page_break}hurting you. Find an oasis\nbefore that happens.{end_wait}
+06667	MsgAlpineCrossingLamaTempleICannotCrossTheDesertIt	I wouldn't cross Lamakan\nfor a chest of gold. Not in\nthat heat.{end_wait}
+06668	MsgAlpineCrossingLamaTempleTheEvilInTheDesertDistorts	Something in the desert\nbends even the light. I\ncan't see how people find{page_break}their way.{end_wait}
+06669	MsgAlpineCrossingLamaTempleHowNiceItWouldBeIf	If I could see what was\ncoming, maybe I'd stop\nmaking the same mistakes.{end_wait}
+06670	MsgAlpineCrossingLamaTempleMasterHamaWillBeVerySad	Master Hama is worried\nabout you. Please don't\ntake unnecessary risks out{page_break}there.{end_wait}
+06671	MsgAlpineCrossingLamaTempleWithRevealYouWillFindOases	Reveal can show oases your\neyes can't see. Remember\nthat in the desert.{end_wait}
+06674	MsgMountainNorthAltinMineWestLama	North: Altin Mine. West:\nLama Temple.{end_wait}
+06686	MsgMountainAmTravelingAroundWorldSpread	I've been traveling from\nvillage to village. Most\npeople are kinder than{page_break}rumors make them sound.{end_wait}
+06687	MsgAlpineCrossingLamaTempleForSomeReasonThesePeopleGive	Those travelers have the\nsame strange feeling as\nMaster Hama. It's as if{page_break}someone is looking into my\nthoughts.{end_wait}
+06688	MsgAlpineCrossingLamaTempleWeMovedTheRocksNowPeople	The rocks are finally out\nof the way. At least\ntravelers can use the road{page_break}again.{end_wait}
+06689	MsgAlpineCrossingLamaTempleManyPeopleFromXianHelpedMove	People came all the way\nfrom Xian to help clear the\npath. They worked until{page_break}their hands were raw.{end_wait}
+06690	MsgAlpineCrossingLamaTempleWeClearedTheWayButWhat	The path is open, but there\nare still boulders here. Do\nwe have to move every last{page_break}one?{end_wait}
+06691	MsgAlpineCrossingLamaTempleIAlmostHurtMyBackIt	I nearly threw my back out\nlifting those stones. Next\ntime, I'll train first.{end_wait}
