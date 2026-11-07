@@ -17,7 +17,7 @@
 05274	message	Could we use this power\nat will, {actor_name:1}?{end_now}
 05275	message	Then let's find out.{end_wait}
 05276	message	Are you even\nlistening to me?{end_wait}
-05278	message	Hroom! Why do you\nremain unchanged?{end_wait}
+05278	message	Hroom... They're unharmed.\nHow did they resist?{end_wait}
 05299	message	We'll leave it to you,\n{actor_name:1}. Help them.{end_wait}
 05303	message	They'll stay like\nthis forever?{end_now}
 05305	message	We can't leave\nthem here like this.{end_wait}
