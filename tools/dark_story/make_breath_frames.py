@@ -28,5 +28,14 @@ for source, dest in JOBS:
     assert t - 2 >= 0, (source, t)
     out = Image.new("RGBA", src.size, (0, 0, 0, 0))
     out.alpha_composite(Image.fromarray(new), (l, b - new.shape[0]))
+    if source.startswith("ash_jenna"):
+        # her blade angles down to the left of the body: lift it a pixel with
+        # the hips, so its tip moves too (rows 46 down, left of the body)
+        o = np.asarray(src).copy()
+        o[:, :] = o
+        o2 = np.asarray(out).copy()
+        o2[45:, :22] = 0
+        o2[45:63, :22] = o[46:64, :22]
+        out = Image.fromarray(o2)
     out.save(ROOT / "assets" / dest)
     print(dest, "rows", h, "->", new.shape[0], "bbox", out.getchannel("A").getbbox())
