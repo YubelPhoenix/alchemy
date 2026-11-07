@@ -58,6 +58,26 @@ def main():
     )
     out.write_text(legend + "\n".join("".join(row) for row in grid) + "\n")
     print(out)
+    # Prototype Alchemy map grid, not yet wired to a scene.
+    # Uses metatile 1 from the selected reference tileset as placeholder ground.
+    source = Path(__file__).with_name("aster_map.txt")
+    cells = []
+    for row in grid:
+        encoded = []
+        for symbol in row:
+            if symbol in "#EISHX":
+                encoded.append("fff:ff")
+            elif symbol == "G":
+                encoded.append("1:1")  # reserved exit behavior; requires scene trigger
+            else:
+                encoded.append("1")
+        cells.append(" ".join(encoded))
+    source.write_text(
+        "grid:128x128\\tat:0,0\\tfill:fff:ff\\n"
+        + "\\n".join(cells) + "\\n"
+    )
+    print(source)
+
 
 if __name__ == "__main__":
     main()
