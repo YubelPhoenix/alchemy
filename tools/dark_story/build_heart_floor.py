@@ -94,16 +94,16 @@ for k in range(4):
 rng2 = np.random.default_rng(5)
 for b, bx in enumerate([44, 130, 214]):
     pts = []
-    x, y = bx, 40
+    x, y = bx, 22
     while y < HORIZON:
         pts.append((x % W, y))
         y += 1
         if rng2.random() < 0.55:
             x += int(rng2.integers(-2, 3))
-    bolt = list(pts)
+    bolt = list(pts) + [((px + 1) % W, py) for px, py in pts]   # two pixels wide
     # a short fork partway down
     fx, fy = pts[len(pts) // 2]
-    for n in range(8):
+    for n in range(14):
         fx += 1 if b % 2 else -1
         fy += 1 if n % 2 else 0
         if fy < HORIZON:
@@ -116,8 +116,8 @@ for b, bx in enumerate([44, 130, 214]):
         idx[y, x] = 112 + 2 * b
     # the glare on the floor where it lands: a flat ellipse
     glare = []
-    for gy in range(HORIZON, HORIZON + 4):
-        half = 9 - 2 * (gy - HORIZON)
+    for gy in range(HORIZON, HORIZON + 6):
+        half = 15 - 2 * (gy - HORIZON)
         for gx in range(-half, half + 1):
             glare.append(((end_x + gx) % W, gy))
     gunder = np.array([out[y, x] for x, y in glare])

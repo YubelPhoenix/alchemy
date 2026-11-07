@@ -165,10 +165,11 @@ void BattleBackground_Init(void) {
 /// entries below it.
 #define HEART_BOLT_FIRST 112
 #define HEART_BOLT_COUNT 3
-/// Lightning: every HEART_LIGHTNING_PERIOD frames there is one strike, at a
-/// scrambled moment inside the period. It reads gVBlankCount, so it needs no
+/// Lightning: every HEART_LIGHTNING_PERIOD frames (3 seconds) a bolt strikes
+/// in the distance, at a scrambled moment inside the period; every fourth
+/// strike is a big one that flashes the whole sky. It reads gVBlankCount, so it needs no
 /// state of its own (IWRAM is full).
-#define HEART_LIGHTNING_PERIOD 600
+#define HEART_LIGHTNING_PERIOD 180
 
 /// One channel of a colour pulsed between dim and bright: wave is 0 to 31.
 static u16 Heart_GlowColor(s32 red, s32 green, s32 blue, s32 wave,
@@ -212,10 +213,11 @@ void Heart_StepBackdropGlow(void) {
     static const u8 strike[] = {10, 22, 28, 20, 12, 6, 0, 0, 0, 12, 18, 10, 4};
     u32 epoch = gVBlankCount / HEART_LIGHTNING_PERIOD;
     s32 index = (s32)(gVBlankCount % HEART_LIGHTNING_PERIOD) -
-                (s32)(120 + (epoch * 2654435761u >> 20) % 360);
+                (s32)(10 + (epoch * 2654435761u >> 20) % 150);
     u16 *source = battle->palette;
     u16 *destination = BATTLE_BG_PALETTE;
     s32 gain;
+    s32 skyShare = (epoch & 3) == 3 ? 2 : 6;
     s32 i;
 
     if (index < 0 || index > (s32)sizeof strike)
@@ -227,13 +229,13 @@ void Heart_StepBackdropGlow(void) {
       return;
     }
     gain = strike[index];
-    // the sky and floor brighten by half the strike, so the bolt stays the
-    // brightest thing on screen
+    // the sky and floor brighten by a share of the strike (half for a big
+    // one, a sixth for a distant one), so the bolt is the brightest thing
     for (i = 0; i < HEART_BOLT_FIRST; i++) {
       u32 pixel = source[i];
-      s32 red = (pixel & 31) + gain / 2;
-      s32 green = ((pixel >> 5) & 31) + gain / 2;
-      s32 blue = ((pixel >> 10) & 31) + gain / 2 + (gain >> 2);
+      s32 red = (pixel & 31) + gain / skyShare;
+      s32 green = ((pixel >> 5) & 31) + gain / skyShare;
+      s32 blue = ((pixel >> 10) & 31) + gain / skyShare + gain / (skyShare * 2);
 
       if (red > 31)
         red = 31;
