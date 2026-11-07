@@ -28,13 +28,14 @@ DEST = ROOT / "games/tbs/src/graphics/monster/slime.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
-FRAMES = 10
+FRAMES = 12
 # Frame -> supplied pose; the other frame of each pair is a copy.
 # The supplied poses are drawn at full size (about 57 rows tall); the size on
 # screen comes from SPR_477's scale column in sprites.tsv (0xb6, which puts her
 # idle pose at Menardi's 40 or so rows), so the art itself is not resampled.
 SCALE = 1.0
-STEPS = {0: "idle1", 2: "dash", 4: "attack", 6: "cast", 8: "damage"}
+STEPS = {0: "idle1", 2: "dash", 4: "attack", 6: "cast", 8: "damage",
+         10: "idle_glint"}   # idle with the red eye flared
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
 colors = np.array(palette, dtype=np.float64).reshape(-1, 3)
