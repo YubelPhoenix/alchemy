@@ -39,12 +39,12 @@
 07414	MsgVaultPrisonerRegretsFight	I hit a man in a rage\nand they locked me up.\nIt was stupid of me.{end_wait}
 07415	MsgVaultPrisonerThoughts	I need to master my\ntemper. It's the only\nthing I can still control.{end_wait}
 07417	message	The Silk Road's closed.\nNothing gets through.{page_break}If you're going to Tolbi,\nyou'll have to cross\nthe Karagol Sea.{end_wait}
-07419	MsgKalayTolbiDocksWeCantTakeSilkRoadSo	With Silk Road shut,\neveryone's stranded.{page_break}Ship tickets cost more\nthan most of us have.{end_wait}
-07420	MsgKalayTolbiDocksYouCantTakeSilkRoadMuch	The road ends not far\nfrom here. The ones who\ngo look come back silent.{page_break}They won't say what\nthey saw.{end_wait}
-07424	MsgKalayTolbiDocksWithSilkRoadClosedEveryoneWill	With Silk Road closed,\neveryone must go by ship.{page_break}The captain's getting\nrich off our fear.{end_wait}
-07426	MsgKalayTolbiDocksWellIsntThisGreatWeCant	Silk Road's shut, and\nColosso's started.{page_break}My daughter left Tolbi\nto meet us at the docks.\nI have a bad feeling.{end_wait}
-07427	MsgKalayTolbiDocksWeveSpentAYearPlanningThis	We planned this trip for\na year. Then the world\nfell apart around it.{end_wait}
-07438	MsgKalayTolbiDocksIFeelSortOfBadThat	I hate charging this\nmuch for tickets. But\neveryone's desperate.{end_wait}
-07444	MsgKalayTolbiDocksTheCaptainsInAGoodMood	The captain's in a good\nmood. Frightened people\npay well.{end_wait}
-07453	MsgKalayTolbiDocksSilkRoadIsBlockedSoThe	Silk Road is blocked, so\nthe ship is packed with\nfrightened people.{end_wait}
-07460	MsgTolbiShipDeckThereAreALotOfPassengers	So many passengers...\nI wonder if the ship will\nsurvive the crossing.{page_break}The sea looks wrong\nthese days.{end_wait}
+07419	MsgKalayTolbiDocksWeCantTakeSilkRoadSo	Silk Road is closed. The\nship's our only way across,\nand the fare is steep.{end_wait}
+07420	MsgKalayTolbiDocksYouCantTakeSilkRoadMuch	Scouts keep going up Silk\nRoad and turning back. No\none's made it through.{end_wait}
+07424	MsgKalayTolbiDocksWithSilkRoadClosedEveryoneWill	With Silk Road blocked, the\ncaptain can name his price.\nI don't like it.{end_wait}
+07426	MsgKalayTolbiDocksWellIsntThisGreatWeCant	I came to meet my daughter\nin Tolbi. Now the ship fare\nmight keep us apart.{end_wait}
+07427	MsgKalayTolbiDocksWeveSpentAYearPlanningThis	A year planning this trip.\nOne rockslide and\neverything fell apart.{end_wait}
+07438	MsgKalayTolbiDocksIFeelSortOfBadThat	I hate charging this much\nfor a ticket. The captain\nsays we have no choice.{end_wait}
+07444	MsgKalayTolbiDocksTheCaptainsInAGoodMood	A full ship puts the\ncaptain in a good mood.\nMakes my shift easier too.{end_wait}
+07453	MsgKalayTolbiDocksSilkRoadIsBlockedSoThe	Silk Road's blocked, so\neveryone seems to be taking\nthis ship.{end_wait}
+07460	MsgTolbiShipDeckThereAreALotOfPassengers	There are so many\npassengers. Can the crew\neven get all of us across{page_break}the Karagol?{end_wait}
