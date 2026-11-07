@@ -1,0 +1,22 @@
+# Altmiller cave: invisible Babi, Mystic Draught, uncertainty, Alchemy speculation, Colosso invitation and rock interaction.
+08527	MsgAltmillerSee	You... can you really see\nme?{end_wait}
+08548	MsgAltmillerKiddingHaventActually	{actor_name:1}, are you serious?\nWe haven't even seen the\nman we're supposed to help!{end_wait}
+08549	MsgAltmillerSaidCouldntMove	He says he's trapped and\ncan't move. If that's true,\nwe can't just leave him{page_break}here.{end_wait}
+08552	MsgAltmillerDontTrustAnyone	I'm not sure about this,\n{actor_name:1}. We have no way to\ntell who's speaking to us.{end_wait}
+08573	MsgAltmillerWait	Wait. Don't go yet.{end_wait}
+08575	MsgAltmillerForgetOrderRock	Have you forgotten the\norder of the colored rocks?{end_now}
+08578	MsgAltmillerNeedDraught	If they don't bring the\ndraught back soon... I\ndon't know how much longer{page_break}I can last.{end_wait}
+08579	MsgAltmillerCameBackPleaseDraughtQuickly	You came back. Please, give\nme the draught before I\nlose my strength again.{end_wait}
+08586	MsgAltmillerWouldHaveRevealedMyselfSooner	I would have shown myself\nearlier if I could. I\ncouldn't even move.{end_wait}
+08587	MsgAltmillerMustTraveledIndeedIfDidnt	You took that rather\ncalmly. I suppose you've\nseen stranger things on{page_break}your travels.{end_wait}
+08588	MsgAltmillerHowDidBecomeParalyzedWhile	How could you be invisible\nand unable to move at the\nsame time?{end_wait}
+08612	MsgAltmillerThatsKradenSaidAlchemyCould	Kraden said Alchemy might\neven overcome death itself.\nDo you remember?{end_wait}
+08613	MsgAltmillerForgotKradenSaidAlchemyCould	Kraden told us Alchemy\ncould defy death. I haven't\nforgotten that.{end_wait}
+08614	MsgAltmillerWhatWasThat	Wait. What did you just\nsay?{end_wait}
+08616	MsgAltmillerBabi	Babi?!{end_wait}
+08654	MsgAltmillerSoWellDoIt	So, we're going to enter\nColosso?{end_wait}
+08655	MsgAltmillerDontWantEitherDo	You don't want to enter\neither, do you?{end_wait}
+08656	MsgAltmillerEitherWayWereStuckHere	We're staying in Tolbi\nuntil Colosso ends anyway.\nWe might as well see it{page_break}through.{end_wait}
+08663	MsgAltmillerGreatItsDecidedJustHave	Then it's decided. Let's\nmake the best of it.{end_wait}
+08665	MsgAltmillerDontLetMeDownLike	What? After all that,\nyou're backing out?{end_wait}
+08667	MsgAltmillerRotatedRock	{protagonist_name} turned the rock.{end_wait}
