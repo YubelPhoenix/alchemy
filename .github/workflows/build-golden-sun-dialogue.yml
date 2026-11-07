@@ -92,6 +92,9 @@ jobs:
       - name: Build pinned toolchain and host tools
         run: make bootstrap CARGO=false
 
+      - name: Check battle art is consistent before compiling
+        run: python3 tools/ci/check_battle_art.py
+
       - name: Compile the modified English edition
         run: |
           make -j"$(nproc)" tbs-en CARGO=false \
@@ -99,6 +102,22 @@ jobs:
 
       - name: Confirm the modified ROM was built
         run: test -s out/tbs-en/tbs-en.gba
+
+      - name: Report memory use (fast memory, EWRAM, ROM)
+        continue-on-error: true
+        run: |
+          python3 tools/ci/memory_report.py out/tbs-en/tbs-en.map | tee "$RUNNER_TEMP/memory-report.txt"
+          cp out/tbs-en/tbs-en.map "$RUNNER_TEMP/tbs-en.map"
+
+      - name: Keep the linker map and memory report
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: memory-report-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/memory-report.txt
+            ${{ runner.temp }}/tbs-en.map
+          retention-days: 14
 
       - name: Build and verify an unmodified baseline
         run: |
