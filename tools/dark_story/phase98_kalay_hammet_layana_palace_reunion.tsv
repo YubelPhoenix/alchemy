@@ -1,0 +1,52 @@
+# Sequential Kalay palace reunion: Ivan returns, Hammet's detention discovered, ransom and proposed rescue.
+# Runtime actor placeholders and yes/no continuation controls preserved.
+06918	message	We'll welcome travelers\nagain when Lord Hammet\ncomes home. Until then, the{page_break}palace is closed.{end_wait}
+06919	message	Let me speak to them.{end_wait}
+06920	message	Please. I need to see Lady\nLayana. She'll want to hear\nwhat I know.{end_wait}
+06921	message	Don't you recognize me? I'm\n{actor_name:3}. I serve Lord\nHammet.{end_wait}
+06922	message	{actor_name:3}? Is that really\nyou?{end_wait}
+06923	message	Look at you! You've been\nout in the sun. I almost\ndidn't recognize you,{page_break}{actor_name:3}.{end_wait}
+06924	message	It is you, {actor_name:3}! You've\nchanged so much, {actor_name:3}!{end_wait}
+06925	message	Do I really look that\ndifferent?{end_now}
+06926	message	Really? I hadn't noticed.\nIt hasn't felt like a long\njourney.{end_wait}
+06927	message	You only met me after I was\nleft in Vault. Of course I\nlook the same to you.{end_wait}
+06928	message	Never mind that. You're\nback! Did those thieves\nfinally let you go?{end_wait}
+06929	message	And Lord Hammet? Is he\ncoming home too?{end_wait}
+06930	message	Coming home? Wait. Are you\nsaying Lord Hammet is being\nheld prisoner?{end_wait}
+06931	message	You haven't heard. Then we\nneed to explain. But this\nconcerns the palace. Could{page_break}your friends wait outside?{end_now}
+06932	message	No, {actor_name:1}. They've\nhelped me all this way. I\nwon't send them away.{end_wait}
+06933	message	We've faced danger\ntogether. They deserve to\nhear the truth.{end_wait}
+06934	message	All right. Tell us why you\nwere separated from Lord\nHammet.{end_wait}
+06935	message	I stayed in Vault to find\nthe rod thieves had stolen\nfrom him.{end_wait}
+06936	message	Someone stole his rod?{end_wait}
+06937	message	The Shaman's Rod. I got it\nback, but Hammet had\nalready gone north.{end_wait}
+06938	message	Then he must still be in\nLunpa. That means the\nransom didn't free him.{end_wait}
+06939	message	Lady Layana needs to hear\nthis at once.{end_wait}
+06940	message	Come with me, {actor_name:3}. You\ncan tell her what happened.{end_wait}
+06941	message	{actor_name:1}, you saw Lord\nHammet heading north,\ndidn't you?{end_now}
+06942	message	Then that must have been\nwhen he was taken toward\nLunpa.{end_wait}
+06943	message	No, I meant the day Hammet\nset out for Lunpa. Think\nback.{end_wait}
+06944	message	Lady Layana will want the\nfull account. Please, come\nwith us.{end_wait}
+06945	MsgKalayWhenHeardWereBackIvan	When I heard you were back,\n{actor_name:3}, I let myself hope\nHammet had returned too.{end_wait}
+06946	message	We thought the ransom would\nbring him home. We had no\nreason to think otherwise.{end_wait}
+06947	message	We paid what they demanded.\nSurely they have to release\nhim now.{end_wait}
+06948	message	Tell me about Lunpa. What\nhas happened to the town?{end_wait}
+06949	message	Lunpa founded it long ago.\nThen his son Donpa took\ncharge. Now Donpa's son,{page_break}Dodonpa, rules there.{end_wait}
+06950	message	Dodonpa's men have turned\nLunpa into a place people\nfear. Even his father is{page_break}ashamed.{end_wait}
+06951	message	When was the ransom paid?{end_wait}
+06952	message	Shortly after Mt. Aleph\nerupted, if I remember\ncorrectly.{end_wait}
+06953	message	The ransom demand came just\nafter the eruption.{end_wait}
+06954	message	We sent the money straight\naway. I remember because\nthere was no time to{page_break}prepare.{end_wait}
+06955	message	Then it's been a long time.\nHe should be home by now.{end_wait}
+06956	message	What if Dodonpa never\nintended to release him?{end_now}
+06957	message	You believe that too,\n{actor_name:1}?{end_wait}
+06958	message	I wish I could dismiss it,\nbut it's been far too long.{end_wait}
+06959	message	You think they mean to keep\nHammet, even after taking\nour money?{end_wait}
+06960	message	I agree with {actor_name:3}. If\nthey were going to free\nhim, they'd have done it.{end_wait}
+06961	message	Lady Layana, I'm afraid\n{actor_name:3} may be right.{end_wait}
+06962	message	Then what are we supposed\nto do? How do we bring him\nhome?{end_wait}
+06963	message	What if they've hurt him?\nWhat if we're already too\nlate?{end_wait}
+06964	message	Give us the order. We'll\ngo.{end_wait}
+06965	message	Protecting Kalay is our\nduty. That includes\nbringing its lord home.{end_wait}
+06966	message	Lady Layana, our soldiers\nare ready. Let us handle\nthis.{end_wait}
+06967	message	Say the word and we'll\nmarch on Lunpa.{end_wait}
