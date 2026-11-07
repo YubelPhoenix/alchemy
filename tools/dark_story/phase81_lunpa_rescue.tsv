@@ -1,0 +1,107 @@
+09316	MsgLunpaTimeEat	Is it supper already?{end_wait}
+09317	message	...You're not the cook.{end_wait}
+09318	message	Hammet...{end_wait}
+09319	message	{actor_name:3}? Is that you?{end_wait}
+09320	message	And these people...\nDid they come with you?{end_wait}
+09321	message	Then it's begun, hasn't it,\nyour journey, {actor_name:3}?{end_wait}
+09322	message	I said I'd come for you.\nI meant it.{end_wait}
+09323	message	You shouldn't have come\ninto this place, {actor_name:3}.{end_wait}
+09324	message	Not another step!{end_wait}
+09325	message	Dodonpa...{end_wait}
+09326	message	What a touching reunion.\nToo bad it won't last.{end_wait}
+09327	message	So this is your boy,\nHammet? {actor_name:3}, is it?{end_wait}
+09328	message	He's barely old enough\nto hold a sword.{end_wait}
+09329	message	Yet he made it past\nall my guards...{end_wait}
+09330	message	Your guards weren't\nmuch of an obstacle.{end_wait}
+09331	message	Layana paid your ransom.\nWhy is Hammet still here?{end_wait}
+09332	message	Layana paid you?\nYou promised she'd\nget me back!{end_wait}
+09333	message	We're taking Hammet home.\nStand aside.{end_wait}
+09334	message	No. That won't be\nhappening.{end_wait}
+09335	message	Why settle for one ransom\nwhen Kalay keeps paying?{end_wait}
+09336	message	You sold him a promise\nyou never meant to keep!{end_wait}
+09337	message	Call me what you like.\nHammet stays here.{end_wait}
+09338	message	Dodonpa pulled a lever.{end_wait}
+09339	message	You wanted to see\nwhat's under the fortress?\nHere it is!{end_wait}
+09340	MsgLunpaPrepareBecomeMonster	Let's see you talk\nyour way past this!{end_wait}
+09341	MsgLunpaBackMoreGuess	Still standing?\nI can fix that.{end_wait}
+09342	MsgLunpaDodonpaPulledLever	Dodonpa pulled a lever.{end_wait}
+09343	message	Come on, then!\nYou'll never get past it!{end_wait}
+09344	message	Go on! Feed my monster!{end_wait}
+09345	MsgLunpaUhnnGetOff	Get it off! Get it off!{end_wait}
+09346	message	How did he end up\nunder his own monster?{end_wait}
+09347	message	He tried to slip behind\nyou while it fought.{end_wait}
+09348	message	When his monster faltered,\nhe made his move.{end_wait}
+09349	message	Another moment and\nhe'd have struck you.\nFrom behind.{end_wait}
+09350	message	You coward!{end_wait}
+09351	message	Even now, you tried\nto kill us from behind.{end_wait}
+09352	message	All right! I'm {text_effect:2}sorry{reset_text_style}!\nJust get this thing off!{end_wait}
+09353	message	You want us to\nsave you now?{end_wait}
+09354	message	Strange. It's suddenly\nvery heavy, isn't it?{end_wait}
+09355	message	What do you think,\n {actor_name:1}? Do we help him?{end_now}
+09356	message	All right.\nHammet?{end_wait}
+09357	message	We can't leave him\nto die beneath it.{end_wait}
+09358	MsgLunpaAbleGet	There. Try standing.\nSlowly.{end_wait}
+09359	message	I... I can't move.{end_wait}
+09360	message	Did it break your leg?{end_wait}
+09361	message	No. Give me a moment.\nI'll be fine.{end_wait}
+09362	message	Good. You're alive.{end_wait}
+09363	message	That's all you have\nto say to me?{end_wait}
+09364	message	He nearly killed us,\nand you're worried\nabout his leg?{end_wait}
+09365	message	He's helpless now.\nWhat good would hurting\nhim do?{end_wait}
+09366	message	He kept you prisoner,\nHammet!{end_wait}
+09367	message	I know. I haven't\nforgotten.{end_wait}
+09368	message	Then don't pretend\nit was nothing!{end_wait}
+09369	message	I'm alive, and I'm free.\nThat's enough for me.{end_wait}
+09370	message	It isn't enough if\nhe does this again.{end_wait}
+09371	message	No. It isn't.{end_wait}
+09372	message	Dodonpa, listen carefully.{end_wait}
+09373	message	He'll promise anything\nto get out of this.{end_wait}
+09374	message	Of course I will!\nJust let me go!{end_wait}
+09375	message	What would you do,\n{actor_name:2}?{end_wait}
+09376	message	Put him in the cell.\nLet him see it\nfrom Hammet's side.{end_wait}
+09377	message	No! You can't!{end_wait}
+09378	message	You had no trouble\ndoing it to Hammet.{end_wait}
+09379	message	Your call, {actor_name:1}.\nDo we lock him up?{end_now}
+09380	message	He made his choice.{end_wait}
+09381	message	Let him stay awhile.\nHe might finally learn.{end_wait}
+09382	MsgLunpaDad	Dad!{end_wait}
+09383	message	Dodonpa...\nLook what you've become.{end_wait}
+09384	message	I told you that cruelty\nalways finds its way\nback to its owner.{end_wait}
+09385	message	You will answer for\neverything you've done.{end_wait}
+09386	message	I let you go too far.\nI won't deny my part.{end_wait}
+09387	message	Then this is your fault!{end_wait}
+09388	message	Yes. And I'm finished\nmaking excuses for you.{end_wait}
+09389	message	Dad... you're not\nserious?{end_wait}
+09390	message	For once, I am.{end_wait}
+09391	message	You'll stay in this cell.\nThink about the people\nyou put here.{end_wait}
+09392	message	You suffered because\nof my son, didn't you?{end_wait}
+09393	message	No... we're safe now.{end_wait}
+09394	message	That doesn't make\nwhat he did right.\nI'm sorry.{end_wait}
+09395	message	You didn't lock me up.\nYour son did.{end_wait}
+09396	message	Then you can forgive me?{end_wait}
+09397	message	There is one thing\nwe still need from you.{end_wait}
+09398	message	Tell me.{end_wait}
+09399	message	Leave the way you came.\nDon't use the main gate.{end_wait}
+09400	message	But Dodonpa's locked up.\nWhy do we have to hide?{end_wait}
+09401	message	Your men ought to\nlet us leave now.{end_wait}
+09402	message	Some guards still\nanswer only to Dodonpa.{end_wait}
+09403	message	They won't listen to me.\nNot yet.{end_wait}
+09404	message	If they find Hammet,\nthey'll seize him again.{end_wait}
+09405	message	And if they reach\nhis cell...{end_wait}
+09406	message	They'll let him out.{end_wait}
+09407	message	Then he'll go after Kalay.\nAnd Layana.{end_wait}
+09408	message	Exactly. We can't\nallow that.{end_wait}
+09409	message	I won't have Kalay\npay for this again.{end_wait}
+09410	message	Go now, before my men\nrealize what's happened.{end_wait}
+09411	message	You mean right now?{end_wait}
+09412	message	I heard you'd entered.\nI spread a rumor\nthrough the fortress.{end_wait}
+09413	message	What rumor?{end_wait}
+09414	message	That thieves came for\nHammet, failed, and fled.{end_wait}
+09415	message	You told them that?\nWhy?{end_wait}
+09416	message	They've sealed this floor.\nMost guards are outside\nsearching for you.{end_wait}
+09417	message	So you gave us\na way out.{end_wait}
+09418	message	It's the least I can do.\nGo while it lasts.{end_wait}
+09419	message	We can get Hammet out.\nAre we ready?{end_now}
+09420	message	Then move. Every moment\nwe stand here risks him.{end_wait}
+09421	message	Next time you see my son,\nhe'll be different.\nI'll see to that.{end_wait}
+09422	message	I said I'll change!\nJust get me out of here!{end_wait}
