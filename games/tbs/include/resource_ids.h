@@ -123,6 +123,7 @@ extern char ResourceId_DesertBackdrop;
 /// The sky of the Neptune and Thor summons.
 extern char ResourceId_DuskCloudsBackdrop;
 extern char ResourceId_AerialViewBackdrop; ///< Drawn only by Judgment.
+extern char ResourceId_HeartBackdrop; ///< Heart's fight: dusk clouds over a dark glassy floor.
 /// Sarah's battle sprite (a monster resource).
 
 /// Lucky Wheels' frame (LuckyWheels_Run): 16 colours for BG palette 10,
