@@ -1410,7 +1410,7 @@ struct ActorTemplate gVault_ActorTemplates[] = {
         0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
     // Sarah, waiting in the village until she is beaten.
     { SPRITE_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, MOVEMENT_TYPE_STAND,
-        PIXELS(365), 0, PIXELS(366), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+        PIXELS(400), 0, PIXELS(448), FACING_NORTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1451,7 +1451,7 @@ struct ActorTemplate gVault_ActorTemplatesAfterThieves[] = {
         0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
     // Sarah, waiting in the village until she is beaten.
     { SPRITE_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, MOVEMENT_TYPE_STAND,
-        PIXELS(365), 0, PIXELS(366), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+        PIXELS(400), 0, PIXELS(448), FACING_NORTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
