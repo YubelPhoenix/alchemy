@@ -51,7 +51,7 @@ for r in range(floor_rows):
     refl = a[src_y][src_x] * (0.70 - 0.28 * depth)
     streak = noise[r][:, None] * (8 + 12 * depth)
     row = base * (0.85 + 0.45 * depth) + refl * (1.0 - 0.3 * depth) + streak
-    # cracked-glass tiles: grout lines that converge toward the horizon
+    # glass tiles: parallel seams (they wrap and fill the width) and horizontal rows
     for i in range(16):
         x_bottom = i * (W / 16)
         t = (HORIZON + r - VANISH_Y) / float(H - VANISH_Y)
@@ -71,11 +71,11 @@ for r in range(floor_rows):
         row = row * (1 - 0.55 * m) + np.array([120.0, 88.0, 150.0]) * 0.55 * m
     out[HORIZON + r] = row
 
-# Glowing tile seams. They are painted after
-# the floor is quantised, with palette entries reserved for them; the battle
-# code (background.c, Heart_StepBackdropGlow) animates them:
-#   120-123  the tile seams, four phases from the horizon outward
-NQ = 112
+# Glowing tile seams. They are painted after the floor is quantised, with four
+# palette entries (120-123, a quarter of the pulse apart, running out from the
+# horizon) reserved for them; the battle code (background.c,
+# Heart_StepBackdropGlow) pulses those. Everything else gets entries 0-119.
+NQ = 120
 CORE = 120
 img = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
 q = img.quantize(colors=NQ, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)

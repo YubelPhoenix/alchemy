@@ -157,15 +157,13 @@ void BattleBackground_Init(void) {
   state->mode = BATTLE_BACKGROUND_NONE;
 }
 
-/// Heart's backdrop: the palette entries the floor's tile seams use
-/// (tools/dark_story/build_heart_floor.py reserves 120 to 127).
-#define HEART_CRACK_CORE 120
-/// The sky and floor are the entries below the ripples' (and the tile seams').
-#define HEART_SKY_ENTRIES 112
-/// Lightning: every HEART_LIGHTNING_PERIOD frames (3 seconds) a bolt strikes
-/// in the distance, at a scrambled moment inside the period; every fourth
-/// strike is a big one that flashes the whole sky. It reads gVBlankCount, so it needs no
-/// state of its own (IWRAM is full).
+/// Heart's backdrop (tools/dark_story/build_heart_floor.py): palette entries
+/// 120 to 123 are the floor's glowing tile seams; the sky and floor are 0 to 119.
+#define HEART_SEAM_FIRST 120
+#define HEART_SKY_ENTRIES 120
+/// Lightning: every HEART_LIGHTNING_PERIOD frames (3 seconds) the sky flickers,
+/// at a scrambled moment inside the period; every fourth is a big flash. It
+/// reads gVBlankCount, so it needs no state of its own (IWRAM is full).
 #define HEART_LIGHTNING_PERIOD 180
 
 /// One channel of a colour pulsed between dim and bright: wave is 0 to 31.
@@ -178,7 +176,7 @@ static u16 Heart_GlowColor(s32 red, s32 green, s32 blue, s32 wave,
 }
 
 /// Heart's backdrop only: pulses the glowing tile seams, a wave running out
-/// from the horizon, and now and then flashes the whole sky and floor like lightning.
+/// from the horizon, and flickers the whole sky and floor like distant lightning.
 /// Runs every VBlank while her battle lasts. It writes only while the
 /// background is zoomed and undimmed, so the battle animations that take the
 /// palette over are left alone. Added by BattleBackground_Load, removed by
@@ -196,11 +194,11 @@ void Heart_StepBackdropGlow(void) {
   if (scale > Q16_ONE)
     scale = Q16_ONE;
   for (k = 0; k < 4; k++) {
-    // a triangle wave, 0 to 31, a quarter turn apart along each crack
+    // a triangle wave, 0 to 31, a quarter turn apart along each seam
     s32 t = (gVBlankCount * 2 + k * 16) & 63;
     s32 wave = t < 32 ? t : 63 - t;
 
-    BATTLE_BG_PALETTE[HEART_CRACK_CORE + k] =
+    BATTLE_BG_PALETTE[HEART_SEAM_FIRST + k] =
         Heart_GlowColor(24, 9, 31, wave, scale);
   }
   if (scale != Q16_ONE)
@@ -221,13 +219,13 @@ void Heart_StepBackdropGlow(void) {
       return;
     if (index == (s32)sizeof strike) {
       // put the sky and floor back exactly
-      for (i = 0; i < 120; i++)
+      for (i = 0; i < HEART_SKY_ENTRIES; i++)
         destination[i] = source[i];
       return;
     }
     gain = strike[index];
-    // the sky and floor brighten by a share of the strike (half for a big
-    // one, a sixth for a distant one), so the bolt is the brightest thing
+    // the sky and floor brighten by a share of the strike: half for a big
+    // flash, a sixth for a distant flicker
     for (i = 0; i < HEART_SKY_ENTRIES; i++) {
       u32 pixel = source[i];
       s32 red = (pixel & 31) + gain / skyShare;
