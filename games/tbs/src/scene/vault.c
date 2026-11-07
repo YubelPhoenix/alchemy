@@ -1009,7 +1009,7 @@ s32 Scene_Initialize(void) {
   }
   // Back from Sarah's battle.
   if (SARAH_PENDING_AT(0)) {
-    SARAH_AFTERMATH(ACTOR_VAULT_SARAH, 365, 366, MsgDarkSarahVaultBeaten,
+    SARAH_AFTERMATH(ACTOR_VAULT_SARAH, 392, 400, MsgDarkSarahVaultBeaten,
                     FLAG_DARK_SARAH_VAULT_FOUGHT);
   }
   return 0;
