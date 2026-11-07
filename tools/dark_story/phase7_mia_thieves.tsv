@@ -19,7 +19,7 @@ N29	MsgDarkMiaThievesGold	The girl who hired us\nsaid you'd be alone.\nThat's al
 N30	MsgDarkMiaThievesWhatLook	What girl?{end_wait}
 N31	MsgDarkMiaThievesRedHair	Red hair. Burnt clothes.\nOne of her eyes glowed.{end_wait}
 N32	MsgDarkMiaThievesColdEyes	She looked at us like\nwe'd already failed.{end_wait}
-N33	MsgDarkMiaThievesNotFromImil	I don't know who she is.\nBut Imil has enough to\nendure without this.{end_wait}
-N34	MsgDarkMiaThievesLeave	Take your men and go.\nDon't come back.{end_wait}
+N33	MsgDarkMiaThievesNotFromImil	I don't know who she is.\nBut Imil's suffered enough.\nI won't allow this again.{end_wait}
+N34	MsgDarkMiaThievesLeave	If I see you again,\nyou won't walk away\nnext time. Now go.{end_wait}
 N35	MsgDarkMiaThievesChiefAgrees	All right! We're going!{end_wait}
 N36	MsgDarkMiaThievesNotAWord	A red-haired girl...\nI need to warn Megan\nand Justin.{end_wait}
