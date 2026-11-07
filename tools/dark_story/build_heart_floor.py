@@ -71,15 +71,13 @@ for r in range(floor_rows):
         row = row * (1 - 0.55 * m) + np.array([120.0, 88.0, 150.0]) * 0.55 * m
     out[HORIZON + r] = row
 
-# Glowing tile seams and three distant lightning bolts. They are painted after
+# Glowing tile seams, falling rain and rain ripples. They are painted after
 # the floor is quantised, with palette entries reserved for them; the battle
 # code (background.c, Heart_StepBackdropGlow) animates them:
 #   120-123  the tile seams, four phases from the horizon outward
 #   124-127  rain ripples on the floor: four ring sizes in turn, each ripple
 #            starting at its own point in the cycle
-#   112-117  three bolts: entry 112+2b is bolt b, 113+2b the glare where it
-#            strikes the floor. Their colours here are the "off" colours (the
-#            cloud and floor they sit on); the game lights them during a flash.
+#   112-115  falling rain streaks: four phases along each streak
 NQ = 112
 CORE = 120
 img = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
@@ -93,39 +91,23 @@ for y in range(HORIZON + 3, H):
     idx[y, xs] = CORE + ph
 for k in range(4):
     pal[(CORE + k) * 3:(CORE + k) * 3 + 3] = [200, 72, 248]
-rng2 = np.random.default_rng(5)
-for b, bx in enumerate([44, 130, 214]):
-    pts = []
-    x, y = bx, 22
-    while y < HORIZON:
-        pts.append((x % W, y))
-        y += 1
-        if rng2.random() < 0.55:
-            x += int(rng2.integers(-2, 3))
-    bolt = list(pts) + [((px + 1) % W, py) for px, py in pts]   # two pixels wide
-    # a short fork partway down
-    fx, fy = pts[len(pts) // 2]
-    for n in range(14):
-        fx += 1 if b % 2 else -1
-        fy += 1 if n % 2 else 0
-        if fy < HORIZON:
-            bolt.append((fx % W, fy))
-    end_x = pts[-1][0]
-    # off colour: the sky the bolt hides in
-    under = np.array([out[y, x] for x, y in bolt])
-    pal[(112 + 2 * b) * 3:(112 + 2 * b) * 3 + 3] = [int(v) for v in under.mean(axis=0)]
-    for x, y in bolt:
-        idx[y, x] = 112 + 2 * b
-    # the glare on the floor where it lands: a flat ellipse
-    glare = []
-    for gy in range(HORIZON, HORIZON + 6):
-        half = 15 - 2 * (gy - HORIZON)
-        for gx in range(-half, half + 1):
-            glare.append(((end_x + gx) % W, gy))
-    gunder = np.array([out[y, x] for x, y in glare])
-    pal[(113 + 2 * b) * 3:(113 + 2 * b) * 3 + 3] = [int(v) for v in gunder.mean(axis=0)]
-    for x, y in glare:
-        idx[y, x] = 113 + 2 * b
+# Falling rain: thin slanted streaks (the GIF's slant, top-left to bottom-right)
+# over sky and floor. A streak's eight pixels use entries 112 + (j // 2 + start)
+# % 4; the game lights one of the four at a time, so a bright drop runs down
+# each streak, each starting at a different point.
+RAIN = 112
+for k in range(4):
+    pal[(RAIN + k) * 3:(RAIN + k) * 3 + 3] = [150, 128, 176]
+sr = np.random.default_rng(33)
+for n in range(170):
+    sx = int(sr.integers(0, W))
+    sy = int(sr.integers(-4, H - 2))
+    start = int(sr.integers(0, 4))
+    for j in range(8):
+        x = (sx + int(round(j * 0.4))) % W
+        y = sy + j
+        if 0 <= y < H and idx[y, x] < 112:
+            idx[y, x] = RAIN + (j // 2 + start) % 4
 # Rain landing on the glass: small expanding rings. A ripple draws its four
 # ring sizes (stage 0 to 3) with entries 124 + (stage + start) % 4; the game lights
 # one of those four entries at a time, so the ripple shows a different ring
