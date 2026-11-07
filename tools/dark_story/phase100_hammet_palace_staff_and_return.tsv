@@ -1,0 +1,34 @@
+# Hammet Palace: pre-rescue secrecy and private fear; post-rescue gratitude, guard security and Shaman's Rod.
+10713	MsgHammetPalaceTheresATurbanItsTheSymbol	A soldier's turban rests\nhere. The cloth has been\ncarefully folded.{end_wait}
+10714	MsgHammetPalaceTheresABookEntitledBusinessAnd	A book on trading lies\nopen. Its advice is simple:\nkeep your word, or lose{page_break}your customers.{end_wait}
+10715	MsgHammetPalaceTheresABookEntitledTheGood	A book on hospitality.\nSomeone has marked the part\nabout remembering each{page_break}guest's needs.{end_wait}
+07041	MsgHammetPalaceDodonpaIsAVeryShrewdMan	Dodonpa knows how to get\nwhat he wants. For all we\nknow, his men are watching{page_break}Kalay. Sending troops could\nput Hammet at risk.{end_wait}
+07042	MsgHammetPalaceTheTownsfolkDontKnowAboutLord	The townspeople don't know\nHammet was taken, do they?\nI hope it stays that way{page_break}until we can help him.{end_wait}
+07043	MsgKalayLordHammetWillReleasedSoon	Hammet will come home. He\nhas to. Don't you think?{end_now}
+07046	MsgHammetPalaceLayanaIsPuttingUpAStrong	Layana speaks calmly to\neveryone. When the hall is\nempty, she barely says a{page_break}word.{end_wait}
+07047	MsgHammetPalaceMerchantsAreSupposedToBeProtected	Kalay's traders are\nsupposed to be safe on\nthese roads. Dodonpa knows{page_break}that, and takes hostages\nanyway.{end_wait}
+07048	MsgKalayHasLegacyLordHammetsSilk	If Hammet never returns,\nwho will lead his caravans?\nWhat happens to Kalay?{end_now}
+07051	MsgHammetPalaceIsThisTheRightDecisionHammet	Hammet, am I doing the\nright thing? Every choice\nseems to put you in danger.{end_wait}
+07052	MsgHammetPalaceImSureTheVillagersWouldPanic	The townspeople ask where\nHammet is. We've told them\nhe's away on business. I{page_break}don't know how long they'll\nbelieve it.{end_wait}
+07053	MsgHammetPalaceEveryonesWorriedAboutLordHammetBut	Everyone here knows\nsomething is wrong. No one\nwants to be the first to{page_break}say it aloud.{end_wait}
+07054	MsgHammetPalaceLadyLayanaWasCryingAgainLast	I heard Lady Layana crying\nlast night. This morning\nshe thanked me as if{page_break}nothing had happened.{end_wait}
+07055	MsgHammetPalaceAndToThinkIAlmostWent	I nearly joined that\ncaravan. I keep thinking\nabout the men who did.{end_wait}
+07056	MsgHammetPalaceLordHammetIsALegendAmong	Hammet made Kalay what it\nis. But even if he never\ncomes home, the people{page_break}still have to eat.{end_wait}
+07057	MsgKalayIsaacSneakedIntoLunpaThats	You went into Lunpa,\n{actor_name:1}? Did you know what\ncould have happened to you?{end_wait}
+07061	MsgHammetPalaceDodonpaPlansToUseHammetTo	Dodonpa is keeping Hammet\nalive because he can demand\nmore money. I hate that{page_break}we're forced to pay him.{end_wait}
+07062	MsgHammetPalaceIDontCareAboutTheMoney	They can take every coin I\nown. I only want Hammet\nback.{end_wait}
+09608	MsgKalayItsIvanHisCompanionsPerfect	{actor_name:3}, there you are!\nAnd you've brought your\nfriends. We need to speak{page_break}at once.{end_wait}
+09637	MsgHammetPalaceTakeYourShamansRodAndSet	Take the Shaman's Rod to\nHesperia. I wish I could\ntell you what waits there.{page_break}Be careful.{end_wait}
+09638	MsgHammetPalaceNoOneInKalayKnowsHammet	Kalay still doesn't know\nHammet is home. Until we're\nsure Dodonpa has stopped{page_break}searching, he stays inside\nthe palace.{end_wait}
+09639	MsgHammetPalaceIHearHammetWasSavedBy	You brought Hammet back. I\ndon't know what else to say\nbut thank you.{end_wait}
+09640	MsgHammetPalaceTheySayHammetsReturnIsSupposed	We're keeping Hammet's\nreturn quiet. The people\ndeserve to know, but we{page_break}can't risk another\nkidnapping.{end_wait}
+09641	MsgHammetPalaceILeftTheDoorToThe	The passage below is open.\nLady Layana said you could\nenter.{end_wait}
+09642	MsgHammetPalaceIWonderIfAnyOfDodonpas	Hammet is safe here, I\nhope. But Dodonpa has men\neverywhere. I keep checking{page_break}the doors.{end_wait}
+09643	MsgHammetPalaceTheSecretPassageIsLockedBecause	The treasure is stored\nbeyond that passage. We\nkeep it locked when no one{page_break}is using it.{end_wait}
+09644	MsgHammetPalaceLayanasWordsPainHerMoreThan	Layana had to speak harshly\nto {actor_name:1}. I know it hurt\nher. I hope they understand{page_break}why.{end_wait}
+09645	MsgHammetPalaceImSoHappyHammetMadeIt	He's finally home.\n{actor_name:1}, {actor_name:3}, I can't\nthank you enough.{end_wait}
+09646	MsgHammetPalaceImSoRelievedHammetMadeIt	Hammet made it home. After\nall those weeks, it still\ndoesn't seem real.{end_wait}
+09647	MsgHammetPalaceICantLetOnToThe	I have to speak to people\nas if nothing happened.\nThey keep asking after him,{page_break}and I have to smile.{end_wait}
+09648	MsgHammetPalaceLayanaOrderedTheDoorToThe	Layana opened the passage\nas thanks to {actor_name:1} and\nthe others. She wanted them{page_break}to know their help\nmattered.{end_wait}
+09649	MsgHammetPalaceWeWillNeverLetDodonpasHenchmen	We're guarding every\nentrance now. Dodonpa won't\ntake Hammet from us again.{end_wait}
+09650	MsgHammetPalaceTheKeyToTheSecretPassage	One key opens both the\nhidden passage and Hammet's\ntreasure room. Best not to{page_break}lose it.{end_wait}
