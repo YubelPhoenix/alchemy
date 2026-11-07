@@ -1,0 +1,18 @@
+# Remaining explicitly referenced Karagol ship-deck event and optional NPC lines.
+# Original runtime names, choice endings and style effects preserved.
+07488	MsgTolbiShipTheresNothingWeCanDo	We can't keep waiting.\nPrepare to set sail.{end_wait}
+07737	MsgTolbiShipPreparationsReady	Preparations...{pause_20_skippable}\nReady!{end_wait}
+07745	MsgTolbiShipAyeCaptainSeaMonsters	Captain! Monsters\nin the water!{end_wait}
+07748	MsgTolbiShipNoUseLate	Too late! They're on us!{end_wait}
+07749	MsgTolbiShipArrgh	{text_effect:4}Aagh!{end_wait}
+07905	MsgTolbiShipThankIsaacDidGoodAgainst	You fought that Kraken off,\n{actor_name:1}.{page_break}We'd never have survived\nwithout you.{end_wait}
+08021	MsgTolbiShipIsaacTalkedPassengersDidntTour	{actor_name:1}, did you talk\nto the passengers?{page_break}The tour group is split.\nSome want to leave.{end_wait}
+08019	MsgTolbiShipIsaacDontTalkLikeShouldnt	{protagonist_name}, listen.\nThey're frightened.{page_break}We should hear them out.\nDon't you think?{end_now}
+08027	MsgTolbiShipSeeYoureGoingGoFor	So you'll scout the island\nfor us?{page_break}I don't think the others\nwill object.{end_wait}
+08041	MsgTolbiShipHowWasIsaacDidExplore	What did you find,\n{actor_name:1}?{page_break}Is it safe to go ashore?{end_now}
+07857	MsgTolbiShipDeckIFeelSorryForTheOarsmen	The injured rowers\nneed a rest.{page_break}We can't keep losing\npeople like this, {actor_name:1}.{end_wait}
+07940	MsgTolbiShipDeckIWantSeanAndOuranosTo	I hope Sean and Ouranos\ndo well in Colosso.{page_break}But if {actor_name:1} enters,\nthey'll have a hard fight.{end_wait}
+08029	MsgTolbiShipDeckWeveDoneAGoodJobOf	We've kept the ship\nsafe so far.{page_break}Go ahead, {actor_name:1}.\nWe'll watch the deck.{end_wait}
+08033	MsgTolbiShipDeckThisIslandGivesMeTheCreeps	I don't like this island.\nEvery sound makes me jump.{end_wait}
+08032	MsgTolbiShipDeckThatsEnoughBickering	Arguing won't get us off\nthis island. Enough.{end_wait}
+08034	MsgTolbiShipDeckWhatWeCanDoNowIs	We should keep watch\nand protect the ship.\nIt's all we can do.{end_wait}
