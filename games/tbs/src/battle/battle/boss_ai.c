@@ -17,6 +17,14 @@
 /// Set a switch to 0 to give that boss back the stock AI.
 #define BOSS_AI_KEGARE 1
 
+/// Unit.aiActionIndex bits no boss may use: the stock action cycle's
+/// (BattleAIState) and Ash Jenna's rush flags (AI_PUNISHED, AI_RUSH).
+#define BOSS_RESERVED_BITS (0xfu | AI_PUNISHED | AI_RUSH)
+/// Every boss records the party place it last aimed at, plus one (0 none),
+/// in bits 28..26.
+#define BOSS_LAST_AIM_SHIFT 26
+#define BOSS_LAST_AIM_BITS (7u << BOSS_LAST_AIM_SHIFT)
+
 /// Kegare's places in her action list (enemies.c).
 enum KegareSlot {
   KEGARE_FREEZE_PRISM = 0,
@@ -30,13 +38,16 @@ enum KegareSlot {
 };
 
 /// Kegare's memory in Unit.aiActionIndex:
-/// bits 15..13 the party place she last aimed at, plus one (0 none) |
-/// 12..10 actions until she may heal again | 9..8 rounds in a row with a heavy
-/// move | 7 a heavy move this round.
+/// bits 12..10 actions until she may heal again | 9..8 rounds in a row with a
+/// heavy move | 7 a heavy move this round (and the last-aim bits above).
 #define KEGARE_HEAVY_THIS_ROUND_BIT (1u << 7)
 #define KEGARE_HEAVY_ROUNDS_SHIFT 8
 #define KEGARE_HEAL_WAIT_SHIFT 10
-#define KEGARE_LAST_AIM_SHIFT 13
+#define KEGARE_BITS                                                           \
+  (KEGARE_HEAVY_THIS_ROUND_BIT | (3u << KEGARE_HEAVY_ROUNDS_SHIFT) |          \
+   (7u << KEGARE_HEAL_WAIT_SHIFT))
+STATIC_ASSERT((KEGARE_BITS & BOSS_RESERVED_BITS) == 0);
+STATIC_ASSERT((KEGARE_BITS & BOSS_LAST_AIM_BITS) == 0);
 /// After this many rounds in a row with a heavy move, one round has none.
 #define KEGARE_HEAVY_ROUNDS_LIMIT 2
 /// She may heal (Ply Well, her own pick or the stock cycle's) only below this
@@ -89,7 +100,7 @@ static s32 BossAI_MemberIsOpen(struct Unit *member) {
 /// Starts a round for the bosses: their per-round memory is cleared, and the
 /// number of rounds in a row with a heavy move is brought up to date.
 /// Called once a round by BattleTurnOrder_Sort, before anyone acts.
-void BossAI_BeginRound(void) {
+static void BossAI_KegareBeginRound(void) {
 #if BOSS_AI_KEGARE
   struct Unit *kegare = BossAI_FindKegare();
   u32 memory;
@@ -113,7 +124,7 @@ void BossAI_BeginRound(void) {
 /// Records a turn that was really staged (result 0): which move a boss used,
 /// and whom it aimed at. Called by BattleStaging_DispatchAction after the
 /// turn, with the request it settled.
-void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
+static void BossAI_KegareNoteTurn(struct BattleAction *request, s32 result) {
 #if BOSS_AI_KEGARE
   struct Unit *unit;
   u32 memory;
@@ -143,10 +154,10 @@ void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
     wait = KEGARE_HEAL_WAIT;
   if (BossAI_KegareIsHeavy(unit, abilityId))
     memory |= KEGARE_HEAVY_THIS_ROUND_BIT;
-  memory &= ~((7u << KEGARE_HEAL_WAIT_SHIFT) | (7u << KEGARE_LAST_AIM_SHIFT));
+  memory &= ~((7u << KEGARE_HEAL_WAIT_SHIFT) | BOSS_LAST_AIM_BITS);
   memory |= wait << KEGARE_HEAL_WAIT_SHIFT;
   if ((request->target & 0x180) == 0x100)
-    memory |= (u32)(((request->target & 7) + 1) & 7) << KEGARE_LAST_AIM_SHIFT;
+    memory |= (u32)(((request->target & 7) + 1) & 7) << BOSS_LAST_AIM_SHIFT;
   unit->aiActionIndex = memory;
 #endif
 }
@@ -158,7 +169,8 @@ void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
 /// last two rounds did not both have one, and Ply Well only when she is low
 /// and has not healed lately. A move the limits refuse becomes one of her
 /// light moves. Returns her place in her action list.
-s32 BossAI_ChooseKegareSlot(struct Unit *unit, s32 slot, s32 firstPick) {
+static s32 BossAI_KegareChooseSlot(struct Unit *unit, s32 slot,
+                                   s32 firstPick) {
 #if BOSS_AI_KEGARE
   u32 memory = unit->aiActionIndex;
   u32 wait = (memory >> KEGARE_HEAL_WAIT_SHIFT) & 7;
@@ -220,8 +232,9 @@ s32 BossAI_ChooseKegareSlot(struct Unit *unit, s32 slot, s32 firstPick) {
 /// she aimed at last when another is there. Otherwise the stock random pick.
 /// Returns the index in unitIds to aim at, or -1 for the stock pick. Only
 /// reads the battle.
-s32 BossAI_ChooseKegareTarget(const s32 *unitIds, const s32 *targetPositions,
-                              s32 count, s32 userId) {
+static s32 BossAI_KegareChooseTarget(const s32 *unitIds,
+                                     const s32 *targetPositions, s32 count,
+                                     s32 userId) {
 #if BOSS_AI_KEGARE
   struct Unit *user = Unit_GetFar(userId);
   struct Unit *member;
@@ -235,7 +248,7 @@ s32 BossAI_ChooseKegareTarget(const s32 *unitIds, const s32 *targetPositions,
     return -1;
   if ((Battle_RandomFar() & 0xff) >= KEGARE_AIM_CHANCE)
     return -1;
-  last = (s32)((user->aiActionIndex >> KEGARE_LAST_AIM_SHIFT) & 7) - 1;
+  last = (s32)((user->aiActionIndex >> BOSS_LAST_AIM_SHIFT) & 7) - 1;
   for (index = 0; index < count; index++) {
     member = Unit_GetFar(unitIds[index]);
     if (member->hp == 0 || member->hpMax <= 0)
@@ -257,4 +270,43 @@ s32 BossAI_ChooseKegareTarget(const s32 *unitIds, const s32 *targetPositions,
 #else
   return -1;
 #endif
+}
+
+/// Starts a round for the bosses: their per-round memory is cleared and their
+/// view of the party brought up to date. Called once a round by
+/// BattleTurnOrder_Sort, before anyone acts.
+void BossAI_BeginRound(void) {
+  BossAI_KegareBeginRound();
+}
+
+/// Records a turn that was really staged (result 0). Called by
+/// BattleStaging_DispatchAction after the turn, with the request it settled.
+/// A turn that failed changes nothing.
+void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
+  BossAI_KegareNoteTurn(request, result);
+}
+
+/// A boss's pick of a place in its action list. Returns slot unchanged for
+/// every other enemy, without drawing a random number. Called by
+/// BattleAI_ChooseAction at an enemy's turn; firstPick is 0 on a re-pick after
+/// a refused move.
+s32 BossAI_ChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)
+    return BossAI_KegareChooseSlot(unit, slot, firstPick);
+  return slot;
+}
+
+/// A boss's aim at foes, from the candidates BattleAI_ChooseTarget settled.
+/// Returns the index to aim at, BOSS_AIM_STOCK for the stock random pick, or
+/// BOSS_AIM_NONE when no candidate is fit. Other units get BOSS_AIM_STOCK
+/// without drawing a random number.
+s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
+                        const s32 *unitIds, const s32 *targetPositions,
+                        s32 count) {
+  struct Unit *user = Unit_GetFar(userId);
+
+  (void)action;
+  if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)
+    return BossAI_KegareChooseTarget(unitIds, targetPositions, count, userId);
+  return BOSS_AIM_STOCK;
 }

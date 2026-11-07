@@ -486,8 +486,10 @@ s32 BattleAI_ChooseTarget(s32 userId, struct AbilityDefinition *action) {
       return targetPositions[selected];
   }
   if (action->targetMode == ABILITY_TARGET_FOES) {
-    selected = BossAI_ChooseKegareTarget(unitIds, targetPositions, targetCount,
-                                         userId);
+    selected = BossAI_ChooseTarget(userId, action, unitIds, targetPositions,
+                                   targetCount);
+    if (selected == BOSS_AIM_NONE)
+      return TARGET_PICK_NONE;
     if (selected >= 0)
       return targetPositions[selected];
   }
