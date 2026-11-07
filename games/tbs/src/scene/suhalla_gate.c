@@ -42,6 +42,7 @@
 #include "save_block.h"
 #include "version.h"
 #include "keystate.h"
+#include "io_reg.h"
 #include "unit/scene/suhalla_gate.h"
 #include "unit/overworld/overworld.h"
 #include "unit/overworld/event_commands.h"
