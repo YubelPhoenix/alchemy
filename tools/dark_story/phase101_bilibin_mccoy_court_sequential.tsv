@@ -1,0 +1,79 @@
+# Bilibin first approach, afflicted citizen, McCoy's failed palace commission, guards and refusal branch.
+# Preserve scripted dialogue IDs, runtime actor names and yes/no endings.
+05039	message	It has a face. Those knots\nalmost look like someone\ntrying to speak.{end_wait}
+05044	message	That tree was a man. He\ncame here begging for help.\nHe said he'd angered the{page_break}holy tree, then he couldn't\nspeak at all.{end_wait}
+05045	message	You missed the tree? It's\nright outside. Please, have\nanother look.{end_wait}
+05048	message	That barricade went up when\nthe trouble in Kolima\nbegan.{end_wait}
+05049	message	The road to Kolima is\nblocked. Lord McCoy ordered\nthe barricade built, and he{page_break}won't let anyone pass.{end_wait}
+05057	message	We built that barricade in\na hurry. It isn't pretty,\nbut it stops most{page_break}travelers.{end_wait}
+05058	message	It's east of here. We had\nto finish before sunset, so\nI cut a few corners.{end_wait}
+05060	message	Aye, I ordered them to cut\nthe tree. The palace was to\nbe built from its wood. Now{page_break}my plans are ruined, and\neveryone's blaming me!{end_wait}
+05061	message	A tree spirit's curse?\nNonsense! I've waited\nmonths for a proper palace.{page_break}I won't let a story\nfrighten me out of it.{end_wait}
+05094	message	I've heard sailors talk\nabout strange lands beyond\nthe sea. Places where the{page_break}mist never lifts. I'd like\nto know if they're real.{end_wait}
+05095	message	I've never seen the ocean.\nThey say it's so wide you\ncan't see the other shore.{page_break}Imagine that.{end_wait}
+05105	message	Did you hear that growl?\nTell me you heard it.{end_now}
+05106	message	Of course I heard it.\nThat's my stomach. I\nhaven't eaten since{page_break}morning!{end_wait}
+05107	message	{text_effect:4}Grrr...{reset_text_style} Where's my dinner?\nMy stomach's been talking\nlonger than I have!{end_wait}
+05111	message	After seeing that man\nturned into a tree, I don't\nknow how anyone can call{page_break}the curse a rumor.{end_wait}
+05112	message	Go ask Lord McCoy, then.\nHe'll tell you what he\nthinks happened.{end_wait}
+05128	MsgSanctumAmStartingFeelOnlyBeginning	I fear this is only the\nbeginning. More people may\nneed sanctuary soon.{end_wait}
+05129	MsgSanctumPleaseGiveMeStrengthAtTimes	Grant me the strength to\nhelp them. I don't have\nmuch else to offer.{end_wait}
+05130	MsgSanctumWillITurnIntoATree	What if I turn into a tree\nnext? Who would care for\nthe sick?{end_wait}
+05131	MsgSanctumSomeoneWillSaveUsJustKeep	Hold on to hope. Someone\nmay still find a way to\nsave Kolima.{end_wait}
+05134	message	You seem honest enough. But\nI can't send children into\nmy lord's chambers on a{page_break}promise.{end_wait}
+05135	message	You don't look afraid.\nMaybe I judged you too\nquickly.{end_wait}
+05136	message	They're young. Do we really\nwant to send them into that\nforest?{end_wait}
+05137	message	Every warrior we've hired\nhas vanished. We may not\nhave another choice.{end_wait}
+05138	message	All right. I'll take you to\nLord McCoy. Stay close.{end_wait}
+05140	MsgBilibinWhere	Where have you been? The\nlord's been asking for you.{end_wait}
+05141	message	McCoy's furious. He says he\nsent for you an hour ago.{end_wait}
+05146	message	You're the first to\nvolunteer in days. Please,\nhelp us if you can.{end_wait}
+05147	message	He asked you to go into\nKolima? I didn't think he'd\nfind anyone willing.{end_wait}
+05148	message	If you go, don't let the\ndust touch you. I saw what\nhappened to the others.{end_wait}
+05149	message	I hope you know what you're\nagreeing to. I wouldn't go\nthere for any price.{end_wait}
+05153	message	I've lost count of the men\nwe sent into the forest.\nNot one has come back.{end_wait}
+05154	message	They don't look like\nsoldiers. But neither did\nsome of the others.{end_wait}
+05171	message	Choose one of these four\ntreasures. It's payment for\ntaking the risk.{end_wait}
+05173	message	The other treasures are\nyours when the job is\nfinished.{end_wait}
+05175	MsgBilibinMatter	Well? What's the trouble?{end_wait}
+05176	message	My lord, more travelers\nhave come asking to see\nyou.{end_wait}
+05177	message	More warriors, are they?\nBring them here.{end_wait}
+05178	message	We sent good men into\nKolima Forest. Not a one\nhas returned.{end_wait}
+05179	message	Did you look these new\nfellows over? Do they know\nwhat they're facing?{end_wait}
+05180	message	Come closer, lad. Let me\nget a look at you.{end_wait}
+05181	message	These are the travelers you\nwanted me to meet?{end_wait}
+05182	message	They're children! What were\nyou thinking?{end_wait}
+05183	message	You expect me to believe\nyou can break a curse that\nhas beaten trained men?{end_now}
+05185	message	No. I won't send you. Leave\nthe palace.{end_wait}
+05188	message	Here. This key will open\nthe barricade to the east.{end_wait}
+05189	message	A key won't make the forest\nsafe. Don't mistake my help\nfor a promise you'll{page_break}return.{end_wait}
+05190	message	He keeps calling us\nchildren. Are you going to\nlet that stop us, {actor_name:1}?{end_now}
+05193	message	So you'll take the job\nafter all?{end_wait}
+05194	message	{actor_name:3}, you don't sound\nconvinced. What's wrong?{end_wait}
+05195	message	Men have turned into trees\nout there. It's not\nsomething we can fight with{page_break}swords.{end_wait}
+05196	message	We can still try. I'm not\nleaving Kolima like that.{end_wait}
+05197	message	You believe we can do it,\ndon't you, {actor_name:1}?{end_now}
+05198	MsgBilibinComeSaidYoud	Come on, {actor_name:1}. You said\nwe'd help. We're still\ngoing, right?{end_now}
+05199	MsgBilibinWellSGoing	If {actor_name:1} is going, I'm\ngoing too. I'm not letting\nyou face it alone.{end_wait}
+05200	message	Well, at least we've\nsettled that.{end_wait}
+05201	message	My lord, they're willing to\ntry. What more can we ask?{end_wait}
+05202	message	Willing? They're barely\ngrown! They don't know what\nthey're offering.{end_wait}
+05203	message	Aye, we're desperate. But I\nwon't send children to die\nin a forest I helped ruin.{end_wait}
+05204	message	Then what about Kolima? Do\nwe simply leave those\npeople as trees?{end_wait}
+05205	message	We must hope one of the\nwarriors we've already\nhired returns.{end_wait}
+05206	message	But we're standing right\nhere. We could still help.{end_wait}
+05207	message	No. I won't have your\ndeaths on my conscience as\nwell.{end_wait}
+05208	message	What if we were going east\nanyway? You can't stop us\nfrom traveling.{end_wait}
+05209	message	You can travel when the\nroads are safe. Until then,\nthe barricade stays shut.{end_wait}
+05210	message	So you're refusing to let\nus go?{end_wait}
+05211	message	Aye, lad. You'll live long\nenough to hate me for it.{end_wait}
+05212	message	I've made my decision.\nCaptain, see them out.{end_wait}
+05213	message	I'm sorry. The audience is\nover. Please leave.{end_wait}
+05214	MsgBilibinNameSorryRejected	Your name was {actor_name:1},\nwasn't it? I'm sorry the\nlord turned you away.{end_wait}
+05215	message	I've never seen Bilibin\nthis frightened. People are\nafraid to leave their{page_break}homes.{end_wait}
+05216	message	Promise me you won't try to\nreach Kolima on your own.{end_now}
+05217	message	Good. There's nothing to be\ngained by losing you too.{end_wait}
+05218	message	Still thinking about that\nforest? You really won't\nlet it go.{end_wait}
+05219	message	The barricade is sturdy,\nbut you might not need a\nkey to get past it.{end_wait}
+05220	message	Ah. I shouldn't have told\nyou that.{end_wait}
+05221	message	I have work to do. Please,\nstay out of trouble.{end_wait}
