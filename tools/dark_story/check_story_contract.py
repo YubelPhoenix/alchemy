@@ -347,7 +347,46 @@ def check_named_scene_exit_wiring() -> None:
     require(inspected > 15, "Exit check did not inspect enough source exits")
 
 
+def check_live_sequential_dialogue() -> None:
+    """Guard the sequential scenes the earlier named-message audit missed.
+
+    These scripts start at one named ID and advance through unnamed messages.
+    A named-context-only audit can pass while most of the on-screen exchange
+    remains vanilla. These checks prove full table coverage, not prose quality.
+    """
+    imil = function(scene("imil.c"), "Imil_MiaSaysFarewellToApprentices")
+    require("Event_SetMessageId(MSGNO(MsgImilMia))" in imil,
+            "Mia's Imil farewell must still start at message 05723")
+    spoken = re.findall(r"FieldEvent_ShowMessageThenWait\\(\\s*([^,]+)", imil)
+    require(len(spoken) == 21,
+            f"Mia's farewell changed: expected 21 spoken lines, got {len(spoken)}")
+
+    farewell_rows = {}
+    for line in (STORY / "phase17_imil_mercury_b.tsv").read_text(encoding="utf-8").splitlines():
+        parts = line.split("\\t", 2)
+        if len(parts) == 3 and parts[0].isdigit():
+            farewell_rows[parts[0]] = parts[2]
+    missing = sorted(f"{n:05d}" for n in range(5723, 5744)
+                     if f"{n:05d}" not in farewell_rows)
+    require(not missing,
+            "Live Imil farewell has unrewritten sequential IDs: " + ", ".join(missing))
+
+    goma = function(scene("goma_cave_entrance.c"), "GomaCaveEntrance_IvanRejoins")
+    require("Event_SetMessageId(MsgGomaNoUsePsynergy)" in goma,
+            "Ivan's Goma Cave rejoin must start at message 05007")
+    ivan_rows = {}
+    for line in (STORY / "phase_goma_ivan_rejoin.tsv").read_text(encoding="utf-8").splitlines():
+        parts = line.split("\\t", 2)
+        if len(parts) == 3 and parts[0].isdigit():
+            ivan_rows[parts[0]] = parts[2]
+    missing = sorted(f"{n:05d}" for n in range(5008, 5025)
+                     if f"{n:05d}" not in ivan_rows)
+    require(not missing,
+            "Live Goma/Ivan rejoin has unrewritten sequential IDs: " + ", ".join(missing))
+
+
 def main() -> None:
+    check_live_sequential_dialogue()
     check_lalivero_first_postvenus_entry()
     check_named_scene_exit_wiring()
     check_mercury_lighthouse_chronology()
