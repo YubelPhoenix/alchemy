@@ -357,13 +357,13 @@ def check_live_sequential_dialogue() -> None:
     imil = function(scene("imil.c"), "Imil_MiaSaysFarewellToApprentices")
     require("Event_SetMessageId(MSGNO(MsgImilMia))" in imil,
             "Mia's Imil farewell must still start at message 05723")
-    spoken = re.findall(r"FieldEvent_ShowMessageThenWait\\(\\s*([^,]+)", imil)
+    spoken = re.findall(r"FieldEvent_ShowMessageThenWait\(\s*([^,]+)", imil)
     require(len(spoken) == 21,
             f"Mia's farewell changed: expected 21 spoken lines, got {len(spoken)}")
 
     farewell_rows = {}
     for line in (STORY / "phase17_imil_mercury_b.tsv").read_text(encoding="utf-8").splitlines():
-        parts = line.split("\\t", 2)
+        parts = line.split("\t", 2)
         if len(parts) == 3 and parts[0].isdigit():
             farewell_rows[parts[0]] = parts[2]
     missing = sorted(f"{n:05d}" for n in range(5723, 5744)
@@ -376,7 +376,7 @@ def check_live_sequential_dialogue() -> None:
             "Ivan's Goma Cave rejoin must start at message 05007")
     ivan_rows = {}
     for line in (STORY / "phase_goma_ivan_rejoin.tsv").read_text(encoding="utf-8").splitlines():
-        parts = line.split("\\t", 2)
+        parts = line.split("\t", 2)
         if len(parts) == 3 and parts[0].isdigit():
             ivan_rows[parts[0]] = parts[2]
     missing = sorted(f"{n:05d}" for n in range(5008, 5025)
