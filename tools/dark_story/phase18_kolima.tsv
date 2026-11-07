@@ -4,7 +4,7 @@
 05239	message	Look at the clothes.\nThese were people.{end_wait}
 05246	message	{text_effect:4}My mind!!!\nSomeone{pause_20_skippable} is attacking my{em_dash}{end_wait}
 05250	message	We have to get out!{end_wait}
-05252	message	Don't come closer!\nYou'll turn into\na tree, too!{end_wait}
+05252	message	No... It's happening\nto us, too!\nWe're turning into trees!{end_wait}
 05257	MsgKolimaWasOurPsynergy	Our Psynergy\nprotected us.{end_wait}
 05258	message	What do you mean?{end_wait}
 05265	message	You're lying, {actor_name:1}!{end_wait}
