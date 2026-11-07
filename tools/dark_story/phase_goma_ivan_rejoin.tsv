@@ -1,0 +1,19 @@
+# Goma Cave Entrance — Ivan rejoins Isaac and Garet after Vault
+# IDs 05008-05024, contiguous event triggered by Move on the ivy-bound stump after the thieves are jailed.
+05008	message	You need that stump\nmoved, don't you?{end_wait}
+05009	message	Those vines are holding\nit in place.{end_wait}
+05010	message	Move won't help while\nthose vines hold it.{end_wait}
+05011	message	Wait... I've got it.{end_wait}
+05012	message	I can clear those vines.\nStand back a little.{end_wait}
+05013	message	Go ahead, {actor_name:3}!{end_wait}
+05014	message	There. That should do it.{end_wait}
+05015	message	Thanks, {actor_name:3}.{pause_20_skippable}\nBut weren't you going\nto Lunpa?{end_wait}
+05016	message	I tried. But I couldn't\nget past the gates.{end_wait}
+05017	message	I still have to find\nMaster Hammet. I haven't\nforgotten him.{end_wait}
+05018	message	But I've been thinking\nabout what I learned\nback in Vault.{end_wait}
+05019	message	When I read your mind,\nI saw what happened\nat Sol Sanctum.{end_wait}
+05020	message	Jenna and Kraden are\nstill out there.\nI can't ignore that.{end_wait}
+05021	message	The Elemental Stars\nhave to be recovered.\nI want to help.{end_wait}
+05022	message	If you'll have me,\nI'd like to come along.{end_wait}
+05023	message	You're going through\nGoma Cave to Bilibin,\naren't you?{end_wait}
+05024	message	Then let's go together.{end_wait}
