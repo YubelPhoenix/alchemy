@@ -1,0 +1,13 @@
+# Active Tret and Laurel dialogue missing from prior Ashfall passes.
+05331	MsgTretMmmmm	Oh... my head...{end_wait}
+05332	message	Those voices... were mine?\nWhat have I done?{end_wait}
+05334	message	You stopped my fury...\nwithout killing me?{end_wait}
+05346	message	Forgive me, Kolima...\nPlease, let them live.{end_wait}
+05356	MsgKolimaPeopleKolimaForgiveMe	Those people had families.\nI took that from them.{end_wait}
+05357	MsgKolimaWaterHermesSeepedIntoTret	The Water of Hermes\nsoaks into Tret's roots.{end_wait}
+05358	MsgKolimaFeelGreatPowerSpreadingThrough	It's reaching my roots...\nThe pain is easing.{end_wait}
+05360	message	Tret? Can you hear me?{end_wait}
+05364	message	Please free Kolima.\nThe villagers are\nstill waiting.{end_wait}
+05365	message	Yes. I know what\nI have to do.{end_wait}
+05370	message	I'll release them now.{end_wait}
+05408	MsgKolimaWho	Who has come so far\ninto these dying woods?{end_wait}
