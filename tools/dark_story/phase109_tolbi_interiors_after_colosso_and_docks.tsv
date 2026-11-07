@@ -1,0 +1,65 @@
+# Tolbi indoors after Colosso: stranded tourists, broken trade routes, Babi Lighthouse, merchants, families, Mind Read and food inspections.
+10669	MsgTolbiInteriorsShesMakingTheWorldRenownedTolbi	Someone is baking Tolbi\npizza. The cheese is\nburning at the edges.{end_wait}
+10670	MsgTolbiInteriorsHeIsBoilingThePastaIt	A pot of pasta is boiling.\nSomeone ought to take it\noff the fire.{end_wait}
+10671	MsgTolbiInteriorsItsTolbiSeafoodPastaWithLots	Seafood pasta with olive\noil and basil. It smells\ngood enough to make you{page_break}hungry.{end_wait}
+09077	MsgTolbiInteriorsNowThatColossoIsOverWeve	We closed our makeshift inn\nwhen Colosso ended. The\nmattresses are finally put{page_break}away.{end_wait}
+09078	MsgTolbiInteriorsWeHadALotOfGuests	We had a busy festival.\nPerhaps we'll use the\nearnings for a little{page_break}holiday.{end_wait}
+09079	MsgTolbiInteriorsSighMakingTheBedsHasWorn	I've made enough beds for a\nlifetime. Now I want\nsomeone else to cook my{page_break}meals for a change.{end_wait}
+09080	MsgTolbiInteriorsIdLoveAVacationButWhere	I'd like to travel, but\nSilk Road is blocked and\nthe ships won't sail. Not{page_break}much of a holiday.{end_wait}
+09081	MsgTolbiInteriorsIRentedMyHouseToA	We rented our home to\nvisitors and tried to leave\ntown. Now the roads are{page_break}closed and the ferries\naren't sailing.{end_wait}
+09082	MsgTolbiInteriorsTheTouristsAreAllInA	The tourists are stranded.\nSomeone says a few strong\nfighters could protect the{page_break}ships. The captain\ndisagrees.{end_wait}
+09083	MsgTolbiInteriorsOnceTheShipsStartSailingAgain	When the ships sail again,\nwe're going straight to\nKalay. We've stayed here{page_break}long enough.{end_wait}
+09084	MsgTolbiInteriorsIHeardOfACaveThat	I heard there's a cave\nleading toward the far side\nof the Karagol. No one I've{page_break}asked knows the way.{end_wait}
+09085	MsgTolbiInteriorsIWasSoMovedByThis	Colosso was incredible. I\nkeep replaying the last\nmatch in my head.{end_wait}
+09086	MsgTolbiInteriorsThatLittleGuyJumpedStraightInto	Did you see that small\nfighter charge those huge\nmen? I didn't think he'd{page_break}last a minute.{end_wait}
+09087	MsgTolbiInteriorsTheWarriorsWhoFoughtInThe	The finalists were\nsomething to see. I don't\nknow how they kept fighting{page_break}after all those trials.{end_wait}
+09088	MsgTolbiInteriorsDaringAndBraveryAreNiceAnd	Watching Colosso was fun,\nbut I'd rather not find out\nhow it feels to be hit that{page_break}hard.{end_wait}
+09089	MsgTolbiInteriorsDidYouKnowMtAlephErupted	Mt. Aleph erupted and roads\nwere ruined. No wonder the\ncrowds were smaller than{page_break}usual.{end_wait}
+09090	MsgTolbiInteriorsMaybeAlephsEruptionCausedThoseSea	What if the eruption drove\nthose creatures into the\nKaragol? Nobody knows where{page_break}they came from.{end_wait}
+09091	MsgTolbiInteriorsTheSparklingStonesThatRainedFrom	Those sparkling stones that\nfell after the eruption\ndidn't look like ordinary{page_break}rock to me.{end_wait}
+09092	MsgTolbiInteriorsIllBetTheMonstersWereFrightened	Maybe the sea monsters were\nfrightened by the eruption.\nFrightened animals can be{page_break}dangerous.{end_wait}
+09093	MsgTolbiInteriorsTheWarriorsSaidTheyWouldRush	They say work on Babi\nLighthouse will pick up now\nthat Colosso is over. I'd{page_break}like to see it finished.{end_wait}
+09094	MsgTolbiInteriorsThereWontBeManyCustomersUntil	Business is quiet after\nColosso. I'll take my stock\non the road until next{page_break}year.{end_wait}
+09095	MsgTolbiInteriorsItBothersMeABitThat	I understand Babi wants a\nlighthouse, but why build\nit so far away in Gondowan?{end_wait}
+09096	MsgTolbiInteriorsThereArentManyMerchantsAtThe	There aren't many merchants\nnear Babi Lighthouse yet. I\ncould do well there if I{page_break}arrived early.{end_wait}
+09097	MsgTolbiComeWayKalay	Did you come here from\nKalay?{end_now}
+09100	MsgTolbiInteriorsEvenWithoutTheShipsICould	I'd make enough if they\nreopened Silk Road. Until\nthen, all my goods are{page_break}stuck here.{end_wait}
+09101	MsgTolbiRightOneWell	You're {actor_name:1}, aren't\nyou? I saw you in the\nfinals. I never expected{page_break}someone your size to do so\nwell.{end_wait}
+09102	MsgTolbiInteriorsDidAllTheWarriorsWhoFought	Did all the finalists\nbecome Babi's guards? I\nthought only the winners{page_break}were offered positions.{end_wait}
+09103	MsgTolbiWasntAbleWatch	I missed the finals. Mother\nsays a warrior named\n{actor_name:1} did something{page_break}remarkable.{end_wait}
+09104	MsgTolbiInteriorsImGonnaWatchTheFinalsNext	Next year I'm going to\nwatch every match. I don't\ncare how early I have to{page_break}get up.{end_wait}
+09105	MsgTolbiInteriorsIThoughtWedHaveSomeFree	I thought we'd rest once\nColosso ended, but the\nKalay tourists are back.{page_break}The ships won't take them\nhome.{end_wait}
+09106	MsgTolbiInteriorsTheSpectatorsFromTheEastCant	The visitors from the east\ncan't get back across the\nKaragol. Some have no money{page_break}left for rooms.{end_wait}
+09107	MsgTolbiInteriorsItsBusyAllDayEveryDay	I worked harder after\nColosso than during it.\nEveryone who's stranded{page_break}seems to have come here.{end_wait}
+09108	MsgTolbiHeyWhatsThis	Hey, what's that over\nthere?{end_wait}
+09113	MsgTolbiHeeHeeLook	Me? Excited? You must be\njoking.{end_now}
+09116	MsgTolbiHello	Oh. Hello there.{end_wait}
+09117	MsgTolbiHoHumFine	I'm fine. Just tired,\nthat's all.{end_wait}
+09118	MsgTolbiLookLikeWarrior	You look like a warrior.\nWere you in Colosso, or\nonly there to watch?{end_now}
+09121	MsgTolbiGrrrChefInBadMood	The chef missed Colosso,\nand now he takes his anger\nout on everyone in the{page_break}kitchen.{end_wait}
+09122	MsgTolbiInteriorsIWentToThePortBut	I tried to go home, but the\nport has stopped sailing.\nAfter the crossing here, I{page_break}almost can't blame them.{end_wait}
+09123	MsgTolbiInteriorsColossoHasEndedButWeStill	Colosso's over, but we're\nstill trapped on this side\nof the Karagol. Would they{page_break}sail if we offered to row?{end_wait}
+09124	MsgTolbiHeWontSailShipEven	We offered to help row, and\nthe captain still won't\nsail? What more can he{page_break}want?{end_wait}
+09128	MsgTolbiGrrrScamWhyWontThey	We paid to cross the\nKaragol, and now they won't\ntake us back. How is that{page_break}fair?{end_wait}
+09129	MsgTolbiInteriorsOnceThisGuyGetsMadTheres	When that man gets angry,\nit's better to leave him\nalone until he runs out of{page_break}words.{end_wait}
+09130	MsgTolbiInteriorsIWonderIfThisReallyIs	They called this their best\nroom. I would hate to see\nthe others.{end_wait}
+09131	MsgTolbiInteriorsTolbiGetsSoBoringOnceThe	Tolbi is dull now that\nColosso is done. I want to\ngo home.{end_wait}
+09132	MsgTolbiWarriorRemember	You! I remember you from\nbefore Colosso. Did you end\nup fighting?{end_now}
+09135	MsgTolbiInteriorsIGotToSeeColossoSo	I saw Colosso. If I have to\nwait a few more days to get\nhome, I can live with it.{end_wait}
+09136	MsgTolbiInteriorsSinceTheShipsArentSailingThe	The harbor is full of\npeople waiting for ships\nthat won't sail.{end_wait}
+09137	MsgTolbiInteriorsHeeHeeItsGreatTheInns	The inns are still packed\neven after Colosso. The\nowners look delighted.{end_wait}
+09138	MsgTolbiInteriorsEveryoneIsWorkingOnBabiLighthouse	Everyone's building Babi\nLighthouse instead of\nfixing the road. These{page_break}visitors could be stranded\nfor weeks.{end_wait}
+09139	MsgTolbiHehHehSheJustHid	She hid whatever she found\nbehind that pile of\nrubbish. I don't think she{page_break}saw me watching.{end_wait}
+09140	MsgTolbiThingFoundDefinitelySameAs	The thing I found looks\njust like the one that man\nshowed me. I hope he{page_break}doesn't ask for it back.{end_wait}
+09141	MsgTolbiInteriorsGrrrIDidntGetToSee	I missed every match. The\nothers won't stop talking\nabout the finals, and I{page_break}can't bear hearing it.{end_wait}
+09142	MsgTolbiInteriorsHeyChefSoWhatIfYou	Chef, enough! We know you\nmissed Colosso. You're not\nthe only one who had to{page_break}work!{end_wait}
+09143	MsgTolbiInteriorsITriedGoingToTheEastern	I tried the eastern cave.\nIt's blocked, just as the\nguards warned. I had to{page_break}turn back.{end_wait}
+09144	MsgTolbiInteriorsYoudThinkYouCouldGetThrough	That cave east of Gondowan\nPassage is full of\nboulders. Without a way to{page_break}move them, you won't get\nthrough.{end_wait}
+09145	MsgTolbiInteriorsYoureSayingIfWeRowWe	We paid for passage. Now\nthey want us to row the\nship ourselves? I hope{page_break}that's a joke.{end_wait}
+09146	MsgTolbiInteriorsTheCrewIsSayingThatIf	The crew says we might sail\nif everyone helps row. My\nhusband has been{page_break}complaining ever since.{end_wait}
+09147	MsgTolbiInteriorsImSickOfStayingAtThis	I can't stand another night\nat this inn. I'd pay for a\npalace room if they'd let{page_break}me.{end_wait}
+09148	MsgTolbiInteriorsIfMomHadJustBoughtMe	If Mother bought me a\nsouvenir, at least I'd have\nsomething to do while we{page_break}wait.{end_wait}
+09149	MsgTolbiInteriorsThatVoyageAcrossTheSeaWas	That voyage was frightening\nenough. I won't complain if\nwe stay on land for a{page_break}while.{end_wait}
+09150	MsgTolbiInteriorsNoMatterWhatHappensImComing	I'm coming back for Colosso\nnext year, even if I have\nto walk the whole way!{end_wait}
+09151	MsgTolbiShipsArentGoing	If the ships aren't\nsailing, you might as well\nenjoy Tolbi while you're{page_break}here.{end_wait}
+09152	MsgTolbiInteriorsYouAllGotToSeeColosso	You all saw Colosso. Stop\ncomplaining! I missed the\nentire festival and still{page_break}had to work.{end_wait}
