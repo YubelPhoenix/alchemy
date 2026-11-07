@@ -162,10 +162,6 @@ void BattleBackground_Init(void) {
 #define HEART_CRACK_CORE 120
 /// The sky and floor are the entries below the ripples' (and the tile seams').
 #define HEART_SKY_ENTRIES 112
-/// Rain on the floor: four palette entries, each a ring size of the ripples
-/// (tools/dark_story/build_heart_floor.py); one is lit at a time.
-#define HEART_RIPPLE_FIRST 124
-#define HEART_RIPPLE_FRAMES 5
 /// Lightning: every HEART_LIGHTNING_PERIOD frames (3 seconds) a bolt strikes
 /// in the distance, at a scrambled moment inside the period; every fourth
 /// strike is a big one that flashes the whole sky. It reads gVBlankCount, so it needs no
@@ -209,15 +205,6 @@ void Heart_StepBackdropGlow(void) {
   }
   if (scale != Q16_ONE)
     return;
-  {
-    // the ring size that is lit now, and the other three at the floor's colour
-    s32 lit = (gVBlankCount / HEART_RIPPLE_FRAMES) & 3;
-
-    for (k = 0; k < 4; k++) {
-      BATTLE_BG_PALETTE[HEART_RIPPLE_FIRST + k] =
-          k == lit ? 0x6f5b : battle->palette[HEART_RIPPLE_FIRST + k];
-    }
-  }
   {
     // two flickering flashes: up fast, down slow, a pause, then a smaller one
     static const u8 strike[] = {10, 22, 28, 20, 12, 6, 0, 0, 0, 12, 18, 10, 4};

@@ -71,12 +71,10 @@ for r in range(floor_rows):
         row = row * (1 - 0.55 * m) + np.array([120.0, 88.0, 150.0]) * 0.55 * m
     out[HORIZON + r] = row
 
-# Glowing tile seams and rain ripples. They are painted after
+# Glowing tile seams. They are painted after
 # the floor is quantised, with palette entries reserved for them; the battle
 # code (background.c, Heart_StepBackdropGlow) animates them:
 #   120-123  the tile seams, four phases from the horizon outward
-#   124-127  rain ripples on the floor: four ring sizes in turn, each ripple
-#            starting at its own point in the cycle
 NQ = 112
 CORE = 120
 img = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
@@ -90,29 +88,6 @@ for y in range(HORIZON + 3, H):
     idx[y, xs] = CORE + ph
 for k in range(4):
     pal[(CORE + k) * 3:(CORE + k) * 3 + 3] = [200, 72, 248]
-# Rain landing on the glass: small expanding rings. A ripple draws its four
-# ring sizes (stage 0 to 3) with entries 124 + (stage + start) % 4; the game lights
-# one of those four entries at a time, so the ripple shows a different ring
-# size as it goes round, and ripples with different starts are out of step.
-RIP = 124
-floor_mean = out[HORIZON + 10:H].reshape(-1, 3).mean(axis=0)
-for k in range(4):
-    pal[(RIP + k) * 3:(RIP + k) * 3 + 3] = [int(v * 0.95) for v in floor_mean]
-rr = np.random.default_rng(21)
-for n in range(46):
-    cy = int(rr.integers(HORIZON + 6, H - 3))
-    cx = int(rr.integers(0, W))
-    start = int(rr.integers(0, 4))
-    depth = (cy - HORIZON) / float(H - HORIZON)
-    for stage in range(4):
-        a = 1.5 + stage * (1.2 + 2.2 * depth)       # wider rings near the viewer
-        b = max(0.6, a * (0.28 + 0.2 * depth))
-        entry = RIP + (stage + start) % 4
-        for ang in np.linspace(0, 2 * np.pi, int(8 + a * 6), endpoint=False):
-            x = int(round(cx + a * np.cos(ang))) % W
-            y = int(round(cy + b * np.sin(ang)))
-            if HORIZON + 3 <= y < H and idx[y, x] < 112:
-                idx[y, x] = entry
 q = Image.fromarray(idx.astype(np.uint8), "P")
 # the graphics encoder only takes exact RGB555 colours (multiples of 8)
 pal = [min(248, int(round(v / 8.0)) * 8) for v in pal]

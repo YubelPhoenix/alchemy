@@ -46,7 +46,7 @@ jobs:
           from pathlib import Path
           sprite = Image.open('games/tbs/src/graphics/monster/purple_beast.png')
           assert sprite.mode == 'P', sprite.mode
-          assert sprite.size == (64, 640), sprite.size
+          assert sprite.size == (64, 768), sprite.size
           used = set(sprite.getdata())
           # Battle monsters are 8bpp raw indices into the shared sprite
           # palette, so the sheet must carry exactly that palette.
