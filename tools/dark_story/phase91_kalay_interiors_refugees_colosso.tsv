@@ -1,0 +1,60 @@
+# Kalay interiors: refugees from Gondowan, trade families, shops, inns, Colosso party, and Mind Read.
+06800	MsgKalayInteriorsICameHereToSpreadGood	I came to spread goodwill,\nbut Kalay's people seem to\nhave learned that from{page_break}Hammet already. There's\nmuch I could learn here.{end_wait}
+06847	MsgKalayInteriorsImShockedToHearTheRighteous	Lunpa's family used to help\nthe poor, even if they were\nthieves. Now I hear his{page_break}grandson is terrorizing\npeople.{end_wait}
+06848	MsgKalayInteriorsLunpaWasAKindThiefHis	Lunpa stole from the\nwealthy and helped people\nwho had nothing. His son{page_break}Donpa followed him. Dodonpa\nseems to have forgotten\nwhy.{end_wait}
+06849	MsgKalayInteriorsTheRegionNorthOfVaultWas	The road north of Vault\nused to be safe. These days\nI wouldn't travel it alone.{end_wait}
+06850	MsgKalayInteriorsLunpasReputationIsVeryBadNowadays	Lunpa once had a good name.\nDodonpa has done a fine job\nruining it.{end_wait}
+06851	MsgKalayInteriorsSomehowTheNorthHasBecomeThe	Everyone talks about the\nnorth now. Three years ago,\nno one here gave it a{page_break}thought.{end_wait}
+06852	MsgKalayInteriorsAMerchantFromVaultHadBeen	A merchant from Vault was\nwarning people about the\nnorth. Then the soldiers{page_break}brought him to Hammet's\npalace.{end_wait}
+06853	MsgKalayInteriorsThreeYearsAgoThievesRaidedMt	Three years ago, strangers\nraided Mt. Aleph. Since\nthen, trouble keeps coming{page_break}from the north.{end_wait}
+06854	MsgKalayInteriorsTheySayOtherNorthernPartsAre	Everyone says the northern\nroads are dangerous. We\nused to think Kalay was{page_break}beyond all that.{end_wait}
+06855	MsgKalayInteriorsNoOneIsAllowedToGo	The bridge to Vault is\nfixed, but we still aren't\nallowed through. That{page_break}doesn't sound like a road\nrepair problem to me.{end_wait}
+06856	MsgKalayInteriorsIDoNotWantMySon	My son thinks I'm too\nstrict. He hasn't seen what\nthe roads are like now.{page_break}Lady Layana is right to be\ncareful.{end_wait}
+06857	MsgKalayInteriorsImAnAdultNowIDont	I'm old enough to work and\nearn money. I should be old\nenough to choose where I{page_break}travel.{end_wait}
+06858	MsgKalayInteriorsIDontCareHowMySon	Let him call me unfair. I'd\nrather have an angry son\nthan no son at all.{end_wait}
+06859	MsgKalayInteriorsTheMostImportantSkillForA	A good merchant knows a\nfine blade from a poor one\nbefore he sets a price.{end_wait}
+06860	MsgKalayInteriorsMySonReceivedHisKnackFor	My son learned to bargain\nfrom Lord Hammet. Now he\ntries it on me at supper.{end_wait}
+06861	MsgKalayInteriorsTheMostImportantThingIsNot	Never cheat a customer.\nHammet taught me that.\nPeople remember who treated{page_break}them fairly, and they come\nback.{end_wait}
+06862	MsgKalayInteriorsMySonIsVeryTightWith	My son counts every coin.\nEven when I ask him to buy\ndinner, he wants to know{page_break}what he'll get in return.{end_wait}
+06871	MsgKalayGoingTolbiAlso	Are you going to Tolbi too?{end_now}
+06874	MsgKalayInteriorsEveryoneIsGoingToTolbiTo	Everyone at the inn is\ntalking about Colosso.\nIt'll be strange when they{page_break}all leave.{end_wait}
+06875	MsgKalayInteriorsIveSignedOnForATour	I've paid for the Tolbi\ntour. I've been saving all\nyear. Now I can barely keep{page_break}still.{end_wait}
+06876	MsgKalayInteriorsTheColossoGladiatorsAreAllStrong	Have you seen the Colosso\nfighters? Those men are\nbuilt like walls.{end_wait}
+06877	MsgKalayPleaseFinishEatingIfTaking	If you're on the tour,\nfinish eating. We can't\nkeep the whole group here{page_break}for one last bite.{end_wait}
+06878	MsgKalayInteriorsEveryoneLooksForwardToGoingTo	Tolbi has markets, inns,\nand fine sights. I wish\npeople talked about those{page_break}as much as Colosso.{end_wait}
+06879	MsgKalayInteriorsSurelyLordHammetWillPopUp	Lord Hammet loves Colosso.\nI wonder if he'll make it\nto Tolbi this year.{end_wait}
+06880	MsgKalayInteriorsIWouldHaveEnteredColossoIf	I might have entered\nColosso when I was younger.\nThese knees would make a{page_break}poor showing now.{end_wait}
+06881	MsgKalayInteriorsManyOfTheGuestsHereSeem	Another group heading to\nTolbi? That festival keeps\nour rooms full.{end_wait}
+06882	MsgKalayInteriorsArentYouGoingToColossoYou	You look like fighters. I\nbet you've thought about\nentering Colosso at least{page_break}once.{end_wait}
+06883	MsgKalayDoKnowAboutContinentSouth	Do you know much about the\ncontinent south of Tolbi?{end_now}
+06886	MsgKalayInteriorsIBetterGetReadyTheColosso	We leave for Tolbi shortly.\nI've checked my bags twice,\nand I've still forgotten{page_break}something.{end_wait}
+06887	MsgKalayInteriorsWeFledFromGondowanToThe	We fled Gondowan and left\nLalivero behind. I never\nimagined we'd have to go so{page_break}far to feel safe.{end_wait}
+06888	MsgKalayInteriorsLaliveroWhereImFromIsThe	Lalivero is bigger than\nmost towns on Gondowan.\nKalay is busy enough, but I{page_break}still miss home.{end_wait}
+06889	MsgKalayInteriorsIfYouAreEnteringColossoYou	Thinking of entering\nColosso? Too bad for you.\nBoth of us are competing{page_break}this year.{end_wait}
+06890	MsgKalayInteriorsWereSoStrongMakingTheFinals	Ouranos and I will reach\nthe finals. Then we'll\nsettle which of us is{page_break}stronger.{end_wait}
+06891	MsgKalayInteriorsHesAShrewdMerchantIfHe	A clever merchant sells\nmore than goods. Look at\nthis tour. People are{page_break}paying just to travel\ntogether.{end_wait}
+06892	MsgKalayInteriorsEveryYearEveryoneGoesToTolbi	Every year the whole town\nruns off to Tolbi. Someone\nhas to stay and keep the{page_break}shops open.{end_wait}
+06893	MsgKalayInteriorsJoiningATourGroupIsThe	I paid for the tour because\nI don't know the roads. Let\nsomeone else worry about{page_break}where to sleep.{end_wait}
+06894	MsgKalayInteriorsIWonderWhichWarriorWillWin	I've been guessing who'll\nwin Colosso all week. I\nnever pick the right{page_break}fighter.{end_wait}
+06895	MsgKalayInteriorsItsBusinessSoYouCantHelp	Most of these tourists\naren't used to walking all\nday. I'll be glad when{page_break}we're aboard the ship.{end_wait}
+06896	MsgKalayInteriorsImExhaustedFromPreparingThisTour	I've counted the tickets,\npacked the bags, and\nanswered the same questions{page_break}all morning. I need a\nholiday myself.{end_wait}
+06897	MsgKalayInteriorsIWasSoExcitedICouldnt	This is my first Colosso. I\nwas so excited I barely\nslept. Don't tell the{page_break}others.{end_wait}
+06898	MsgKalayInteriorsMyAnimalInstinctsStartWakingUp	The moment I see a fight, I\nwant to jump in. My wife\nsays that's why she won't{page_break}let me enter.{end_wait}
+06899	MsgKalayInteriorsColossoIsSoCommonWhatsSo	All this fuss over men\nwrestling and swinging\nswords. There are better{page_break}ways to spend a day.{end_wait}
+06900	MsgKalayInteriorsImGoingToSignUpFor	I'm entering Colosso as\nsoon as I reach Tolbi. I'll\nworry about the other{page_break}fighters when I see them.{end_wait}
+06901	MsgKalayInteriorsPeopleFromTheContinentSouthOf	People have come here from\nGondowan, far to the south.\nI wonder what the journey{page_break}cost them.{end_wait}
+06902	MsgKalayInteriorsImPrettyExcitedBecauseThisIs	I've never seen Tolbi\nbefore. Everyone keeps\ntelling me how grand it is.{page_break}I hope they're right.{end_wait}
+06903	MsgKalayInteriorsIFledAllThisWayNow	I can speak my mind here\nwithout being punished. I\ndidn't think that would{page_break}ever feel ordinary.{end_wait}
+06904	MsgKalayInteriorsItLooksLikeColossoWillSoon	Colosso starts soon, and\neveryone is rushing off. I\ncan't see why a festival{page_break}calls for this much\ntrouble.{end_wait}
+06905	MsgKalayInteriorsIHavePowerAndSeanHas	I'm stronger than Sean, and\nhe's faster than me. We'll\nsee which matters more in{page_break}Colosso.{end_wait}
+06906	MsgKalayInteriorsWeAreTheToughestOfAll	Nobody trains as hard as we\ndo. You can tell the other\nfighters that.{end_wait}
+06907	MsgKalayOurInnFeelsEmptyNow	The tour group is gone. I\nnever thought I'd miss the\nnoise, but this inn feels{page_break}empty now.{end_wait}
+06908	MsgKalayInteriorsEvenOurChefLeftSoWe	Even our chef went to\nColosso. There's hardly\nanyone left to feed, but I{page_break}still have to keep the inn\nrunning.{end_wait}
+06909	MsgKalayInteriorsUhOhHesStillHereEven	Wait, wasn't he with the\ntour? He's going to be\nfurious when he realizes{page_break}they left without him.{end_wait}
+06910	MsgKalayInteriorsWeCameHereToEscapeThe	We came here to get away\nfrom trouble in the south.\nNow everyone is leaving{page_break}town for a festival. I\ndon't understand it.{end_wait}
+06911	MsgKalayInteriorsWeEscapedFromTheNortheasternRegion	We fled the northeast of\nGondowan. It's quiet here\nnow. I can finally hear{page_break}myself think.{end_wait}
+06912	MsgKalayInteriorsIdHaveGoneOnTheColosso	If I'd known trade would be\nthis slow, I'd have joined\nthe tour. At least I'd have{page_break}seen Tolbi.{end_wait}
+06913	MsgKalayInteriorsEvenIfMyHusbandWantedTo	My husband would spend\nevery coin in Tolbi if I\nlet him. Someone has to{page_break}keep him sensible.{end_wait}
+06914	MsgKalayInteriorsICantSeemToRelaxNow	I wanted the inn to be\npeaceful. Now it's so quiet\nI keep listening for{page_break}voices.{end_wait}
+06915	MsgKalayInteriorsIWonderWhatColossoIsLike	Everyone talks about\nColosso. I didn't leave\nLalivero and cross the sea{page_break}to chase a festival.{end_wait}
+06916	MsgKalayInteriorsIWasSoScaredComingTo	The trip from Lalivero\nfrightened me. Kalay still\nfeels strange, but I can{page_break}finally sleep without fear.{end_wait}
