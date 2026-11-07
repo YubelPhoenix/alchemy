@@ -1,0 +1,29 @@
+stage	key	speaker	line1	line2	line3
+arrival	gate	Sign	ASTER	Please come home.	
+arrival	greeter	Woman	You came back.	The roads are safe now.	
+arrival	greeter_repeat	Woman	Have we met?	You look familiar.	
+arrival	inn	Innkeeper	Four rooms. All empty.	We only need three.	
+arrival	well	Boy	The well's gone dry.	Don't look down.	
+arrival	memorial	Memorial	FOR THOSE WHO RETURNED	Names have been erased.	
+arrival	elder	Elder	Aster has always been here.	Ask anyone.	
+arrival	elder_second	Elder	We built this place	after the mountain fell.	
+arrival	home	Resident	I remember Vale.	Did you hear the rain?	
+fracture	gate	Sign	ASTER	You never came home.	
+fracture	greeter	Woman	You came back.	No. You never left.	
+fracture	inn	Innkeeper	Four rooms. All empty.	There were five of you.	
+fracture	well	Boy	The well is full now.	Nobody filled it.	
+fracture	memorial	Memorial	FOR THOSE WHO RETURNED	ISAAC	
+fracture	elder	Elder	We built this town	before any of us were born.	
+fracture	home	Resident	Jenna was here yesterday.	She said she knew you.	
+fracture	duplicate_a	Woman	I saw myself leave.	She took the north road.	
+fracture	duplicate_b	Woman	I never left.	Don't believe her.	
+fracture	sealed_door	Door	Something scratches inside.	It stops when you move.	
+fracture	northern_view	Isaac?	Mother's waiting.	You took too long.	
+revelation	other_isaac	Other Isaac	You got to keep her.	I remember losing her.	
+revelation	other_isaac_2	Other Isaac	Which one of us	came from the wrong world?	
+revelation	ash_echo	Jenna's voice	I know this road.	I know who lived here.	
+revelation	ash_echo_2	Jenna's voice	You call it a nightmare.	They called it home.	
+revelation	memorial	Memorial	FOR THOSE WHO RETURNED	ISAAC	JENNA
+revelation	elder	Elder	The town isn't dying.	It's remembering both.	
+revelation	gate	Sign	ASTER	Please don't come home.	
+revelation	exit	Woman	You can leave.	That doesn't mean	you were never here.
