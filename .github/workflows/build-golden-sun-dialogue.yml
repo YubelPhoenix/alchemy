@@ -15,6 +15,7 @@ on:
       - 'games/tbs/src/graphics/sprite/layout.tsv'
       - 'tools/dark_story_rewrite.py'
       - 'tools/dark_story/*.tsv'
+      - 'tools/dark_story/audit_live_dialogue.py'
       - 'tools/dark_story/build_heart_art.py'
       - 'tools/dark_story/check_story_contract.py'
       - '.github/workflows/build-golden-sun-dialogue.yml'
@@ -45,6 +46,9 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             build-essential git curl patch binutils-arm-none-eabi \
             pkg-config libpng-dev libutf8proc-dev ccache
+
+      - name: Audit source-referenced town dialogue before rewrite
+        run: python3 tools/dark_story/audit_live_dialogue.py --json "$RUNNER_TEMP/ashfall-live-dialogue.json"
 
       - name: Apply and validate the dark-story dialogue pass
         run: python3 tools/dark_story_rewrite.py
@@ -167,5 +171,6 @@ jobs:
           path: |
             ${{ runner.temp }}/dark-vale.ips
             ${{ runner.temp }}/ashfall-build.txt
+            ${{ runner.temp }}/ashfall-live-dialogue.json
           if-no-files-found: error
           retention-days: 14
