@@ -16,6 +16,7 @@
 
 /// Set a switch to 0 to give that boss back the stock AI.
 #define BOSS_AI_KEGARE 1
+#define BOSS_AI_ASH_JENNA 1
 
 /// Unit.aiActionIndex bits no boss may use: the stock action cycle's
 /// (BattleAIState) and Ash Jenna's rush flags (AI_PUNISHED, AI_RUSH).
@@ -272,18 +273,284 @@ static s32 BossAI_KegareChooseTarget(const s32 *unitIds,
 #endif
 }
 
+/// What a boss can see of the party at the start of a round, which is the
+/// result of everything that has already happened.
+struct BossPartyView {
+  s32 alive;       ///< members not down
+  s32 down;        ///< members down
+  s32 unavailable; ///< members down, asleep or stunned
+  s32 haunted;     ///< living members with an evil spirit on them
+  s32 buffed;      ///< living members with a raised Attack, Defense or
+                   ///< Resistance stage
+  s32 hp;          ///< all members' HP
+  s32 hpMax;       ///< all members' maximum HP
+};
+
+/// Fills a view of the party from the battle's lists and units.
+static void BossAI_ViewParty(struct BossPartyView *view) {
+  struct BattleWork *work = gBattleWork;
+  struct Unit *member;
+  s32 index;
+
+  view->alive = view->down = view->unavailable = view->haunted = 0;
+  view->buffed = view->hp = view->hpMax = 0;
+  for (index = 0; work->partyUnits[index] != BATTLE_UNIT_LIST_END; index++) {
+    if (work->partyUnits[index] == BATTLE_UNIT_REMOVED)
+      continue;
+    member = Unit_GetFar(work->partyUnits[index]);
+    view->hp += member->hp;
+    view->hpMax += member->hpMax;
+    if (member->hp == 0) {
+      view->down++;
+      view->unavailable++;
+      continue;
+    }
+    view->alive++;
+    if (member->sleep != 0 || member->stun != 0)
+      view->unavailable++;
+    if (member->haunt != 0)
+      view->haunted++;
+    if (member->attackStage > 0 || member->defenseStage > 0 ||
+        member->resistanceStage > 0)
+      view->buffed++;
+  }
+}
+
+/// Aims away from the party place the boss aimed at last, when it has a
+/// choice: one of the other candidates, at random. Returns the index, or
+/// BOSS_AIM_STOCK when there is nothing to avoid.
+static s32 BossAI_AimAwayFromLast(struct Unit *user, const s32 *targetPositions,
+                                  s32 count) {
+  s32 last = (s32)((user->aiActionIndex >> BOSS_LAST_AIM_SHIFT) & 7) - 1;
+  s32 others[6];
+  s32 otherCount = 0;
+  s32 index;
+
+  if (last < 0 || count < 2)
+    return BOSS_AIM_STOCK;
+  for (index = 0; index < count && otherCount < 6; index++) {
+    if ((targetPositions[index] & 7) != last)
+      others[otherCount++] = index;
+  }
+  if (otherCount == 0)
+    return BOSS_AIM_STOCK;
+  return others[(Random16() * otherCount) >> 16];
+}
+
+/// Records the party place a boss just aimed at, for the next aim.
+static u32 BossAI_RememberAim(u32 memory, struct BattleAction *request) {
+  memory &= ~BOSS_LAST_AIM_BITS;
+  if ((request->target & 0x180) == 0x100)
+    memory |= (u32)(((request->target & 7) + 1) & 7) << BOSS_LAST_AIM_SHIFT;
+  return memory;
+}
+
+/// Ash Jenna's places in her action list in Vale (enemies.c).
+enum AshSlot {
+  ASH_ERUPTION = 0,
+  ASH_DEMON_FIRE = 1,
+  ASH_FIRE_BLESSING = 2,
+  ASH_MELTDOWN = 3,
+  ASH_ATTACK = 4,
+  ASH_INFERNO = 5,
+  ASH_SUPERNOVA = 6,
+  ASH_MAGMA_STORM = 7
+};
+
+/// Ash Jenna's memory in Unit.aiActionIndex, read at the start of each round
+/// from what the party looks like then (never from commands chosen): bit
+/// 15 a Meltdown this round | 14..13 rounds in a row with a big move | 12 a big
+/// move this round | 11 the party is hurt | 10 the party has a raised stat |
+/// 9 the party's HP rose since the last round | 8..5 the party's HP in
+/// sixteenths at the last round | 4 the first round has passed.
+/// Her rush flags (bits 30 and 31) and the stock cycle's bits are not here.
+#define ASH_STARTED_BIT (1u << 4)
+#define ASH_HP_SHIFT 5
+#define ASH_RECOVERED_BIT (1u << 9)
+#define ASH_BUFFED_BIT (1u << 10)
+#define ASH_HURT_BIT (1u << 11)
+#define ASH_BIG_THIS_ROUND_BIT (1u << 12)
+#define ASH_BIG_ROUNDS_SHIFT 13
+#define ASH_MELTDOWN_THIS_ROUND_BIT (1u << 15)
+#define ASH_BITS (0xfff0u)
+STATIC_ASSERT((ASH_BITS & BOSS_RESERVED_BITS) == 0);
+STATIC_ASSERT((ASH_BITS & BOSS_LAST_AIM_BITS) == 0);
+/// The party's HP counts as risen when it gains this many sixteenths.
+#define ASH_RECOVERY_STEP 3
+/// Out of 256: how often she keeps the stock choice.
+#define ASH_MISTAKE_CHANCE 64
+/// Out of 256: how often she answers recovery or a buff with pressure.
+#define ASH_REACT_CHANCE 150
+/// After this many rounds in a row with a big move, one round has none.
+#define ASH_BIG_ROUNDS_LIMIT 2
+
+/// Ash Jenna in Vale, or 0.
+static struct Unit *BossAI_FindAsh(void) {
+  s32 index;
+  s32 unitId;
+  struct Unit *unit;
+
+  for (index = 0; gBattleWork->enemyIds[index] != BATTLE_UNIT_LIST_END;
+       index++) {
+    unitId = gBattleWork->enemyIds[index];
+    if (unitId == BATTLE_UNIT_REMOVED)
+      continue;
+    unit = Unit_GetFar(unitId);
+    if (unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
+      return unit;
+  }
+  return 0;
+}
+
+/// Whether the slot is one of her big moves (power 120 and up).
+static s32 BossAI_AshIsBig(s32 slot) {
+  return slot == ASH_FIRE_BLESSING || slot == ASH_INFERNO ||
+         slot == ASH_SUPERNOVA || slot == ASH_MAGMA_STORM;
+}
+
+/// Ash Jenna's view of the party at the start of a round, and her per-round
+/// memory cleared.
+static void BossAI_AshBeginRound(void) {
+#if BOSS_AI_ASH_JENNA
+  struct Unit *ash = BossAI_FindAsh();
+  struct BossPartyView view;
+  u32 memory;
+  u32 bigRounds;
+  s32 bucket;
+  s32 previous;
+
+  if (ash == 0)
+    return;
+  BossAI_ViewParty(&view);
+  bucket = view.hpMax > 0 ? (view.hp * 15) / view.hpMax : 0;
+  memory = ash->aiActionIndex;
+  previous = (memory >> ASH_HP_SHIFT) & 15;
+  bigRounds = (memory >> ASH_BIG_ROUNDS_SHIFT) & 3;
+  if (memory & ASH_BIG_THIS_ROUND_BIT) {
+    if (bigRounds < 3)
+      bigRounds++;
+  } else {
+    bigRounds = 0;
+  }
+  memory &= ~ASH_BITS;
+  memory |= ASH_STARTED_BIT | ((u32)bucket << ASH_HP_SHIFT) |
+            (bigRounds << ASH_BIG_ROUNDS_SHIFT);
+  if ((ash->aiActionIndex & ASH_STARTED_BIT) &&
+      bucket >= previous + ASH_RECOVERY_STEP)
+    memory |= ASH_RECOVERED_BIT;
+  if (view.buffed != 0)
+    memory |= ASH_BUFFED_BIT;
+  if (view.hp * 2 < view.hpMax)
+    memory |= ASH_HURT_BIT;
+  ash->aiActionIndex = memory;
+#endif
+}
+
+/// Records Ash Jenna's turn when it was really staged. The punish turn
+/// (Annihilation, her summon-rush answer) is not recorded at all.
+static void BossAI_AshNoteTurn(struct Unit *unit, struct BattleAction *request) {
+#if BOSS_AI_ASH_JENNA
+  struct EnemyDefinition *enemy =
+      (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
+  u32 memory;
+  s32 abilityId;
+  s32 slot;
+
+  if (request->command != COMMAND_ENEMY_ABILITY &&
+      request->command != COMMAND_PSYNERGY &&
+      request->command != COMMAND_ATTACK)
+    return;
+  abilityId = request->parameter;
+  if (request->command == COMMAND_ATTACK)
+    abilityId = ABILITY_ATTACK;
+  if (abilityId == ABILITY_ANNIHILATION)
+    return;
+  memory = unit->aiActionIndex;
+  for (slot = 0; slot < 8; slot++) {
+    if (enemy->abilities[slot] != abilityId)
+      continue;
+    if (BossAI_AshIsBig(slot))
+      memory |= ASH_BIG_THIS_ROUND_BIT;
+    if (slot == ASH_MELTDOWN)
+      memory |= ASH_MELTDOWN_THIS_ROUND_BIT;
+    break;
+  }
+  unit->aiActionIndex = BossAI_RememberAim(memory, request);
+#endif
+}
+
+/// Ash Jenna's pick. On the first pick of a turn she answers what she has
+/// seen: when the party's HP has risen or a stat is raised, she presses with
+/// Meltdown (Defense down) or Demon Fire; a quarter of the time she keeps the
+/// stock choice. Every pick then obeys her limits: one big move a round and a
+/// calmer round after two with one, no Inferno or Supernova on a party under
+/// half its HP, one Meltdown a round, and no Demon Fire once half the living
+/// party is already haunted. A move the limits refuse becomes a lighter one.
+/// Her punish pick (Annihilation) never reaches here.
+static s32 BossAI_AshChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
+#if BOSS_AI_ASH_JENNA
+  u32 memory = unit->aiActionIndex;
+  u32 bigRounds = (memory >> ASH_BIG_ROUNDS_SHIFT) & 3;
+  s32 roll = Battle_RandomFar() & 0xff;
+  s32 react = Battle_RandomFar() & 0xff;
+  struct BossPartyView view;
+  s32 mayBeBig;
+
+  BossAI_ViewParty(&view);
+  mayBeBig = (memory & ASH_BIG_THIS_ROUND_BIT) == 0 &&
+             bigRounds < ASH_BIG_ROUNDS_LIMIT;
+  if (firstPick && roll >= ASH_MISTAKE_CHANCE &&
+      (memory & (ASH_RECOVERED_BIT | ASH_BUFFED_BIT)) &&
+      react < ASH_REACT_CHANCE)
+    slot = (memory & ASH_MELTDOWN_THIS_ROUND_BIT) ? ASH_DEMON_FIRE
+                                                   : ASH_MELTDOWN;
+
+  if (BossAI_AshIsBig(slot) && !mayBeBig) {
+    slot = (roll & 1) ? ASH_ERUPTION : ASH_ATTACK;
+  } else if ((memory & ASH_HURT_BIT) &&
+             (slot == ASH_INFERNO || slot == ASH_SUPERNOVA)) {
+    slot = ASH_ERUPTION;
+  }
+  if (slot == ASH_MELTDOWN && (memory & ASH_MELTDOWN_THIS_ROUND_BIT))
+    slot = ASH_ATTACK;
+  if (slot == ASH_DEMON_FIRE && view.alive > 0 &&
+      view.haunted * 2 >= view.alive)
+    slot = ASH_ATTACK;
+#endif
+  return slot;
+}
+
+/// Ash Jenna's aim: never the party place she aimed at last when there is
+/// another. She does not look at who is weak or at what was commanded.
+static s32 BossAI_AshChooseTarget(struct Unit *user, const s32 *targetPositions,
+                                  s32 count) {
+#if BOSS_AI_ASH_JENNA
+  return BossAI_AimAwayFromLast(user, targetPositions, count);
+#else
+  return BOSS_AIM_STOCK;
+#endif
+}
+
 /// Starts a round for the bosses: their per-round memory is cleared and their
 /// view of the party brought up to date. Called once a round by
 /// BattleTurnOrder_Sort, before anyone acts.
 void BossAI_BeginRound(void) {
   BossAI_KegareBeginRound();
+  BossAI_AshBeginRound();
 }
 
 /// Records a turn that was really staged (result 0). Called by
 /// BattleStaging_DispatchAction after the turn, with the request it settled.
 /// A turn that failed changes nothing.
 void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
+  struct Unit *unit;
+
   BossAI_KegareNoteTurn(request, result);
+  if (result != 0 || request->unitId == BATTLE_UNIT_LIST_END)
+    return;
+  unit = Unit_GetFar(request->unitId);
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
+    BossAI_AshNoteTurn(unit, request);
 }
 
 /// A boss's pick of a place in its action list. Returns slot unchanged for
@@ -293,6 +560,8 @@ void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
 s32 BossAI_ChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)
     return BossAI_KegareChooseSlot(unit, slot, firstPick);
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
+    return BossAI_AshChooseSlot(unit, slot, firstPick);
   return slot;
 }
 
@@ -308,5 +577,7 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
   (void)action;
   if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)
     return BossAI_KegareChooseTarget(unitIds, targetPositions, count, userId);
+  if (user->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE && userId > ALLY_MAX)
+    return BossAI_AshChooseTarget(user, targetPositions, count);
   return BOSS_AIM_STOCK;
 }
