@@ -49,6 +49,21 @@ jobs:
       - name: Apply and validate the dark-story dialogue pass
         run: python3 tools/dark_story_rewrite.py
 
+      - name: Confirm town dialogue overlays reached the build input
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          catalogue = Path("games/tbs/text/en.po").read_text(encoding="utf-8")
+          for line in (
+              "Hey! You're new here,",
+              "Lunpa's closed. You still",
+              "They'll be all right here.",
+          ):
+              if line not in catalogue:
+                  raise SystemExit("Missing Ashfall dialogue fingerprint: " + line)
+          print("Imil and Lunpa rewrite fingerprints confirmed in patched catalogue")
+          PY
+
       - name: Check Ashfall story character, choice, and optional-encounter contracts
         run: python3 tools/dark_story/check_story_contract.py
 
@@ -135,10 +150,22 @@ jobs:
           print(f"Created {output.name}: {changes} changed bytes across {len(patch)} patch bytes")
           PY
 
-      - name: Upload test patch
+      - name: Record source version of this patch
+        run: |
+          {
+            echo "Golden Sun: Ashfall"
+            echo "branch=${GITHUB_REF_NAME}"
+            echo "commit=${GITHUB_SHA}"
+            echo "workflow_run=${GITHUB_RUN_ID}"
+            echo "dialogue_overlay=tools/dark_story_rewrite.py"
+          } > "$RUNNER_TEMP/ashfall-build.txt"
+
+      - name: Upload versioned Ashfall patch
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: dark-vale-ips-patch
-          path: ${{ runner.temp }}/dark-vale.ips
+          name: ashfall-ips-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/dark-vale.ips
+            ${{ runner.temp }}/ashfall-build.txt
           if-no-files-found: error
           retention-days: 14
