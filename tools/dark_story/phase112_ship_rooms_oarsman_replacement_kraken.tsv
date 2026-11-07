@@ -1,0 +1,63 @@
+# Karagol ship cabins 078xx: replacement rower selection, injured crew, worsening attacks, Kaja and Kraken danger. Preserves text effects and names.
+07800	MsgTolbiShipNoooooNotGoing	{text_effect:4}No! Don't pick me! I can\nbarely lift a bucket, let\nalone pull an oar!{reset_text_style}{end_now}
+07803	MsgTolbiShipJokingWantRow	You want me to row? That\ncan't be serious. I paid\nfor passage.{end_now}
+07806	MsgTolbiShipDontTellGoing	Are you really going to ask\nme to row? There are\ntrained sailors right{page_break}there!{end_now}
+07809	MsgTolbiShipOhhhhNooooGoingMakeMe	{text_effect:4}Oh, no. Please tell me\nyou're choosing somebody\nelse!{reset_text_style}{end_now}
+07812	MsgTolbiShipHaHaHaRowingFeel	Ha! Looking for another\nrower? You've got a whole\nhold full of volunteers.{page_break}Probably.{end_wait}
+07816	MsgTolbiShipNotThinkingMaking	You're not thinking of\nputting me at an oar, are\nyou? I have a bad back.{end_now}
+07819	MsgTolbiShipOarsmanGiveBreak	Me? Rowing? You've got the\nwrong person. Surely you\ncan see that!{end_now}
+07822	MsgTolbiShipPoorOarsmanFeel	Poor fellow, hurt on the\nbenches. What? You want me\nto replace him?{end_now}
+07825	MsgTolbiShipPeopleAskingFrail	You looked past all these\nstrong young men and chose\nme? I can barely climb the{page_break}stairs!{end_now}
+07829	MsgTolbiShipInteriorsNobodyWouldChooseMeAfterAll	I'm the guide for this\ntour. If I go row, who's\ngoing to count the{page_break}passengers?{end_wait}
+07830	MsgTolbiShipInteriorsHeyLooksLikeTheyNeedSomeone	They need another rower?\nWell, don't look at me. I'm\nsuddenly very busy.{end_wait}
+07831	MsgTolbiShipInteriorsRowingIsAToughJobIsnt	I've seen the oarsmen work.\nThat's not a job you learn\nin five minutes.{end_wait}
+07832	MsgTolbiShipInteriorsHeyThisGuysBeenStaringAt	He keeps looking my way. Is\nhe going to speak to me?\nOh, this is awkward.{end_wait}
+07833	MsgTolbiShipInteriorsOhOhNoHesNotComing	No, no. He's coming this\nway. He isn't going to\nchoose me, is he?{end_wait}
+07834	MsgTolbiShipInteriorsPleasePleaseImBeggingJustDont	Please pick someone else.\nI'm begging you. I'm not\nstrong enough for that{page_break}bench!{end_wait}
+07835	MsgTolbiShipInteriorsWhatsWithYouGoBotherThe	Why are you bothering me?\nGo ask one of the men with\narms like tree trunks!{end_wait}
+07836	MsgTolbiShipInteriorsWhyAmIGettingSoWorked	I'm too old for that sort\nof work. He knows that,\ndoesn't he?{end_wait}
+07837	MsgTolbiShipInteriorsWeHadEnoughTroubleJustGetting	We're already short of\nrowers. If one more man\nfalls, we'll have to find{page_break}someone aboard.{end_wait}
+07838	MsgTolbiShipLooksLikeYouveBeenChosen	You've been chosen. Get\ndown to the benches. The\nothers are waiting.{end_wait}
+07839	MsgTolbiShipHaHaHaChosenOarsman	Ha! They chose you to row?\nBetter stretch those arms\nfirst!{end_wait}
+07840	MsgTolbiShipYouFinallyPickedSomeoneDidnt	Found your replacement, did\nyou? Good. We've got to\nkeep moving.{end_wait}
+07841	MsgTolbiShipGivesMeChillsThinkCould	That could have been me.\nJust thinking about it\nmakes my arms ache.{end_wait}
+07842	MsgTolbiShipIsaacYouveGotGoodEye	Good choice, {actor_name:1}. That\none looks strong enough to\nkeep us moving.{end_wait}
+07843	MsgTolbiShipThatsWhoYouPickedOarsman	That's the new oarsman?\nWell, he's got the right\nlook. I suppose.{end_wait}
+07844	MsgTolbiShipIfYouveChosenOarsmanLets	You've chosen someone?\nGood. Get him to the\nbenches before we lose any{page_break}more time.{end_wait}
+07845	MsgTolbiShipYouveBeenChosenAsOarsman	An oarsman! You'll be\nearning your passage now.\nWelcome aboard!{end_wait}
+07846	MsgTolbiShipHoHoPersonGoingGet	Ho ho. Will that fellow\nreally get us to Tolbi any\nfaster?{end_wait}
+07847	MsgTolbiShipInteriorsYouMakeMeNervousJustStanding	Stop looking at me like\nthat. I don't know a thing\nabout rowing!{end_wait}
+07848	MsgTolbiShipInteriorsIveBeenInAColdSweat	I've spent the whole trip\nafraid someone would ask me\nto take an oar.{end_wait}
+07849	MsgTolbiShipInteriorsOhThisPoorSapLooksSad	That poor fellow looks\nready to cry. I suppose no\none wants the job.{end_wait}
+07850	MsgTolbiShipInteriorsOhNoNoWhenOurEyes	Our eyes met, and I knew\nI'd be the one. Please, let\nme be wrong.{end_wait}
+07851	MsgTolbiShipInteriorsItsOnlyNaturalThatINot	They won't pick me. I'm not\nsuited to hard work. That's\nsimply a fact.{end_wait}
+07852	MsgTolbiShipInteriorsISnuckByThisTimeBut	I escaped this time, but\nwhat happens when the next\nrower gets hurt?{end_wait}
+07853	MsgTolbiShipInteriorsWowThisWarriorIsntGonnaLet	That warrior isn't letting\nanyone off easy. Better him\nthan me.{end_wait}
+07854	MsgTolbiShipInteriorsYouCanJustMoveRightAlong	Go on, take your new rower\nbelow. Don't ask me to\nhelp.{end_wait}
+07855	MsgTolbiShipInteriorsCarefulNowWatchOutDontMake	Don't look at him. Turn\naway. If he doesn't see\nyou, he can't choose you.{end_wait}
+07858	MsgTolbiShipOarsmanWasInjured	Another oarsman was\ninjured? How many are left?{end_wait}
+07862	MsgTolbiShipInteriorsWeKnewTheRisksWhenWe	We knew this could be\ndangerous. That doesn't\nmake it any easier seeing a{page_break}crewman carried away.{end_wait}
+07863	MsgTolbiShipBack	{actor_name:1}, you're back. Did\nyou find anyone?{end_wait}
+07868	MsgTolbiShipBackBroughtOarsman	{actor_name:1}, you're back! And\nyou've brought a new rower.\nThank goodness.{end_wait}
+07873	MsgTolbiShipWonderWhatsWrongShipShouldnt	The ship keeps rolling to\none side. That can't be\nordinary weather.{end_wait}
+07879	MsgTolbiShipInteriorsImagineTheSizeOfThatBeast	Kaja looked up and went\npale. Just how big is the\ncreature out there?{end_wait}
+07880	MsgTolbiShipInteriorsHowCanTheseSeaMonstersKeep	One attack after another.\nAre those things following\nus across the Karagol?{end_wait}
+07881	MsgTolbiShipInteriorsJudgingFromKajasReactionItMust	I know Kaja. When he looks\nfrightened, the rest of us\nought to worry.{end_wait}
+07882	MsgTolbiShipInteriorsKajaWouldntAskForHelpUnless	Kaja doesn't ask for help\nwithout reason. Whatever\nhe's seen must be enormous.{end_wait}
+07883	MsgTolbiShipInteriorsTheWholeShipIsRockingThat	The whole hull shook. That\nwas no little fish brushing\nthe keel.{end_wait}
+07884	MsgTolbiShipInteriorsWereOkayWithYouHereWe	You've kept us alive so\nfar. I believe you can do\nit again.{end_wait}
+07885	MsgTolbiShipInteriorsIfTheShipSinksWereFinished	If that creature breaks the\nhull, there's nowhere for\nus to run.{end_wait}
+07886	MsgTolbiShipThingHasKajaHisMen	Kaja and his men have faced\nstorms. I've never seen\nthem so worried.{end_wait}
+07887	MsgTolbiShipMonstersEverywhereImStuckRowing	We're being attacked again,\nand I still have to row. I\nshould've stayed home.{end_wait}
+07888	MsgTolbiShipShipStartingListIfWe	She's listing! Everyone to\nthe other side, or we'll go\nunder!{end_wait}
+07889	MsgTolbiShipHowManyMonstersOutThere	How many of them are there?\nThe water won't stay still!{end_wait}
+07890	MsgTolbiShipAnotherMonsterIsntFirstClass	Another monster? I paid for\na comfortable crossing.\nThis is a disgrace!{end_wait}
+07891	MsgTolbiShipInteriorsOwwwMyHandsAreRawFrom	My hands are raw. I can't\nkeep this pace forever.{end_wait}
+07892	MsgTolbiShipInteriorsWhyIsHeDownHereShouldnt	Why is he standing down\nhere? Shouldn't someone be\nfighting on deck?{end_wait}
+07893	MsgTolbiShipInteriorsWhatTheHowManyMonstersDoes	Another one? I lost count\ntwo attacks ago.{end_wait}
+07894	MsgTolbiShipInteriorsWhatKindOfMonsterIsRocking	Something that big is\nrocking the ship? I'd like\nto see it. From the shore.{end_wait}
+07895	MsgTolbiShipInteriorsWereRunningLowOnOarsmenAnd	We're short of rowers\nalready. If another man\nfalls, we may stop moving.{end_wait}
+07896	MsgTolbiShipInteriorsImTakingALittleBreakUntil	I'm resting until someone\ndeals with those monsters.\nThese arms won't last{page_break}otherwise.{end_wait}
+07897	MsgTolbiShipInteriorsGoodThingWeHaveSomeStrong	Thank goodness there are\nwarriors aboard. We rowers\ncan't fight everything{page_break}ourselves.{end_wait}
+07898	MsgTolbiShipInteriorsIWonderIfTheMonsterIs	If that thing is as big as\nthey say, could it sink a\nship like ours?{end_wait}
+07899	MsgTolbiShipDontCareTakesJustHurry	I don't care how you fight\nit. Just get that beast\naway from us!{end_wait}
