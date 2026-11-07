@@ -1696,3 +1696,9 @@ Resource_Overlay3CE:
 	.byte 0x2a, 0x7d	@ PACKER: left in the buffer by Resource_Overlay3CB+0x7ca
 	.endif
 	.balign 4, 0
+
+	@ Aster standalone scene overlay.
+	.global Resource_Overlay3D3
+Resource_Overlay3D3:
+	.incbin "overlays/resource_3d3.lz"
+	.balign 4, 0

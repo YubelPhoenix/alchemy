@@ -191,6 +191,9 @@ const struct MapResources gMaps[] = {
     {{565, 566, 567, 568, 569, 570}},
     {{571, 572, 573, 574, 575, 576}},
     {{577, 578, 579, 580, 581, 582}},
+    // Aster Map180; ResourceId_AsterMap - ResourceId_Map001 = 682.
+    // Reuse Vault's proven tile resources without changing vanilla entries.
+    {{682, 117, 118, 119, 120, 121}},
 };
 // clang-format on
 
