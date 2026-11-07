@@ -39,6 +39,6 @@
 06022	MsgKolimaGoingCrossBridge	Are you going to cross\nthe bridge?{end_wait}
 06024	MsgKolimaForAWhileIThoughtNo	I thought no one would\never cross this bridge\nagain.{page_break}Cross it slowly. It\ncould be your last time.{end_wait}
 06025	MsgKolimaYouWouldntUnderstandButItsTruly	You wouldn't understand,\nbut crossing this bridge\nstill feels like a gift.{end_wait}
-06026	MsgXianHowDidGetHereBridge	How did you get here?\nIs the bridge open again?{end_now}
+06026	MsgXianHowDidGetHereBridge	You came this way?\nThen the bridge must\nbe open again.{end_now}
 06027	message	Really?!{pause_20_skippable} Then I can\ngo home to Kolima?{page_break}I thought I'd never see\nhome again, with the\ncursed forest and all!{end_wait}
 06028	message	Oh... You came through\nthe forest? Then I'll\nstay put.{end_wait}
