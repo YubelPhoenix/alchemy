@@ -7,6 +7,8 @@
 #include "actor.h"
 #include "graphics.h"
 #include "macros.h"
+#include "ability_ids.h"
+#include "text/msg_ids.h"
 
 enum { ASTER_TO_WORLD_MAP = 1 };
 enum AsterActorId {
@@ -33,6 +35,14 @@ static struct ActorTemplate sAsterActors[] = {
 };
 static struct Trigger sAsterTriggers[] = {
     { TRIGGER_EXIT, 1, CONDITION_ALWAYS, ASTER_TO_WORLD_MAP },
+    { TRIGGER_TALK, ACTOR_ASTER_INNKEEPER, CONDITION_ALWAYS,
+      MSGNO(MsgAsterInnkeeperWelcome) },
+    { TRIGGER_TALK, ACTOR_ASTER_ELDER, CONDITION_ALWAYS,
+      MSGNO(MsgAsterElderWelcome) },
+    { PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_ASTER_INNKEEPER,
+      CONDITION_ALWAYS, MSGNO(MsgAsterInnkeeperMindRead) },
+    { PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_ASTER_ELDER,
+      CONDITION_ALWAYS, MSGNO(MsgAsterElderMindRead) },
     { TRIGGERS_END },
 };
 s32 Scene_Initialize(void) { return 0; }

@@ -11,7 +11,7 @@ directory slots are consumed, avoiding renumbering vanilla resources.
 
 The 32x32 prototype has blocked building footprints, a walkable plaza and
 north approach, a well, memorial, two test NPCs, and south gate behavior 1.
-Building / monument / road tiles are placeholders. NPC dialogue triggers,
+Building / monument / road tiles are placeholders. Additional NPC dialogue and dynamic glitch states,
 interiors, Mind Read, convergence effects, music and actual world-map contact
 **are not yet implemented**.
 
@@ -26,3 +26,16 @@ Next QA: build in CI or locally, load the scene, test drawn tiles,
 collisions, NPCs, exit, save/load. If those pass, verify free world-map
 terrain before adding entry and reciprocal return. Preserve 27-character
 dialogue lines and never use invalid text control codes for corruption.
+
+## First dialogue pass
+
+The two placed residents now have both Talk and Mind Read triggers using four
+new named messages in each of the six language catalogs. The innkeeper shifts
+from an ordinary greeting to a conflicting memory of Vale through a controlled
+page break; no invalid glyphs or runtime corruption are used. The elder's
+Mind Read hints at an impossible surviving wife. Every authored displayed line
+is at most 27 characters. These first-pass translations need native-language
+review before public release.
+
+Run `python3 -m unittest tools.tests.test_aster_dialogue` for dialogue width
+and completeness checks in addition to `python3 tools/aster_layout.py --check`.
