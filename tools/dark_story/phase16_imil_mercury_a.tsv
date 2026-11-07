@@ -62,7 +62,7 @@
 05499	message	You don't hear it?{page_break}Only Alex and I\ncan enter this tower.{end_wait}
 05500	message	The statue blocks\nthe passage.{end_wait}
 05501	MsgImilStatueBlocksEntrance	The statue won't move.{end_wait}
-05502	MsgMercuryLighthouseSomeoneDoesntWantMeToGet	Someone's trying\nto keep me out.{end_wait}
+05502	MsgMercuryLighthouseSomeoneDoesntWantMeToGet	Someone wants to keep\nme out. They won't.{end_wait}
 05503	MsgMercuryDidThat	Did you do that?{end_now}
 05506	message	You{pause_20_skippable}...{pause_20_skippable} You could\nsee our Psynergy?{end_wait}
 05508	message	We thought you used\nPsynergy when you healed\nthat old man, {actor_name:4}.{end_wait}
@@ -76,7 +76,7 @@
 05519	MsgMercuryLighthouseThePathIsBlockedAgainWhat	It's blocked again.{page_break}There must be\nanother way.{end_wait}
 05520	MsgMercuryLighthouseThisStatueWasntHereBeforeI	This statue was moved.{page_break}Alex... why?{end_wait}
 05521	MsgMercurySavedMeAgain	You helped me again.\nThank you.{end_wait}
-05527	MsgMercuryThoughtSo	Then we should keep moving.{end_wait}
+05527	MsgMercuryThoughtSo	Good. Then let's move.{end_wait}
 05531	message	The Adept {actor_name:4} joined\nyour party!{end_wait}
 05532	MsgMercuryLighthouseAlreadyLit	The beacon's burning!\nWe're too late!{end_wait}
 05533	message	No...{end_wait}
