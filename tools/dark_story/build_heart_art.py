@@ -32,9 +32,9 @@ FRAMES = 10
 # (pose, mirror so she faces the party on the right, rise)
 LAYOUT = [
     ("idle1", True, 0), ("idle1", True, 0),
-    ("dash", True, 0), ("dash", True, 0),
-    ("lunge", True, 0), ("lunge", True, 0),
-    ("cast", True, 0), ("cast", True, 0),
+    ("dash", False, 0), ("dash", False, 0),
+    ("lunge", False, 0), ("lunge", False, 0),
+    ("cast", False, 0), ("cast", False, 0),
     ("damage", True, 0), ("damage", True, 0),
 ]
 
