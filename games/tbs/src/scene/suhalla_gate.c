@@ -41,6 +41,7 @@
 
 #include "save_block.h"
 #include "version.h"
+#include "keystate.h"
 #include "unit/scene/suhalla_gate.h"
 #include "unit/overworld/overworld.h"
 #include "unit/overworld/event_commands.h"
@@ -157,6 +158,16 @@ static void SuhallaGate_TalkToAshJenna(void) {
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 5);
   Event_End();
+}
+
+/// The passage trigger (TRIGGER_STEP 10) also fires when a save made standing
+/// in the passage is loaded, which threw the party into the fight with no
+/// chance to prepare. Only a step the player is walking starts it; a load
+/// leaves the party standing there until it moves or talks to her.
+static void SuhallaGate_AshJennaBlocksPassage(void) {
+  if ((gKeysHeld & KEYS_DPAD) == 0)
+    return;
+  SuhallaGate_TalkToAshJenna();
 }
 
 /// Back from Ash Jenna's battle at the gate: after a win she says her last
@@ -754,7 +765,7 @@ struct Trigger gSuhallaGateTriggersOther[] = {
     { TRIGGER_STEP, 10, FLAG_SUHALLA_GATE_ATTACK_SEEN, EVENT(SuhallaGate_IodemQuestionsGuards) },
     // Once Iodem has questioned the guards, Ash Jenna blocks the north passage.
     // The same passage trigger makes this a story fight rather than talk-only.
-    { TRIGGER_STEP, 10, FLAG_DARK_ASH_GATE_FOUGHT, EVENT(SuhallaGate_TalkToAshJenna) },
+    { TRIGGER_STEP, 10, FLAG_DARK_ASH_GATE_FOUGHT, EVENT(SuhallaGate_AshJennaBlocksPassage) },
     { TRIGGER_TALK, ACTOR_WEST_GUARD, FLAG_SUHALLA_GATE_ATTACK_SEEN, MSGNO(MsgSuhallaTravelPapersRequired) },
     { TRIGGER_TALK, ACTOR_WEST_GUARD, CONDITION_ALWAYS, MSGNO(MsgSuhallaSendHelpFromTower) },
     { TRIGGER_TALK, ACTOR_EAST_GUARD, CONDITION_ALWAYS, EVENT(SuhallaGate_TalkToEastGuard) },
