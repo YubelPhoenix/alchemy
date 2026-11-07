@@ -152,7 +152,7 @@ enum {
   ACTOR_VAULT_WATCHER = 24,
   /// Sarah, her first fight (stage 0, level 7), until she is beaten
   /// (FLAG_DARK_SARAH_VAULT_FOUGHT). The last row of both template tables.
-  ACTOR_VAULT_SARAH = 26
+  ACTOR_VAULT_SARAH = 25
 };
 
 static void Vault_ShowStandingActorMessage(s32 actorId);
@@ -1009,7 +1009,7 @@ s32 Scene_Initialize(void) {
   }
   // Back from Sarah's battle.
   if (SARAH_PENDING_AT(0)) {
-    SARAH_AFTERMATH(ACTOR_VAULT_SARAH, 392, 400, MsgDarkSarahVaultBeaten,
+    SARAH_AFTERMATH_VANISH(ACTOR_VAULT_SARAH, 392, 400, MsgDarkSarahVaultBeaten,
                     FLAG_DARK_SARAH_VAULT_FOUGHT);
   }
   return 0;
