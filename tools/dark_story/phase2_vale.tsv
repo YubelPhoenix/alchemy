@@ -248,7 +248,6 @@
 04626	message	If they stand here any\nlonger, they'll never\nleave.{end_wait}
 04627	message	So.{pause_20_skippable} One last farewell.{end_wait}
 04628	MsgValeFarewell	{text_effect:2}Farewell...{reset_text_style}{end_wait}
-06618	MsgMountainIsaacDidLiftBoulder	{actor_name:1}... was that you?\nDid you lift the boulder?{end_wait}
 06619	message	By the gods! The boulder\nis floating!{end_wait}
 06620	message	Quickly, Feizhi! Pull Hsu\nfree before it falls!{end_wait}
 06621	message	Brace yourself, Hsu.\nI'm pulling. On three.\nOne, two, three!{end_wait}

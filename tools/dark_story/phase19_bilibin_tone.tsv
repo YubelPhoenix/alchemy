@@ -1,8 +1,4 @@
 05768	MsgKolimaMaybeIfIMeditateHarderIll	Maybe if I meditate\nharder, I'll turn\nback into a man...{page_break}Ngg{pause_20_skippable} Ung!!{pause_20_skippable} Ugagaga!!!{end_wait}
-05769	MsgKolimaInteriorsWhoCausedAllThisSomeoneMust	Who did this?\nSomeone must have tried\nto cut down Tret!{end_wait}
-05770	MsgKolimaInteriorsHowAmISupposedToCharge	How do I charge for\nrooms if I'm a tree?{end_wait}
-05771	MsgKolimaInteriorsTheVillagersWereRightINever	The villagers were right.\nI never should have tried\nto cut that tree down.{page_break}Now I'll never see\nmy family in Imil\nagain...{end_wait}
-05772	MsgKolimaInteriorsIfOnlyIdLeftTownA	If only I'd left town\na day earlier. But this\nroom was so comfortable.{end_wait}
 05773	MsgKolimaThisIsKolimaVillageOfLumberjacks	This is Kolima,\nvillage of lumberjacks.\nI'll say it out loud.{page_break}This{pause_20_skippable} is{pause_20_skippable} Ko{pause_20_skippable}li{pause_20_skippable}ma.{end_wait}
 05779	MsgKolimaIDidntMindBeingATree	When I was a tree,\nI felt no pain.{page_break}I almost forgot\nwhat living meant.{end_wait}
 05780	MsgKolimaYawnTreesAreSoSleepy	Yawn... Trees are so...\nsleepy...{end_wait}
@@ -11,19 +7,9 @@
 05784	MsgKolimaIfThoseSparklesStartFallingAgain	If those sparkles start\nfalling again, I'm\nheading for the hills.{end_wait}
 05787	MsgKolimaIfWeWereAllTreesThered	Trees never go to war.\nThey only suffer\nwhen we bring it here.{end_wait}
 05788	MsgKolimaNobodyYellsAtYouWhenYoure	No one shouted at me\nwhen I was a tree.{page_break}No one listened, either.{end_wait}
-05793	MsgKolimaInteriorsYouSavedKolimaWowThatMakes	You saved Kolima? I'd\nlike to tell you a\nsecret.{page_break}But not yet. Some\nsecrets are only safe\nwith me.{end_wait}
-05796	MsgKolimaInteriorsItsHiddenDeepInTheForest	It's hidden deep in\nthe forest, but I can't\ntell him I know!{end_wait}
-05801	MsgKolimaInteriorsDadHowAreWeGoingTo	Dad, will we have\nenough to eat now?{end_wait}
-05804	MsgKolimaInteriorsHowAmISupposedToGrow	I was scared he'd\nnever come home.{page_break}I don't want to be\nbrave about that.{end_wait}
-05808	MsgKolimaInteriorsItsAShameWeHadTo	We cut so many trees\nto build that bridge.{page_break}I never thought\nwhat they might feel.{end_wait}
-05809	MsgKolimaWhenWasTreeLearnedAppreciate	I used to take\nthe sun for granted.{page_break}Now I stop and\nfeel its warmth.{end_wait}
-05810	MsgKolimaInteriorsItFeltSoGoodWhenMy	It felt wonderful when\nmy leaves were bathed\nin sunlight.{end_wait}
 05811	MsgKolimaToldHolyTrees	They say the holy tree's\nrage caused this horror...{page_break}Do you believe that\nwas the only cause?{end_now}
 05812	message	You may not have noticed,\nbut something changed\nwhen those gems landed.{end_wait}
 05813	message	I agree. Something did\nchange when the gems fell.{end_wait}
-05817	MsgKolimaInteriorsIveBeenALumberjackForYears	I've felled trees\nfor half my life.{page_break}I need to see\nmy family in Imil.{end_wait}
-05818	MsgKolimaInteriorsImOnlyAMerchantButI	I was only passing\nthrough Kolima.{page_break}I thought I'd never\nleave this place.{end_wait}
-05822	MsgKolimaInteriorsIWishIdGrabbedSomeOf	I wish I'd grabbed some\nof those gems that fell\nfrom the sky.{page_break}They must be\nworth a fortune.{end_wait}
 05824	message	I think I now know what\nit means to sink roots\nin one place.{page_break}I wouldn't recommend\nit.{end_wait}
 05825	message	I can't even believe\nit myself.{end_wait}
 05833	message	Amazing! You broke the\nso-called curse.{end_wait}
