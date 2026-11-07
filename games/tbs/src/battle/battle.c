@@ -29,6 +29,7 @@
 #include "battle/auto_battle.c"
 #include "battle/round.c"
 #include "battle/staging.c"
+#include "battle/boss_ai.c"
 #include "battle/targeting.c"
 #include "battle/playback_queue.c"
 #include "battle/target_exec.c"

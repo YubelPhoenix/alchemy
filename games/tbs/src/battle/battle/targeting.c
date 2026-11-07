@@ -485,5 +485,10 @@ s32 BattleAI_ChooseTarget(s32 userId, struct AbilityDefinition *action) {
     if (selected >= 0)
       return targetPositions[selected];
   }
+  if (Unit_GetFar(userId)->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE) {
+    selected = BossAI_ChooseKegareTarget(unitIds, targetCount);
+    if (selected >= 0)
+      return targetPositions[selected];
+  }
   return targetPositions[(Random16() * targetCount) >> 16];
 }
