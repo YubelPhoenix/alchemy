@@ -25,17 +25,17 @@ class TestAsterDialogue(unittest.TestCase):
                 )
                 for name in NAMES:
                     with self.subTest(message=name):
-                        marker = 'msgctxt "' + name + '"\\n'
+                        marker = 'msgctxt "' + name + '"\n'
                         self.assertEqual(po.count(marker), 1)
-                        section = po.split(marker, 1)[1].split("\\n\\n", 1)[0]
+                        section = po.split(marker, 1)[1].split("\n\n", 1)[0]
                         rows = section.splitlines()
                         self.assertTrue(rows[0].startswith('msgid "'))
                         self.assertEqual(rows[1], 'msgstr ""')
                         text = "".join(json.loads(row) for row in rows[2:])
                         self.assertTrue(text.endswith("{end_wait}"))
-                        text = text.replace("{page_break}", "\\n")
+                        text = text.replace("{page_break}", "\n")
                         text = text.replace("{end_wait}", "")
-                        for line in text.split("\\n"):
+                        for line in text.split("\n"):
                             self.assertLessEqual(
                                 len(line), 27, f"{lang}/{name}: {line!r}"
                             )
