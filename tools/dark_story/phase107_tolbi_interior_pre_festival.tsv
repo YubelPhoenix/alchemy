@@ -1,0 +1,48 @@
+# Tolbi interiors, pre-festival: inns, households, staff, Colosso visitors, missing Babi rumors, optional conversations and inn sign.
+08122	MsgTolbiInteriorsTolbiIsPackedWithTouristsDuring	During Colosso, every bed\nin Tolbi is taken. I put\nspare mattresses on the{page_break}floor and started charging\nfor them.{end_wait}
+08123	MsgTolbiWantStay	Would you like to stay\nhere?{end_now}
+08126	MsgTolbiInteriorsICouldntSleepAtAllLast	The fellow beside me snored\nall night. I came to see\nColosso, not spend it half{page_break}asleep.{end_wait}
+08127	MsgTolbiInteriorsTheCrowdsAtTheColosseumMade	The colosseum was so\ncrowded I could hardly\nbreathe. I came back before{page_break}the trials ended.{end_wait}
+08128	MsgTolbiInteriorsOnceColossoStartsWereGoingTo	Once Colosso starts, we'll\nbarely have time to count\nour money. I love this time{page_break}of year.{end_wait}
+08129	MsgTolbiInteriorsItsTooLateToStartLooking	You won't find a room now.\nThe finalists stay at\nBabi's Palace, and the rest{page_break}of us fill every bed in\ntown.{end_wait}
+08130	MsgTolbiInteriorsIfICouldHaveSleptLast	If that man hadn't snored\nall night, I might've\nenjoyed the trials.{end_wait}
+08131	MsgTolbiInteriorsHuhUhCrowdsAreADefinite	I can't stand crowds. By\nthe way, did anybody see\nBabi at the arena?{page_break}Something's odd.{end_wait}
+08132	MsgTolbiInteriorsWePaidGoodMoneyToRent	We paid for this house\nduring Colosso. Find\nanother place to stay!{end_wait}
+08133	MsgTolbiInteriorsWeGetToStayHereUntil	The owners are away for the\nfestival. We can use their\nrooms until they get back.{end_wait}
+08134	MsgTolbiInteriorsIReallyWantToSeeColosso	I'd love to see Colosso,\nbut the crowds are too\nmuch. I'll try to make it{page_break}to the finals.{end_wait}
+08135	MsgTolbiInteriorsWahhhIWantToSeeColosso	I want to go to Colosso!\nEveryone else gets to go!{end_wait}
+08136	MsgTolbiInteriorsIWasStubbornISaidIm	I told everyone I wouldn't\nbother with the trials. Now\nI wish I'd gone.{end_wait}
+08137	MsgTolbiInteriorsIKeepOnCryingButDaddy	I keep asking Dad to take\nme to Colosso. He keeps\nsaying tomorrow. Tomorrow{page_break}never comes!{end_wait}
+08138	MsgTolbiInteriorsIWonderIfTheyReallyCant	If Babi is really missing,\nwill Colosso even go on?\nNobody seems to know.{end_wait}
+08139	MsgTolbiInteriorsBabiWasntAtColossoAccordingTo	People at the arena say\nBabi never showed up. He\nnever misses his own{page_break}festival.{end_wait}
+08140	MsgTolbiInteriorsItsStrangeThatBabisSoldiersAre	There are soldiers all over\nTolbi looking for someone.\nI think they're searching{page_break}for Babi.{end_wait}
+08141	MsgTolbiInteriorsItsStrangeBabiLovesColossoBut	Babi loves Colosso. If he\nisn't watching, something\nmust be wrong.{end_wait}
+08142	MsgTolbiInteriorsWereGoingToMakeSomeMoney	Every merchant makes money\nduring Colosso. Babi makes\na little from all of us.{end_wait}
+08143	MsgTolbiInteriorsIHeardBabiIsUsingThe	Babi's using festival\nprofits to build a\nlighthouse in Gondowan.{page_break}They even named it after\nhim.{end_wait}
+08144	MsgTolbiInteriorsHeJustTakesACutOf	Babi doesn't need to run a\nshop. He takes a share of\nwhat the rest of us earn.{page_break}Clever, I suppose.{end_wait}
+08145	MsgTolbiInteriorsNamingTheLighthouseHeBuiltAfter	Babi Lighthouse. He really\nnamed a lighthouse after\nhimself? That sounds like{page_break}him.{end_wait}
+08146	MsgTolbiLookStrongGo	You look strong. Have you\nthought about entering\nColosso?{end_wait}
+08148	MsgTolbiInteriorsIGuessINeverWouldHave	I wouldn't have made the\nfinals anyway. At least\nthat's what I keep telling{page_break}myself.{end_wait}
+08149	MsgTolbiFirstTimeTolbi	Is this your first visit to\nTolbi?{end_now}
+08152	MsgTolbiInteriorsTheyHaveSomeNiceThingsFor	There are fine shops all\nover Tolbi. Don't spend\neverything at the arena.{end_wait}
+08153	MsgTolbiIfCanMakeNameFor	If you do well at Colosso,\nBabi might recruit you as a\nguard. Not a bad way to{page_break}earn a living.{end_wait}
+08154	MsgTolbiInteriorsBabiChoosesColossosVictorsToBe	Babi often recruits\nColosso's winners. He knows\nwhat a good fighter is{page_break}worth.{end_wait}
+08155	MsgTolbiInteriorsWereFullyBookedWithReservationsDuring	We're booked solid for\nColosso. If you're looking\nfor a room now, I'm afraid{page_break}you're late.{end_wait}
+08156	MsgTolbiInteriorsColossoIsTheBusiestTimeOf	Every year, visitors forget\nto reserve a room. Book\nearly if you come back for{page_break}the next Colosso.{end_wait}
+08157	MsgTolbiInteriorsWereSoBusyRunningTheInn	We run the inn while\neveryone else goes to\nColosso. I wish I could see{page_break}one match.{end_wait}
+08158	MsgTolbiInteriorsATourGroupCameFromKalay	A group from Kalay booked\ntwo rooms. There are so\nmany of them I don't know{page_break}where they all sleep.{end_wait}
+08159	MsgTolbiInteriorsWeArentGoingToGetTo	We start cooking before\nsunrise and finish after\ndark. Not much chance of{page_break}seeing Colosso.{end_wait}
+08160	MsgTolbiInteriorsImNotVeryInterestedInColosso	I know people love Colosso,\nbut I don't care to watch\nanyone get hurt for{page_break}applause.{end_wait}
+08161	MsgTolbiInteriorsOhNoWeBarelyMadeIt	We crossed the Karagol only\nto find the arena full.\nWhat did we come all this{page_break}way for?{end_wait}
+08162	MsgTolbiInteriorsIfWedGottenHereJustA	If we'd arrived yesterday,\nwe might have made the\ntrials. Now all we can do{page_break}is watch.{end_wait}
+08163	MsgTolbiInteriorsTheTourGroupIsFeelingCramped	The Kalay group is crowded\ntogether like fish in a\nbarrel. We need more rooms{page_break}next year.{end_wait}
+08164	MsgTolbiInteriorsWeCantHandleTooManyMore	Another tour group? We\nhaven't got room for the\nguests we already have.{end_wait}
+08165	MsgTolbiInteriorsImGoingToGoToThe	I'm seeing the finals, even\nif I have to stand outside\nand listen!{end_wait}
+08166	MsgTolbiInteriorsThereArentEnoughBedsForThe	The Kalay visitors haven't\nenough beds. I hope they\nbrought blankets.{end_wait}
+08167	MsgTolbiInteriorsTheInnkeeperToldMeToCook	They want a feast for every\ntourist. I'm having trouble\ncooking enough stew for{page_break}supper.{end_wait}
+08168	MsgTolbiInteriorsIHaveAHeadacheJustThinking	Just looking at the guest\nlist gives me a headache.\nWhere will everyone sleep?{end_wait}
+08169	MsgTolbiInteriorsEvenThoughICantEnterColosso	I didn't make the trials,\nbut I didn't come all this\nway to sit in my room. I'll{page_break}watch what I can.{end_wait}
+08170	MsgTolbiInteriorsIfWeCouldHaveEnteredColosso	We'd have won Colosso if\nthey'd let us compete.\nThat's what I tell myself,{page_break}anyway.{end_wait}
+08171	MsgTolbiWasteStuckHereWhenSuch	A festival outside, and\nhere I am stuck inside.\nJust my luck.{end_wait}
+08172	MsgTolbiInteriorsIWonderHowTheTryoutsAre	I wonder how the tryouts\nwent. I keep asking\neveryone who comes back{page_break}from the arena.{end_wait}
+08309	MsgTolbiInteriorsIsaacCheckedTheSignInnFull	{actor_name:1} checked the sign.\nInn Full. No Vacancies.{end_wait}
