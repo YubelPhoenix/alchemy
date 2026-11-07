@@ -30,10 +30,11 @@ DEST = ROOT / "games/tbs/src/graphics/monster/sarah.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
-FRAMES = 12
+FRAMES = 14
 # Frame -> supplied pose; the other frame of each pair is a copy.
 MIRROR = {"dive"}  # drawn diving to the right; the lunge toward the target is left
-STEPS = {0: "idle_new", 2: "rise", 4: "dive", 6: "attack_leap", 8: "idle1", 10: "damage"}
+STEPS = {0: "idle_new", 2: "rise", 4: "dive", 6: "attack_leap", 8: "idle1", 10: "damage",
+         12: "idle_breath"}   # breathing in (make_breath_frames.py)
 
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
 colors = np.array(palette, dtype=np.float64).reshape(-1, 3)
