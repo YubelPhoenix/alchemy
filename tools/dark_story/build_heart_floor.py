@@ -75,6 +75,8 @@ for r in range(floor_rows):
 # the floor is quantised, with palette entries reserved for them; the battle
 # code (background.c, Heart_StepBackdropGlow) animates them:
 #   120-123  the tile seams, four phases from the horizon outward
+#   124-127  rain ripples on the floor: four ring sizes in turn, each ripple
+#            starting at its own point in the cycle
 #   112-117  three bolts: entry 112+2b is bolt b, 113+2b the glare where it
 #            strikes the floor. Their colours here are the "off" colours (the
 #            cloud and floor they sit on); the game lights them during a flash.
@@ -111,7 +113,7 @@ for b, bx in enumerate([44, 130, 214]):
     end_x = pts[-1][0]
     # off colour: the sky the bolt hides in
     under = np.array([out[y, x] for x, y in bolt])
-    pal[(112 + 2 * b) * 3:(112 + 2 * b) * 3 + 3] = [int(v * 0.9) for v in under.mean(axis=0)]
+    pal[(112 + 2 * b) * 3:(112 + 2 * b) * 3 + 3] = [int(v) for v in under.mean(axis=0)]
     for x, y in bolt:
         idx[y, x] = 112 + 2 * b
     # the glare on the floor where it lands: a flat ellipse
@@ -124,6 +126,29 @@ for b, bx in enumerate([44, 130, 214]):
     pal[(113 + 2 * b) * 3:(113 + 2 * b) * 3 + 3] = [int(v) for v in gunder.mean(axis=0)]
     for x, y in glare:
         idx[y, x] = 113 + 2 * b
+# Rain landing on the glass: small expanding rings. A ripple draws its four
+# ring sizes (stage 0 to 3) with entries 124 + (stage + start) % 4; the game lights
+# one of those four entries at a time, so the ripple shows a different ring
+# size as it goes round, and ripples with different starts are out of step.
+RIP = 124
+floor_mean = out[HORIZON + 10:H].reshape(-1, 3).mean(axis=0)
+for k in range(4):
+    pal[(RIP + k) * 3:(RIP + k) * 3 + 3] = [int(v * 0.95) for v in floor_mean]
+rr = np.random.default_rng(21)
+for n in range(46):
+    cy = int(rr.integers(HORIZON + 6, H - 3))
+    cx = int(rr.integers(0, W))
+    start = int(rr.integers(0, 4))
+    depth = (cy - HORIZON) / float(H - HORIZON)
+    for stage in range(4):
+        a = 1.5 + stage * (1.2 + 2.2 * depth)       # wider rings near the viewer
+        b = max(0.6, a * (0.28 + 0.2 * depth))
+        entry = RIP + (stage + start) % 4
+        for ang in np.linspace(0, 2 * np.pi, int(8 + a * 6), endpoint=False):
+            x = int(round(cx + a * np.cos(ang))) % W
+            y = int(round(cy + b * np.sin(ang)))
+            if HORIZON + 3 <= y < H and idx[y, x] < 112:
+                idx[y, x] = entry
 q = Image.fromarray(idx.astype(np.uint8), "P")
 # the graphics encoder only takes exact RGB555 colours (multiples of 8)
 pal = [min(248, int(round(v / 8.0)) * 8) for v in pal]
