@@ -37,6 +37,8 @@
 /// The row of Ash Jenna, the optional super boss of Vale, in gEnemy_Definitions
 /// (her unit's id is ENEMY_ID_FIRST more).
 #define ENEMY_ASH_JENNA_VALE 92
+/// The row of Kegare, Tolbi's optional boss (her unit id is ENEMY_ID_FIRST more).
+#define ENEMY_ROW_KEGARE 104
 /// Standby Djinn, plus Djinn the party has chosen to unleash this round, that
 /// count as a summon rush. A chosen summon counts at once.
 #define PUNISH_RUSH_DJINN 3

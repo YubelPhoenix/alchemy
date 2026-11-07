@@ -155,11 +155,13 @@ select_again:
     break;
   }
 
-  // Kegare, the optional super boss of Tolbi, thinks about her pick (boss_ai.c);
-  // only her first pick of a turn, never a re-pick after a refused move.
-  if (retry != 0 && failedChoices == 0 && punish == 0 &&
+  // Kegare, the optional super boss of Tolbi, thinks about her pick
+  // (boss_ai.c). Her intent applies to the first pick of a turn; her limits
+  // apply to every pick, so a re-pick after a refused move obeys them too.
+  // It only reads the battle: what she did is recorded after her turn.
+  if (retry != 0 && punish == 0 &&
       unit->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)
-    selection = BossAI_ChooseKegareSlot(unit, selection);
+    selection = BossAI_ChooseKegareSlot(unit, selection, failedChoices == 0);
 
   // A place marked for an item: use the first item held, if any. Once an
   // item is refused, later picks take the place's ability instead.

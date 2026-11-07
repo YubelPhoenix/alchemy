@@ -186,6 +186,15 @@ enum BattleCastKind {
   CAST_ENEMY = 2     ///< the element's streaks
 };
 
+/// The optional super bosses' tactics (boss_ai.c). BossAI_BeginRound runs once
+/// per round from BattleTurnOrder_Sort and BossAI_NoteTurn after each turn is
+/// staged; the choosers only read the battle.
+void BossAI_BeginRound(void);
+void BossAI_NoteTurn(struct BattleAction *request, s32 result);
+s32 BossAI_ChooseKegareSlot(struct Unit *unit, s32 slot, s32 firstPick);
+s32 BossAI_ChooseKegareTarget(const s32 *unitIds, const s32 *targetPositions,
+                              s32 count, s32 userId);
+
 /// BattleAI_ChooseTarget's results when it picks no one: the side it
 /// may target lists no one, or no one there is worth the ability.
 #define TARGET_PICK_SIDE_EMPTY -2
