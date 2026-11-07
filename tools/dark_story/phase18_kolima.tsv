@@ -30,20 +30,20 @@
 05314	message	I wish I knew.{end_wait}
 05316	message	Then we keep looking.\nThere has to be a way.{end_wait}
 05317	message	Then let's go.{end_wait}
-05322	message	Hroom! He cannot\nanswer you, child.{end_wait}
+05322	message	HROOOM! He hears you.\nI won't let him answer.{end_wait}
 05337	message	Wait! If Tret dies,\nwhat happens to\nthe villagers?{end_wait}
 05338	message	We still need him,\n{actor_name:1}.{end_wait}
 05342	message	{actor_name:1}, remember.{page_break}Kolima still needs us.{end_wait}
-05343	MsgTretTurnedPeopleKolima	I turned them into trees?\nThose people...\nWhat have I done?{end_wait}
+05343	MsgTretTurnedPeopleKolima	I did that to Kolima?\nThose were people...{end_wait}
 05347	message	Tret's too weak\nto undo the curse.{end_wait}
 05348	message	Then we help him.{page_break}The villagers are\nstill waiting.{end_wait}
 05349	message	Families are waiting\nin Kolima.\nThey need Tret alive.{end_wait}
 05350	message	Help Tret first.\nThen Kolima.{end_wait}
 05352	message	Try the water!{end_wait}
 05353	message	It may restore\nhis strength.{end_wait}
-05359	message	Hrooom...\nI can think again.\nThe pain is gone.{end_wait}
-05362	message	Laurel, forgive me.\nI let my anger\nhurt them all.{end_wait}
-05363	message	You came back?\nAfter what I did?{end_now}
+05359	message	Hroom... I can feel\nthe sap rising again.{end_wait}
+05362	message	I frightened you, Laurel.\nAnd I hurt so many others.{end_wait}
+05363	message	You saved my life,\nbut you still need my help.\nDon't you?{end_now}
 05366	message	{actor_name:1}, the villagers!\nAsk Tret to help!{end_wait}
 05367	message	Tret can help them\nnow. Ask him!{end_wait}
 05368	message	He has to undo\nwhat he did.{end_wait}
@@ -53,8 +53,8 @@
 05374	message	Stones from the sky...\nPsynergy Stones?{end_now}
 05375	message	Could the stones\nreally do this?{end_wait}
 05376	message	I don't want to believe\nit, either.{end_wait}
-05378	message	The stones fell\namong my branches.{end_wait}
-05379	message	The stones fell\nwhile I was angry.{page_break}I wanted them\nto feel my pain.{page_break}I never meant\nfor this to happen.{end_wait}
+05378	message	Then those strange stones\nfell into my branches.{end_wait}
+05379	message	After that, my anger\nwas all I could hear.{end_wait}
 05380	message	The stones fell\nwhile I was grieving.\nI welcomed their power.{end_wait}
 05381	message	The stones made\nyour anger stronger.{page_break}But you still chose\nwhat you did.{end_wait}
 05382	message	Yes. And I must\nmake it right.{end_wait}
@@ -73,9 +73,9 @@
 05397	message	Another forest\nhas changed there.{end_wait}
 05399	message	That forest is\ndangerous.{page_break}Please be careful\nif you go there.{end_wait}
 05400	message	Then stay here.\nThere's no shame in it.{end_wait}
-05402	message	May the earth\nkeep you safe.{end_wait}
+05402	message	May the road ahead be\nkinder than this forest.{end_wait}
 05403	message	We've grown stronger,\n{actor_name:1}.{end_wait}
-05409	message	You resisted\nTret's power?{end_wait}
-05410	message	There's warmth\nin your hearts.{end_wait}
-05411	message	If you came for Tret,\nyou may be too late.{end_wait}
-05412	message	His life is fading.{page_break}When he dies,\nthis forest will follow.{page_break}Leave while you can.{end_wait}
+05409	message	You resisted his curse.\nI felt it from here.{end_wait}
+05410	message	And yet you came closer.\nWhy risk your lives?{end_wait}
+05411	message	Tret is fading.\nI don't know how much\ntime he has left.{end_wait}
+05412	message	When Tret dies,\nthese woods will follow.{page_break}Leave while you can.{end_wait}
