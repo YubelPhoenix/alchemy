@@ -5,6 +5,7 @@ on:
     branches: ['experiment/aster-convergence-town']
     paths:
       - 'tools/aster_layout.py'
+      - 'tools/aster_dev_entry.py'
       - 'tools/aster_prepare_messages.py'
       - 'tools/dark_story_rewrite.py'
       - 'tools/dark_story/*.tsv'
@@ -43,9 +44,11 @@ jobs:
         with:
           persist-credentials: false
       - name: Check script syntax
-        run: python3 -m py_compile tools/aster_layout.py tools/check_aster.py tools/aster_ruin_variant.py tools/check_aster_ruin.py tools/aster_prepare_messages.py
+        run: python3 -m py_compile tools/aster_layout.py tools/check_aster.py tools/aster_ruin_variant.py tools/check_aster_ruin.py tools/aster_prepare_messages.py tools/aster_dev_entry.py
       - name: Check reproducible exported map
         run: python3 tools/aster_layout.py --check
+      - name: Verify Aster's development-only entry is opt-in
+        run: python3 tools/aster_dev_entry.py --check
       - name: Audit Aster map, linked text, scene, actors and flags
         run: python3 tools/check_aster.py
       - name: Audit unregistered ruined-map geometry and exact event parity
