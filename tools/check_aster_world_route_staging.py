@@ -67,7 +67,7 @@ def main():
          world_after,"Contact trigger not tied to unused actor")
     need("SCENE_EXIT(ASTER_TO_WORLD_MAP, WorldMap, 98)" in aster_after,
          "Aster -> unused world entrance 98 not wired")
-    need("{98, CONDITION_ALWAYS, 5696, 0, 1504" in world_after,
+    need("{98, CONDITION_ALWAYS, 5696, 0, 1536" in world_after,
          "World return coordinates missing")
     need("WORLD_MAP_TO_ASTER_TEST = 115" in exits_after,
          "Unused exit kind was not declared")
