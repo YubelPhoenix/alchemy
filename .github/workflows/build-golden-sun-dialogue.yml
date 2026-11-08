@@ -116,7 +116,7 @@ jobs:
               ("MsgDarkDuelSaturosResumes", "Your healer is gone."),
           )
           for context, fragment in custom:
-              match = re.search(r'^msgctxt "' + re.escape(context) + r'"\nmsgid "[0-9]+"\nmsgstr ([\s\S]*?)(?=\n\n|$)', catalog, re.MULTILINE)
+              match = re.search(r'^msgctxt "' + re.escape(context) + r'"\nmsgid "[0-9]+"\nmsgstr ([\s\S]*?)(?=\n\n|\Z)', catalog, re.MULTILINE)
               if not match or fragment not in match.group(1):
                   raise SystemExit(f"Mercury Aerie exchange missing from build: {context}")
           scene = Path("games/tbs/src/scene/mercury_lighthouse_aerie.c").read_text(encoding="utf-8")
