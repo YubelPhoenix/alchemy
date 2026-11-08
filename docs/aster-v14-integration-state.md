@@ -12,7 +12,7 @@ checks to the proper V14 layout instead of the retired town layout.
 - `python3 tools/aster_layout.py --check` recognizes V14 and checks
   the new snapshot. Running the obsolete generator in write mode **refuses
   to overwrite V14**.
-- `python3 tools/check_aster_v14.py` verifies the snapshot, nine
+- `python3 tools/check_aster_v14.py` (which now also calls `tools/check_aster_native_foliage.py`) verifies the snapshot, nine
   markers, seven scene actors, house/reserved-site solidity, source-grid
   reachability, and just the southern edge being open.
 - `python3 tools/check_aster.py` also routes its map contract to the
@@ -24,10 +24,22 @@ checks to the proper V14 layout instead of the retired town layout.
 
 ## Source-only problems that remain
 
-The staged map contains 786 cells of *solid ordinary grass* with no upper
-scenery layer. These can act as invisible barriers in-game. They must not
-be called finished natural boundaries: native bank/cliff/woodland art
-needs a real visual-and-collision pass.
+The original map had 786 solid-grass cells with no upper visual metatile.
+Those were NOT all defective: 251 belong to the map perimeter, 210 fall
+within original native house footprints, and 56 are the reserved Sanctum
+and additional-home footprints. Only 269 were unclassified interior cells.
+
+This woodland pass adds **12 original Golden Sun Vale 4x5 native tree
+silhouettes**, retaining normal map behavior beneath 66 completely transparent
+foliage cells, and requiring solid ground beneath 174 visible tree cells.
+The current unclassified interior total is **235**, not zero.
+This is a source-grid improvement only, not an emulator approval.
+
+The north and outskirts are better framed by genuine native sprites, but
+waterbanks, cliff faces, 235 remaining unclassified cells and the two reserved
+buildings still need visual-and-collision review using a real Golden Sun
+render or emulator. Some of those cells may already be accounted for by
+nearby overhanging native sprite art.
 
 The six original native facades are present, but Sanctum and the
 additional house are only solid reserved plots. The dry well and memorial
