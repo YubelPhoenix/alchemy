@@ -6,13 +6,15 @@ EXPECTED_BRANCH='experiment/aster-v14-native-map-staging'
 CHECK_ONLY=0
 SKIP_BOOTSTRAP=0
 SKIP_ASSETS=0
+MAP_ONLY=0
 
 usage() {
   cat <<'EOF'
-Usage: bash tools/aster_v14_local_smoke.sh [--check-only] [--skip-bootstrap] [--skip-assets]
+Usage: bash tools/aster_v14_local_smoke.sh [--check-only] [--skip-bootstrap] [--skip-assets] [--map-only]
   --check-only      Run source checks; do not build or patch any game source.
   --skip-bootstrap  Use an already built local pinned compiler toolchain.
   --skip-assets     Skip Ashfall art/text preparation (only for already prepared checkouts).
+  --map-only        Build only the native map encoder and encode Aster Map180.
 This script never pushes, invokes GitHub Actions, uses Codespaces or uploads a ROM.
 EOF
 }
@@ -22,6 +24,7 @@ for arg in "$@"; do
     --check-only) CHECK_ONLY=1 ;;
     --skip-bootstrap) SKIP_BOOTSTRAP=1 ;;
     --skip-assets) SKIP_ASSETS=1 ;;
+    --map-only) MAP_ONLY=1 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unrecognized option: $arg" >&2; usage >&2; exit 2 ;;
   esac
@@ -55,6 +58,21 @@ python3 tools/aster_v14_preflight.py
 
 if (( CHECK_ONLY )); then
   echo 'CHECK-ONLY PASS: no ROM built and no game code modified.'
+  exit 0
+fi
+if (( MAP_ONLY )); then
+  mkdir -p out/aster-v14-smoke
+  echo 'Building Alchemy native map encoder locally (no ARM compiler)...'
+  make -f tools/Makefile tools/out/ags-graphics
+  result='out/aster-v14-smoke/aster-map.grid.lz'
+  tools/out/ags-graphics games/tbs/src/map/map_180/map.txt "$result"
+  if [[ ! -s "$result" ]]; then
+    echo "STOP: map encoder produced no output: $result" >&2
+    exit 1
+  fi
+  echo "MAP ENCODE PASS: $result"
+  wc -c < "$result" | awk '{printf "Encoded map bytes: %s\n", $1}'
+  echo 'This verifies native map encoding, NOT ROM compilation or emulator behavior.'
   exit 0
 fi
 
