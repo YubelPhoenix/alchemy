@@ -1073,7 +1073,12 @@ static void MercuryLighthouseAerie_PlaceForConfrontation(s32 miaHere) {
   Actor_SetPosition(ACTOR_IVAN, PIXELS(336), PIXELS(248));
   // When Mia has already gone on ahead she is parked offscreen here, before
   // the fade-in, so she never shows for a moment and then vanishes.
-  if (miaHere) {
+  // miaHere 2 puts her one step further along the stairs, on the exit side of
+  // Garet, so her walk away never has to pass through the others.
+  if (miaHere == 2) {
+    Actor_SetPosition(ACTOR_MIA, PIXELS(304), PIXELS(216));
+    Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
+  } else if (miaHere) {
     Actor_SetPosition(ACTOR_MIA, PIXELS(328), PIXELS(232));
     Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
   } else {
@@ -1146,7 +1151,7 @@ static void MercuryLighthouseAerie_DuelWon(void) {
 /// Isaac, Garet and Ivan remain to confront Saturos.
 static void MercuryLighthouseAerie_MiaYields(void) {
   Event_Start();
-  MercuryLighthouseAerie_PlaceForConfrontation(1);
+  MercuryLighthouseAerie_PlaceForConfrontation(2);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_WEST, 0);
   Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
   Event_WaitFrames(40);
@@ -1158,8 +1163,7 @@ static void MercuryLighthouseAerie_MiaYields(void) {
   Event_WaitFrames(20);
   MercuryLighthouseAerie_DarkMiaSays();
   Actor_SetSpeed(ACTOR_MIA, PIXELS(4) / 5, PIXELS(2) / 5);
-  // Around Garet (who stands at 328, 216), not through him.
-  Actor_WalkToAndWait(ACTOR_MIA, 304, 232);
+  // She already stands past Garet, so she only has to walk on down the stairs.
   Actor_WalkToAndWait(ACTOR_MIA, 280, 216);
   Event_WaitFrames(20);
   // Without Mia, who is on her way to the beacon.
