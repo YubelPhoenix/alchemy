@@ -35,15 +35,34 @@ approved for the current Aster exterior.
    assigns specific garden/work-yard uses. The first rendered image shows
    the roads are more natural, but there is **still too much open grass**.
    This study is **not approved** and does not update playable Map180.
-2. `aster_lived_in_terrain.py`: wraps the same blockout with contiguous,
-   original Vale cliff ridges and woodland strips chosen from the
-   three-layer `aster_native_terrain_atlas.png`. The prototype treats
-   them as provisional solid boundaries, **not verified game collision**.
-   Review the image critically for seams and clipped cliff faces before
-   incorporating anything into Map180.
+2. `aster_lived_in_terrain.py`: wraps the same blockout with native
+   cliff ridges and woodland strips chosen from the three-layer
+   `aster_native_terrain_atlas.png`. **Visual result: REJECTED as a town.**
+   Although source-accurate, the terrain sections read as isolated
+   rectangular patches pasted into grass. Merely attaching more full
+   source crops to an empty lawn repeats the original design error.
+   The prototype is archived as a diagnostic; no terrain was incorporated
+   into Map180 or scene collision.
 
 The original single-town gameplay scene, eight triggers, seven actor slots,
 and six facades remain untouched while these studies are evaluated.
+
+## New hard rule after rendered prototypes
+
+**Terrain must be authored continuously across the whole village.**
+Do not use disconnected 7- or 10-cell cliff cards, even if every pixel
+comes from Golden Sun. Build a connected ridge, graded transitions and
+woodland enclosing the town, with pathways following its contours. A
+proper tile-by-tile level plan must come before more scenery stamps.
+Leave the rejected life-first and cliff-card PNGs as evidence of the
+problem, not as templates for the actual playable map.
+
+The native screenshot references show a second important issue: the
+settlement needs enough ordinary building and working-yard density to
+support a functioning population. Six facades, even grouped closer,
+remain insufficient without interiors, supporting structures and
+purposeful public spaces. The next map layout must solve both density
+and topography at once.
 
 ## Functional neighborhoods required in the final map
 
