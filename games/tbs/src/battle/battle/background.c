@@ -165,23 +165,30 @@ void BattleBackground_Init(void) {
 /// flickers, at a scrambled moment inside the period; every fourth is a bigger
 /// flash. It reads gVBlankCount, so it needs no state of its own (IWRAM is full).
 #define HEART_LIGHTNING_PERIOD 720
-/// The seams beat like a heart: every HEART_SEAM_PERIOD frames (2 seconds) all
-/// four flare together, a strong beat then a softer one, and settle back to a
-/// steady dim glow (about 45 percent) for the rest of the period. Nothing
-/// moves between beats, so the idle floor stays easy to look at.
-#define HEART_SEAM_PERIOD 120
+/// Set to 1 to bring the sky lightning back; it is off because it pulled the
+/// eye away from the battle.
+#define HEART_LIGHTNING 0
+/// The seams do not flash or pulse. They glow at a steady brightness and their
+/// colour drifts very slowly between violet and ember red, one full round trip
+/// every HEART_SEAM_PERIOD frames (20 seconds), all four together. Only the hue
+/// moves, never the brightness, so the idle floor stays easy on the eyes.
+#define HEART_SEAM_PERIOD 1200
 
-/// One channel of a colour pulsed between dim and bright: wave is 0 to 31.
-static u16 Heart_GlowColor(s32 red, s32 green, s32 blue, s32 wave,
-                           s32 scale) {
-  red = (red * (25 + wave) / 56) * scale >> 16;
-  green = (green * (25 + wave) / 56) * scale >> 16;
-  blue = (blue * (25 + wave) / 56) * scale >> 16;
+/// A seam colour: wave 0 is violet, wave 31 is ember red, brightness fixed.
+static u16 Heart_SeamColor(s32 wave, s32 scale) {
+  s32 red = (22 * (31 - wave) + 31 * wave) / 31;
+  s32 green = (9 * (31 - wave) + 6 * wave) / 31;
+  s32 blue = (31 * (31 - wave) + 13 * wave) / 31;
+
+  // a steady 85 percent of full brightness
+  red = (red * 27 / 32) * scale >> 16;
+  green = (green * 27 / 32) * scale >> 16;
+  blue = (blue * 27 / 32) * scale >> 16;
   return (blue << 10) | (green << 5) | red;
 }
 
-/// Heart's backdrop only: pulses the glowing tile seams, a wave running out
-/// from the horizon, and flickers the whole sky and floor like distant lightning.
+/// Heart's backdrop only: slowly drifts the glowing tile seams' colour (and,
+/// if HEART_LIGHTNING is on, flickers the sky and floor like distant lightning).
 /// Runs every VBlank while her battle lasts. It writes only while the
 /// background is zoomed and undimmed, so the battle animations that take the
 /// palette over are left alone. Added by BattleBackground_Load, removed by
@@ -199,16 +206,16 @@ void Heart_StepBackdropGlow(void) {
   if (scale > Q16_ONE)
     scale = Q16_ONE;
   {
-    // the beat, 0 to 31 in steps of two frames: a strong one, then a softer
-    static const u8 beat[] = {8,  20, 31, 28, 24, 20, 16, 12, 9, 6,
-                              14, 24, 26, 22, 18, 14, 10, 7,  4, 2};
-    s32 step = (s32)(gVBlankCount % HEART_SEAM_PERIOD) / 2;
-    s32 wave = step < (s32)sizeof beat ? beat[step] : 0;
+    s32 t = (s32)(gVBlankCount % HEART_SEAM_PERIOD);
+    s32 half = HEART_SEAM_PERIOD / 2;
+    s32 wave = (t < half ? t : HEART_SEAM_PERIOD - 1 - t) * 31 / (half - 1);
 
     for (k = 0; k < 4; k++)
-      BATTLE_BG_PALETTE[HEART_SEAM_FIRST + k] =
-          Heart_GlowColor(24, 9, 31, wave, scale);
+      BATTLE_BG_PALETTE[HEART_SEAM_FIRST + k] = Heart_SeamColor(wave, scale);
   }
+#if !HEART_LIGHTNING
+  return;
+#endif
   if (scale != Q16_ONE)
     return;
   {
