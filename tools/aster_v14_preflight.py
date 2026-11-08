@@ -18,6 +18,7 @@ CHECKS=(
     ("V14 map and scene collision", ("check_aster_v14.py",)),
     ("Dedicated native Aster overworld icon", ("check_aster_world_icon.py",)),
     ("Provisional overworld icon spacing", ("aster_overworld_site_audit.py",)),
+    ("Clean reversible world-map route probe", ("aster_world_route_probe.py", "--check")),
     ("Combined dialogue, resource and stage source audit", ("check_aster.py",)),
     ("Development shortcut absent from tracked source", ("aster_dev_entry.py", "--check")),
 )
