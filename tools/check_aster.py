@@ -208,8 +208,8 @@ def map_contract():
     for name,x,y,_ in module.DOOR_APPROACHES:
         require((x,y+1) in roads,
                 f"{name} has no immediately adjacent painted dirt path")
-    require(len(module.PATH_PATCHES) == 3,
-            "Worn ground patches count has changed without visual approval")
+    require(not module.PATH_PATCHES,
+            "Rejected blue/cliff crossroads crop was reintroduced")
     for name,dx,dy,sx,sy,w,h in module.PATH_PATCHES:
         for off_y in range(h):
             for off_x in range(w):

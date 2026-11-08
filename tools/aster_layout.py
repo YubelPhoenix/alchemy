@@ -99,14 +99,9 @@ MEMORIAL_RESERVED = (30,8,5,6)
 # and placement from any original Vale monument or Psynergy landmark.
 MEMORIAL_GARDEN = (28,11, 10,53, 9,2)
 
-# Worn ground around logical gathering points. Each contiguous 5x5
-# piece uses *only the ground plane* of Vale's original small dirt patch;
-# it contains no house or pond. Do not scatter chimney/roof tiles again.
-PATH_PATCHES = (
-    ("north_crossroads", 29,18, 3,37, 5,5),
-    ("southern_crossroads",29,39,3,37, 5,5),
-    ("gate_approach", 29,54,3,37, 5,5),
-)
+# The old 5x5 crossroads ground crops contained stray blue cliff/water pixels.
+# Remove them; the native three-cell roads now paint intersections directly.
+PATH_PATCHES = ()
 
 # Each path is two characters wide in the planning blueprint. House entries
 # have a short, protected spur connecting to the closest town street.
@@ -136,43 +131,42 @@ def corridors():
 PATH_CELLS = corridors()
 
 def native_road_tiles():
-    """Visible 2-cell native Vale dirt paths, sharing the walkable street plan.
+    """Paint three-cell roads with intact Golden Sun dirt and grass shoulders.
 
-    Source (x=4..8,y=38..40) is original Golden Sun grass-to-earth border.
-    We select the genuine left/right and top/bottom shoulder metatiles,
-    not a synthetic sprite or a foreign game's ground texture. Intersections
-    use the matching original path center. Returning source coordinates
-    lets the generator and CI audit exactly which Golden Sun art was used.
+    Each straight lane has a native soil center and matching Vale edges.
+    Native edges are taken from one compatible set_02 dirt family. The
+    three-lane intersections use ordinary soil, rather than crossing two
+    scalloped shoulders and leaving strips of bright grass in the road.
+    Roads remain decorative ground: obstacles and scene behaviors come
+    from the blueprint and are never overwritten.
     """
-    vertical={}
-    horizontal={}
-    def add_vertical(x,y0,y1):
-        for y in range(y0,y1+1):
-            vertical[(x-1,y)]=(4,39)
-            vertical[(x,y)]=(8,39)
-    def add_horizontal(y,x0,x1):
-        for x in range(x0,x1+1):
-            horizontal[(x,y)]=(6,38)
-            horizontal[(x,y+1)]=(6,40)
+    vertical, horizontal = {}, {}
+    def vline(x, y0, y1):
+        for y in range(y0, y1+1):
+            vertical[(x-1,y)] = (4,39)
+            vertical[(x,y)] = (6,39)
+            vertical[(x+1,y)] = (8,39)
+    def hline(y, x0, x1):
+        for x in range(x0, x1+1):
+            horizontal[(x,y-1)] = (6,38)
+            horizontal[(x,y)] = (6,39)
+            horizontal[(x,y+1)] = (6,40)
     for y in range(15,63):
         center = 32 if y<24 else 31 if y<41 else 33
-        add_vertical(center,y,y)
+        vline(center,y,y)
     for y,x0,x1 in ((18,12,52),(40,12,53),(57,11,47)):
-        add_horizontal(y,x0,x1)
+        hline(y,x0,x1)
     for name,x,y,_ in DOOR_APPROACHES:
-        add_vertical(x,y,DOOR_LINK_Y[name])
-    roads={**vertical,**horizontal}
+        vline(x,y,DOOR_LINK_Y[name])
+    roads = {**vertical, **horizontal}
     for point in set(vertical)&set(horizontal):
-        roads[point]=(6,39)
-    # Modest natural variations within the SAME original Vale path family.
-    for (x,y) in tuple(roads):
-        if (x*11+y*7)%19==0:
-            roads[(x,y)]=(5,39)
-    # No house, tree, memorial, well or outside/border can acquire road art.
-    # Event triggers keep their original behavior codes at the final pass.
+        roads[point] = (6,39)
+    # Sparse wear belongs on the earth center, not the crisp grass borders.
+    for (x,y),tile in tuple(roads.items()):
+        if tile == (6,39) and (x*11+y*7)%19 == 0:
+            roads[(x,y)] = (5,39)
     return {(x,y):tile for (x,y),tile in roads.items()
-            if 0<=x<SIDE and 0<=y<SIDE
-            and LAYOUT[y][x] in ".="}
+            if 0<=x<SIDE and 0<=y<SIDE and LAYOUT[y][x] in ".="}
 
 def load_vale():
     lines=NATIVE.read_text(encoding="utf-8").splitlines()
@@ -305,22 +299,16 @@ def source():
                     a[0] for a in SCENERY} else "")
                 out[dy+yy][dx+xx+64]=vale[sy+yy][sx+xx+30]
                 out[dy+yy+64][dx+xx]=vale[sy+yy][sx+xx+60]
-    # The earlier repeated Vale source tiles were actually chimney/roof
-    # pixels: pink fragments appeared along all three streets. Paths still
-    # exist as walkable connected routes in LAYOUT, but are intentionally
-    # grass here until we verify a real Vale dirt-path stamp.
-    # Dirt road patches preserve nearby field movement, exits and scripts.
-    # The visually confirmed source ground does not include a roof layer.
+    # Kept as an empty extension hook; old 5x5 ground crops were removed
+    # after visual QA found blue cliff/water pixels at crossroads.
     for name,dx,dy,sx,sy,w,h in PATH_PATCHES:
         for yy in range(h):
             for xx in range(w):
                 gx,gy=dx+xx,dy+yy
                 assert LAYOUT[gy][gx] not in "#XIHSVTMW"
                 out[gy][gx]=vale[sy+yy][sx+xx].split(":")[0]
-    # Street surfaces are part of Aster's *real* generated map, not just
-    # an offline mockup. Each changed metatile is selected from Vale's
-    # genuine dirt/grass edge family; geometry and gameplay collision stay
-    # governed by the open lawn/road blueprint.
+    # Native shoulders and a soil center replace sharp, broken intersections.
+    # The blueprint still controls walkability and event behavior.
     for (x,y),(sx,sy) in native_road_tiles().items():
         out[y][x]=vale[sy][sx].split(":")[0]
     # The memorial, well and six doorway approach tiles are rewritten at
