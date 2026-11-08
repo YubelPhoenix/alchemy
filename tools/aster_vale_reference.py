@@ -6,13 +6,14 @@ with Aster's draft. It is NOT a screenshot from the emulator.
 """
 import csv
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 
 import aster_visual_preview as art
 
 ROOT=Path(__file__).resolve().parents[1]
 VALE_MAP=ROOT/"games/tbs/src/map/map_003/map.txt"
 OUTPUT=ROOT/"tools/aster_vale_reference.png"
+GRID_OUTPUT=ROOT/"tools/aster_vale_coordinates.png"
 
 def source_grid():
     lines=VALE_MAP.read_text(encoding="utf-8").splitlines()
@@ -74,6 +75,24 @@ def main():
                 if tile is not None:
                     canvas.alpha_composite(tile,(x*16,y*16))
     canvas.convert("RGB").save(OUTPUT,optimize=True)
+    # Spatial reference to choose complete doors/paths while designing Aster.
+    # Each original Vale metatile is 16 pixels; label 4-cell grid points.
+    scaled=canvas.convert("RGB").resize((w*32,h*32),
+                                      Image.Resampling.NEAREST)
+    d=ImageDraw.Draw(scaled,"RGBA")
+    for xx in range(0,w+1):
+        d.line((xx*32,0,xx*32,h*32),
+               fill=(0,0,0,160 if xx%4==0 else 38),width=2 if xx%4==0 else 1)
+    for yy in range(0,h+1):
+        d.line((0,yy*32,w*32,yy*32),
+               fill=(0,0,0,160 if yy%4==0 else 38),width=2 if yy%4==0 else 1)
+    for yy in range(0,h,4):
+        for xx in range(0,w,4):
+            label=f"{xx},{yy}"
+            d.rectangle((xx*32+2,yy*32+2,xx*32+7*len(label)+7,
+                         yy*32+14),fill=(0,0,0,185))
+            d.text((xx*32+4,yy*32+2),label,fill=(255,255,255,255))
+    scaled.save(GRID_OUTPUT,optimize=True)
     print("Vale reference generated:",OUTPUT)
     print("Native set_02 source sheets:",source_sizes)
     print("Metatile count:",len(meta),"tile count:",sum(map(len,blocks.values())))
