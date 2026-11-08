@@ -3,6 +3,18 @@
 Checked against `games/tbs/src/scene/world_map.c` on the isolated
 `experiment/aster-v14-native-map-staging` branch, November 8, 2026.
 
+> **November 8 update — first-playtest integration branch:** The status
+> below describes the earlier **Aster V14 staging branch**, where the icon
+> was registered but not permanently spawned. On
+> `experiment/ashfall-aster-first-playtest`, the source now DOES temporarily
+> place the icon into previously unused world actor slot 39 and connect exit
+> 115 to Aster, with return via world entrance 98. This is an unmerged,
+> **uncompiled and unplaytested** prototype, not an approved site. The
+> source-only `tools/check_aster_overworld_contract.py` verifies the exact
+> actor slot, unchanged original actors, static icon spacing, touch trigger,
+> exit and return wiring. It cannot verify terrain/collision or actual
+> game transitions. Preserve this distinction in future reports.
+
 ## Geography and exact **candidate**
 
 Place Aster as a small optional woodland settlement **west-northwest
