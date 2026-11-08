@@ -19,10 +19,19 @@ DEST_X,DEST_Y=50,33
 SRC_X,SRC_Y=8,38
 W,H=12,10
 
-# Need contiguous real banks, not a blue rectangle painted on flat grass.
-# Metatile '3b7' is already present in the original Vale pool interior.
-OPEN_WATER=VALE[43][13].split(":")[0]
-assert OPEN_WATER=="3b7",OPEN_WATER
+# Copy varied native water, not the blank base tile under Vale's crystal.
+# Each sample was inspected in a 16px native water/bank atlas; all these
+# ground tiles are existing *unobstructed* Vale water patterns.
+CLEAR_WATER=(
+    (10,41),  # ordinary blue moving water
+    (10,42),  # water with tiny light ripple
+    (10,43),  # fuller dark/light surface variation
+    (11,41),  # brighter small current
+    (15,41),  # dark blue quiet surface
+    (15,43),  # ordinary open water
+    (12,40),  # plain water in original spring pool
+)
+assert all(VALE[y][x].split(":")[0]!="3b7" for x,y in CLEAR_WATER)
 
 def is_water_source(x,y):
     """Only pond surface, not the vegetated perimeter or bank apron."""
@@ -42,17 +51,36 @@ def source_water():
                 x,y=DEST_X+dx,DEST_Y+dy
                 sx,sy=SRC_X+dx,SRC_Y+dy
                 assert use[y][x]==".",(x,y,use[y][x])
-                # The original Vale pond uses valid native three-layer
-                # metatiles. Respect its banks/outline and shore flowers.
+                # Use the naturally curved Vale shore ONLY where source
+                # actually contains the pond. The previous 12x10 stamp
+                # imported a detached inn roof in the upper-right corner.
+                # Do not stamp an unneeded rectangular ring of original
+                # grass/house tiles around the pond.
+                allowed={
+                    39:(10,17),40:(8,17),41:(8,18),42:(8,18),
+                    43:(8,18),44:(8,18),45:(8,18),46:(8,18),
+                }
+                if sy not in allowed or not (
+                    allowed[sy][0]<=sx<=allowed[sy][1]):
+                    continue
                 ground=VALE[sy][sx].split(":")[0]
                 mid=VALE[sy][sx+30]
                 top=VALE[sy][sx+60]
-                # The pedestal covers central water. Replace its entire
-                # stone/crystal silhouette with untouched Vale water art.
-                if 11<=sx<=16 and 41<=sy<=45:
-                    ground=OPEN_WATER
-                    mid="15"
-                    top="15"
+                # The original crystal/pedestal extends through the pond.
+                # Its native water below is a blank dark base tile and
+                # caused an obvious rectangular patch in the first study.
+                # Replace only the crystal-bearing core with authentic
+                # varied open-water *metatiles*, keep all native banks.
+                if 11<=sx<=16 and 40<=sy<=45:
+                    mid=top="15"
+                    if sy<45:
+                        px,py=CLEAR_WATER[(sx*7+sy*3)%len(CLEAR_WATER)]
+                        ground=VALE[py][px].split(":")[0]
+                    # Preserve the actual Vale south-water transition on
+                    # y45: its varied shoreline is NOT the crystal.
+                if sy==46 and 11<=sx<=17:
+                    # Loose pedestal fragments sit over Vale's south bank.
+                    mid=top="15"
                 rows[y][x]=ground
                 rows[y][x+64]=mid
                 rows[y+64][x]=top
