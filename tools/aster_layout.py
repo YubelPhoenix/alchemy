@@ -73,13 +73,24 @@ BACKGROUND = (GRASS, "15", "15")
 # Three kinds of intact Vale vegetation, placed in rear yards and gardens,
 # NEVER on doorstep approaches, arterial routes or the two monuments.
 # name, x, y, src_x, src_y, width, height
+# Original Golden Sun Vale foliage upper planes: a complete blue tree
+# (17,46) and autumn-red tree (4,13). This removes the old 4x5 native-ground
+# card artifact while retaining solid tree collision. The outer trees are
+# staggered to frame Aster's original streets, not lined up like a grid.
+# Name, destination (x,y), Vale art source (x,y), width, height.
 SCENERY = (
-    ("north_woods_w",20, 7, 24,45, 4,5),
-    ("north_woods_e",40, 6, 24,45, 4,5),
-    ("residential_w",20,27, 24,45, 4,5),
-    ("residential_e",41,25, 24,45, 4,5),
-    ("market_tree_w",22,45, 24,45, 4,5),
-    ("market_tree_e",56,47, 24,45, 4,5),
+    ("north_woods_w",20,7,17,46,4,5),
+    ("north_woods_e",40,6,4,13,4,5),
+    ("residential_w",20,27,17,46,4,5),
+    ("residential_e",41,25,4,13,4,5),
+    ("market_tree_w",22,45,17,46,4,5),
+    ("market_tree_e",56,47,4,13,4,5),
+    ("north_edge_w",3,17,4,13,4,5),
+    ("north_edge_e",57,20,17,46,4,5),
+    ("residential_edge_w",3,37,17,46,4,5),
+    ("residential_edge_e",57,38,4,13,4,5),
+    ("market_edge_w",2,53,17,46,4,5),
+    ("market_edge_e",58,55,4,13,4,5),
 )
 # Small original Vale south-meadow wildflower patches, not foreign props.
 # Domestic gardens near occupied homes and shops contrast with the deliberately
@@ -301,9 +312,11 @@ def source():
     for name,dx,dy,sx,sy,w,h in (*SCENERY,*GARDENS):
         for yy in range(h):
             for xx in range(w):
-                ground=vale[sy+yy][sx+xx].split(":")[0]
-                out[dy+yy][dx+xx]=ground+(":ff" if name in {
-                    a[0] for a in SCENERY} else "")
+                is_tree=name in {a[0] for a in SCENERY}
+                # Keep Aster's real grass under trees. Importing Vale's
+                # original ground made the foliage into green-blue squares.
+                ground=GRASS if is_tree else vale[sy+yy][sx+xx].split(":")[0]
+                out[dy+yy][dx+xx]=ground+(":ff" if is_tree else "")
                 out[dy+yy][dx+xx+64]=vale[sy+yy][sx+xx+30]
                 out[dy+yy+64][dx+xx]=vale[sy+yy][sx+xx+60]
     # Kept as an empty extension hook; old 5x5 ground crops were removed
