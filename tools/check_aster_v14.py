@@ -108,8 +108,21 @@ def main():
     actor_start = scene.index("static struct ActorTemplate sAsterActors[] = {")
     actor_end = scene.index("static struct Trigger sAsterTriggers[] = {", actor_start)
     actor_table = scene[actor_start:actor_end]
-    require(actor_table.count("MOVEMENT_TYPE_STAND") == 7,
-            "Aster must have seven static placed NPCs")
+    require(actor_table.count("MOVEMENT_TYPE_STAND") == 11,
+            "Aster requires seven NPCs followed by four native scenery actors")
+    decor = [
+        ("SPRITE_ASTER_DRY_WELL", 32, 34),
+        ("SPRITE_ASTER_MEMORIAL", 29, 19),
+        ("SPRITE_ASTER_SANCTUM", 42, 33),
+        ("SPRITE_ASTER_ADDITIONAL_HOME", 13, 57),
+    ]
+    after_npc = actor_table.split("SPRITE_ASTER_DRY_WELL", 1)
+    require(len(after_npc) == 2,
+            "Decorative actors must follow all seven original NPCs")
+    for sprite, x, y in decor:
+        require(actor_table.count(sprite) == 1, f"Missing native decor {sprite}")
+        require(actor_table.count(f"PIXELS({x*16}), 0, PIXELS({y*16})") == 1,
+                f"Native decor actor not at approved anchor: {sprite}")
     for name, x, y in EXPECTED_ACTORS:
         anchor = f"PIXELS({16*x}), 0, PIXELS({16*y})"
         require(actor_table.count(anchor) == 1,
@@ -147,6 +160,7 @@ def main():
     print("PASS staged Aster V14 native map: 128x128 packed, original metatiles")
     print("PASS eight story markers, one south exit; seven aligned NPC anchors")
     print("PASS six solid native house facades, two reserved new sites")
+    print("PASS four indexed scenery actors follow the seven dialogue NPCs")
     print(f"PASS source-grid reachability: {len(visited)} cells, only south edge open")
     print("NOT VERIFIED: sprite priorities, collision in engine, world contact,")
     print("Sanctum or house interiors, final water/cliff art, ROM build, emulator")
