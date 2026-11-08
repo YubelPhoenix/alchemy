@@ -24,11 +24,19 @@ sudo apt install -y build-essential git curl patch binutils-arm-none-eabi   pkg-
 git clone --branch experiment/aster-v14-native-map-staging --single-branch   https://github.com/YubelPhoenix/alchemy.git ~/aster-v14-test
 
 cd ~/aster-v14-test
+bash tools/aster_v14_local_smoke.sh --check-only
+bash tools/aster_v14_local_smoke.sh --map-only
 bash tools/aster_v14_local_smoke.sh
 ```
 
 **Do not run these commands from an existing working Ashfall checkout.**
 The separate `~/aster-v14-test` clone is an experimental disposable worktree.
+
+Run the three commands in order. **`--check-only` is the read-only
+source audit. `--map-only` compiles the project's actual host-native
+`ags-graphics` encoder and tests the full Map180 without needing the old
+ARM compiler.** The final command is the much heavier actual ROM compile,
+which depends on downloadable pinned compilers.
 
 The build helper:
 1. Verifies the exact branch, clean tracked checkout, native map snapshot,
@@ -43,6 +51,11 @@ The build helper:
 5. Invokes `make -j2 tbs-en` **locally**.
 6. Automatically restores the debug-entry source even when compilation
    fails and writes an internal log to `out/aster-v14-smoke/`.
+
+The map-only encoder's expected output is
+`out/aster-v14-smoke/aster-map.grid.lz`. A nonempty file proves
+the original graphics encoder accepted the native grid; it does **not**
+prove that any field renders correctly or that a ROM has been built.
 
 The toolchain sources and assets require local network downloads.
 The existing `INSTALL.md` estimates roughly 500 MB for the
