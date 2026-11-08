@@ -93,14 +93,19 @@ bash tools/aster_v14_local_smoke.sh --probe-world
 ```
 
 The build helper temporarily patches Aster's southern exit to UNUSED
-world-map entrance 98 at X=5696, Z=1504; it restores both patched C files
+world-map entrance 98 at X=5696, Z=1536 (32 pixels south of icon
+X=5696, Z=1504). The probe also uses one unused signpost actor and
+world exit kind 115 for icon-to-Aster contact. It restores both patched C
+files and the scene exit header
 even on compilation failure. This does not register the icon or alter
 the main Ashfall branch.
 
 In mGBA with a separate experimental save: enter Aster using B+L+R+Start
 from a field, exit through the south, and attempt to walk from the
-candidate site to Vault and back. Check for mountains, invisible walls,
-water, event collisions, softlocks, wild encounters, and camera issues.
+candidate site to Vault and back. **Then approach the new Aster icon from
+outside and confirm that it enters Aster; leave through the southern gate
+again.** Check for mountains, invisible walls, water, event collisions,
+softlocks, wild encounters, stuck looping on an entrance, and camera issues.
 If the site is blocked, do not implement it in production. Move the
 candidate and rerun the source and in-emulator checks.
 
