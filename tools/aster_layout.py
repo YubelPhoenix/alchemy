@@ -86,6 +86,20 @@ GARDENS = ()
 # than as a decorative object in a random yard. It has NO solid footprint.
 GATE_ARCH = (29,59, 11,50, 6,3)
 
+# Memory memorial: exact original Vale stone shrine, with the visible crystal
+# above a native stone base. It is not a foreign-game asset. Inscription text
+# comes from the existing interaction, not visible pixels on the stone.
+MEMORIAL_ART = (30,8, 11,40, 5,5)
+
+# Worn ground around logical gathering points. Each contiguous 5x5
+# piece uses *only the ground plane* of Vale's original small dirt patch;
+# it contains no house or pond. Do not scatter chimney/roof tiles again.
+PATH_PATCHES = (
+    ("north_crossroads", 29,18, 3,37, 5,5),
+    ("southern_crossroads",29,39,3,37, 5,5),
+    ("gate_approach", 29,54,3,37, 5,5),
+)
+
 # Each path is two characters wide in the planning blueprint. House entries
 # have a short, protected spur connecting to the closest town street.
 # Use deliberate stagger to avoid perfect rectangular road symmetry.
@@ -162,6 +176,12 @@ def blueprint():
             for xx in range(x,x+w):
                 assert grid[yy][xx]==".",f"{name} obstructs walkway"
                 grid[yy][xx]="f"
+    # The shrine has a physically solid stone body. The (32,14) message
+    # trigger stays one cell south of it and can always be approached.
+    for yy in range(10,13):
+        for xx in range(31,34):
+            assert grid[yy][xx] in ".=", "Memorial blocks a building or tree"
+            grid[yy][xx]="M"
     grid[MEMORIAL[1]][MEMORIAL[0]]="M"
     grid[WELL[1]][WELL[0]]="W"
     grid[EXIT[1]][EXIT[0]]="G"
@@ -240,6 +260,21 @@ def source():
     # pixels: pink fragments appeared along all three streets. Paths still
     # exist as walkable connected routes in LAYOUT, but are intentionally
     # grass here until we verify a real Vale dirt-path stamp.
+    # Dirt road patches preserve nearby field movement, exits and scripts.
+    # The visually confirmed source ground does not include a roof layer.
+    for name,dx,dy,sx,sy,w,h in PATH_PATCHES:
+        for yy in range(h):
+            for xx in range(w):
+                gx,gy=dx+xx,dy+yy
+                assert LAYOUT[gy][gx] not in "#XIHSVTMW"
+                out[gy][gx]=vale[sy+yy][sx+xx].split(":")[0]
+    # Northern memorial carries its original complete native Vale upper
+    # layers, not an impossible invisible event floating on grass.
+    mx,my,sx,sy,w,h=MEMORIAL_ART
+    for yy in range(h):
+        for xx in range(w):
+            out[my+yy][mx+xx+64]=vale[sy+yy][sx+xx+30]
+            out[my+yy+64][mx+xx]=vale[sy+yy][sx+xx+60]
     # Vale's actual wooden arch belongs on Aster's exit road. Keeping the
     # original grassy floor passable is intentional: Isaac walks underneath.
     dx,dy,sx,sy,w,h=GATE_ARCH
