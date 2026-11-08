@@ -154,6 +154,32 @@ def main():
     require(edge == {(32,63)}, f"Unexpected reachable map exits: {sorted(edge)}")
     require((0,35) not in visited, "Unwired west exit is open")
     require((32,34) not in visited, "Well's solid core is walkable")
+    # A route through an NPC's own tile is not a playable route. Model all
+    # seven stationary NPCs as occupied at the same time, then verify the
+    # scene still has reachable interactions and adjacent talk positions.
+    npc_cells = {(x, y) for _, x, y in EXPECTED_ACTORS}
+    accessible = set()
+    pending = deque([(32, 61)])
+    while pending:
+        x, y = pending.popleft()
+        if (not (0 <= x < 64 and 0 <= y < 64)
+                or (x, y) in accessible or (x, y) in npc_cells
+                or solid(x, y)):
+            continue
+        accessible.add((x, y))
+        pending.extend(((x-1, y), (x+1, y), (x, y-1), (x, y+1)))
+    require(all(pos in accessible for pos in EXPECTED_EVENTS.values()),
+            "NPCs block access to one or more Aster story events/exits")
+    for name, x, y in EXPECTED_ACTORS:
+        neighbors = ((x-1, y), (x+1, y), (x, y-1), (x, y+1))
+        require(any(pos in accessible for pos in neighbors),
+                f"NPC {name} cannot be approached for dialogue")
+    occupied_edge = {(x, y) for x, y in accessible
+                     if x in (0, 63) or y in (0, 63)}
+    require(occupied_edge == {(32, 63)},
+            "NPCs altered the reachable south-only boundary")
+    print(f"PASS NPC-aware source access: {len(accessible)} cells; "
+          "all events and talk positions reachable")
     # Inspect native foliage and original transparent tile behavior.
     from check_aster_native_foliage import verify as verify_native_foliage
     verify_native_foliage()
