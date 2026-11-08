@@ -9,6 +9,7 @@ on:
       - 'tools/aster_domestic_prop_study.py'
       - 'tools/aster_native_terrain_proof.py'
       - 'tools/aster_crystal_free_pond_test.py'
+      - 'tools/aster_pond_south_bank_atlas.py'
       - 'games/tbs/src/map/map_180/map.txt'
       - '.github/workflows/aster-native-preview.yml'
   workflow_dispatch:
@@ -44,6 +45,7 @@ jobs:
           python3 tools/aster_domestic_prop_study.py
           python3 tools/aster_native_terrain_proof.py
           python3 tools/aster_crystal_free_pond_test.py
+          python3 tools/aster_pond_south_bank_atlas.py
       - name: Keep PNGs available without changing the game
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -56,6 +58,7 @@ jobs:
             tools/aster_native_terrain_proof.png
             tools/aster_native_terrain_proof.json
             tools/aster_crystal_free_pond_test.png
+            tools/aster_pond_south_bank_atlas.png
           retention-days: 10
       - name: Commit reproducible previews to experimental branch
         run: |
@@ -64,7 +67,7 @@ jobs:
           git add games/tbs/src/map/map_180/map.txt \
             tools/aster_visual_review*.png tools/aster_domestic_yards*.png \
             tools/aster_native_terrain_proof.png tools/aster_native_terrain_proof.json \
-            tools/aster_crystal_free_pond_test.png
+            tools/aster_crystal_free_pond_test.png tools/aster_pond_south_bank_atlas.png
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
