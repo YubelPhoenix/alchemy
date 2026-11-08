@@ -120,7 +120,7 @@ def diff(edge_a,edge_b):
         for a,b in zip(edge_a,edge_b)
         for v,w in zip(a,b))
 
-def synthesize():
+def synthesize(with_usage=False):
     original_empty=town.empty_map
     original_tree=town.TREES
     town.empty_map=water.source_water()
@@ -286,7 +286,7 @@ def synthesize():
     assert not unreachable,("Forest made draft scene unusable",unreachable)
     print("Forest synthesis outcome (not a verified ROM):",dict(stats))
     print("Source-only flood-fill pass: all 8 events and 7 actors reachable")
-    return rows
+    return (rows,use) if with_usage else rows
 
 def main():
     rows=synthesize()
