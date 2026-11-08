@@ -115,19 +115,21 @@ def map_contract():
                 f"Missing {name} event tile at ({x},{y})")
         require(rows[y][x] in ".=",
                 f"{name} trigger embedded inside solid facade")
-    require(tokens[63][32] == "2b:1", "South gate exit behavior missing")
+    require(tokens[63][32] == "ba:1", "South gate exit behavior missing")
     require(all((int(t.split(":")[0],16) & 0xfff) != 0xfff
                 for row in tokens for t in row),
             "Unresolved 0xFFF placeholders would scramble Aster graphics")
+    require(tokens[1][65] == "15" and tokens[65][1] == "15",
+            "Vale grass requires original middle+overhead layers, not ground only")
     require(len(module.BUILDINGS) == 6, "Aster six facades changed")
     require(len(module.ACTORS) == 7, "Aster actor roster changed")
     native = module.load_vale()
     # Source fidelity: every copied wall/roof cell comes directly from the
     # original Golden Sun Map019 layers. No cross-game art or invented tile
     # identifiers can silently enter the six house footprints.
-    require(tokens[1][1] == "2b",
+    require(tokens[1][1] == "ba",
             "Open lawn must use native Vale green terrain, not an empty metatile")
-    require(tokens[20][25] == "2b",
+    require(tokens[20][25] == "ba",
             "Village path may not use Vault's incompatible path tiles")
     for name, x, y, sx, sy, w, h, ch in module.BUILDINGS:
         require(w > 0 and h > 0, f"Empty facade: {name}")
