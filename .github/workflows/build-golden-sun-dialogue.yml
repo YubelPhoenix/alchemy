@@ -30,7 +30,62 @@ permissions:
   contents: read
 
 jobs:
+  artifact-storage-gate:
+    # Fail closed BEFORE any compilation if this public repository's
+    # stored Actions artifacts approach the GitHub Free allowance.
+    # Billing across other repositories/Packages is separately controlled
+    # by the owner's GitHub billing budgets.
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Refuse build if artifact storage approaches 150 MB
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.request
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          if repo != "YubelPhoenix/alchemy":
+              raise SystemExit("SAFETY STOP: unexpected repository")
+          url = f"https://api.github.com/repos/{repo}/actions/artifacts"
+          headers = {
+              "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+              "Accept": "application/vnd.github+json",
+              "User-Agent": "Ashfall-free-tier-preflight",
+          }
+          bytes_used = 0
+          artifacts = 0
+          page = 1
+          while True:
+              request = urllib.request.Request(
+                  f"{url}?per_page=100&page={page}", headers=headers)
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  batch = json.load(response)["artifacts"]
+              for a in batch:
+                  if not a.get("expired"):
+                      bytes_used += int(a["size_in_bytes"])
+                      artifacts += 1
+              if len(batch) < 100:
+                  break
+              page += 1
+              if page > 100:
+                  raise SystemExit("SAFETY STOP: too many artifact pages")
+          print(f"Actions storage: {bytes_used/1_000_000:.2f} MB in {artifacts} artifacts")
+          if bytes_used >= 150_000_000:
+              raise SystemExit("SAFETY STOP: >=150 MB in repo. Clean artifacts before building.")
+          print("PASS: repo artifact usage below the conservative 150 MB build limit.")
+          PY
+
   build-and-patch:
+    needs: artifact-storage-gate
+    if: github.event.repository.private == false
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
