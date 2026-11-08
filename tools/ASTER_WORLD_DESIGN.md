@@ -48,24 +48,37 @@ not provide immediate exposition.
    can happen later, after the Suhalla/greater-Ashfall story supplies the
    mechanism of convergence. Until then, Aster remains a disturbing mystery.
 
-## Exterior blocking pass: 64x64 Golden Sun map cells
+## Aster's own geography (experimental 64x64 cells)
 
-| Structure | Location | Story purpose | Current gameplay |
-| --- | --- | --- | --- |
-| Sealed house | northwest (5,3) | An occupied home no one remembers entering | Threshold message only |
-| Inn | northeast (45,3) | Empty rooms; contradictory headcount | Threshold message only |
-| West home | west (5,24) | Human-scale ordinary domestic life | Threshold message only |
-| East home | east (50,24) | Familiarity becomes duplication | Threshold message only |
-| Shop | southwest (4,44) | Ordinary trade; later a wrong inventory | Threshold message only |
-| Duplicate home | southeast (50,44) | Copies the west home's facade | Threshold message only |
-| Memorial | central north (32,13) | Names/history changing | Step-on scripted event |
-| Well | central south (32,34) | Dry/full disagreement | Step-on scripted event |
-| South gate | (32,63) | Controlled test exit; no legitimate paired world-map entry yet | Temporary Vault-return exit |
+The town must **not** be a carbon copy of Vale. Vale supplies compatible
+Golden Sun pixel-art materials, but the *settlement plan is original*:
+a quiet northern remembrance lane, two offset residential streets, and
+a small commercial quarter by the south gate. Aster's roads have short,
+unequal branches rather than Vale's original winding house placements.
 
-Seven NPC slots are positioned on connected walkable paths. Exterior walls and
-door cells are intentionally blocked until separate interior maps are built.
-The eight doorstep/landmark approaches have distinct scene-local behaviors
-0xe1 through 0xe8.
+| Structure | Aster top-left cell | Function and physical relationship |
+| --- | --- | --- |
+| Sealed house | (7,4) | Northwest of the remembrance lane; no interior yet |
+| Duplicate house | (48,5) | Far northeast; eerily repeats the western home's facade |
+| Western home | (8,26) | A home facing the western residential lane |
+| Eastern home | (49,27) | Offset from its western counterpart, not mirror-symmetrical |
+| Shop | (6,45) | Southwest of the busy south entrance |
+| Inn | (42,44) | Southeast market quarter, using the original Golden Sun inn-sign roof |
+| Remembrance garden | around (32,13) | Plain wood-and-flower memorial; accessible dialogue at (32,14) |
+| Dry well, incomplete art | (32,34) | Gathering place and convergence clue; interaction at (32,35) |
+| South gate | (32,63) | Experimental exit only; no reciprocal world map arrival yet |
+
+The normal map includes six recognizable buildings and their individual
+connected front-door approaches. Eight scene behaviors `0xe1–0xe8` remain
+wired. Seven NPC positions are verified against the scene source.
+The south market, remembrance lane and residents' quarters should have
+different practical purposes and different scenery densities.
+
+**Visual prohibition:** No Psynergy Stone, altar, glowing crystal, or other
+Vale mystical landmark belongs in Aster's memorial. The player specifically
+rejected it. An **ordinary fenced remembrance garden** has replaced the
+crystal: wildflowers, weathered wood and blank or missing names. Its event
+messages, rather than magical effects, establish the dread.
 
 ## Visual direction — GOLDEN SUN ART ONLY
 
@@ -79,8 +92,10 @@ The experimental map uses Vale's **actual** Map003 metatiles, shapes, palette
 and three 16KB tile character blocks. Mixed-palette village tile imports
 are prohibited; future decoration must come from the same compatible set.
 
-The source layout places six familiar houses around grass, narrow native
-approach paths, and the well/memorial. Fracture should change things that
+The source layout places familiar Golden Sun house art in **new Aster streets and
+neighborhoods**, with a nonmagical remembrance garden, plain grass and
+a planned dry well. Matching Golden Sun art is necessary, but rearranging
+Vale's village unchanged is specifically forbidden. Fracture should change things that
 are **already native to the game**: duplicate doorways, mismatched window
 locations, inaccessible rooms, shifting names, wrong reflections and
 repeated people. No garbled ROM text, broken-menu effect, imported building
