@@ -50,6 +50,21 @@ The checker verifies map/sprite/dialogue registration, that the
 experimental reciprocal route still uses its reserved slots, and that
 the pinned tactical boss AI has not been overwritten. It invokes the
 native map, bridge, foliage, sprite and scene source QA helpers.
+
+**New source-isolation gate (November 8):**
+`tools/check_aster_branch_isolation.py` is included in the read-only
+preflight. It requires a clean checkout of this exact branch with
+Ashfall baseline commit `62dd7b5331a7e23a12df0090e9e823a3aed8f425`
+available in the local Git history. It checks the exact set of Aster-only
+added files and the size/status of approved changes to eleven inherited
+Ashfall files. A new file outside the approved list, or extra edits to
+world-map/story/sprite/resource registrations, stops the gate before any
+compile. To expand the scope later, first review the new baseline diff and
+explicitly update the audit list; never bypass it to force a build.
+The latest remote comparison confirms 44 changed paths: 33 Aster additions
+and 11 deliberate registration/catalogue changes. None are battle or
+workflow paths. No hosted Actions run was started by these audit commits.
+
 Passing does **not** prove successful compilation or game behavior.
 
 ## Required order for ANY later experimental build
