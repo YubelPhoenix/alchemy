@@ -41,6 +41,9 @@ def require(ok, reason):
         raise AssertionError(reason)
 
 def main():
+    from aster_v14_native_map import render_snapshot
+    if MAP.read_text(encoding="utf-8") != render_snapshot():
+        raise AssertionError("Native V14 Map180 differs from immutable snapshot")
     text = MAP.read_text(encoding="utf-8").splitlines()
     require(text[0] == "grid:128x128\tat:0,0\tfill:0:0:0",
             "Wrong native map header")
