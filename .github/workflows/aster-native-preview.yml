@@ -45,5 +45,8 @@ jobs:
             echo 'No preview difference.'
           else
             git commit -m 'Aster: publish source-derived native Golden Sun tile map preview [skip ci]'
+            # Review outputs are independent of map source commits; rebase
+            # the generated-image commit if another job updated the branch.
+            git pull --rebase origin experiment/aster-convergence-town
             git push origin HEAD:experiment/aster-convergence-town
           fi
