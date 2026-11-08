@@ -5,12 +5,14 @@ set -Eeuo pipefail
 EXPECTED_BRANCH='experiment/aster-v14-native-map-staging'
 CHECK_ONLY=0
 SKIP_BOOTSTRAP=0
+SKIP_ASSETS=0
 
 usage() {
   cat <<'EOF'
-Usage: bash tools/aster_v14_local_smoke.sh [--check-only] [--skip-bootstrap]
+Usage: bash tools/aster_v14_local_smoke.sh [--check-only] [--skip-bootstrap] [--skip-assets]
   --check-only      Run source checks; do not build or patch any game source.
   --skip-bootstrap  Use an already built local pinned compiler toolchain.
+  --skip-assets     Skip Ashfall art/text preparation (only for already prepared checkouts).
 This script never pushes, invokes GitHub Actions, uses Codespaces or uploads a ROM.
 EOF
 }
@@ -19,6 +21,7 @@ for arg in "$@"; do
   case "$arg" in
     --check-only) CHECK_ONLY=1 ;;
     --skip-bootstrap) SKIP_BOOTSTRAP=1 ;;
+    --skip-assets) SKIP_ASSETS=1 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unrecognized option: $arg" >&2; usage >&2; exit 2 ;;
   esac
@@ -68,6 +71,30 @@ echo "Log: $log"
 if [[ ! -f alchemy-gcc/Makefile ]]; then
   echo 'Initializing pinned public compiler submodule (git download, no push)...'
   git submodule update --init --recursive alchemy-gcc
+fi
+
+if (( ! SKIP_ASSETS )); then
+  echo 'Preparing Ashfall text and custom graphics in this disposable checkout...'
+  python3 tools/aster_prepare_messages.py
+  python3 tools/dark_story_rewrite.py
+  python3 tools/aster_prepare_messages.py --verify
+  venv="$ROOT/out/aster-v14-smoke/.venv"
+  if [[ ! -x "$venv/bin/python" ]]; then
+    python3 -m venv "$venv" || {
+      echo 'STOP: Python venv setup failed; install python3-venv.' >&2
+      exit 1
+    }
+  fi
+  "$venv/bin/python" -m pip install --disable-pip-version-check \
+    Pillow numpy opencv-python-headless
+  for tool in \
+    build_heart_art.py build_ash_jenna_art.py build_kegare_art.py \
+    build_sarah_art.py build_sarah_overworld.py; do
+    "$venv/bin/python" "tools/dark_story/$tool"
+  done
+  python3 tools/check_aster.py
+else
+  echo 'SKIP: generated Ashfall assets and message preparation; build may fail.'
 fi
 
 if (( ! SKIP_BOOTSTRAP )); then
