@@ -60,7 +60,7 @@ def make(mode):
                 sx,sy=14+xx,2+yy
                 grid[y][x]=VALE[39][6].split(":")[0]
                 grid[y][x+64]=VALE[sy][sx+30]
-                grid[y+64][x]=VALE[sy+60][sx]
+                grid[y+64][x]=VALE[sy][sx+60]
     elif mode=="stone_cistern":
         # Use exact native gray cap over a plain brown earth opening.
         # Structure is 2x2 (32x32 px) atop worn soil, with gray stone
@@ -71,7 +71,7 @@ def make(mode):
                 grid[y][x]=VALE[39][6].split(":")[0]
                 sx,sy=14+xx,2+yy
                 grid[y][x+64]=VALE[sy][sx+30]
-                grid[y+64][x]=VALE[sy+60][sx]
+                grid[y+64][x]=VALE[sy][sx+60]
     else:raise ValueError(mode)
     # Well event stays on original southern interaction (32,35).
     assert grid[35][32]==ORIGINAL[35][32],mode
