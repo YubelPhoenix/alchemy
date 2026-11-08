@@ -24,6 +24,14 @@
 6. **Text rendering**: lines may fit 27 characters but still overflow due to glyph widths, control codes, font kerning or speaker banners. Playtest every page, including two-page original innkeeper dialogue.
 7. **Save compatibility**: entering and leaving must preserve party, Djinn, chapter progress, menus, save/reload and world-map position.
 
+## Actual build-testing log
+
+- First full modified-English compile (GitHub Actions run 42437882864) **FAILED** early in the existing Ash Jenna battle AI: `MsgDarkAshValePunish` was undeclared. This did **not** establish any playable Aster ROM.
+- The missing line is already authored in `tools/dark_story/phase77_ash_jenna_fights.tsv` as `N338`. The first smoke job skipped `dark_story_rewrite.py`, which normally generates all `N...` combat texts.
+- Safety fix: `tools/aster_prepare_messages.py` relocates the original `alchemy-null` marker from ID 10722 to the end of the catalogue **in the build checkout only**. Aster's existing 36 IDs (10723–10758) remain intact, then the ordinary Ashfall rewrite appends fresh IDs without colliding with Aster. A new CI source check verifies uniqueness and the authored Ash Jenna battle messages.
+- The actual ROM recompile is separately gated by an explicitly marked `[aster-rom-smoke]` commit or manual workflow dispatch. A passing source audit is not a playable ROM.
+- Additional development-entry issue found: Aster is scene index 201, but the vanilla debug map selector wraps at 200. Do not merely increase the selector limit: its debug-name messages also assume the original range. A safe development-only entry path needs to be installed and tested, without exposing debug controls in production.
+
 ## Repeatable automated checks
 
 - `python3 tools/aster_layout.py --check` — tracked grid matches generator.
