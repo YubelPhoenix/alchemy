@@ -18,6 +18,7 @@ CHECKS=(
     ("V14 map and scene collision", ("check_aster_v14.py",)),
     ("Dedicated native Aster overworld icon", ("check_aster_world_icon.py",)),
     ("Native well, memorial, building façades and waterfall animation", ("check_aster_native_decor.py",)),
+    ("Approved 27-character dialogue source refinements", ("aster_polish_dialogue.py", "--check")),
     ("Provisional overworld icon spacing", ("aster_overworld_site_audit.py",)),
     ("Clean reversible world-map route probe", ("aster_world_route_probe.py", "--check")),
     ("Two-way world contact dry-run and source restore", ("check_aster_world_route_staging.py",)),
