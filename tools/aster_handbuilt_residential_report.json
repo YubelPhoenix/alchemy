@@ -1,0 +1,29 @@
+{
+  "source": "Original Golden Sun Vale Map003 three-layer tile graphics",
+  "status": "VISUAL STUDY ONLY \u2014 not an integrated ROM map",
+  "placed": {
+    "home west cottage": 1,
+    "home east cottage": 1,
+    "home garden cottage": 1,
+    "road_cells": 169,
+    "native_pond_cells": 108,
+    "complete_trees": 14,
+    "cultivated_beds": 10,
+    "whole_fences": 3,
+    "household_supplies": 7,
+    "wildflowers": 18
+  },
+  "homes": 3,
+  "doorways_reachable": 3,
+  "pond_present": true,
+  "automatic_placements": 0,
+  "silent_skips": 0,
+  "not_yet_tested": [
+    "visual approval",
+    "emulator priorities",
+    "movement flags",
+    "story events",
+    "house interiors",
+    "world connection"
+  ]
+}
