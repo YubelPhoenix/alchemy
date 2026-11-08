@@ -2,7 +2,7 @@
 """Private experiments using only native Vale graphics, NOT gameplay maps.
 
 Aster's main Map180 is left untouched. Each 64x64 source-derived study
-tests the *actual* metatiles for possible memorial and well surroundings.
+tests a native dirt texture only. The Psynergy Stone experiment is banned.
 Never label this a screenshot of a compiled ROM.
 """
 from pathlib import Path
@@ -43,35 +43,6 @@ def save(label,change):
                 root/f"tools/aster_square_{label}_labels.png")
     print("Golden Sun-only square study:",label)
 
-def trial_pool(rows):
-    # Small cistern candidate: a *complete* native Vale basin crop.
-    # Vale's spring surrounds the Psynergy stone, not a dry well.
-    stamp(rows,"spring",26,29,8,38,12,9,True)
-
-def trial_stone(rows):
-    # Test the native purple mineral artwork with grass under it.
-    # A source study only; its meaning as a memorial is not settled.
-    stamp(rows,"marker",30,10,11,40,5,5,False)
-
-def trial_arch(rows):
-    # Native entrance arch over the memorial's north approach. This tests
-    # whether an arch reads as a gathering place, not as a grave marker.
-    stamp(rows,"memorial arch",29,9,11,50,6,3,False)
-
-def trial_memorial_south(rows):
-    # Stone marker is three native Vale layers, centered *north* of the
-    # memorial's (32,14) interaction, leaving a grass gap for inspection.
-    stamp(rows,"north memorial",30,8,11,40,5,5,False)
-    # Four small original Vale paving cells, preserving empty walkable
-    # grass underlays rather than copying the pond or unrelated houses.
-    for x,y,sx,sy in ((31,13,3,38),(32,13,4,38),
-                      (31,14,3,39),(32,14,4,39)):
-        # Source ground only, keep the exact event behavior.
-        old=rows[y][x]
-        graphics=vale[sy][sx].split(":")[0]
-        event=old[old.index(":"):] if ":e2" in old else ""
-        rows[y][x]=graphics+event
-
 def trial_dirt(rows):
     # A contiguous Vale ground-only patch below the southern shop, used to
     # determine whether this is true dirt or rock/roof-bearing terrain.
@@ -81,8 +52,6 @@ def trial_dirt(rows):
             rows[dy+yy][dx+xx]=vale[sy+yy][sx+xx].split(":")[0]
 
 if __name__=="__main__":
-    save("spring",trial_pool)
-    save("marker",trial_stone)
-    save("arch",trial_arch)
-    save("memorial",trial_memorial_south)
+    # Ordinary Vale dirt only. The old Psynergy Stone, pond and gate
+    # candidates were rejected and are never generated again for Aster.
     save("dirt",trial_dirt)
