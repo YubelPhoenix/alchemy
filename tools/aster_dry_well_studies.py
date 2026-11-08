@@ -51,9 +51,10 @@ def make(mode):
                 grid[y][x+64]=VALE[2+yy][13+xx+30]
                 grid[y+64][x]=VALE[2+yy][13+xx+60]
     elif mode=="chimney_only":
-        # Original Golden Sun Vale stone chimney cap + masonry column,
-        # precisely x14..15 y2..4. The adjacent house roof is not copied.
-        for yy in range(3):
+        # Original Golden Sun Vale stone chimney cap x14..15 y2..3;
+        # lower x14..15 y4 uses an unmapped palette-15 sentinel and
+        # cannot be safely imported as a standalone map decoration.
+        for yy in range(2):
             for xx in range(2):
                 x,y=cx-1+xx,cy-1+yy
                 sx,sy=14+xx,2+yy
