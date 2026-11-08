@@ -21,6 +21,7 @@ CHECKS=(
     ("Clean reversible world-map route probe", ("aster_world_route_probe.py", "--check")),
     ("Two-way world contact dry-run and source restore", ("check_aster_world_route_staging.py",)),
     ("Combined dialogue, resource and stage source audit", ("check_aster.py",)),
+    ("Aster V14 IPS format round-trip", ("aster_v14_make_ips.py", "--self-test")),
     ("Development shortcut absent from tracked source", ("aster_dev_entry.py", "--check")),
 )
 
