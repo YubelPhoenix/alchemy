@@ -1,80 +1,365 @@
 {
   "status": "nonplayable native Golden Sun visual study",
   "placed": {
-    "cultivated_beds": 1,
-    "solid_supplies": 9,
-    "small_wildflowers": 7
+    "cultivated_beds": 9,
+    "short_yard_fences": 4,
+    "solid_supplies": 14,
+    "small_wildflowers": 5
   },
-  "rejected": [
+  "placements": [
     {
       "name": "west_kitchen_patch",
-      "reason": "garden overlaps art, road, or reserved space"
+      "kind": "garden",
+      "requested": [
+        17,
+        27
+      ],
+      "placed": [
+        17,
+        25
+      ],
+      "moved": true
     },
     {
       "name": "west_herb_patch",
-      "reason": "garden overlaps art, road, or reserved space"
+      "kind": "garden",
+      "requested": [
+        21,
+        28
+      ],
+      "placed": [
+        23,
+        28
+      ],
+      "moved": true
     },
     {
       "name": "east_kitchen_patch",
-      "reason": "garden overlaps art, road, or reserved space"
+      "kind": "garden",
+      "requested": [
+        46,
+        28
+      ],
+      "placed": [
+        46,
+        29
+      ],
+      "moved": true
     },
     {
       "name": "east_herb_patch",
-      "reason": "garden overlaps art, road, or reserved space"
+      "kind": "garden",
+      "requested": [
+        49,
+        30
+      ],
+      "placed": [
+        49,
+        31
+      ],
+      "moved": true
     },
     {
       "name": "shed_work_patch",
-      "reason": "garden overlaps art, road, or reserved space"
+      "kind": "garden",
+      "requested": [
+        13,
+        32
+      ],
+      "placed": [
+        12,
+        35
+      ],
+      "moved": true
     },
     {
       "name": "shop_customer_garden",
-      "reason": "garden overlaps art, road, or reserved space"
+      "kind": "garden",
+      "requested": [
+        20,
+        47
+      ],
+      "placed": [
+        25,
+        47
+      ],
+      "moved": true
     },
     {
       "name": "shop_owner_garden",
-      "reason": "garden overlaps art, road, or reserved space"
+      "kind": "garden",
+      "requested": [
+        23,
+        45
+      ],
+      "placed": [
+        25,
+        45
+      ],
+      "moved": true
     },
     {
       "name": "inn_service_garden",
-      "reason": "garden overlaps art, road, or reserved space"
+      "kind": "garden",
+      "requested": [
+        48,
+        43
+      ],
+      "placed": [
+        47,
+        43
+      ],
+      "moved": true
     },
     {
-      "name": "western_home_water",
-      "reason": "occupied layer, reserved doorway or road"
-    },
-    {
-      "name": "western_home_goods",
-      "reason": "occupied layer, reserved doorway or road"
-    },
-    {
-      "name": "eastern_home_water",
-      "reason": "occupied layer, reserved doorway or road"
-    },
-    {
-      "name": "shop_delivery_crate",
-      "reason": "occupied layer, reserved doorway or road"
-    },
-    {
-      "name": "inn_luggage",
-      "reason": "occupied layer, reserved doorway or road"
+      "name": "inn_guest_garden",
+      "kind": "garden",
+      "requested": [
+        51,
+        45
+      ],
+      "placed": [
+        51,
+        45
+      ],
+      "moved": false
     },
     {
       "name": "west_garden_boundary",
-      "reason": "whole fence rejected: overlap or door halo"
+      "kind": "property_edge",
+      "requested": [
+        19,
+        35
+      ],
+      "placed": [
+        21,
+        33
+      ],
+      "moved": true
     },
     {
       "name": "east_garden_boundary",
-      "reason": "whole fence rejected: overlap or door halo"
+      "kind": "property_edge",
+      "requested": [
+        46,
+        38
+      ],
+      "placed": [
+        46,
+        38
+      ],
+      "moved": false
     },
     {
       "name": "shop_stock_boundary",
-      "reason": "whole fence rejected: overlap or door halo"
+      "kind": "property_edge",
+      "requested": [
+        19,
+        44
+      ],
+      "placed": [
+        21,
+        45
+      ],
+      "moved": true
     },
     {
       "name": "inn_service_boundary",
-      "reason": "whole fence rejected: overlap or door halo"
+      "kind": "property_edge",
+      "requested": [
+        47,
+        51
+      ],
+      "placed": [
+        47,
+        50
+      ],
+      "moved": true
+    },
+    {
+      "name": "western_home_water",
+      "kind": "supply",
+      "requested": [
+        18,
+        33
+      ],
+      "placed": [
+        21,
+        32
+      ],
+      "moved": true
+    },
+    {
+      "name": "western_home_goods",
+      "kind": "supply",
+      "requested": [
+        20,
+        33
+      ],
+      "placed": [
+        22,
+        32
+      ],
+      "moved": true
+    },
+    {
+      "name": "eastern_home_water",
+      "kind": "supply",
+      "requested": [
+        47,
+        34
+      ],
+      "placed": [
+        46,
+        34
+      ],
+      "moved": true
+    },
+    {
+      "name": "eastern_home_goods",
+      "kind": "supply",
+      "requested": [
+        46,
+        36
+      ],
+      "placed": [
+        46,
+        36
+      ],
+      "moved": false
+    },
+    {
+      "name": "shed_stock_north",
+      "kind": "supply",
+      "requested": [
+        12,
+        34
+      ],
+      "placed": [
+        12,
+        34
+      ],
+      "moved": false
+    },
+    {
+      "name": "shed_stock_south",
+      "kind": "supply",
+      "requested": [
+        12,
+        36
+      ],
+      "placed": [
+        11,
+        36
+      ],
+      "moved": true
+    },
+    {
+      "name": "shed_jug",
+      "kind": "supply",
+      "requested": [
+        13,
+        38
+      ],
+      "placed": [
+        13,
+        38
+      ],
+      "moved": false
+    },
+    {
+      "name": "shop_delivery_crate",
+      "kind": "supply",
+      "requested": [
+        19,
+        42
+      ],
+      "placed": [
+        19,
+        41
+      ],
+      "moved": true
+    },
+    {
+      "name": "shop_delivery_jar",
+      "kind": "supply",
+      "requested": [
+        20,
+        41
+      ],
+      "placed": [
+        20,
+        41
+      ],
+      "moved": false
+    },
+    {
+      "name": "shop_spares",
+      "kind": "supply",
+      "requested": [
+        21,
+        41
+      ],
+      "placed": [
+        21,
+        41
+      ],
+      "moved": false
+    },
+    {
+      "name": "inn_laundry_water",
+      "kind": "supply",
+      "requested": [
+        48,
+        45
+      ],
+      "placed": [
+        48,
+        45
+      ],
+      "moved": false
+    },
+    {
+      "name": "inn_luggage",
+      "kind": "supply",
+      "requested": [
+        49,
+        47
+      ],
+      "placed": [
+        49,
+        48
+      ],
+      "moved": true
+    },
+    {
+      "name": "inn_water_jar",
+      "kind": "supply",
+      "requested": [
+        48,
+        49
+      ],
+      "placed": [
+        48,
+        49
+      ],
+      "moved": false
+    },
+    {
+      "name": "pond_carried_water",
+      "kind": "supply",
+      "requested": [
+        48,
+        38
+      ],
+      "placed": [
+        48,
+        37
+      ],
+      "moved": true
     }
   ],
+  "rejected": [],
   "protected_event_npc_targets": 17,
   "all_targets_reachable": true,
   "caveats": [
