@@ -118,16 +118,30 @@ def map_contract():
     require(tokens[63][32] == "56:1", "South gate exit behavior missing")
     require(len(module.BUILDINGS) == 6, "Aster six facades changed")
     require(len(module.ACTORS) == 7, "Aster actor roster changed")
+    native = module.load_vault()
+    # Source fidelity: every copied wall/roof cell comes directly from the
+    # original Golden Sun Map019 layers. No cross-game art or invented tile
+    # identifiers can silently enter the six house footprints.
+    require(tokens[1][1] == "0",
+            "Open lawn must use the native Vault grass metatile, not path")
+    require(tokens[20][25] == "56",
+            "Village path must use Vault's native path metatile")
     for name, x, y, sx, sy, w, h, ch in module.BUILDINGS:
         require(w > 0 and h > 0, f"Empty facade: {name}")
         require(all(rows[yy][xx] == ch
                     for yy in range(y, y+h) for xx in range(x, x+w)),
                 f"Facade footprint changed: {name}")
-        require(any(tokens[yy][xx+64] != "0"
-                    for yy in range(y, y+h) for xx in range(x, x+w))
-                or any(tokens[yy+64][xx] != "0"
-                    for yy in range(y, y+h) for xx in range(x, x+w)),
-                f"Copied upper-layer art missing for {name}")
+        for dy in range(h):
+            for dx in range(w):
+                native_ground = native[sy+dy][sx+dx].split(":")[0]
+                require(tokens[y+dy][x+dx] == native_ground + ":ff",
+                        f"Foreign or altered ground tile in {name} at ({dx},{dy})")
+                require(tokens[y+dy][x+dx+64] ==
+                        native[sy+dy][sx+dx+60],
+                        f"Foreign or altered middle layer in {name}")
+                require(tokens[y+dy+64][x+dx] ==
+                        native[sy+dy+60][sx+dx],
+                        f"Foreign or altered overhead layer in {name}")
     accessible = set()
     queue = deque([module.START])
     while queue:
@@ -214,7 +228,7 @@ def main():
     print(f"PASS Aster dialogue: {len(source)} staged entries, "
           f"{len(catalog)} compiled messages, <=27 chars x <=3 lines/page")
     map_contract()
-    print("PASS Aster map: 64x64 with 6 layered native facades, 8 events, 7 reachable NPCs")
+    print("PASS Aster map: authentic Golden Sun grass, roads, and six exact 3-layer Vault facades; 8 events")
     scene_contract(catalog)
     print("PASS Aster scene: compiled references, imports, reserved scene/map rows")
     print("SOURCE AUDIT ONLY: ROM build, rendered tiles, collision, actual "
