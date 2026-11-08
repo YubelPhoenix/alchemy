@@ -20,6 +20,21 @@
   transparent metatile 0x15. The same foliage geometry is applied to
   normal and source-only ruined maps. Source checks validate all twelve
   positions and tree collision; emulator appearance/collision is pending.
+- **Domestic landmarks (experimental)**: The source generator places
+  four actual Golden Sun Vale one-cell jars/crates near occupied homes,
+  the shop and the inn, plus two short low wooden-flower fences (eight
+  cells) adjacent to southern business yards. The sealed and duplicate
+  northern homes remain without lived-in props. All twelve cells use
+  solid `ba:ff` collision, and the normal/ruined grids have identical
+  placements. `tools/check_aster.py` verifies exact native source layers,
+  behavior and positions; renderer `tools/aster_domestic_yards.png`.
+  Gameplay movement/priority is **not yet emulator-tested**.
+- **Dry well art review**: A source-only atlas and seven layout studies
+  explored original Vale masonry, household items and dark cave/door
+  graphics. None adequately resembles a freestanding dry well. No
+  unsupported replacement was merged; (32,34) remains a solid invisible
+  placeholder and (32,35) still holds the well dialogue. Do not use
+  the water-filled spring, Psynergy Stone, or non-Golden-Sun tiles.
 - **Map linkage**: `Field_Map180` is registered as the appended `gMaps` row **186 (0xba)** and `SceneId_Aster` references it, with overlay **0x3d3**. Map resource and object records exist.
 - **Town actors**: seven NPC slots in `games/tbs/src/scene/aster.c`: elder (26,33), innkeeper (46,55), greeter (23,34), boy (35,39), resident (45,34), Other Isaac proxy (36,13), mirror woman (41,34). The Other Isaac proxy is currently a generic young-man sprite, **not finished custom art**.
 - **Interactive landmarks**: well (32,34), fenced memorial garden (32,13), sealed house (7,4), inn (42,44), two staggered homes (8,26 and 49,27), shop (6,45) and duplicate house (48,5). The eight approach tiles use Aster-only behaviors `0xe1`–`0xe8`; all exterior facades remain solid. The five new building thresholds show contextual dialogue but **do not lead to interiors**.
