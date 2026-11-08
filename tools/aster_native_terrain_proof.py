@@ -25,7 +25,7 @@ REGIONS=(
     ("original_water_shore",8,38,12,9),
     ("south_woodland_edge",0,48,12,9),
 )
-PANEL_W,PANEL_H=338,306
+PANEL_W,PANEL_H=480,520
 SCALE=2
 
 def main():
