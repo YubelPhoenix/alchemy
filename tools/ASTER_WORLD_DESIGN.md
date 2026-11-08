@@ -52,11 +52,11 @@ not provide immediate exposition.
 
 | Structure | Location | Story purpose | Current gameplay |
 | --- | --- | --- | --- |
-| Sealed house | northwest (3,3) | An occupied home no one remembers entering | Threshold message only |
-| Inn | northeast (43,3) | Empty rooms; contradictory headcount | Threshold message only |
-| West home | west (3,24) | Human-scale ordinary domestic life | Threshold message only |
+| Sealed house | northwest (5,3) | An occupied home no one remembers entering | Threshold message only |
+| Inn | northeast (45,3) | Empty rooms; contradictory headcount | Threshold message only |
+| West home | west (5,24) | Human-scale ordinary domestic life | Threshold message only |
 | East home | east (50,24) | Familiarity becomes duplication | Threshold message only |
-| Shop | southwest (3,44) | Ordinary trade; later a wrong inventory | Threshold message only |
+| Shop | southwest (4,44) | Ordinary trade; later a wrong inventory | Threshold message only |
 | Duplicate home | southeast (50,44) | Copies the west home's facade | Threshold message only |
 | Memorial | central north (32,13) | Names/history changing | Step-on scripted event |
 | Well | central south (32,34) | Dry/full disagreement | Step-on scripted event |
@@ -73,11 +73,11 @@ Do not reuse the supplied *Monster Girl Quest: Paradox* tiles, including in
 future mockups. The previous cross-game concept is **rejected**. Its palette,
 roof silhouettes, perspective and scale do not fit Ashfall.
 
-Reference villages: **Vault** for grass, thatched roofs, winding roads and
-village scale; **Bilibin** for a crowded central plaza and memorial; **Imil**
-for a subdued, isolated mood. These are reference locations, not permission
-to mix incompatible tileset palettes. The prototype currently uses the
-actual Vault (Map019) metatile table and its matching palette.
+Reference villages: **Vale** for thatched homes and bright grass, **Bilibin**
+for a crowded central plaza and memorial, and **Imil** for an isolated mood.
+The experimental map uses Vale's **actual** Map003 metatiles, shapes, palette
+and three 16KB tile character blocks. Mixed-palette village tile imports
+are prohibited; future decoration must come from the same compatible set.
 
 The source layout places six familiar houses around grass, narrow native
 approach paths, and the well/memorial. Fracture should change things that
@@ -93,7 +93,7 @@ pixel-perfect village or a playable level.
 ## Acceptance gates
 
 - CI source checks for 64x64 layout, 128x128 three-layer storage, native
-  Vault source tiles, eight event tiles, and seven actors are necessary but
+  Vale source tiles, eight event tiles, and seven actors are necessary but
   insufficient.
 - ROM compile, emulator rendering, actual collision, working thresholds, and
   two-way world-map entry remain unproven and must be tested.
