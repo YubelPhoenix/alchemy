@@ -5,6 +5,13 @@
 ## Implemented on this branch
 
 - **Map**: `tools/aster_layout.py` deterministically generates `games/tbs/src/map/map_180/map.txt`; 64 × 64 proposed cells, with exit at (32,63). Three 64 × 64 map layers are placed in the underlying 128 × 128 packed grid, and six buildings rearrange original Vale-compatible roof and wall metatiles into an **Aster-specific** plan. Aster has an isolated northern remembrance lane, offset homes and a market-oriented southern entrance; it deliberately does not reproduce Vale. The open terrain uses Vale's native three-layer grass arrangement (0xba/0x15/0x15). The 64×64 map now has continuous grass-edged **native Golden Sun dirt lanes** connecting all six doorstep approaches, the central well area, and the southern gate. The revised roads now have three cells of native shoulder/earth/shoulder art. Three old ground-crop patches were removed after they produced blue scenery fragments at crossroads. Crossings render more clearly in the source preview but still require emulator inspection for priority and collision. **The art direction is Golden Sun only; the Paradox mockup was rejected.**
+- **Lived-in exterior pass**: Four compact native Vale flower patches are
+  now present near the two inhabited homes, shop and inn (not the sealed or
+  duplicate northern houses). Original wider meadow crops were discarded
+  because the image renderer revealed clipped blue pixels. The latest
+  2x2 patches use native Golden Sun layers and were added to both normal
+  and source-only ruined maps without moving an event, actor or road.
+  Landscaping is still sparse and is not approved as a finished town.
 - **Map linkage**: `Field_Map180` is registered as the appended `gMaps` row **186 (0xba)** and `SceneId_Aster` references it, with overlay **0x3d3**. Map resource and object records exist.
 - **Town actors**: seven NPC slots in `games/tbs/src/scene/aster.c`: elder (26,33), innkeeper (46,55), greeter (23,34), boy (35,39), resident (45,34), Other Isaac proxy (36,13), mirror woman (41,34). The Other Isaac proxy is currently a generic young-man sprite, **not finished custom art**.
 - **Interactive landmarks**: well (32,34), fenced memorial garden (32,13), sealed house (7,4), inn (42,44), two staggered homes (8,26 and 49,27), shop (6,45) and duplicate house (48,5). The eight approach tiles use Aster-only behaviors `0xe1`–`0xe8`; all exterior facades remain solid. The five new building thresholds show contextual dialogue but **do not lead to interiors**.
