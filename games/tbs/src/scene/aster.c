@@ -222,7 +222,7 @@ static struct SceneEntrance sAsterEntrances[] = {
 /// Temporary debug-exit destination, not Aster's final overworld position.
 static u32 sAsterExits[] = {
   SCENE_EXITS(Aster),
-  SCENE_EXIT(ASTER_TO_WORLD_MAP, WorldMap, WORLD_MAP_FROM_VAULT_SOUTH),
+  SCENE_EXIT(ASTER_TO_WORLD_MAP, WorldMap, 98),
   SCENE_EXITS_END,
 };
 static struct ActorTemplate sAsterActors[] = {

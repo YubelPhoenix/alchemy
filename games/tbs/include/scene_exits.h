@@ -218,6 +218,8 @@ enum {
   WORLD_MAP_TO_VAULT_AFTER_MIA_THIEVES = 113,
   /// Mia's second interlude, with the party whole again at its end.
   WORLD_MAP_TO_MIA_REUNITES = 114,
+  // Experimental Aster two-way overworld probe. Do not merge without emulator QA.
+  WORLD_MAP_TO_ASTER_TEST = 115,
 };
 
 /// SceneId_ValeStormyNight's entrances.
