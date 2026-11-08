@@ -1,35 +1,47 @@
 # Aster — convergence town integration contract
 
-Status: **experimental / not playable**. Do not merge into the story branch until a ROM build AND in-game entry/exit/event audit pass.
+**Status: experimental, NOT release-ready.** This branch is separate from the Ashfall story branch. Source files and stage events exist, but there is **no ordinary overworld contact into Aster** and there is **no successful compiled ROM or emulator acceptance test recorded**. Do not merge based on static checks alone.
 
-## Existing resources
-- `tools/aster_layout.py` deterministically generates `games/tbs/src/map/map_180/map.txt`.
-- 32×32 cell proposal, south gate at (15,31), well (16,16), memorial (16,10).
-- Layout uses provisional metatile values. They require verification against the chosen tileset, collision and actual engine scene data.
-- `map_180` must not be described as an available map ID until table reservations, scene dispatch, existing references and resource loading have been audited.
+## Implemented on this branch
 
-## Location and entrance
-Place a new optional world-map entrance in a verified unused accessible area, not at Suhalla Gate. Its exact coordinates stay unresolved until the world map's collision, entrance and encounter tables are checked. The south gate returns to the **same overworld location**, preserving formation, progression flags and save compatibility. Never repurpose an existing required entrance.
+- **Map**: `tools/aster_layout.py` deterministically generates `games/tbs/src/map/map_180/map.txt`; 32 × 32 proposed cells, with exit at (15,31).
+- **Map linkage**: `Field_Map180` is registered as the appended `gMaps` row **186 (0xba)** and `SceneId_Aster` references it, with overlay **0x3d3**. Map resource and object records exist.
+- **Town actors**: seven NPC slots in `games/tbs/src/scene/aster.c`: elder (12,16), innkeeper (20,17), greeter (8,17), boy (15,24), resident (24,19), Other Isaac proxy (18,11), mirror woman (25,21). The Other Isaac proxy is currently a generic young-man sprite, **not finished custom art**.
+- **Interactive landmarks**: well (16,16), memorial (16,10), sealed house. Walkable adjacent event cells at (16,17), (16,11), (6,6) use behaviors `0xe1`, `0xe2`, `0xe3`; solid scenery remains impassable. These behaviors are local to Aster's trigger table.
+- **Dialogue**: `tools/aster_dialogue.tsv` contains 28 staged source records. All 28 plus four extra event stingers are **actually appended** to `games/tbs/text/en.po` (IDs 10727–10758); the earlier four Aster pilot lines remain (10723–10726). The `po` file is what compiles, not the TSV alone.
+- **State machine**: scene-local flags `FLAG_SCENE_TEMP_00` through `09`. Arrival → Fracture after the well, memorial, and greeter have been encountered (order independent). Fracture → Revelation through Other Isaac at the northern path. No permanent story flags or rewards are changed. Dialogues and landmark effects have one-time guards.
+- **Return route**: Aster's gate currently sends the party to **`WORLD_MAP_FROM_VAULT_SOUTH`** for experimental evacuation. This is **not a reciprocal Aster return** and must be replaced before release.
 
-## State machine
-- ARRIVAL: innocuous, almost normal. NPCs use `arrival` entries.
-- FRACTURE: unlock upon interacting with the well, memorial and one resident (order independent). Reuse the **same** NPCs with `fracture` entries; no unreadable text or random bytes.
-- REVELATION: unlock after speaking to the northern Other Isaac. The northern appearance is a scene event and should not impersonate a real party member object. Reuse `revelation` dialogue. Exit remains possible at all times.
-- Events must be idempotent: repeat talks should neither repeat rewards nor endlessly trigger cutscenes.
-- All stages require an explicit flag allocation audit; no arbitrary flag numbers.
+## Open engine problems (do not claim solved)
 
-## Horror, continuity and characters
-Aster is the overlapping memory of two worlds. Ash Jenna shares Jenna's past and knowledge of Vale; the town offers fragments of people who remember incompatible outcomes. The Other Isaac is a deliberately ambiguous manifestation, not a canon claim that a second Isaac already exists in Golden Sun. Retain Isaac's mute protagonist presentation where practical; avoid lengthy new dialogue for him. Environmental unease should come from changed meaning, positions and duplicate NPC events, **never** malformed glyphs or text corruption.
+1. **Real appearance and collision**: the provisional metatile IDs are borrowed from Vault and have **not** been visually rendered or walked in an emulator. A `map.txt` does not prove recognizable houses, a paved street, roofs, or correct collision.
+2. **Overworld placement and return**: choose an actually unused reachable area of the world map away from Suhalla Gate. Audit collision and encounter data, reserve a new contact actor and exit IDs without shifting vanilla actors, and define a paired `WORLD_MAP_FROM_ASTER` arrival. Do not guess coordinates or repurpose Vault.
+3. **Original custom art**: the duplicate Isaac and any Ash Jenna apparition need planned official or user-created assets, not placeholder NPC stand-ins.
+4. **Stage persistence**: scene-temp flags reset on normal re-entry. That is intentional for this prototype; design and verify a durable story-state policy before production if the town must remember the player's first visit.
+5. **Map event placement**: north Other Isaac, interaction tiles and south gate must be manually checked after the ROM builds. Pay particular attention to the field movement/camera and stepping on `0xe1–0xe3`.
+6. **Text rendering**: lines may fit 27 characters but still overflow due to glyph widths, control codes, font kerning or speaker banners. Playtest every page, including two-page original innkeeper dialogue.
+7. **Save compatibility**: entering and leaving must preserve party, Djinn, chapter progress, menus, save/reload and world-map position.
 
-## Engine implementation checklist
-1. Verify `map_180` is free across scene/map/overlay/resource tables and references; avoid overwriting vanilla.
-2. Determine real tileset/metatile IDs and movement/collision values by inspecting an existing town exterior, then replace provisional numbers.
-3. Add appropriate scene script, object list and overlay/resource wiring using engine-native conventions; do not leave a map-text-only shell.
-4. Add precisely one reversible overworld entrance and one escape/return transition. Verify save and reload on both sides.
-5. Reserve stage flags and wire dialogue IDs in the actual text tables; no dialogue TSV is automatically compiled.
-6. Verify all speaker/context mappings and run text width validation; **27 characters maximum per line, 3 lines maximum per page**.
-7. Build a test ROM and test NPC positions, no softlocks, NPC/event repeat interaction, save compatibility and original game progression.
-8. Only then consider merging or describing the town as playable.
+## Repeatable automated checks
 
-## Dialogue staging
-`tools/aster_dialogue.tsv` is a *narrative source of truth*, not a compiled game-text resource. Columns: stage, key, speaker, line1, line2, line3. Each row has at most three lines of no more than 27 characters. Identical keys may change between stages on purpose.
+- `python3 tools/aster_layout.py --check` — tracked grid matches generator.
+- `python3 tools/check_aster.py` — map markers, connected walkable areas, all 28 source/compiled dialogue entries, PO page limits, actor/scene/source references and overlay imports.
+- GitHub Actions: `.github/workflows/aster-prototype.yml`. Only a short **source audit** runs automatically on this experimental branch. A modified-English ROM compile can be requested via **Run workflow**; it is deliberately manual to avoid repeated expensive toolchain builds. A passing source audit does **not** imply a passing ROM or gameplay.
+
+## Acceptance walkthrough (manual after successful ROM build)
+
+1. Launch Aster through a verified development scene selector or the eventual overworld contact; check a new and pre-existing save. Do not enable a globally intrusive debug cheat in a release.
+2. Verify all seven NPCs draw on reachable cells and do not block the plaza, memorial, or exit.
+3. Visit the well, memorial and greeter in all six orders; ensure fracture triggers exactly once and the player's controls always return.
+4. Speak to every NPC in arrival, fracture and revelation; test normal Talk and Mind Read, single and repeated conversations. Confirm no vanilla NPC text leaks in.
+5. Approach the sealed door from the south and repeat after fracture; ensure the door remains impassable.
+6. Talk to the northern Other Isaac before and after fracture. After revelation, revisit memorial and exit; observe the intended changes in dialogue and no glyph corruption.
+7. Test opening Start, A, Psynergy and party menus; save, reload, Retreat and re-enter. Confirm existing Ashfall story flags and vanilla town dialogue are unchanged.
+8. Verify a proper two-way overworld entrance: return to the same reachable contact, not Vault. Confirm no encounter softlocks, black screen, or freeze.
+9. Build from a clean checkout and inspect the actions log and emulator results. Merge only after checks 1–8 pass.
+
+## Narrative rules
+
+Aster is a settlement caught between Isaac's world and Ash Jenna's. The horror comes from incompatible memories and repeated conversations becoming contradictory; never corrupt text bytes or simulate a broken cartridge. The manifestation called Other Isaac is a deliberately ambiguous echo, **not** a claim about Golden Sun canon. Isaac remains a mostly silent protagonist. Every scripted text page is limited to **27 characters per line, three lines per page**, with manual width verification required.
+
+The town should feel initially inhabited, then impossible, then like the memory of people who know Jenna's other fate. Endings and lore revelations must support the Ash Jenna storyline rather than replace it.
