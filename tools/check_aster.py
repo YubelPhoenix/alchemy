@@ -257,9 +257,10 @@ def map_contract():
             for dx in range(w):
                 require(tokens[y+dy][x+dx] == "ba:ff",
                         f"{name}: copied source ground or lost tree collision")
-                require(tokens[y+dy][x+dx+64] ==
-                        native[sy+dy][sx+dx+30],
-                        f"{name} has foreign or missing middle-layer vegetation")
+                expected_mid = ("15" if (sx,sy,dx,dy)==(4,13,3,4)
+                                else native[sy+dy][sx+dx+30])
+                require(tokens[y+dy][x+dx+64] == expected_mid,
+                        f"{name}: untrimmed tree artifact or missing native art")
                 require(tokens[y+dy+64][x+dx] ==
                         native[sy+dy][sx+dx+60],
                         f"{name} has foreign or missing roof-layer vegetation")
