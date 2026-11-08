@@ -26,6 +26,8 @@ jobs:
           persist-credentials: true
       - name: Install image reader
         run: python3 -m pip install --break-system-packages -q Pillow
+      - name: Regenerate deterministic Aster town geometry
+        run: python3 tools/aster_layout.py
       - name: Render source-accurate native Golden Sun tiles
         run: |
           python3 tools/aster_visual_preview.py
@@ -47,7 +49,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_facade_clean_study.png tools/aster_facade_clean_study_labeled.png
+          git add games/tbs/src/map/map_180/map.txt tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_facade_clean_study.png tools/aster_facade_clean_study_labeled.png
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
