@@ -5,6 +5,7 @@ on:
     branches: ['experiment/aster-convergence-town']
     paths:
       - 'tools/aster_layout.py'
+      - 'tools/aster_density_report.py'
       - 'tools/aster_dev_entry.py'
       - 'tools/aster_prepare_messages.py'
       - 'tools/dark_story_rewrite.py'
@@ -44,6 +45,8 @@ jobs:
         run: python3 -m py_compile tools/aster_layout.py tools/check_aster.py tools/aster_prepare_messages.py tools/aster_dev_entry.py
       - name: Check reproducible exported map
         run: python3 tools/aster_layout.py --check
+      - name: Measure current Aster's empty-land baseline
+        run: python3 tools/aster_density_report.py
       - name: Verify Aster's development-only entry is opt-in
         run: python3 tools/aster_dev_entry.py --check
       - name: Audit Aster map, linked text, scene, actors and flags
