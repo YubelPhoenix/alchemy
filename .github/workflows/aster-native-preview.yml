@@ -5,6 +5,7 @@ on:
     branches: ['experiment/aster-convergence-town']
     paths:
       - 'tools/aster_visual_preview.py'
+      - 'tools/aster_vale_reference.py'
       - '.github/workflows/aster-native-preview.yml'
   workflow_dispatch:
 
@@ -23,7 +24,9 @@ jobs:
       - name: Install image reader
         run: python3 -m pip install --break-system-packages -q Pillow
       - name: Render source-accurate native Golden Sun tiles
-        run: python3 tools/aster_visual_preview.py
+        run: |
+          python3 tools/aster_visual_preview.py
+          python3 tools/aster_vale_reference.py
       - name: Keep PNGs available without changing the game
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -31,12 +34,13 @@ jobs:
           path: |
             tools/aster_visual_review.png
             tools/aster_visual_review_events.png
+            tools/aster_vale_reference.png
           retention-days: 10
       - name: Commit reproducible previews to experimental branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/aster_visual_review.png tools/aster_visual_review_events.png
+          git add tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
