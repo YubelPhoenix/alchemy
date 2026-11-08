@@ -13,6 +13,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 MAP = ROOT / "games/tbs/src/map/map_180/map.txt"
 SCENE = ROOT / "games/tbs/src/scene/aster.c"
+METATILES = ROOT / "games/tbs/src/map/map_003/metatiles.tsv"
 EXPECTED_EVENTS = {
     "e1": (32, 36), "e2": (29, 20), "e3": (18, 22),
     "e4": (16, 35), "e5": (17, 47), "e6": (41, 48),
@@ -50,6 +51,28 @@ def main():
     grid = [line.split() for line in text[1:]]
     require(len(grid) == 128 and all(len(r) == 128 for r in grid),
             "Expected 128x128 packed three-layer native map")
+    # The GBA graphics encoder resolves 12-bit metatile indices through
+    # this Vale table. Scan all packed layers, not just ground: an invalid
+    # overhead ID can crash rendering even when walking tests pass.
+    metatile_count = len(METATILES.read_text(encoding="utf-8").splitlines()) - 1
+    require(metatile_count >= 1, "No original Vale metatiles found")
+    allowed_behaviors = {"ff", *EXPECTED_EVENTS.keys()}
+    for y, row in enumerate(grid):
+        for x, token in enumerate(row):
+            bits = token.split(":")
+            require(1 <= len(bits) <= 2,
+                    f"Malformed packed map token at {x},{y}: {token!r}")
+            number = int(bits[0], 16)
+            require(0 <= number <= 0xffff,
+                    f"Out-of-range encoded tile at {x},{y}: {token!r}")
+            index = number & 0xfff
+            require(index < metatile_count,
+                    f"Unknown Vale metatile index at {x},{y}: {token!r}")
+            require(index != 0xfff,
+                    f"Unresolved Vale metatile placeholder at {x},{y}")
+            if len(bits) == 2:
+                require(x < 64 and y < 64 and bits[1] in allowed_behaviors,
+                        f"Unsupported behavior/out-of-layer token at {x},{y}: {token!r}")
     ground = [grid[y][:64] for y in range(64)]
     occurrences = {}
     for y, row in enumerate(ground):
