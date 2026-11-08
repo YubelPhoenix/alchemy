@@ -17,6 +17,7 @@ CHECKS=(
     ("Reproducible 3-layer map", ("aster_v14_native_map.py", "--check")),
     ("V14 map and scene collision", ("check_aster_v14.py",)),
     ("Dedicated native Aster overworld icon", ("check_aster_world_icon.py",)),
+    ("Native well, memorial, building façades and waterfall animation", ("check_aster_native_decor.py",)),
     ("Provisional overworld icon spacing", ("aster_overworld_site_audit.py",)),
     ("Clean reversible world-map route probe", ("aster_world_route_probe.py", "--check")),
     ("Two-way world contact dry-run and source restore", ("check_aster_world_route_staging.py",)),
