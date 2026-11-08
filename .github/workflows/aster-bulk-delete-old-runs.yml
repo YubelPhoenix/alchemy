@@ -1,7 +1,7 @@
-name: One-time old GitHub Actions run history cleanup
+name: One-time hard-cap Actions run cleanup
 
-# Source game files and artifacts are never edited by this workflow.
-# A deliberately requested second cleanup pass; serialized behind the first.
+# Single requested final pass, with a maximum of ten retained run histories.
+# No game files, branches, IPS artifacts, or builds are touched.
 on:
   push:
     branches:
@@ -10,23 +10,25 @@ on:
       - .github/workflows/aster-bulk-delete-old-runs.yml
 
 permissions:
-  actions: write
   contents: read
+  actions: write
 
+# Distinct group: do not replace an already-pending earlier cleanup run.
 concurrency:
-  group: one-time-ashfall-run-history-cleanup
+  group: one-time-ashfall-final-run-history-cleanup
   cancel-in-progress: false
 
 jobs:
-  prune-obsolete-workflow-runs:
+  cap-history-to-ten:
     if: >-
       github.repository == 'YubelPhoenix/alchemy' &&
+      github.event.repository.private == false &&
       github.ref == 'refs/heads/experiment/aster-v14-native-map-staging' &&
-      github.event.head_commit.message == 'maintenance: bulk-delete obsolete Actions run history'
+      github.event.head_commit.message == 'maintenance: cap Actions run history to ten'
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
-      - name: Wait for the first run-history cleanup, then remove remaining old runs
+      - name: Wait for previous deletion job, keep essential runs, delete the rest
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -34,93 +36,99 @@ jobs:
           import json
           import os
           import time
-          import urllib.request
           import urllib.error
+          import urllib.request
 
           repo = os.environ["GITHUB_REPOSITORY"]
-          current_id = int(os.environ["GITHUB_RUN_ID"])
+          me = int(os.environ["GITHUB_RUN_ID"])
           if repo != "YubelPhoenix/alchemy":
-              raise SystemExit("Safety stop: incorrect repository")
-          root = f"https://api.github.com/repos/{repo}"
+              raise SystemExit("SAFETY STOP: unexpected repository")
+          base = f"https://api.github.com/repos/{repo}"
           headers = {
               "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
               "Accept": "application/vnd.github+json",
-              "User-Agent": "Aster-one-time-workflow-run-cleanup",
+              "User-Agent": "Ashfall-ten-run-hard-cap",
           }
 
           def api(path, method="GET"):
-              req = urllib.request.Request(root + path, headers=headers, method=method)
-              with urllib.request.urlopen(req, timeout=35) as response:
-                  payload = response.read()
-                  return json.loads(payload) if payload else None
+              request = urllib.request.Request(base + path, headers=headers, method=method)
+              with urllib.request.urlopen(request, timeout=40) as response:
+                  data = response.read()
+                  return json.loads(data) if data else None
 
-          # Wait until the FIRST run-history cleanup has finished.
-          # The concurrency group also serializes both cleanup runs.
-          cleanup_id = 42530992542
-          for attempt in range(80):
-              cleanup = api(f"/actions/runs/{cleanup_id}")
-              status = cleanup["status"]
-              if status == "completed":
-                  if cleanup["conclusion"] != "success":
-                      raise SystemExit("Prior run-history cleanup failed: refusing overlapping deletions")
-                  print("First run-history cleanup confirmed successful.", flush=True)
+          previous = 42532093405
+          for i in range(150):
+              job = api(f"/actions/runs/{previous}")
+              if job["status"] == "completed":
+                  if job["conclusion"] != "success":
+                      raise SystemExit("SAFETY STOP: prior cleanup did not succeed.")
+                  print("Earlier run cleanup succeeded.", flush=True)
                   break
-              print(f"Prior run-history cleanup status: {status}; waiting", flush=True)
+              if i % 6 == 0:
+                  print(f"Waiting for previously queued cleanup: {job['status']}", flush=True)
               time.sleep(10)
           else:
-              raise SystemExit("First run-history cleanup did not finish within safe window")
+              raise SystemExit("SAFETY STOP: prior cleanup did not finish.")
 
-          runs = []
-          page = 1
-          while True:
-              batch = api(f"/actions/runs?per_page=100&page={page}")["workflow_runs"]
-              runs.extend(batch)
-              if len(batch) < 100:
-                  break
-              page += 1
-              if page > 100:
-                  raise SystemExit("Safety stop: excessive run count")
-          runs.sort(key=lambda r: (r["created_at"], r["id"]), reverse=True)
+          def inventory():
+              runs = []
+              page = 1
+              while True:
+                  batch = api(f"/actions/runs?per_page=100&page={page}")["workflow_runs"]
+                  runs.extend(batch)
+                  if len(batch) < 100:
+                      break
+                  page += 1
+                  if page > 100:
+                      raise RuntimeError("SAFETY STOP: unexpected run history size")
+              return runs
 
-          # Explicit preservation of working Ashfall IPS, backup, Aster
-          # reference preview and last successful Aster compile.
-          keep = {42510772750, 42508384926, 42505034836,
-                  42458272143, 42439316908, 42530345779, 42530992542, current_id}
-          # Keep the 12 most recent workflow records for troubleshooting.
-          keep.update(r["id"] for r in runs[:12])
-          # Preserve the most recent successful record of each workflow type.
-          protected_workflows = set()
+          # The current working IPS, one backup, latest Aster preview, earlier
+          # Aster compile, and both cleanup receipts remain accessible.
+          keep = {
+              42510772750,  # latest playable Ashfall IPS
+              42508384926,  # working Ashfall backup IPS
+              42458272143,  # most recent Aster review artifact
+              42439316908,  # Aster ROM compilation evidence
+              42530345779,  # 4 GB artifact cleanup receipt
+              42532093405,  # preceding bulk run cleanup receipt
+              me,           # never delete this job while it is running
+          }
+          runs = inventory()
+          observed = {r["id"] for r in runs}
+          required = {42510772750, 42508384926, 42458272143, me}
+          if not required.issubset(observed):
+              raise RuntimeError(f"SAFETY STOP: protected run missing: {required-observed}")
+
           for r in runs:
-              if r["conclusion"] == "success" and r["name"] not in protected_workflows:
+              if r["status"] != "completed":
                   keep.add(r["id"])
-                  protected_workflows.add(r["name"])
+          if len(keep) > 10:
+              raise RuntimeError(f"SAFETY STOP: {len(keep)} active/protected runs, cannot keep <=10")
 
-          candidates = [
-              r for r in runs if r["id"] not in keep and r["status"] == "completed"
-          ]
-          candidates.sort(key=lambda r: (r["created_at"], r["id"]))
-          # GitHub Actions token API rate limits apply per repository.
-          # Delete at most 700 during this single maintenance invocation;
-          # further deletions require a separate deliberate action.
-          selected = candidates[:700]
-
-          print(f"Discovered {len(runs)} workflow runs.", flush=True)
-          print(f"Protected {len(keep)} important/recent workflow runs.", flush=True)
-          print(f"Eligible old completed runs: {len(candidates)}.", flush=True)
-          print(f"Selected for this one-time pass: {len(selected)}.", flush=True)
-          print("No source files, branches, working ROMs or new artifacts will be modified.", flush=True)
-          count = 0
-          for run in selected:
+          to_remove = sorted(
+              [r for r in runs if r["id"] not in keep and r["status"] == "completed"],
+              key=lambda r: (r["created_at"], r["id"]),
+          )
+          print(f"Found {len(runs)} histories, protecting {len(keep)}, deleting {len(to_remove)}.", flush=True)
+          removed = 0
+          for run in to_remove:
               try:
                   api(f"/actions/runs/{run['id']}", "DELETE")
-              except urllib.error.HTTPError as ex:
-                  print(f"STOP: delete run {run['id']} returned HTTP {ex.code}; completed {count} deletions.", flush=True)
+              except urllib.error.HTTPError as error:
+                  print(f"SAFETY STOP: HTTP {error.code} deleting run {run['id']}", flush=True)
                   raise
-              count += 1
-              if count % 40 == 0:
-                  print(f"Deleted {count}/{len(selected)} old completed runs", flush=True)
-              time.sleep(0.9)
+              removed += 1
+              if removed % 25 == 0:
+                  print(f"Deleted {removed}/{len(to_remove)} histories", flush=True)
+              time.sleep(0.65)
 
-          print(f"FINISHED deleted {count} old workflow runs.", flush=True)
-          print("Protected run IDs:", sorted(keep), flush=True)
+          final = inventory()
+          print(f"FINAL: deleted={removed}, remaining={len(final)}", flush=True)
+          print(f"Protected runs: {sorted(keep)}", flush=True)
+          if len(final) > 10:
+              raise RuntimeError("SAFETY STOP: >10 workflow runs remain after final cleanup")
+          if any(r["id"] not in {x["id"] for x in final} for r in runs if r["id"] in required):
+              raise RuntimeError("SAFETY STOP: one of the essential protected runs is missing")
+          print("PASS: at most ten runs, working IPS histories retained.", flush=True)
           PY
