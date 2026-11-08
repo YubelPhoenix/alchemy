@@ -82,6 +82,26 @@ The repeated home is intentionally a clue to Aster's convergence story.
   streets have a verified emulator screenshot, collision test, save test
   or event-playthrough result.
 
+## 2026-11-07 additional woodland review — NOT incorporated
+
+- [Sparse native-tree test](aster_perimeter_sparse.png) (six outer clusters)
+  and [dense test](aster_perimeter_dense.png) (those clusters plus two
+  northern backyards) were rendered from the actual Vale Map003 set_02
+  metatiles and original palette. The six existing native tree stamps
+  remain in the real Aster map. **Both expansion tests were rejected.**
+  Copied 4x5 source backgrounds form conspicuous rectangular green/dark
+  cards at the perimeter; more repetitions make that defect worse.
+- [First foliage crop atlas](aster_foliage_candidate_atlas.png) separates
+  native ground from upper-layer graphics. Several seemingly useful
+  treetops actually include cliff or house fragments. A second
+  [refinement atlas](aster_foliage_refinement_atlas.png) tests narrower
+  original source crops. Do not place an unreviewed crop just because it
+  uses original Golden Sun data.
+- Neither woodland test changed the playable Map180, its paired ruined
+  grid, collision flags, actors, memorial or entry thresholds. Continue
+  toward intact silhouettes and organic-looking village outskirts
+  rather than a tiled perimeter of copied trees.
+
 ## Next build acceptance
 
 1. The wider native paths now have coherent intersections. Break up long,
