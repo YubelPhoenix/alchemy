@@ -1,0 +1,131 @@
+{
+  "stage": "Aster V14 native wooded-boundary pass",
+  "branch": "experiment/aster-v14-native-map-staging",
+  "source": "Original Golden Sun Vale Map003 set_02 3-layer sprites only",
+  "new_native_trees": [
+    {
+      "x": 58,
+      "y": 7,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 57,
+      "y": 14,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 33,
+      "y": 5,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 26,
+      "y": 8,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 4,
+      "y": 11,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 4
+    },
+    {
+      "x": 58,
+      "y": 57,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 19,
+      "y": 6,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 4
+    },
+    {
+      "x": 51,
+      "y": 8,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 2
+    },
+    {
+      "x": 46,
+      "y": 53,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 3
+    },
+    {
+      "x": 58,
+      "y": 21,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 2
+    },
+    {
+      "x": 53,
+      "y": 37,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 2
+    },
+    {
+      "x": 52,
+      "y": 18,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 2
+    }
+  ],
+  "old_map_blob": "a6bec6cfa5e9e62e29eb0368a56cff5e3acc377f",
+  "new_map_blob": "adf9753698845fe4f3944313f06e36b54d87887f",
+  "previous_accessible_cells": 2392,
+  "post_accessible_cells": 2196,
+  "only_open_edge": [
+    32,
+    63
+  ],
+  "remaining_unarted_cell_census": {
+    "total": 808,
+    "perimeter": 251,
+    "native_house": 210,
+    "reserved_new_sites": 56,
+    "interior_unmarked": 291
+  },
+  "approval": "Source-grid checks only; no GBA rendering, emulator or ROM build"
+}
