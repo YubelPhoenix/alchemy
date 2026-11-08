@@ -106,7 +106,7 @@ jobs:
       - name: Build pinned toolchain
         run: make bootstrap CARGO=false
       - name: Compile English prototype
-        run: make -j"$(nproc)" tbs-en CARGO=false
+        run: make -k -j"$(nproc)" tbs-en CARGO=false
       - name: Confirm build and record internal file size (do not distribute ROM)
         run: |
           test -s out/tbs-en/tbs-en.gba
