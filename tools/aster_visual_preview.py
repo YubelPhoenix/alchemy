@@ -3,7 +3,7 @@
 
 Decode Golden Sun Vale's checked-in indexed tileset PNGs and metatile TSV into
 an image of Map180's three layer windows. Draw no pixels from outside the
-repo's original 'set_16' graphics. Explicitly highlight unpainted ground.
+repo's original 'set_02' graphics. Explicitly highlight unpainted ground.
 Generated PNGs are reproducible review artifacts, not proof of game collision,
 sprite priority, palette animation or proper runtime camera placement.
 """
@@ -24,12 +24,12 @@ SIDE = 64
 IMAGE = SIDE * CELL
 EMPTY_BG = (129, 0, 135, 255)  # visible missing-ground diagnostic
 LOCATIONS = {
-    "Sealed house": (3, 3),
-    "Inn": (43, 3),
-    "West home": (3, 24),
-    "East home": (50, 24),
-    "Shop": (3, 44),
-    "Duplicate": (50, 44),
+    "Sealed house": (11, 12),
+    "Inn": (49, 12),
+    "West home": (9, 33),
+    "East home": (54, 33),
+    "Shop": (9, 53),
+    "Duplicate": (54, 53),
     "Memorial": (32, 14),
     "Well": (32, 35),
     "Gate": (32, 62),
