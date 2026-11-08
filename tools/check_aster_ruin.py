@@ -15,7 +15,8 @@ def require(condition,message):
 
 def rows(text):
     header,*lines=text.splitlines()
-    require(header.startswith("grid:128x128"),"Bad map header")
+    require(header=="grid:128x128\tat:0,0\tfill:0:0:0",
+            "Ruin map header must contain complete metatile:behavior:shape fill")
     grid=[row.split() for row in lines]
     require(len(grid)==128 and all(len(r)==128 for r in grid),
             "Ruin source must have same packed 128x128 map layers")
