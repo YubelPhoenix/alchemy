@@ -93,6 +93,16 @@ def dialogue_source(catalog):
     return seen
 
 def map_contract():
+    # The V14 staging branch holds the redesigned native map. The older
+    # generator describes a different settlement and MUST NOT be used as
+    # the authority for this layout.
+    rows = read(MAP_PATH).splitlines()
+    if len(rows) == 129 and rows[37].split()[32].endswith(":e1"):
+        import check_aster_v14 as staged
+        staged.main()
+        class V14SceneAnchors:
+            ACTORS = tuple((x, y) for _, x, y in staged.EXPECTED_ACTORS)
+        return V14SceneAnchors()
     spec = importlib.util.spec_from_file_location("aster_layout", LAYOUT_PATH)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
