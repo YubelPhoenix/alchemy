@@ -9,6 +9,7 @@ on:
       - 'tools/aster_square_studies.py'
       - 'tools/aster_ruin_preview.py'
       - 'tools/aster_remembrance_studies.py'
+      - 'tools/aster_native_asset_study.py'
       - 'tools/aster_layout.py'
       - 'tools/aster_facade_study.py'
       - 'games/tbs/src/map/map_180/map.txt'
@@ -39,6 +40,7 @@ jobs:
           python3 tools/aster_square_studies.py
           python3 tools/aster_ruin_preview.py
           python3 tools/aster_remembrance_studies.py
+          python3 tools/aster_native_asset_study.py
       - name: Keep PNGs available without changing the game
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -53,12 +55,13 @@ jobs:
             tools/aster_square_*.png
             tools/aster_ruin_visual_study*.png
             tools/aster_memorial_*.png
+            tools/aster_native_*.png
           retention-days: 10
       - name: Commit reproducible previews to experimental branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add games/tbs/src/map/map_180/map.txt tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_facade_clean_study.png tools/aster_facade_clean_study_labeled.png tools/aster_square_*.png tools/aster_ruin_visual_study*.png tools/aster_memorial_*.png
+          git add games/tbs/src/map/map_180/map.txt tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_facade_clean_study.png tools/aster_facade_clean_study_labeled.png tools/aster_square_*.png tools/aster_ruin_visual_study*.png tools/aster_memorial_*.png tools/aster_native_*.png
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
