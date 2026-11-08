@@ -40,6 +40,20 @@ def main():
     atlas,palette,source_sizes=art.load_tiles()
     meta=art.load_metatiles()
     rows=source_grid()
+    # Resolve each 0xFFF metatile placeholder in the full 128x128 grid.
+    # Original Golden Sun numbered each new picture at its first occurrence;
+    # ignoring this turns an intact reference village into apparent garbage.
+    next_id=0
+    for yy in range(128):
+        for xx in range(128):
+            parts=rows[yy][xx].split(":")
+            packed=int(parts[0],16)
+            if (packed & 0xfff)==0xfff:
+                parts[0]=format((packed & 0xf000)|next_id,"x")
+                rows[yy][xx]=":".join(parts)
+                next_id+=1
+    assert next_id==len(meta), (
+        f"Vale has {next_id} placeholders but {len(meta)} metatiles")
     # Vale map.s: map_header 60x114 in 8-pixel tiles => 30x57 16px cells.
     # The three source windows begin at 0, 60 and 120 *8px tiles,
     # equivalently (0,0), (30,0), (60,0) map cells.
