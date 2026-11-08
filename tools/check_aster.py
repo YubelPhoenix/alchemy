@@ -314,6 +314,13 @@ def scene_contract(catalog, module):
     tables = read(ROOT / "games/tbs/src/field/scenes.s")
     require(re.search(r"\bscene Aster,\s*0x3d3,\s*0x47,\s*2,\s*0xba\b", tables),
             "Aster scene map index changed")
+    # The scene table defines a linker symbol, but C must also declare it.
+    # A full compile caught this after earlier source audits missed it.
+    scene_ids = read(ROOT / "games/tbs/include/scene_ids.h")
+    require(re.search(r"extern\s+char\s+SceneId_Aster\s*;", scene_ids),
+            "SceneId_Aster missing from C scene IDs header (ROM compile fails)")
+    require("SCENE_EXITS(Aster)" in scene,
+            "Aster exit macro no longer matches its scene ID declaration")
     maps = read(ROOT / "games/tbs/src/field/maps.c")
     require("{{682, 13, 14, 15, 16, 17}}" in maps,
             "Aster must reference matching Vale tileset/palette resources")
