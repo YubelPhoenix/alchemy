@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Native Golden Sun Aster domestic-activity comparisons; gameplay unchanged.
+"""Native Golden Sun Aster domestic details, source-level QA and preview.
 
 Aster's ordinary inhabited half gets small jars, supplies and hand-sized
 fences cropped from Vale Map003. Northern sealed/duplicate houses deliberately
@@ -26,34 +26,31 @@ FENCES=(
   ("shop_yard",17,47,12,54,4),
   ("inn_yard",37,49,12,54,4),
 )
-def render(mode):
-    grid=[row[:] for row in ORIGINAL]
-    event={(x,y) for _,x,y,_ in town.INTERACTIONS}
-    actor=set(town.ACTORS)
-    used=set()
-    def place(name,x,y,sx,sy):
-        assert 1<=x<63 and 1<=y<63
-        assert town.LAYOUT[y][x]==".",(name,x,y,town.LAYOUT[y][x])
-        assert (x,y) not in event|actor|used
-        assert (grid[y][x],grid[y][x+64],grid[y+64][x])==(
-            "ba","15","15"),(name,x,y,"source not empty")
-        used.add((x,y))
-        grid[y][x]="ba:ff"  # small barrel/crate/fence is physically solid
-        grid[y][x+64]=NATIVE[sy][sx+30]
-        grid[y+64][x]=NATIVE[sy][sx+60]
-    for item in SUPPLIES:place(*item)
-    if mode=="yards":
-        for name,x,y,sx,sy,w in FENCES:
-            for dx in range(w):
-                place(name,x+dx,y,sx+dx,sy)
-    elif mode!="supplies":raise ValueError(mode)
-    assert all(grid[y][x]=="ba:ff" for x,y in used)
-    assert all(grid[y][x]==ORIGINAL[y][x] for x,y in event)
-    vis.load_map=lambda:grid
-    vis.make(ROOT/f"tools/aster_domestic_{mode}.png",
-             ROOT/f"tools/aster_domestic_{mode}_labels.png")
-    print("Aster domestic prop trial",mode,":",len(used),"native 16px cells.")
+def audit_and_render():
+    """Verify source and real Map180 carry the approved native props."""
+    rows=[line.split() for line in town.source().splitlines()[1:]]
+    actual=vis.load_map()
+    assert actual==rows,"Aster published map differs from generator"
+    protected={(x,y) for _,x,y,_ in town.INTERACTIONS}
+    for name,x,y,sx,sy in SUPPLIES:
+        assert town.LAYOUT[y][x]=="B",name
+        assert (x,y) not in protected
+        assert rows[y][x]=="ba:ff",name
+        assert rows[y][x+64]==NATIVE[sy][sx+30],name
+        assert rows[y+64][x]==NATIVE[sy][sx+60],name
+    for name,x,y,sx,sy,w in FENCES:
+        for dx in range(w):
+            px=x+dx
+            assert town.LAYOUT[y][px]=="F",name
+            assert (px,y) not in protected
+            assert rows[y][px]=="ba:ff",name
+            assert rows[y][px+64]==NATIVE[sy][sx+dx+30],name
+            assert rows[y+64][px]==NATIVE[sy][sx+dx+60],name
+    vis.load_map=lambda:rows
+    vis.make(ROOT/"tools/aster_domestic_yards.png",
+             ROOT/"tools/aster_domestic_yards_labels.png")
+    print("PASS: four solid Golden Sun household props and two fence beds")
+    print("Normal map only; ruin parity has a separate automated audit.")
 
 if __name__=="__main__":
-    render("supplies")
-    render("yards")
+    audit_and_render()

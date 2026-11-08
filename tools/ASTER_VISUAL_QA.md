@@ -126,6 +126,43 @@ The repeated home is intentionally a clue to Aster's convergence story.
 - Historical perimeter and first-variation experiments are archived as
   references, not rerun as build steps.
 
+## 2026-11-07 occupied-home/market domestic pass — experimental map
+
+- [Supplies-only study](aster_domestic_supplies.png) and
+  [fenced yard study](aster_domestic_yards.png) use the same native
+  Golden Sun Vale `set_02` palette/metatiles as the six building facades.
+  The accepted experimental layout has **four small objects** (two original
+  jars and two supply crates) at the western/eastern occupied homes, shop
+  and inn, plus **two short low wooden-flower fence sections** near the
+  southern businesses. The intentionally unsettling northern pair remains
+  undisturbed.
+- The generator and both source grids now carry twelve total solid
+  16px cells: four supplies and eight low fence cells. The renderer and
+  source checker verify native overlay layers, exact placement and
+  `ba:ff` solid collision. The eight existing story trigger tiles,
+  seven NPC positions, roads and landmarks are unchanged; the normal and
+  ruined grids retain their prior fourteen roof-cell ground differences.
+- **Art verdict:** These small details fit Golden Sun visually, but
+  they do not fix the empty central lawn, town boundary, or blocked
+  buildings with no interiors. Source checks do not equal emulator QA.
+
+## 2026-11-07 dry well review — candidates rejected, site reserved
+
+- [Native household prop atlas](aster_well_prop_atlas.png),
+  [dark-opening atlas](aster_well_mouth_atlas.png), and seven
+  [composed dry-well source previews](aster_well_wood_bucket_study.png)
+  investigated the available Vale rocks, wood, jars and cave/door tiles.
+  Stones alone look like a path, the wood structure resembles the
+  existing south gate, and the black cave mouth is tied to cliff graphics.
+  **None is approved as Aster's finished dry well.**
+- The actual map retains the same *invisible* solid well cell (32,34)
+  and nearby event (32,35), without water, a Psynergy Stone or borrowed
+  Paradox graphics. A dedicated correctly registered Golden Sun-style
+  well prop may be needed; do not pretend a cropped cliff is the shaft.
+- The studies remain separate source-art previews. No player movement,
+  event priority or well collision beyond the existing single cell has
+  been approved in the emulator.
+
 ## Next build acceptance
 
 1. The wider native paths now have coherent intersections. Break up long,

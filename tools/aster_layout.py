@@ -103,6 +103,23 @@ GARDENS = (
     ("inn_flowers", 38,53,10,47,2,2),
 )
 
+# Everyday props distinguish the occupied central/southern buildings from
+# Aster's eerily unoccupied northern house pair. All source tiles below come
+# from original Golden Sun Vale Map003 / set_02, NOT foreign artwork.
+# Name, destination x/y, original Vale source x/y (16px native metatiles).
+SUPPLIES = (
+    ("west_jar",18,33,17,5),
+    ("east_crate",47,33,17,6),
+    ("shop_crate",18,52,17,6),
+    ("inn_jar",39,55,17,5),
+)
+# Original Vale low flower-and-wood fence tiles, never reusing Aster's gate.
+# Name, destination x/y, native source x/y, length in cells.
+YARD_FENCES = (
+    ("shop_yard",17,47,12,54,4),
+    ("inn_yard",37,49,12,54,4),
+)
+
 # Wooden original Vale entrance arch, positioned over the SOUTH road rather
 # than as a decorative object in a random yard. It has NO solid footprint.
 GATE_ARCH = (29,59, 11,50, 6,3)
@@ -237,6 +254,13 @@ def blueprint():
             for xx in range(x,x+w):
                 assert grid[yy][xx]==".",f"{name} obstructs walkway"
                 grid[yy][xx]="f"
+    for name,x,y,sx,sy in SUPPLIES:
+        assert grid[y][x]==".",f"{name} conflicts with existing scenery"
+        grid[y][x]="B"
+    for name,x,y,sx,sy,w in YARD_FENCES:
+        for xx in range(x,x+w):
+            assert grid[y][xx]==".",f"{name} obstructs route or other feature"
+            grid[y][xx]="F"
     # The shrine has a physically solid stone body. The (32,14) message
     # trigger stays one cell south of it and can always be approached.
     for yy in range(10,13):
@@ -269,7 +293,7 @@ def verify():
                    range(y,DOOR_LINK_Y[name]+1)),(
             f"{name} has no connected doorway spur")
     blocked=set((x,y) for y,row in enumerate(LAYOUT)
-                for x,c in enumerate(row) if c in "#XIHSVTMW")
+                for x,c in enumerate(row) if c in "#XIHSVTMWBF")
     require=[START,EXIT]+list(ACTORS)+[(x,y) for _,x,y,_ in INTERACTIONS]
     for pos in require:
         assert pos not in blocked, f"Actor or approach inside solid scenery {pos}"
@@ -295,7 +319,7 @@ def source():
     for y in range(SIDE):
         for x in range(SIDE):
             mark=LAYOUT[y][x]
-            out[y][x]=GRASS+(":ff" if mark in "#MWT" else
+            out[y][x]=GRASS+(":ff" if mark in "#MWTBF" else
                             ":1" if mark=="G" else "")
             out[y][x+64]=BACKGROUND[1]
             out[y+64][x]=BACKGROUND[2]
@@ -325,6 +349,17 @@ def source():
                     source_mid="15"
                 out[dy+yy][dx+xx+64]=source_mid
                 out[dy+yy+64][dx+xx]=vale[sy+yy][sx+xx+60]
+    # Small native Golden Sun jars/crates, with grass under the sprites.
+    # Distinct solid footprint prevents Isaac walking through their art.
+    for name,x,y,sx,sy in SUPPLIES:
+        out[y][x+64]=vale[sy][sx+30]
+        out[y+64][x]=vale[sy][sx+60]
+    # Fence segments use the intact native Vale timber-and-flower strip,
+    # not new textures or an enlarged shrine.
+    for name,x,y,sx,sy,w in YARD_FENCES:
+        for dx in range(w):
+            out[y][x+dx+64]=vale[sy][sx+dx+30]
+            out[y+64][x+dx]=vale[sy][sx+dx+60]
     # Kept as an empty extension hook; old 5x5 ground crops were removed
     # after visual QA found blue cliff/water pixels at crossroads.
     for name,dx,dy,sx,sy,w,h in PATH_PATCHES:

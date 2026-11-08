@@ -264,6 +264,32 @@ def map_contract():
                 require(tokens[y+dy+64][x+dx] ==
                         native[sy+dy][sx+dx+60],
                         f"{name} has foreign or missing roof-layer vegetation")
+    # Inhabited-home supplies and short market fence beds must use actual
+    # Vale set_02 upper-layer art and solid ground, never blocking events.
+    require(module.SUPPLIES == (
+        ("west_jar",18,33,17,5),
+        ("east_crate",47,33,17,6),
+        ("shop_crate",18,52,17,6),
+        ("inn_jar",39,55,17,5),
+    ), "Aster's four domestic props changed without visual review")
+    require(module.YARD_FENCES == (
+        ("shop_yard",17,47,12,54,4),
+        ("inn_yard",37,49,12,54,4),
+    ), "Aster's two short market fences changed without visual review")
+    for name,x,y,sx,sy in module.SUPPLIES:
+        require(rows[y][x]=="B",f"{name} lost its footprint")
+        require(tokens[y][x]=="ba:ff",f"{name} lost collision")
+        require(tokens[y][x+64]==native[sy][sx+30] and
+                tokens[y+64][x]==native[sy][sx+60],
+                f"{name} has non-Golden-Sun or incomplete art")
+    for name,x,y,sx,sy,w in module.YARD_FENCES:
+        for dx in range(w):
+            tx=x+dx
+            require(rows[y][tx]=="F",f"{name} obstructed or moved")
+            require(tokens[y][tx]=="ba:ff",f"{name} lost solid behavior")
+            require(tokens[y][tx+64]==native[sy][sx+dx+30] and
+                    tokens[y+64][tx]==native[sy][sx+dx+60],
+                    f"{name} must use exact native wooden fence strip")
     accessible = set()
     queue = deque([module.START])
     while queue:

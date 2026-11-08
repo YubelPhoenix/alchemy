@@ -33,6 +33,12 @@ on:
 permissions:
   contents: write
 
+# One up-to-date native-art render per development branch. Rapid art edits
+# shouldn't leave obsolete expensive PNG-render jobs running in parallel.
+concurrency:
+  group: aster-native-preview-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   source-render:
     name: Render native tiles and inspect map art
