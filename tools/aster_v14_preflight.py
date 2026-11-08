@@ -16,6 +16,7 @@ EXPECTED_BRANCH="experiment/aster-v14-native-map-staging"
 CHECKS=(
     ("Reproducible 3-layer map", ("aster_v14_native_map.py", "--check")),
     ("V14 map and scene collision", ("check_aster_v14.py",)),
+    ("Original Vale bridge graphics and preserved walkability", ("check_aster_native_bridge.py",)),
     ("Dedicated native Aster overworld icon", ("check_aster_world_icon.py",)),
     ("Native well, memorial, building façades and waterfall animation", ("check_aster_native_decor.py",)),
     ("Approved 27-character dialogue source refinements", ("aster_polish_dialogue.py", "--check")),
@@ -63,8 +64,8 @@ def main():
                 "Do not start a ROM build or merge.")
     print("\nPASS V14 read-only source preflight.")
     print("NO GitHub workflows or remote builds were used.")
-    print("NOT RELEASE READY: native shores/cliffs, two new building facades,")
-    print("interiors, reciprocal overworld contact and emulator QA remain.")
+    print("NOT RELEASE READY: shoreline/cliff and bridge visual polish,")
+    print("Sanctum/home interiors, permanent overworld contact and emulator QA remain.")
     print("In a disposable checkout, use INSTALL.md for a LOCAL ROM build.")
     print("Save files and other Ashfall branches were not modified.")
 
