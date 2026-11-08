@@ -1,4 +1,4 @@
-name: Aster prototype source audit
+name: Aster single-town source audit
 
 on:
   push:
@@ -11,9 +11,6 @@ on:
       - 'tools/dark_story/*.tsv'
       - 'tools/aster_dialogue.tsv'
       - 'tools/check_aster.py'
-      - 'tools/check_aster_ruin.py'
-      - 'tools/aster_ruin_variant.py'
-      - 'tools/aster_ruined_map.txt'
       - 'tools/ASTER_INTEGRATION.md'
       - 'games/tbs/src/map/map_180/**'
       - 'games/tbs/src/scene/aster.c'
@@ -44,17 +41,13 @@ jobs:
         with:
           persist-credentials: false
       - name: Check script syntax
-        run: python3 -m py_compile tools/aster_layout.py tools/check_aster.py tools/aster_ruin_variant.py tools/check_aster_ruin.py tools/aster_prepare_messages.py tools/aster_dev_entry.py
+        run: python3 -m py_compile tools/aster_layout.py tools/check_aster.py tools/aster_prepare_messages.py tools/aster_dev_entry.py
       - name: Check reproducible exported map
         run: python3 tools/aster_layout.py --check
       - name: Verify Aster's development-only entry is opt-in
         run: python3 tools/aster_dev_entry.py --check
       - name: Audit Aster map, linked text, scene, actors and flags
         run: python3 tools/check_aster.py
-      - name: Audit unregistered ruined-map geometry and exact event parity
-        run: |
-          python3 tools/aster_ruin_variant.py --check
-          python3 tools/check_aster_ruin.py
       - name: Generate authored Ashfall dialogue and check Aster ID safety
         run: |
           python3 tools/aster_prepare_messages.py
@@ -64,14 +57,12 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qq -y --no-install-recommends pkg-config libpng-dev libutf8proc-dev
-      - name: Encode normal and ruined grids with actual ags-graphics
+      - name: Encode single Aster map with actual ags-graphics
         run: |
           make -f tools/Makefile tools/out/ags-graphics
           tools/out/ags-graphics games/tbs/src/map/map_180/map.txt "$RUNNER_TEMP/aster-map.grid.lz"
-          tools/out/ags-graphics tools/aster_ruined_map.txt "$RUNNER_TEMP/aster-ruin.grid.lz"
           test -s "$RUNNER_TEMP/aster-map.grid.lz"
-          test -s "$RUNNER_TEMP/aster-ruin.grid.lz"
-          echo 'PASS: Both complete Aster grids accepted by the original map encoder.'
+          echo 'PASS: Single active Aster grid accepted by original map encoder.'
 
   # Full ROM build runs manually, or on a single specifically marked
   # experimental commit. Ordinary Aster changes run only the fast source audit.
