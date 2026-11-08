@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Aster native-Golden-Sun tile preview (NOT an emulator screenshot).
 
-Decode Golden Sun's checked-in indexed tileset PNGs and metatile TSV into
+Decode Golden Sun Vale's checked-in indexed tileset PNGs and metatile TSV into
 an image of Map180's three layer windows. Draw no pixels from outside the
 repo's original 'set_16' graphics. Explicitly highlight unpainted ground.
 Generated PNGs are reproducible review artifacts, not proof of game collision,
@@ -14,8 +14,8 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / "games/tbs/src/graphics/tileset/set_16"
-METATILES = ROOT / "games/tbs/src/map/map_019/metatiles.tsv"
+BASE = ROOT / "games/tbs/src/graphics/tileset/set_02"
+METATILES = ROOT / "games/tbs/src/map/map_003/metatiles.tsv"
 GRID = ROOT / "games/tbs/src/map/map_180/map.txt"
 OUT = ROOT / "tools/aster_visual_review.png"
 ANNOTATED = ROOT / "tools/aster_visual_review_events.png"
