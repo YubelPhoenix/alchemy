@@ -27,29 +27,40 @@ NATIVE=town.NATIVE
 # existing road, house or garden occupies a footprint, skip the whole
 # tree rather than cut its canopy in half.
 COPSES=(
-  # Old northern wood on the approach to the memorial
+  # Northern woodland is a set of adjoining groves, not lone trees.
   ("nw1",1,1,17,46),("nw2",5,1,4,13),("nw3",1,6,4,13),
-  ("north1",19,1,4,13),("north2",23,1,17,46),
-  ("north3",27,1,4,13),("north4",31,1,17,46),
+  ("n_mid1",18,1,4,13),("n_mid2",22,1,17,46),
+  ("n_mid3",26,1,4,13),("n_mid4",30,1,17,46),
+  ("n_mid5",20,6,4,13),("n_mid6",24,6,17,46),
   ("ne1",50,1,4,13),("ne2",54,1,17,46),
-  ("ne3",58,1,4,13),("ne4",58,6,17,46),
-  # Left-side garden woodland, old tree belts and working village edges
+  ("ne3",58,1,4,13),("ne4",54,6,17,46),
+  ("ne5",58,6,4,13),
+  # Older northern side lanes, modest surrounding home gardens
+  ("north_lane_w",18,15,17,46),("north_lane_e",34,16,4,13),
+  ("w_cottage_a",18,21,17,46),("w_cottage_b",22,22,4,13),
+  ("w_cottage_c",19,26,4,13),
+  ("e_cottage_a",46,22,17,46),("e_cottage_b",50,22,4,13),
+  ("e_cottage_c",46,27,4,13),
+  # Thick western hedge that frames village work/market lanes.
   ("west1",1,18,17,46),("west2",1,23,4,13),
   ("west3",1,28,17,46),("west4",1,33,4,13),
-  ("west5",1,38,17,46),("west6",1,43,4,13),
-  ("west7",1,48,17,46),("west8",1,53,4,13),
-  ("west9",5,55,17,46),("west10",9,57,4,13),
-  ("west11",13,57,17,46),("west12",17,57,4,13),
-  # East lane, ordinary water garden and inn road
-  ("east1",58,17,17,46),("east2",58,22,4,13),
-  ("east3",58,27,17,46),("east4",58,44,4,13),
-  ("east5",58,49,17,46),("east6",58,54,4,13),
-  ("east7",54,56,17,46),("east8",50,57,4,13),
-  ("east9",46,57,17,46),("east10",42,57,4,13),
-  # Neighboring property edges — not random woodland in the commons
-  ("west_hedge",18,19,17,46),("west_hedge2",22,22,4,13),
-  ("east_hedge",46,23,17,46),("east_hedge2",50,25,4,13),
-  ("market_hedge",21,40,17,46),("inn_hedge",48,43,4,13),
+  ("west5",1,38,17,46),("west6",5,38,4,13),
+  ("west7",1,43,4,13),("west8",5,43,17,46),
+  ("west9",1,48,17,46),("west10",5,48,4,13),
+  ("west11",1,53,4,13),("west12",5,53,17,46),
+  ("west13",9,54,4,13),("west14",13,54,17,46),
+  ("west15",1,58,17,46),("west16",5,58,4,13),
+  ("west17",9,59,17,46),("west18",13,59,4,13),
+  ("west19",17,58,17,46),
+  # Water-side natural buffer, inn service yard and east boundary.
+  ("east1",55,17,17,46),("east2",59,17,4,13),
+  ("east3",55,22,4,13),("east4",59,22,17,46),
+  ("east5",55,27,17,46),("east6",59,27,4,13),
+  ("east7",55,44,4,13),("east8",59,44,17,46),
+  ("east9",55,49,17,46),("east10",59,49,4,13),
+  ("east11",55,54,4,13),("east12",59,54,17,46),
+  ("east13",51,57,17,46),("east14",47,57,4,13),
+  ("east15",43,57,17,46),
 )
 SUPPLIES=(
   ("west_water_jar",18,32,17,5),
@@ -74,11 +85,17 @@ ADDITIONAL_GARDENS=(
 
 def ecological_study():
     saved=town.empty_map
+    saved_trees=town.TREES
     town.empty_map=water.source_water()
+    # Existing isolated Vale tree placements are rejected as the default
+    # geometry. Replant deliberate groups from COPSES instead; otherwise
+    # they block every useful connected grove we try to construct.
+    town.TREES=()
     try:
         rows,use=town.make()
     finally:
         town.empty_map=saved
+        town.TREES=saved_trees
     coverage={"trees":0,"gardens":0,"supplies":0,"pink_meadow":0,
               "shore_path":0,"skipped":[]}
     def clear(cells):
