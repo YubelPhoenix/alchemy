@@ -6,6 +6,8 @@ on:
     paths:
       - 'tools/aster_visual_preview.py'
       - 'tools/aster_vale_reference.py'
+      - 'tools/aster_layout.py'
+      - 'games/tbs/src/map/map_180/map.txt'
       - '.github/workflows/aster-native-preview.yml'
   workflow_dispatch:
 
