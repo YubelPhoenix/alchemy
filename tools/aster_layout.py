@@ -135,6 +135,45 @@ def corridors():
 
 PATH_CELLS = corridors()
 
+def native_road_tiles():
+    """Visible 2-cell native Vale dirt paths, sharing the walkable street plan.
+
+    Source (x=4..8,y=38..40) is original Golden Sun grass-to-earth border.
+    We select the genuine left/right and top/bottom shoulder metatiles,
+    not a synthetic sprite or a foreign game's ground texture. Intersections
+    use the matching original path center. Returning source coordinates
+    lets the generator and CI audit exactly which Golden Sun art was used.
+    """
+    vertical={}
+    horizontal={}
+    def add_vertical(x,y0,y1):
+        for y in range(y0,y1+1):
+            vertical[(x-1,y)]=(4,39)
+            vertical[(x,y)]=(8,39)
+    def add_horizontal(y,x0,x1):
+        for x in range(x0,x1+1):
+            horizontal[(x,y)]=(6,38)
+            horizontal[(x,y+1)]=(6,40)
+    for y in range(15,63):
+        center = 32 if y<24 else 31 if y<41 else 33
+        add_vertical(center,y,y)
+    for y,x0,x1 in ((18,12,52),(40,12,53),(57,11,47)):
+        add_horizontal(y,x0,x1)
+    for name,x,y,_ in DOOR_APPROACHES:
+        add_vertical(x,y,DOOR_LINK_Y[name])
+    roads={**vertical,**horizontal}
+    for point in set(vertical)&set(horizontal):
+        roads[point]=(6,39)
+    # Modest natural variations within the SAME original Vale path family.
+    for (x,y) in tuple(roads):
+        if (x*11+y*7)%19==0:
+            roads[(x,y)]=(5,39)
+    # No house, tree, memorial, well or outside/border can acquire road art.
+    # Event triggers keep their original behavior codes at the final pass.
+    return {(x,y):tile for (x,y),tile in roads.items()
+            if 0<=x<SIDE and 0<=y<SIDE
+            and LAYOUT[y][x] in ".="}
+
 def load_vale():
     lines=NATIVE.read_text(encoding="utf-8").splitlines()
     assert lines[0].startswith("grid:128x128")
@@ -278,6 +317,14 @@ def source():
                 gx,gy=dx+xx,dy+yy
                 assert LAYOUT[gy][gx] not in "#XIHSVTMW"
                 out[gy][gx]=vale[sy+yy][sx+xx].split(":")[0]
+    # Street surfaces are part of Aster's *real* generated map, not just
+    # an offline mockup. Each changed metatile is selected from Vale's
+    # genuine dirt/grass edge family; geometry and gameplay collision stay
+    # governed by the open lawn/road blueprint.
+    for (x,y),(sx,sy) in native_road_tiles().items():
+        out[y][x]=vale[sy][sx].split(":")[0]
+    # The memorial, well and six doorway approach tiles are rewritten at
+    # the end to preserve their intentional Aster-only event behaviours.
     # Aster's remembrance garden is a physical row of native village
     # flowers and wooden fencing. NO Psynergy Stone or crystalline monument.
     gx,gy,sx,sy,w,h=MEMORIAL_GARDEN
