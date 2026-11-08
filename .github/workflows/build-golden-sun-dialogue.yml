@@ -3,7 +3,7 @@ name: Validate Golden Sun dialogue build
 on:
   workflow_dispatch:
   push:
-    branches: [dark-vale-dialogue, dark-story-rewrite, mia-exit-smoothing]
+    branches: [dark-story-rewrite]
     paths:
       - 'games/tbs/text/en.po'
       - 'games/tbs/src/**'
@@ -20,6 +20,11 @@ on:
       - 'tools/dark_story/check_story_contract.py'
       - '.github/workflows/build-golden-sun-dialogue.yml'
       - 'assets/heart/**'
+
+# One primary Ashfall build at a time; newer pushes replace pending runs.
+concurrency:
+  group: ashfall-rom-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -81,12 +86,47 @@ jobs:
               "05350": ("Laurel might know.", "Let's ask her."),
               "05532": ("The beacon's lit!", "We're too late!"),
               "05726": ("lit! What happened?",),
+              "05553": ("Saturos, we can\u0027t", "waste time here."),
+              "05556": ("You should have stayed", "in Vale."),
+              "05562": ("And if they defeat you?",),
+              "05563": ("They won\u0027t.", "I\u0027ll catch up."),
+              "05573": ("Enough. We\u0027re leaving.",),
+              "05576": ("You want to follow them?", "Get past me first."),
+              "05580": ("Then we stay together.", "Don\u0027t give him an opening."),
+              "05586": ("The", "Mercury beacon is", "draining my strength!"),
           }
           for msg_id, fragments in expected.items():
               match = re.search(r'msgid "' + msg_id + r'"\nmsgstr ([\s\S]*?)(?=\n\n|$)', catalog)
               if not match or not all(fragment in match.group(1) for fragment in fragments):
                   raise SystemExit(f"Corrected Ashfall dialogue missing from build: {msg_id}")
-          print("All six corrected Tret, Garet, Ivan and beacon lines reached the build catalogue")
+          # The Mia/Isaac handoff uses newly allocated dialogue IDs.
+          # Validate their named contexts, not guessed numeric IDs.
+          custom = (
+              ("MsgDarkDuelMiaStops", "Menardi's getting away"),
+              ("MsgDarkDuelIsaacNoTime", "Then I have to go"),
+              ("MsgDarkDuelMiaPlace", "Saturos is still here"),
+              ("MsgDarkDuelIsaacRefuse", "We can't let either"),
+              ("MsgDarkDuelMiaDraw", "I'll go after Menardi"),
+              ("MsgDarkDuelSaturosAmused", "You won't catch her"),
+              ("MsgDarkDuelMiaLost", "There's another path"),
+              ("MsgDarkDuelMiaStop", "If I hurry, I can"),
+              ("MsgDarkDuelIsaacNotEnemy", "Mia, be careful"),
+              ("MsgDarkDuelMiaTrust", "I know. That's why"),
+              ("MsgDarkDuelMiaKeepUp", "I'll bring them back"),
+              ("MsgDarkDuelSaturosResumes", "Your healer is gone."),
+          )
+          for context, fragment in custom:
+              match = re.search(r'^msgctxt "' + re.escape(context) + r'"\nmsgid "[0-9]+"\nmsgstr ([\s\S]*?)(?=\n\n|$)', catalog, re.MULTILINE)
+              if not match or fragment not in match.group(1):
+                  raise SystemExit(f"Mercury Aerie exchange missing from build: {context}")
+          scene = Path("games/tbs/src/scene/mercury_lighthouse_aerie.c").read_text(encoding="utf-8")
+          for anchor in ("Event_SetMessageId(MsgMercuryLighthouseAlreadyLit)",
+                         "Event_SetMessageId(MsgDarkDuelMiaStops)",
+                         "Event_SetMessageId(MsgDarkDuelMiaLost)",
+                         "Event_SetMessageId(MsgDarkDuelSaturosResumes)"):
+              if anchor not in scene:
+                  raise SystemExit(f"Missing live Mercury Aerie scene entry point: {anchor}")
+          print("Mercury Aerie confrontation and Mia exchange validated against live message contexts")
           PY
 
       - name: Check Ashfall story character, choice, and optional-encounter contracts
