@@ -48,9 +48,10 @@ The build helper:
    `make bootstrap` (may download public compiler source).
 4. Temporarily installs the existing Aster `B+L+R+Start`
    field-entry shortcut in the disposable clone.
-5. Invokes `make -j2 tbs-en` **locally**.
-6. Automatically restores the debug-entry source even when compilation
-   fails and writes an internal log to `out/aster-v14-smoke/`.
+5. Optionally installs a reversible test-only world-map arrival (`--probe-world`).
+6. Invokes `make -j2 tbs-en` **locally**.
+7. Restores the temporary debug-entry and optional probe patches even when
+   compilation fails and writes a local log to `out/aster-v14-smoke/`.
 
 The map-only encoder's expected output is
 `out/aster-v14-smoke/aster-map.grid.lz`. A nonempty file proves
@@ -77,6 +78,35 @@ Don't upload or redistribute the ROM. In mGBA, use a separate save.
 From a normal field, hold B+L+R and press Start to enter experimental Aster.
 The south exit currently uses a temporary Vault arrival. Never test with
 your real save or assume a successful compile makes Aster release-ready.
+
+## Optional: test Aster's provisional overworld clearing
+
+The native overworld icon `SPRITE_WORLD_MAP_ASTER = 0x1f9` is now a
+separate, registered 32×32 indexed icon, but its contact actor is NOT
+on the map yet because the candidate location is unverified.
+
+To test whether the area southwest of Vale and west-northwest of Vault
+is safe to walk around, run **in the isolated disposable checkout only**:
+
+```bash
+bash tools/aster_v14_local_smoke.sh --probe-world
+```
+
+The build helper temporarily patches Aster's southern exit to UNUSED
+world-map entrance 98 at X=5696, Z=1504; it restores both patched C files
+even on compilation failure. This does not register the icon or alter
+the main Ashfall branch.
+
+In mGBA with a separate experimental save: enter Aster using B+L+R+Start
+from a field, exit through the south, and attempt to walk from the
+candidate site to Vault and back. Check for mountains, invisible walls,
+water, event collisions, softlocks, wild encounters, and camera issues.
+If the site is blocked, do not implement it in production. Move the
+candidate and rerun the source and in-emulator checks.
+
+**This is a route test, not an approved overworld entrance.**
+We must still register a new world actor/contact, reciprocal Aster
+transition and test Isaac approaching the icon from outside.
 
 ## If it fails
 
