@@ -405,11 +405,16 @@ def main():
         current=DEST.read_text(encoding="utf-8").splitlines()
         if len(current)>37 and len(current[37].split())>=33 and (
                 current[37].split()[32].rsplit(":",1)[-1]=="e1"):
+            if a.check:
+                from aster_v14_native_map import render_snapshot
+                assert DEST.read_text(encoding="utf-8") == render_snapshot(), (
+                    "Aster V14 snapshot drift; do not regenerate from old layout")
+                print("PASS V14 native Map180 matches reviewed snapshot")
+                return
             raise SystemExit(
-                "Refusing to overwrite V14 staged native Map180 with "
-                "the obsolete Aster layout. Use "
-                "'python3 tools/check_aster_v14.py' instead. "
-                "The generator still needs a V14 implementation.")
+                "Refusing to overwrite V14 native Map180 with the obsolete "
+                "Aster generator. Use tools/aster_v14_native_map.py --check "
+                "or --write after reviewing the snapshot.")
     data=source()
     if a.check:
         assert DEST.read_text(encoding="utf-8")==data,"Aster grid drift"
