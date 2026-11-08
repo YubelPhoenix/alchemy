@@ -165,11 +165,11 @@ void BattleBackground_Init(void) {
 /// flickers, at a scrambled moment inside the period; every fourth is a bigger
 /// flash. It reads gVBlankCount, so it needs no state of its own (IWRAM is full).
 #define HEART_LIGHTNING_PERIOD 720
-/// The seams breathe slowly: one full swell takes HEART_SEAM_PERIOD frames
-/// (about 6.4 seconds) and never drops below about 45 percent brightness, so
-/// the idle floor is calm to look at for a whole fight.
-#define HEART_SEAM_PERIOD 384
-#define HEART_SEAM_HALF (HEART_SEAM_PERIOD / 2)
+/// The seams beat like a heart: every HEART_SEAM_PERIOD frames (2 seconds) all
+/// four flare together, a strong beat then a softer one, and settle back to a
+/// steady dim glow (about 45 percent) for the rest of the period. Nothing
+/// moves between beats, so the idle floor stays easy to look at.
+#define HEART_SEAM_PERIOD 120
 
 /// One channel of a colour pulsed between dim and bright: wave is 0 to 31.
 static u16 Heart_GlowColor(s32 red, s32 green, s32 blue, s32 wave,
@@ -198,15 +198,16 @@ void Heart_StepBackdropGlow(void) {
   scale = battle->brightness;
   if (scale > Q16_ONE)
     scale = Q16_ONE;
-  for (k = 0; k < 4; k++) {
-    // a slow triangle wave, 0 to 31, a quarter turn apart along each seam
-    s32 t = (s32)((gVBlankCount + k * (HEART_SEAM_PERIOD / 4)) %
-                  HEART_SEAM_PERIOD);
-    s32 wave = (t < HEART_SEAM_HALF ? t : HEART_SEAM_PERIOD - 1 - t) * 31 /
-               (HEART_SEAM_HALF - 1);
+  {
+    // the beat, 0 to 31 in steps of two frames: a strong one, then a softer
+    static const u8 beat[] = {8,  20, 31, 28, 24, 20, 16, 12, 9, 6,
+                              14, 24, 26, 22, 18, 14, 10, 7,  4, 2};
+    s32 step = (s32)(gVBlankCount % HEART_SEAM_PERIOD) / 2;
+    s32 wave = step < (s32)sizeof beat ? beat[step] : 0;
 
-    BATTLE_BG_PALETTE[HEART_SEAM_FIRST + k] =
-        Heart_GlowColor(24, 9, 31, wave, scale);
+    for (k = 0; k < 4; k++)
+      BATTLE_BG_PALETTE[HEART_SEAM_FIRST + k] =
+          Heart_GlowColor(24, 9, 31, wave, scale);
   }
   if (scale != Q16_ONE)
     return;
