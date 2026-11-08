@@ -45,8 +45,11 @@ if ! command -v git >/dev/null || ! command -v python3 >/dev/null || ! command -
 fi
 
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-if [[ -z "$ROOT" || ! -d "$ROOT/.git" ]]; then
-  echo 'STOP: run from a real, disposable alchemy Git checkout.' >&2
+# A disposable 'git worktree add' checkout uses a .git FILE, not a
+# directory. Accept normal clones and linked worktrees alike; never
+# bypass the branch and clean-working-tree guards below.
+if [[ -z "$ROOT" ]] || ! git -C "$ROOT" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo 'STOP: run from a real, disposable alchemy Git checkout/worktree.' >&2
   exit 1
 fi
 cd "$ROOT"
