@@ -69,4 +69,4 @@ jobs:
           path: |
             games/tbs/src/graphics/monster/purple_beast.png
             games/tbs/src/graphics/ui/icons/icon_66.png
-          retention-days: 14
+          retention-days: 2
