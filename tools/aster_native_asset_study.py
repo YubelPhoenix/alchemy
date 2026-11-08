@@ -2,7 +2,7 @@
 """Visual source atlas for original Golden Sun Vale tiles and map_009.
 
 Offline studies only. Samples original The Broken Seal background tiles and
-original Vale Eruption map; no imported art and no gameplay map changes.
+original Vale Eruption map using its SEPARATE set_08 art; no imported art and no gameplay map changes.
 Identifies possible earth paths, ordinary stonework and ruined architecture.
 """
 from pathlib import Path
@@ -36,14 +36,20 @@ def native_grid(which):
     return rows
 
 def make_eruption():
-    # Map009 = the actual Vale eruption scene. This shares exactly the
-    # tileset palette resources with Map003, but not its metatile table.
+    # Map009 = the actual Vale eruption scene, but it uses tileset set_08,
+    # NOT set_02. Never import its metatile values or palette directly into
+    # Aster's Map003/set_02 graph without a tested art conversion.
     grid=native_grid("009")
     from csv import reader
     with (ROOT/"games/tbs/src/map/map_009/metatiles.tsv").open() as f:
         hdr=next(f)
         meta=[[int(t,0) for t in row] for row in reader(f,delimiter="\t") if row]
-    blocks,pal,_=render.load_tiles()
+    saved_base=render.BASE
+    render.BASE=ROOT/"games/tbs/src/graphics/tileset/set_08"
+    try:
+        blocks,pal,_=render.load_tiles()
+    finally:
+        render.BASE=saved_base
     w,h=50,32
     canvas=Image.new("RGBA",(w*16,h*16),render.EMPTY_BG)
     bad=set()
@@ -60,7 +66,7 @@ def make_eruption():
                 if tile is not None:canvas.alpha_composite(tile,(x*16,y*16))
     out=ROOT/"tools/aster_native_vale_eruption_reference.png"
     canvas.convert("RGB").save(out,optimize=True)
-    print("Vale eruption reference",out,"metatiles",len(meta),"unmapped",sorted(bad,key=str)[:15])
+    print("Vale eruption set_08 (NOT compatible with Aster set_02):",out,"metatiles",len(meta),"unmapped",sorted(bad,key=str)[:15])
     if bad:raise AssertionError("Unknown Vale eruption tile reference")
 
 def make_earth_atlas():
