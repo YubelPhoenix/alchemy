@@ -104,6 +104,7 @@ if (( ! SKIP_ASSETS )); then
   echo 'Preparing Ashfall text and custom graphics in this disposable checkout...'
   python3 tools/aster_prepare_messages.py
   python3 tools/dark_story_rewrite.py
+  python3 tools/aster_polish_dialogue.py --apply
   python3 tools/aster_prepare_messages.py --verify
   venv="$ROOT/out/aster-v14-smoke/.venv"
   if [[ ! -x "$venv/bin/python" ]]; then
