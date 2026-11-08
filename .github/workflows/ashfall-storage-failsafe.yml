@@ -116,3 +116,83 @@ jobs:
           print("PASS: repository artifacts below conservative 150 MB threshold.", flush=True)
           print("This only checks THIS repository's Actions artifacts, not account Packages or other repos.", flush=True)
           PY
+
+      - name: Limit repository workflow history to ten runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import time
+          import urllib.request
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          current_id = int(os.environ["GITHUB_RUN_ID"])
+          if repo != "YubelPhoenix/alchemy":
+              raise SystemExit("SAFETY STOP: unexpected repository")
+          base = f"https://api.github.com/repos/{repo}"
+          headers = {
+              "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+              "Accept": "application/vnd.github+json",
+              "User-Agent": "Ashfall-daily-ten-run-cap",
+          }
+          def api(path, method="GET"):
+              req = urllib.request.Request(base + path, headers=headers, method=method)
+              with urllib.request.urlopen(req, timeout=30) as res:
+                  raw = res.read()
+                  return json.loads(raw) if raw else None
+
+          def inventory(path, key):
+              all_items = []
+              page = 1
+              while True:
+                  items = api(f"{path}?per_page=100&page={page}")[key]
+                  all_items.extend(items)
+                  if len(items) < 100:
+                      break
+                  page += 1
+                  if page > 100:
+                      raise SystemExit("SAFETY STOP: unexpected pagination")
+              return all_items
+
+          runs = inventory("/actions/runs", "workflow_runs")
+          runs.sort(key=lambda r: (r["created_at"], r["id"]), reverse=True)
+          artifacts = inventory("/actions/artifacts", "artifacts")
+          # Preserve workflow records for all still-downloadable IPS and
+          # Aster review artifacts. No build source or IPS bytes are deleted.
+          keep = {current_id}
+          keep.update(
+              a["workflow_run"]["id"]
+              for a in artifacts
+              if not a.get("expired") and a.get("workflow_run")
+          )
+          # Preserve historical source/build receipts if there is room.
+          important = [42510772750, 42508384926, 42458272143, 42439316908]
+          ids = {r["id"] for r in runs}
+          for rid in important:
+              if rid in ids and len(keep) < 10:
+                  keep.add(rid)
+          for r in runs:
+              if r["status"] != "completed":
+                  keep.add(r["id"])
+          if len(keep) > 10:
+              raise SystemExit(f"SAFETY STOP: {len(keep)} necessary/active run records exceed cap")
+          for r in runs:
+              if len(keep) >= 10:
+                  break
+              keep.add(r["id"])
+
+          obsolete = [r for r in runs if r["id"] not in keep and r["status"] == "completed"]
+          print(f"Run history cleanup: found={len(runs)}, protecting={len(keep)}, removing={len(obsolete)}", flush=True)
+          for idx, r in enumerate(obsolete, 1):
+              api(f"/actions/runs/{r['id']}", "DELETE")
+              if idx % 20 == 0:
+                  print(f"Deleted {idx}/{len(obsolete)} old runs", flush=True)
+              time.sleep(0.45)
+          verified = inventory("/actions/runs", "workflow_runs")
+          print(f"Run history after cleanup: {len(verified)}", flush=True)
+          if len(verified) > 10:
+              raise SystemExit("SAFETY STOP: more than ten runs remain")
+          print("PASS: 10 or fewer retained runs", flush=True)
+          PY
