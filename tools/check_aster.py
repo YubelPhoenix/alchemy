@@ -155,6 +155,14 @@ def map_contract():
                 f"{name} entrance misaligned with facade")
         require(tokens[y][x] == behavior,
                 f"{name} doorstep has no matching scene trigger")
+    gate_x, gate_y, _, _, gate_w, gate_h = module.GATE_ARCH
+    require(gate_x <= module.EXIT[0] < gate_x + gate_w
+            and gate_y + gate_h <= module.EXIT[1],
+            "South exit must be centered on the original Vale entrance arch")
+    require(all(rows[y][x] in ".=G"
+                for y in range(gate_y,gate_y+gate_h)
+                for x in range(gate_x,gate_x+gate_w)),
+            "South gate arch overlays a building or solid obstruction")
     require(len(module.SCENERY) == 8, "Aster tree roster changed")
     for name, x, y, sx, sy, w, h in module.SCENERY:
         require(all(rows[yy][xx] == "T"
