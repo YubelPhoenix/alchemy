@@ -26,6 +26,9 @@
 
 ## Actual build-testing log
 
+- Third full compile (run [42438915695](https://github.com/YubelPhoenix/alchemy/actions/runs/42438915695)) reached the Aster C overlay and found one specific error: `SceneId_Aster` was never declared in `games/tbs/include/scene_ids.h`, although the assembly scene table defines it. The missing `extern char SceneId_Aster;` is now added. A source audit explicitly checks the declaration; [run 42439270574](https://github.com/YubelPhoenix/alchemy/actions/runs/42439270574) passed source, generated text, and both native map-encoding checks. Another **full** ROM compile is required before an emulator test.
+
+
 - First full modified-English compile (GitHub Actions run 42437882864) **FAILED** early in the existing Ash Jenna battle AI: `MsgDarkAshValePunish` was undeclared. This did **not** establish any playable Aster ROM.
 - The missing line is already authored in `tools/dark_story/phase77_ash_jenna_fights.tsv` as `N338`. The first smoke job skipped `dark_story_rewrite.py`, which normally generates all `N...` combat texts.
 - Safety fix: `tools/aster_prepare_messages.py` relocates the original `alchemy-null` marker from ID 10722 to the end of the catalogue **in the build checkout only**. Aster's existing 36 IDs (10723–10758) remain intact, then the ordinary Ashfall rewrite appends fresh IDs without colliding with Aster. A new CI source check verifies uniqueness and the authored Ash Jenna battle messages.
