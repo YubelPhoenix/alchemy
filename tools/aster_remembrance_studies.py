@@ -43,7 +43,14 @@ def stone(g):
     # Psynergy rock. This is a *candidate*, may read as a chimney.
     paste_upper(g,30,9,13,1,4,4)
 
+def garden(g):
+    # Two low rows of Vale's ORIGINAL wooden fence and wildflowers.
+    # Strip away the arch completely. Aster's empty memorial is a patch
+    # of ordinary soil with a fence, not a Psynergy ritual site.
+    paste_upper(g,28,11,10,53,9,2)
+
 if __name__=="__main__":
     render("fence",fence)
     render("notice",notice)
     render("masonry",stone)
+    render("garden",garden)
