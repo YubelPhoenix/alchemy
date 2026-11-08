@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Three *source-only* concepts for Aster's nonmagical memorial.
+"""One approved *source-only* visual reference for Aster's nonmagical memorial.
 
 Uses checked-in Golden Sun Vale Map003 16x16 metatiles. Nothing in the
 playable map is changed. DO NOT use the Psynergy Stone or crystal.
@@ -29,20 +29,6 @@ def render(label,operation):
                ROOT/f"tools/aster_memorial_{label}_labels.png")
     print("Aster original-Golden-Sun non-Psynergy memorial study:", label)
 
-def fence(g):
-    # Wooden entrance-frame + adjoining garden fence; the eventual memorial
-    # should use the fence material, not an identical gate to Vale.
-    paste_upper(g,28,8,10,50,9,5)
-
-def notice(g):
-    # Native town notice post near a fenced plot; no mystical object.
-    paste_upper(g,31,8,16,5,4,6)
-
-def stone(g):
-    # Weathered masonry from ordinary Vale house chimney top, not the
-    # Psynergy rock. This is a *candidate*, may read as a chimney.
-    paste_upper(g,30,9,13,1,4,4)
-
 def garden(g):
     # Two low rows of Vale's ORIGINAL wooden fence and wildflowers.
     # Strip away the arch completely. Aster's empty memorial is a patch
@@ -50,7 +36,5 @@ def garden(g):
     paste_upper(g,28,11,10,53,9,2)
 
 if __name__=="__main__":
-    render("fence",fence)
-    render("notice",notice)
-    render("masonry",stone)
+    # Only this nonmagical candidate survived visual review.
     render("garden",garden)
