@@ -1,0 +1,45 @@
+name: Aster native Golden Sun tile preview
+
+on:
+  push:
+    branches: ['experiment/aster-convergence-town']
+    paths:
+      - 'tools/aster_visual_preview.py'
+      - '.github/workflows/aster-native-preview.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  source-render:
+    name: Render native tiles and inspect map art
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: true
+      - name: Install image reader
+        run: python3 -m pip install --break-system-packages -q Pillow
+      - name: Render source-accurate native Golden Sun tiles
+        run: python3 tools/aster_visual_preview.py
+      - name: Keep PNGs available without changing the game
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: aster-native-visual-review
+          path: |
+            tools/aster_visual_review.png
+            tools/aster_visual_review_events.png
+          retention-days: 10
+      - name: Commit reproducible previews to experimental branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/aster_visual_review.png tools/aster_visual_review_events.png
+          if git diff --cached --quiet; then
+            echo 'No preview difference.'
+          else
+            git commit -m 'Aster: publish source-derived native Golden Sun tile map preview [skip ci]'
+            git push origin HEAD:experiment/aster-convergence-town
+          fi
