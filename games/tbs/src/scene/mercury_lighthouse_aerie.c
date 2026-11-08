@@ -1066,16 +1066,22 @@ static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void) {
 
 /// Where each of the party stands, and Saturos in front of them, when Mia
 /// stops the fight. Used again whenever the argument is replayed.
-static void MercuryLighthouseAerie_PlaceForConfrontation(void) {
+static void MercuryLighthouseAerie_PlaceForConfrontation(s32 miaHere) {
   Actor_Get(ACTOR_LIFT_STATUE)->motionFlags = 0;
   Actor_SetPosition(ACTOR_PARTY_LEADER, PIXELS(344), PIXELS(232));
   Actor_SetPosition(ACTOR_GARET, PIXELS(328), PIXELS(216));
   Actor_SetPosition(ACTOR_IVAN, PIXELS(336), PIXELS(248));
-  Actor_SetPosition(ACTOR_MIA, PIXELS(328), PIXELS(232));
+  // When Mia has already gone on ahead she is parked offscreen here, before
+  // the fade-in, so she never shows for a moment and then vanishes.
+  if (miaHere) {
+    Actor_SetPosition(ACTOR_MIA, PIXELS(328), PIXELS(232));
+    Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
+  } else {
+    Actor_SetPosition(ACTOR_MIA, PIXELS(8), PIXELS(8));
+  }
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTHWEST, 0);
   Actor_FaceDirection(ACTOR_GARET, FACING_NORTH, 0);
   Actor_FaceDirection(ACTOR_IVAN, FACING_NORTH, 0);
-  Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
   Actor_SetPosition(ACTOR_SATUROS, PIXELS(336), PIXELS(216));
   Actor_FaceDirection(ACTOR_SATUROS, FACING_SOUTH, 0);
   FieldCamera_GetActor()->motionFlags = 0;
@@ -1110,7 +1116,7 @@ static void MercuryLighthouseAerie_MiaInterrupts(void) {
 /// Mia, the party is whole again and their decision to split up replays.
 static void MercuryLighthouseAerie_DuelRetry(void) {
   Event_Start();
-  MercuryLighthouseAerie_PlaceForConfrontation();
+  MercuryLighthouseAerie_PlaceForConfrontation(1);
   MercuryLighthouseAerie_MiaInterrupts();
 }
 
@@ -1140,7 +1146,7 @@ static void MercuryLighthouseAerie_DuelWon(void) {
 /// Isaac, Garet and Ivan remain to confront Saturos.
 static void MercuryLighthouseAerie_MiaYields(void) {
   Event_Start();
-  MercuryLighthouseAerie_PlaceForConfrontation();
+  MercuryLighthouseAerie_PlaceForConfrontation(1);
   Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_WEST, 0);
   Actor_FaceDirection(ACTOR_MIA, FACING_EAST, 0);
   Event_WaitFrames(40);
@@ -1152,9 +1158,10 @@ static void MercuryLighthouseAerie_MiaYields(void) {
   Event_WaitFrames(20);
   MercuryLighthouseAerie_DarkMiaSays();
   Actor_SetSpeed(ACTOR_MIA, PIXELS(4) / 5, PIXELS(2) / 5);
-  Actor_WalkToAndWait(ACTOR_MIA, 328, 216);
+  // Around Garet (who stands at 328, 216), not through him.
+  Actor_WalkToAndWait(ACTOR_MIA, 304, 232);
   Actor_WalkToAndWait(ACTOR_MIA, 280, 216);
-  Import_ActorSetPosition(ACTOR_MIA, PIXELS(8), PIXELS(8));
+  Event_WaitFrames(20);
   // Without Mia, who is on her way to the beacon.
   Party_RemoveMember(ISAAC);
   Party_RemoveMember(GARET);
@@ -1175,8 +1182,7 @@ static void MercuryLighthouseAerie_MiaYields(void) {
 /// to MercuryLighthouseAerie_SaturosFallsAndMiaRuns.
 static void MercuryLighthouseAerie_SaturosResumes(void) {
   Event_Start();
-  MercuryLighthouseAerie_PlaceForConfrontation();
-  Import_ActorSetPosition(ACTOR_MIA, PIXELS(8), PIXELS(8));
+  MercuryLighthouseAerie_PlaceForConfrontation(0);
   Event_SetMessageId(MsgDarkDuelSaturosResumes);
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 20);
   Event_SetAfterBattleDestination((s32)&SceneId_MercuryLighthouseAerie, 2);
