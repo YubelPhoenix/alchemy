@@ -45,7 +45,7 @@
 05723	MsgImilMia	{actor_name:4}! You're back!{end_wait}
 05724	message	We saw the light...\nWe thought we'd lost you.{end_wait}
 05725	message	I'm here. Are you both\nall right?{end_wait}
-05726	message	{actor_name:4}, the beacon's\nburning! We can see it!{end_wait}
+05726	message	{actor_name:4}, the beacon's\nlit! What happened?{end_wait}
 05727	message	You already knew...\ndidn't you, {actor_name:4}?{end_wait}
 05728	message	Why won't you tell us\nwhat happened, {actor_name:4}?{end_wait}
 05729	message	There's something\nI need to tell you.{end_wait}
