@@ -86,10 +86,10 @@ SCENERY = (
 # sparse sealed and duplicate houses in the northern district.
 # Name, destination, source Vale origin, width/height in 16px cells.
 GARDENS = (
-    ("west_cottage",17,34,10,47,3,3),
-    ("east_cottage",45,36,12,46,3,3),
-    ("shop_herbs",17,50,9,46,3,3),
-    ("inn_flowers",38,53,14,47,3,3),
+    ("west_cottage", 17,34,11,47,2,2),
+    ("east_cottage", 45,36,11,47,2,2),
+    ("shop_herbs", 17,50,11,47,2,2),
+    ("inn_flowers", 38,53,11,47,2,2),
 )
 
 # Wooden original Vale entrance arch, positioned over the SOUTH road rather
