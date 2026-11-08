@@ -218,5 +218,5 @@ gScenes:
 	scene TestRoom7, 0x3cc, 0x44, 1, 0xb9
 	scene IncreaseItemAndLevel, 0x3cd, 0x45, 1, 0x00
 	scene MenuTest, 0x3ce, 0x46, 1, 0x00
-	@ Aster experimental exterior: debug entry only, no world-map contact yet.
+	@ Aster experimental exterior: two-way contact on TEST branch only.
 	scene Aster, 0x3d3, 0x47, 2, 0xba
