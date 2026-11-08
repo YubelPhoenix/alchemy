@@ -118,6 +118,9 @@ def main():
     require(edge == {(32,63)}, f"Unexpected reachable map exits: {sorted(edge)}")
     require((0,35) not in visited, "Unwired west exit is open")
     require((32,34) not in visited, "Well's solid core is walkable")
+    # Inspect native foliage and original transparent tile behavior.
+    from check_aster_native_foliage import verify as verify_native_foliage
+    verify_native_foliage()
     print("PASS staged Aster V14 native map: 128x128 packed, original metatiles")
     print("PASS eight story markers, one south exit; seven aligned NPC anchors")
     print("PASS six solid native house facades, two reserved new sites")
