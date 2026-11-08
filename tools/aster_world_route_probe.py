@@ -8,7 +8,7 @@ and it preserves the untouched original sprite used by existing villages.
 The source changes are intentionally NOT present in the committed ROM sources.
 --check    Read-only: check six original source anchors are intact.
 --apply    Activate: native Aster icon contact -> Aster; Aster south exit ->
-           temporary world entrance 98 at proposed X=5696, Z=1504.
+           temporary world entrance 98 south of the icon at X=5696, Z=1536.
 --restore  Return all six edits to the exact original source text.
 
 The local build shell helper applies/restores this on an isolated worktree.
@@ -60,7 +60,7 @@ EDITS = (
         WORLD,
         "    {98, CONDITION_ALWAYS, 4248, 0, 2424, FACING_SOUTH, "
         "0, -1, -1, -1, -1, 0},",
-        "    {98, CONDITION_ALWAYS, 5696, 0, 1504, FACING_SOUTH, "
+        "    {98, CONDITION_ALWAYS, 5696, 0, 1536, FACING_SOUTH, "
         "0, -1, -1, -1, -1, 0},",
     ),
     (
@@ -153,7 +153,7 @@ def main():
     if mode == "apply":
         print("APPLIED temporary Aster world icon using unused signpost actor slot")
         print("World icon contact -> Aster default entrance -> south gate")
-        print("Aster south gate -> unused world entrance 98 at (5696,1504)")
+        print("Aster south gate -> unused world entrance 98 at (5696,1536), 32 pixels south of icon")
         print("ONLY for disposable emulator testing; terrain and story NOT verified")
     else:
         print("RESTORED unchanged world actors, contact, exit table, "
