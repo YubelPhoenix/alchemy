@@ -97,6 +97,11 @@ def map_contract():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     generated = module.source()
+    # This must match the native ags-graphics map-grid parser, not merely
+    # an in-memory layout. In particular fill requires three components.
+    require(generated.splitlines()[0] ==
+            "grid:128x128\tat:0,0\tfill:0:0:0",
+            "Map header must contain metatile:behavior:shape fill fields")
     require(read(MAP_PATH) == generated, "Aster map.txt not generated from script")
     rows = module.LAYOUT
     require(module.SIDE == 64 and len(rows) == 64
