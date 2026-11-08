@@ -1,4 +1,15 @@
-# Aster — convergence town integration contract
+# Aster — one-town convergence prototype
+
+**Current scope decision:** The ruined-state variant has been **dropped**
+from development. Historical studies and code remain archived, but no
+second destroyed version is planned, built, checked or required for release.
+The single settlement needs a **compact spatial redesign**, not more
+decorations on its present wide lawns. See
+[ASTER_COMPACT_REDESIGN.md](ASTER_COMPACT_REDESIGN.md).
+
+**Important:** Map180 is still the OLD spacious 64×64 experimental layout;
+new layout positions are proposals only until source, scene and trigger
+changes are implemented together.
 
 **Status: experimental, NOT release-ready.** This branch is separate from the Ashfall story branch. Source files and stage events exist, but there is **no ordinary overworld contact into Aster**. One full experimental ROM build succeeded, but **no emulator acceptance test has been recorded**. Do not merge based on static checks alone.
 
