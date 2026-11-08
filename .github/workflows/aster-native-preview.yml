@@ -1,31 +1,13 @@
-name: Aster native Golden Sun tile preview
+name: Aster single-town Golden Sun preview
 
 on:
   push:
     branches: ['experiment/aster-convergence-town']
     paths:
+      - 'tools/aster_layout.py'
       - 'tools/aster_visual_preview.py'
       - 'tools/aster_vale_reference.py'
-      - 'tools/aster_square_studies.py'
-      - 'tools/aster_ruin_preview.py'
-      - 'tools/aster_remembrance_studies.py'
-      - 'tools/aster_native_asset_study.py'
-      - 'tools/aster_path_studies.py'
-      - 'tools/aster_native_metatile_catalog.py'
-      - 'tools/aster_tree_study.py'
-      - 'tools/aster_landscape_study.py'
-      - 'tools/aster_perimeter_study.py'
-      - 'tools/aster_tree_crop_atlas.py'
-      - 'tools/aster_foliage_refinement_atlas.py'
-      - 'tools/aster_native_woodland_study.py'
-      - 'tools/aster_well_prop_atlas.py'
-      - 'tools/aster_dry_well_compositions.py'
-      - 'tools/aster_well_mouth_atlas.py'
       - 'tools/aster_domestic_prop_study.py'
-      - 'tools/aster_dry_well_studies.py'
-      - 'tools/aster_ruin_variant.py'
-      - 'tools/aster_layout.py'
-      - 'tools/aster_facade_study.py'
       - 'games/tbs/src/map/map_180/map.txt'
       - '.github/workflows/aster-native-preview.yml'
   workflow_dispatch:
@@ -41,7 +23,7 @@ concurrency:
 
 jobs:
   source-render:
-    name: Render native tiles and inspect map art
+    name: Render active town and inspect map art
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
@@ -52,63 +34,30 @@ jobs:
         run: python3 -m pip install --break-system-packages -q Pillow
       - name: Regenerate deterministic Aster town geometry
         run: python3 tools/aster_layout.py
-      - name: Render source-accurate native Golden Sun tiles
+      # Historical ruined-state images, old failed tile-crop studies, and
+      # well prototypes remain archived but are no longer rebuilt on pushes.
+      - name: Render SINGLE active town and verify domestic native art
         run: |
           python3 tools/aster_visual_preview.py
-          python3 tools/aster_ruin_variant.py
-          python3 tools/aster_visual_preview.py --grid tools/aster_ruined_map.txt --output tools/aster_ruined_variant.png --annotated tools/aster_ruined_variant_labels.png
           python3 tools/aster_vale_reference.py
-          python3 tools/aster_facade_study.py
-          python3 tools/aster_square_studies.py
-          python3 tools/aster_ruin_preview.py
-          python3 tools/aster_remembrance_studies.py
-          python3 tools/aster_native_asset_study.py
-          python3 tools/aster_path_studies.py
-          python3 tools/aster_native_metatile_catalog.py
-          python3 tools/aster_landscape_study.py
-          python3 tools/aster_tree_crop_atlas.py
-          python3 tools/aster_foliage_refinement_atlas.py
-          python3 tools/aster_well_prop_atlas.py
-          python3 tools/aster_dry_well_compositions.py
-          python3 tools/aster_well_mouth_atlas.py
           python3 tools/aster_domestic_prop_study.py
-          python3 tools/aster_dry_well_studies.py
       - name: Keep PNGs available without changing the game
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: aster-native-visual-review
+          name: aster-single-town-review
           path: |
             tools/aster_visual_review.png
             tools/aster_visual_review_events.png
             tools/aster_vale_reference.png
             tools/aster_vale_coordinates.png
-            tools/aster_facade_clean_study.png
-            tools/aster_facade_clean_study_labeled.png
-            tools/aster_square_*.png
-            tools/aster_ruin_visual_study*.png
-            tools/aster_memorial_*.png
-            tools/aster_native_*.png
-            tools/aster_path_*.png
-            tools/aster_vale_metatile_*.png
-            tools/aster_native_trees_varied*.png
-            tools/aster_landscape_study*.png
-            tools/aster_perimeter_*.png
-            tools/aster_foliage_candidate_atlas.png
-            tools/aster_foliage_refinement_atlas.png
-            tools/aster_well_prop_atlas.png
-            tools/aster_well_*_study*.png
-            tools/aster_well_mouth_atlas.png
-            tools/aster_domestic_*.png
-            tools/aster_woodland_*.png
-            tools/aster_dry_well_*.png
-            tools/aster_ruined_variant*.png
-            tools/aster_ruined_map.txt
+            tools/aster_domestic_yards.png
+            tools/aster_domestic_yards_labels.png
           retention-days: 10
       - name: Commit reproducible previews to experimental branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add games/tbs/src/map/map_180/map.txt tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_facade_clean_study.png tools/aster_facade_clean_study_labeled.png tools/aster_square_*.png tools/aster_ruin_visual_study*.png tools/aster_memorial_*.png tools/aster_native_*.png tools/aster_path_*.png tools/aster_vale_metatile_*.png tools/aster_native_trees_varied*.png tools/aster_landscape_study*.png tools/aster_perimeter_*.png tools/aster_foliage_candidate_atlas.png tools/aster_foliage_refinement_atlas.png tools/aster_well_prop_atlas.png tools/aster_well_*_study*.png tools/aster_well_mouth_atlas.png tools/aster_domestic_*.png tools/aster_woodland_*.png tools/aster_dry_well_*.png tools/aster_ruined_variant*.png tools/aster_ruined_map.txt
+          git add games/tbs/src/map/map_180/map.txt tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_domestic_yards.png tools/aster_domestic_yards_labels.png
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
