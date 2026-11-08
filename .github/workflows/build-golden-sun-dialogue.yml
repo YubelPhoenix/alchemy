@@ -68,6 +68,27 @@ jobs:
           print("Imil and Lunpa rewrite fingerprints confirmed in patched catalogue")
           PY
 
+      - name: Verify corrected Tret question and beacon dialogue entered the ROM text
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          catalog = Path("games/tbs/text/en.po").read_text(encoding="utf-8")
+          expected = {
+              "05340": ("Do you still need", "my help?"),
+              "05343": ("The people of Kolima...", "I turned them into trees?"),
+              "05349": ("How? He's fading right", "in front of us."),
+              "05350": ("Laurel might know.", "Let's ask her."),
+              "05532": ("The beacon's lit!", "We're too late!"),
+              "05726": ("lit! What happened?",),
+          }
+          for msg_id, fragments in expected.items():
+              match = re.search(r'msgid "' + msg_id + r'"\\nmsgstr ([\\s\\S]*?)(?=\\n\\n|$)', catalog)
+              if not match or not all(fragment in match.group(1) for fragment in fragments):
+                  raise SystemExit(f"Corrected Ashfall dialogue missing from build: {msg_id}")
+          print("All six corrected Tret, Garet, Ivan and beacon lines reached the build catalogue")
+          PY
+
       - name: Check Ashfall story character, choice, and optional-encounter contracts
         run: python3 tools/dark_story/check_story_contract.py
 
