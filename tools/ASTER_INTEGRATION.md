@@ -35,6 +35,14 @@
 - The actual ROM recompile is separately gated by an explicitly marked `[aster-rom-smoke]` commit or manual workflow dispatch. A passing source audit is not a playable ROM.
 - Additional development-entry issue found: Aster is scene index 201, but the vanilla debug map selector wraps at 200. Do not merely increase the selector limit: its debug-name messages also assume the original range. A safe development-only entry path needs to be installed and tested, without exposing debug controls in production.
 
+## First successful full build and safe development entrance
+
+- **Full ROM compilation succeeded:** GitHub Actions [run 42439316908](https://github.com/YubelPhoenix/alchemy/actions/runs/42439316908) compiled the modified-English ROM, using the actual Aster Map180, scene overlay, and authored Ashfall dialogue. The resulting local build reported **8,412,028 bytes**. This confirms the prototype compiles; it does **not** prove the scene loads, draws correctly, or is playable.
+- The final C compiler blocker was an undeclared `SceneId_Aster` symbol in the Aster scene. `games/tbs/include/scene_ids.h` now declares it; the source audit detects regression.
+- **Testing route, opt-in only:** `tools/aster_dev_entry.py --check` verifies that Aster remains appended as scene **201** and that no debug warp is present in tracked production field code. For a **disposable local development checkout**, run `python3 tools/aster_dev_entry.py --apply`, rebuild with `make tbs-en`, then load a **backed-up save** in a field and hold **B+L+R while pressing Start**. The development-only shortcut sends the party to scene 201, entrance 0. To revert, run `python3 tools/aster_dev_entry.py --restore` and rebuild. Do **not** merge or redistribute that modified field source; the ordinary build and production game have no shortcut.
+- Aster's existing exit still returns to the Vault area of the overworld rather than a reciprocal Aster location. **Do not save over a real Ashfall playthrough during the first field test**; back up saves and test on a copy.
+- Next required evidence: an emulator screenshot from the actual compiled test build, successful exit/reentry and dialogue interaction, plus normal and ruined scene-state testing. None has been recorded yet.
+
 ## Repeatable automated checks
 
 - `python3 tools/aster_layout.py --check` — tracked grid matches generator.
