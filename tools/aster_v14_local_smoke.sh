@@ -17,7 +17,7 @@ Usage: bash tools/aster_v14_local_smoke.sh [--check-only] [--skip-bootstrap] [--
   --skip-assets     Skip Ashfall art/text preparation (only for already prepared checkouts).
   --map-only        Build only the native map encoder and encode Aster Map180.
   --probe-world     Temporarily route Aster's exit to unused world entrance 98
-                    at the UNVERIFIED coordinate (5696,1504); restore source afterward.
+                    at UNVERIFIED world position (5696,1536), south of icon (5696,1504).
 This script never pushes, invokes GitHub Actions, uses Codespaces or uploads a ROM.
 EOF
 }
@@ -166,7 +166,7 @@ PATCH_APPLIED=1
 if (( WORLD_PROBE )); then
   PROBE_APPLIED=1
   python3 tools/aster_world_route_probe.py --apply
-  echo 'WORLD PROBE: Aster exit now temporarily returns to (5696,1504).'
+  echo 'WORLD PROBE: Aster south gate now returns to (5696,1536); icon at (5696,1504).'
 fi
 
 echo 'Compiling English experimental Golden Sun ROM locally...'
@@ -184,7 +184,7 @@ wc -c < "$rom" | awk '{printf "Compiled ROM bytes: %s\n", $1}'
 sha256sum "$rom"
 echo 'The compiled ROM contains the experimental B+L+R+Start Aster field shortcut.'
 if (( WORLD_PROBE )); then
-  echo 'WORLD PROBE TEST: Exit Aster into the proposed location, then try walking to Vault.'
+  echo 'WORLD PROBE TEST: Exit Aster, walk to Vault, then approach the new Aster icon.'
   echo 'Do NOT use existing saves. The overworld coordinate is NOT VERIFIED safe.'
 else
   echo 'Test using a separate .sav file; world-map return is still a temporary Vault placeholder.'
