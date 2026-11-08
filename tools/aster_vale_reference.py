@@ -37,7 +37,7 @@ def main():
     # do not mix them with Vault's set_16 palette.
     art.BASE=ROOT/"games/tbs/src/graphics/tileset/set_02"
     art.METATILES=ROOT/"games/tbs/src/map/map_003/metatiles.tsv"
-    atlas,palette,source_sizes=art.load_tiles()
+    blocks,palette,source_sizes=art.load_tiles()
     meta=art.load_metatiles()
     rows=source_grid()
     # Resolve each 0xFFF metatile placeholder in the full 128x128 grid.
@@ -62,20 +62,21 @@ def main():
     bad=set()
     cache={}
     cache_meta={}
-    for layer in (0,30,60):
+    for layer,charbase in ((0,0),(30,2),(60,2)):
         for y in range(h):
             for x in range(w):
                 raw=int(rows[y][x+layer].split(":")[0],16)&0xfff
-                if raw not in cache_meta:
-                    cache_meta[raw]=art.render_metatile(
-                        raw,meta,atlas,palette,bad,cache)
-                tile=cache_meta[raw]
+                key=(raw,charbase)
+                if key not in cache_meta:
+                    cache_meta[key]=art.render_metatile(
+                        raw,meta,blocks,palette,bad,cache,charbase)
+                tile=cache_meta[key]
                 if tile is not None:
                     canvas.alpha_composite(tile,(x*16,y*16))
     canvas.convert("RGB").save(OUTPUT,optimize=True)
     print("Vale reference generated:",OUTPUT)
     print("Native set_02 source sheets:",source_sizes)
-    print("Metatile count:",len(meta),"tile count:",len(atlas))
+    print("Metatile count:",len(meta),"tile count:",sum(map(len,blocks.values())))
     print("Missing graphics:",sorted(bad,key=str)[:20])
     if bad:
         raise AssertionError("Original Vale tileset references missing graphics")
