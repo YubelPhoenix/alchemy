@@ -397,6 +397,19 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--check",action="store_true")
     a=parser.parse_args()
+    # The separately staged V14 map uses the approved V13 footprint.
+    # The original generator below still produces the OLD Aster layout.
+    # Refuse both writes and misleading --check results on the V14 branch.
+    # Other legacy scripts still import load_vale() unchanged.
+    if DEST.exists():
+        current=DEST.read_text(encoding="utf-8").splitlines()
+        if len(current)>37 and len(current[37].split())>=33 and (
+                current[37].split()[32].rsplit(":",1)[-1]=="e1"):
+            raise SystemExit(
+                "Refusing to overwrite V14 staged native Map180 with "
+                "the obsolete Aster layout. Use "
+                "'python3 tools/check_aster_v14.py' instead. "
+                "The generator still needs a V14 implementation.")
     data=source()
     if a.check:
         assert DEST.read_text(encoding="utf-8")==data,"Aster grid drift"
