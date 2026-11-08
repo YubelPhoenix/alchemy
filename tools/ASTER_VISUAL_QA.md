@@ -124,3 +124,41 @@ Further ruin art must be constructed intentionally using native or
 permission-cleared Golden Sun-style assets, with updated walkable routes and
 story-specific doorway behavior. Its test overlays are now calculated from
 the current building coordinates, not the obsolete symmetrical layout. Do not merge this study into normal Aster.
+
+
+## Paired ruined map source — not playable yet
+
+Generator: tools/aster_ruin_variant.py
+Map data: tools/aster_ruined_map.txt
+Golden Sun tile preview: tools/aster_ruined_variant.png
+Source parity audit: tools/check_aster_ruin.py
+
+A second 64x64 source state now preserves the same six buildings, south gate,
+seven NPC slots, dry-well location, ordinary non-Psynergy memorial, and all
+eight scene triggers. Fourteen roof cells in four structures are deliberately
+altered, together with two damaged garden-fence cells. The house footprints
+remain impassable, and the generated grid passes a difference-by-difference
+source audit.
+
+**Structural test: PASS. Art verdict: NOT APPROVED.** In the preview, holes
+look like beige flat roof patches, not believable destroyed or burned thatch.
+No second registered scene, state switch or playable ruined map exists.
+This study establishes matching world geometry rather than completed horror
+scenery; it is not an emulator screenshot.
+
+The native-only dry-well candidates (tools/aster_dry_well_*.png) were inspected
+and rejected: the candidate stone ring displays invalid cliff/void graphics,
+while cropped chimney masonry looks like part of a house rather than a well.
+The playable normal town still has an invisible dry-well placeholder.
+Do not substitute a water-filled fountain, a Psynergy Stone or foreign tiles.
+
+One earlier comparison used Map009 as if it shared Vale's set_02 palette.
+**Correction:** Map009 actually uses Golden Sun set_08. Its art cannot be
+copied into Aster's set_02 metatile table without a deliberate palette and
+tile-index conversion. The offline comparison renderer is now corrected to
+reference its own set_08 assets, avoiding false evidence of compatibility.
+
+Next gates: a recognizable dry stone well with correct collision; authentic
+ruined-roof silhouettes and debris rather than rectangular patches; coherent
+landscaping; proper paired world-map entry; ROM compile, emulator inspection
+and event testing. Do not merge on source checks alone.
