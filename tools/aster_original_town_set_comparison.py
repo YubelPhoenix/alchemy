@@ -16,14 +16,16 @@ import aster_visual_preview as vis
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"tools/aster_original_town_set_comparison.png"
 
-# Confirmed in games/tbs/src/field/scenes.s:
-# scene Vault ... graphics set 0x05 ... map id 0x13
-# scene Xian  ... graphics set 0x17 ... map id 0x4a
-# Each map.s supplies native 8px dimensions and three layer offsets;
-# we convert these to 16px metatile cell coordinates.
+# Scene-to-map lookup is in field/scenes.s:
+# scene Vault ... map index 0x05 (map_005), scene Xian 0x17 (map_023).
+# The LAST scene macro field is an event/scene ordinal, NOT a map index.
+# Graphics are their respective original compatible exterior tile sets.
+# map.s gives 8px dimensions and layer offsets; Xian's 115-unit layer
+# position is half a 16px cell, so this sheet is visual QA, not a
+# pixel-perfect emulator simulation of sub-metatile scroll offsets.
 SOURCES=(
-    ("Vault","019","05",60,60,((0,0),(60,0),(0,60))),
-    ("Xian","074","17",36,33,((0,0),(36,0),(72,0))),
+    ("Vault","005","03",60,60,((0,0),(0,60),(60,0))),
+    ("Xian","023","17",48,57,((0,0),(0,58),(50,0))),
 )
 
 def source_grid(path):
