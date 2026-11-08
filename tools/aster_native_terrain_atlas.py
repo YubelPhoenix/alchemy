@@ -69,7 +69,7 @@ def main():
             for xx in range(w):
                 for token,base in ((VALE[sy+yy][sx+xx],0),
                                    (VALE[sy+yy][sx+xx+30],2),
-                                   (VALE[sy+yy+60][sx+xx],2)):
+                                   (VALE[sy+yy][sx+xx+60],2)):
                     part=cell(token,base)
                     if part is not None:
                         img.alpha_composite(part,(xx*16,yy*16))
