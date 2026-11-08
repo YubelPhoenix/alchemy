@@ -16,16 +16,16 @@ import aster_visual_preview as vis
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"tools/aster_original_town_set_comparison.png"
 
-# Scene-to-map lookup is in field/scenes.s:
-# scene Vault ... map index 0x05 (map_005), scene Xian 0x17 (map_023).
-# The LAST scene macro field is an event/scene ordinal, NOT a map index.
-# Graphics are their respective original compatible exterior tile sets.
-# map.s gives 8px dimensions and layer offsets; Xian's 115-unit layer
-# position is half a 16px cell, so this sheet is visual QA, not a
-# pixel-perfect emulator simulation of sub-metatile scroll offsets.
+# Verified against original Golden Sun's field/scenes.s and map.s:
+# the first scene ID (e.g. Vault 0x382, Xian 0x3a0) is a field-map
+# index with an offset of 0x370. Thus Vault -> map_018 and Xian ->
+# map_048; the final scene field (0x13 / 0x4a) is NOT the map number.
+# These map.s headers specify 8px dimensions and 3 background windows.
+# The original tilesets are chosen to match the corresponding exterior
+# maps, not mixed into Aster's Vale set_02.
 SOURCES=(
-    ("Vault","005","03",60,60,((0,0),(0,60),(60,0))),
-    ("Xian","023","17",48,57,((0,0),(0,58),(50,0))),
+    ("Vault","018","03",60,60,((0,0),(60,0),(0,60))),
+    ("Xian","048","17",32,32,((0,0),(32,0),(64,0))),
 )
 
 def source_grid(path):
