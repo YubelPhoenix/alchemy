@@ -1,6 +1,6 @@
 # Aster — actual Golden Sun source-art visual review
 
-**Review result: nonmagical remembrance garden, original street layout; visual design NOT APPROVED.**
+**Review result: connected native roads, nonmagical garden, original street plan; NOT approved for release.**
 Source renderer: `tools/aster_visual_preview.py`.
 Generated visual: [Aster native screenshot-like map image](aster_visual_review.png).
 Comparison baseline: [Original Vale rendered from the same sources](aster_vale_reference.png).
@@ -58,12 +58,14 @@ The repeated home is intentionally a clue to Aster's convergence story.
   Actual character positioning and engine collision remain unverified.
 - **No house interiors.** They remain blocked structures with dialogue
   at nearby event tiles, not real rooms.
-- **Roads mostly remain invisible.** Six doorway approaches, three east-west
-  links and the central north-south route remain walkable in the blueprint.
-  Three small, genuine Vale dirt patches now indicate frequent crossing
-  points without creating the earlier chimney-graphics artifacts. The three
-  patches repeat too obviously and do not yet visually join the roads; they
-  need a cohesive, purpose-built native Golden Sun dirt path treatment.
+- **Connected dirt lanes now present.** All six door approaches connect
+  into the original Aster street pattern through native Golden Sun dirt tiles.
+  The generator uses Vale's matching grass-to-earth shoulder family,
+  including an irregular variant; this is real Map180 source, not just a
+  Photoshop overlay. The road edges remain visually repetitive and sharp
+  around intersections, so further texture improvement is needed before
+  final visual approval. Gameplay collision and metatile priorities have
+  not yet been checked in an emulator.
 - **No normal two-way entrance.** The scene still lacks a world-map contact;
   its experimental exit returns to Vault. This is not correct release
   navigation.
@@ -73,8 +75,9 @@ The repeated home is intentionally a clue to Aster's convergence story.
 
 ## Next build acceptance
 
-1. Develop coherent, edge-matched native Vale dirt/stone paths along the
-   planned connections; scattered identical dirt patches are not sufficient.
+1. Refine the newly connected native dirt lanes: soften the repeated
+   scalloped edge, correct crossings, and test character movement and visual
+   priorities in the emulator.
 2. Replace cliff fragments with complete terrain transitions.
 3. Build a true *dry* well using compatible Golden Sun tiles. Add a wooden
    name register to the approved nonmagical remembrance garden. **Do not
