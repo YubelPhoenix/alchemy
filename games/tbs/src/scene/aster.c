@@ -23,6 +23,10 @@ enum { ASTER_TO_WORLD_MAP = 1, ASTER_MB_WELL = 0xe1,
 #define ASTER_SEEN_DOOR FLAG_SCENE_TEMP_07
 #define ASTER_REVISITED_DOOR FLAG_SCENE_TEMP_08
 #define ASTER_REVEALED_MEMORIAL FLAG_SCENE_TEMP_09
+#define ASTER_GREETER_DUPLICATE_SEEN FLAG_SCENE_TEMP_0A
+#define ASTER_ELDER_TALKED FLAG_SCENE_TEMP_0B
+#define ASTER_ELDER_SECOND FLAG_SCENE_TEMP_0C
+#define ASTER_INNKEEPER_TALKED FLAG_SCENE_TEMP_0D
 
 enum AsterActorId {
   ACTOR_ASTER_ELDER = ACTOR_FIRST_PLACED,
@@ -45,22 +49,42 @@ static void Aster_CheckFracture(void) {
 }
 static void Aster_TalkElder(void) {
   Event_Start();
-  Aster_Speak(ACTOR_ASTER_ELDER,
-      GameFlag_Get(ASTER_REVEALED) ? MsgAsterRevelationElder :
-      GameFlag_Get(ASTER_FRACTURED) ? MsgAsterFractureElder :
-      MsgAsterElderWelcome);
+  if (GameFlag_Get(ASTER_REVEALED)) {
+    Aster_Speak(ACTOR_ASTER_ELDER, MsgAsterRevelationElder);
+  } else if (GameFlag_Get(ASTER_FRACTURED)) {
+    Aster_Speak(ACTOR_ASTER_ELDER, MsgAsterFractureElder);
+  } else if (!GameFlag_Get(ASTER_ELDER_TALKED)) {
+    Aster_Speak(ACTOR_ASTER_ELDER, MsgAsterElderWelcome);
+    GameFlag_Set(ASTER_ELDER_TALKED);
+  } else if (!GameFlag_Get(ASTER_ELDER_SECOND)) {
+    Aster_Speak(ACTOR_ASTER_ELDER, MsgAsterArrivalElder);
+    GameFlag_Set(ASTER_ELDER_SECOND);
+  } else {
+    Aster_Speak(ACTOR_ASTER_ELDER, MsgAsterArrivalElderSecond);
+  }
   Event_End();
 }
 static void Aster_TalkInnkeeper(void) {
   Event_Start();
-  Aster_Speak(ACTOR_ASTER_INNKEEPER, GameFlag_Get(ASTER_FRACTURED)
-      ? MsgAsterFractureInn : MsgAsterInnkeeperWelcome);
+  if (GameFlag_Get(ASTER_FRACTURED)) {
+    Aster_Speak(ACTOR_ASTER_INNKEEPER, MsgAsterFractureInn);
+  } else if (!GameFlag_Get(ASTER_INNKEEPER_TALKED)) {
+    Aster_Speak(ACTOR_ASTER_INNKEEPER, MsgAsterInnkeeperWelcome);
+    GameFlag_Set(ASTER_INNKEEPER_TALKED);
+  } else {
+    Aster_Speak(ACTOR_ASTER_INNKEEPER, MsgAsterArrivalInn);
+  }
   Event_End();
 }
 static void Aster_TalkGreeter(void) {
   Event_Start();
   if (GameFlag_Get(ASTER_FRACTURED)) {
-    Aster_Speak(ACTOR_ASTER_GREETER, MsgAsterFractureGreeter);
+    if (!GameFlag_Get(ASTER_GREETER_DUPLICATE_SEEN)) {
+      Aster_Speak(ACTOR_ASTER_GREETER, MsgAsterFractureGreeter);
+      GameFlag_Set(ASTER_GREETER_DUPLICATE_SEEN);
+    } else {
+      Aster_Speak(ACTOR_ASTER_GREETER, MsgAsterFractureDuplicateA);
+    }
   } else {
     Aster_Speak(ACTOR_ASTER_GREETER, MsgAsterArrivalGreeter);
     GameFlag_Set(ASTER_HEARD_GREETER);
@@ -91,6 +115,7 @@ static void Aster_TalkOther(void) {
   if (GameFlag_Get(ASTER_FRACTURED) == 0) {
     Aster_Speak(ACTOR_ASTER_OTHER, MsgAsterOtherIsaacEarly);
   } else if (GameFlag_Get(ASTER_REVEALED) == 0) {
+    Aster_Speak(ACTOR_ASTER_OTHER, MsgAsterFractureNorthernView);
     Aster_Speak(ACTOR_ASTER_OTHER, MsgAsterRevelationOtherIsaac);
     Aster_Speak(ACTOR_ASTER_OTHER, MsgAsterRevelationOtherIsaac2);
     GameFlag_Set(ASTER_REVEALED);
