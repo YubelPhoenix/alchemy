@@ -1,88 +1,155 @@
 #!/usr/bin/env python3
-"""Reproducible Aster 32x32 Alchemy map source; --check validates tracked grid."""
+"""Generate Aster's first 64x64 exterior with real Golden Sun tile geometry.
+
+Use the vanilla Vault (Map019) art as the temporary in-ROM facade source.
+The user's Paradox artwork is a PRIVATE style reference, not redistributed
+through the public repository without a separate rights decision.
+
+Map019 stores ground at (0,0), middle at (60,0), high at (0,60)
+in a 128x128 source grid. Aster uses three 64x64 layer windows.
+"""
+import argparse
 from collections import deque
 from pathlib import Path
-import argparse
-LAYOUT = (
-    "################################",
-    "#..............................#",
-    "#..XXXXXXX....====.EEEEEEEEEE..#",
-    "#..XXXXXXX....====.EEEEEEEEEE..#",
-    "#..XXXXXXX....====.EEEEEEEEEE..#",
-    "#..XXXXXXX....====.EEEEEEEEEE..#",
-    "#.............====.EEEEEEEEEE..#",
-    "#.HHHHHHHH....====.EEEEEEEEEE..#",
-    "#.HHHHHHHH....====.EEEEEEEEEE..#",
-    "#.HHHHHHHH....====.....IIIIIII.#",
-    "#.HHHHHHHH....==M=.....IIIIIII.#",
-    "#.HHHHHHHH========n===.IIIIIII.#",
-    "#.HHHHHHHH============.IIIIIII.#",
-    "#.HHHHHHHH============.IIIIIII.#",
-    "#.....=...============.IIIIIII.#",
-    "#..==========================..#",
-    "#..=========n===W============..#",
-    "#..=====n===========n========..#",
-    "#..==========================..#",
-    "#.....=...============..n......#",
-    "#.SSSSSSSS============.........#",
-    "#.SSSSSSSS============...=.....#",
-    "#.SSSSSSSS============HHHHHHHH.#",
-    "#.SSSSSSSS....====....HHHHHHHH.#",
-    "#.SSSSSSSS....=n==....HHHHHHHH.#",
-    "#.SSSSSSSS....====....HHHHHHHH.#",
-    "#.SSSSSSSS....====....HHHHHHHH.#",
-    "#.............====....HHHHHHHH.#",
-    "#.............====....HHHHHHHH.#",
-    "#.............====.............#",
-    "#.............====.............#",
-    "###############G################",
+
+ROOT = Path(__file__).resolve().parents[1]
+DEST = ROOT / "games/tbs/src/map/map_180/map.txt"
+VAULT = ROOT / "games/tbs/src/map/map_019/map.txt"
+SIDE = 64
+
+# name, x, y, vault x, vault y, width, height, display character
+# A repeated facade is deliberately unsettling once Isaac notices it.
+BUILDINGS = (
+    ("sealed_house", 3, 3, 29, 3, 11, 16, "X"),
+    ("inn", 43, 3, 1, 3, 19, 16, "I"),
+    ("western_home", 3, 24, 29, 3, 11, 16, "H"),
+    ("eastern_home", 50, 24, 29, 3, 11, 16, "H"),
+    ("shop", 3, 44, 29, 3, 11, 16, "S"),
+    ("duplicate_home", 50, 44, 29, 3, 11, 16, "V"),
 )
-TILES = {"#": "0:ff", ".": "0", "=": "14", "E": "56:ff", "I": "56:ff",
-         "S": "56:ff", "H": "56:ff", "X": "56:ff", "W": "3e:ff",
-         "M": "3e:ff", "G": "0:1", "n": "0",
-         "w": "14:e1", "m": "14:e2", "d": "0:e3"}
-TARGETS = [(15, 31), (16, 16), (16, 10), (12, 16), (20, 17),
-           (15, 24), (8, 17), (18, 11), (24, 19)]
-DEST = Path(__file__).resolve().parents[1] / "games/tbs/src/map/map_180/map.txt"
-def source():
-    assert len(LAYOUT) == 32 and all(len(row) == 32 for row in LAYOUT)
-    assert all(set(row) <= TILES.keys() for row in LAYOUT)
+# name, x, y, map behavior. Door/landmark events currently give messages
+# rather than transporting Isaac into unbuilt interiors.
+INTERACTIONS = (
+    ("memorial", 32, 14, "14:e2"),
+    ("well", 32, 35, "14:e1"),
+    ("sealed_house", 8, 19, "56:e3"),
+    ("inn", 53, 19, "56:e4"),
+    ("western_home", 8, 40, "56:e5"),
+    ("eastern_home", 55, 40, "56:e6"),
+    ("shop", 8, 60, "56:e7"),
+    ("duplicate_home", 55, 60, "56:e8"),
+)
+ACTORS = (
+    (26, 33), (49, 21), (23, 34), (35, 39),
+    (45, 34), (36, 13), (41, 34),
+)
+WELL = (32, 34)
+MEMORIAL = (32, 13)
+EXIT = (32, 63)
+START = (32, 61)
+
+def load_vault():
+    lines = VAULT.read_text(encoding="utf-8").splitlines()
+    assert lines[0].startswith("grid:128x128"), "Vault grid changed"
+    result = [["0" for _ in range(128)] for _ in range(128)]
+    for y, line in enumerate(lines[1:]):
+        assert y < 128
+        for x, token in enumerate(line.split()):
+            assert x < 128
+            result[y][x] = token
+    return result
+
+def blueprint():
+    cells = [["." for _ in range(SIDE)] for _ in range(SIDE)]
+    for y in range(SIDE):
+        cells[y][0] = "#"
+        cells[y][-1] = "#"
+    cells[0] = ["#"] * SIDE
+    cells[-1] = ["#"] * SIDE
+    for y in range(1, SIDE-1):
+        for x in range(30, 36):
+            cells[y][x] = "="
+    for y0, y1 in ((19, 22), (40, 42), (60, 62)):
+        for y in range(y0, y1+1):
+            for x in range(2, 62):
+                cells[y][x] = "="
+    for _, x0, y0, _, _, w, h, marker in BUILDINGS:
+        for y in range(y0, y0+h):
+            for x in range(x0, x0+w):
+                assert cells[y][x] not in ("#", "="), "Facade overlaps road"
+                cells[y][x] = marker
+    cells[MEMORIAL[1]][MEMORIAL[0]] = "M"
+    cells[WELL[1]][WELL[0]] = "W"
+    cells[EXIT[1]][EXIT[0]] = "G"
+    return tuple("".join(row) for row in cells)
+
+LAYOUT = blueprint()
+def validate_layout():
+    assert len(LAYOUT) == SIDE and all(len(r) == SIDE for r in LAYOUT)
+    assert LAYOUT[EXIT[1]][EXIT[0]] == "G"
     assert sum(row.count("G") for row in LAYOUT) == 1
-    assert LAYOUT[31][15] == "G"
-    assert all(LAYOUT[0][i] == "#" for i in range(32))
-    assert all(LAYOUT[31][i] == "#" for i in range(32) if i != 15)
-    seen, queue = {(15, 28)}, deque([(15, 28)])
-    while queue:
-        x, y = queue.popleft()
-        for X, Y in ((x+1,y),(x-1,y),(x,y+1),(x,y-1)):
-            if 0 <= X < 32 and 0 <= Y < 32 and (X,Y) not in seen:
-                if LAYOUT[Y][X] in ".=nMWG":
-                    seen.add((X,Y))
-                    queue.append((X,Y))
-    assert all(point in seen for point in TARGETS), "Unreachable landmark"
-    # Activation tiles sit beside solid scenery, not on it.
-    # Only this map gives these three behaviors their event meanings.
-    marked = [list(row) for row in LAYOUT]
-    for x, y, original, marker in [
-        (16, 17, "=", "w"),  # approach to the well at (16, 16)
-        (16, 11, "=", "m"),  # approach to the memorial at (16, 10)
-        (6, 6, ".", "d"),   # approach to the sealed house
-    ]:
-        assert marked[y][x] == original, "Aster trigger drift"
-        marked[y][x] = marker
-    rows = [" ".join(TILES[c] for c in row) for row in marked]
-    return "grid:128x128\tat:0,0\tfill:0:ff\n" + "\n".join(rows) + "\n"
+    assert all(LAYOUT[63][x] == "#" for x in range(SIDE) if x != 32)
+    for _, x, y, _ in INTERACTIONS:
+        assert LAYOUT[y][x] in ".=", f"Interaction inaccessible at {x},{y}"
+    walkable = set()
+    q = deque([START])
+    while q:
+        x, y = q.popleft()
+        if not (0 <= x < SIDE and 0 <= y < SIDE):
+            continue
+        if (x, y) in walkable or LAYOUT[y][x] not in ".=G":
+            continue
+        walkable.add((x, y))
+        for pos in ((x-1,y),(x+1,y),(x,y-1),(x,y+1)):
+            q.append(pos)
+    required = [EXIT, START] + list(ACTORS) + [(x,y) for _,x,y,_ in INTERACTIONS]
+    assert all(pos in walkable for pos in required), "Aster route/actor unreachable"
+
+def source():
+    validate_layout()
+    original = load_vault()
+    # Square 128x128 game grid, partitioned into 64x64 windows.
+    out = [["0" for _ in range(128)] for _ in range(128)]
+    for y in range(SIDE):
+        for x in range(SIDE):
+            kind = LAYOUT[y][x]
+            if kind == "#":
+                out[y][x] = "0:ff"
+            elif kind == "=":
+                out[y][x] = "56"  # native Vault walkable street placeholder
+            elif kind == "G":
+                out[y][x] = "56:1"
+            elif kind in "WM":
+                out[y][x] = "3e:ff"
+            else:
+                out[y][x] = "56"  # native Vault walkable ground placeholder
+    # Transfer each building's actual source facade on all three layers.
+    for _, dx, dy, sx, sy, width, height, _ in BUILDINGS:
+        for yy in range(height):
+            for xx in range(width):
+                # Upper map layers: original Map019 layer windows begin
+                # at x=60 and y=60, respectively.
+                native = original[sy+yy][sx+xx]
+                tile = native.split(":")[0]
+                out[dy+yy][dx+xx] = tile + ":ff"  # solid until interiors exist
+                out[dy+yy][dx+xx+64] = original[sy+yy][sx+xx+60]
+                out[dy+yy+64][dx+xx] = original[sy+yy+60][sx+xx]
+    for _, x, y, event in INTERACTIONS:
+        out[y][x] = event
+    return ("grid:128x128\tat:0,0\tfill:0\n"
+            + "\n".join(" ".join(row) for row in out) + "\n")
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    text = source()
+    generated = source()
     if args.check:
-        assert DEST.read_text() == text, "map.txt out of sync"
-        print("Aster geometry and tracked map validated")
+        assert DEST.read_text(encoding="utf-8") == generated, "Generated Aster grid drift"
+        print("PASS Aster 64x64 facade map, three layers, actors and step events")
     else:
         DEST.parent.mkdir(parents=True, exist_ok=True)
-        DEST.write_text(text)
-        print(f"Generated {DEST}")
+        DEST.write_text(generated, encoding="utf-8")
+        print("Wrote", DEST)
 if __name__ == "__main__":
     main()
