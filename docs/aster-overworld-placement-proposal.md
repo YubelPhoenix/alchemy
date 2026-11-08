@@ -77,12 +77,16 @@ Vale, Vault and other village icons have not been changed.
 For a safe coordinate check, the optional local build flag
 `bash tools/aster_v14_local_smoke.sh --probe-world` temporarily
 uses unused world-map entrance **98** to return from Aster to
-`(5696,1504)`, without changing the story branch. The temporary edits
+`(5696,1536)` (32 pixels south of the Aster icon at `(5696,1504)`), without changing the story branch. The temporary edits
 are restored automatically. The debug entrance was **not** used because
 it disables map contacts and would hide progression failures.
-This tests whether the player can walk from the proposed clearing to
-Vault; it does **not** yet prove Aster's icon can be approached and entered
-in reverse. Use only an experimental game save.
+The updated local-only probe also temporarily converts one unused world-map
+signpost actor into Aster's icon and adds a test contact and exit at unused
+exit kind 115. It does **not change the ID or position of any existing town,
+Djinni, or story actor**. It lets the emulator tester approach Aster's icon,
+enter the village, exit south, and walk back toward Vault. The original
+source is restored after compilation. These coordinates and interactions
+remain **unverified in the emulator**. Use only an experimental game save.
 
 ## Status
 
