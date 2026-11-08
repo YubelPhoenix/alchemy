@@ -365,8 +365,9 @@ def scene_contract(catalog, module):
     placed = [(int(x),int(y)) for x,y in re.findall(
         r"PIXELS\((\d+)\),\s*0,\s*PIXELS\((\d+)\),\s*FACING_",actor_data)]
     expected = [(x*16,y*16) for x,y in module.ACTORS]
-    require(placed == expected,
-            f"NPC scene positions drifted: {placed} != {expected}")
+    expected_decor = [(512, 544), (464, 304), (672, 528), (208, 912)]
+    require(placed == expected + expected_decor,
+            f"NPC/scenery positions drifted: {placed} != {expected + expected_decor}")
     for flag in re.findall(r"#define ASTER_\w+\s+(FLAG_\w+)", scene):
         require(flag.startswith("FLAG_SCENE_TEMP_"),
                 f"Aster may not mutate permanent story flag: {flag}")
