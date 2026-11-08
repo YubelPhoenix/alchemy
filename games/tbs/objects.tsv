@@ -629,6 +629,7 @@ main	rom_tail_02	games/tbs/src/map/map_176/map
 main	rom_tail_02	games/tbs/src/map/map_177/map
 main	rom_tail_02	games/tbs/src/map/map_178/map
 main	rom_tail_02	games/tbs/src/map/map_179/map
+main	rom_tail_02	games/tbs/src/map/map_180/map
 main	rom_tail_02	games/tbs/src/system/overlay/overlays
 36f	text	games/tbs/src/menu/entry/title
 36f	text	games/tbs/src/menu/title
@@ -1005,3 +1006,7 @@ main	rom_tail_02	games/tbs/src/system/overlay/overlays
 3ce	text	games/tbs/src/debug/entry/test
 3ce	text	games/tbs/src/debug/test
 3ce	text	games/tbs/src/debug/import/test
+
+3d3	text	games/tbs/src/scene/entry/aster
+3d3	text	games/tbs/src/scene/aster
+3d3	text	games/tbs/src/scene/import/aster

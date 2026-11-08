@@ -319,7 +319,10 @@ Resource_DirectoryTable:
 	resource KegareSprites, Monster_KegareSprites
 	resource SarahSprites, Monster_SarahSprites
 	resource HeartBackdrop, Battle_HeartBackdrop
-	unused 22
+	@ Use reserved tail slots without renumbering vanilla resources.
+	resource AsterMap, Field_Map180
+	resource , Resource_Overlay3D3
+	unused 20
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp

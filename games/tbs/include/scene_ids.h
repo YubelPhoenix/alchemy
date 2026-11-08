@@ -556,5 +556,7 @@ extern char SceneId_TestRoom7;
 extern char SceneId_IncreaseItemAndLevel;
 /// ★ Named from its area name: Menu test
 extern char SceneId_MenuTest;
+/// Experimental convergence town; appended scene 201, map 180.
+extern char SceneId_Aster;
 
 #endif

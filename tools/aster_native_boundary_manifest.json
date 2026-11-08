@@ -1,0 +1,621 @@
+{
+  "stage": "Aster V14 native wooded-boundary pass",
+  "branch": "experiment/aster-v14-native-map-staging",
+  "source": "Original Golden Sun Vale Map003 set_02 3-layer sprites only",
+  "new_native_trees": [
+    {
+      "x": 58,
+      "y": 7,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 57,
+      "y": 14,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 33,
+      "y": 5,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 26,
+      "y": 8,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 4,
+      "y": 11,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 4
+    },
+    {
+      "x": 58,
+      "y": 57,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 5
+    },
+    {
+      "x": 19,
+      "y": 6,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 4
+    },
+    {
+      "x": 51,
+      "y": 8,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 2
+    },
+    {
+      "x": 46,
+      "y": 53,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 3
+    },
+    {
+      "x": 58,
+      "y": 21,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 2
+    },
+    {
+      "x": 53,
+      "y": 37,
+      "source_x": 17,
+      "source_y": 46,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 2
+    },
+    {
+      "x": 52,
+      "y": 18,
+      "source_x": 4,
+      "source_y": 13,
+      "width": 4,
+      "height": 5,
+      "previously_bare_cells": 2
+    }
+  ],
+  "old_map_blob": "a6bec6cfa5e9e62e29eb0368a56cff5e3acc377f",
+  "new_map_blob": "a03c527bb290a4b1dc0aff268c022aa6f317cb3a",
+  "previous_accessible_cells": 2392,
+  "post_accessible_cells": 2252,
+  "only_open_edge": [
+    32,
+    63
+  ],
+  "remaining_unarted_cell_census": {
+    "total": 752,
+    "perimeter": 251,
+    "native_house": 210,
+    "reserved_new_sites": 56,
+    "interior_unmarked": 235
+  },
+  "approval": "Source map/graph and 3-layer tile reference checks only; not emulator-approved",
+  "collision_rule": "Only cells containing actual native Vale foliage upper-layer metatiles become newly solid. Fully transparent foliage cells preserve their original ground and collision behavior.",
+  "preexisting_native_map_blob_sha": "a6bec6cfa5e9e62e29eb0368a56cff5e3acc377f",
+  "opaque_native_foliage_cells": 174,
+  "transparent_native_foliage_cells": 66,
+  "newly_solid_cells": 140,
+  "transparent_base_cells": [
+    {
+      "x": 58,
+      "y": 7,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 60,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 14,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 15,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 16,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 17,
+      "ground": "ba"
+    },
+    {
+      "x": 57,
+      "y": 18,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 58,
+      "y": 18,
+      "ground": "ba"
+    },
+    {
+      "x": 59,
+      "y": 18,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 18,
+      "ground": "ba"
+    },
+    {
+      "x": 33,
+      "y": 5,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 35,
+      "y": 9,
+      "ground": "ba"
+    },
+    {
+      "x": 36,
+      "y": 9,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 8,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 9,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 10,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 26,
+      "y": 12,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 27,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 28,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 4,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 6,
+      "y": 15,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 7,
+      "y": 15,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 61,
+      "y": 57,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 58,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 59,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 60,
+      "ground": "ba"
+    },
+    {
+      "x": 58,
+      "y": 61,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 59,
+      "y": 61,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 61,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 61,
+      "ground": "ba"
+    },
+    {
+      "x": 19,
+      "y": 6,
+      "ground": "ba"
+    },
+    {
+      "x": 21,
+      "y": 10,
+      "ground": "ba"
+    },
+    {
+      "x": 22,
+      "y": 10,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 8,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 9,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 10,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 51,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 52,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 53,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 46,
+      "y": 53,
+      "ground": "ba"
+    },
+    {
+      "x": 48,
+      "y": 57,
+      "ground": "ba"
+    },
+    {
+      "x": 49,
+      "y": 57,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 21,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 22,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 23,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 24,
+      "ground": "ba"
+    },
+    {
+      "x": 58,
+      "y": 25,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 59,
+      "y": 25,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 60,
+      "y": 25,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 25,
+      "ground": "ba"
+    },
+    {
+      "x": 53,
+      "y": 37,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 41,
+      "ground": "ba"
+    },
+    {
+      "x": 56,
+      "y": 41,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 18,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 55,
+      "y": 19,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 20,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 21,
+      "ground": "ba"
+    },
+    {
+      "x": 52,
+      "y": 22,
+      "ground": "ba"
+    },
+    {
+      "x": 53,
+      "y": 22,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 22,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 22,
+      "ground": "ba"
+    }
+  ],
+  "quality_notes": [
+    "Native Vale 4x5 tree art used without scaling or foreign tiles.",
+    "Transparent native upper-layer cells preserve the precise pre-woodland behavior.",
+    "Source validation only. Full GBA renderer, sprite priority and walkable collision not tested.",
+    "Does not certify the shoreline, cliff rockwork, bridge or the reserved building exteriors."
+  ],
+  "new_native_west_river_bridge": {
+    "status": "staged genuine Vale surface/decking and second-row rail metatiles (source-only)",
+    "source_map": "Map003 original Vale set_02",
+    "source_top_left": [
+      9,
+      38
+    ],
+    "destination_top_left": [
+      3,
+      35
+    ],
+    "width": 9,
+    "height": 2,
+    "previous_ground_and_upper_layers": [
+      {
+        "x": 3,
+        "y": 35,
+        "ground": "8365",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 4,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 5,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 6,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 7,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 8,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 9,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 10,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 11,
+        "y": 35,
+        "ground": "4361",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 3,
+        "y": 36,
+        "ground": "8365",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 4,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 5,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 6,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 7,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 8,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 9,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 10,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 11,
+        "y": 36,
+        "ground": "4361",
+        "middle": "15",
+        "top": "15"
+      }
+    ],
+    "floor_collision_policy": "preserved all 18 previously passable Aster bridge cells",
+    "notes": [
+      "No new west world-map exit; native bridge leads to an internal west bank only.",
+      "Requires emulator assessment for bridge rail priorities and source orientation."
+    ]
+  }
+}
