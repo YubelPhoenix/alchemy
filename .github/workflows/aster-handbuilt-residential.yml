@@ -1,0 +1,51 @@
+name: Aster handbuilt residential visual QA
+
+on:
+  push:
+    branches:
+      - experiment/aster-handbuilt-residential-20261108
+    paths:
+      - 'tools/aster_handbuilt_residential.py'
+      - '.github/workflows/aster-handbuilt-residential.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aster-handbuilt-residential-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    name: Validate exact tile footprints and render 3-home neighborhood
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: true
+      - name: Install PIL for original indexed Golden Sun tile rendering
+        run: python3 -m pip install --break-system-packages -q Pillow
+      - name: Generate hand-authored map study
+        run: python3 tools/aster_handbuilt_residential.py
+      - name: Preserve visual QA and placement report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: aster-handbuilt-residential
+          path: |
+            tools/aster_handbuilt_residential.png
+            tools/aster_handbuilt_residential_labels.png
+            tools/aster_handbuilt_residential_closeup.png
+            tools/aster_handbuilt_residential_report.json
+          retention-days: 14
+      - name: Commit draft previews to same experimental branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/aster_handbuilt_residential*.png tools/aster_handbuilt_residential_report.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Aster: publish hand-placed neighborhood review [skip ci]'
+            git pull --rebase origin experiment/aster-handbuilt-residential-20261108
+            git push origin HEAD:experiment/aster-handbuilt-residential-20261108
+          fi
