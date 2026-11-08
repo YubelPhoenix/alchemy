@@ -47,6 +47,57 @@ approved for the current Aster exterior.
 The original single-town gameplay scene, eight triggers, seven actor slots,
 and six facades remain untouched while these studies are evaluated.
 
+## 2026-11-07: actual native water + forest synthesis comparison
+
+A new source-only ecology pass is now staged under
+`tools/aster_water_feature_study.py`, `tools/aster_lived_in_ecology.py`,
+and `tools/aster_native_woodland_synthesis.py`.
+
+**Positive result:** `aster_forest_synthesis.png` is meaningfully fuller
+than the old grass prototype. Instead of rectangular source-terrain
+cards or sparsely spaced 4x5 trees, the source program chooses authentic
+Vale set_02 canopy metatiles according to neighboring rendered-pixel
+edge compatibility and irregular forest-boundary coverage. This creates
+a connected treeline around all four edges, plus smaller home-side
+copses. No new pixel art or non-Golden-Sun assets were imported.
+
+**Real water:** The eastern outskirts now include a source-only
+nonmagical pond derived from original Vale water-bank and water-ripple
+metatiles. The original Psynergy crystal/pedestal is deliberately
+removed. Water and woodland are both native 16px source graphics.
+
+**Everyday work:** One complete native Vale outbuilding appears on the
+west service lane between occupied homes and the shop. There is a
+working service approach, additional source-native flower beds and
+small clusters of original wooden crates and water jars near trade and
+homes. A source-only flood-fill confirms the eight planned event
+coordinates and seven planned NPC anchor tiles remain reachable
+after adding the forest, water and solid props.
+
+**Remaining failures / release blockers:**
+- Aster's central upper and middle lawns are STILL too empty. The
+  forest boundary is successful but does not by itself make the market,
+  memorial or commons a fully developed village.
+- The pond still has a too-straight southern water edge; do not treat
+  it as approved final coastline/bank geometry.
+- The well remains an invisible solid place holder in these studies;
+  a visible functional well must be developed without a Psynergy Stone.
+- The western shed is VISUAL ONLY. Its door needs a sensible story/
+  entrance policy before integration; do not add another fake door.
+- No actual NPC walking routines or interiors are implemented.
+- The compiled gameplay Map180 and `games/tbs/src/scene/aster.c`
+  are still the previous old layout. Source-generated study images
+  do NOT establish an emulator collision/priority/saving pass.
+
+**Acceptance criterion:** Preserve the new connected forest technique,
+but continue the **functional district design**. The water should have
+a proper native bank, homes their working yards, the marketplace a
+visible reason to exist, and the common area a usable meeting point.
+Only after those source renders pass visual QA may the source geometry,
+scene actors, eight triggers and door approaches be moved into Map180
+together. Do not prematurely merge a prettier but still incomplete
+study into the live Ashfall field map.
+
 ## New hard rule after rendered prototypes
 
 **Terrain must be authored continuously across the whole village.**
