@@ -643,6 +643,8 @@ enum SpriteId {
   /// ★ Named from what the player sees: houses with orange roofs among trees
   /// (spr_261.png)
   SPRITE_WORLD_MAP_VILLAGE = 0x105,
+  /// Ashfall's woodland village Aster. Separate icon, leaving original villages untouched.
+  SPRITE_WORLD_MAP_ASTER = 0x1f9,
   /// ★ Named from what the player sees: white and blue buildings inside a wall
   /// (spr_263.png)
   SPRITE_WORLD_MAP_TOWN = 0x107,
