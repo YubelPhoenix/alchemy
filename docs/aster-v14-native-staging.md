@@ -1,5 +1,9 @@
 # Aster V14 native Map180 staging — NOT RELEASE READY
 
+**Selective Ashfall integration (preserve Claude boss AI):**
+[review the safe transfer checklist](aster-v14-selective-integration-plan.md).
+Never stack the experimental V14 IPS onto an existing Ashfall patch.
+
 This isolated branch starts from experiment/aster-convergence-town. It is NOT merged with main or Ashfall.
 
 ## Implemented in actual native source
