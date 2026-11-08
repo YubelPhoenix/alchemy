@@ -1,6 +1,6 @@
 # Aster — actual Golden Sun source-art visual review
 
-**Review result: native memorial added, layout routes checked; full visual design NOT APPROVED.**
+**Review result: nonmagical remembrance garden, original street layout; visual design NOT APPROVED.**
 Source renderer: `tools/aster_visual_preview.py`.
 Generated visual: [Aster native screenshot-like map image](aster_visual_review.png).
 Comparison baseline: [Original Vale rendered from the same sources](aster_vale_reference.png).
@@ -35,21 +35,23 @@ The repeated home is intentionally a clue to Aster's convergence story.
 
 **Fail — must fix before considering the level attractive or playable:**
 
-- **Overlarge empty clearing.** Eight native Vale tree-cluster stamps are now
-  distributed in yards and between homes, outside connected routes. However
-  the clusters are excessively repetitive and much of the 64x64 grid remains
-  blank. Vary coherent assets and add intentional fences, gardens and paths.
+- **Town plan is original, not Vale's.** Six buildings now belong to three
+  purposeful districts: northern remembrance lane, offset residential
+  quarter, and southern market with the actual inn-sign roof. The innkeeper
+  moved to (46,55), and the NPC source audit verifies all seven positions.
+  The 64x64 clearing still needs much denser, varied scenery. Six native
+  tree stamps look too repetitive and natural roads are not yet completed.
 - **Cliff remnants removed.** The new house rendering copies native roofs
   and walls only, keeping Vale grass beneath. This eliminates the previously
   clipped cliffs; the doors still need an actual in-game facing test.
-- **One landmark now visible.** The original Vale stone monument is centered
-  above the memorial interaction at (32,14), with solid stone cells in the
-  route blueprint. It is visually a glowing Psynergy-style stone, not an
-  engraved tombstone; whether it can convincingly represent the memorial's
-  changing inscriptions is still a narrative/art decision. The **dry well
-  at (32,34) remains visually absent**. A native Vale spring test was
-  rejected because its water and adjacent roof fragment contradict the
-  opening scene; see `tools/aster_square_spring.png`.
+- **Psynergy Stone explicitly removed.** The user rejected Vale's crystal
+  landmark; it no longer exists in Aster's game map. The northern memorial
+  is now a **low wood-fence remembrance garden with wildflowers**, source
+  `tools/aster_memorial_garden.png`, and a protected event at (32,14).
+  It is nonmagical, but a future legible wooden name plaque is still needed
+  so the changing inscriptions are visually motivated. The **dry well at
+  (32,34) remains visually absent**: the water-filled Vale spring was
+  correctly rejected because it contradicts the opening dialogue.
 - **Door routes structurally corrected.** Each of six house approaches is now
   one walkable cell south of its roof crop with a continuous spur to the
   primary roads. The source audit checks these geometric relationships.
@@ -74,9 +76,9 @@ The repeated home is intentionally a clue to Aster's convergence story.
 1. Develop coherent, edge-matched native Vale dirt/stone paths along the
    planned connections; scattered identical dirt patches are not sufficient.
 2. Replace cliff fragments with complete terrain transitions.
-3. Build a true dry-well visual using compatible Golden Sun tiles. Decide
-   whether the Psynergy-stone memorial is narratively appropriate or needs a
-   legible stone monument with a changing inscription.
+3. Build a true *dry* well using compatible Golden Sun tiles. Add a wooden
+   name register to the approved nonmagical remembrance garden. **Do not
+   reintroduce a Psynergy Stone, crystal shrine, or Vale's old layout.**
 4. Replace repeated tree clusters with varied, complete native Vale vegetation, fences and domestic touches while preserving NPC reachability.
 5. Rerun the source renderer, inspect at 1x/native pixel scale and revise.
 6. Compile experimental ROM and capture a **real emulator screenshot**.
@@ -114,6 +116,7 @@ ROM map, collision map or stage trigger.
 stamps clearly cover rooftops; no masonry has fallen, no structures have
 collapsed, and there is no coherent debris. It is useful only to establish
 that the broken version must preserve Aster's legibility and silhouette.
-Further ruin art must be constructed intentionally using permission-cleared
-Golden Sun-style assets, with updated walkable routes and story-specific
-doorway behavior. Do not merge this study into normal Aster.
+Further ruin art must be constructed intentionally using native or
+permission-cleared Golden Sun-style assets, with updated walkable routes and
+story-specific doorway behavior. Its test overlays are now calculated from
+the current building coordinates, not the obsolete symmetrical layout. Do not merge this study into normal Aster.
