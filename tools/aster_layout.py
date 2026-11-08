@@ -341,7 +341,7 @@ def source():
             out[dy+yy+64][dx+xx]=vale[sy+yy][sx+xx+60]
     for name,x,y,event in INTERACTIONS:
         out[y][x]=event
-    return "grid:128x128\tat:0,0\tfill:0\n" + "\n".join(
+    return "grid:128x128\tat:0,0\tfill:0:0:0\n" + "\n".join(
         " ".join(row) for row in out)+"\n"
 
 def main():
