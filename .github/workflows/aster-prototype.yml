@@ -50,11 +50,12 @@ jobs:
           python3 tools/aster_ruin_variant.py --check
           python3 tools/check_aster_ruin.py
 
-  # This task builds for inspection without uploading or redistributing ROMs.
-  # It is intentionally manual. Ordinary Aster commits run only the fast audit.
+  # Full ROM build runs manually, or on a single specifically marked
+  # experimental commit. Ordinary Aster changes run only the fast source audit.
+  # No ROM is uploaded or redistributed.
   manual-rom-build:
-    name: Optional modified-English ROM compile (manual only)
-    if: github.event_name == 'workflow_dispatch'
+    name: Aster modified-English ROM compilation smoke test
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[aster-rom-smoke]'))
     needs: source-audit
     runs-on: ubuntu-24.04
     timeout-minutes: 45
@@ -81,5 +82,7 @@ jobs:
         run: make bootstrap CARGO=false
       - name: Compile English prototype
         run: make -j"$(nproc)" tbs-en CARGO=false
-      - name: Confirm build artifact locally (do not distribute ROM)
-        run: test -s out/tbs-en/tbs-en.gba
+      - name: Confirm build and record internal file size (do not distribute ROM)
+        run: |
+          test -s out/tbs-en/tbs-en.gba
+          stat -c 'Compiled ROM present locally: %s bytes' out/tbs-en/tbs-en.gba
