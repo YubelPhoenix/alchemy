@@ -161,17 +161,22 @@ void BattleBackground_Init(void) {
 /// 120 to 123 are the floor's glowing tile seams; the sky and floor are 0 to 119.
 #define HEART_SEAM_FIRST 120
 #define HEART_SKY_ENTRIES 120
-/// Lightning: every HEART_LIGHTNING_PERIOD frames (3 seconds) the sky flickers,
-/// at a scrambled moment inside the period; every fourth is a big flash. It
-/// reads gVBlankCount, so it needs no state of its own (IWRAM is full).
-#define HEART_LIGHTNING_PERIOD 180
+/// Lightning: every HEART_LIGHTNING_PERIOD frames (12 seconds) the sky
+/// flickers, at a scrambled moment inside the period; every fourth is a bigger
+/// flash. It reads gVBlankCount, so it needs no state of its own (IWRAM is full).
+#define HEART_LIGHTNING_PERIOD 720
+/// The seams breathe slowly: one full swell takes HEART_SEAM_PERIOD frames
+/// (about 6.4 seconds) and never drops below about 45 percent brightness, so
+/// the idle floor is calm to look at for a whole fight.
+#define HEART_SEAM_PERIOD 384
+#define HEART_SEAM_HALF (HEART_SEAM_PERIOD / 2)
 
 /// One channel of a colour pulsed between dim and bright: wave is 0 to 31.
 static u16 Heart_GlowColor(s32 red, s32 green, s32 blue, s32 wave,
                            s32 scale) {
-  red = (red * (8 + wave) / 39) * scale >> 16;
-  green = (green * (8 + wave) / 39) * scale >> 16;
-  blue = (blue * (8 + wave) / 39) * scale >> 16;
+  red = (red * (25 + wave) / 56) * scale >> 16;
+  green = (green * (25 + wave) / 56) * scale >> 16;
+  blue = (blue * (25 + wave) / 56) * scale >> 16;
   return (blue << 10) | (green << 5) | red;
 }
 
@@ -194,9 +199,11 @@ void Heart_StepBackdropGlow(void) {
   if (scale > Q16_ONE)
     scale = Q16_ONE;
   for (k = 0; k < 4; k++) {
-    // a triangle wave, 0 to 31, a quarter turn apart along each seam
-    s32 t = (gVBlankCount * 2 + k * 16) & 63;
-    s32 wave = t < 32 ? t : 63 - t;
+    // a slow triangle wave, 0 to 31, a quarter turn apart along each seam
+    s32 t = (s32)((gVBlankCount + k * (HEART_SEAM_PERIOD / 4)) %
+                  HEART_SEAM_PERIOD);
+    s32 wave = (t < HEART_SEAM_HALF ? t : HEART_SEAM_PERIOD - 1 - t) * 31 /
+               (HEART_SEAM_HALF - 1);
 
     BATTLE_BG_PALETTE[HEART_SEAM_FIRST + k] =
         Heart_GlowColor(24, 9, 31, wave, scale);
@@ -205,14 +212,14 @@ void Heart_StepBackdropGlow(void) {
     return;
   {
     // two flickering flashes: up fast, down slow, a pause, then a smaller one
-    static const u8 strike[] = {10, 22, 28, 20, 12, 6, 0, 0, 0, 12, 18, 10, 4};
+    static const u8 strike[] = {6, 14, 18, 12, 8, 4, 0, 0, 0, 8, 12, 6, 2};
     u32 epoch = gVBlankCount / HEART_LIGHTNING_PERIOD;
     s32 index = (s32)(gVBlankCount % HEART_LIGHTNING_PERIOD) -
-                (s32)(10 + (epoch * 2654435761u >> 20) % 150);
+                (s32)(10 + (epoch * 2654435761u >> 20) % (HEART_LIGHTNING_PERIOD - 40));
     u16 *source = battle->palette;
     u16 *destination = BATTLE_BG_PALETTE;
     s32 gain;
-    s32 skyShare = (epoch & 3) == 3 ? 2 : 6;
+    s32 skyShare = (epoch & 3) == 3 ? 3 : 8;
     s32 i;
 
     if (index < 0 || index > (s32)sizeof strike)
@@ -224,8 +231,8 @@ void Heart_StepBackdropGlow(void) {
       return;
     }
     gain = strike[index];
-    // the sky and floor brighten by a share of the strike: half for a big
-    // flash, a sixth for a distant flicker
+    // the sky and floor brighten by a share of the strike: a third for the
+    // bigger flash, an eighth for a distant flicker
     for (i = 0; i < HEART_SKY_ENTRIES; i++) {
       u32 pixel = source[i];
       s32 red = (pixel & 31) + gain / skyShare;
