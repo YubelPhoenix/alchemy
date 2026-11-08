@@ -81,14 +81,14 @@ TREES=(
 )
 # Yard use is explicit; native flowers are never random open-lawn sprinkles.
 FLOWERS=(
-    ("west_kitchen_garden",18,30,10,47,2,2),
+    ("west_kitchen_garden",18,29,10,47,2,2),
     ("east_kitchen_garden",32,31,10,47,2,2),
     ("shop_herb_plot",20,46,10,47,2,2),
     ("inn_small_garden",32,45,10,47,2,2),
 )
 # One-cell native household items from Vale.
 SUPPLIES=(
-    ("home_jar",19,29,17,5),
+    ("home_jar",21,30,17,5),
     ("east_crate",34,30,17,6),
     ("shop_supplies",20,42,17,6),
     ("shop_jar",21,43,17,5),
@@ -98,7 +98,7 @@ SUPPLIES=(
 # Short native Vale timber-and-flower fence segments. These are fenced
 # productive beds alongside a home or trade building, not freestanding hedges.
 FENCES=(
-    ("west_plot_front",18,32,12,54,4),
+    ("west_plot_front",17,31,12,54,4),
     ("east_plot_front",31,29,12,54,4),
     ("shop_front",20,44,12,54,4),
     ("inn_yard_front",31,43,12,54,4),
