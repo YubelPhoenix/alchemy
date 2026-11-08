@@ -82,6 +82,19 @@ def forest_mask(use):
     for y in range(1,63):
         for x in range(1,63):
             if use[y][x]!=".":continue
+            # A household's work space must exist BEFORE deciding where
+            # trees belong. Otherwise a forest model consumes every yard.
+            # The west service shed links the inhabited cottage to trade;
+            # kitchen beds and market stock have their own cleared plots.
+            reserved=(
+                (3<=x<=12 and 31<=y<=40) or
+                (17<=x<=25 and 25<=y<=36) or
+                (31<=x<=36 and 28<=y<=35) or
+                (45<=x<=53 and 27<=y<=38) or
+                (18<=x<=25 and 41<=y<=51) or
+                (47<=x<=54 and 43<=y<=52)
+            )
+            if reserved:continue
             # Irregular shoulders, never a rectangular native-map crop.
             left=(5 + (y*7//11)%3 + ((y*13)%7==0))
             right=(57 - (y*5//13)%3)
@@ -182,6 +195,24 @@ def synthesize():
     stats=Counter(forest_cells=dense,soft_clearings=kept,trees_source=N)
     def free(points):
         return all(1<=x<63 and 1<=y<63 and use[y][x]=="." for x,y in points)
+    # One actual Golden Sun small wooden outbuilding, rather than a
+    # fabricated sprite. It's source-only scenery with NO functional
+    # entrance: a proper room/service door remains a future task.
+    # Crop is the intact Vale wood storage facade (original Map003).
+    SHED=("west_work_shed",4,32,19,3,8,7)
+    name,bx,by,sx,sy,bw,bh=SHED
+    footprint=[(bx+dx,by+dy) for dy in range(bh) for dx in range(bw)]
+    if free(footprint):
+        for dy in range(bh):
+            for dx in range(bw):
+                x,y=bx+dx,by+dy
+                use[y][x]="H"
+                rows[y][x]="ba:ff"
+                rows[y][x+64]=VALE[sy+dy][sx+dx+30]
+                rows[y+64][x]=VALE[sy+dy][sx+dx+60]
+        stats["support_sheds"]+=1
+    else:
+        print("REJECT west shed: site conflicts with town circulation")
     for name,x,y,sx,sy,w,h in life.ADDITIONAL_GARDENS:
         points=[(x+dx,y+dy) for dy in range(h) for dx in range(w)]
         if not free(points):continue
