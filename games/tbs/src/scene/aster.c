@@ -12,7 +12,10 @@
 #include "text/msg_ids.h"
 
 enum { ASTER_TO_WORLD_MAP = 1, ASTER_MB_WELL = 0xe1,
-       ASTER_MB_MEMORIAL = 0xe2, ASTER_MB_SEALED_DOOR = 0xe3 };
+       ASTER_MB_MEMORIAL = 0xe2, ASTER_MB_SEALED_DOOR = 0xe3,
+       ASTER_MB_INN = 0xe4, ASTER_MB_WEST_HOME = 0xe5,
+       ASTER_MB_EAST_HOME = 0xe6, ASTER_MB_SHOP = 0xe7,
+       ASTER_MB_DUPLICATE_HOME = 0xe8 };
 #define ASTER_SEEN_WELL FLAG_SCENE_TEMP_00
 #define ASTER_SEEN_MEMORIAL FLAG_SCENE_TEMP_01
 #define ASTER_HEARD_GREETER FLAG_SCENE_TEMP_02
@@ -175,8 +178,44 @@ static void Aster_VisitDoor(void) {
   Event_End();
 }
 
+// Exterior thresholds: no house interior map is linked yet. Interacting
+// gives a deliberate response rather than entering an invalid scene.
+static void Aster_VisitInnThreshold(void) {
+  Event_Start();
+  FieldMessage_Show(GameFlag_Get(ASTER_FRACTURED)
+      ? MsgAsterFractureInn : MsgAsterArrivalInn, 1);
+  Event_End();
+}
+static void Aster_VisitWestHomeThreshold(void) {
+  Event_Start();
+  FieldMessage_Show(GameFlag_Get(ASTER_FRACTURED)
+      ? MsgAsterFractureHome : MsgAsterArrivalHome, 1);
+  Event_End();
+}
+static void Aster_VisitEastHomeThreshold(void) {
+  Event_Start();
+  FieldMessage_Show(GameFlag_Get(ASTER_FRACTURED)
+      ? MsgAsterFractureDuplicateA : MsgAsterArrivalGreeterRepeat, 1);
+  Event_End();
+}
+static void Aster_VisitShopThreshold(void) {
+  Event_Start();
+  FieldMessage_Show(GameFlag_Get(ASTER_FRACTURED)
+      ? MsgAsterFractureHome : MsgAsterArrivalHome, 1);
+  Event_End();
+}
+static void Aster_VisitDuplicateHomeThreshold(void) {
+  Event_Start();
+  FieldMessage_Show(GameFlag_Get(ASTER_REVEALED)
+      ? MsgAsterRevelationOtherIsaac2
+      : GameFlag_Get(ASTER_FRACTURED)
+          ? MsgAsterFractureDuplicateB
+          : MsgAsterArrivalGreeterRepeat, 1);
+  Event_End();
+}
+
 static struct SceneEntrance sAsterEntrances[] = {
-  {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 240, 0, 448, FACING_NORTH,
+  {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 512, 0, 976, FACING_NORTH,
    0, -1, -1, -1, -1, 0},
   {SCENE_TABLE_END},
 };
@@ -188,19 +227,19 @@ static u32 sAsterExits[] = {
 };
 static struct ActorTemplate sAsterActors[] = {
   {SPRITE_OLD_MAN_WITH_CANE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
-   PIXELS(192), 0, PIXELS(256), FACING_SOUTH, TALK_FACING_PARTY, 0},
+   PIXELS(416), 0, PIXELS(528), FACING_SOUTH, TALK_FACING_PARTY, 0},
   {SPRITE_WOMAN_IN_BLUE_DRESS, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
-   PIXELS(320), 0, PIXELS(272), FACING_SOUTH, TALK_FACING_PARTY, 0},
+   PIXELS(784), 0, PIXELS(336), FACING_SOUTH, TALK_FACING_PARTY, 0},
   {SPRITE_WOMAN_IN_BLUE_DRESS, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
-   PIXELS(128), 0, PIXELS(272), FACING_SOUTH, TALK_FACING_PARTY, 0},
+   PIXELS(368), 0, PIXELS(544), FACING_SOUTH, TALK_FACING_PARTY, 0},
   {SPRITE_BOY_WITH_FAIR_HAIR, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
-   PIXELS(240), 0, PIXELS(384), FACING_SOUTH, TALK_FACING_PARTY, 0},
+   PIXELS(560), 0, PIXELS(624), FACING_SOUTH, TALK_FACING_PARTY, 0},
   {SPRITE_WOMAN_IN_GREEN_DRESS, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
-   PIXELS(384), 0, PIXELS(304), FACING_WEST, TALK_FACING_PARTY, 0},
+   PIXELS(720), 0, PIXELS(544), FACING_WEST, TALK_FACING_PARTY, 0},
   {SPRITE_YOUNG_MAN_WITH_BROWN_HAIR, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
-   PIXELS(288), 0, PIXELS(176), FACING_SOUTH, TALK_FACING_PARTY, 0},
+   PIXELS(576), 0, PIXELS(208), FACING_SOUTH, TALK_FACING_PARTY, 0},
   {SPRITE_WOMAN_IN_BLUE_DRESS, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
-   PIXELS(400), 0, PIXELS(336), FACING_WEST, TALK_FACING_PARTY, 0},
+   PIXELS(656), 0, PIXELS(544), FACING_WEST, TALK_FACING_PARTY, 0},
   {SCENE_TABLE_END},
 };
 static struct Trigger sAsterTriggers[] = {
@@ -210,6 +249,16 @@ static struct Trigger sAsterTriggers[] = {
    EVENT(Aster_VisitMemorial)},
   {TRIGGER_STEP, ASTER_MB_SEALED_DOOR, CONDITION_ALWAYS,
    EVENT(Aster_VisitDoor)},
+  {TRIGGER_STEP, ASTER_MB_INN, CONDITION_ALWAYS,
+   EVENT(Aster_VisitInnThreshold)},
+  {TRIGGER_STEP, ASTER_MB_WEST_HOME, CONDITION_ALWAYS,
+   EVENT(Aster_VisitWestHomeThreshold)},
+  {TRIGGER_STEP, ASTER_MB_EAST_HOME, CONDITION_ALWAYS,
+   EVENT(Aster_VisitEastHomeThreshold)},
+  {TRIGGER_STEP, ASTER_MB_SHOP, CONDITION_ALWAYS,
+   EVENT(Aster_VisitShopThreshold)},
+  {TRIGGER_STEP, ASTER_MB_DUPLICATE_HOME, CONDITION_ALWAYS,
+   EVENT(Aster_VisitDuplicateHomeThreshold)},
   {TRIGGER_TALK, ACTOR_ASTER_ELDER, CONDITION_ALWAYS, EVENT(Aster_TalkElder)},
   {TRIGGER_TALK, ACTOR_ASTER_INNKEEPER, CONDITION_ALWAYS,
    EVENT(Aster_TalkInnkeeper)},
