@@ -15,6 +15,7 @@ on:
       - 'tools/aster_tree_study.py'
       - 'tools/aster_landscape_study.py'
       - 'tools/aster_perimeter_study.py'
+      - 'tools/aster_tree_crop_atlas.py'
       - 'tools/aster_dry_well_studies.py'
       - 'tools/aster_ruin_variant.py'
       - 'tools/aster_layout.py'
@@ -55,6 +56,7 @@ jobs:
           python3 tools/aster_tree_study.py
           python3 tools/aster_landscape_study.py
           python3 tools/aster_perimeter_study.py
+          python3 tools/aster_tree_crop_atlas.py
           python3 tools/aster_dry_well_studies.py
       - name: Keep PNGs available without changing the game
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -76,6 +78,7 @@ jobs:
             tools/aster_native_trees_varied*.png
             tools/aster_landscape_study*.png
             tools/aster_perimeter_*.png
+            tools/aster_foliage_candidate_atlas.png
             tools/aster_dry_well_*.png
             tools/aster_ruined_variant*.png
             tools/aster_ruined_map.txt
@@ -84,7 +87,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add games/tbs/src/map/map_180/map.txt tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_facade_clean_study.png tools/aster_facade_clean_study_labeled.png tools/aster_square_*.png tools/aster_ruin_visual_study*.png tools/aster_memorial_*.png tools/aster_native_*.png tools/aster_path_*.png tools/aster_vale_metatile_*.png tools/aster_native_trees_varied*.png tools/aster_landscape_study*.png tools/aster_perimeter_*.png tools/aster_dry_well_*.png tools/aster_ruined_variant*.png tools/aster_ruined_map.txt
+          git add games/tbs/src/map/map_180/map.txt tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_facade_clean_study.png tools/aster_facade_clean_study_labeled.png tools/aster_square_*.png tools/aster_ruin_visual_study*.png tools/aster_memorial_*.png tools/aster_native_*.png tools/aster_path_*.png tools/aster_vale_metatile_*.png tools/aster_native_trees_varied*.png tools/aster_landscape_study*.png tools/aster_perimeter_*.png tools/aster_foliage_candidate_atlas.png tools/aster_dry_well_*.png tools/aster_ruined_variant*.png tools/aster_ruined_map.txt
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
