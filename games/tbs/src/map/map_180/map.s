@@ -13,7 +13,10 @@ Field_Map180:
 	map_offset Field_Map180, .LAsterMetatiles
 	map_offset Field_Map180, .LAsterShapes
 	map_offset Field_Map180, .LAsterGrid
-	map_offset Field_Map180
+	@ This shares Vale set_02, so its original tile animation script
+	@ is the matching source for water and other animated metatiles.
+	@ Experimental support only: verify visual behavior in emulator.
+	map_offset Field_Map180, .LAsterAnimation
 	map_offset Field_Map180
 	map_offset Field_Map180, .LAsterMarkers
 .LAsterMetatiles:
@@ -24,6 +27,9 @@ Field_Map180:
 	.balign 4, 0
 .LAsterGrid:
 	.incbin "games/tbs/src/map/map_180/map.grid.lz"
+	.balign 4, 0
+.LAsterAnimation:
+	.incbin "games/tbs/src/map/map_003/tileset_anims.script.lz"
 	.balign 4, 0
 .LAsterMarkers:
 	treasure_spots_end
