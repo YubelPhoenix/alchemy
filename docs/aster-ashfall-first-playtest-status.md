@@ -50,6 +50,11 @@ The checker verifies map/sprite/dialogue registration, that the
 experimental reciprocal route still uses its reserved slots, and that
 the pinned tactical boss AI has not been overwritten. It invokes the
 native map, bridge, foliage, sprite and scene source QA helpers.
+It now also invokes the independent read-only overworld contract test,
+which compares the full world actor table with the approved Ashfall base,
+confirms exactly one replacement at unused slot 39, checks static icon
+clearance (Vault is about 168 world pixels away), and validates the paired
+world/Aster entrance and exit. **This is not a terrain walkability test.**
 
 **New source-isolation gate (November 8):**
 `tools/check_aster_branch_isolation.py` is included in the read-only
