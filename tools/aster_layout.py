@@ -317,7 +317,13 @@ def source():
                 # original ground made the foliage into green-blue squares.
                 ground=GRASS if is_tree else vale[sy+yy][sx+xx].split(":")[0]
                 out[dy+yy][dx+xx]=ground+(":ff" if is_tree else "")
-                out[dy+yy][dx+xx+64]=vale[sy+yy][sx+xx+30]
+                # Vale's complete red-tree silhouette has one detached
+                # blue fragment in its lower-right source tile. Use the
+                # original transparent Golden Sun metatile instead.
+                source_mid=vale[sy+yy][sx+xx+30]
+                if is_tree and (sx,sy,xx,yy)==(4,13,3,4):
+                    source_mid="15"
+                out[dy+yy][dx+xx+64]=source_mid
                 out[dy+yy+64][dx+xx]=vale[sy+yy][sx+xx+60]
     # Kept as an empty extension hook; old 5x5 ground crops were removed
     # after visual QA found blue cliff/water pixels at crossroads.
