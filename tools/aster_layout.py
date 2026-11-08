@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Generate Aster's first 64x64 exterior with real Golden Sun tile geometry.
+"""Generate Aster's 64x64 exterior using ONLY Golden Sun: The Broken Seal art.
 
-Use the vanilla Vault (Map019) art as the temporary in-ROM facade source.
-The user's Paradox artwork is a PRIVATE style reference, not redistributed
-through the public repository without a separate rights decision.
+All visible ground, paths and copied roofs/walls use the vanilla Vault
+(Map019) metatile table with Vault's matching palette and tileset.
+External-game spritesheets and images are not inputs to this build.
 
 Map019 stores ground at (0,0), middle at (60,0), high at (0,60)
 in a 128x128 source grid. Aster uses three 64x64 layer windows.
@@ -66,13 +66,23 @@ def blueprint():
         cells[y][-1] = "#"
     cells[0] = ["#"] * SIDE
     cells[-1] = ["#"] * SIDE
+    # Original Vault's open background uses metatile 0 (grassy base).
+    # Its door approaches include metatile 0x56. Reserve that metatile for
+    # paths; using it as the entire town's floor made Aster uniformly paved.
+    # Slightly offset north and south sections to avoid a rigid road grid.
     for y in range(1, SIDE-1):
-        for x in range(30, 36):
+        center = 32 if y < 21 else 33 if y < 42 else 31
+        for x in range(center-2, center+2):
             cells[y][x] = "="
-    for y0, y1 in ((19, 22), (40, 42), (60, 62)):
+    for y0, y1 in ((19, 21), (40, 42), (60, 62)):
         for y in range(y0, y1+1):
+            # Streets connect all six building entrances while leaving
+            # generous grass around the homes, as in Golden Sun villages.
             for x in range(2, 62):
                 cells[y][x] = "="
+    for y in range(29, 39):
+        for x in range(28, 38):
+            cells[y][x] = "="
     for _, x0, y0, _, _, w, h, marker in BUILDINGS:
         for y in range(y0, y0+h):
             for x in range(x0, x0+w):
@@ -122,7 +132,7 @@ def source():
             elif kind in "WM":
                 out[y][x] = "3e:ff"
             else:
-                out[y][x] = "56"  # native Vault walkable ground placeholder
+                out[y][x] = "0"  # original Vault's common grassy background
     # Transfer each building's actual source facade on all three layers.
     for _, dx, dy, sx, sy, width, height, _ in BUILDINGS:
         for yy in range(height):
