@@ -178,8 +178,16 @@ def main():
                      if x in (0, 63) or y in (0, 63)}
     require(occupied_edge == {(32, 63)},
             "NPCs altered the reachable south-only boundary")
+    # The original Vale bridge deck is a deliberately walkable feature.
+    # Preserve access from the town all the way to its west-bank approach
+    # without opening the unwired world transition at the map boundary.
+    bridge_deck = {(x, y) for y in (35, 36) for x in range(3, 12)}
+    require(bridge_deck.issubset(accessible),
+            "NPCs or terrain cut off the west river bridge")
+    require((2, 35) in accessible and (0, 35) not in accessible,
+            "West bridge approach or sealed map edge changed")
     print(f"PASS NPC-aware source access: {len(accessible)} cells; "
-          "all events and talk positions reachable")
+          "all events, bridge deck and talk positions reachable")
     # Inspect native foliage and original transparent tile behavior.
     from check_aster_native_foliage import verify as verify_native_foliage
     verify_native_foliage()
