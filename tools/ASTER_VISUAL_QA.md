@@ -39,10 +39,10 @@ The repeated home is intentionally a clue to Aster's convergence story.
 - **Town plan is original, not Vale's.** Six buildings now belong to
   the northern remembrance lane, offset residential quarter and southern
   market with the real inn-sign roof. NPC positions are checked against
-  the scene source. The clearing still needs denser, varied scenery.
-  The first different-tree test generated cropped trunks and rectangular
-  blue patches; it was **rejected without touching Map180**. The six
-  existing complete native tree stamps remain repetitive placeholders.
+  the scene source. The 12 tree groups now use two complete native Vale
+  red/blue silhouettes, with ordinary Aster grass underneath instead of
+  rectangular copied terrain. The scene still has large empty lawns and
+  needs domestic props and more natural variation.
 - **Cliff remnants removed.** The new house rendering copies native roofs
   and walls only, keeping Vale grass beneath. This eliminates the previously
   clipped cliffs; the doors still need an actual in-game facing test.
@@ -87,8 +87,8 @@ The repeated home is intentionally a clue to Aster's convergence story.
 - [Sparse native-tree test](aster_perimeter_sparse.png) (six outer clusters)
   and [dense test](aster_perimeter_dense.png) (those clusters plus two
   northern backyards) were rendered from the actual Vale Map003 set_02
-  metatiles and original palette. The six existing native tree stamps
-  remain in the real Aster map. **Both expansion tests were rejected.**
+  metatiles and original palette. These tests preceded the new
+  native canopy crop pass. **Both original expansion tests were rejected.**
   Copied 4x5 source backgrounds form conspicuous rectangular green/dark
   cards at the perimeter; more repetitions make that defect worse.
 - [First foliage crop atlas](aster_foliage_candidate_atlas.png) separates
@@ -102,6 +102,30 @@ The repeated home is intentionally a clue to Aster's convergence story.
   toward intact silhouettes and organic-looking village outskirts
   rather than a tiled perimeter of copied trees.
 
+## 2026-11-07 varied native woodland pass — in experimental map
+
+- [Ten-tree preview](aster_woodland_sparse.png) and
+  [fourteen-tree preview](aster_woodland_full.png) replaced the old
+  card-like foliage stamps with separately isolated Golden Sun Vale blue
+  and autumn-red *upper-layer* trees, preserving native bright grass
+  behind their silhouettes. These source-only trials showed a clear
+  improvement; the accepted map uses **twelve staggered tree groups**.
+- Implemented in `tools/aster_layout.py` and Map180 with six restored
+  house-adjacent tree sites plus six new outer trees. The source audit
+  locks down their coordinates, exact native upper layers, solid tree
+  movement behavior, all eight story triggers and all seven NPC positions.
+  The separately generated ruined source has the same twelve placements.
+- A detached blue/cliff fragment at (3,4) inside source crop Vale
+  (4,13) was replaced by Vale's native transparent metatile 0x15
+  for all six autumn-red trees. This does not redraw or invent pixels.
+- **Visual verdict: improved, still not ready for release.** The foliage
+  no longer appears as pasted rectangular blocks, but 64x64 Aster still
+  needs an actually visible dry well, sensible small-town domestic
+  details, successful movement/collision checks, interior scenes,
+  reciprocal overworld travel and convincing ruin artwork.
+- Historical perimeter and first-variation experiments are archived as
+  references, not rerun as build steps.
+
 ## Next build acceptance
 
 1. The wider native paths now have coherent intersections. Break up long,
@@ -112,7 +136,7 @@ The repeated home is intentionally a clue to Aster's convergence story.
 3. Build a true *dry* well using compatible Golden Sun tiles. Add a wooden
    name register to the approved nonmagical remembrance garden. **Do not
    reintroduce a Psynergy Stone, crystal shrine, or Vale's old layout.**
-4. Replace repeated tree clusters with varied, complete native Vale vegetation, fences and domestic touches while preserving NPC reachability.
+4. Improve native yard props, short fences and nonrepetitive vegetation while preserving NPC reachability; the accepted twelve-tree crop pass is only the first landscaping improvement.
 5. Rerun the source renderer, inspect at 1x/native pixel scale and revise.
 6. Compile experimental ROM and capture a **real emulator screenshot**.
 7. Audit all scripted text with the 27-character limit and playtest interactions
