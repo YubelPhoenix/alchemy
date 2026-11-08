@@ -136,8 +136,19 @@ def map_contract():
 def scene_contract(catalog):
     scene = read(SCENE_PATH)
     imports = read(IMPORT_PATH)
-    for name in set(re.findall(r"\bMsgAster[A-Za-z0-9]+\b", scene)):
+    referenced = set(re.findall(r"\bMsgAster[A-Za-z0-9]+\b", scene))
+    for name in referenced:
         require(name in catalog, f"Aster scene references uncompiled: {name}")
+    # These four gate messages are written but deliberately deferred until
+    # a safe, reciprocal world-map entrance and exit script exist.
+    deferred = {
+        "MsgAsterArrivalGate", "MsgAsterFractureGate",
+        "MsgAsterRevelationGate", "MsgAsterRevelationExit",
+    }
+    unused = set(catalog) - referenced
+    require(unused == deferred,
+            f"Unwired Aster dialogue changed: {sorted(unused)}. "
+            f"Only the four deferred gate lines may be unreferenced")
     for symbol in (
         "GameFlag_Get", "GameFlag_Set", "Event_Start", "Event_End",
         "Event_SetMessageId", "Event_ShowMessageAndWait", "FieldMessage_Show",
