@@ -27,23 +27,23 @@ BUILDINGS=(
 )
 # Outdoor step-on locations. House interiors are still a separate task.
 INTERACTIONS=(
-    ("memorial", 32, 14, "ba:e2"),
-    ("well", 32, 35, "ba:e1"),
-    ("sealed_house", 8, 19, "ba:e3"),
-    ("inn", 53, 19, "ba:e4"),
-    ("western_home", 8, 40, "ba:e5"),
-    ("eastern_home", 55, 40, "ba:e6"),
-    ("shop", 8, 60, "ba:e7"),
-    ("duplicate_home", 55, 60, "ba:e8"),
+    ("memorial", 32, 14,  "2b:e2"),
+    ("well", 32, 35,  "2b:e1"),
+    ("sealed_house", 8, 19,  "2b:e3"),
+    ("inn", 53, 19,  "2b:e4"),
+    ("western_home", 8, 40,  "2b:e5"),
+    ("eastern_home", 55, 40,  "2b:e6"),
+    ("shop", 8, 60,  "2b:e7"),
+    ("duplicate_home", 55, 60,  "2b:e8"),
 )
 ACTORS=((26,33),(49,21),(23,34),(35,39),(45,34),(36,13),(41,34))
 WELL=(32,34)
 MEMORIAL=(32,13)
 EXIT=(32,63)
 START=(32,61)
-# Vale's broad repeatable grass metatile. 0x2b also appears as its
-# source map's outside-grid fill but is NOT a replacement for all yard art.
-GRASS="ba"
+# Vale's original map background/grass fill (0x2b). Never use 0xba here:
+# it is a foliage metatile and fills the town with repeating leaf sprites.
+GRASS="2b"
 
 def load_vale():
     lines=NATIVE.read_text(encoding="utf-8").splitlines()
