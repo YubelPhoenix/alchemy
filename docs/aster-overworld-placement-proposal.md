@@ -56,31 +56,42 @@ handler sees it. Do not replace an existing world-map village actor.
 
 ## Aster overworld icon
 
-For the FIRST smoke test, render using the existing native
-`SPRITE_WORLD_MAP_VILLAGE = 0x105` sprite, not a painted static
-symbol on the background.
+Aster now has a **new dedicated registered sprite**:
+`SPRITE_WORLD_MAP_ASTER = 0x1f9` (decimal 505), at
+`games/tbs/src/graphics/sprite/spr_505.png`.
+This is an **actual 32×32, 8-bit indexed GBA-compatible source asset**,
+drawn with 244 changed native-palette pixels, darker timber roofs and
+stronger forest greens. It preserves the exact palette, 0-index transparency
+silhouette and 32×32 draw/collision metadata of the unmodified original
+`SPRITE_WORLD_MAP_VILLAGE = 0x105` sprite at `spr_261.png`.
+The new icon's layout row, sprites.tsv metadata, animation table and ID
+are registered on the isolated branch. A dedicated read-only source test:
+`python3 tools/check_aster_world_icon.py`.
 
-The original file is
-`games/tbs/src/graphics/sprite/spr_261.png`, **32×32 pixels,
-8-bit indexed PNG** with animation data at `spr_261.tsv`.
-It is shared by existing towns and must not be modified for Aster.
+**Important**: Registered does not mean spawned into the world! We have
+deliberately **NOT added an Aster world-map actor** at the unverified
+candidate coordinates. Both final icon rendering and entry by proximity
+must still be tested in a locally compiled experimental ROM. The existing
+Vale, Vault and other village icons have not been changed.
 
-For the FINAL icon, add a **new registered sprite**, following the
-source sprite's exact indexed palette, transparent index, animation,
-layout/ID registration, drawing/collision dimensions and GBA
-limitations. Recommended silhouette: a darker timber-roofed,
-woodland-framed village, still recognizable as a settlement and
-consistent with Golden Sun's native world-map art. Do not insert a
-32×32 RGB PNG without indexing and linking it. The final sprite ID
-is NOT allocated yet.
+For a safe coordinate check, the optional local build flag
+`bash tools/aster_v14_local_smoke.sh --probe-world` temporarily
+uses unused world-map entrance **98** to return from Aster to
+`(5696,1504)`, without changing the story branch. The temporary edits
+are restored automatically. The debug entrance was **not** used because
+it disables map contacts and would hide progression failures.
+This tests whether the player can walk from the proposed clearing to
+Vault; it does **not** yet prove Aster's icon can be approached and entered
+in reverse. Use only an experimental game save.
 
 ## Status
 
 - Candidate site: **provisional**, source actor separation checked.
 - World terrain/path from Vault: **untested**.
 - Story progression conflicts: **untested**.
-- New icon sprite: **not created or registered**.
-- World-map actor/contact/exit/entrance: **not edited**.
+- New icon sprite: **created, source registered and source-audited**.
+- Production world-map actor/contact/exit/entrance: **not edited**.
+- Reversible local-only arrival probe: **implemented, not emulator-tested**.
 - ROM build/emulator playtest: **not performed**.
 
 Do not merge or call Aster release-ready on the basis of this report.
