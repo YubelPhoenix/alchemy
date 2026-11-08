@@ -215,7 +215,29 @@ def synthesize():
         print("REJECT west shed: site conflicts with town circulation")
         # Do not approve the new composition unless this is fixed.
         raise AssertionError("Native west service shed requires an unobstructed site")
-    for name,x,y,sx,sy,w,h in life.ADDITIONAL_GARDENS:
+    # An ordinary service alley joins the work shed to the real southern
+    # business street. Previous prototypes had decorative buildings with
+    # no plausible route by which goods could be carried.
+    service_path=([(7,y) for y in range(39,50)]+
+                  [(x,49) for x in range(7,15)])
+    for x,y in service_path:
+        if use[y][x]==".":
+            use[y][x]="="
+            rows[y][x]=VALE[39][6].split(":")[0]
+            stats["service_path_cells"]+=1
+    # Properties need cultivated areas, not random identical flower dots.
+    # These native 2x2 Vale beds are grouped beside homes, shop and inn.
+    WORK_PLOTS=(
+        ("western_herbs_a",18,27,10,47,2,2),
+        ("western_herbs_b",21,28,10,47,2,2),
+        ("western_herbs_c",18,31,10,47,2,2),
+        ("eastern_garden_a",46,27,10,47,2,2),
+        ("eastern_garden_b",49,29,10,47,2,2),
+        ("shop_kitchen_a",20,45,10,47,2,2),
+        ("shop_kitchen_b",23,46,10,47,2,2),
+        ("inn_garden_a",49,46,10,47,2,2),
+    )
+    for name,x,y,sx,sy,w,h in WORK_PLOTS:
         points=[(x+dx,y+dy) for dy in range(h) for dx in range(w)]
         if not free(points):continue
         for dy in range(h):
@@ -226,7 +248,12 @@ def synthesize():
                 rows[yy+64][xx]=VALE[sy+dy][sx+dx+60]
                 use[yy][xx]="f"
         stats["gardens"]+=1
-    for name,x,y,sx,sy in life.SUPPLIES:
+    EXTRA_SUPPLIES=(
+        ("shed_goods_a",11,35,17,6),
+        ("shed_goods_b",11,37,17,6),
+        ("shed_water_jar",12,38,17,5),
+    )
+    for name,x,y,sx,sy in (*life.SUPPLIES,*EXTRA_SUPPLIES):
         if not free([(x,y)]):continue
         use[y][x]="B"
         rows[y][x]="ba:ff"
