@@ -1,3 +1,15 @@
+> **V14 CURRENT-SOURCE NOTICE (2026-11-08):** This document describes the
+> earlier convergence prototype and its old generator. It is preserved as
+> historical design/build context, **not** the current Aster map authority.
+> For the implemented native V14 Map180 and remaining tasks, use
+> [the V14 staging record](../docs/aster-v14-native-staging.md).
+> Do **not** run the old `tools/aster_layout.py` to regenerate or overwrite
+> V14 map data. Do not merge the experimental V14 branch wholesale into
+> `dark-story-rewrite`; its boss AI and balance sources are older.
+> The experimental IPS includes the entire V14 build relative to a clean
+> English TBS ROM, **not just Aster**, and must never be stacked onto an
+> existing Ashfall-patched ROM.
+>
 # Aster — one-town convergence prototype
 
 **Current scope decision:** The ruined-state variant has been **dropped**
