@@ -12,6 +12,14 @@
   2x2 patches use native Golden Sun layers and were added to both normal
   and source-only ruined maps without moving an event, actor or road.
   Landscaping is still sparse and is not approved as a finished town.
+- **Native foliage revision**: Twelve tree groups are now authored from
+  two intact Vale set_02 tree silhouettes, with native Aster grass under
+  every solid canopy instead of copied rectangular source ground. Six
+  extra stands frame the outer town in staggered positions. One detached
+  blue tile in the autumn-red crop was removed by substituting Golden Sun
+  transparent metatile 0x15. The same foliage geometry is applied to
+  normal and source-only ruined maps. Source checks validate all twelve
+  positions and tree collision; emulator appearance/collision is pending.
 - **Map linkage**: `Field_Map180` is registered as the appended `gMaps` row **186 (0xba)** and `SceneId_Aster` references it, with overlay **0x3d3**. Map resource and object records exist.
 - **Town actors**: seven NPC slots in `games/tbs/src/scene/aster.c`: elder (26,33), innkeeper (46,55), greeter (23,34), boy (35,39), resident (45,34), Other Isaac proxy (36,13), mirror woman (41,34). The Other Isaac proxy is currently a generic young-man sprite, **not finished custom art**.
 - **Interactive landmarks**: well (32,34), fenced memorial garden (32,13), sealed house (7,4), inn (42,44), two staggered homes (8,26 and 49,27), shop (6,45) and duplicate house (48,5). The eight approach tiles use Aster-only behaviors `0xe1`–`0xe8`; all exterior facades remain solid. The five new building thresholds show contextual dialogue but **do not lead to interiors**.
@@ -23,7 +31,7 @@
 
 ## Open engine problems (do not claim solved)
 
-1. **Real appearance and collision**: six cottages now copy native Vale map-layer tiles and all three 64x64 layers are registered. A genuine Golden Sun source-derived offline preview is available at `tools/aster_visual_review.png`; the formal failure list is `tools/ASTER_VISUAL_QA.md`. No compiled ROM has been rendered or walked in an emulator, so sprite priority, thresholds and collision remain unverified. The source-only preview passes basic Golden Sun style and shows an ordinary fenced remembrance garden, **not Vale's Psynergy Stone**. The dry well remains visually missing; paths have a wider original Golden Sun soil center but still look too straight, repeated trees remain too uniform, and convincing collapsed-building graphics have not been created. The uploaded *Paradox* art is **not used** in the source or approved concept. No additional foreign art should be added.
+1. **Real appearance and collision**: six cottages now copy native Vale map-layer tiles and all three 64x64 layers are registered. A genuine Golden Sun source-derived offline preview is available at `tools/aster_visual_review.png`; the formal failure list is `tools/ASTER_VISUAL_QA.md`. No compiled ROM has been rendered or walked in an emulator, so sprite priority, thresholds and collision remain unverified. The source-only preview passes basic Golden Sun style and shows an ordinary fenced remembrance garden, **not Vale's Psynergy Stone**. The dry well remains visually missing; paths have a wider original Golden Sun soil center but still look too straight, twelve native red/blue tree crops now replace square tree-card artifacts but leave the lawns sparse, and convincing collapsed-building graphics have not been created. The uploaded *Paradox* art is **not used** in the source or approved concept. No additional foreign art should be added.
 2. **Overworld placement and return**: choose an actually unused reachable area of the world map away from Suhalla Gate. Audit collision and encounter data, reserve a new contact actor and exit IDs without shifting vanilla actors, and define a paired `WORLD_MAP_FROM_ASTER` arrival. Do not guess coordinates or repurpose Vault.
 3. **Original custom art**: the duplicate Isaac and any Ash Jenna apparition need planned official or user-created assets, not placeholder NPC stand-ins.
 4. **Stage persistence**: scene-temp flags reset on normal re-entry. That is intentional for this prototype; design and verify a durable story-state policy before production if the town must remember the player's first visit.
