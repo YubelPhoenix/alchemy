@@ -78,7 +78,7 @@
 05521	MsgMercurySavedMeAgain	You helped me again.\nThank you.{end_wait}
 05527	MsgMercuryThoughtSo	Good. Then let's move.{end_wait}
 05531	message	The Adept {actor_name:4} joined\nyour party!{end_wait}
-05532	MsgMercuryLighthouseAlreadyLit	The beacon's burning!\nWe're too late!{end_wait}
+05532	MsgMercuryLighthouseAlreadyLit	The beacon's lit!\nWe're too late!{end_wait}
 05533	message	No...{end_wait}
 05534	message	The Mercury Star\nshould be required.\nHow did they...?{end_wait}
 05535	message	The Stars were stolen\nfrom Sol Sanctum,\non Mt. Aleph.{end_wait}
