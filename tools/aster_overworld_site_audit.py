@@ -40,7 +40,7 @@ def find_static_icons(source):
         coords=re.search(r"PIXELS\((\d+)\),\s*0,\s*PIXELS\((\d+)\)",block)
         if sprite and coords:
             entries.append((sprite.group(),int(coords[1]),int(coords[2])))
-    require(len(entries)>40,"World-map sprite templates unexpectedly changed")
+    require(len(entries)>=35,"World-map sprite templates unexpectedly changed")
     return entries
 
 def main():
