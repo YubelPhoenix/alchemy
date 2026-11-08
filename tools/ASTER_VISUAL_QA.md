@@ -1,6 +1,6 @@
 # Aster — actual Golden Sun source-art visual review
 
-**Review result: IMPROVED, NOT APPROVED.**
+**Review result: layout routes corrected, visual design NOT APPROVED.**
 Source renderer: `tools/aster_visual_preview.py`.
 Generated visual: [Aster native screenshot-like map image](aster_visual_review.png).
 Comparison baseline: [Original Vale rendered from the same sources](aster_vale_reference.png).
@@ -35,24 +35,27 @@ The repeated home is intentionally a clue to Aster's convergence story.
 
 **Fail — must fix before considering the level attractive or playable:**
 
-- **Overlarge empty clearing.** Most of the 64x64 grid is uninterrupted grass.
-  Add native Golden Sun trees, shrubs, fences, rocks, flower patches, small
-  outbuildings and paths to give it a village's lived-in density.
-- **Hard crop edges on cliffs.** Some houses carry partial Vale cliff pieces,
-  which stop abruptly. Either integrate matching cliff edge metatiles
-  organically or recrop houses without these background cliffs.
+- **Overlarge empty clearing.** Eight native Vale tree-cluster stamps are now
+  distributed in yards and between homes, outside connected routes. However
+  the clusters are excessively repetitive and much of the 64x64 grid remains
+  blank. Vary coherent assets and add intentional fences, gardens and paths.
+- **Cliff remnants removed.** The new house rendering copies native roofs
+  and walls only, keeping Vale grass beneath. This eliminates the previously
+  clipped cliffs; the doors still need an actual in-game facing test.
 - **Landmarks invisible.** Well at (32,34) and memorial at (32,13) currently
   use grassy placeholder graphics with collision/event behavior; they are
   not yet drawn as a real well or memorial. Their story text alone is not
   adequate visual worldbuilding.
-- **Door/actor placement unverified.** Threshold events stand near a home
-  area, not rigorously matched to the newly copied door pixels. NPC and
-  collision locations remain source-scanned, not emulator-walked.
+- **Door routes structurally corrected.** Each of six house approaches is now
+  one walkable cell south of its roof crop with a continuous spur to the
+  primary roads. The source audit checks these geometric relationships.
+  Actual character positioning and engine collision remain unverified.
 - **No house interiors.** They remain blocked structures with dialogue
   at nearby event tiles, not real rooms.
-- **Roads not visually differentiated.** The map retains intended connected
-  road corridors in its source blueprint, but they currently use the same
-  visible native grass graphics.
+- **Roads remain invisible.** Six door approaches, three east-west links, and
+  the main north-south route are connected in the blueprint. The *earlier*
+  trial sampled roof/chimney metatiles and filled the roads with pink artifacts;
+  that bad sample was removed. Roads need visually verified Vale earth tiles.
 - **No normal two-way entrance.** The scene still lacks a world-map contact;
   its experimental exit returns to Vault. This is not correct release
   navigation.
@@ -65,7 +68,7 @@ The repeated home is intentionally a clue to Aster's convergence story.
 1. Add native Vale dirt/stone paths along the existing blueprint streets.
 2. Replace cliff fragments with complete terrain transitions.
 3. Create and place actual well and memorial scenery using Golden Sun art.
-4. Add trees, fences and domestic touches while preserving NPC reachability.
+4. Replace repeated tree clusters with varied, complete native Vale vegetation, fences and domestic touches while preserving NPC reachability.
 5. Rerun the source renderer, inspect at 1x/native pixel scale and revise.
 6. Compile experimental ROM and capture a **real emulator screenshot**.
 7. Audit all scripted text with the 27-character limit and playtest interactions
@@ -77,3 +80,15 @@ Aster's alternate geography should remain recognizably Golden Sun.
 The eventual Ash Jenna-world revelation comes from memory and physical
 contradictions, not from importing another game's tileset. The original
 *Monster Girl Quest: Paradox* mockup was rejected.
+
+## Ruined state design requirement (NOT built)
+
+Aster's ruined version must use the *same* 64x64 streets and six structural
+addresses. Keep the well (32,34), memorial (32,13) and south gate (32,63) in
+place; the player must be able to identify the same settlement. Treat the
+southern gate and minimum west-to-east path as accessible even in ruin. Proposed
+physical changes are a collapsed sealed house, abandoned inn, blocked northern
+street, and duplicate home partly overgrown—**none is implemented yet**.
+Do not create a separate ruined PNG by applying a color filter; use changed
+Golden Sun metatiles only, with coherent debris/collision and authored event
+logic once the normal state is visually approved.
