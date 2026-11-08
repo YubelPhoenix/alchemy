@@ -7,14 +7,17 @@ CHECK_ONLY=0
 SKIP_BOOTSTRAP=0
 SKIP_ASSETS=0
 MAP_ONLY=0
+WORLD_PROBE=0
 
 usage() {
   cat <<'EOF'
-Usage: bash tools/aster_v14_local_smoke.sh [--check-only] [--skip-bootstrap] [--skip-assets] [--map-only]
+Usage: bash tools/aster_v14_local_smoke.sh [--check-only] [--skip-bootstrap] [--skip-assets] [--map-only] [--probe-world]
   --check-only      Run source checks; do not build or patch any game source.
   --skip-bootstrap  Use an already built local pinned compiler toolchain.
   --skip-assets     Skip Ashfall art/text preparation (only for already prepared checkouts).
   --map-only        Build only the native map encoder and encode Aster Map180.
+  --probe-world     Temporarily route Aster's exit to unused world entrance 98
+                    at the UNVERIFIED coordinate (5696,1504); restore source afterward.
 This script never pushes, invokes GitHub Actions, uses Codespaces or uploads a ROM.
 EOF
 }
@@ -25,10 +28,16 @@ for arg in "$@"; do
     --skip-bootstrap) SKIP_BOOTSTRAP=1 ;;
     --skip-assets) SKIP_ASSETS=1 ;;
     --map-only) MAP_ONLY=1 ;;
+    --probe-world) WORLD_PROBE=1 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unrecognized option: $arg" >&2; usage >&2; exit 2 ;;
   esac
 done
+
+if (( WORLD_PROBE && (CHECK_ONLY || MAP_ONLY) )); then
+  echo 'STOP: --probe-world is only useful for a full ROM build.' >&2
+  exit 2
+fi
 
 if ! command -v git >/dev/null || ! command -v python3 >/dev/null || ! command -v make >/dev/null; then
   echo 'STOP: git, python3 and make are required.' >&2
@@ -127,9 +136,17 @@ fi
 
 # Patch only the disposable test worktree; restore on every exit path.
 PATCH_APPLIED=0
+PROBE_APPLIED=0
 cleanup() {
   code=$?
   trap - EXIT
+  if (( PROBE_APPLIED )); then
+    echo 'Restoring experimental overworld route probe in tracked source...'
+    if ! python3 tools/aster_world_route_probe.py --restore; then
+      echo 'WARNING: world-probe source restoration failed; inspect git diff!' >&2
+      code=1
+    fi
+  fi
   if (( PATCH_APPLIED )); then
     echo 'Restoring development-only Aster shortcut in tracked source...'
     if ! python3 tools/aster_dev_entry.py --restore; then
@@ -146,6 +163,11 @@ trap cleanup EXIT
 
 python3 tools/aster_dev_entry.py --apply
 PATCH_APPLIED=1
+if (( WORLD_PROBE )); then
+  PROBE_APPLIED=1
+  python3 tools/aster_world_route_probe.py --apply
+  echo 'WORLD PROBE: Aster exit now temporarily returns to (5696,1504).'
+fi
 
 echo 'Compiling English experimental Golden Sun ROM locally...'
 make -j2 tbs-en CARGO=false
@@ -161,5 +183,10 @@ echo "LOCAL COMPILE PASS: $rom"
 wc -c < "$rom" | awk '{printf "Compiled ROM bytes: %s\n", $1}'
 sha256sum "$rom"
 echo 'The compiled ROM contains the experimental B+L+R+Start Aster field shortcut.'
-echo 'Test using a separate .sav file; world-map return is still an unsafe Vault placeholder.'
+if (( WORLD_PROBE )); then
+  echo 'WORLD PROBE TEST: Exit Aster into the proposed location, then try walking to Vault.'
+  echo 'Do NOT use existing saves. The overworld coordinate is NOT VERIFIED safe.'
+else
+  echo 'Test using a separate .sav file; world-map return is still a temporary Vault placeholder.'
+fi
 echo 'No ROM is uploaded or redistributed by this script.'
