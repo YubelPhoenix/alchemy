@@ -189,6 +189,20 @@ def map_contract():
             else:
                 require(tokens[y][x+64]=="15" and tokens[y+64][x]=="15",
                         "Unexpected magical shrine or foreign tile at memorial")
+    roads=module.native_road_tiles()
+    require(len(roads)>=175, f"Too few connected native Aster road cells: {len(roads)}")
+    protected={(x,y) for _,x,y,_ in module.INTERACTIONS}
+    for (x,y),(sx,sy) in roads.items():
+        require(rows[y][x] in ".=",
+                f"Road texture entered solid building/landmark at ({x},{y})")
+        if (x,y) in protected:
+            continue
+        expected=native[sy][sx].split(":")[0]
+        require(tokens[y][x]==expected,
+                f"Aster route no longer uses native Vale dirt at ({x},{y})")
+    for name,x,y,_ in module.DOOR_APPROACHES:
+        require((x,y+1) in roads,
+                f"{name} has no immediately adjacent painted dirt path")
     require(len(module.PATH_PATCHES) == 3,
             "Worn ground patches count has changed without visual approval")
     for name,dx,dy,sx,sy,w,h in module.PATH_PATCHES:
@@ -198,6 +212,9 @@ def map_contract():
                 require(rows[py][px] not in "#XIHSVTMW",
                         f"Ground wear {name} covers a prop/house")
                 native_ground = native[sy+off_y][sx+off_x].split(":")[0]
+                if (px,py) in roads:
+                    sx2,sy2=roads[(px,py)]
+                    native_ground=native[sy2][sx2].split(":")[0]
                 expected = native_ground
                 for _, ix, iy, behavior in module.INTERACTIONS:
                     if (px,py)==(ix,iy):
@@ -314,7 +331,7 @@ def main():
     print(f"PASS Aster dialogue: {len(source)} staged entries, "
           f"{len(catalog)} compiled messages, <=27 chars x <=3 lines/page")
     module = map_contract()
-    print("PASS Aster map: six Golden Sun facades, original street plan and 8 interactions")
+    print("PASS Aster map: native Vale paths, six facades, original districts, eight interactions")
     scene_contract(catalog, module)
     print("PASS Aster scene: compiled references, imports, reserved scene/map rows")
     print("SOURCE AUDIT ONLY: ROM build, rendered tiles, collision, actual "
