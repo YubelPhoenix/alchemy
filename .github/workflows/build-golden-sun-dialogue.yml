@@ -83,7 +83,7 @@ jobs:
               "05726": ("lit! What happened?",),
           }
           for msg_id, fragments in expected.items():
-              match = re.search(r'msgid "' + msg_id + r'"\\nmsgstr ([\\s\\S]*?)(?=\\n\\n|$)', catalog)
+              match = re.search(r'msgid "' + msg_id + r'"\nmsgstr ([\s\S]*?)(?=\n\n|$)', catalog)
               if not match or not all(fragment in match.group(1) for fragment in fragments):
                   raise SystemExit(f"Corrected Ashfall dialogue missing from build: {msg_id}")
           print("All six corrected Tret, Garet, Ivan and beacon lines reached the build catalogue")
