@@ -41,17 +41,6 @@ def make(mode):
             for dx in range(-1,2):
                 x,y=cx+dx,cy+dy
                 grid[y][x]="361" if dx==0 and dy==0 else "1cd"
-    elif mode=="old_bucket":
-        # Vale cottage's mundane ceramic jar/cistern and worn earth. A
-        # jar is not a well, so this is only a silhouette comparison.
-        for dy in range(-1,2):
-            for dx in range(-1,2):
-                x,y=cx+dx,cy+dy
-                if dx==dy==0:
-                    grid[y][x+64]=VALE[6][18+30]
-                    grid[y+64][x]=VALE[6+60][18]
-                else:
-                    grid[y][x]=VALE[39][6].split(":")[0]
     elif mode=="masonry":
         # Native gray masonry at the top of original Vale cottage's
         # chimney (non-magical); crop no adjoining roof or golden sun art.
@@ -72,5 +61,5 @@ def make(mode):
 
 if __name__=="__main__":
     for name in ("porch_stones","stone_rim","stone_rim_b",
-                 "old_bucket","masonry"):
+                 "masonry"):
         make(name)
