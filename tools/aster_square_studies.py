@@ -58,7 +58,31 @@ def trial_arch(rows):
     # whether an arch reads as a gathering place, not as a grave marker.
     stamp(rows,"memorial arch",29,9,11,50,6,3,False)
 
+def trial_memorial_south(rows):
+    # Stone marker is three native Vale layers, centered *north* of the
+    # memorial's (32,14) interaction, leaving a grass gap for inspection.
+    stamp(rows,"north memorial",30,8,11,40,5,5,False)
+    # Four small original Vale paving cells, preserving empty walkable
+    # grass underlays rather than copying the pond or unrelated houses.
+    for x,y,sx,sy in ((31,13,3,38),(32,13,4,38),
+                      (31,14,3,39),(32,14,4,39)):
+        # Source ground only, keep the exact event behavior.
+        old=rows[y][x]
+        graphics=vale[sy][sx].split(":")[0]
+        event=old[old.index(":"):] if ":e2" in old else ""
+        rows[y][x]=graphics+event
+
+def trial_dirt(rows):
+    # A contiguous Vale ground-only patch below the southern shop, used to
+    # determine whether this is true dirt or rock/roof-bearing terrain.
+    dx,dy,sx,sy,w,h=29,49,3,37,5,5
+    for yy in range(h):
+        for xx in range(w):
+            rows[dy+yy][dx+xx]=vale[sy+yy][sx+xx].split(":")[0]
+
 if __name__=="__main__":
     save("spring",trial_pool)
     save("marker",trial_stone)
     save("arch",trial_arch)
+    save("memorial",trial_memorial_south)
+    save("dirt",trial_dirt)
