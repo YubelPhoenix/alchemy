@@ -46,6 +46,19 @@ cultivation), and Kalay (domestic street structure), then choose
 an Aster-compatible landscape vocabulary BEFORE placing any more
 buildings.
 
+## Native map rendering caveat
+
+The exploratory `aster_original_town_set_comparison.py` and its
+`aster_original_town_set_comparison.png` are **invalid visual references**.
+Golden Sun field map IDs and full background/animation layer positions
+were initially misread. Even after correcting candidate file references,
+the static Vale-only source renderer misrepresented Vault/Xian art (wrong
+layer/charblock context and unmapped animated tiles), producing brightly
+colored garbage and incomplete scenery. **Do not use these PNGs to pick
+an Aster tileset, and do not show them as faithfully rendered towns.**
+The user's supplied town maps remain the valid visual references until
+those maps are decoded and inspected correctly in a game renderer/editor.
+
 ## Hand-designed district requirement
 
 Next deliverable is **one complete neighborhood**, not all of Aster.
