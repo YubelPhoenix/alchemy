@@ -74,5 +74,45 @@ def main():
         render.make(ROOT/f"tools/aster_path_{mode}.png",
                     ROOT/f"tools/aster_path_{mode}_labels.png")
         print(mode,len(ROUTE),"narrow path cells, all original native Golden Sun art.")
+
+    # Proper 2-cell-wide original Vale dirt path: one native grass/dirt
+    # shoulder on each side. The previous single-cell experiment had one
+    # scalloped edge, making its path look like a row of grass.
+    vertical={}
+    horizontal={}
+    def add_v(x,y0,y1):
+        for y in range(y0,y1+1):
+            vertical[(x-1,y)]=VALE[39][4].split(":")[0]
+            vertical[(x,y)]=VALE[39][8].split(":")[0]
+    def add_h(y,x0,x1):
+        for x in range(x0,x1+1):
+            horizontal[(x,y)]=VALE[38][6].split(":")[0]
+            horizontal[(x,y+1)]=VALE[40][6].split(":")[0]
+    for y in range(15,63):
+        x=32 if y<24 else 31 if y<41 else 33
+        add_v(x,y,y)
+    for y,a,b in ((18,12,52),(40,12,53),(57,11,47)):
+        add_h(y,a,b)
+    for name,x,y,_ in town.DOOR_APPROACHES:
+        add_v(x,y,town.DOOR_LINK_Y[name])
+    for mode in ("wide","wide-worn"):
+        output=[r[:] for r in ORIGINAL]
+        combined={**vertical,**horizontal}
+        for pos in set(vertical)&set(horizontal):
+            combined[pos]=VALE[39][6].split(":")[0]
+        n=0
+        for (x,y),tile in combined.items():
+            if not(0<=x<64 and 0<=y<64):
+                continue
+            if town.LAYOUT[y][x] not in ".=" or (x,y) in EVENTS:
+                continue
+            if mode=="wide-worn" and (x*11+y*7)%19==0:
+                tile=VALE[39][5].split(":")[0]
+            output[y][x]=tile
+            n+=1
+        render.load_map=lambda:output
+        render.make(ROOT/f"tools/aster_path_{mode}.png",
+                    ROOT/f"tools/aster_path_{mode}_labels.png")
+        print(mode,n,"native two-cell Vale dirt tiles with connected approaches.")
 if __name__=="__main__":
     main()
