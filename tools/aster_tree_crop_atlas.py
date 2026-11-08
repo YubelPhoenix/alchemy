@@ -74,7 +74,9 @@ def main():
             atlas.paste(large.convert("RGB"),(x0+8+mode*138,y0+32))
         painter.text((x0+8,y0+198),"all 3 layers      grass + upper",fill=(200,209,209))
     atlas.save(OUT,optimize=True)
-    assert not bad,f"Missing native tile references: {sorted(bad,key=str)[:10]}"
+    if bad:
+        print("REJECT candidate tiles with missing palette/charblock data:",
+              sorted(bad,key=str)[:15])
     print("Native Golden Sun foliage source crop atlas:",OUT,
           "candidate count:",len(CANDIDATES))
     print("Visual candidate selection only; no Aster source-map changes.")
