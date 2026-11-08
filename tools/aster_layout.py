@@ -73,7 +73,7 @@ SCENERY = (
     ("east_mid_pine",  40,25,  8, 9, 3, 4),
     ("south_west_tree",19,47, 24,45, 4, 5),
     ("south_east_tree",40,46, 24,45, 4, 5),
-    ("south_west_pine",20,54, 17,46, 3, 4),
+    ("south_west_pine",20,52, 17,46, 3, 4),
     ("south_east_pine",41,53, 17,46, 3, 4),
 )
 # Garden grass and floral accents: no movement blocking or impassable cells.
