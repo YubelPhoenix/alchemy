@@ -13,6 +13,7 @@ on:
       - 'tools/aster_lived_in_terrain.py'
       - 'tools/aster_water_feature_study.py'
       - 'tools/aster_water_tile_atlas.py'
+      - 'tools/aster_water_woodland_study.py'
       - 'games/tbs/src/map/map_180/map.txt'
       - '.github/workflows/aster-native-preview.yml'
   workflow_dispatch:
@@ -51,6 +52,7 @@ jobs:
           python3 tools/aster_lived_in_terrain.py
           python3 tools/aster_water_feature_study.py
           python3 tools/aster_water_tile_atlas.py
+          python3 tools/aster_water_woodland_study.py
       - name: Keep PNGs available without changing the game
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -73,6 +75,9 @@ jobs:
             tools/aster_water_shore_labels.png
             tools/aster_water_shore_focus.png
             tools/aster_water_tile_atlas.png
+            tools/aster_water_woodland.png
+            tools/aster_water_woodland_labels.png
+            tools/aster_water_woodland_focus.png
           retention-days: 10
       - name: Commit reproducible previews to experimental branch
         run: |
@@ -87,7 +92,9 @@ jobs:
             tools/aster_lived_in_terrain.png tools/aster_lived_in_terrain_labels.png \
             tools/aster_lived_in_terrain_focus.png \
             tools/aster_water_shore.png tools/aster_water_shore_labels.png \
-            tools/aster_water_shore_focus.png tools/aster_water_tile_atlas.png
+            tools/aster_water_shore_focus.png tools/aster_water_tile_atlas.png \
+            tools/aster_water_woodland.png tools/aster_water_woodland_labels.png \
+            tools/aster_water_woodland_focus.png
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
