@@ -1,5 +1,13 @@
 # Aster — actual Golden Sun source-art visual review
 
+**New direction:** Stop improving the abandoned ruined version.
+Prioritize ONE compact normal Golden Sun town with believable distances,
+districts, central gathering space and natural borders. Current 64×64
+source preview is TOO BARREN despite accurate palette, trees and small
+props. See [single-town redesign](ASTER_COMPACT_REDESIGN.md).
+Everything below concerning ruined scenery is **archived historical study**,
+not an active acceptance requirement.
+
 **Review result: connected native roads, nonmagical garden, original street plan; NOT approved for release.**
 Source renderer: `tools/aster_visual_preview.py`.
 Generated visual: [Aster native screenshot-like map image](aster_visual_review.png).

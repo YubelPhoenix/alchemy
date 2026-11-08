@@ -1,5 +1,13 @@
 # Aster — the town that does not belong
 
+**Revised production scope:** One compact, inhabited Golden Sun town.
+No ruined duplicate map. Arrival, fracture and revelation are
+story-event/dialogue stages in the SAME physical settlement. The current
+64×64 prototype is too empty; see
+[ASTER_COMPACT_REDESIGN.md](ASTER_COMPACT_REDESIGN.md) for the replacement
+footprint, district arrangement and implementation gates. The draft
+coordinates in that plan are NOT registered in the game yet.
+
 **Story design proposal, not established Golden Sun canon.** Aster exists in the
 experimental Ashfall storyline. It is not an original location from The Broken
 Seal. **Art direction is locked to original Golden Sun: The Broken Seal.**
