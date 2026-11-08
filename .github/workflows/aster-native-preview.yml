@@ -6,18 +6,7 @@ on:
     paths:
       - 'tools/aster_layout.py'
       - 'tools/aster_visual_preview.py'
-      - 'tools/aster_vale_reference.py'
       - 'tools/aster_domestic_prop_study.py'
-      - 'tools/aster_lived_in_blockout.py'
-      - 'tools/aster_native_terrain_atlas.py'
-      - 'tools/aster_lived_in_terrain.py'
-      - 'tools/aster_water_feature_study.py'
-      - 'tools/aster_water_tile_atlas.py'
-      - 'tools/aster_water_woodland_study.py'
-      - 'tools/aster_ground_cover_atlas.py'
-      - 'tools/aster_lived_in_ecology.py'
-      - 'tools/aster_native_woodland_synthesis.py'
-      - 'tools/aster_lived_in_activity.py'
       - 'games/tbs/src/map/map_180/map.txt'
       - '.github/workflows/aster-native-preview.yml'
   workflow_dispatch:
@@ -44,16 +33,13 @@ jobs:
         run: python3 -m pip install --break-system-packages -q Pillow
       - name: Regenerate deterministic Aster town geometry
         run: python3 tools/aster_layout.py
-      # Historical ruined-state images, old failed tile-crop studies, and
-      # well prototypes remain archived but are no longer rebuilt on pushes.
-      - name: Render active Aster and the new original Golden Sun ecology
+      # The automatically composed forest, water and property prototypes
+      # failed visual review. Keep their scripts as historical experiments;
+      # never publish their images as current Aster previews.
+      - name: Render single ACTIVE town and verify source-layer props
         run: |
           python3 tools/aster_visual_preview.py
           python3 tools/aster_domestic_prop_study.py
-          python3 tools/aster_water_feature_study.py
-          python3 tools/aster_lived_in_ecology.py
-          python3 tools/aster_native_woodland_synthesis.py
-          python3 tools/aster_lived_in_activity.py
       - name: Keep PNGs available without changing the game
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -63,29 +49,13 @@ jobs:
             tools/aster_visual_review_events.png
             tools/aster_domestic_yards.png
             tools/aster_domestic_yards_labels.png
-            tools/aster_water_shore.png
-            tools/aster_water_shore_labels.png
-            tools/aster_water_shore_focus.png
-            tools/aster_lived_in_ecology.png
-            tools/aster_lived_in_ecology_labels.png
-            tools/aster_lived_in_ecology_focus.png
-            tools/aster_forest_synthesis.png
-            tools/aster_forest_synthesis_labels.png
-            tools/aster_forest_synthesis_focus.png
-            tools/aster_lived_in_activity.png
-            tools/aster_lived_in_activity_labels.png
-            tools/aster_lived_in_activity_focus.png
-            tools/aster_activity_placement_report.json
           retention-days: 10
       - name: Commit reproducible previews to experimental branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add games/tbs/src/map/map_180/map.txt \
-            tools/aster_visual_review*.png tools/aster_domestic_yards*.png \
-            tools/aster_water_shore*.png tools/aster_lived_in_ecology*.png \
-            tools/aster_forest_synthesis*.png \
-            tools/aster_lived_in_activity*.png tools/aster_activity_placement_report.json
+            tools/aster_visual_review*.png tools/aster_domestic_yards*.png
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
