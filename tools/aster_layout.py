@@ -22,23 +22,30 @@ SIDE = 64
 # Crops are deliberately tight: earlier 11-row versions contained slices
 # of cliff and even a second roof from below the first house in Vale.
 BUILDINGS = (
-    ("sealed_house",   5,  3,  9,  2,  9,  9, "X"),
-    ("inn",           45,  3, 19,  2,  9,  9, "I"),
-    ("western_home",   5, 24, 11, 11,  9,  9, "H"),
-    ("eastern_home",  50, 24, 19, 12,  8,  9, "H"),
-    ("shop",           4, 44,  8, 27, 10,  9, "S"),
-    ("duplicate_home",50, 44, 11, 11,  9,  9, "V"),
+    # Aster's original geography: a quiet northern remembrance lane,
+    # staggered residential cottages, and a southern market by the gate.
+    # Golden Sun supplies the art; these are NOT Vale's original locations.
+    ("sealed_house",    7,  4,  9,  2,  9,  9, "X"),
+    ("duplicate_home", 48,  5, 11, 11,  9,  9, "V"),
+    ("western_home",    8, 26, 11, 11,  9,  9, "H"),
+    ("eastern_home",   49, 27, 19, 12,  8,  9, "H"),
+    ("shop",            6, 45,  8, 27, 10,  9, "S"),
+    ("inn",            42, 44, 17, 34, 11, 10, "I"),
 )
-# All steps land on grass *outside* a roof, directly ahead of the visible
-# Vale door and before the nearest connecting street.
+# Six short, visible-door approaches; no trigger is placed beneath a roof.
 DOOR_APPROACHES = (
-    ("sealed_house",  11, 12, "ba:e3"),
-    ("inn",           49, 12, "ba:e4"),
-    ("western_home",   9, 33, "ba:e5"),
-    ("eastern_home",  54, 33, "ba:e6"),
-    ("shop",           9, 53, "ba:e7"),
-    ("duplicate_home",54, 53, "ba:e8"),
+    ("sealed_house",  12, 13, "ba:e3"),
+    ("inn",           47, 54, "ba:e4"),
+    ("western_home",  12, 35, "ba:e5"),
+    ("eastern_home",  53, 36, "ba:e6"),
+    ("shop",          11, 54, "ba:e7"),
+    ("duplicate_home",52, 14, "ba:e8"),
 )
+DOOR_LINK_Y = {
+    "sealed_house":18, "duplicate_home":18,
+    "western_home":40, "eastern_home":40,
+    "shop":57, "inn":57,
+}
 # Entry narratives are at accessible approach tiles; well and memorial
 # themselves remain solid until a satisfactory native visual prop exists.
 INTERACTIONS = (
@@ -47,7 +54,7 @@ INTERACTIONS = (
 ) + DOOR_APPROACHES
 ACTORS = (
     (26,33), # Elder overlooking residential crossroads
-    (49,21), # Innkeeper just south of inn approach
+    (46,55), # Innkeeper beside southern market entrance
     (23,34), # Greeter on western residential street
     (35,39), # Boy to the south of the well
     (45,34), # Resident near eastern home
@@ -67,16 +74,12 @@ BACKGROUND = (GRASS, "15", "15")
 # NEVER on doorstep approaches, arterial routes or the two monuments.
 # name, x, y, src_x, src_y, width, height
 SCENERY = (
-    # Use a complete, coherent native Vale shrub/tree cluster instead of
-    # the earlier source crop that contained disconnected cliff pieces.
-    ("north_west_tree",20, 6, 24,45, 4,5),
-    ("north_east_tree",40, 7, 24,45, 4,5),
-    ("west_mid_tree",  19,24, 24,45, 4,5),
-    ("east_mid_tree",  40,25, 24,45, 4,5),
-    ("south_west_tree",19,47, 24,45, 4,5),
-    ("south_east_tree",40,46, 24,45, 4,5),
-    ("south_west_shrub",20,52, 24,45, 4,5),
-    ("south_east_shrub",41,52, 24,45, 4,5),
+    ("north_woods_w",20, 7, 24,45, 4,5),
+    ("north_woods_e",40, 6, 24,45, 4,5),
+    ("residential_w",20,27, 24,45, 4,5),
+    ("residential_e",41,25, 24,45, 4,5),
+    ("market_tree_w",22,45, 24,45, 4,5),
+    ("market_tree_e",56,47, 24,45, 4,5),
 )
 # Flower/shrub source patches must be approved visually before placement.
 # The previous six garden stamps included water and other unrelated graphics.
@@ -110,15 +113,17 @@ def corridors():
         for y in range(y0,y1+1):
             for x in range(x0,x1+1):
                 paths.add((x,y))
+    # A crooked market lane and a northern remembrance path; asymmetrical,
+    # with businesses concentrated near the south entrance.
     for y in range(1,63):
-        # One continuous north-south axis; widens near the two monuments.
-        center = 32 if y<24 else 31 if y<41 else 32
+        center = 32 if y<24 else 31 if y<41 else 33
         rect(center-1,y,center+1,y)
-    for y0,y1,left,right in ((16,17,11,50),(37,38,9,55),(57,58,9,55)):
+    for y0,y1,left,right in ((18,19,12,53),(40,41,12,54),(57,58,11,53)):
         rect(left,y0,right,y1)
-    for x,y,limit in ((11,12,17),(49,12,17),(9,33,38),
-                       (54,33,38),(9,53,58),(54,53,58)):
-        rect(x,y,x,limit)
+    for name,x,y,_ in DOOR_APPROACHES:
+        street=DOOR_LINK_Y[name]
+        assert street>=y, (name,y,street)
+        rect(x,y,x,street)
     # Plaza: do not draw a road straight through a solid well or memorial.
     rect(28,30,37,39)
     rect(29,11,36,16)
@@ -206,7 +211,7 @@ def verify():
         assert dx<=x<dx+w and y==dy+h,(
             f"{name} must sit directly in front of facade at y={dy+h}")
         assert all((x,yy) in PATH_CELLS for yy in
-                   range(y,17+1 if y<20 else 38+1 if y<40 else 58+1)),(
+                   range(y,DOOR_LINK_Y[name]+1)),(
             f"{name} has no connected doorway spur")
     blocked=set((x,y) for y,row in enumerate(LAYOUT)
                 for x,c in enumerate(row) if c in "#XIHSVTMW")
