@@ -108,46 +108,92 @@ def main():
             for dy in (-1,0,1):
                 doorway_halo.add((x+dx,y+dy))
 
+    # Explicit property boundaries prevent the nearest-free-location
+    # fallback from placing a garden in an unrelated lawn.
+    PROPERTY_ZONES={
+        "west":(17,24,29,39),
+        "east":(44,23,55,40),
+        "shed":(11,29,23,42),
+        "shop":(18,39,32,53),
+        "inn":(45,40,57,55),
+        "pond":(44,34,55,44),
+    }
+    placed_details=[]
+    planted=set()
+    def zone(name):
+        if name.startswith(("west","western")):return PROPERTY_ZONES["west"]
+        if name.startswith(("east","eastern")):return PROPERTY_ZONES["east"]
+        if name.startswith("shed"):return PROPERTY_ZONES["shed"]
+        if name.startswith("shop"):return PROPERTY_ZONES["shop"]
+        if name.startswith("inn"):return PROPERTY_ZONES["inn"]
+        if name.startswith(("pond","shore")):return PROPERTY_ZONES["pond"]
+        raise AssertionError(("Unassigned village property",name))
+    def allocate(name,x,y,w,h,kind,extra=None):
+        left,top,right,bottom=zone(name)
+        choices=[]
+        for cy in range(top,bottom-h+2):
+            for cx in range(left,right-w+2):
+                points=[(cx+dx,cy+dy) for dy in range(h) for dx in range(w)]
+                if not untouched(points):continue
+                if any(p in doorway_halo for p in points):continue
+                if extra is not None and not extra(points):continue
+                distance=abs(cx-x)+abs(cy-y)
+                if distance>9:continue
+                # Stable, short local moves are preferred. Corners or whole
+                # area migrations must not masquerade as approved placement.
+                choices.append((distance,abs(cy-y),abs(cx-x),cy,cx))
+        if not choices:
+            rejected.append((name,"no intact clear space inside its own property"))
+            return None
+        _,_,_,cy,cx=min(choices)
+        placed_details.append({
+            "name":name,"kind":kind,"requested":[x,y],
+            "placed":[cx,cy],"moved":(cx!=x or cy!=y),
+        })
+        return cx,cy
+
     def place_cargo(name,x,y,sx,sy):
-        if not untouched(((x,y),)) or (x,y) in doorway_halo:
-            rejected.append((name,"occupied layer, reserved doorway or road"))
-            return
-        use[y][x]="B"
-        rows[y][x]="ba:ff"
-        rows[y][x+64]=VALE[sy][sx+30]
-        rows[y+64][x]=VALE[sy][sx+60]
+        site=allocate(name,x,y,1,1,"supply")
+        if site is None:return
+        px,py=site
+        use[py][px]="B"
+        rows[py][px]="ba:ff"
+        rows[py][px+64]=VALE[sy][sx+30]
+        rows[py+64][px]=VALE[sy][sx+60]
         recorded["solid_supplies"]+=1
 
     def place_garden(name,x,y,sx,sy):
-        points=[(x+dx,y+dy) for dx in range(2) for dy in range(2)]
-        if not untouched(points) or any(p in doorway_halo for p in points):
-            rejected.append((name,"garden overlaps art, road, or reserved space"))
-            return
+        site=allocate(name,x,y,2,2,"garden")
+        if site is None:return
+        px,py=site
         for dy in range(2):
             for dx in range(2):
-                xx,yy=x+dx,y+dy
+                xx,yy=px+dx,py+dy
+                planted.add((xx,yy))
                 use[yy][xx]="f"
                 rows[yy][xx]=VALE[sy+dy][sx+dx].split(":")[0]
                 rows[yy][xx+64]=VALE[sy+dy][sx+dx+30]
                 rows[yy+64][xx]=VALE[sy+dy][sx+dx+60]
         recorded["cultivated_beds"]+=1
 
+    def near_gardens(points):
+        return bool(planted) and any(
+            abs(x-gx)+abs(y-gy)<=5 for x,y in points for gx,gy in planted)
     def place_fence(name,x,y,sx,sy):
-        points=[(x+dx,y) for dx in range(4)]
-        if not untouched(points) or any(p in doorway_halo for p in points):
-            rejected.append((name,"whole fence rejected: overlap or door halo"))
-            return
+        site=allocate(name,x,y,4,1,"property_edge",near_gardens)
+        if site is None:return
+        px,py=site
         for dx in range(4):
-            xx=x+dx
-            use[y][xx]="F"
-            rows[y][xx]="ba:ff"
-            rows[y][xx+64]=VALE[sy][sx+dx+30]
-            rows[y+64][xx]=VALE[sy][sx+dx+60]
+            xx=px+dx
+            use[py][xx]="F"
+            rows[py][xx]="ba:ff"
+            rows[py][xx+64]=VALE[sy][sx+dx+30]
+            rows[py+64][xx]=VALE[sy][sx+dx+60]
         recorded["short_yard_fences"]+=1
 
     for arg in PLANTINGS:place_garden(*arg)
-    for arg in CARGO:place_cargo(*arg)
     for arg in PROPERTY_EDGES:place_fence(*arg)
+    for arg in CARGO:place_cargo(*arg)
     for x,y in FLOWER_CORNERS:
         if not untouched(((x,y),)):continue
         sx,sy=5,49
@@ -172,10 +218,13 @@ def main():
     missing=[pos for pos in required if pos not in reached]
     assert not missing,("Details blocked a door/event/NPC:",missing)
     assert len(required)==17,("Unexpected story actor/trigger count",len(required))
-    assert recorded["solid_supplies"]>=3,("No useful additional objects",recorded)
+    assert recorded["solid_supplies"]>=5,("Work supplies vanished",recorded)
+    assert recorded["cultivated_beds"]>=4,("Not enough usable garden beds",recorded)
+    assert recorded["short_yard_fences"]>=1,("No property edges could be placed",recorded)
     REPORT.write_text(json.dumps({
         "status":"nonplayable native Golden Sun visual study",
         "placed":dict(recorded),
+        "placements":placed_details,
         "rejected":[{"name":name,"reason":reason} for name,reason in rejected],
         "protected_event_npc_targets":len(required),
         "all_targets_reachable":not missing,
