@@ -1,6 +1,6 @@
 # Aster — actual Golden Sun source-art visual review
 
-**Review result: layout routes corrected, visual design NOT APPROVED.**
+**Review result: native memorial added, layout routes checked; full visual design NOT APPROVED.**
 Source renderer: `tools/aster_visual_preview.py`.
 Generated visual: [Aster native screenshot-like map image](aster_visual_review.png).
 Comparison baseline: [Original Vale rendered from the same sources](aster_vale_reference.png).
@@ -42,20 +42,26 @@ The repeated home is intentionally a clue to Aster's convergence story.
 - **Cliff remnants removed.** The new house rendering copies native roofs
   and walls only, keeping Vale grass beneath. This eliminates the previously
   clipped cliffs; the doors still need an actual in-game facing test.
-- **Landmarks invisible.** Well at (32,34) and memorial at (32,13) currently
-  use grassy placeholder graphics with collision/event behavior; they are
-  not yet drawn as a real well or memorial. Their story text alone is not
-  adequate visual worldbuilding.
+- **One landmark now visible.** The original Vale stone monument is centered
+  above the memorial interaction at (32,14), with solid stone cells in the
+  route blueprint. It is visually a glowing Psynergy-style stone, not an
+  engraved tombstone; whether it can convincingly represent the memorial's
+  changing inscriptions is still a narrative/art decision. The **dry well
+  at (32,34) remains visually absent**. A native Vale spring test was
+  rejected because its water and adjacent roof fragment contradict the
+  opening scene; see `tools/aster_square_spring.png`.
 - **Door routes structurally corrected.** Each of six house approaches is now
   one walkable cell south of its roof crop with a continuous spur to the
   primary roads. The source audit checks these geometric relationships.
   Actual character positioning and engine collision remain unverified.
 - **No house interiors.** They remain blocked structures with dialogue
   at nearby event tiles, not real rooms.
-- **Roads remain invisible.** Six door approaches, three east-west links, and
-  the main north-south route are connected in the blueprint. The *earlier*
-  trial sampled roof/chimney metatiles and filled the roads with pink artifacts;
-  that bad sample was removed. Roads need visually verified Vale earth tiles.
+- **Roads mostly remain invisible.** Six doorway approaches, three east-west
+  links and the central north-south route remain walkable in the blueprint.
+  Three small, genuine Vale dirt patches now indicate frequent crossing
+  points without creating the earlier chimney-graphics artifacts. The three
+  patches repeat too obviously and do not yet visually join the roads; they
+  need a cohesive, purpose-built native Golden Sun dirt path treatment.
 - **No normal two-way entrance.** The scene still lacks a world-map contact;
   its experimental exit returns to Vault. This is not correct release
   navigation.
@@ -65,9 +71,12 @@ The repeated home is intentionally a clue to Aster's convergence story.
 
 ## Next build acceptance
 
-1. Add native Vale dirt/stone paths along the existing blueprint streets.
+1. Develop coherent, edge-matched native Vale dirt/stone paths along the
+   planned connections; scattered identical dirt patches are not sufficient.
 2. Replace cliff fragments with complete terrain transitions.
-3. Create and place actual well and memorial scenery using Golden Sun art.
+3. Build a true dry-well visual using compatible Golden Sun tiles. Decide
+   whether the Psynergy-stone memorial is narratively appropriate or needs a
+   legible stone monument with a changing inscription.
 4. Replace repeated tree clusters with varied, complete native Vale vegetation, fences and domestic touches while preserving NPC reachability.
 5. Rerun the source renderer, inspect at 1x/native pixel scale and revise.
 6. Compile experimental ROM and capture a **real emulator screenshot**.
@@ -92,3 +101,19 @@ street, and duplicate home partly overgrown—**none is implemented yet**.
 Do not create a separate ruined PNG by applying a color filter; use changed
 Golden Sun metatiles only, with coherent debris/collision and authored event
 logic once the normal state is visually approved.
+
+## First ruined-Aster render: visual study ONLY
+
+Preview: [Aster overgrowth study](aster_ruin_visual_study.png).
+The experiment layers six existing Vale tree clusters onto the **same six**
+building addresses. The memorial, invisible well, gate, eight event locations
+and original planned roads stay at their exact positions. It has no separate
+ROM map, collision map or stage trigger.
+
+**Result: rejected as finished ruined-state art.** Large square vegetation
+stamps clearly cover rooftops; no masonry has fallen, no structures have
+collapsed, and there is no coherent debris. It is useful only to establish
+that the broken version must preserve Aster's legibility and silhouette.
+Further ruin art must be constructed intentionally using permission-cleared
+Golden Sun-style assets, with updated walkable routes and story-specific
+doorway behavior. Do not merge this study into normal Aster.
