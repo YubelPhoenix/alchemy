@@ -86,10 +86,11 @@ GARDENS = ()
 # than as a decorative object in a random yard. It has NO solid footprint.
 GATE_ARCH = (29,59, 11,50, 6,3)
 
-# Memory memorial: exact original Vale stone shrine, with the visible crystal
-# above a native stone base. It is not a foreign-game asset. Inscription text
-# comes from the existing interaction, not visible pixels on the stone.
-MEMORIAL_ART = (30,8, 11,40, 5,5)
+# No Psynergy Stone, crystal or shrine: Aster's memorial must be an ordinary
+# place of remembrance, not a magical landmark borrowed from Vale.
+# Current script trigger and protected patch remain while we test native
+# fencing, stones or wooden markers for a different final silhouette.
+MEMORIAL_RESERVED = (30,8,5,6)
 
 # Worn ground around logical gathering points. Each contiguous 5x5
 # piece uses *only the ground plane* of Vale's original small dirt patch;
@@ -268,13 +269,8 @@ def source():
                 gx,gy=dx+xx,dy+yy
                 assert LAYOUT[gy][gx] not in "#XIHSVTMW"
                 out[gy][gx]=vale[sy+yy][sx+xx].split(":")[0]
-    # Northern memorial carries its original complete native Vale upper
-    # layers, not an impossible invisible event floating on grass.
-    mx,my,sx,sy,w,h=MEMORIAL_ART
-    for yy in range(h):
-        for xx in range(w):
-            out[my+yy][mx+xx+64]=vale[sy+yy][sx+xx+30]
-            out[my+yy+64][mx+xx]=vale[sy+yy][sx+xx+60]
+    # Memorial upper layers deliberately stay ordinary grass until the
+    # non-magical monument arrangement passes the visual review.
     # Vale's actual wooden arch belongs on Aster's exit road. Keeping the
     # original grassy floor passable is intentional: Isaac walks underneath.
     dx,dy,sx,sy,w,h=GATE_ARCH
