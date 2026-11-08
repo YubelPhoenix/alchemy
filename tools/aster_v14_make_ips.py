@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-"""Create a validated Aster-only IPS from a clean owned Golden Sun ROM
-and a locally compiled V14 test ROM. No downloads, network or API calls."""
+"""Create a full experimental V14 ROM-difference IPS against a clean TBS ROM.
+
+This is NOT an Aster-only/incremental patch for an existing Ashfall build:
+all differences in the staged V14 compiled ROM are included, including any
+older Ashfall game systems carried by this branch. No network or API calls.
+"""
 import argparse
 import hashlib
 import json
@@ -138,19 +142,24 @@ def main():
     except (OSError,subprocess.CalledProcessError):
         commit = "unknown"
     manifest = {
-        "purpose": "Golden Sun Ashfall Aster V14 dedicated two-way overworld TEST",
+        "purpose": "Aster V14 isolated full-ROM test patch (not an incremental Ashfall update)",
         "branch": "experiment/aster-v14-native-map-staging",
         "source_commit": commit,
+        "patch_scope": "complete compiled V14 ROM differences from clean original",
+        "compatible_base": "clean English TBS ROM with exact checked SHA-1 only",
+        "not_for": "existing Ashfall patched ROMs; stacking onto dark-story-rewrite builds",
         "clean_rom_sha1": BASE_SHA1,
         "compiled_rom_sha256": sha(compiled,"sha256"),
         "patch_sha256": sha(ips,"sha256"),
         "ips_size": len(ips),
         "changed_bytes": changed_bytes,
         "record_count": records,
-        "warning": "Not emulator-verified. Use an isolated save and clean ROM."
+        "warning": "Not emulator-verified. Apply ONLY to a copy of the verified clean ROM; do not layer onto an existing Ashfall patch. V14 may lack newer Ashfall boss AI/balance."
     }
     args.out.with_suffix(".manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
     print("VERIFIED IPS:",args.out, "records:",records,"bytes:",len(ips))
+    print("WARNING: FULL V14 TEST PATCH, not Aster-only or additive to Ashfall.")
+    print("Apply ONLY to a copy of the verified CLEAN English TBS ROM.")
     print("Only the IPS and a manifest are saved; no ROM is uploaded")
 
 if __name__ == "__main__":
