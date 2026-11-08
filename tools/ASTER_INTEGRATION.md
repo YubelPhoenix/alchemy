@@ -4,7 +4,7 @@
 
 ## Implemented on this branch
 
-- **Map**: `tools/aster_layout.py` deterministically generates `games/tbs/src/map/map_180/map.txt`; 64 × 64 proposed cells, with exit at (32,63). Three 64 × 64 map layers are placed in the underlying 128 × 128 packed grid, and six building facades copy original Vault native metatiles pending custom legal art.
+- **Map**: `tools/aster_layout.py` deterministically generates `games/tbs/src/map/map_180/map.txt`; 64 × 64 proposed cells, with exit at (32,63). Three 64 × 64 map layers are placed in the underlying 128 × 128 packed grid, and six building facades copy original Vault native metatiles. Open lawn uses Vault's common grass metatile and streets use its approach path metatile. **The art direction is Golden Sun only; the Paradox mockup was rejected.**
 - **Map linkage**: `Field_Map180` is registered as the appended `gMaps` row **186 (0xba)** and `SceneId_Aster` references it, with overlay **0x3d3**. Map resource and object records exist.
 - **Town actors**: seven NPC slots in `games/tbs/src/scene/aster.c`: elder (26,33), innkeeper (49,21), greeter (23,34), boy (35,39), resident (45,34), Other Isaac proxy (36,13), mirror woman (41,34). The Other Isaac proxy is currently a generic young-man sprite, **not finished custom art**.
 - **Interactive landmarks**: well (32,34), memorial (32,13), sealed house (3,3), inn (43,3), two residential homes, shop and duplicate house. The eight approach tiles use Aster-only behaviors `0xe1`–`0xe8`; all exterior facades remain solid. The five new building thresholds show contextual dialogue but **do not lead to interiors**.
@@ -14,7 +14,7 @@
 
 ## Open engine problems (do not claim solved)
 
-1. **Real appearance and collision**: six building facades now copy native Vault map-layer tiles and all three 64x64 layers are registered. No ROM has been visually rendered or walked in an emulator, so roofs, sprite priority, thresholds and collision remain unverified. The uploaded *Paradox* art has **not been imported into public source**; a private style study is separate.
+1. **Real appearance and collision**: six building facades now copy native Vault map-layer tiles and all three 64x64 layers are registered. No ROM has been visually rendered or walked in an emulator, so roofs, sprite priority, thresholds and collision remain unverified. The uploaded *Paradox* art is **not used** in the source or approved concept. No additional foreign art should be added.
 2. **Overworld placement and return**: choose an actually unused reachable area of the world map away from Suhalla Gate. Audit collision and encounter data, reserve a new contact actor and exit IDs without shifting vanilla actors, and define a paired `WORLD_MAP_FROM_ASTER` arrival. Do not guess coordinates or repurpose Vault.
 3. **Original custom art**: the duplicate Isaac and any Ash Jenna apparition need planned official or user-created assets, not placeholder NPC stand-ins.
 4. **Stage persistence**: scene-temp flags reset on normal re-entry. That is intentional for this prototype; design and verify a durable story-state policy before production if the town must remember the player's first visit.
@@ -42,6 +42,6 @@
 
 ## Narrative rules
 
-Aster's unfamiliar construction is intended as eventual evidence of an actual physical place from Ash Jenna's reality overlapping Isaac's world. The arrival dialogue does not reveal that yet; see `tools/ASTER_WORLD_DESIGN.md`. Aster is a settlement caught between Isaac's world and Ash Jenna's. The horror comes from incompatible memories and repeated conversations becoming contradictory; never corrupt text bytes or simulate a broken cartridge. The manifestation called Other Isaac is a deliberately ambiguous echo, **not** a claim about Golden Sun canon. Isaac remains a mostly silent protagonist. Every scripted text page is limited to **27 characters per line, three lines per page**, with manual width verification required.
+Aster must look like a Golden Sun settlement from its first frame. Its **contradictory geography and history**, not a foreign visual style, eventually provide evidence of a physical fragment of Ash Jenna's version of Weyard overlapping Isaac's world. The arrival dialogue does not reveal that yet; see `tools/ASTER_WORLD_DESIGN.md`. Aster is a settlement caught between Isaac's world and Ash Jenna's. The horror comes from incompatible memories and repeated conversations becoming contradictory; never corrupt text bytes or simulate a broken cartridge. The manifestation called Other Isaac is a deliberately ambiguous echo, **not** a claim about Golden Sun canon. Isaac remains a mostly silent protagonist. Every scripted text page is limited to **27 characters per line, three lines per page**, with manual width verification required.
 
-The town should feel initially inhabited, then impossible, then like the memory of people who know Jenna's other fate. Endings and lore revelations must support the Ash Jenna storyline rather than replace it.
+The town should feel initially inhabited, then impossible, then like the memory of people who know Jenna's other fate. Never use external-game tiles or another RPG's visual style to signal convergence; only distort familiar native Golden Sun scenery. Endings and lore revelations must support the Ash Jenna storyline rather than replace it.
