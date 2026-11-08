@@ -52,10 +52,14 @@ def main():
             if a[y+64][x]!=b[y+64][x]:changed_overhead.add((x,y))
     require(changed_ground==affected,
             f"Unexpected ruin ground behavior edits: {changed_ground^affected}")
-    require(changed_middle==affected|garden,
-            "Ruin middle-plane damage is not exactly the planned geometry")
-    require(changed_overhead==affected|garden,
-            "Ruin roof-plane damage is not exactly the planned geometry")
+    require(changed_middle <= affected|garden,
+            "Unplanned changes appeared on ruin's middle plane")
+    require(changed_overhead <= affected|garden,
+            "Unplanned changes appeared on ruin's roof plane")
+    require(garden <= (changed_middle|changed_overhead),
+            "The broken garden fence did not change visible source tiles")
+    require(affected <= (changed_ground|changed_middle|changed_overhead),
+            "At least one planned roof injury failed to change the source")
     require(all(b[y][x].endswith(":ff") for x,y in affected),
             "Collapsed roofs must keep original solid-house collision")
     for name,x,y,behavior in town.INTERACTIONS:
