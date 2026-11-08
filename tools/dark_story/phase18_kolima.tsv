@@ -33,8 +33,9 @@
 05322	message	HROOOM! He hears you.\nI won't let him answer.{end_wait}
 05337	message	Wait! If Tret dies,\nwhat happens to\nthe villagers?{end_wait}
 05338	message	We still need him,\n{actor_name:1}.{end_wait}
+05340	message	Do you still need\nmy help?{end_now}
 05342	message	{actor_name:1}, remember.{page_break}Kolima still needs us.{end_wait}
-05343	MsgTretTurnedPeopleKolima	I did that to Kolima?\nThose were people...{end_wait}
+05343	MsgTretTurnedPeopleKolima	The people of Kolima...\nI turned them into trees?{end_wait}
 05347	message	Tret's too weak\nto undo the curse.{end_wait}
 05348	message	Then we help him.{page_break}The villagers are\nstill waiting.{end_wait}
 05349	message	How? He's fading right\nin front of us.{end_wait}
