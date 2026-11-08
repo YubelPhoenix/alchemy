@@ -37,7 +37,7 @@ jobs:
   source-audit:
     name: Map, scene, dialogue and resource contracts
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
@@ -57,6 +57,18 @@ jobs:
           python3 tools/aster_prepare_messages.py
           python3 tools/dark_story_rewrite.py
           python3 tools/aster_prepare_messages.py --verify
+      - name: Install native map-encoder dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq -y --no-install-recommends pkg-config libpng-dev libutf8proc-dev
+      - name: Encode normal and ruined grids with actual ags-graphics
+        run: |
+          make -f tools/Makefile tools/out/ags-graphics
+          tools/out/ags-graphics games/tbs/src/map/map_180/map.txt "$RUNNER_TEMP/aster-map.grid.lz"
+          tools/out/ags-graphics tools/aster_ruined_map.txt "$RUNNER_TEMP/aster-ruin.grid.lz"
+          test -s "$RUNNER_TEMP/aster-map.grid.lz"
+          test -s "$RUNNER_TEMP/aster-ruin.grid.lz"
+          echo 'PASS: Both complete Aster grids accepted by the original map encoder.'
 
   # Full ROM build runs manually, or on a single specifically marked
   # experimental commit. Ordinary Aster changes run only the fast source audit.
