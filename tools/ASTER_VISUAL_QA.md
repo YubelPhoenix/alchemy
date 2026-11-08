@@ -35,12 +35,13 @@ The repeated home is intentionally a clue to Aster's convergence story.
 
 **Fail — must fix before considering the level attractive or playable:**
 
-- **Town plan is original, not Vale's.** Six buildings now belong to three
-  purposeful districts: northern remembrance lane, offset residential
-  quarter, and southern market with the actual inn-sign roof. The innkeeper
-  moved to (46,55), and the NPC source audit verifies all seven positions.
-  The 64x64 clearing still needs much denser, varied scenery. Six native
-  tree stamps look too repetitive and natural roads are not yet completed.
+- **Town plan is original, not Vale's.** Six buildings now belong to
+  the northern remembrance lane, offset residential quarter and southern
+  market with the real inn-sign roof. NPC positions are checked against
+  the scene source. The clearing still needs denser, varied scenery.
+  The first different-tree test generated cropped trunks and rectangular
+  blue patches; it was **rejected without touching Map180**. The six
+  existing complete native tree stamps remain repetitive placeholders.
 - **Cliff remnants removed.** The new house rendering copies native roofs
   and walls only, keeping Vale grass beneath. This eliminates the previously
   clipped cliffs; the doors still need an actual in-game facing test.
