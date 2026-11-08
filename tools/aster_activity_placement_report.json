@@ -1,0 +1,86 @@
+{
+  "status": "nonplayable native Golden Sun visual study",
+  "placed": {
+    "cultivated_beds": 1,
+    "solid_supplies": 9,
+    "small_wildflowers": 7
+  },
+  "rejected": [
+    {
+      "name": "west_kitchen_patch",
+      "reason": "garden overlaps art, road, or reserved space"
+    },
+    {
+      "name": "west_herb_patch",
+      "reason": "garden overlaps art, road, or reserved space"
+    },
+    {
+      "name": "east_kitchen_patch",
+      "reason": "garden overlaps art, road, or reserved space"
+    },
+    {
+      "name": "east_herb_patch",
+      "reason": "garden overlaps art, road, or reserved space"
+    },
+    {
+      "name": "shed_work_patch",
+      "reason": "garden overlaps art, road, or reserved space"
+    },
+    {
+      "name": "shop_customer_garden",
+      "reason": "garden overlaps art, road, or reserved space"
+    },
+    {
+      "name": "shop_owner_garden",
+      "reason": "garden overlaps art, road, or reserved space"
+    },
+    {
+      "name": "inn_service_garden",
+      "reason": "garden overlaps art, road, or reserved space"
+    },
+    {
+      "name": "western_home_water",
+      "reason": "occupied layer, reserved doorway or road"
+    },
+    {
+      "name": "western_home_goods",
+      "reason": "occupied layer, reserved doorway or road"
+    },
+    {
+      "name": "eastern_home_water",
+      "reason": "occupied layer, reserved doorway or road"
+    },
+    {
+      "name": "shop_delivery_crate",
+      "reason": "occupied layer, reserved doorway or road"
+    },
+    {
+      "name": "inn_luggage",
+      "reason": "occupied layer, reserved doorway or road"
+    },
+    {
+      "name": "west_garden_boundary",
+      "reason": "whole fence rejected: overlap or door halo"
+    },
+    {
+      "name": "east_garden_boundary",
+      "reason": "whole fence rejected: overlap or door halo"
+    },
+    {
+      "name": "shop_stock_boundary",
+      "reason": "whole fence rejected: overlap or door halo"
+    },
+    {
+      "name": "inn_service_boundary",
+      "reason": "whole fence rejected: overlap or door halo"
+    }
+  ],
+  "protected_event_npc_targets": 17,
+  "all_targets_reachable": true,
+  "caveats": [
+    "Visual crop edges still need human review",
+    "Visible well and indoor rooms are not yet built",
+    "No source of truth for emulator collision or sprite priority",
+    "Do not edit live Map180/aster.c based only on this study"
+  ]
+}
