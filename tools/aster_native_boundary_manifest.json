@@ -113,7 +113,7 @@
     }
   ],
   "old_map_blob": "a6bec6cfa5e9e62e29eb0368a56cff5e3acc377f",
-  "new_map_blob": "94c5f3848dde897e93039889eaefa3a0027242ee",
+  "new_map_blob": "a03c527bb290a4b1dc0aff268c022aa6f317cb3a",
   "previous_accessible_cells": 2392,
   "post_accessible_cells": 2252,
   "only_open_edge": [
@@ -470,5 +470,152 @@
     "Transparent native upper-layer cells preserve the precise pre-woodland behavior.",
     "Source validation only. Full GBA renderer, sprite priority and walkable collision not tested.",
     "Does not certify the shoreline, cliff rockwork, bridge or the reserved building exteriors."
-  ]
+  ],
+  "new_native_west_river_bridge": {
+    "status": "staged genuine Vale surface/decking and second-row rail metatiles (source-only)",
+    "source_map": "Map003 original Vale set_02",
+    "source_top_left": [
+      9,
+      38
+    ],
+    "destination_top_left": [
+      3,
+      35
+    ],
+    "width": 9,
+    "height": 2,
+    "previous_ground_and_upper_layers": [
+      {
+        "x": 3,
+        "y": 35,
+        "ground": "8365",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 4,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 5,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 6,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 7,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 8,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 9,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 10,
+        "y": 35,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 11,
+        "y": 35,
+        "ground": "4361",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 3,
+        "y": 36,
+        "ground": "8365",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 4,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 5,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 6,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 7,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 8,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 9,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 10,
+        "y": 36,
+        "ground": "ba",
+        "middle": "15",
+        "top": "15"
+      },
+      {
+        "x": 11,
+        "y": 36,
+        "ground": "4361",
+        "middle": "15",
+        "top": "15"
+      }
+    ],
+    "floor_collision_policy": "preserved all 18 previously passable Aster bridge cells",
+    "notes": [
+      "No new west world-map exit; native bridge leads to an internal west bank only.",
+      "Requires emulator assessment for bridge rail priorities and source orientation."
+    ]
+  }
 }
