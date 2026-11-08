@@ -22,43 +22,87 @@ checks to the proper V14 layout instead of the retired town layout.
   verifies the original debug-entry shortcut remains inactive, without
   triggering remote builds.
 
-## Source-only problems that remain
+## Implemented in the November 8 native art/dialogue pass
 
-The original map had 786 solid-grass cells with no upper visual metatile.
-Those were NOT all defective: 251 belong to the map perimeter, 210 fall
-within original native house footprints, and 56 are the reserved Sanctum
-and additional-home footprints. Only 269 were unclassified interior cells.
+**Water animation:** `games/tbs/src/map/map_180/map.s` now references
+Vale's own `map_003/tileset_anims.script.lz`, restoring the original
+set_02 animated-water/waterfall channels rather than leaving the map
+animation pointer at zero. Actual movement in the GBA renderer still
+requires emulator testing.
 
-This woodland pass adds **12 original Golden Sun Vale 4x5 native tree
-silhouettes**, retaining normal map behavior beneath 66 completely transparent
-foliage cells, and requiring solid ground beneath 174 visible tree cells.
-The current unclassified interior total is **235**, not zero.
-This is a source-grid improvement only, not an emulator approval.
+**Western crossing:** 18 pre-existing, walkable bridge cells
+(`x=3..11, y=35..36`) now use original Vale bridge deck and overhead
+metatiles from `Map003` (`x=9..17, y=38..39`). All 18 cells were
+previously passable and remain so. No new west map exit or event was
+created. The complete bridge baseline and source coordinates are in
+`tools/aster_native_boundary_manifest.json`. New read-only
+`tools/check_aster_native_bridge.py` verifies the full native
+source-to-destination mapping. This **does not** certify art alignment,
+rail priority, or the visible shoreline.
 
-The north and outskirts are better framed by genuine native sprites, but
-waterbanks, cliff faces, 235 remaining unclassified cells and the two reserved
-buildings still need visual-and-collision review using a real Golden Sun
-render or emulator. Some of those cells may already be accounted for by
-nearby overhanging native sprite art.
+**Registered native scenery actors:** Four new 224-colour indexed
+sprites were added only in unused 506–509 slots. The original seven
+talking NPCs remain in their original actor order and locations, with
+the scenery actors appended after them:
+- `SPR_506`: 32×32 dry well at `(32,34)`, near event `e1`.
+- `SPR_507`: 32×64 engraved memorial at `(29,19)`, near `e2`.
+- `SPR_508`: 64×64 compact Sanctum façade at `(42,33)`.
+- `SPR_509`: 64×64 compact second house façade at `(13,57)`.
 
-The six original native facades are present, but Sanctum and the
-additional house are only solid reserved plots. The dry well and memorial
-still need finished registered native art. V13's imported preview sprites
-do not become GBA metatiles simply by appearing in a PNG.
+Their sprites, animation TSVs, registry entries, and scene placements
+are verified by the new `tools/check_aster_native_decor.py`. None
+overwrites Camelot's original sprites or the earlier Aster overworld
+icon 505. **The last two are overlay façades on solid collision-reserved
+plots, not finished walkable interiors.** We cannot certify their size
+or draw-order without a ROM test.
 
-The current southern exit still returns the party through
-`WORLD_MAP_FROM_VAULT_SOUTH`. This is an experimental safety return,
-not a reciprocal Aster world-map entrance. A genuine world contact
-requires auditing `games/tbs/src/scene/world_map.c`, including
-`CONTACT_LAST_ACTOR = 65`, its `STEP_TRIGGER_AREA_BASE = 100`
-contact behaviors, scene exit table, actor template order, world-map
-collision and area placement. **Do not append an actor/exit casually**.
+**Dialogue:** `tools/aster_polish_dialogue.py` contains ten reviewed,
+27-character-limit edits to the innkeeper, elder, village memories,
+fracture and Ash echo. The `--check` mode is read-only; the
+`--apply` mode updates the disposable build's local English PO
+and dialogue TSV only. The tracked `games/tbs/text/en.po` was left
+unchanged because a push to that path could trigger the dialogue
+GitHub Actions workflow. No new message IDs or lasting story flags
+were added. All 36 original Aster message IDs remain protected.
 
-There has been no full ROM compile or emulator walkthrough of this V14
-branch. The local preflight checks only source consistency; they do not
-prove animation priorities, renderer compatibility, correct world-map
-travel, or stable save/load behavior.
+**Checks and reproducibility:** After the bridge commit, the exact
+native map Git blob is
+`a03c527bb290a4b1dc0aff268c022aa6f317cb3a`.
+The RLE map snapshot and native boundary manifest both carry the
+matching hash. Source review verified all nine event markers, the
+original seven NPC coordinates, unchanged native ground collision,
+and all 18 bridge tiles.
 
+## Still incomplete — do not claim release readiness
+
+- **Terrain:** Original Vale water and deck animation data are linked,
+  but complete riverbanks, cliff faces, waterfall visuals and the
+  visible west-bank junction are **not** in-emulator certified.
+  The 235 unclassified invisible-solid cells from the previous foliage
+  census still need visual inspection; some may be intentional.
+- **Buildings:** The original six house facades remain. The Sanctum
+  and additional house now have compact sprite artwork but their
+  reserved 4×7 footprints remain solid and **no interiors or door
+  transitions are implemented**. Inn/shop thresholds still display
+  dialogue rather than functioning as full store/inn interiors.
+- **Landmarks:** The well/memorial have registered sprite artwork and
+  existing stage-sensitive events, but final art priority/collision
+  and animation need an emulator check.
+- **Dialogue/events:** Ten refinements are staged for the local
+  ROM/IPS builder. Three original Mind Read triggers exist; the other
+  four NPCs still need standalone Mind Read text and correct build
+  message IDs before this part is genuinely complete.
+- **World map:** An optional two-way test-only Aster icon/exit probe
+  exists. Production Aster's overworld actor and walkable geographic
+  location near Vault are deliberately not registered permanently.
+- **Build:** No V14 ROM compile, IPS proof, emulator screen/video,
+  save/load, or main Ashfall merge has been performed. Source checks
+  cannot substitute for those tests.
+
+This work remains on `experiment/aster-v14-native-map-staging`.
+Never substitute a preview GIF for native map data, and do not modify
+the main Ashfall branch without a tested IPS.
+ 
 ## Cost precautions
 
 This branch has no configured Actions `push` workflow selector.
