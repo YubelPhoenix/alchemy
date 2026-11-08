@@ -17,13 +17,13 @@ ruin=[row[:] for row in unchanged]
 # Existing Vale multicolor shrubs/trees creep over walls/roofs from outside.
 # They are deliberately placed behind each building's street-facing approach,
 # so the *visible* door and the roads remain recognizable in this study.
-VINES=(
-    ("sealed_back_wall",9, 6,24,45,4,5),
-    ("inn_back_wall",51,7,24,45,4,5),
-    ("west_home_rear", 7,25,24,45,4,5),
-    ("east_home_rear",54,25,24,45,4,5),
-    ("shop_back_wall",10,46,24,45,4,5),
-    ("duplicate_roof",55,46,24,45,4,5),
+# The earlier hardcoded roof locations belonged to Aster's rejected
+# symmetrical town plan. Derive every test position from the live building
+# table so an alternate version never moves homes between realities.
+VINES=tuple(
+    (name+"_overgrowth",dx+min(w-4,2),dy+1,24,45,4,5)
+    for name,dx,dy,sx,sy,w,h,ch in town.BUILDINGS
+    if name in ("sealed_house","shop","duplicate_home")
 )
 
 def decorate(name,dx,dy,sx,sy,w,h):
