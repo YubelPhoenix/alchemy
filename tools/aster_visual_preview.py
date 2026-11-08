@@ -187,5 +187,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--output",type=Path,default=OUT)
     ap.add_argument("--annotated",type=Path,default=ANNOTATED)
+    ap.add_argument("--grid",type=Path,default=GRID,
+                    help="128x128 source map grid to preview; never a ROM screenshot")
     args=ap.parse_args()
+    GRID=args.grid
     make(args.output,args.annotated)
