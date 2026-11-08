@@ -327,6 +327,8 @@ void BattleTurnOrder_Sort(struct BattleAction *entries, s32 count) {
   s32 swapCount;
   s32 ashIndex;
 
+  BossAI_BeginRound();
+
   // Ash Jenna in Vale answers a summon rush: a summon is chosen, or enough
   // Djinn are on standby or about to be unleashed. The round's sort puts her
   // just behind the first action (below) and marks her; BattleAI_ChooseAction

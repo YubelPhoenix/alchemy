@@ -183,8 +183,9 @@ s32 Sprite_ComposeFrame(struct Sprite *animation, u16 dir) {
       break;
     default:
       facing = 0;
-      // Kind 44 (Ash Jenna and Heart in battle) never mirrors, except
-      // during an enemy Magma Storm's camera swing.
+      // Kind 44 (Ash Jenna, Heart, Kegare and Sarah in battle) never mirrors
+      // by itself, only while a camera swing has turned the view round
+      // (BattleCamera_FlipBossesInFrontView).
       if (layer->kind == 44 && gBattleCamera != 0 &&
           gBattleCamera->flipCaster == FLIP_CASTER_ON)
         facing = 0x80;

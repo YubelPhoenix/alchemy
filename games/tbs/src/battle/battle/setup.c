@@ -64,6 +64,11 @@ void BattleCamera_Update(void) {
     view->frames--;
   }
 
+  // The bosses' turn with an animation's camera swing ends once the camera is
+  // back at the party's or the enemies' view (BattleCamera_FlipBossesInFrontView).
+  if ((s16)camera->yaw >= 0x1c00 || (s16)camera->yaw <= -0x1c00)
+    camera->flipCaster = 0;
+
   focus = camera->focus;
   if (camera->followPosition != 0) {
     focus = camera->followPosition;

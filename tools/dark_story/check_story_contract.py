@@ -385,7 +385,42 @@ def check_live_sequential_dialogue() -> None:
             "Live Goma/Ivan rejoin has unrewritten sequential IDs: " + ", ".join(missing))
 
 
+def check_integrated_gameplay() -> None:
+    """Catch the omission of tested Claude AI, boss stats and sprite facing."""
+    ai = read("games/tbs/src/battle/battle/boss_ai.c")
+    battle = read("games/tbs/src/battle/battle.c")
+    require('#include "battle/boss_ai.c"' in battle,
+            "Tactical boss AI implementation not included in battle.c")
+    for symbol in ("BOSS_AI_KEGARE", "BOSS_AI_ASH_JENNA", "BOSS_AI_HEART"):
+        require(re.search(r"#define\s+" + symbol + r"\s+1\b", ai) is not None,
+                f"Missing or disabled tactical boss AI: {symbol}")
+    for symbol in ("BossAI_BeginRound", "BossAI_ChooseSlot",
+                   "BossAI_ChooseTarget", "BossAI_NoteTurn"):
+        require(symbol in ai, f"Missing boss AI lifecycle: {symbol}")
+    enemies = read("games/tbs/src/game/enemies.c")
+    for comment, hp, defense in (
+        ("// Ash Jenna, the optional super boss of Vale", 9000, 90),
+        ("// Heart (Chalice), the secret super boss of Kolima", 9500, 100),
+        ("// Kegare, the Water Adept who mimics Mia", 8000, 80),
+    ):
+        require(comment in enemies, f"Boss balancing anchor missing: {comment}")
+        row = enemies[enemies.index(comment):enemies.index(comment) + 300]
+        require(f".hp = {hp}," in row and f".def = {defense}," in row,
+                f"Missing balanced boss HP/Defense: {comment}")
+    animation = read("games/tbs/src/battle_anim/battle_anim_internal.h")
+    volcano = read("games/tbs/src/battle_anim/parts/volcano.c")
+    plasma = read("games/tbs/src/battle_anim/parts/plasma.c")
+    camera = read("games/tbs/src/battle/battle/setup.c")
+    for label, source in (("helper", animation), ("volcano", volcano),
+                          ("plasma", plasma)):
+        require("BattleCamera_FlipBossesInFrontView" in source,
+                f"Missing boss sprite-facing integration: {label}")
+    require("flipCaster = 0" in camera,
+            "Boss facing reset missing from battle camera")
+
+
 def main() -> None:
+    check_integrated_gameplay()
     check_live_sequential_dialogue()
     check_lalivero_first_postvenus_entry()
     check_named_scene_exit_wiring()

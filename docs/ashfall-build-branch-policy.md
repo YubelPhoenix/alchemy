@@ -7,10 +7,25 @@ Aerie scene commits) and Heart's `games/tbs/src/battle/battle/background.c`
 from `heart-backdrop-calm`. The resulting ROM workflow is intentionally
 restricted to the authoritative branch.
 
+## Gameplay changes integrated from Claude's tested branches
+
+- `boss-ai-experiment` (source revision `190aa3aefd3a`): tactical AI for
+  optional Kegare, Vale Ash Jenna and Heart, with their different round logic,
+  target selection, cooldowns and rush safeguards.
+- Optional superboss balancing from the same branch: Ash Jenna 9000 HP / 90
+  Defense, Heart 9500 HP / 100 Defense, Kegare 8000 HP / 80 Defense.
+  The ordinary Suhalla Gate Ash Jenna encounter remains separate.
+- `boss-flip-fix` (source revision `7cf3e6e2d065`): boss sprite-facing fixes
+  during applicable volcano/plasma camera moves.
+- These source commits passed their own GitHub builds before integration.
+  The primary build must also pass, and gameplay balance still requires
+  emulator testing.
+
 ## What stays separate
 
-- `boss-ai-experiment`: keep intact until stress testing and gameplay balance
-  are complete. Do not replace current battle files without a targeted review.
+- `boss-ai-experiment` and `boss-flip-fix`: their tested battle source changes
+  are now integrated into the primary build, but retain these branches as
+  recovery references until in-game stress testing is complete.
 - `experiment/aster-*`: preserve until the latest coherent Aster design is
   selected and validated against map collision and exit requirements.
 - Other historical branches remain intact as recovery points. Do not delete
@@ -24,7 +39,7 @@ restricted to the authoritative branch.
 3. The full build runs only for pushes on `dark-story-rewrite` or manual
    workflow dispatch; GitHub Actions concurrency cancels superseded builds
    on the same branch.
-4. Confirm the `ashfall-ips-<SHA>` artifact contains exactly the expected
+4. Confirm the `Golden-Sun-Ashfall-<SHA>` artifact contains exactly the expected
    source commit, and test the generated patch in the emulator.
 5. Before integrating a separate feature, compare both refs, preserve unique
    files, and re-run the source/scene checks.

@@ -30,8 +30,9 @@ struct BattleCamera {
   u8 unusedAfterDistance[16]; ///< no code names it
   u16 pitch;                  ///< 1/65536 turns
   u16 yaw;                    ///< 1/65536 turns
-  /// FLIP_CASTER_ON while Magma Storm turns an enemy caster round (the
-  /// ash-jenna kind-44 sprites then draw mirrored); BattleAnim_RunVolcano sets it.
+  /// FLIP_CASTER_ON while a camera swing has turned the view round (the
+  /// kind-44 boss sprites then draw mirrored); the volcano and plasma
+  /// animations set it, BattleCamera_Update clears it.
   u8 flipCaster;
   u8 unusedAfterYaw[19];      ///< no code names it
 };

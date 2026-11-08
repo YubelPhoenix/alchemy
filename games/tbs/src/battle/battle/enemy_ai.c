@@ -155,6 +155,14 @@ select_again:
     break;
   }
 
+  // The optional super bosses think about their pick (boss_ai.c). A boss's
+  // intent applies to the first pick of a turn; its limits to every pick, so
+  // a re-pick after a refused move obeys them too. This only reads the battle:
+  // what the boss did is recorded after its turn was staged. Any other enemy
+  // gets its pick back unchanged. Ash Jenna's punish pick is never touched.
+  if (retry != 0 && punish == 0)
+    selection = BossAI_ChooseSlot(unit, selection, failedChoices == 0);
+
   // A place marked for an item: use the first item held, if any. Once an
   // item is refused, later picks take the place's ability instead.
   useItem = (*itemActionMask >> selection) & 1;
