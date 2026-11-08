@@ -193,7 +193,7 @@ def map_contract():
                         expected = behavior
                 require(tokens[py][px] == expected,
                         f"Worn-path patch {name} misdrawn at ({px},{py})")
-    require(len(module.SCENERY) == 8, "Aster tree roster changed")
+    require(len(module.SCENERY) == 6, "Aster six tree groups changed")
     for name, x, y, sx, sy, w, h in module.SCENERY:
         require(all(rows[yy][xx] == "T"
                     for yy in range(y,y+h) for xx in range(x,x+w)),
@@ -228,8 +228,9 @@ def map_contract():
         "map_layer 0, 128, 16, 16",
     ):
         require(expected in mapspec, f"Aster layer/header mismatch: {expected}")
+    return module
 
-def scene_contract(catalog):
+def scene_contract(catalog, module):
     scene = read(SCENE_PATH)
     imports = read(IMPORT_PATH)
     referenced = set(re.findall(r"\bMsgAster[A-Za-z0-9]+\b", scene))
@@ -262,6 +263,16 @@ def scene_contract(catalog):
     ):
         require(marker in scene and f"EVENT({handler})" in scene,
                 f"Landmark trigger missing: {handler}")
+    # NPC positions in the compiled scene must exactly match map planning
+    # coordinates; an accessible cell in blueprint alone is not enough.
+    actor_data = scene.split("static struct ActorTemplate sAsterActors[] = {",1)
+    require(len(actor_data) == 2, "Aster scene actor list missing")
+    actor_data = actor_data[1].split("{SCENE_TABLE_END}",1)[0]
+    placed = [(int(x),int(y)) for x,y in re.findall(
+        r"PIXELS\((\d+)\),\s*0,\s*PIXELS\((\d+)\),\s*FACING_",actor_data)]
+    expected = [(x*16,y*16) for x,y in module.ACTORS]
+    require(placed == expected,
+            f"NPC scene positions drifted: {placed} != {expected}")
     for flag in re.findall(r"#define ASTER_\w+\s+(FLAG_\w+)", scene):
         require(flag.startswith("FLAG_SCENE_TEMP_"),
                 f"Aster may not mutate permanent story flag: {flag}")
@@ -291,9 +302,9 @@ def main():
     source = dialogue_source(catalog)
     print(f"PASS Aster dialogue: {len(source)} staged entries, "
           f"{len(catalog)} compiled messages, <=27 chars x <=3 lines/page")
-    map_contract()
-    print("PASS Aster map: native Vale grass and six three-layer cottage sections; 8 events")
-    scene_contract(catalog)
+    module = map_contract()
+    print("PASS Aster map: six Golden Sun facades, original street plan and 8 interactions")
+    scene_contract(catalog, module)
     print("PASS Aster scene: compiled references, imports, reserved scene/map rows")
     print("SOURCE AUDIT ONLY: ROM build, rendered tiles, collision, actual "
           "entry/exit and emulator tests remain unverified.")
