@@ -5,6 +5,9 @@ on:
     branches: ['experiment/aster-convergence-town']
     paths:
       - 'tools/aster_layout.py'
+      - 'tools/aster_prepare_messages.py'
+      - 'tools/dark_story_rewrite.py'
+      - 'tools/dark_story/*.tsv'
       - 'tools/aster_dialogue.tsv'
       - 'tools/check_aster.py'
       - 'tools/check_aster_ruin.py'
@@ -40,7 +43,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Check script syntax
-        run: python3 -m py_compile tools/aster_layout.py tools/check_aster.py tools/aster_ruin_variant.py tools/check_aster_ruin.py
+        run: python3 -m py_compile tools/aster_layout.py tools/check_aster.py tools/aster_ruin_variant.py tools/check_aster_ruin.py tools/aster_prepare_messages.py
       - name: Check reproducible exported map
         run: python3 tools/aster_layout.py --check
       - name: Audit Aster map, linked text, scene, actors and flags
@@ -49,6 +52,11 @@ jobs:
         run: |
           python3 tools/aster_ruin_variant.py --check
           python3 tools/check_aster_ruin.py
+      - name: Generate authored Ashfall dialogue and check Aster ID safety
+        run: |
+          python3 tools/aster_prepare_messages.py
+          python3 tools/dark_story_rewrite.py
+          python3 tools/aster_prepare_messages.py --verify
 
   # Full ROM build runs manually, or on a single specifically marked
   # experimental commit. Ordinary Aster changes run only the fast source audit.
@@ -70,6 +78,11 @@ jobs:
           sudo apt-get install -yq --no-install-recommends \
             build-essential binutils-arm-none-eabi pkg-config \
             libpng-dev libutf8proc-dev ccache
+      - name: Generate authored Ashfall messages without shifting Aster IDs
+        run: |
+          python3 tools/aster_prepare_messages.py
+          python3 tools/dark_story_rewrite.py
+          python3 tools/aster_prepare_messages.py --verify
       - name: Generate Ashfall custom battle and scene artwork
         run: |
           python3 -m pip install --break-system-packages Pillow numpy opencv-python-headless
