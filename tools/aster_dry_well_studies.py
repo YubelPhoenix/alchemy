@@ -50,6 +50,27 @@ def make(mode):
                 grid[y][x]=VALE[39][6].split(":")[0]
                 grid[y][x+64]=VALE[2+yy][13+xx+30]
                 grid[y+64][x]=VALE[2+yy][13+xx+60]
+    elif mode=="chimney_only":
+        # Original Golden Sun Vale stone chimney cap + masonry column,
+        # precisely x14..15 y2..4. The adjacent house roof is not copied.
+        for yy in range(3):
+            for xx in range(2):
+                x,y=cx-1+xx,cy-1+yy
+                sx,sy=14+xx,2+yy
+                grid[y][x]=VALE[39][6].split(":")[0]
+                grid[y][x+64]=VALE[sy][sx+30]
+                grid[y+64][x]=VALE[sy+60][sx]
+    elif mode=="stone_cistern":
+        # Use exact native gray cap over a plain brown earth opening.
+        # Structure is 2x2 (32x32 px) atop worn soil, with gray stone
+        # at the front and a dark unwatered cavity behind.
+        for yy in range(2):
+            for xx in range(2):
+                x,y=cx-1+xx,cy+yy
+                grid[y][x]=VALE[39][6].split(":")[0]
+                sx,sy=14+xx,2+yy
+                grid[y][x+64]=VALE[sy][sx+30]
+                grid[y+64][x]=VALE[sy+60][sx]
     else:raise ValueError(mode)
     # Well event stays on original southern interaction (32,35).
     assert grid[35][32]==ORIGINAL[35][32],mode
@@ -61,5 +82,5 @@ def make(mode):
 
 if __name__=="__main__":
     for name in ("porch_stones","stone_rim","stone_rim_b",
-                 "masonry"):
+                 "masonry","chimney_only","stone_cistern"):
         make(name)
