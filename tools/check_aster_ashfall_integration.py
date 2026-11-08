@@ -100,7 +100,8 @@ def main():
     print("PASS: Claude's tactical boss AI matches the tested Ashfall baseline")
     print("PASS: Aster message source IDs do not overwrite the vanilla catalogue")
 
-    checks = ("aster_v14_native_map.py --check",
+    checks = ("check_aster_branch_isolation.py",
+              "aster_v14_native_map.py --check",
               "check_aster_v14.py",
               "check_aster_native_bridge.py",
               "check_aster_native_decor.py",
