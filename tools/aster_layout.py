@@ -67,24 +67,21 @@ BACKGROUND = (GRASS, "15", "15")
 # NEVER on doorstep approaches, arterial routes or the two monuments.
 # name, x, y, src_x, src_y, width, height
 SCENERY = (
-    ("north_west_pine",20, 6,  8, 9, 3, 4),
-    ("north_east_pine",40, 7,  8, 9, 3, 4),
-    ("west_mid_pine",  19,24,  8, 9, 3, 4),
-    ("east_mid_pine",  40,25,  8, 9, 3, 4),
-    ("south_west_tree",19,47, 24,45, 4, 5),
-    ("south_east_tree",40,46, 24,45, 4, 5),
-    ("south_west_pine",20,52, 17,46, 3, 4),
-    ("south_east_pine",41,53, 17,46, 3, 4),
+    # Use a complete, coherent native Vale shrub/tree cluster instead of
+    # the earlier source crop that contained disconnected cliff pieces.
+    ("north_west_tree",20, 6, 24,45, 4,5),
+    ("north_east_tree",40, 7, 24,45, 4,5),
+    ("west_mid_tree",  19,24, 24,45, 4,5),
+    ("east_mid_tree",  40,25, 24,45, 4,5),
+    ("south_west_tree",19,47, 24,45, 4,5),
+    ("south_east_tree",40,46, 24,45, 4,5),
+    ("south_west_shrub",20,52, 24,45, 4,5),
+    ("south_east_shrub",41,52, 24,45, 4,5),
 )
-# Garden grass and floral accents: no movement blocking or impassable cells.
-GARDENS = (
-    ("sealed_yard", 18,13, 11,45, 2,2),
-    ("inn_yard",    42,12, 11,45, 2,2),
-    ("west_yard",   15,31, 11,45, 2,2),
-    ("east_yard",   46,31, 11,45, 2,2),
-    ("shop_yard",   16,51, 11,45, 2,2),
-    ("other_yard",  46,50, 11,45, 2,2),
-)
+# Flower/shrub source patches must be approved visually before placement.
+# The previous six garden stamps included water and other unrelated graphics.
+GARDENS = ()
+
 # Wooden original Vale entrance arch, positioned over the SOUTH road rather
 # than as a decorative object in a random yard. It has NO solid footprint.
 GATE_ARCH = (29,59, 11,50, 6,3)
@@ -239,17 +236,10 @@ def source():
                     a[0] for a in SCENERY} else "")
                 out[dy+yy][dx+xx+64]=vale[sy+yy][sx+xx+30]
                 out[dy+yy+64][dx+xx]=vale[sy+yy][sx+xx+60]
-    # Stone footsteps from a bona fide Vale house approach. Stamp only on
-    # chosen street cells, leaving a continuous safe grass route around them.
-    stone_sources=((14,10),(15,10),(13,10))
-    for y in range(1,63):
-        for x in range(1,63):
-            if LAYOUT[y][x]!="=" or (x+y)%3!=0:
-                continue
-            sx,sy=stone_sources[(2*x+y)%len(stone_sources)]
-            out[y][x]=vale[sy][sx].split(":")[0]
-            out[y][x+64]=vale[sy][sx+30]
-            out[y+64][x]=vale[sy][sx+60]
+    # The earlier repeated Vale source tiles were actually chimney/roof
+    # pixels: pink fragments appeared along all three streets. Paths still
+    # exist as walkable connected routes in LAYOUT, but are intentionally
+    # grass here until we verify a real Vale dirt-path stamp.
     # Vale's actual wooden arch belongs on Aster's exit road. Keeping the
     # original grassy floor passable is intentional: Isaac walks underneath.
     dx,dy,sx,sy,w,h=GATE_ARCH
