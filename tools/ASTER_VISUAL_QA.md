@@ -58,6 +58,13 @@ The repeated home is intentionally a clue to Aster's convergence story.
   one walkable cell south of its roof crop with a continuous spur to the
   primary roads. The source audit checks these geometric relationships.
   Actual character positioning and engine collision remain unverified.
+- **New restrained native flower plots.** Four two-by-two Golden Sun Vale
+  meadow crops now sit beside the occupied western/eastern homes, shop and inn.
+  Initial three-by-three imports had obvious blue leftovers and were rejected
+  after rendering. The corrected crops are intact and visually subtle; they
+  cannot by themselves solve Aster's empty-lawn problem. The northern sealed
+  and duplicate homes deliberately remain unplanted. The source-level audit
+  checks each original three-layer crop and all existing entrance triggers.
 - **No house interiors.** They remain blocked structures with dialogue
   at nearby event tiles, not real rooms.
 - **Connected, three-cell native dirt lanes are now in the map.** Every
