@@ -127,8 +127,8 @@ def main():
         anchor = f"PIXELS({16*x}), 0, PIXELS({16*y})"
         require(actor_table.count(anchor) == 1,
                 f"{name} scene anchor missing/duplicate")
-    require("WORLD_MAP_FROM_VAULT_SOUTH" in scene,
-            "Prototype world return was changed without reciprocal audit")
+    require("SCENE_EXIT(ASTER_TO_WORLD_MAP, WorldMap, 98)" in scene,
+            "Integrated test return must target reserved world entrance 98")
     require("SCENE_EXITS(Aster)" in scene, "Scene exit table was changed")
     require("Scene_Initialize" in scene, "Scene implementation missing")
     for pos in EXPECTED_EVENTS.values():
@@ -199,7 +199,7 @@ def main():
     print("NOT VERIFIED: sprite priorities, collision in engine, world contact,")
     print("Sanctum or house interiors, final water/cliff art, ROM build, emulator")
     print("WARNING: Existing tools/aster_layout.py is the old generator.")
-    print("WARNING: Exit still targets temporary Vault world-map arrival.")
+    print("WARNING: Experimental Aster world entrance 98 still needs emulator terrain QA.")
 
 if __name__ == "__main__":
     main()
