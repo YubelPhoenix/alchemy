@@ -71,7 +71,7 @@ TREES=(
     ("west_yard", 20,25, 4,13),
     ("east_yard", 47,28,17,46),
     ("west_market", 3,42, 4,13),
-    ("market_front", 22,43,17,46),
+    ("market_front", 6,50,17,46),
     ("market_rear", 49,43, 4,13),
     ("gate_west", 11,54,17,46),
     ("gate_east", 45,54, 4,13),
@@ -90,16 +90,16 @@ FLOWERS=(
 SUPPLIES=(
     ("home_jar",19,29,17,5),
     ("east_crate",34,30,17,6),
-    ("shop_supplies",20,49,17,6),
-    ("shop_jar",21,50,17,5),
+    ("shop_supplies",20,42,17,6),
+    ("shop_jar",21,43,17,5),
     ("inn_supply",48,47,17,6),
     ("inn_jar",49,49,17,5),
 )
 # Short native Vale timber-and-flower fence segments. These are fenced
 # productive beds alongside a home or trade building, not freestanding hedges.
 FENCES=(
-    ("west_plot_front",18,34,12,54,4),
-    ("east_plot_front",31,35,12,54,4),
+    ("west_plot_front",18,32,12,54,4),
+    ("east_plot_front",31,29,12,54,4),
     ("shop_front",20,44,12,54,4),
     ("inn_yard_front",31,43,12,54,4),
 )
