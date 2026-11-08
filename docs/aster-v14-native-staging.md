@@ -14,12 +14,12 @@ This isolated branch starts from experiment/aster-convergence-town. It is NOT me
 ## This is NOT finished
 
 - The V13 GIF scenery is a visual prototype; not all original V13 plants are GBA metatiles, so the native map may look different.
-- Shore and cliff shaping is incomplete. Open-water tiles are authentic but selected banks and animation still require emulator art review.
-- Sanctum and additional house plots are collision-reserved but **their approved GIF exteriors are not native stamped**; they have no interiors or checkpoint service.
-- The dry well and memorial are reserved but their native visual art is not final.
+- Shore and cliff shaping is incomplete. The original Vale water/waterfall animation script now links into Map180; the native 9x2 west bridge decking is stamped with unchanged collision, but both still require emulator art review.
+- The Sanctum and additional house have separate indexed native-format compact façade sprites (508/509) attached as scene actors, but their plots remain collision-reserved and have no walkable interiors or checkpoint service.
+- Dry well (506) and memorial (507) have new registered indexed source art and existing story triggers. Sprite rendering, overlap and collision remain unverified in-game.
 - The reciprocal WORLD_MAP_FROM_ASTER transition has not been added. Aster's exit still points to WORLD_MAP_FROM_VAULT_SOUTH and is NOT production-safe.
-- tools/aster_layout.py and tools/check_aster.py remain the old generator/source contract and MUST be migrated before merging; running old generator will overwrite this staged Map180. DO NOT run it on this branch.
-- No build or emulator test was run; use the existing local-only tools/aster_dev_entry.py in a disposable checkout for manual smoke testing after compiler setup.
+- tools/aster_layout.py now refuses to overwrite the V14 native map; tools/check_aster.py dispatches to the dedicated V14 map contract. Do not run any obsolete map generator in write mode.
+- No V14 ROM or emulator test has been run. Use the local-only Aster IPS builder and reversible overworld probe in a disposable checkout, after compiler setup; never test with a real Ashfall save.
 
 ## Safety
 
