@@ -97,41 +97,59 @@ def map_contract():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     generated = module.source()
-    require(read(MAP_PATH) == generated, "Aster map.txt is not generated source")
+    require(read(MAP_PATH) == generated, "Aster map.txt not generated from script")
     rows = module.LAYOUT
-    require(len(rows) == 32 and all(len(row) == 32 for row in rows),
-            "Aster must be 32x32 cells")
-    require(rows[31][15] == "G", "South exit displaced")
-    require(sum(r.count("G") for r in rows) == 1, "Exit should be unique")
-    token_rows = [r.split() for r in generated.splitlines()[1:]]
-    require(len(token_rows) == 32 and all(len(r) == 32 for r in token_rows),
-            "Generated grid has malformed dimensions")
-    for x,y,token,near in (
-        (16,17,"14:e1",(16,16)),
-        (16,11,"14:e2",(16,10)),
-        (6,6,"0:e3",(6,5)),
-    ):
-        require(token_rows[y][x] == token,
-                f"Missing landmark approach behavior at ({x},{y})")
-        require(rows[near[1]][near[0]] in "WMX",
-                f"Landmark at {near} unexpectedly walkable")
-    require(token_rows[31][15] == "0:1", "Missing exit behavior")
-    actors = ((12,16),(20,17),(8,17),(15,24),(24,19),(18,11),(25,21))
-    targets = actors + ((16,17),(16,11),(6,6),(15,31))
+    require(module.SIDE == 64 and len(rows) == 64
+            and all(len(row) == 64 for row in rows),
+            "Aster exterior must be 64x64 cells")
+    require(rows[63][32] == "G" and
+            sum(r.count("G") for r in rows) == 1,
+            "South gate displaced or duplicated")
+    require(all(rows[63][x] == "#" for x in range(64) if x != 32),
+            "Border has an accidental open edge")
+    tokens = [r.split() for r in generated.splitlines()[1:]]
+    require(len(tokens) == 128 and all(len(row) == 128 for row in tokens),
+            "Aster three-layer 128x128 packed grid is malformed")
+    for name, x, y, behavior in module.INTERACTIONS:
+        require(tokens[y][x] == behavior,
+                f"Missing {name} event tile at ({x},{y})")
+        require(rows[y][x] in ".=",
+                f"{name} trigger embedded inside solid facade")
+    require(tokens[63][32] == "56:1", "South gate exit behavior missing")
+    require(len(module.BUILDINGS) == 6, "Aster six facades changed")
+    require(len(module.ACTORS) == 7, "Aster actor roster changed")
+    for name, x, y, sx, sy, w, h, ch in module.BUILDINGS:
+        require(w > 0 and h > 0, f"Empty facade: {name}")
+        require(all(rows[yy][xx] == ch
+                    for yy in range(y, y+h) for xx in range(x, x+w)),
+                f"Facade footprint changed: {name}")
+        require(any(tokens[yy][xx+64] != "0"
+                    for yy in range(y, y+h) for xx in range(x, x+w))
+                or any(tokens[yy+64][xx] != "0"
+                    for yy in range(y, y+h) for xx in range(x, x+w)),
+                f"Copied upper-layer art missing for {name}")
     accessible = set()
-    queue = deque([(15,28)])
+    queue = deque([module.START])
     while queue:
         x,y = queue.popleft()
-        if (x,y) in accessible or not (0 <= x < 32 and 0 <= y < 32):
+        if (x,y) in accessible or not (0 <= x < 64 and 0 <= y < 64):
             continue
-        if rows[y][x] not in ".=nG":
+        if rows[y][x] not in ".=G":
             continue
         accessible.add((x,y))
         queue.extend(((x+1,y),(x-1,y),(x,y+1),(x,y-1)))
-    for point in targets:
-        require(point in accessible, f"Actor/landmark/exit unreachable: {point}")
-    require(not any(point == (15,31) for point in actors),
-            "NPC blocks the south exit")
+    required = [module.EXIT] + list(module.ACTORS)
+    required.extend((x,y) for _,x,y,_ in module.INTERACTIONS)
+    require(all(pos in accessible for pos in required),
+            "Inaccessible actor, gate or building threshold")
+    mapspec = read(ROOT / "games/tbs/src/map/map_180/map.s")
+    for expected in (
+        "map_header 0, 0, 128, 128, 3, 1, 2",
+        "map_layer 0, 0, 16, 16",
+        "map_layer 128, 0, 16, 16",
+        "map_layer 0, 128, 16, 16",
+    ):
+        require(expected in mapspec, f"Aster layer/header mismatch: {expected}")
 
 def scene_contract(catalog):
     scene = read(SCENE_PATH)
@@ -158,6 +176,11 @@ def scene_contract(catalog):
         ("0xe1","Aster_VisitWell"),
         ("0xe2","Aster_VisitMemorial"),
         ("0xe3","Aster_VisitDoor"),
+        ("0xe4","Aster_VisitInnThreshold"),
+        ("0xe5","Aster_VisitWestHomeThreshold"),
+        ("0xe6","Aster_VisitEastHomeThreshold"),
+        ("0xe7","Aster_VisitShopThreshold"),
+        ("0xe8","Aster_VisitDuplicateHomeThreshold"),
     ):
         require(marker in scene and f"EVENT({handler})" in scene,
                 f"Landmark trigger missing: {handler}")
@@ -170,6 +193,8 @@ def scene_contract(catalog):
     require(re.search(r"\bscene Aster,\s*0x3d3,\s*0x47,\s*2,\s*0xba\b", tables),
             "Aster scene map index changed")
     maps = read(ROOT / "games/tbs/src/field/maps.c")
+    require("{{682, 93, 94, 95, 96, 97}}" in maps,
+            "Aster must reference matching Vault tileset/palette resources")
     rows = re.findall(r"\{\{\s*(\d+)(?:\s*,|\s*\})", maps)
     require(len(rows) == 187 and rows[-1] == "682",
             f"Aster map resource is not appended at index 0xba (got {len(rows)} rows)")
@@ -189,7 +214,7 @@ def main():
     print(f"PASS Aster dialogue: {len(source)} staged entries, "
           f"{len(catalog)} compiled messages, <=27 chars x <=3 lines/page")
     map_contract()
-    print("PASS Aster map: 32x32 grid, solid landmarks, reachable events and exit")
+    print("PASS Aster map: 64x64 with 6 layered native facades, 8 events, 7 reachable NPCs")
     scene_contract(catalog)
     print("PASS Aster scene: compiled references, imports, reserved scene/map rows")
     print("SOURCE AUDIT ONLY: ROM build, rendered tiles, collision, actual "
