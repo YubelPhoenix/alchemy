@@ -4,6 +4,52 @@
 alternate version. The settlement's contradictions emerge through people,
 doors, records and dialogue, not visibly apocalyptic terrain.
 
+## 2026-11-07 visual rejection — activity/forest/pond prototype
+
+**FAILED. DO NOT SHIP OR INTEGRATE.** The rendered
+`tools/aster_lived_in_activity.png` is not a believable Golden Sun
+settlement. Six isolated houses sit in a largely undifferentiated grass
+field. Too-wide roads, floating/stacked supply props, missing central
+landmark, a rectangular pond with broken lower banks, random
+foliage/shadow fragments and a synthetic border of intersecting
+treetops all fail the standard established by the user's actual
+Ashfall town maps.
+
+The source collision checker was not a visual-polish check. The
+placement log reported **one accepted new 2x2 garden, nine supplies,
+seven flower cells, zero new fence groups**; eight additional gardens,
+multiple household supplies and all four planned fence sections were
+rejected. The render therefore has more small jars but no functioning
+residential courtyards or meaningful cultivated land.
+
+**This invalidates the earlier 'positive result' endorsement of the
+forest synthesis as an accepted layout.** Technically original native
+pixels are not enough: arbitrary tile-edge matching produces
+disconnected leaves, shadow artifacts and trees that do not respect
+individual silhouettes. The pond similarly must be composed from
+complete coherent shoreline contours, not a flat fill of water
+metatiles inside an arbitrary rectangle.
+
+**Required new workflow:**
+- Stop the automatic forest synthesis, automatic prop sprinkling and
+  copy/paste tile-card studies; keep the generated files archived,
+  never display them as the latest approved town.
+- First manually design one realistic Golden Sun district at a time,
+  in a connected map editor/source layout with clear terrain transitions.
+  Use provided Ashfall city maps as benchmarks for each district.
+- Build complete residential plots and commercial frontage with
+  authentic source-identifiable well/water, garden, storage and fence
+  art; validate complete silhouettes and neighboring pixels in the
+  rendered image before inserting more objects.
+- Require verified entrance approaches, corridor widths, scene
+  event/NPC coordinates, playable collision and proper sprite layering.
+  Automated occupancy/flood-fill is a necessary guard, not quality proof.
+- Do not change live Map180 or `aster.c` from this rejected image.
+
+The GitHub native-preview workflow is restored to rendering only the
+existing active map and verified live domestic props. The rejected
+life-first and ecology preview source files are retained for reference.
+
 ## Why the original Aster failed
 
 The user supplied the Ashfall city/town map archive as a visual standard.
