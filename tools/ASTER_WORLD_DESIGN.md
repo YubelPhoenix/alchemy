@@ -68,6 +68,11 @@ unequal branches rather than Vale's original winding house placements.
 | Dry well, incomplete art | (32,34) | Gathering place and convergence clue; interaction at (32,35) |
 | South gate | (32,63) | Experimental exit only; no reciprocal world map arrival yet |
 
+The currently inhabited western and eastern homes and southern market
+have four small native household props and two short fenced beds, unlike
+the sparse and unsettled northern pair. This is deliberate environmental
+storytelling, not an attempt to recreate Vale's layout.
+
 The normal map includes six recognizable buildings and their individual
 connected front-door approaches. Eight scene behaviors `0xe1–0xe8` remain
 wired. Seven NPC positions are verified against the scene source.
