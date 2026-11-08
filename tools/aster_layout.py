@@ -27,23 +27,24 @@ BUILDINGS=(
 )
 # Outdoor step-on locations. House interiors are still a separate task.
 INTERACTIONS=(
-    ("memorial", 32, 14,  "2b:e2"),
-    ("well", 32, 35,  "2b:e1"),
-    ("sealed_house", 8, 19,  "2b:e3"),
-    ("inn", 53, 19,  "2b:e4"),
-    ("western_home", 8, 40,  "2b:e5"),
-    ("eastern_home", 55, 40,  "2b:e6"),
-    ("shop", 8, 60,  "2b:e7"),
-    ("duplicate_home", 55, 60,  "2b:e8"),
+    ("memorial", 32, 14,  "ba:e2"),
+    ("well", 32, 35,  "ba:e1"),
+    ("sealed_house", 8, 19,  "ba:e3"),
+    ("inn", 53, 19,  "ba:e4"),
+    ("western_home", 8, 40,  "ba:e5"),
+    ("eastern_home", 55, 40,  "ba:e6"),
+    ("shop", 8, 60,  "ba:e7"),
+    ("duplicate_home", 55, 60,  "ba:e8"),
 )
 ACTORS=((26,33),(49,21),(23,34),(35,39),(45,34),(36,13),(41,34))
 WELL=(32,34)
 MEMORIAL=(32,13)
 EXIT=(32,63)
 START=(32,61)
-# Vale's original map background/grass fill (0x2b). Never use 0xba here:
-# it is a foliage metatile and fills the town with repeating leaf sprites.
-GRASS="2b"
+# Native Vale repeated open-grass *triple* (ground 0xba, middle 0x15,
+# overhead 0x15). Metatile 0xba alone is NOT grass; it needs the original
+# two background layers to render correctly. 0x2b is not a valid grass fix.
+GRASS="ba"
 
 def load_vale():
     lines=NATIVE.read_text(encoding="utf-8").splitlines()
@@ -126,6 +127,11 @@ def source():
             elif mark=="G":out[y][x]=GRASS+":1"
             elif mark in "MW":out[y][x]=GRASS+":ff"
             else:out[y][x]=GRASS
+            # These exact two overlay metatiles are required for the
+            # grass seen in unaltered Vale; copying ground only exposes
+            # its underlying foliage pattern and makes the terrain tile.
+            out[y][x+64]="15"
+            out[y+64][x]="15"
     for _,dx,dy,sx,sy,w,h,_ in BUILDINGS:
         for yy in range(h):
             for xx in range(w):
