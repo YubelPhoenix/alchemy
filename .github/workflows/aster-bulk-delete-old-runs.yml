@@ -1,7 +1,7 @@
 name: One-time old GitHub Actions run history cleanup
 
 # Source game files and artifacts are never edited by this workflow.
-# Only this exact one-time commit message on the Aster staging branch triggers it.
+# A deliberately requested second cleanup pass; serialized behind the first.
 on:
   push:
     branches:
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - name: Wait for prior artifact cleanup, then delete old completed runs
+      - name: Wait for the first run-history cleanup, then remove remaining old runs
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -54,21 +54,21 @@ jobs:
                   payload = response.read()
                   return json.loads(payload) if payload else None
 
-          # First cleanup removes stored artifacts. Never remove their run
-          # histories while deletion is in progress.
-          cleanup_id = 42530345779
+          # Wait until the FIRST run-history cleanup has finished.
+          # The concurrency group also serializes both cleanup runs.
+          cleanup_id = 42530992542
           for attempt in range(80):
               cleanup = api(f"/actions/runs/{cleanup_id}")
               status = cleanup["status"]
               if status == "completed":
                   if cleanup["conclusion"] != "success":
-                      raise SystemExit("Artifact cleanup failed: refusing run deletion")
-                  print("Earlier artifact cleanup confirmed successful.", flush=True)
+                      raise SystemExit("Prior run-history cleanup failed: refusing overlapping deletions")
+                  print("First run-history cleanup confirmed successful.", flush=True)
                   break
-              print(f"Artifact cleanup status: {status}; waiting", flush=True)
+              print(f"Prior run-history cleanup status: {status}; waiting", flush=True)
               time.sleep(10)
           else:
-              raise SystemExit("Prior cleanup did not finish within safe window")
+              raise SystemExit("First run-history cleanup did not finish within safe window")
 
           runs = []
           page = 1
@@ -85,7 +85,7 @@ jobs:
           # Explicit preservation of working Ashfall IPS, backup, Aster
           # reference preview and last successful Aster compile.
           keep = {42510772750, 42508384926, 42505034836,
-                  42458272143, 42439316908, 42530345779, current_id}
+                  42458272143, 42439316908, 42530345779, 42530992542, current_id}
           # Keep the 12 most recent workflow records for troubleshooting.
           keep.update(r["id"] for r in runs[:12])
           # Preserve the most recent successful record of each workflow type.
