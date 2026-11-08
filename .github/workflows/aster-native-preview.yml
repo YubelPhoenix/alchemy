@@ -75,6 +75,7 @@ jobs:
             tools/aster_lived_in_activity.png
             tools/aster_lived_in_activity_labels.png
             tools/aster_lived_in_activity_focus.png
+            tools/aster_activity_placement_report.json
           retention-days: 10
       - name: Commit reproducible previews to experimental branch
         run: |
@@ -84,7 +85,7 @@ jobs:
             tools/aster_visual_review*.png tools/aster_domestic_yards*.png \
             tools/aster_water_shore*.png tools/aster_lived_in_ecology*.png \
             tools/aster_forest_synthesis*.png \
-            tools/aster_lived_in_activity*.png
+            tools/aster_lived_in_activity*.png tools/aster_activity_placement_report.json
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
