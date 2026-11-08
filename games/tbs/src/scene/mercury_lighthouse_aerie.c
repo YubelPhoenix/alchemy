@@ -951,7 +951,7 @@ static void MercuryLighthouseAerie_ConfrontSaturos(void) {
   Event_WaitFrames(20);
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 20);
   Actor_WalkToAndWait(ACTOR_SATUROS, 336, 216);
-  // Mia stops the fight before it begins; Saturos is fought after her duel.
+  // Mia interrupts the standoff to pursue Menardi; the others face Saturos.
   MercuryLighthouseAerie_MiaInterrupts();
 }
 
@@ -983,8 +983,8 @@ static void MercuryLighthouseAerie_DarkMiaSays(void) {
 /// from the battle, unless returning after another: Saturos is beaten and
 /// can barely stand. "Isaac, we got him!" Saturos admits he was weakened and
 /// that Menardi already waits at the beacon with the Elemental Stars and
-/// the captives. He warps away. Mia, who went ahead after her duel with Isaac,
-/// is the party alone from here and the aerie is entered again at
+/// the captives. He warps away. Mia, who pursued Menardi while the others
+/// fought Saturos, acts alone from here; the aerie is entered again at
 /// MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE.
 static void MercuryLighthouseAerie_SaturosFallsAndMiaRuns(void) {
 
@@ -1089,9 +1089,9 @@ static void MercuryLighthouseAerie_PlaceForConfrontation(void) {
   Event_WaitFrames(40);
 }
 
-/// Mia challenges Isaac's judgment, but they agree to cooperate rather
-/// than fight while Menardi escapes with the hostages. The existing
-/// aftermath entrance handles Mia's pursuit and the Saturos battle.
+/// With Menardi escaping with Jenna and Kraden, Mia and Isaac decide to
+/// split up. Mia pursues the hostages while Isaac, Garet, and Ivan hold
+/// Saturos here; the aftermath entrance handles their separation.
 static void MercuryLighthouseAerie_MiaInterrupts(void) {
   Actor_ShowEmote(ACTOR_MIA, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 60);
   Event_SetMessageId(MsgDarkDuelMiaStops);
@@ -1101,13 +1101,13 @@ static void MercuryLighthouseAerie_MiaInterrupts(void) {
   FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   MercuryLighthouseAerie_DarkMiaSays();
   FieldEvent_ShowMessageThenWait(ACTOR_SATUROS, 0, 20);
-  // Mia chooses to trust Isaac rather than force a duel while hostages flee.
+  // They split up without a duel; Mia goes after Menardi and the hostages.
   Import_EventSetExitRequest(MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_AFTERMATH);
   Event_End();
 }
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY: Isaac fell to
-/// Mia, the party is whole again and the quarrel plays again.
+/// Mia, the party is whole again and their decision to split up replays.
 static void MercuryLighthouseAerie_DuelRetry(void) {
   Event_Start();
   MercuryLighthouseAerie_PlaceForConfrontation();
@@ -1136,8 +1136,8 @@ static void MercuryLighthouseAerie_DuelWon(void) {
 }
 
 /// Lighthouse Aerie, at MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH: the party
-/// sees Mia choose to trust Isaac and pursue Menardi to protect the
-/// hostages. Isaac, Garet and Ivan remain to confront Saturos.
+/// sees Mia depart in pursuit of Menardi and the hostages.
+/// Isaac, Garet and Ivan remain to confront Saturos.
 static void MercuryLighthouseAerie_MiaYields(void) {
   Event_Start();
   MercuryLighthouseAerie_PlaceForConfrontation();
