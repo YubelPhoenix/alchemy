@@ -43,6 +43,7 @@ ADDED = set([
   "tools/aster_v14_native_snapshot.json",
   "tools/check_aster_ashfall_integration.py",
   "tools/check_aster_branch_isolation.py",
+  "tools/check_aster_overworld_contract.py",
   "tools/check_aster_native_bridge.py",
   "tools/check_aster_native_decor.py",
   "tools/check_aster_native_foliage.py",
