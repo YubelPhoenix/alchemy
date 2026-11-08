@@ -7,6 +7,12 @@ on:
     paths:
       - 'tools/aster_handbuilt_residential.py'
       - '.github/workflows/aster-handbuilt-residential.yml'
+  pull_request:
+    branches:
+      - experiment/aster-convergence-town
+    paths:
+      - 'tools/aster_handbuilt_residential.py'
+      - '.github/workflows/aster-handbuilt-residential.yml'
   workflow_dispatch:
 
 permissions:
@@ -40,6 +46,7 @@ jobs:
             tools/aster_handbuilt_residential_report.json
           retention-days: 14
       - name: Commit draft previews to same experimental branch
+        if: github.event_name == 'push'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
