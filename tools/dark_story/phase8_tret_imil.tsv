@@ -30,7 +30,7 @@
 05333	message	I remember the axes.\nThen nothing but anger.{end_wait}
 05335	message	Thank you. I couldn't bear\nto die as that thing.{end_wait}
 05336	message	My roots are failing.\nThere's little time left.{page_break}Go. I'll remember\nwhat you did for me.{end_wait}
-05340	message	If you've come to save me,\nI'm afraid you're too late.{end_now}
+05340	message	Do you still need\nmy help?{end_now}
 05344	message	Then I must free them.\nThey won't die\nfor my anger.{end_wait}
 05345	message	I can't reach them.\nMy strength won't carry\nthat far anymore.{end_wait}
 05361	message	Your branches are moving.\nThe forest is healing!{end_wait}
