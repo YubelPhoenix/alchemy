@@ -114,7 +114,7 @@ jobs:
                   removed_bytes += int(a["size_in_bytes"])
                   if success % 20 == 0:
                       print(f"Deleted {success} artifacts; approx {removed_bytes/1_000_000:.1f} MB")
-              time.sleep(0.23)
+              time.sleep(0.55)
 
           print(f"DONE deleted={success} failed={failed} storage_freed_estimate_MB={removed_bytes/1_000_000:.1f}")
           print("No builds were run; no artifacts uploaded. Account billing may update later.")
