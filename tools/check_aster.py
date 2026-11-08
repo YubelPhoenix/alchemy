@@ -163,21 +163,32 @@ def map_contract():
                 for y in range(gate_y,gate_y+gate_h)
                 for x in range(gate_x,gate_x+gate_w)),
             "South gate arch overlays a building or solid obstruction")
-    # The user explicitly rejected a Vale Psynergy Stone. Keep the ordinary
-    # remembrance site and its event, but NEVER the original crystal shrine.
+    # The user explicitly banned the Psynergy Stone. The only graphic on
+    # the memorial is the ordinary Vale fence-and-flower strip. Every tile
+    # is grounded in the original nonmagical source coordinates, with
+    # unpainted grass behind it, and no imported shrine or crystal.
     require(not hasattr(module, "MEMORIAL_ART"),
-            "Rejected Psynergy shrine was reintroduced to Aster")
-    mx,my,mw,mh = module.MEMORIAL_RESERVED
+            "Rejected Psynergy shrine reintroduced to Aster")
+    mx,my,mw,mh=module.MEMORIAL_RESERVED
+    gx,gy,sx,sy,gw,gh=module.MEMORIAL_GARDEN
+    require((sx,sy,gw,gh)==(10,53,9,2),
+            "Memorial garden changed without visual approval")
     require(mx <= module.MEMORIAL[0] < mx+mw and
-            my+mh == module.INTERACTIONS[0][2],
-            "Memorial reservation and south interaction do not align")
+            my+mh==module.INTERACTIONS[0][2],
+            "Memorial reservation and approach do not align")
     require(rows[module.MEMORIAL[1]][module.MEMORIAL[0]] == "M",
-            "Memorial needs a reserved non-walkable center")
+            "Remembrance garden must have a reserved center")
     for dy in range(mh):
         for dx in range(mw):
-            require(tokens[my+dy][mx+dx+64] == "15" and
-                    tokens[my+dy+64][mx+dx] == "15",
-                    "No Psynergy crystal or magic shrine may appear on memorial")
+            x,y=mx+dx,my+dy
+            if gx <= x < gx+gw and gy <= y < gy+gh:
+                require(tokens[y][x+64] == native[sy+y-gy][sx+x-gx+30]
+                        and tokens[y+64][x] ==
+                        native[sy+y-gy][sx+x-gx+60],
+                        "Remembrance garden art drifted from original fence")
+            else:
+                require(tokens[y][x+64]=="15" and tokens[y+64][x]=="15",
+                        "Unexpected magical shrine or foreign tile at memorial")
     require(len(module.PATH_PATCHES) == 3,
             "Worn ground patches count has changed without visual approval")
     for name,dx,dy,sx,sy,w,h in module.PATH_PATCHES:
