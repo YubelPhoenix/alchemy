@@ -81,9 +81,16 @@ SCENERY = (
     ("market_tree_w",22,45, 24,45, 4,5),
     ("market_tree_e",56,47, 24,45, 4,5),
 )
-# Flower/shrub source patches must be approved visually before placement.
-# The previous six garden stamps included water and other unrelated graphics.
-GARDENS = ()
+# Small original Vale south-meadow wildflower patches, not foreign props.
+# Domestic gardens near occupied homes and shops contrast with the deliberately
+# sparse sealed and duplicate houses in the northern district.
+# Name, destination, source Vale origin, width/height in 16px cells.
+GARDENS = (
+    ("west_cottage",17,34,10,47,3,3),
+    ("east_cottage",45,36,12,46,3,3),
+    ("shop_herbs",17,50,9,46,3,3),
+    ("inn_flowers",38,53,14,47,3,3),
+)
 
 # Wooden original Vale entrance arch, positioned over the SOUTH road rather
 # than as a decorative object in a random yard. It has NO solid footprint.
