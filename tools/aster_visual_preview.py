@@ -24,15 +24,16 @@ SIDE = 64
 IMAGE = SIDE * CELL
 EMPTY_BG = (129, 0, 135, 255)  # visible missing-ground diagnostic
 LOCATIONS = {
-    "Sealed house": (11, 12),
-    "Inn": (49, 12),
-    "West home": (9, 33),
-    "East home": (54, 33),
-    "Shop": (9, 53),
-    "Duplicate": (54, 53),
-    "Memorial": (32, 14),
-    "Well": (32, 35),
-    "Gate": (32, 62),
+    "Sealed house": (12,13),
+    "Inn": (47,54),
+    "West home": (12,35),
+    "East home": (53,36),
+    "Shop": (11,54),
+    "Duplicate": (52,14),
+    "Memorial": (32,14),
+    "Well": (32,35),
+    "Gate": (32,62),
+
 }
 
 def load_tiles():
