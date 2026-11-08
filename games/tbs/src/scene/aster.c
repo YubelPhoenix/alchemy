@@ -1,6 +1,6 @@
 /// @file
 /// Aster, an experimental town caught between two incompatible histories.
-/// Not yet connected to the overworld; no permanent flags or rewards.
+/// Experimental two-way overworld test only; no permanent flags or rewards.
 #include "types.h"
 #include "field.h"
 #include "scene_tables.h"
@@ -219,7 +219,7 @@ static struct SceneEntrance sAsterEntrances[] = {
    0, -1, -1, -1, -1, 0},
   {SCENE_TABLE_END},
 };
-/// Temporary debug-exit destination, not Aster's final overworld position.
+/// Experimental return entrance 98; walkability and arrival unverified.
 static u32 sAsterExits[] = {
   SCENE_EXITS(Aster),
   SCENE_EXIT(ASTER_TO_WORLD_MAP, WorldMap, 98),
