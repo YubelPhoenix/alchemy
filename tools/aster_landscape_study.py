@@ -19,7 +19,7 @@ LABELLED=ROOT/"tools/aster_landscape_study_labels.png"
 # deliberately unsettling northern houses remain sparse.
 FLOWER_TESTS=(
     ("west_cottage", 17,34,10,47,3,3),
-    ("east_cottage", 45,37,12,46,3,3),
+    ("east_cottage", 45,36,12,46,3,3),
     ("shop_herbs", 17,50,9,46,3,3),
     ("inn_flowers", 38,53,14,47,3,3),
 )
