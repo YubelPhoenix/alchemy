@@ -163,6 +163,37 @@ def map_contract():
                 for y in range(gate_y,gate_y+gate_h)
                 for x in range(gate_x,gate_x+gate_w)),
             "South gate arch overlays a building or solid obstruction")
+    # The memorial must appear north of the step trigger and preserve its
+    # real Vale upper-layer graphics. A floating dialogue marker is not enough.
+    mx, my, msx, msy, mw, mh = module.MEMORIAL_ART
+    require(mx <= module.MEMORIAL[0] < mx + mw and
+            my + mh <= module.INTERACTIONS[0][2],
+            "Visible shrine must stand immediately before memorial approach")
+    require(rows[module.MEMORIAL[1]][module.MEMORIAL[0]] == "M",
+            "Memorial stone must have a blocked center")
+    for dy in range(mh):
+        for dx in range(mw):
+            require(tokens[my+dy][mx+dx+64] ==
+                    native[msy+dy][msx+dx+30],
+                    "Memorial copied upper map layer differs from original Vale")
+            require(tokens[my+dy+64][mx+dx] ==
+                    native[msy+dy][msx+dx+60],
+                    "Memorial roof-layer graphics drifted from original Vale")
+    require(len(module.PATH_PATCHES) == 3,
+            "Worn ground patches count has changed without visual approval")
+    for name,dx,dy,sx,sy,w,h in module.PATH_PATCHES:
+        for off_y in range(h):
+            for off_x in range(w):
+                px, py = dx+off_x, dy+off_y
+                require(rows[py][px] not in "#XIHSVTMW",
+                        f"Ground wear {name} covers a prop/house")
+                native_ground = native[sy+off_y][sx+off_x].split(":")[0]
+                expected = native_ground
+                for _, ix, iy, behavior in module.INTERACTIONS:
+                    if (px,py)==(ix,iy):
+                        expected = behavior
+                require(tokens[py][px] == expected,
+                        f"Worn-path patch {name} misdrawn at ({px},{py})")
     require(len(module.SCENERY) == 8, "Aster tree roster changed")
     for name, x, y, sx, sy, w, h in module.SCENERY:
         require(all(rows[yy][xx] == "T"
