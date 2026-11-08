@@ -55,12 +55,9 @@ jobs:
           python3 tools/aster_native_asset_study.py
           python3 tools/aster_path_studies.py
           python3 tools/aster_native_metatile_catalog.py
-          python3 tools/aster_tree_study.py
           python3 tools/aster_landscape_study.py
-          python3 tools/aster_perimeter_study.py
           python3 tools/aster_tree_crop_atlas.py
           python3 tools/aster_foliage_refinement_atlas.py
-          python3 tools/aster_native_woodland_study.py
           python3 tools/aster_dry_well_studies.py
       - name: Keep PNGs available without changing the game
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
