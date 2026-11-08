@@ -36,23 +36,35 @@ LOCATIONS = {
 }
 
 def load_tiles():
-    atlas = []
+    # These 256x128 PNGs encode 512 8x8 tiles each:
+    # a -> GBA charblock 1, b -> charblock 2, c -> charblock 3.
+    # d is in animation RAM and is not a fourth ordinary charblock.
+    # See MapGrid_LoadMap in games/tbs/src/field/field/map_grid.c.
+    blocks = {}
     source_sizes = {}
-    for name in ("tiles_a", "tiles_b", "tiles_c", "tiles_d"):
+    for block, name in ((1, "tiles_a"), (2, "tiles_b"),
+                        (3, "tiles_c")):
         path = BASE / (name + ".png")
         raw = Image.open(path)
         if raw.mode != "P":
-            raise AssertionError(f"{name}: expected native indexed PNG, got {raw.mode}")
-        if raw.width % 8 or raw.height % 8:
-            raise AssertionError(f"{name}: tile image dimensions not divisible by 8")
-        source_sizes[name] = (raw.width, raw.height)
+            raise AssertionError(f"{name}: native indexed PNG required")
+        if raw.size != (256,128):
+            raise AssertionError(f"{name}: unexpected source size {raw.size}")
+        tiles = []
         for y in range(0, raw.height, 8):
             for x in range(0, raw.width, 8):
-                atlas.append(raw.crop((x,y,x+8,y+8)))
+                tiles.append(raw.crop((x,y,x+8,y+8)))
+        assert len(tiles) == 512
+        blocks[block] = tiles
+        source_sizes[name] = raw.size
+    # The fourth sheet is tiles for the game's animation script; its
+    # imagery does not occupy a static background charblock.
+    source_sizes["tiles_d_animation"] = Image.open(
+        BASE / "tiles_d.png").size
     pal = Image.open(BASE / "palette.png").convert("RGB")
     if pal.width != 16:
-        raise AssertionError("Expected Golden Sun palette 16 colors wide")
-    return atlas, pal, source_sizes
+        raise AssertionError("Expected 16 background palette pens")
+    return blocks, pal, source_sizes
 
 def load_metatiles():
     with METATILES.open(encoding="utf-8", newline="") as f:
@@ -73,72 +85,82 @@ def load_map():
         raise AssertionError("Expected full 128x128 source grid")
     return rows
 
-def decode_tile(entry, atlas, pal, problems, cache):
-    if entry in cache:
-        return cache[entry]
-    # Hardware screen-block tile attributes:
-    # bits 0-9 tile number, 10 horizontal flip, 11 vertical flip,
-    # 12-15 background palette bank.
+def decode_tile(entry, blocks, pal, problems, cache, charbase):
+    cache_key=(entry,charbase)
+    if cache_key in cache:
+        return cache[cache_key]
     idx = entry & 0x3ff
     hf = bool(entry & 0x400)
     vf = bool(entry & 0x800)
     bank = (entry >> 12) & 15
-    if idx >= len(atlas) or bank >= pal.height:
-        problems.add((idx,bank))
-        return Image.new("RGBA", (8,8), (255, 0, 80, 220))
-    tile = atlas[idx]
+    # GBA BG CNT character base is in 16 KiB blocks. A 4bpp tile is
+    # 32 bytes, giving 512 tile numbers per block. The game's three
+    # imported static sheets occupy blocks 1,2,3. Block 0 is not
+    # loaded from Map180 and is represented as transparent here.
+    block=charbase+idx//512
+    local=idx%512
+    if block == 0:
+        return Image.new("RGBA",(8,8),(0,0,0,0))
+    if block not in blocks or bank >= pal.height:
+        problems.add((block,local,bank))
+        return Image.new("RGBA",(8,8),(255,0,80,220))
+    tile=blocks[block][local]
     if hf:
-        tile = tile.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        tile=tile.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
     if vf:
-        tile = tile.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
-    color = [pal.getpixel((c,bank)) for c in range(16)]
-    image = Image.new("RGBA", (8,8), (0,0,0,0))
-    source = tile.load()
-    dest = image.load()
+        tile=tile.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+    colors=[pal.getpixel((c,bank)) for c in range(16)]
+    image=Image.new("RGBA",(8,8),(0,0,0,0))
+    source=tile.load()
+    dest=image.load()
     for y in range(8):
         for x in range(8):
-            n = source[x,y]
-            if n != 0:
-                dest[x,y] = (*color[n],255)
-    cache[entry] = image
+            n=source[x,y]
+            if n:
+                dest[x,y]=(*colors[n],255)
+    cache[cache_key]=image
     return image
 
-def render_metatile(value, metatiles, atlas, palette, problems, cache):
+def render_metatile(value, metatiles, blocks, palette, problems,
+                    cache, charbase):
     if value == 0xfff:
         return None
     if value < 0 or value >= len(metatiles):
         problems.add(("metatile",value))
         return Image.new("RGBA",(16,16),(255,0,80,220))
-    cells = metatiles[value]
-    output = Image.new("RGBA",(16,16),(0,0,0,0))
-    for entry, (x,y) in zip(cells,[(0,0),(8,0),(0,8),(8,8)]):
-        output.alpha_composite(decode_tile(entry,atlas,palette,problems,cache),(x,y))
+    cells=metatiles[value]
+    output=Image.new("RGBA",(16,16),(0,0,0,0))
+    for entry,(x,y) in zip(cells,[(0,0),(8,0),(0,8),(8,8)]):
+        output.alpha_composite(
+            decode_tile(entry,blocks,palette,problems,cache,charbase),
+            (x,y))
     return output
 
 def make(out=OUT, annotated=ANNOTATED):
-    atlas, palette, sizes = load_tiles()
+    blocks, palette, sizes = load_tiles()
     meta = load_metatiles()
     cells = load_map()
     bad = set()
     cache = {}
     meta_cache = {}
-    def draw_cell(canvas, token, x, y):
+    def draw_cell(canvas, token, x, y, charbase):
         # Only a 12-bit map metatile index is visible; behavior/shape go to
         # field movement and events rather than tile graphics.
         value = int(token.split(":")[0],16) & 0x0fff
-        if value not in meta_cache:
-            meta_cache[value] = render_metatile(
-                value,meta,atlas,palette,bad,cache)
-        image = meta_cache[value]
+        key=(value,charbase)
+        if key not in meta_cache:
+            meta_cache[key] = render_metatile(
+                value,meta,blocks,palette,bad,cache,charbase)
+        image = meta_cache[key]
         if image is not None:
             canvas.alpha_composite(image,(x*CELL,y*CELL))
     canvas = Image.new("RGBA",(IMAGE,IMAGE),EMPTY_BG)
     # Render only current Aster layer windows. The alpha mode is a basic
     # source preview and not a precise emulation of BG priority or blending.
-    for delta_x,delta_y in ((0,0),(64,0),(0,64)):
+    for delta_x,delta_y,charbase in ((0,0,0),(64,0,2),(0,64,2)):
         for y in range(SIDE):
             for x in range(SIDE):
-                draw_cell(canvas,cells[y+delta_y][x+delta_x],x,y)
+                draw_cell(canvas,cells[y+delta_y][x+delta_x],x,y,charbase)
     canvas.convert("RGB").save(out,optimize=True)
     labels = canvas.copy()
     d = ImageDraw.Draw(labels,"RGBA")
@@ -154,7 +176,7 @@ def make(out=OUT, annotated=ANNOTATED):
     print("Aster native source renderer.")
     print("NOT emulator output; does not verify compiled ROM or game collisions.")
     print(f"Tile source images: {sizes}")
-    print(f"Image tiles in atlas: {len(atlas)}; metatile rows: {len(meta)}")
+    print(f"Image tiles in atlas: {sum(len(v) for v in blocks.values())}; metatile rows: {len(meta)}")
     print(f"Unmapped graphics indexes and palettes: {sorted(bad,key=str)[:40]}")
     print(f"Rendered: {out} | annotated: {annotated}")
     if bad:
