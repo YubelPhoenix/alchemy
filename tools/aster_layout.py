@@ -94,6 +94,10 @@ GATE_ARCH = (29,59, 11,50, 6,3)
 # Current script trigger and protected patch remain while we test native
 # fencing, stones or wooden markers for a different final silhouette.
 MEMORIAL_RESERVED = (30,8,5,6)
+# Nonmagical remembrance garden: wildflowers and wooden slats from Vale's
+# ordinary village fence, with the gate arch excluded. Different silhouette
+# and placement from any original Vale monument or Psynergy landmark.
+MEMORIAL_GARDEN = (28,11, 10,53, 9,2)
 
 # Worn ground around logical gathering points. Each contiguous 5x5
 # piece uses *only the ground plane* of Vale's original small dirt patch;
@@ -274,8 +278,13 @@ def source():
                 gx,gy=dx+xx,dy+yy
                 assert LAYOUT[gy][gx] not in "#XIHSVTMW"
                 out[gy][gx]=vale[sy+yy][sx+xx].split(":")[0]
-    # Memorial upper layers deliberately stay ordinary grass until the
-    # non-magical monument arrangement passes the visual review.
+    # Aster's remembrance garden is a physical row of native village
+    # flowers and wooden fencing. NO Psynergy Stone or crystalline monument.
+    gx,gy,sx,sy,w,h=MEMORIAL_GARDEN
+    for yy in range(h):
+        for xx in range(w):
+            out[gy+yy][gx+xx+64]=vale[sy+yy][sx+xx+30]
+            out[gy+yy+64][gx+xx]=vale[sy+yy][sx+xx+60]
     # Vale's actual wooden arch belongs on Aster's exit road. Keeping the
     # original grassy floor passable is intentional: Isaac walks underneath.
     dx,dy,sx,sy,w,h=GATE_ARCH
