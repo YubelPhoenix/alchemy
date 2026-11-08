@@ -124,13 +124,12 @@ def map_contract():
     require(len(module.BUILDINGS) == 6, "Aster six facades changed")
     require(len(module.ACTORS) == 7, "Aster actor roster changed")
     native = module.load_vale()
-    # Source fidelity: every copied wall/roof cell comes directly from the
-    # original Golden Sun Map019 layers. No cross-game art or invented tile
-    # identifiers can silently enter the six house footprints.
+    # Original Golden Sun Vale walls and roofs are copied exactly.
+    # The ground under houses is native grass, never imported cliffs.
     require(tokens[1][1] == "ba",
             "Open lawn must use native Vale green terrain, not an empty metatile")
     require(tokens[20][25] == "ba",
-            "Village path may not use Vault's incompatible path tiles")
+            "Aster may not use the rejected unrelated street tile")
     for name, x, y, sx, sy, w, h, ch in module.BUILDINGS:
         require(w > 0 and h > 0, f"Empty facade: {name}")
         require(all(rows[yy][xx] == ch
@@ -138,15 +137,37 @@ def map_contract():
                 f"Facade footprint changed: {name}")
         for dy in range(h):
             for dx in range(w):
-                native_ground = native[sy+dy][sx+dx].split(":")[0]
-                require(tokens[y+dy][x+dx] == native_ground + ":ff",
-                        f"Foreign or altered ground tile in {name} at ({dx},{dy})")
+                require(tokens[y+dy][x+dx] == "ba:ff",
+                        f"House must use Vale grass under facade: {name} at ({dx},{dy})")
                 require(tokens[y+dy][x+dx+64] ==
                         native[sy+dy][sx+dx+30],
                         f"Foreign or altered middle layer in {name}")
                 require(tokens[y+dy+64][x+dx] ==
                         native[sy+dy][sx+dx+60],
                         f"Foreign or altered overhead layer in {name}")
+    # No door event may float in front of a different building or on
+    # a disconnected route; all six thresholds lie one cell south of roof.
+    for name, x, y, behavior in module.DOOR_APPROACHES:
+        homes = [b for b in module.BUILDINGS if b[0] == name]
+        require(len(homes) == 1, f"Unknown house threshold: {name}")
+        _, hx, hy, sx, sy, w, h, _ = homes[0]
+        require(hx <= x < hx+w and y == hy+h,
+                f"{name} entrance misaligned with facade")
+        require(tokens[y][x] == behavior,
+                f"{name} doorstep has no matching scene trigger")
+    require(len(module.SCENERY) == 8, "Aster tree roster changed")
+    for name, x, y, sx, sy, w, h in module.SCENERY:
+        require(all(rows[yy][xx] == "T"
+                    for yy in range(y,y+h) for xx in range(x,x+w)),
+                f"Tree {name} overlaps an approach or building")
+        for dy in range(h):
+            for dx in range(w):
+                require(tokens[y+dy][x+dx+64] ==
+                        native[sy+dy][sx+dx+30],
+                        f"{name} has foreign or missing middle-layer vegetation")
+                require(tokens[y+dy+64][x+dx] ==
+                        native[sy+dy][sx+dx+60],
+                        f"{name} has foreign or missing roof-layer vegetation")
     accessible = set()
     queue = deque([module.START])
     while queue:
