@@ -5,8 +5,9 @@ Source renderer: `tools/aster_visual_preview.py`.
 Generated visual: [Aster native screenshot-like map image](aster_visual_review.png).
 Comparison baseline: [Original Vale rendered from the same sources](aster_vale_reference.png).
 
-These are **offline tile renders**, not emulator captures or a successful ROM
-compile. They use the genuine Golden Sun: The Broken Seal palette, 8×8 tiles,
+These are **offline tile renders**, not emulator captures. A previous full
+experimental ROM compilation succeeded, but the revised roads have not been
+walked or viewed in an emulator. They use the genuine Golden Sun: The Broken Seal palette, 8×8 tiles,
 per-layer character blocks, metatile tables and three layer windows.
 
 ## Technical errors found and corrected
@@ -28,7 +29,7 @@ per-layer character blocks, metatile tables and three layer windows.
    matching Vale resources, and retains all eight accessible scene event
    triggers and seven NPC placements.
 
-## Present visual quality (2026-11-07 source render)
+## Present visual quality (2026-11-07 updated source render)
 
 **Pass:** coherent Golden Sun palette, grass and six recognizable houses.
 The repeated home is intentionally a clue to Aster's convergence story.
@@ -59,27 +60,28 @@ The repeated home is intentionally a clue to Aster's convergence story.
   Actual character positioning and engine collision remain unverified.
 - **No house interiors.** They remain blocked structures with dialogue
   at nearby event tiles, not real rooms.
-- **Connected dirt lanes now present.** All six door approaches connect
-  into the original Aster street pattern through native Golden Sun dirt tiles.
-  The generator uses Vale's matching grass-to-earth shoulder family,
-  including an irregular variant; this is real Map180 source, not just a
-  Photoshop overlay. The road edges remain visually repetitive and sharp
-  around intersections, so further texture improvement is needed before
-  final visual approval. Gameplay collision and metatile priorities have
-  not yet been checked in an emulator.
+- **Connected, three-cell native dirt lanes are now in the map.** Every
+  doorway spur joins a visible east-west lane. Roads use Vale's authentic
+  left shoulder, solid-soil center and right shoulder. Repeating broken
+  dirt junctions and three five-by-five source crops with stray blue pixels
+  were removed. The new preview has cleaner crossings and wider paths,
+  although the roads still look too long and straight for a lived-in town.
+  Engine collision, tile priority and NPC movement remain untested.
 - **No normal two-way entrance.** The scene still lacks a world-map contact;
   its experimental exit returns to Vault. This is not correct release
   navigation.
-- **No ROM/emulator verification.** Source render does not verify actual
-  engine priorities, scrolling, gameplay events, save stability, menu
-  rendering or byte-for-byte build.
+- **Emulator verification is still missing.** A full experimental ROM
+  compiled before this visual pass; neither that build nor the revised
+  streets have a verified emulator screenshot, collision test, save test
+  or event-playthrough result.
 
 ## Next build acceptance
 
-1. Refine the newly connected native dirt lanes: soften the repeated
-   scalloped edge, correct crossings, and test character movement and visual
-   priorities in the emulator.
-2. Replace cliff fragments with complete terrain transitions.
+1. The wider native paths now have coherent intersections. Break up long,
+   unnaturally straight runs, then test walking, tile priorities and
+   threshold access in an emulator.
+2. Remove leftover tiny stray scenery pixels and add coherent vegetation
+   and domestic details without hiding doors or NPCs.
 3. Build a true *dry* well using compatible Golden Sun tiles. Add a wooden
    name register to the approved nonmagical remembrance garden. **Do not
    reintroduce a Psynergy Stone, crystal shrine, or Vale's old layout.**
