@@ -226,6 +226,23 @@ def map_contract():
                         expected = behavior
                 require(tokens[py][px] == expected,
                         f"Worn-path patch {name} misdrawn at ({px},{py})")
+    require(len(module.GARDENS) == 4,
+            "Aster four native meadow patches must remain intentional")
+    for name, x, y, sx, sy, w, h in module.GARDENS:
+        require(all(rows[yy][xx] == "f"
+                for yy in range(y,y+h) for xx in range(x,x+w)),
+                f"Flower patch {name} overlaps road, home or reserved scenery")
+        for dy in range(h):
+            for dx in range(w):
+                tx, ty=x+dx,y+dy
+                require(tokens[ty][tx] ==
+                        native[sy+dy][sx+dx].split(":")[0],
+                        f"Flower patch {name} has nonnative ground or collision")
+                require(tokens[ty][tx+64] ==
+                        native[sy+dy][sx+dx+30] and
+                        tokens[ty+64][tx] ==
+                        native[sy+dy][sx+dx+60],
+                        f"Flower patch {name} lost its intact native layers")
     require(len(module.SCENERY) == 6, "Aster six tree groups changed")
     for name, x, y, sx, sy, w, h in module.SCENERY:
         require(all(rows[yy][xx] == "T"
