@@ -132,5 +132,343 @@
   "preexisting_native_map_blob_sha": "a6bec6cfa5e9e62e29eb0368a56cff5e3acc377f",
   "opaque_native_foliage_cells": 174,
   "transparent_native_foliage_cells": 66,
-  "newly_solid_cells": 140
+  "newly_solid_cells": 140,
+  "transparent_base_cells": [
+    {
+      "x": 58,
+      "y": 7,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 60,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 14,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 15,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 16,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 17,
+      "ground": "ba"
+    },
+    {
+      "x": 57,
+      "y": 18,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 58,
+      "y": 18,
+      "ground": "ba"
+    },
+    {
+      "x": 59,
+      "y": 18,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 18,
+      "ground": "ba"
+    },
+    {
+      "x": 33,
+      "y": 5,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 35,
+      "y": 9,
+      "ground": "ba"
+    },
+    {
+      "x": 36,
+      "y": 9,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 8,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 9,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 10,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 26,
+      "y": 12,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 27,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 28,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 29,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 4,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 6,
+      "y": 15,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 7,
+      "y": 15,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 61,
+      "y": 57,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 58,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 59,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 60,
+      "ground": "ba"
+    },
+    {
+      "x": 58,
+      "y": 61,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 59,
+      "y": 61,
+      "ground": "ba"
+    },
+    {
+      "x": 60,
+      "y": 61,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 61,
+      "ground": "ba"
+    },
+    {
+      "x": 19,
+      "y": 6,
+      "ground": "ba"
+    },
+    {
+      "x": 21,
+      "y": 10,
+      "ground": "ba"
+    },
+    {
+      "x": 22,
+      "y": 10,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 8,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 9,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 10,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 11,
+      "ground": "ba"
+    },
+    {
+      "x": 51,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 52,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 53,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 12,
+      "ground": "ba"
+    },
+    {
+      "x": 46,
+      "y": 53,
+      "ground": "ba"
+    },
+    {
+      "x": 48,
+      "y": 57,
+      "ground": "ba"
+    },
+    {
+      "x": 49,
+      "y": 57,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 21,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 22,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 23,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 24,
+      "ground": "ba"
+    },
+    {
+      "x": 58,
+      "y": 25,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 59,
+      "y": 25,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 60,
+      "y": 25,
+      "ground": "ba"
+    },
+    {
+      "x": 61,
+      "y": 25,
+      "ground": "ba"
+    },
+    {
+      "x": 53,
+      "y": 37,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 41,
+      "ground": "ba"
+    },
+    {
+      "x": 56,
+      "y": 41,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 18,
+      "ground": "ba:ff"
+    },
+    {
+      "x": 55,
+      "y": 19,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 20,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 21,
+      "ground": "ba"
+    },
+    {
+      "x": 52,
+      "y": 22,
+      "ground": "ba"
+    },
+    {
+      "x": 53,
+      "y": 22,
+      "ground": "ba"
+    },
+    {
+      "x": 54,
+      "y": 22,
+      "ground": "ba"
+    },
+    {
+      "x": 55,
+      "y": 22,
+      "ground": "ba"
+    }
+  ],
+  "quality_notes": [
+    "Native Vale 4x5 tree art used without scaling or foreign tiles.",
+    "Transparent native upper-layer cells preserve the precise pre-woodland behavior.",
+    "Source validation only. Full GBA renderer, sprite priority and walkable collision not tested.",
+    "Does not certify the shoreline, cliff rockwork, bridge or the reserved building exteriors."
+  ]
 }
