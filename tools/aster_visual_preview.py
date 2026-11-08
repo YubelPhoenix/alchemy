@@ -125,7 +125,7 @@ def make(out=OUT, annotated=ANNOTATED):
     def draw_cell(canvas, token, x, y):
         # Only a 12-bit map metatile index is visible; behavior/shape go to
         # field movement and events rather than tile graphics.
-        value = int(token.split(":")[0],16)
+        value = int(token.split(":")[0],16) & 0x0fff
         if value not in meta_cache:
             meta_cache[value] = render_metatile(
                 value,meta,atlas,palette,bad,cache)
