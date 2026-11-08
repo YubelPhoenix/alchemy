@@ -645,6 +645,11 @@ enum SpriteId {
   SPRITE_WORLD_MAP_VILLAGE = 0x105,
   /// Ashfall's woodland village Aster. Separate icon, leaving original villages untouched.
   SPRITE_WORLD_MAP_ASTER = 0x1f9,
+  /// New experimental Aster scenery, using original Golden Sun index palette.
+  SPRITE_ASTER_DRY_WELL = 0x1fa,
+  SPRITE_ASTER_MEMORIAL = 0x1fb,
+  SPRITE_ASTER_SANCTUM = 0x1fc,
+  SPRITE_ASTER_ADDITIONAL_HOME = 0x1fd,
   /// ★ Named from what the player sees: white and blue buildings inside a wall
   /// (spr_263.png)
   SPRITE_WORLD_MAP_TOWN = 0x107,
