@@ -8,6 +8,7 @@ on:
       - 'tools/aster_visual_preview.py'
       - 'tools/aster_vale_reference.py'
       - 'tools/aster_domestic_prop_study.py'
+      - 'tools/aster_lived_in_blockout.py'
       - 'games/tbs/src/map/map_180/map.txt'
       - '.github/workflows/aster-native-preview.yml'
   workflow_dispatch:
@@ -41,6 +42,7 @@ jobs:
           python3 tools/aster_visual_preview.py
           python3 tools/aster_vale_reference.py
           python3 tools/aster_domestic_prop_study.py
+          python3 tools/aster_lived_in_blockout.py
       - name: Keep PNGs available without changing the game
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -52,12 +54,15 @@ jobs:
             tools/aster_vale_coordinates.png
             tools/aster_domestic_yards.png
             tools/aster_domestic_yards_labels.png
+            tools/aster_lived_in_blockout.png
+            tools/aster_lived_in_blockout_labels.png
+            tools/aster_lived_in_focus.png
           retention-days: 10
       - name: Commit reproducible previews to experimental branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add games/tbs/src/map/map_180/map.txt tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_domestic_yards.png tools/aster_domestic_yards_labels.png
+          git add games/tbs/src/map/map_180/map.txt tools/aster_visual_review.png tools/aster_visual_review_events.png tools/aster_vale_reference.png tools/aster_vale_coordinates.png tools/aster_domestic_yards.png tools/aster_domestic_yards_labels.png tools/aster_lived_in_blockout.png tools/aster_lived_in_blockout_labels.png tools/aster_lived_in_focus.png
           if git diff --cached --quiet; then
             echo 'No preview difference.'
           else
