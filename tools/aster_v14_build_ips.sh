@@ -10,6 +10,10 @@ if [[ ! -f "$1" ]]; then
   exit 2
 fi
 BASE=$(realpath "$1")
+echo 'ASTER V14 EXPERIMENTAL FULL-ROM PATCH (not Aster-only).'
+echo 'This patch contains every change in the V14 test build, and may lack'
+echo 'newer dark-story-rewrite boss AI/balance. Do NOT stack patches.'
+echo 'Use only a copy of the exact clean English Golden Sun ROM.'
 ROOT=$(git rev-parse --show-toplevel)
 cd "$ROOT"
 if [[ $(git branch --show-current) != 'experiment/aster-v14-native-map-staging' ]]; then
