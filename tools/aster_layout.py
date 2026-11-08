@@ -57,6 +57,24 @@ def load_vault():
         for x, token in enumerate(line.split()):
             assert x < 128
             result[y][x] = token
+    # Golden Sun's editable map format uses 0xFFF for the *first*
+    # appearance of each metatile. At load time these are assigned
+    # sequential table indices in global grid scan order. Resolve them
+    # here BEFORE relocating geometry; copying unresolved placeholders
+    # would assign the wrong wall/roof graphics in the new layout.
+    next_id = 0
+    for y in range(128):
+        for x in range(128):
+            parts = result[y][x].split(":")
+            packed = int(parts[0], 16)
+            if (packed & 0xfff) == 0xfff:
+                parts[0] = format((packed & 0xf000) | next_id, "x")
+                result[y][x] = ":".join(parts)
+                next_id += 1
+    expected = len((ROOT / "games/tbs/src/map/map_019/metatiles.tsv")
+                   .read_text(encoding="utf-8").splitlines()) - 1
+    assert next_id == expected, (
+        f"Vault metatile enumeration mismatch: {next_id} vs {expected}")
     return result
 
 def blueprint():
