@@ -58,6 +58,20 @@ def make(mode):
             upper(x,y,15,9)
         for x,y in ((31,33),(33,33)):
             upper(x,y,15,10)
+    elif mode in ("well_cave_a","well_cave_b","well_cave_c"):
+        stones()
+        for yy in range(3):
+            for xx in range(4):
+                upper(30+xx,30+yy,12+xx,50+yy)
+        upper(34,34,17,5)
+        # Source candidates from Vale's NATURAL cave mouth (ground plane).
+        # Test only. Preserve 32,34 solid and 32,35 event; do not assume
+        # a cliff-side dark tile is a valid freestanding well shaft.
+        source={"well_cave_a":(11,26),
+                "well_cave_b":(12,26),
+                "well_cave_c":(10,27)}[mode]
+        sx,sy=source
+        data[33][32]=VALE[sy][sx].split(":")[0]
     else:
         raise ValueError(mode)
     assert data[35][32]==ORIGINAL[35][32]=="ba:e1"
@@ -69,5 +83,6 @@ def make(mode):
     print(mode,"original Golden Sun assets ONLY; art study, not runtime well")
 
 if __name__=="__main__":
-    for name in ("open_stone","wood_frame","wood_bucket","stone_apron"):
+    for name in ("open_stone","wood_frame","wood_bucket","stone_apron",
+                 "well_cave_a","well_cave_b","well_cave_c"):
         make(name)
