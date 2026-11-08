@@ -363,4 +363,17 @@ enum BattleAnimIdRange {
   ANIM_RANGE_RING_AND_SPARK = ANIM_ID_CRITICAL_OFFSET
 };
 
+/// While an animation swings the camera round through the front-on view (yaw
+/// within 0xe00 of straight ahead), the Ashfall bosses (sprite kind 44, which
+/// never mirrors by itself) are drawn mirrored, as if turning with the camera.
+/// The flag stays on until BattleCamera_Update sees the camera back at a
+/// standard view. Called by the animations that turn the camera that way.
+static inline void BattleCamera_FlipBossesInFrontView(
+    struct BattleCamera *camera) {
+  s16 yaw = (s16)camera->yaw;
+
+  if (yaw > -0xe00 && yaw < 0xe00)
+    camera->flipCaster = FLIP_CASTER_ON;
+}
+
 #endif // ALCHEMY_BATTLE_ANIM_INTERNAL_H

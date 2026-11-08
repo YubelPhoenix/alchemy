@@ -101,6 +101,7 @@ void BattleAnim_RunPlasma(struct BattleAnimArgs *args) {
         camera->yaw -= speed;
       else
         camera->yaw += speed;
+      BattleCamera_FlipBossesInFrontView(camera);
     }
     if (frame == 32)
       ANIM_SHOW_DAMAGE(SE_HEAVY_IMPACT);
@@ -356,6 +357,7 @@ void BattleAnim_RunSparkGroups(struct BattleAnimArgs *args, s32 mode) {
         camera->yaw += 256;
       else
         camera->yaw -= 256;
+      BattleCamera_FlipBossesInFrontView(camera);
     }
     // Severe Blow's flash: the whole canvas at level 63, the top of the ramp.
     /* FAKEMATCH(wrapper): this fill calls the fixed entry itself, past the
