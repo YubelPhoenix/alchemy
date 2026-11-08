@@ -18,10 +18,10 @@ LABELLED=ROOT/"tools/aster_landscape_study_labels.png"
 # Four occupied addresses get modest flower plots; the two
 # deliberately unsettling northern houses remain sparse.
 FLOWER_TESTS=(
-    ("west_cottage", 17,34,11,47,2,2),
-    ("east_cottage", 45,36,11,47,2,2),
-    ("shop_herbs", 17,50,11,47,2,2),
-    ("inn_flowers", 38,53,11,47,2,2),
+    ("west_cottage", 17,34,10,47,2,2),
+    ("east_cottage", 45,36,10,47,2,2),
+    ("shop_herbs", 17,50,10,47,2,2),
+    ("inn_flowers", 38,53,10,47,2,2),
 )
 
 def study():
