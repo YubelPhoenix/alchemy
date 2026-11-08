@@ -11,6 +11,7 @@ than painted across tree canopies, roads, event cells or other props.
 Not the playable Map180, no new interiors or GBA movement claim.
 """
 from collections import deque, Counter
+import json
 from pathlib import Path
 from PIL import Image
 import aster_native_woodland_synthesis as base
@@ -21,6 +22,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/"tools/aster_lived_in_activity.png"
 LABELS=ROOT/"tools/aster_lived_in_activity_labels.png"
 FOCUS=ROOT/"tools/aster_lived_in_activity_focus.png"
+REPORT=ROOT/"tools/aster_activity_placement_report.json"
 VALE=town.NATIVE
 
 # Source metatiles are actual complete Golden Sun Vale details:
@@ -171,6 +173,19 @@ def main():
     assert not missing,("Details blocked a door/event/NPC:",missing)
     assert len(required)==17,("Unexpected story actor/trigger count",len(required))
     assert recorded["solid_supplies"]>=3,("No useful additional objects",recorded)
+    REPORT.write_text(json.dumps({
+        "status":"nonplayable native Golden Sun visual study",
+        "placed":dict(recorded),
+        "rejected":[{"name":name,"reason":reason} for name,reason in rejected],
+        "protected_event_npc_targets":len(required),
+        "all_targets_reachable":not missing,
+        "caveats":[
+            "Visual crop edges still need human review",
+            "Visible well and indoor rooms are not yet built",
+            "No source of truth for emulator collision or sprite priority",
+            "Do not edit live Map180/aster.c based only on this study",
+        ],
+    },indent=2)+"\n",encoding="utf-8")
     print("ASTER NATIVE LIVELIHOOD STUDY — NOT A ROM CHANGE")
     print("Successfully placed:",dict(recorded))
     for name,why in rejected:print("REJECTED:",name,why)
