@@ -16,6 +16,8 @@ EXPECTED_BRANCH="experiment/aster-v14-native-map-staging"
 CHECKS=(
     ("Reproducible 3-layer map", ("aster_v14_native_map.py", "--check")),
     ("V14 map and scene collision", ("check_aster_v14.py",)),
+    ("Dedicated native Aster overworld icon", ("check_aster_world_icon.py",)),
+    ("Provisional overworld icon spacing", ("aster_overworld_site_audit.py",)),
     ("Combined dialogue, resource and stage source audit", ("check_aster.py",)),
     ("Development shortcut absent from tracked source", ("aster_dev_entry.py", "--check")),
 )
