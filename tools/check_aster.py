@@ -243,13 +243,20 @@ def map_contract():
                         tokens[ty+64][tx] ==
                         native[sy+dy][sx+dx+60],
                         f"Flower patch {name} lost its intact native layers")
-    require(len(module.SCENERY) == 6, "Aster six tree groups changed")
+    require(len(module.SCENERY) == 12,
+            "Aster's approved native tree placement has changed")
+    expected_trees = [["north_woods_w",20,7,17,46],["north_woods_e",40,6,4,13],["residential_w",20,27,17,46],["residential_e",41,25,4,13],["market_tree_w",22,45,17,46],["market_tree_e",56,47,4,13],["north_edge_w",3,17,4,13],["north_edge_e",57,20,17,46],["residential_edge_w",3,37,17,46],["residential_edge_e",57,38,4,13],["market_edge_w",2,53,17,46],["market_edge_e",58,55,4,13]]
+    actual_trees = [(name,x,y,sx,sy) for name,x,y,sx,sy,w,h in module.SCENERY]
+    require(actual_trees == [tuple(row) for row in expected_trees],
+            "Native Golden Sun woodland coordinates or artwork changed")
     for name, x, y, sx, sy, w, h in module.SCENERY:
         require(all(rows[yy][xx] == "T"
                     for yy in range(y,y+h) for xx in range(x,x+w)),
                 f"Tree {name} overlaps an approach or building")
         for dy in range(h):
             for dx in range(w):
+                require(tokens[y+dy][x+dx] == "ba:ff",
+                        f"{name}: copied source ground or lost tree collision")
                 require(tokens[y+dy][x+dx+64] ==
                         native[sy+dy][sx+dx+30],
                         f"{name} has foreign or missing middle-layer vegetation")
