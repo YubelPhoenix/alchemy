@@ -199,7 +199,7 @@ def synthesize():
     # fabricated sprite. It's source-only scenery with NO functional
     # entrance: a proper room/service door remains a future task.
     # Crop is the intact Vale wood storage facade (original Map003).
-    SHED=("west_work_shed",4,32,19,3,8,7)
+    SHED=("west_work_shed",3,32,19,3,8,7)
     name,bx,by,sx,sy,bw,bh=SHED
     footprint=[(bx+dx,by+dy) for dy in range(bh) for dx in range(bw)]
     if free(footprint):
@@ -213,6 +213,8 @@ def synthesize():
         stats["support_sheds"]+=1
     else:
         print("REJECT west shed: site conflicts with town circulation")
+        # Do not approve the new composition unless this is fixed.
+        raise AssertionError("Native west service shed requires an unobstructed site")
     for name,x,y,sx,sy,w,h in life.ADDITIONAL_GARDENS:
         points=[(x+dx,y+dy) for dy in range(h) for dx in range(w)]
         if not free(points):continue
