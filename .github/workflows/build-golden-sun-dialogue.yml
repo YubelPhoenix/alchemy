@@ -194,7 +194,7 @@ jobs:
 
       - name: Create an IPS patch (not a redistributable ROM)
         run: |
-          python3 - "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba" "out/tbs-en/tbs-en.gba" "$RUNNER_TEMP/dark-vale.ips" <<'PY'
+          python3 - "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba" "out/tbs-en/tbs-en.gba" "$RUNNER_TEMP/Golden-Sun-Ashfall.ips" <<'PY'
           import sys
           from pathlib import Path
 
@@ -247,9 +247,9 @@ jobs:
       - name: Upload versioned Ashfall patch
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: ashfall-ips-${{ github.sha }}
+          name: Golden-Sun-Ashfall-${{ github.sha }}
           path: |
-            ${{ runner.temp }}/dark-vale.ips
+            ${{ runner.temp }}/Golden-Sun-Ashfall.ips
             ${{ runner.temp }}/ashfall-build.txt
             ${{ runner.temp }}/ashfall-live-dialogue.json
           if-no-files-found: error
