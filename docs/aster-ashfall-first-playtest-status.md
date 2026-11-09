@@ -66,9 +66,9 @@ Ashfall files. A new file outside the approved list, or extra edits to
 world-map/story/sprite/resource registrations, stops the gate before any
 compile. To expand the scope later, first review the new baseline diff and
 explicitly update the audit list; never bypass it to force a build.
-The latest remote comparison confirms 44 changed paths: 33 Aster additions
-and 11 deliberate registration/catalogue changes. None are battle or
-workflow paths. No hosted Actions run was started by these audit commits.
+The isolated branch's reviewed file inventory permits Aster-only additions
+and 11 deliberate registration/catalogue changes, but no battle or
+workflow modifications. Validate the current inventory before every build.
 
 Passing does **not** prove successful compilation or game behavior.
 
@@ -95,6 +95,33 @@ A build must never start merely because this branch receives a source
 commit. No GitHub Actions, paid runner, Codespaces or new artifact
 uploads are authorized by this document. Check GitHub billing and
 artifact safety gate **before any future manually authorized IPS build**.
+
+## Aster exterior dialogue pass (source-only, November 8)
+
+- Corrected **five automatic threshold interactions** (inn, west house,
+  east house, shop, duplicate house): they now show a line **once per
+  stage**, not every time Isaac walks over a door tile. An event runs on
+  the first crossing but not on later crossings of the same threshold.
+- Ten distinct scene-local flags track the arrival/fracture readings;
+  the duplicate house also has a separate revelation-stage flag.
+  This leaves room for the town's changed dialogue when the player
+  uncovers another history. `Scene_Arrive` clears these flags on
+  ordinary re-entry; no permanent flags, items, Djinn or save layouts
+  were changed.
+- The existing `check_aster_v14.py` source preflight now checks that
+  all five threshold functions use the one-shot helper and that the
+  eleven new flags remain in separate scene-temp slots 0x20E..0x218.
+  This is source contract checking, not actual input/controller QA.
+- **Unreachable authored copy still to integrate:** arrival, fracture,
+  and revelation *gate sign* messages, plus the revelation *exit*
+  dialogue, have no trigger in the current scene. They should remain
+  marked unfinished until a deliberately designed sign/exit event can
+  be added and tested without changing the single south exit.
+- **Story persistence is provisional:** the town's fracture/revelation
+  flags also use scene-temporary storage, so the encounter resets upon
+  a normal re-entry. We are deliberately **not** assigning permanent
+  Ashfall save flags before save compatibility and story progression
+  are tested. This is not a final-release narrative state system.
 
 ## Emulator acceptance gates
 
