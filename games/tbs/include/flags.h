@@ -2828,4 +2828,22 @@
 #define FLAG_DARK_SARAH_TOLBI_FOUGHT 0x8ed
 #define FLAG_DARK_SARAH_LALIVERO_FOUGHT 0x8ee
 
+
+// Aster's optional story discoveries live in the existing SAVE-BACKED flag
+// range. 0x8d9..0x8dd were not allocated in this Ashfall flags registry.
+// Keep the first three clues across visits: the player should not have to
+// rediscover the well, memorial and welcome merely by stepping outside.
+// Neither battle state, Djinn state nor the save-block layout is modified.
+// One-shot conversations / threshold repeats stay in FLAG_SCENE_TEMP_*.
+/// Isaac has examined Aster's dry well.
+#define FLAG_DARK_ASTER_SEEN_WELL 0x8d9
+/// Isaac has examined the memorial to those who returned.
+#define FLAG_DARK_ASTER_SEEN_MEMORIAL 0x8da
+/// Isaac has spoken with the woman who welcomed him to Aster.
+#define FLAG_DARK_ASTER_HEARD_GREETER 0x8db
+/// Aster's incompatible histories have become visible after all three clues.
+#define FLAG_DARK_ASTER_FRACTURED 0x8dc
+/// Isaac has confronted the other Isaac; Aster now remembers both histories.
+#define FLAG_DARK_ASTER_REVEALED 0x8dd
+
 #endif
