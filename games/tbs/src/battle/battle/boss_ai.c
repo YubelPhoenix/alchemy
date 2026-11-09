@@ -500,7 +500,7 @@ enum HeartSlot {
   HEART_HEARTRENDER = 4,
   HEART_OUTER_SPACE = 5,
   HEART_ANNIHILATION = 6,
-  HEART_AVALANCHE = 7
+  HEART_DEATH_SIZE = 7
 };
 
 /// Heart's memory in Unit.aiActionIndex: bits 25..20 the party places that
@@ -642,6 +642,7 @@ static void BossAI_HeartNoteTurn(struct Unit *unit,
       memory |= HEART_BIG_BIT | HEART_PAYOFF_USED_BIT;
       break;
     case HEART_DEATH_PLUNGE:
+    case HEART_DEATH_SIZE:
       memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
       break;
     case HEART_ANNIHILATION:
@@ -658,9 +659,10 @@ static void BossAI_HeartNoteTurn(struct Unit *unit,
 
 /// Heart's pick. A round in which she may warn begins, some of the time, with
 /// Heartrender; in the round after it she picks one payoff (Outer Space,
-/// Death Plunge or Annihilation, weighted 40, 25 and 35 among those allowed)
+/// Death Plunge, Annihilation or Death Size, weighted 40, 25, 35 and 25 among
+/// those allowed)
 /// as one of her later turns. Her limits apply to every pick, and a move they
-/// refuse becomes Grand Gaia, Stone Spire or Avalanche: Heartrender only warns;
+/// refuse becomes Grand Gaia or Stone Spire: Heartrender only warns;
 /// a payoff only follows a warning, not as her first turn, once a round, and
 /// not on a re-pick; Annihilation needs round 2 or later, at most one down, three
 /// rounds since the last try and at most two members unable to act, and
@@ -686,7 +688,8 @@ static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   s32 mayDeathPlunge;
   s32 mayOuterSpace;
   s32 total;
-  s32 light[3] = {HEART_GRAND_GAIA, HEART_STONE_SPIRE, HEART_AVALANCHE};
+  s32 pick;
+  s32 light[3] = {HEART_GRAND_GAIA, HEART_STONE_SPIRE, HEART_GRAND_GAIA};
 
   BossAI_ViewParty(&view);
   mayWarn = firstPick && turns == 0 && !ready && !warned && calm == 0 &&
@@ -705,18 +708,23 @@ static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
       slot = HEART_HEARTRENDER;
     } else if (payoffRound) {
       total = (mayOuterSpace ? 40 : 0) + (mayDeathPlunge ? 25 : 0) +
-              (mayAnnihilate ? 35 : 0);
+              (mayAnnihilate ? 35 : 0) + (mayDeathPlunge ? 25 : 0);
       if (total > 0) {
-        s32 pick = (roll2 * total) >> 8;
+        pick = (roll2 * total) >> 8;
 
         if (mayOuterSpace && pick < 40) {
           slot = HEART_OUTER_SPACE;
         } else {
           pick -= mayOuterSpace ? 40 : 0;
-          if (mayDeathPlunge && pick < 25)
+          if (mayDeathPlunge && pick < 25) {
             slot = HEART_DEATH_PLUNGE;
-          else
-            slot = HEART_ANNIHILATION;
+          } else {
+            pick -= mayDeathPlunge ? 25 : 0;
+            if (mayAnnihilate && pick < 35)
+              slot = HEART_ANNIHILATION;
+            else
+              slot = HEART_DEATH_SIZE;
+          }
         }
       }
     }
@@ -732,6 +740,7 @@ static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
       slot = light[roll % 3];
     break;
   case HEART_DEATH_PLUNGE:
+  case HEART_DEATH_SIZE:
     if (!mayDeathPlunge)
       slot = light[roll % 3];
     break;
