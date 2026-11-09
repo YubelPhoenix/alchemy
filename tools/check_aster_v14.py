@@ -126,7 +126,7 @@ def main():
                 f"Aster threshold flag changed: {name}")
     helper = scene.split("static void Aster_ShowThresholdOnce(s32 seenFlag, s32 message) {", 1)
     require(len(helper) == 2, "Missing one-shot step-event helper")
-    helper = helper[1].split("\\n}", 1)[0]
+    helper = helper[1].split("\n}", 1)[0]
     require("if (GameFlag_Get(seenFlag))" in helper
             and "FieldMessage_Show(message, 1);" in helper
             and "GameFlag_Set(seenFlag);" in helper
@@ -139,7 +139,7 @@ def main():
     ):
         symbol = f"static void Aster_Visit{name}Threshold(void) {{"
         require(scene.count(symbol) == 1, f"Missing threshold handler {name}")
-        body = scene.split(symbol, 1)[1].split("\\n}", 1)[0]
+        body = scene.split(symbol, 1)[1].split("\n}", 1)[0]
         require(body.count("Aster_ShowThresholdOnce(") == stages
                 and "FieldMessage_Show(" not in body,
                 f"Automatic {name} threshold can replay or lost a story stage")
