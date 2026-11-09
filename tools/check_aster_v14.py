@@ -105,6 +105,45 @@ def main():
                 require((x,y) not in house_cells, f"{name} overlaps old house")
                 new_cells.add((x,y))
     scene = SCENE.read_text(encoding="utf-8")
+    # Native door thresholds are STEP events, not talk/examine events.
+    # Their automatic lines must not replay every time Isaac crosses them;
+    # once the history changes, new-stage lines must still be available.
+    expected_threshold_flags = {
+        "ASTER_INN_THRESHOLD_ARRIVAL": "0E",
+        "ASTER_INN_THRESHOLD_FRACTURE": "0F",
+        "ASTER_WEST_HOME_THRESHOLD_ARRIVAL": "10",
+        "ASTER_WEST_HOME_THRESHOLD_FRACTURE": "11",
+        "ASTER_EAST_HOME_THRESHOLD_ARRIVAL": "12",
+        "ASTER_EAST_HOME_THRESHOLD_FRACTURE": "13",
+        "ASTER_SHOP_THRESHOLD_ARRIVAL": "14",
+        "ASTER_SHOP_THRESHOLD_FRACTURE": "15",
+        "ASTER_DUPLICATE_HOME_THRESHOLD_ARRIVAL": "16",
+        "ASTER_DUPLICATE_HOME_THRESHOLD_FRACTURE": "17",
+        "ASTER_DUPLICATE_HOME_THRESHOLD_REVELATION": "18",
+    }
+    for name, slot in expected_threshold_flags.items():
+        require(scene.count(f"#define {name} FLAG_SCENE_TEMP_{slot}") == 1,
+                f"Aster threshold flag changed: {name}")
+    helper = scene.split("static void Aster_ShowThresholdOnce(s32 seenFlag, s32 message) {", 1)
+    require(len(helper) == 2, "Missing one-shot step-event helper")
+    helper = helper[1].split("\\n}", 1)[0]
+    require("if (GameFlag_Get(seenFlag))" in helper
+            and "FieldMessage_Show(message, 1);" in helper
+            and "GameFlag_Set(seenFlag);" in helper
+            and helper.index("GameFlag_Get(seenFlag)") < helper.index("FieldMessage_Show")
+            < helper.index("GameFlag_Set(seenFlag)"),
+            "Door threshold must guard its automatic dialogue with a one-shot flag")
+    for name, stages in (
+        ("Inn", 2), ("WestHome", 2), ("EastHome", 2),
+        ("Shop", 2), ("DuplicateHome", 3),
+    ):
+        symbol = f"static void Aster_Visit{name}Threshold(void) {{"
+        require(scene.count(symbol) == 1, f"Missing threshold handler {name}")
+        body = scene.split(symbol, 1)[1].split("\\n}", 1)[0]
+        require(body.count("Aster_ShowThresholdOnce(") == stages
+                and "FieldMessage_Show(" not in body,
+                f"Automatic {name} threshold can replay or lost a story stage")
+    print("PASS five house/shop thresholds: once per stage; 11 scene-local flags")
     actor_start = scene.index("static struct ActorTemplate sAsterActors[] = {")
     actor_end = scene.index("static struct Trigger sAsterTriggers[] = {", actor_start)
     actor_table = scene[actor_start:actor_end]
