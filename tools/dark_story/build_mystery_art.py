@@ -18,8 +18,7 @@ so the frames are stored once each and the ids run one after another:
   16     cast
   17     damage
 
-All the poses face right, toward the party.  Her cast is drawn facing left and
-is mirrored.  Poses keep the places she was drawn at; each is lowered so that
+All the poses are used as drawn (none mirrored).  Poses keep the places she was drawn at; each is lowered so that
 her feet stand on the frame's bottom row.
 """
 from pathlib import Path
@@ -37,7 +36,7 @@ LAYOUT = ([f"idle{i}" for i in range(8)]
           + ["dash0", "dash1", "dash2", "dash3", "dash4", "dash6", "dash7"]
           + ["attack", "cast", "damage"])
 FRAMES = len(LAYOUT)
-MIRROR = {"cast"}
+MIRROR = set()   # cast was mirrored once and faced the wrong way in battle
 OWN_BASELINE = {"attack", "damage"}   # lowered by their own lowest row
 SWIRL = {"dash2", "dash3", "dash4"}   # no feet: lowered like the idle pose
 
