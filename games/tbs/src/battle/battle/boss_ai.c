@@ -378,11 +378,14 @@ STATIC_ASSERT((ASH_BITS & BOSS_LAST_AIM_BITS) == 0);
 /// The party's HP counts as risen when it gains this many sixteenths.
 #define ASH_RECOVERY_STEP 3
 /// Out of 256: how often she keeps the stock choice.
-#define ASH_MISTAKE_CHANCE 64
+#define ASH_MISTAKE_CHANCE 32
 /// Out of 256: how often she answers recovery or a buff with pressure.
-#define ASH_REACT_CHANCE 150
+#define ASH_REACT_CHANCE 210
 /// After this many rounds in a row with a big move, one round has none.
-#define ASH_BIG_ROUNDS_LIMIT 2
+#define ASH_BIG_ROUNDS_LIMIT 3
+/// Out of 256: how often a plain pick (Eruption or her blade) becomes a big
+/// move when one is allowed, so she presses instead of idling.
+#define ASH_PRESS_CHANCE 150
 
 /// Ash Jenna in Vale, or 0.
 static struct Unit *BossAI_FindAsh(void) {
@@ -506,12 +509,14 @@ static s32 BossAI_AshChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
     slot =
         (memory & ASH_MELTDOWN_THIS_ROUND_BIT) ? ASH_DEMON_FIRE : ASH_MELTDOWN;
 
-  if (BossAI_AshIsBig(slot) && !mayBeBig) {
-    slot = (roll & 1) ? ASH_ERUPTION : ASH_ATTACK;
-  } else if ((memory & ASH_HURT_BIT) &&
-             (slot == ASH_INFERNO || slot == ASH_SUPERNOVA)) {
-    slot = ASH_ERUPTION;
+  if (mayBeBig && (slot == ASH_ATTACK || slot == ASH_ERUPTION) &&
+      (Battle_RandomFar() & 0xff) < ASH_PRESS_CHANCE) {
+    static const u8 bigSlots[3] = {ASH_INFERNO, ASH_SUPERNOVA,
+                                   ASH_MAGMA_STORM};
+    slot = bigSlots[(Battle_RandomFar() & 0xff) % 3];
   }
+  if (BossAI_AshIsBig(slot) && !mayBeBig)
+    slot = ASH_ERUPTION;
   if (slot == ASH_MELTDOWN && (memory & ASH_MELTDOWN_THIS_ROUND_BIT))
     slot = ASH_ATTACK;
   if (slot == ASH_DEMON_FIRE && view.alive > 0 &&
