@@ -868,12 +868,12 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 }
 
-/// Her pick. Holding back (HP at 70% or more): her blade and Wing Stroke, and
+/// Her pick. Holding back (HP at 70% or more): her blade and Dark Blessing, and
 /// once, from her second turn of a round, an Annihilation. In full power
 /// (under 70%): Luff as her first turn of a round to act twice next round,
 /// then Annihilation or Death Size (two killing moves a round at most), else
 /// Thunderstorm, Storm Blessing or Spark Plasma. A re-pick after a refused
-/// move (too little PP, sealed) takes Wing Stroke or Storm Blessing, which
+/// move (too little PP, sealed) takes Dark Blessing or Storm Blessing, which
 /// need none.
 static s32 BossAI_MysteryChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   static const u8 heavy[5] = {MYSTERY_THUNDERSTORM, MYSTERY_STORM_BLESSING,

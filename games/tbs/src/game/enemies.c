@@ -3175,7 +3175,8 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 21,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        .abilities = {ABILITY_ATTACK, ABILITY_WING_STROKE, 178, 190, 434, 74, 513, 366},
+        // Slot 1 is Dark Blessing (430, 110): Wing Stroke drew behind her cast pose.
+        .abilities = {ABILITY_ATTACK, 430, 178, 190, 434, 74, 513, 366},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 8000,
         .item = ITEM_ELIXIR,
