@@ -4,7 +4,7 @@ N357	MsgDarkMystery02	Does that frighten you?{end_wait}
 N358	MsgDarkMystery03	It makes me careful.\nWhat do you want?{end_wait}
 N359	MsgDarkMystery04	Heart took you for\nsomeone else. You saw\nhow she looked at you.{end_wait}
 N360	MsgDarkMystery05	Matthew. She kept\ncalling me Matthew.{end_wait}
-N361	MsgDarkMystery06	He has been a nuisance\nto my commanders.\nHeart bears the\nworst of it.{page_break}She hides what he left\nher, even from me.{end_wait}
+N361	MsgDarkMystery06	He has been a nuisance\nto my commanders.{page_break}Heart bears the worst\nof it. She hides what\nhe left her, even from me.{end_wait}
 N362	MsgDarkMystery07	That wasn't me.{end_wait}
 N363	MsgDarkMystery08	I know. He wears\nyour face. Amusing,\nisn't it.{end_wait}
 N364	MsgDarkMystery09	Where would you have\nmet someone who looks\nlike me?{end_wait}
