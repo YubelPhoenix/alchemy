@@ -27,6 +27,45 @@
 #define BOSS_LAST_AIM_SHIFT 26
 #define BOSS_LAST_AIM_BITS (7u << BOSS_LAST_AIM_SHIFT)
 
+/// The unit of the enemy in row `row` of enemies.c, or 0 when it is not in
+/// this battle.
+static struct Unit *BossAI_FindRow(s32 row) {
+  s32 index;
+  s32 unitId;
+  struct Unit *unit;
+
+  for (index = 0; gBattleWork->enemyIds[index] != BATTLE_UNIT_LIST_END;
+       index++) {
+    unitId = gBattleWork->enemyIds[index];
+    if (unitId == BATTLE_UNIT_REMOVED)
+      continue;
+    unit = Unit_GetFar(unitId);
+    if (unit->id == ENEMY_ID_FIRST + row)
+      return unit;
+  }
+  return 0;
+}
+
+/// Where the enemy's staged request sits in its action list, or -1 when it is
+/// not a move of its list. A plain Attack is looked up as ABILITY_ATTACK.
+static s32 BossAI_RequestSlot(struct Unit *unit, struct BattleAction *request) {
+  struct EnemyDefinition *enemy =
+      (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
+  s32 abilityId = request->parameter;
+  s32 slot;
+
+  if (request->command == COMMAND_ATTACK)
+    abilityId = ABILITY_ATTACK;
+  else if (request->command != COMMAND_ENEMY_ABILITY &&
+           request->command != COMMAND_PSYNERGY)
+    return -1;
+  for (slot = 0; slot < 8; slot++) {
+    if (enemy->abilities[slot] == abilityId)
+      return slot;
+  }
+  return -1;
+}
+
 /// Kegare's places in her action list (enemies.c).
 enum KegareSlot {
   KEGARE_FREEZE_PRISM = 0,
@@ -78,24 +117,6 @@ static s32 BossAI_KegareIsHeavy(struct Unit *unit, s32 abilityId) {
          abilityId == enemy->abilities[KEGARE_ICE_BLESSING];
 }
 
-/// Kegare's unit, or 0 when she is not in this battle.
-static struct Unit *BossAI_FindKegare(void) {
-  s32 index;
-  s32 unitId;
-  struct Unit *unit;
-
-  for (index = 0; gBattleWork->enemyIds[index] != BATTLE_UNIT_LIST_END;
-       index++) {
-    unitId = gBattleWork->enemyIds[index];
-    if (unitId == BATTLE_UNIT_REMOVED)
-      continue;
-    unit = Unit_GetFar(unitId);
-    if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)
-      return unit;
-  }
-  return 0;
-}
-
 /// A party member Kegare can exploit: HP under half, Defense lowered (the
 /// member's own, by anyone), or unable to act. Nobody who is down counts.
 static s32 BossAI_MemberIsOpen(struct Unit *member) {
@@ -109,7 +130,7 @@ static s32 BossAI_MemberIsOpen(struct Unit *member) {
 /// Called once a round by BattleTurnOrder_Sort, before anyone acts.
 static void BossAI_KegareBeginRound(void) {
 #if BOSS_AI_KEGARE
-  struct Unit *kegare = BossAI_FindKegare();
+  struct Unit *kegare = BossAI_FindRow(ENEMY_ROW_KEGARE);
   u32 memory;
   u32 rounds;
 
@@ -358,28 +379,10 @@ STATIC_ASSERT((ASH_BITS & BOSS_LAST_AIM_BITS) == 0);
 /// She breaks the party's Defense again after this many rounds without.
 #define ASH_BREAK_AFTER_ROUNDS 2
 
-/// Ash Jenna in Vale, or 0.
-static struct Unit *BossAI_FindAsh(void) {
-  s32 index;
-  s32 unitId;
-  struct Unit *unit;
-
-  for (index = 0; gBattleWork->enemyIds[index] != BATTLE_UNIT_LIST_END;
-       index++) {
-    unitId = gBattleWork->enemyIds[index];
-    if (unitId == BATTLE_UNIT_REMOVED)
-      continue;
-    unit = Unit_GetFar(unitId);
-    if (unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
-      return unit;
-  }
-  return 0;
-}
-
 /// Ash Jenna's memory brought up to date at the start of a round.
 static void BossAI_AshBeginRound(void) {
 #if BOSS_AI_ASH_JENNA
-  struct Unit *ash = BossAI_FindAsh();
+  struct Unit *ash = BossAI_FindRow(ENEMY_ASH_JENNA_VALE);
   u32 memory;
   u32 since;
 
@@ -400,42 +403,28 @@ static void BossAI_AshBeginRound(void) {
 static void BossAI_AshNoteTurn(struct Unit *unit,
                                struct BattleAction *request) {
 #if BOSS_AI_ASH_JENNA
-  struct EnemyDefinition *enemy =
-      (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
-  u32 memory;
-  u32 count;
-  s32 abilityId;
-  s32 slot;
+  u32 memory = unit->aiActionIndex;
+  u32 count = (memory >> ASH_TURNS_SHIFT) & 3;
+  s32 slot = BossAI_RequestSlot(unit, request);
 
-  if (request->command != COMMAND_ENEMY_ABILITY &&
-      request->command != COMMAND_PSYNERGY &&
-      request->command != COMMAND_ATTACK)
+  if (slot < 0 && request->command != COMMAND_ENEMY_ABILITY &&
+      request->command != COMMAND_PSYNERGY && request->command != COMMAND_ATTACK)
     return;
-  abilityId = request->parameter;
-  if (request->command == COMMAND_ATTACK)
-    abilityId = ABILITY_ATTACK;
-  memory = unit->aiActionIndex;
-  count = (memory >> ASH_TURNS_SHIFT) & 3;
   if (count < 3)
     count++;
   memory &= ~(3u << ASH_TURNS_SHIFT);
   memory |= count << ASH_TURNS_SHIFT;
-  for (slot = 0; slot < 8; slot++) {
-    if (enemy->abilities[slot] != abilityId)
-      continue;
-    if (slot == ASH_MELTDOWN || slot == ASH_DARK_BLESSING ||
-        slot == ASH_ACID_BLESSING) {
-      memory &= ~(3u << ASH_BREAK_SHIFT);
-      if (slot == ASH_MELTDOWN)
-        memory |= ASH_MELTDOWN_THIS_ROUND_BIT;
-    } else if (slot == ASH_ANNIHILATION) {
-      count = (memory >> ASH_ANNIHILATION_SHIFT) & 3;
-      if (count < 3)
-        count++;
-      memory &= ~(3u << ASH_ANNIHILATION_SHIFT);
-      memory |= count << ASH_ANNIHILATION_SHIFT;
-    }
-    break;
+  if (slot == ASH_MELTDOWN || slot == ASH_DARK_BLESSING ||
+      slot == ASH_ACID_BLESSING) {
+    memory &= ~(3u << ASH_BREAK_SHIFT);
+    if (slot == ASH_MELTDOWN)
+      memory |= ASH_MELTDOWN_THIS_ROUND_BIT;
+  } else if (slot == ASH_ANNIHILATION) {
+    count = (memory >> ASH_ANNIHILATION_SHIFT) & 3;
+    if (count < 3)
+      count++;
+    memory &= ~(3u << ASH_ANNIHILATION_SHIFT);
+    memory |= count << ASH_ANNIHILATION_SHIFT;
   }
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 #endif
@@ -541,31 +530,13 @@ STATIC_ASSERT((HEART_BITS & BOSS_LAST_AIM_BITS) == 0);
 /// The party must have at least this percent of its HP for her to warn.
 #define HEART_WARNING_ABOVE_PERCENT 40
 
-/// Heart, or 0.
-static struct Unit *BossAI_FindHeart(void) {
-  s32 index;
-  s32 unitId;
-  struct Unit *unit;
-
-  for (index = 0; gBattleWork->enemyIds[index] != BATTLE_UNIT_LIST_END;
-       index++) {
-    unitId = gBattleWork->enemyIds[index];
-    if (unitId == BATTLE_UNIT_REMOVED)
-      continue;
-    unit = Unit_GetFar(unitId);
-    if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART)
-      return unit;
-  }
-  return 0;
-}
-
 /// Starts a round for Heart: the warning of last round becomes this round's
 /// permission for a payoff, her per-round memory is cleared, and the party
 /// places that are down are noted, which is how a member revived during the
 /// round is told from one who was standing.
 static void BossAI_HeartBeginRound(void) {
 #if BOSS_AI_HEART
-  struct Unit *heart = BossAI_FindHeart();
+  struct Unit *heart = BossAI_FindRow(ENEMY_ROW_HEART);
   struct BattleWork *work = gBattleWork;
   u32 memory;
   u32 calm;
@@ -856,65 +827,43 @@ static s32 BossAI_MysteryFullPower(const struct Unit *unit) {
 
 /// Her memory brought up to date at the start of a round.
 static void BossAI_MysteryBeginRound(void) {
-  s32 index;
-  s32 unitId;
-  struct Unit *unit;
+  struct Unit *unit = BossAI_FindRow(ENEMY_ROW_MYSTERY_LEADER);
   u32 memory;
 
-  for (index = 0; gBattleWork->enemyIds[index] != BATTLE_UNIT_LIST_END;
-       index++) {
-    unitId = gBattleWork->enemyIds[index];
-    if (unitId == BATTLE_UNIT_REMOVED)
-      continue;
-    unit = Unit_GetFar(unitId);
-    if (unit->id != ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)
-      continue;
-    memory = unit->aiActionIndex;
-    memory &= ~(MYSTERY_LUFF_LAST_BIT | MYSTERY_LUFF_THIS_BIT |
-                (3u << MYSTERY_KILL_SHIFT) | (3u << MYSTERY_TURNS_SHIFT));
-    if (unit->aiActionIndex & MYSTERY_LUFF_THIS_BIT)
-      memory |= MYSTERY_LUFF_LAST_BIT;
-    unit->aiActionIndex = memory;
-  }
+  if (unit == 0)
+    return;
+  memory = unit->aiActionIndex;
+  memory &= ~(MYSTERY_LUFF_LAST_BIT | MYSTERY_LUFF_THIS_BIT |
+              (3u << MYSTERY_KILL_SHIFT) | (3u << MYSTERY_TURNS_SHIFT));
+  if (unit->aiActionIndex & MYSTERY_LUFF_THIS_BIT)
+    memory |= MYSTERY_LUFF_LAST_BIT;
+  unit->aiActionIndex = memory;
 }
 
 /// Records her turn when it was really staged.
 static void BossAI_MysteryNoteTurn(struct Unit *unit,
                                    struct BattleAction *request) {
-  struct EnemyDefinition *enemy =
-      (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
   u32 memory = unit->aiActionIndex;
-  u32 count;
-  s32 abilityId;
-  s32 slot;
+  u32 count = (memory >> MYSTERY_TURNS_SHIFT) & 3;
+  s32 slot = BossAI_RequestSlot(unit, request);
 
-  if (request->command != COMMAND_ENEMY_ABILITY &&
-      request->command != COMMAND_PSYNERGY &&
-      request->command != COMMAND_ATTACK)
+  if (slot < 0 && request->command != COMMAND_ENEMY_ABILITY &&
+      request->command != COMMAND_PSYNERGY && request->command != COMMAND_ATTACK)
     return;
-  abilityId = request->parameter;
-  if (request->command == COMMAND_ATTACK)
-    abilityId = ABILITY_ATTACK;
-  count = (memory >> MYSTERY_TURNS_SHIFT) & 3;
   if (count < 3)
     count++;
   memory &= ~(3u << MYSTERY_TURNS_SHIFT);
   memory |= count << MYSTERY_TURNS_SHIFT;
-  for (slot = 0; slot < 8; slot++) {
-    if (enemy->abilities[slot] != abilityId)
-      continue;
-    if (slot == MYSTERY_LUFF) {
-      memory |= MYSTERY_LUFF_THIS_BIT;
-    } else if (slot == MYSTERY_ANNIHILATION || slot == MYSTERY_DEATH_SIZE) {
-      count = (memory >> MYSTERY_KILL_SHIFT) & 3;
-      if (count < 3)
-        count++;
-      memory &= ~(3u << MYSTERY_KILL_SHIFT);
-      memory |= count << MYSTERY_KILL_SHIFT;
-      if (!BossAI_MysteryFullPower(unit))
-        memory |= MYSTERY_EARLY_KILL_BIT;
-    }
-    break;
+  if (slot == MYSTERY_LUFF) {
+    memory |= MYSTERY_LUFF_THIS_BIT;
+  } else if (slot == MYSTERY_ANNIHILATION || slot == MYSTERY_DEATH_SIZE) {
+    count = (memory >> MYSTERY_KILL_SHIFT) & 3;
+    if (count < 3)
+      count++;
+    memory &= ~(3u << MYSTERY_KILL_SHIFT);
+    memory |= count << MYSTERY_KILL_SHIFT;
+    if (!BossAI_MysteryFullPower(unit))
+      memory |= MYSTERY_EARLY_KILL_BIT;
   }
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 }
