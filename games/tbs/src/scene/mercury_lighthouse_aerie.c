@@ -1247,7 +1247,9 @@ static void MercuryLighthouseAerie_MiaFacesMenardi(void) {
   Event_SetMessageId(MsgDarkAerieMiaJenna);
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_MENARDI, 0, 20);
-  FieldEvent_ShowMessageThenWait(ACTOR_JENNA, 0, 30);
+  // Kraden warns Mia not to face Menardi alone. This line previously
+  // used Jenna's actor despite the captive not appearing at this beat.
+  FieldEvent_ShowMessageThenWait(ACTOR_KRADEN, 0, 30);
   Actor_SetAnimationAndWait(ACTOR_MIA, ANIM_NOD);
   Event_WaitFrames(20);
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
