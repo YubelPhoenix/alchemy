@@ -50,12 +50,28 @@ enum { ASTER_TO_WORLD_MAP = 1, ASTER_MB_WELL = 0xe1,
 enum AsterActorId {
   ACTOR_ASTER_ELDER = ACTOR_FIRST_PLACED,
   ACTOR_ASTER_INNKEEPER, ACTOR_ASTER_GREETER, ACTOR_ASTER_BOY,
-  ACTOR_ASTER_RESIDENT, ACTOR_ASTER_OTHER, ACTOR_ASTER_MIRROR
+  ACTOR_ASTER_RESIDENT, ACTOR_ASTER_OTHER, ACTOR_ASTER_MIRROR,
+  // Four existing scenery actors follow the seven NPCs. Keep the sign last
+  // so none of their established actor IDs changes.
+  ACTOR_ASTER_GATE_SIGN = ACTOR_ASTER_MIRROR + 5
 };
 
 static void Aster_Speak(s32 actor, s32 message) {
   Event_SetMessageId(message);
   Event_ShowMessageAndWait(actor, 0);
+}
+// Optional sign beside the south entrance, not on the exit marker.
+// Re-read its text as Aster's story changes; no temporary sign flag needed.
+static void Aster_ReadGateSign(void) {
+  Event_Start();
+  if (GameFlag_Get(ASTER_REVEALED)) {
+    FieldMessage_Show(MsgAsterRevelationGate, 1);
+  } else if (GameFlag_Get(ASTER_FRACTURED)) {
+    FieldMessage_Show(MsgAsterFractureGate, 1);
+  } else {
+    FieldMessage_Show(MsgAsterArrivalGate, 1);
+  }
+  Event_End();
 }
 static void Aster_CheckFracture(void) {
   if (GameFlag_Get(ASTER_FRACTURED) == 0 &&
@@ -97,7 +113,11 @@ static void Aster_TalkInnkeeper(void) {
 }
 static void Aster_TalkGreeter(void) {
   Event_Start();
-  if (GameFlag_Get(ASTER_FRACTURED)) {
+  // After the revelation, Isaac may return to the woman who welcomed him.
+  // The farewell is optional TALK dialogue, never part of exit handling.
+  if (GameFlag_Get(ASTER_REVEALED)) {
+    Aster_Speak(ACTOR_ASTER_GREETER, MsgAsterRevelationExit);
+  } else if (GameFlag_Get(ASTER_FRACTURED)) {
     if (!GameFlag_Get(ASTER_GREETER_DUPLICATE_SEEN)) {
       Aster_Speak(ACTOR_ASTER_GREETER, MsgAsterFractureGreeter);
       GameFlag_Set(ASTER_GREETER_DUPLICATE_SEEN);
@@ -288,6 +308,10 @@ static struct ActorTemplate sAsterActors[] = {
    PIXELS(672), 0, PIXELS(528), FACING_SOUTH, TALK_FACING_KEEP, 0},
   {SPRITE_ASTER_ADDITIONAL_HOME, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
    PIXELS(208), 0, PIXELS(912), FACING_SOUTH, TALK_FACING_KEEP, 0},
+  // Vanilla Golden Sun signpost, placed beside the safe main south approach.
+  // Leave the (32,62) exit marker and (32,61) player spawn untouched.
+  {SPRITE_SIGNPOST, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+   PIXELS(480), 0, PIXELS(960), FACING_SOUTH, TALK_FACING_KEEP, 0},
   {SCENE_TABLE_END},
 };
 static struct Trigger sAsterTriggers[] = {
@@ -318,6 +342,8 @@ static struct Trigger sAsterTriggers[] = {
   {TRIGGER_TALK, ACTOR_ASTER_OTHER, CONDITION_ALWAYS, EVENT(Aster_TalkOther)},
   {TRIGGER_TALK, ACTOR_ASTER_MIRROR, CONDITION_ALWAYS,
    EVENT(Aster_TalkMirror)},
+  {TRIGGER_TALK, ACTOR_ASTER_GATE_SIGN, CONDITION_ALWAYS,
+   EVENT(Aster_ReadGateSign)},
   {PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_ASTER_INNKEEPER,
    CONDITION_ALWAYS, MSGNO(MsgAsterInnkeeperMindRead)},
   {PSYNERGY_ON_ACTOR(ABILITY_MIND_READ), ACTOR_ASTER_ELDER,
