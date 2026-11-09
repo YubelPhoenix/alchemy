@@ -101,6 +101,7 @@ def main():
     print("PASS: Aster message source IDs do not overwrite the vanilla catalogue")
 
     checks = ("check_aster_branch_isolation.py",
+              "check_aster_persistence.py",
               "check_aster_overworld_contract.py",
               "aster_v14_native_map.py --check",
               "check_aster_v14.py",
