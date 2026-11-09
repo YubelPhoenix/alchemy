@@ -640,6 +640,25 @@ static inline s32 VaultRevisit_ShouldKeepBellDjinniPosition(void) {
 #endif
 }
 
+/// Back from Kegare's battle with her beaten: she says her last words in the
+/// spot where the party faced her, Mia answers, and she is gone.
+static void VaultRevisit_KegareAftermath(void) {
+  Event_Start();
+  Actor_SetPosition(ACTOR_VAULT_KEGARE, PIXELS(300), PIXELS(336));
+  Actor_FaceDirection(ACTOR_VAULT_KEGARE, FACING_SOUTH, 0);
+  Actor_ConfigureSpriteColor(ACTOR_VAULT_KEGARE, SPRITE_COLOR_GREY);
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_SetMessageId(MsgDarkKegareBeaten);
+  Event_ShowMessageThenWait(ACTOR_VAULT_KEGARE, 0, 20);
+  Event_SetMessageId(MsgDarkKegareMiaAfter);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Actor_SetPosition(ACTOR_VAULT_KEGARE, PIXELS(0), PIXELS(0));
+  Event_End();
+}
+
 /// Sets up Vault as the party finds it after reaching Kalay.
 /// On arrival it restores the passage's metatile behaviors
 /// (common/vault_toggle.h), creates the still actor of sprite 223 on the well
@@ -724,6 +743,7 @@ s32 Scene_Initialize(void) {
       GameFlag_Set(FLAG_DARK_KEGARE_BEATEN);
       GameFlag_Set(FLAG_DARK_KEGARE_WON);
       GameFlag_Clear(FLAG_DARK_KEGARE_PENDING);
+      VaultRevisit_KegareAftermath();
     } else if (GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) == 0) {
       // The battle never ran: she is still waiting.
       GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
@@ -762,7 +782,8 @@ static void VaultRevisit_TalkToKegare(void) {
   GameFlag_Set(FLAG_DARK_KEGARE_PENDING);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
-  Event_SetAfterBattleDestination((s32)&SceneId_VaultRevisit, 0);
+  Event_SetAfterBattleDestination((s32)&SceneId_VaultRevisit,
+                                  VAULT_REVISIT_FROM_KEGARE);
   // A defeat goes to the restart point (the last Sanctum).
   Event_SetDefeatDestination(-1, -1);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
@@ -848,6 +869,8 @@ struct SceneEntrance gVaultRevisit_Entrances[] = {
     {VAULT_REVISIT_FROM_VAULT, CONDITION_ALWAYS, 400, 0, 472, FACING_NORTH, 0,
      -1, -1, -1, -1, 0},
     {VAULT_REVISIT_NORTH_UNUSED, CONDITION_ALWAYS, 224, 0, 138, FACING_SOUTH, 0,
+     -1, -1, -1, -1, 0},
+    {VAULT_REVISIT_FROM_KEGARE, CONDITION_ALWAYS, 300, 0, 368, FACING_NORTH, 0,
      -1, -1, -1, -1, 0},
     {VAULT_REVISIT_FROM_LOG_ROOMS_B_SOUTHEAST, CONDITION_ALWAYS, 408, 0, 344,
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},

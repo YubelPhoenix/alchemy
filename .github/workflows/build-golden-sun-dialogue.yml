@@ -3,7 +3,7 @@ name: Validate Golden Sun dialogue build
 on:
   workflow_dispatch:
   push:
-    branches: [dark-story-rewrite]
+    branches: [dark-story-rewrite, kegare-aftermath]
     paths:
       - 'games/tbs/text/en.po'
       - 'games/tbs/src/**'
