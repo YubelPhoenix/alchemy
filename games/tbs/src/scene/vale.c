@@ -1684,6 +1684,11 @@ s32 Vale_Initialize(void) {
   if (GameFlag_Get(FLAG_DARK_ASH_VALE_PENDING) != 0) {
     Vale_AshJennaAftermath();
   }
+  // A black figure in the square until she is beaten.
+  if (GameFlag_Get(FLAG_DARK_MYSTERY_DONE) == 0) {
+    Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
+                               SPRITE_COLOR_BLACK);
+  }
   // Back from her battle.
   if (GameFlag_Get(FLAG_DARK_MYSTERY_PENDING) != 0) {
     Vale_MysteryLeaderAftermath();
@@ -3800,7 +3805,7 @@ struct ActorTemplate gVale_ActorTemplatesAfterKalay[] = {
     { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, FLAG_DARK_ASH_VALE_FOUGHT, MOVEMENT_TYPE_STAND,
         PIXELS(400), 0, PIXELS(800), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     // "???", a black figure in the square until she is beaten.
-    { SPRITE_MYSTERY_LEADER, FLAG_DARK_MYSTERY_DONE, MOVEMENT_TYPE_STAND,
+    { SPRITE_WOMAN_WITH_BLACK_HAIR, FLAG_DARK_MYSTERY_DONE, MOVEMENT_TYPE_STAND,
         PIXELS(432), 0, PIXELS(800), FACING_WEST, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
