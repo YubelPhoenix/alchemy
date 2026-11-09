@@ -30,7 +30,7 @@
 10379	MsgLaliveroPleaseWaitForMeOutside	Wait outside Faran's\nhouse. I need to speak\nwith you privately.{end_wait}
 10320	MsgLaliveroHowDidSearchForSheba	Did you find {actor_name:7}?\nHow did the search end?{end_wait}
 10337	MsgLaliveroDoNotWorryAboutSheba	Do not lose hope for\n{actor_name:7}. I pray you can\nfind {actor_name:6} as well.{end_wait}
-10368	MsgLaliveroTellOthers	And what of {actor_name:6}?\nWhat became of the\nothers who went with you?{end_wait}
+10368	MsgLaliveroTellOthers	And we won't leave\n{actor_name:6} behind.{end_wait}
 09942	MsgLaliveroInteriorsActorIfThePowerThatYou	{actor_name:7}, if your power is\nreal, then use it now.{page_break}Please escape. I do not\nknow how much longer\nwe can wait.{end_wait}
 09943	MsgLaliveroInteriorsActorIsTheSaviorOfLalivero	I won't give up on\n{actor_name:7}. Not now.\nShe's our hope.{page_break}But hope isn't all.\nWe owe {actor_name:7}\nmore than prayers.{end_wait}
 09944	MsgLaliveroInteriorsALegendarySaviorWillAppearIn	A savior was meant to\ncome from the heavens...{page_break}I was foolish to think\nthat {actor_name:7} could be\nthat person.{end_wait}

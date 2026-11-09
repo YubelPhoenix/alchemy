@@ -1,22 +1,22 @@
-N37	MsgDarkAerieSaturosStars	Menardi has the Stars\nand your friends.\nShe's still ahead.{end_wait}
-N38	MsgDarkAerieGaretWhere	Where? Where's Jenna!?{end_wait}
-N39	MsgDarkAerieSaturosSorry	Out of your reach.\nI'm sorry for that.{end_wait}
-N40	MsgDarkAerieMiaSorry	Sorry won't bring\nJenna home.{end_wait}
-N41	MsgDarkAerieSaturosGo	Then follow us.\nThis isn't over.{end_wait}
-N42	MsgDarkAerieMiaGoing	Mia went ahead.\nShe's facing Menardi\nalone!{end_wait}
-N43	MsgDarkAerieIvanAlone	We have to help her.{end_wait}
+N37	MsgDarkAerieSaturosStars	You held me here.\nMenardi kept moving.{end_wait}
+N38	MsgDarkAerieGaretWhere	We can't lose Jenna.\nNot again.{end_wait}
+N39	MsgDarkAerieSaturosSorry	She's farther ahead\nthan you think.{end_wait}
+N40	MsgDarkAerieMiaSorry	Garet, he's stalling.\nWe need to move.{end_wait}
+N41	MsgDarkAerieSaturosGo	Go on. Chase them.\nYou won't get far.{end_wait}
+N42	MsgDarkAerieMiaGoing	The lift's our only way\nto the far ledge.{end_wait}
+N43	MsgDarkAerieIvanAlone	Then we find a way\nto get across.{end_wait}
 N44	MsgDarkAerieMiaFollow	...{end_wait}
-N45	MsgDarkAerieGaretAfterHer	Then move!\nShe needs us!{end_wait}
-N46	MsgDarkAerieMiaJenna	Menardi, let them go.\nThey didn't choose\nany of this.{end_wait}
+N45	MsgDarkAerieGaretAfterHer	I'll try the lift.\nWe can still catch up.{end_wait}
+N46	MsgDarkAerieMiaJenna	Menardi, let them go.\nThis ends here.{end_wait}
 N47	MsgDarkAerieMenardiWhichReal	You came alone.\nThat was foolish.{end_wait}
-N48	MsgDarkAerieJennaScared	Please! Don't let\nher take us!{end_wait}
-N49	MsgDarkAerieMiaFear	Jenna, don't move.\nI'll get you out.{end_wait}
-N50	MsgDarkAerieMiaGiveBack	You lit the beacon.\nWhy keep them hostage?{end_wait}
-N51	MsgDarkAerieMenardiAlone	Because they still\nhave their uses.{end_wait}
+N48	MsgDarkAerieKradenWarn	Stay back! She'll kill you\nif you fight alone.{end_wait}
+N49	MsgDarkAerieMiaFear	I won't leave them\nin your hands.{end_wait}
+N50	MsgDarkAerieMiaGiveBack	You have the beacon.\nWhy keep them captive?{end_wait}
+N51	MsgDarkAerieMenardiAlone	They're useful alive.\nThat's all I'll say.{end_wait}
 N52	MsgDarkAerieMiaAngry	Then I'll stop you.{end_wait}
-N53	MsgDarkAerieMenardiRetreat	You held me back.\nThat doesn't mean\nyou've won.{end_wait}
-N54	MsgDarkAerieMenardiTakes	The Stars and hostages\ncome with me.\nDo not follow.{end_wait}
+N53	MsgDarkAerieMenardiRetreat	You slowed me down.\nNothing more.{end_wait}
+N54	MsgDarkAerieMenardiTakes	I have what I came for.\nYou can stay here.{end_wait}
 N55	MsgDarkAerieGaretHurt	Mia! You're hurt.\nCan you walk?{end_wait}
-N56	MsgDarkAerieMiaTookThem	I fought her.\nIt wasn't enough.\nThey got away.{end_wait}
-N57	MsgDarkAerieIvanTogether	Then we follow them.\nTogether this time.{end_wait}
-N58	MsgDarkAerieMiaTogether	I thought I could\nhold her here.{page_break}I couldn't.\nLet's go together.{end_wait}
+N56	MsgDarkAerieMiaTookThem	I couldn't free them.\nShe was too strong.{end_wait}
+N57	MsgDarkAerieIvanTogether	We know where\nthey're heading.{end_wait}
+N58	MsgDarkAerieMiaTogether	I won't chase her alone\nagain. We go together.{end_wait}

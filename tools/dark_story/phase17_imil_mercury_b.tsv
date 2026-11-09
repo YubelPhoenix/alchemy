@@ -1,6 +1,6 @@
 05588	MsgMercuryGot	{actor_name:1}, he's down!{end_wait}
 05589	message	Mercury's light...\nIt sapped my strength.{page_break}Had I fought at full power,\nyou'd be dead already.{end_wait}
-05590	message	The beacon weakened you.\nWhy? What are you?{end_wait}
+05590	message	Mercury's light hurt you.\nWhy stay here to fight?{end_wait}
 05591	message	That is not your\nconcern...{end_wait}
 05671	message	The legend was true.\nThe beacon lit,\nthe spring returned.{page_break}Imil can heal again.\nBut what else has\nthat light changed?{end_wait}
 05672	message	I can't leave them.\nNot when they've\nneeded me so long.{page_break}But the water is back.\nAnd Imil has healers.\nI have to trust them.{end_wait}

@@ -1,13 +1,13 @@
 00790	message	Sarah
-N59	MsgDarkDuelMiaStops	Menardi's getting away\nwith Jenna and Kraden.{end_wait}
-N60	MsgDarkDuelIsaacNoTime	Then I have to go\nafter them.{end_wait}
-N61	MsgDarkDuelMiaPlace	Saturos is still here.\nHe won't let you pass.{end_wait}
-N62	MsgDarkDuelIsaacRefuse	We can't let either\nof them get away.{end_wait}
-N63	MsgDarkDuelMiaDraw	I'll go after Menardi.\nYou three stay here.{end_wait}
-N64	MsgDarkDuelSaturosAmused	You won't catch her,\nhealer.{end_wait}
-N65	MsgDarkDuelMiaLost	There's another path\nto the far ledge.{end_wait}
-N66	MsgDarkDuelMiaStop	If I hurry, I can\nstill reach them.{end_wait}
-N67	MsgDarkDuelIsaacNotEnemy	Mia, be careful.\nJenna's with them.{end_wait}
-N68	MsgDarkDuelMiaTrust	I know. That's why\nI'm going.{end_wait}
-N69	MsgDarkDuelMiaKeepUp	I'll bring them back\nif I can.{end_wait}
-N70	MsgDarkDuelSaturosResumes	Your healer is gone.\nNow face me.{end_wait}
+N59	MsgDarkDuelMiaStops	Menardi's leaving\nwith the hostages.{end_wait}
+N60	MsgDarkDuelIsaacNoTime	We're going after her.{end_wait}
+N61	MsgDarkDuelMiaPlace	Saturos won't let\nall of us pass.{end_wait}
+N62	MsgDarkDuelIsaacRefuse	Then what do you want\nus to do?{end_wait}
+N63	MsgDarkDuelMiaDraw	I'll take the side path.\nKeep Saturos here.{end_wait}
+N64	MsgDarkDuelSaturosAmused	Go on, healer.\nMenardi can handle you.{end_wait}
+N65	MsgDarkDuelMiaLost	There's a path across\nto the far ledge.{end_wait}
+N66	MsgDarkDuelMiaStop	I'll use it before\nMenardi gets away.{end_wait}
+N67	MsgDarkDuelIsaacNotEnemy	Don't let her\ncorner you, Mia.{end_wait}
+N68	MsgDarkDuelMiaTrust	I won't. Just keep\nSaturos here.{end_wait}
+N69	MsgDarkDuelMiaKeepUp	I'll see you again.\nStay alive until then.{end_wait}
+N70	MsgDarkDuelSaturosResumes	I let her go.\nYou three stay here.{end_wait}

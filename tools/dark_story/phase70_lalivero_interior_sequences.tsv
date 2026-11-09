@@ -1,53 +1,53 @@
 # Lalivero interiors: the report to Faran and the search for Sheba.
 # First account of the search and the fate of Idejima.
-10321	message	We searched...{pause_20_skippable} There\nwas no sign of her.{end_wait}
-10322	message	The sea is too rough.\nNo boat can get close\nto where she fell.{end_wait}
-10323	message	We searched the shore.\nThere was nothing.{end_wait}
-10324	message	Tolbi brought {actor_name:7}\ninto this. We cannot\ndeny our part in it.{end_wait}
-10325	message	I have no words that\ncan make this right,\nFaran.{end_wait}
-10326	message	We have not found\n{actor_name:7}. But that does\nnot mean she is gone.{end_wait}
+10321	message	I searched all night.\nI found nothing.{end_wait}
+10322	message	The surf is too high.\nOur boats can't get near.{end_wait}
+10323	message	I know every rock\nalong that coast.\nShe wasn't there.{end_wait}
+10324	message	Tolbi brought {actor_name:7}\nhere. We let them do it.\nWe must answer for that.{end_wait}
+10325	message	I'm sorry, Faran.\nWe should've done more.{end_wait}
+10326	message	{actor_name:7} isn't gone.\nWe haven't found her yet.{end_wait}
 10327	message	And what of {actor_name:6}\nand the others?{end_wait}
-10328	message	We found no trace\nof them, either.{end_wait}
-10329	message	The shock from Venus\nsplit the land apart.\nThe ship...{end_wait}
-10330	message	Idejima broke away.\nThe ship went out\nto sea with it.{end_wait}
+10328	message	Nothing. Not yet.{end_wait}
+10329	message	Venus shook the coast.\nThe cliffs gave way.{end_wait}
+10330	message	Idejima broke away.\nThe ship was still there.{end_wait}
 10331	message	The whole peninsula\nwas swept out to sea?{end_now}
-10332	message	Then the passage\nbeneath the lighthouse\nmust be flooded.{end_wait}
-10333	message	We believe {actor_name:6}\nand the others\nmay still be alive.{end_wait}
-10334	message	If they reached\nthe ship, the current\nmay have carried them.{end_wait}
-10335	message	We will keep looking\nfor {actor_name:6}. We owe\nher that much.{end_wait}
+10332	message	Then the lower passage\nmust be underwater.{end_wait}
+10333	message	Felix sent {actor_name:6}\ntoward the ship.{end_wait}
+10334	message	The current may have\ncarried them clear.{end_wait}
+10335	message	That's a lead.\nWe'll look for {actor_name:6}.{end_wait}
 10336	message	Isn't that right,\n{actor_name:1}?{end_now}
 
 # Faran's response, the Adept discussion, and the farewell.
 10338	message	Thank you.\nPlease keep looking\nfor {actor_name:7}.{end_wait}
 10339	message	I understand.\nWe'll keep searching\nfor {actor_name:7}.{end_wait}
-10340	message	{actor_name:7} has survived\nthings no one else\ncould have endured.{end_wait}
-10341	message	But that fall...\nEven I cannot say\nwhat happened to her.{end_wait}
-10342	message	The sea rose as she\nfell. None of us\nexpected that.{end_wait}
-10343	message	I want to call it\na miracle. But I\ncan't know yet.{end_wait}
-10344	message	Perhaps it was luck.\nEither way, I hope\nshe survived.{end_wait}
-10345	message	We cannot know yet.\nCall it chance.{end_wait}
-10346	message	I raised her.\nNothing about her\nwas ever ordinary.{end_wait}
-10347	message	Then you truly think\n{actor_name:7} is alive?{end_wait}
-10348	message	I have to believe\nshe is.{end_wait}
-10349	message	You believe {actor_name:7}\nsurvived because\nshe is an Adept?{end_wait}
-10350	message	An Adept? I have\nnever heard that word.{end_wait}
-10351	message	It's hard to explain.{end_wait}
-10352	message	Someone who can use\npowers like ours.{end_wait}
+10340	message	She's lived through\nthings I can't explain.\n{actor_name:7} won't give up.{end_wait}
+10341	message	But that fall...\nI couldn't even watch.{end_wait}
+10342	message	The sea rose to meet her.\nYou all saw it.{end_wait}
+10343	message	I want to believe\nit carried her safely.{end_wait}
+10344	message	A wave that high...\nIt might have saved her.{end_wait}
+10345	message	I won't call that chance.\nNot with Sheba.{end_wait}
+10346	message	I've served Babi for\nyears. This still\nfrightens me.{end_wait}
+10347	message	I know {actor_name:7}.\nShe wouldn't give up.{end_wait}
+10348	message	Sheba may be an Adept,\nlike the rest of us.{end_wait}
+10349	message	An Adept?\nIs that what {actor_name:7} is?{end_wait}
+10350	message	I've read that word\nin Babi's old records.{end_wait}
+10351	message	Could that power\nhave saved her?{end_wait}
+10352	message	Adepts can shape\nthe elements themselves.{end_wait}
 10353	message	You and your friends\nhave done what we\ncouldn't, {actor_name:1}.{end_wait}
 10354	message	You found a way\nthrough the ruins\nto Venus Lighthouse.{end_wait}
-10355	message	But {actor_name:7} could not\npass through the ruins.\nWhy was that?{end_wait}
-10356	message	{actor_name:7} has powers\nunlike ours. That may\nexplain the ruins.{end_wait}
-10357	message	I've tried to tell\nFaran, but he won't\nlisten to me!{end_wait}
-10358	message	{actor_name:2}, please.\nHe's worried sick.{end_wait}
-10359	message	We cannot stay here.\nWe have to go.{end_wait}
-10360	message	Of course. I didn't\nmean to delay you.{end_wait}
-10361	message	I'm sorry. That came\nout wrong.{end_wait}
-10362	message	Every moment here\nis time we could spend\nsearching for {actor_name:6}.{end_wait}
-10363	message	I understand.\nYou have to go.{end_wait}
-10364	message	The sea has been rough\nsince the beacon was lit.\nBe careful!{end_wait}
-10365	message	You, too. Goodbye.{end_wait}
-10366	message	Take care...\nAnd come back safely.{end_wait}
-10367	message	Thank you. I hope\nyou find {actor_name:7}.\nI truly do.{end_wait}
+10355	message	I followed {actor_name:7}.\nThe ruins stopped me.{end_wait}
+10356	message	You passed that barrier.\nCould {actor_name:7}\nhave crossed it?{end_wait}
+10357	message	They have Psynergy.\nWe don't, Faran.{end_wait}
+10358	message	{actor_name:2}, please.\nHe's worried for Sheba.{end_wait}
+10359	message	We're losing time.\nWe have to keep moving.{end_wait}
+10360	message	You're right.\nI won't hold you here.{end_wait}
+10361	message	Forgive me. I forgot\nyou have someone\nto find, too.{end_wait}
+10362	message	Every minute matters.\n{actor_name:6} may still live.{end_wait}
+10363	message	Then go.\nFind your friend.{end_wait}
+10364	message	The waters are rough.\nBe careful out there.{end_wait}
+10365	message	We will.\nSo should you.{end_wait}
+10366	message	I'll search every shore\nuntil I find her.{end_wait}
+10367	message	We'll find a way\nto look for {actor_name:7}.{end_wait}
 
 # Alternate report when the party did not see the ship at Idejima.
 10369	message	We searched the shore.\nThere was no sign\nof any of them.{end_wait}
