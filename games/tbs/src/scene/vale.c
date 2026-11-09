@@ -1701,7 +1701,7 @@ static void Vale_TalkToAshJenna(void) {
   GameFlag_Set(FLAG_DARK_ASH_VALE_PENDING);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
-  Event_SetAfterBattleDestination((s32)&SceneId_Vale, 0);
+  Event_SetAfterBattleDestination((s32)&SceneId_Vale, VALE_FROM_ASH_JENNA);
   // A defeat goes to the restart point (the last Sanctum).
   Event_SetDefeatDestination(-1, -1);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
@@ -1714,16 +1714,9 @@ static void Vale_TalkToAshJenna(void) {
 static void Vale_AshJennaAftermath(void) {
   GameFlag_Clear(FLAG_DARK_ASH_VALE_PENDING);
   Event_Start();
-  // The party comes back where it stood to face her, not at the village
-  // entrance.
-  Actor_SetPosition(ACTOR_PARTY_LEADER, PIXELS(400), PIXELS(832));
-  Actor_SetPosition(ACTOR_GARET, PIXELS(416), PIXELS(848));
-  Actor_SetPosition(ACTOR_IVAN, PIXELS(384), PIXELS(848));
-  Actor_SetPosition(ACTOR_MIA, PIXELS(400), PIXELS(864));
-  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
-  Actor_FaceDirection(ACTOR_GARET, FACING_NORTH, 0);
-  Actor_FaceDirection(ACTOR_IVAN, FACING_NORTH, 0);
-  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
+  // The party comes back in the square (VALE_FROM_ASH_JENNA), where it stood
+  // to face her; nobody is moved, so the camera starts there and no second
+  // Garet is left at the village entrance.
   MapGrid_CenterOnFollowedPoint();
   WaitFrames(1);
   Event_StartScreenTransition();
@@ -3572,6 +3565,7 @@ struct SceneEntrance gVale_Entrances[] = {
     { VALE_FROM_COTTAGE_ROOMS_A_NORTH_SECOND_DOOR, CONDITION_ALWAYS, 102, 0, 1222, FACING_SOUTH, 0, -1, -1, -1, -1, 0 },
     { VALE_FROM_TITLE, CONDITION_ALWAYS, 400, 0, 852, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
     { VALE_FROM_ROOF_MENDED, CONDITION_ALWAYS, 400, 0, 852, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
+    { VALE_FROM_ASH_JENNA, CONDITION_ALWAYS, 400, 0, 832, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
     { SCENE_TABLE_END },
 };
 

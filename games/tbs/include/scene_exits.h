@@ -279,6 +279,9 @@ enum {
   VALE_FROM_COTTAGE_ROOMS_A_NORTH_SECOND_DOOR = 11,
   VALE_FROM_TITLE = 16,
   VALE_FROM_ROOF_MENDED = 17,
+  /// The square, where the party stood to face Ash Jenna; the battle brings
+  /// the party back in here (Vale_AshJennaAftermath).
+  VALE_FROM_ASH_JENNA = 18,
 };
 /// SceneId_Vale's exits.
 enum {
