@@ -984,7 +984,7 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .animation = 489,
         .attackAnim = 1,
         .defeatSound = 1,
-        .effectHeight = 54,
+        .effectHeight = 50,
     },
 };
 // clang-format on
