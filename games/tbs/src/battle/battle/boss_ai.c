@@ -808,10 +808,10 @@ enum MysterySlot {
 STATIC_ASSERT((MYSTERY_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((MYSTERY_BITS & BOSS_LAST_AIM_BITS) == 0);
 /// She holds back until her HP is under this percent, then fights in full.
-#define MYSTERY_FULL_POWER_BELOW_PERCENT 70
+#define MYSTERY_FULL_POWER_BELOW_PERCENT 95
 /// Out of 256, a turn of hers: her one early Annihilation (from her second
 /// turn of a round while she still holds back).
-#define MYSTERY_EARLY_KILL_CHANCE 90
+#define MYSTERY_EARLY_KILL_CHANCE 140
 /// Out of 256, a turn of hers once she fights in full: Annihilation, then
 /// Death Size beside it; at most MYSTERY_KILLS_PER_ROUND of the two a round.
 #define MYSTERY_ANNIHILATION_CHANCE 100
@@ -868,9 +868,9 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 }
 
-/// Her pick. Holding back (HP at 70% or more): her blade and Dark Blessing, and
+/// Her pick. Holding back (HP at 95% or more): her blade and Dark Blessing, and
 /// once, from her second turn of a round, an Annihilation. In full power
-/// (under 70%): Luff as her first turn of a round to act twice next round,
+/// (under 95%): Luff as her first turn of a round to act twice next round,
 /// then Annihilation or Death Size (two killing moves a round at most), else
 /// Thunderstorm, Storm Blessing or Spark Plasma. A re-pick after a refused
 /// move (too little PP, sealed) takes Dark Blessing or Storm Blessing, which
