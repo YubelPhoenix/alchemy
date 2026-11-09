@@ -31,6 +31,22 @@ enum { ASTER_TO_WORLD_MAP = 1, ASTER_MB_WELL = 0xe1,
 #define ASTER_ELDER_SECOND FLAG_SCENE_TEMP_0C
 #define ASTER_INNKEEPER_TALKED FLAG_SCENE_TEMP_0D
 
+/* Exterior thresholds are STEP triggers, so each line should play only once
+ * per stage in a town visit. A changed history may still be heard after the
+ * fracture; the duplicate house gets a third response after the revelation.
+ * Scene_Arrive clears these flags on re-entry (no permanent save changes). */
+#define ASTER_INN_THRESHOLD_ARRIVAL FLAG_SCENE_TEMP_0E
+#define ASTER_INN_THRESHOLD_FRACTURE FLAG_SCENE_TEMP_0F
+#define ASTER_WEST_HOME_THRESHOLD_ARRIVAL FLAG_SCENE_TEMP_10
+#define ASTER_WEST_HOME_THRESHOLD_FRACTURE FLAG_SCENE_TEMP_11
+#define ASTER_EAST_HOME_THRESHOLD_ARRIVAL FLAG_SCENE_TEMP_12
+#define ASTER_EAST_HOME_THRESHOLD_FRACTURE FLAG_SCENE_TEMP_13
+#define ASTER_SHOP_THRESHOLD_ARRIVAL FLAG_SCENE_TEMP_14
+#define ASTER_SHOP_THRESHOLD_FRACTURE FLAG_SCENE_TEMP_15
+#define ASTER_DUPLICATE_HOME_THRESHOLD_ARRIVAL FLAG_SCENE_TEMP_16
+#define ASTER_DUPLICATE_HOME_THRESHOLD_FRACTURE FLAG_SCENE_TEMP_17
+#define ASTER_DUPLICATE_HOME_THRESHOLD_REVELATION FLAG_SCENE_TEMP_18
+
 enum AsterActorId {
   ACTOR_ASTER_ELDER = ACTOR_FIRST_PLACED,
   ACTOR_ASTER_INNKEEPER, ACTOR_ASTER_GREETER, ACTOR_ASTER_BOY,
@@ -178,40 +194,62 @@ static void Aster_VisitDoor(void) {
   Event_End();
 }
 
-// Exterior thresholds: no house interior map is linked yet. Interacting
-// gives a deliberate response rather than entering an invalid scene.
-static void Aster_VisitInnThreshold(void) {
+// Exterior thresholds have no linked house interiors in this prototype.
+// Avoid replaying the same automatic STEP-trigger text on every crossing, but
+// let each door respond again when the town's history changes.
+static void Aster_ShowThresholdOnce(s32 seenFlag, s32 message) {
+  if (GameFlag_Get(seenFlag)) {
+    return;
+  }
   Event_Start();
-  FieldMessage_Show(GameFlag_Get(ASTER_FRACTURED)
-      ? MsgAsterFractureInn : MsgAsterArrivalInn, 1);
+  FieldMessage_Show(message, 1);
+  GameFlag_Set(seenFlag);
   Event_End();
+}
+static void Aster_VisitInnThreshold(void) {
+  if (GameFlag_Get(ASTER_FRACTURED)) {
+    Aster_ShowThresholdOnce(ASTER_INN_THRESHOLD_FRACTURE, MsgAsterFractureInn);
+  } else {
+    Aster_ShowThresholdOnce(ASTER_INN_THRESHOLD_ARRIVAL, MsgAsterArrivalInn);
+  }
 }
 static void Aster_VisitWestHomeThreshold(void) {
-  Event_Start();
-  FieldMessage_Show(GameFlag_Get(ASTER_FRACTURED)
-      ? MsgAsterFractureHome : MsgAsterArrivalHome, 1);
-  Event_End();
+  if (GameFlag_Get(ASTER_FRACTURED)) {
+    Aster_ShowThresholdOnce(ASTER_WEST_HOME_THRESHOLD_FRACTURE,
+                            MsgAsterFractureHome);
+  } else {
+    Aster_ShowThresholdOnce(ASTER_WEST_HOME_THRESHOLD_ARRIVAL,
+                            MsgAsterArrivalHome);
+  }
 }
 static void Aster_VisitEastHomeThreshold(void) {
-  Event_Start();
-  FieldMessage_Show(GameFlag_Get(ASTER_FRACTURED)
-      ? MsgAsterFractureDuplicateA : MsgAsterArrivalGreeterRepeat, 1);
-  Event_End();
+  if (GameFlag_Get(ASTER_FRACTURED)) {
+    Aster_ShowThresholdOnce(ASTER_EAST_HOME_THRESHOLD_FRACTURE,
+                            MsgAsterFractureDuplicateA);
+  } else {
+    Aster_ShowThresholdOnce(ASTER_EAST_HOME_THRESHOLD_ARRIVAL,
+                            MsgAsterArrivalGreeterRepeat);
+  }
 }
 static void Aster_VisitShopThreshold(void) {
-  Event_Start();
-  FieldMessage_Show(GameFlag_Get(ASTER_FRACTURED)
-      ? MsgAsterFractureHome : MsgAsterArrivalHome, 1);
-  Event_End();
+  if (GameFlag_Get(ASTER_FRACTURED)) {
+    Aster_ShowThresholdOnce(ASTER_SHOP_THRESHOLD_FRACTURE,
+                            MsgAsterFractureHome);
+  } else {
+    Aster_ShowThresholdOnce(ASTER_SHOP_THRESHOLD_ARRIVAL, MsgAsterArrivalHome);
+  }
 }
 static void Aster_VisitDuplicateHomeThreshold(void) {
-  Event_Start();
-  FieldMessage_Show(GameFlag_Get(ASTER_REVEALED)
-      ? MsgAsterRevelationOtherIsaac2
-      : GameFlag_Get(ASTER_FRACTURED)
-          ? MsgAsterFractureDuplicateB
-          : MsgAsterArrivalGreeterRepeat, 1);
-  Event_End();
+  if (GameFlag_Get(ASTER_REVEALED)) {
+    Aster_ShowThresholdOnce(ASTER_DUPLICATE_HOME_THRESHOLD_REVELATION,
+                            MsgAsterRevelationOtherIsaac2);
+  } else if (GameFlag_Get(ASTER_FRACTURED)) {
+    Aster_ShowThresholdOnce(ASTER_DUPLICATE_HOME_THRESHOLD_FRACTURE,
+                            MsgAsterFractureDuplicateB);
+  } else {
+    Aster_ShowThresholdOnce(ASTER_DUPLICATE_HOME_THRESHOLD_ARRIVAL,
+                            MsgAsterArrivalGreeterRepeat);
+  }
 }
 
 static struct SceneEntrance sAsterEntrances[] = {
