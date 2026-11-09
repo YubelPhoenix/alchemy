@@ -977,11 +977,14 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .attackAnim = 4,
         .attackHop = 5,
     },
-    // Enemy id 172, the "???" commander (row 164 of enemies.c): a copy of the
-    // Siren's, enemy id 68.
+    // Enemy id 172, the "???" commander (row 164 of enemies.c): her own art
+    // (games/tbs/src/graphics/monster/mystery.png, built by tools/dark_story/
+    // build_mystery_art.py).  She dashes at her target in a swirl of dark.
     {
-        .animation = 451,
-        .attackHop = 6,
+        .animation = 489,
+        .attackAnim = 1,
+        .defeatSound = 1,
+        .effectHeight = 42,
     },
 };
 // clang-format on

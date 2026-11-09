@@ -210,3 +210,6 @@ Monster_KegareSprites:
 	.global Monster_SarahSprites
 Monster_SarahSprites:
 	.incbin "games/tbs/src/graphics/monster/sarah.frames.lz"
+	.global Monster_MysterySprites
+Monster_MysterySprites:
+	.incbin "games/tbs/src/graphics/monster/mystery.frames.lz"
