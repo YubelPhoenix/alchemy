@@ -82,7 +82,8 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   }
   unit->baseHpRegen = enemy->hpRegen;
   unit->basePpRegen = enemy->ppRegen;
-  Message_DecodeRawFar(index + MsgEnemyName, name, 15);
+  Message_DecodeRawFar(
+      (index == ENEMY_ROW_MYSTERY_LEADER ? 0 : index) + MsgEnemyName, name, 15);
   for (i = 0; i < 14 && name[i] != 0; i++)
     unit->name[i] = name[i];
   // Enemies of one kind are told apart by a letter after the name; past the

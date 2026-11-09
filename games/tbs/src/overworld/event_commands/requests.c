@@ -24,7 +24,8 @@ void Field_RequestBattleFromEncounterTable(s32 zoneNo, s32 slotNo) {
   // Bosses fight on backgrounds from the game that suit them.
   if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI) {
     // Heart: under dusk clouds, on a dark glassy floor.
-    if (slot == 3)
+    // The "???" commander above her (slot 6) fights on the same floor.
+    if (slot == 3 || slot == 6)
       gSaveBlock.special = (u16)(s32)&ResourceId_HeartBackdrop;
     // Sarah, in all four of her fights: on the grasslands.
     if (slot == 1)

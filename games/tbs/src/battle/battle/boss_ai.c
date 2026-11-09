@@ -812,6 +812,153 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
 #endif
 }
 
+/// The "???" commander's places in her action list (enemies.c).
+enum MysterySlot {
+  MYSTERY_ATTACK = 0,
+  MYSTERY_WING_STROKE = 1,
+  MYSTERY_ANNIHILATION = 2,
+  MYSTERY_THUNDERSTORM = 3,
+  MYSTERY_STORM_BLESSING = 4,
+  MYSTERY_SPARK_PLASMA = 5,
+  MYSTERY_DEATH_SIZE = 6,
+  MYSTERY_LUFF = 7
+};
+
+/// Her memory in Unit.aiActionIndex (bits 4..11, like Ash Jenna's): 11..10
+/// turns taken this round | 9 Luff cast this round | 8 Luff cast last round |
+/// 7..6 killing moves this round | 5 her one early Annihilation is used | 4
+/// unused. Her rush flags (30, 31) and the stock cycle's bits are not here.
+#define MYSTERY_EARLY_KILL_BIT (1u << 5)
+#define MYSTERY_KILL_SHIFT 6
+#define MYSTERY_LUFF_LAST_BIT (1u << 8)
+#define MYSTERY_LUFF_THIS_BIT (1u << 9)
+#define MYSTERY_TURNS_SHIFT 10
+#define MYSTERY_BITS (0xff0u)
+STATIC_ASSERT((MYSTERY_BITS & BOSS_RESERVED_BITS) == 0);
+STATIC_ASSERT((MYSTERY_BITS & BOSS_LAST_AIM_BITS) == 0);
+/// She holds back until her HP is under this percent, then fights in full.
+#define MYSTERY_FULL_POWER_BELOW_PERCENT 70
+/// Out of 256, a turn of hers: her one early Annihilation (from her second
+/// turn of a round while she still holds back).
+#define MYSTERY_EARLY_KILL_CHANCE 90
+/// Out of 256, a turn of hers once she fights in full: Annihilation, then
+/// Death Size beside it; at most MYSTERY_KILLS_PER_ROUND of the two a round.
+#define MYSTERY_ANNIHILATION_CHANCE 100
+#define MYSTERY_DEATH_SIZE_CHANCE 40
+#define MYSTERY_KILLS_PER_ROUND 2
+/// Out of 256: Luff as her first turn of a round, never two rounds running.
+#define MYSTERY_LUFF_CHANCE 150
+
+/// Whether her HP is under the line at which she stops holding back.
+static s32 BossAI_MysteryFullPower(const struct Unit *unit) {
+  return unit->hp * 100 < unit->hpMax * MYSTERY_FULL_POWER_BELOW_PERCENT;
+}
+
+/// Her memory brought up to date at the start of a round.
+static void BossAI_MysteryBeginRound(void) {
+  s32 index;
+  s32 unitId;
+  struct Unit *unit;
+  u32 memory;
+
+  for (index = 0; gBattleWork->enemyIds[index] != BATTLE_UNIT_LIST_END;
+       index++) {
+    unitId = gBattleWork->enemyIds[index];
+    if (unitId == BATTLE_UNIT_REMOVED)
+      continue;
+    unit = Unit_GetFar(unitId);
+    if (unit->id != ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)
+      continue;
+    memory = unit->aiActionIndex;
+    memory &= ~(MYSTERY_LUFF_LAST_BIT | MYSTERY_LUFF_THIS_BIT |
+                (3u << MYSTERY_KILL_SHIFT) | (3u << MYSTERY_TURNS_SHIFT));
+    if (unit->aiActionIndex & MYSTERY_LUFF_THIS_BIT)
+      memory |= MYSTERY_LUFF_LAST_BIT;
+    unit->aiActionIndex = memory;
+  }
+}
+
+/// Records her turn when it was really staged.
+static void BossAI_MysteryNoteTurn(struct Unit *unit,
+                                   struct BattleAction *request) {
+  struct EnemyDefinition *enemy =
+      (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
+  u32 memory = unit->aiActionIndex;
+  u32 count;
+  s32 abilityId;
+  s32 slot;
+
+  if (request->command != COMMAND_ENEMY_ABILITY &&
+      request->command != COMMAND_PSYNERGY &&
+      request->command != COMMAND_ATTACK)
+    return;
+  abilityId = request->parameter;
+  if (request->command == COMMAND_ATTACK)
+    abilityId = ABILITY_ATTACK;
+  count = (memory >> MYSTERY_TURNS_SHIFT) & 3;
+  if (count < 3)
+    count++;
+  memory &= ~(3u << MYSTERY_TURNS_SHIFT);
+  memory |= count << MYSTERY_TURNS_SHIFT;
+  for (slot = 0; slot < 8; slot++) {
+    if (enemy->abilities[slot] != abilityId)
+      continue;
+    if (slot == MYSTERY_LUFF) {
+      memory |= MYSTERY_LUFF_THIS_BIT;
+    } else if (slot == MYSTERY_ANNIHILATION || slot == MYSTERY_DEATH_SIZE) {
+      count = (memory >> MYSTERY_KILL_SHIFT) & 3;
+      if (count < 3)
+        count++;
+      memory &= ~(3u << MYSTERY_KILL_SHIFT);
+      memory |= count << MYSTERY_KILL_SHIFT;
+      if (!BossAI_MysteryFullPower(unit))
+        memory |= MYSTERY_EARLY_KILL_BIT;
+    }
+    break;
+  }
+  unit->aiActionIndex = BossAI_RememberAim(memory, request);
+}
+
+/// Her pick. Holding back (HP at 70% or more): her blade and Wing Stroke, and
+/// once, from her second turn of a round, an Annihilation. In full power
+/// (under 70%): Luff as her first turn of a round to act twice next round,
+/// then Annihilation or Death Size (two killing moves a round at most), else
+/// Thunderstorm, Storm Blessing or Spark Plasma. A re-pick after a refused
+/// move (too little PP, sealed) takes Wing Stroke or Storm Blessing, which
+/// need none.
+static s32 BossAI_MysteryChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
+  static const u8 heavy[5] = {MYSTERY_THUNDERSTORM, MYSTERY_STORM_BLESSING,
+                              MYSTERY_SPARK_PLASMA, MYSTERY_THUNDERSTORM,
+                              MYSTERY_STORM_BLESSING};
+  u32 memory = unit->aiActionIndex;
+  u32 turns = (memory >> MYSTERY_TURNS_SHIFT) & 3;
+  u32 kills = (memory >> MYSTERY_KILL_SHIFT) & 3;
+  s32 roll = Battle_RandomFar() & 0xff;
+  s32 roll2 = Battle_RandomFar() & 0xff;
+  struct BossPartyView view;
+  s32 full = BossAI_MysteryFullPower(unit);
+
+  BossAI_ViewParty(&view);
+  if (!firstPick)
+    return full ? MYSTERY_STORM_BLESSING : MYSTERY_WING_STROKE;
+  if (!full) {
+    if ((memory & MYSTERY_EARLY_KILL_BIT) == 0 && turns >= 1 &&
+        view.alive > 0 && roll < MYSTERY_EARLY_KILL_CHANCE)
+      return MYSTERY_ANNIHILATION;
+    return (roll2 & 1) ? MYSTERY_WING_STROKE : MYSTERY_ATTACK;
+  }
+  if (turns == 0 && (memory & (MYSTERY_LUFF_LAST_BIT | MYSTERY_LUFF_THIS_BIT)) == 0 &&
+      roll < MYSTERY_LUFF_CHANCE)
+    return MYSTERY_LUFF;
+  if (view.alive > 0 && (s32)kills < MYSTERY_KILLS_PER_ROUND) {
+    if (roll2 < MYSTERY_ANNIHILATION_CHANCE)
+      return MYSTERY_ANNIHILATION;
+    if (roll2 < MYSTERY_ANNIHILATION_CHANCE + MYSTERY_DEATH_SIZE_CHANCE)
+      return MYSTERY_DEATH_SIZE;
+  }
+  return heavy[(Battle_RandomFar() & 0xff) * 5 >> 8];
+}
+
 /// Starts a round for the bosses: their per-round memory is cleared and their
 /// view of the party brought up to date. Called once a round by
 /// BattleTurnOrder_Sort, before anyone acts.
@@ -819,6 +966,7 @@ void BossAI_BeginRound(void) {
   BossAI_KegareBeginRound();
   BossAI_AshBeginRound();
   BossAI_HeartBeginRound();
+  BossAI_MysteryBeginRound();
 }
 
 /// Records a turn that was really staged (result 0). Called by
@@ -835,6 +983,8 @@ void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
     BossAI_AshNoteTurn(unit, request);
   else if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART)
     BossAI_HeartNoteTurn(unit, request);
+  else if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)
+    BossAI_MysteryNoteTurn(unit, request);
 }
 
 /// A boss's pick of a place in its action list. Returns slot unchanged for
@@ -848,6 +998,8 @@ s32 BossAI_ChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
     return BossAI_AshChooseSlot(unit, slot, firstPick);
   if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART)
     return BossAI_HeartChooseSlot(unit, slot, firstPick);
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)
+    return BossAI_MysteryChooseSlot(unit, slot, firstPick);
   return slot;
 }
 
@@ -864,6 +1016,9 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
     return BossAI_KegareChooseTarget(unitIds, targetPositions, count, userId);
   if (user->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE && userId > ALLY_MAX)
     return BossAI_AshChooseTarget(user, targetPositions, count);
+  if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER &&
+      userId > ALLY_MAX)
+    return BossAI_AimAwayFromLast(user, targetPositions, count);
   if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART && userId > ALLY_MAX)
     return BossAI_HeartChooseTarget(user, action, unitIds, targetPositions,
                                     count);

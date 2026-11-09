@@ -3158,6 +3158,30 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .experience = 677,
     },
     // (no name message)
+    // ???, the Jupiter commander above Heart: Vale's last optional super boss
+    // (Vale_TalkToMysteryLeader). Row 164 is outside the base game's enemies;
+    // its name is row 0's "???" (Enemy_BuildUnit) and its picture a copy of
+    // the Siren's (gBattleSprites).
+    {
+        .name = "              ",
+        .level = 50,
+        .hp = 14000,
+        .pp = 999,
+        .atk = 560,
+        .def = 115,
+        .agi = 200,
+        .luck = 45,
+        .turns = 3,
+        .elementPreset = 21,
+        .targetStrategy = TARGET_STRATEGY_RANDOM,
+        .actionStrategy = ACTION_STRATEGY_FALLING,
+        .abilities = {ABILITY_ATTACK, ABILITY_WING_STROKE, 178, 190, 434, 74, 513, 366},
+        .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
+        .coins = 8000,
+        .item = ITEM_ELIXIR,
+        .itemChance = 1,
+        .experience = 9000,
+    },
     {
         .name = "\xff",
     },

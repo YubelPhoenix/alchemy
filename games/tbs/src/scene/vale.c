@@ -320,7 +320,10 @@ enum ValeAfterKalayActorId {
   ACTOR_PILLAR_AFTER_KALAY, ///< the pillar of ACTOR_PILLAR
   /// Ash Jenna, the optional super boss (Vale_TalkToAshJenna), until she is
   /// beaten (FLAG_DARK_ASH_VALE_FOUGHT).
-  ACTOR_ASH_JENNA_AFTER_KALAY
+  ACTOR_ASH_JENNA_AFTER_KALAY,
+  /// "???", the Jupiter commander above Heart, a black figure in the square
+  /// (Vale_TalkToMysteryLeader) from Heart's defeat until her own.
+  ACTOR_MYSTERY_LEADER_AFTER_KALAY
 };
 
 /// The game's opening (Vale_MendingTheRoof), the placed actors of
@@ -1552,6 +1555,7 @@ UNUSED static void Vale_UnusedRoofMended(void) {
 /// been met, and after a battle restores the roof's and the bridge's
 /// cells.
 static void Vale_AshJennaAftermath(void);
+static void Vale_MysteryLeaderAftermath(void);
 
 s32 Vale_Initialize(void) {
   struct Actor *actor;
@@ -1680,6 +1684,20 @@ s32 Vale_Initialize(void) {
   if (GameFlag_Get(FLAG_DARK_ASH_VALE_PENDING) != 0) {
     Vale_AshJennaAftermath();
   }
+  // A save that beat Heart before "???" existed: she is in the square from
+  // the next time Vale is entered.
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0 &&
+      GameFlag_Get(FLAG_DARK_MYSTERY_DONE) == 0) {
+    GameFlag_Set(FLAG_DARK_MYSTERY_AVAILABLE);
+  }
+  if (GameFlag_Get(FLAG_DARK_MYSTERY_AVAILABLE) != 0) {
+    Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
+                               SPRITE_COLOR_BLACK);
+  }
+  // Back from her battle.
+  if (GameFlag_Get(FLAG_DARK_MYSTERY_PENDING) != 0) {
+    Vale_MysteryLeaderAftermath();
+  }
   return 0;
 }
 
@@ -1732,6 +1750,85 @@ static void Vale_AshJennaAftermath(void) {
   AshWarp_Out(ACTOR_ASH_JENNA_AFTER_KALAY);
   Actor_SetPosition(ACTOR_ASH_JENNA_AFTER_KALAY, PIXELS(0), PIXELS(0));
   GameFlag_Set(FLAG_DARK_ASH_VALE_FOUGHT);
+  // Release the fixed camera before player control returns.
+  FieldCamera_MoveTo(-1, -1, -1, 0);
+  Event_End();
+}
+
+/// The "???" commander's next message (no mugshot: she has none).
+static void Vale_MysterySays(void) {
+  Event_ShowMessageThenWait(ACTOR_MYSTERY_LEADER_AFTER_KALAY, 0, 20);
+}
+
+/// Isaac's next message.
+static void Vale_IsaacAnswers(void) {
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
+}
+
+/// "???" in the square, after Heart: Isaac tries to learn who she is, she says
+/// little, and the battle starts. A defeat comes back here and she waits.
+static void Vale_TalkToMysteryLeader(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkMystery01);
+  Vale_IsaacAnswers();
+  Vale_MysterySays();
+  Vale_IsaacAnswers();
+  Vale_MysterySays();
+  Vale_IsaacAnswers();
+  Vale_MysterySays();
+  Vale_IsaacAnswers();
+  Vale_MysterySays();
+  Vale_IsaacAnswers();
+  Vale_MysterySays();
+  Vale_MysterySays();
+  Vale_MysterySays();
+  Vale_IsaacAnswers();
+  Vale_MysterySays();
+  GameFlag_Set(FLAG_DARK_MYSTERY_PENDING);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  Event_SetAfterBattleDestination((s32)&SceneId_Vale, VALE_FROM_ASH_JENNA);
+  // A defeat goes to the restart point (the last Sanctum).
+  Event_SetDefeatDestination(-1, -1);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 6);
+  Event_End();
+}
+
+/// Back from the "???" battle: after a win she answers Isaac's questions and
+/// is gone; after a defeat she waits.
+static void Vale_MysteryLeaderAftermath(void) {
+  GameFlag_Clear(FLAG_DARK_MYSTERY_PENDING);
+  Event_Start();
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  if (gSaveBlock.sequenceResult == -1) {
+    // Release the fixed camera before player control returns.
+    FieldCamera_MoveTo(-1, -1, -1, 0);
+    Event_End();
+    return;
+  }
+  Event_SetMessageId(MsgDarkMystery15);
+  Vale_IsaacAnswers();
+  Vale_MysterySays();
+  Vale_MysterySays();
+  Vale_IsaacAnswers();
+  Vale_MysterySays();
+  Vale_MysterySays();
+  Vale_IsaacAnswers();
+  Vale_MysterySays();
+  Vale_MysterySays();
+  Vale_MysterySays();
+  Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
+                             SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
+                             SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_MYSTERY_LEADER_AFTER_KALAY, PIXELS(0), PIXELS(0));
+  GameFlag_Set(FLAG_DARK_MYSTERY_DONE);
+  GameFlag_Clear(FLAG_DARK_MYSTERY_AVAILABLE);
   // Release the fixed camera before player control returns.
   FieldCamera_MoveTo(-1, -1, -1, 0);
   Event_End();
@@ -3712,6 +3809,9 @@ struct ActorTemplate gVale_ActorTemplatesAfterKalay[] = {
     // Ash Jenna, waiting in the square until she is beaten.
     { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, FLAG_DARK_ASH_VALE_FOUGHT, MOVEMENT_TYPE_STAND,
         PIXELS(400), 0, PIXELS(800), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    // "???", a black figure in the square once Heart is beaten, until she is.
+    { SPRITE_WOMAN_WITH_BLACK_HAIR, IF_FLAG_SET(FLAG_DARK_MYSTERY_AVAILABLE), MOVEMENT_TYPE_STAND,
+        PIXELS(416), 0, PIXELS(848), FACING_WEST, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -3830,6 +3930,7 @@ struct Trigger gVale_TriggersAfterLeaving[] = {
 
 struct Trigger gVale_TriggersAfterKalay[] = {
     { TRIGGER_TALK, ACTOR_ASH_JENNA_AFTER_KALAY, FLAG_DARK_ASH_VALE_FOUGHT, EVENT(Vale_TalkToAshJenna) },
+    { TRIGGER_TALK, ACTOR_MYSTERY_LEADER_AFTER_KALAY, IF_FLAG_SET(FLAG_DARK_MYSTERY_AVAILABLE), EVENT(Vale_TalkToMysteryLeader) },
     { TRIGGER_TALK, ACTOR_GARETS_SISTER_AFTER_KALAY, FLAG_VALE_GARET_MET_SISTER, EVENT(Vale_GaretMeetsHisSister) },
     { TRIGGER_TALK, ACTOR_GARETS_SISTER_AFTER_KALAY, CONDITION_ALWAYS, MSGNO(MsgValeICanTellJustByLooking) },
     { TRIGGER_TALK, ACTOR_GARETS_BROTHER_AFTER_KALAY, FLAG_VALE_GARET_ASKED_TO_PROTECT_FAMILY, EVENT(Vale_GaretAsksToProtectFamily) },

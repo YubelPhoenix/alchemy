@@ -1,5 +1,5 @@
 /// @file
-/// The enemies' battle sprites, by enemy id 0 to 171.
+/// The enemies' battle sprites, by enemy id 0 to 172.
 
 #include "battle_summon.h"
 
@@ -976,6 +976,12 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .animation = 434,
         .attackAnim = 4,
         .attackHop = 5,
+    },
+    // Enemy id 172, the "???" commander (row 164 of enemies.c): a copy of the
+    // Siren's, enemy id 68.
+    {
+        .animation = 451,
+        .attackHop = 6,
     },
 };
 // clang-format on

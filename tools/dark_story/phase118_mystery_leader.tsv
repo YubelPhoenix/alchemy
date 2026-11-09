@@ -1,0 +1,25 @@
+# "???", the Jupiter commander above Heart: Vale's last optional super boss.
+N356	MsgDarkMystery01	...Who are you?\nYou don't feel like\nanyone I've met.{end_wait}
+N357	MsgDarkMystery02	Does that frighten you?{end_wait}
+N358	MsgDarkMystery03	It makes me careful.\nWhat do you want?{end_wait}
+N359	MsgDarkMystery04	Heart took you for\nsomeone else. You saw\nhow she looked at you.{end_wait}
+N360	MsgDarkMystery05	Matthew. She kept\ncalling me Matthew.{end_wait}
+N361	MsgDarkMystery06	He has been a nuisance\nto my commanders.\nHeart bears the\nworst of it.{page_break}She hides what he left\nher, even from me.{end_wait}
+N362	MsgDarkMystery07	That wasn't me.{end_wait}
+N363	MsgDarkMystery08	I know. He wears\nyour face. Amusing,\nisn't it.{end_wait}
+N364	MsgDarkMystery09	Where would you have\nmet someone who looks\nlike me?{end_wait}
+N365	MsgDarkMystery10	Not yet, Isaac.\nNot for a long while.\nThat is the point.{end_wait}
+N366	MsgDarkMystery11	I wanted to see the\noriginal. I'm curious,\nthat's all.{end_wait}
+N367	MsgDarkMystery12	I will not use my\npowers. Call it a\ncourtesy.{page_break}I don't want to break\nyou before I know\nwhat you are.{end_wait}
+N368	MsgDarkMystery13	...You're\nunderestimating me.{end_wait}
+N369	MsgDarkMystery14	Perhaps.\nDraw your sword.{end_wait}
+N370	MsgDarkMystery15	Tell me who you are.{end_wait}
+N371	MsgDarkMystery16	You've asked three\ntimes now. That's\nthree more than most.{end_wait}
+N372	MsgDarkMystery17	This was only a test,\nIsaac. You passed it.{page_break}Be glad you did not\nneed the rest of me.{end_wait}
+N373	MsgDarkMystery18	A test of what?{end_wait}
+N374	MsgDarkMystery19	Of whether you are\nworth the trouble.{end_wait}
+N375	MsgDarkMystery20	Heart overstepped when\nshe came for you.{page_break}I will remind her\nwhose orders she\ncarries.{end_wait}
+N376	MsgDarkMystery21	Your orders?{end_wait}
+N377	MsgDarkMystery22	Even a lens needs\nsomeone to point it.{end_wait}
+N378	MsgDarkMystery23	When the Grave Eclipse\ncomes, remember\nthis day.{end_wait}
+N379	MsgDarkMystery24	Thirty years, Isaac.\nI will see you then.{end_wait}

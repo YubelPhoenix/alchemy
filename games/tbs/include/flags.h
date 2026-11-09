@@ -2828,4 +2828,13 @@
 #define FLAG_DARK_SARAH_TOLBI_FOUGHT 0x8ed
 #define FLAG_DARK_SARAH_LALIVERO_FOUGHT 0x8ee
 
+/// "???", the Jupiter commander above Heart (Vale_TalkToMysteryLeader): she is
+/// in the square while this is set, from Heart's defeat until her own
+/// (Vale sets it again for a save that already holds Heart's).
+#define FLAG_DARK_MYSTERY_AVAILABLE 0x8d9
+/// Set from her greeting until Vale's start-up has seen the battle's result.
+#define FLAG_DARK_MYSTERY_PENDING 0x8da
+/// She has been beaten and has gone.
+#define FLAG_DARK_MYSTERY_DONE 0x8db
+
 #endif

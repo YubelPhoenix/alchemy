@@ -17,7 +17,7 @@ u32 BattleSprite_GetDefeatSound(s32 index) {
 }
 
 /// The last class with a row in gBattleSprites (battle_sprites.c).
-#define ENEMY_CLASS_LAST 171
+#define ENEMY_CLASS_LAST 172
 
 /// Returns the class's battle sprite, row 0's for a class out of range.
 /// Called by BattleObject_Make and EnemySprite_LoadIntoSlots.
