@@ -3806,7 +3806,7 @@ struct ActorTemplate gVale_ActorTemplatesAfterKalay[] = {
         PIXELS(400), 0, PIXELS(800), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     // "???", a black figure in the square until she is beaten.
     { SPRITE_WOMAN_WITH_BLACK_HAIR, FLAG_DARK_MYSTERY_DONE, MOVEMENT_TYPE_STAND,
-        PIXELS(416), 0, PIXELS(848), FACING_WEST, TALK_FACING_PARTY, 0 },
+        PIXELS(432), 0, PIXELS(800), FACING_WEST, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
