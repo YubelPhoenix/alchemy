@@ -147,8 +147,8 @@ def main():
     actor_start = scene.index("static struct ActorTemplate sAsterActors[] = {")
     actor_end = scene.index("static struct Trigger sAsterTriggers[] = {", actor_start)
     actor_table = scene[actor_start:actor_end]
-    require(actor_table.count("MOVEMENT_TYPE_STAND") == 11,
-            "Aster requires seven NPCs followed by four native scenery actors")
+    require(actor_table.count("MOVEMENT_TYPE_STAND") == 12,
+            "Aster requires seven NPCs, four native scenery and one gate sign")
     decor = [
         ("SPRITE_ASTER_DRY_WELL", 32, 34),
         ("SPRITE_ASTER_MEMORIAL", 29, 19),
@@ -166,6 +166,40 @@ def main():
         anchor = f"PIXELS({16*x}), 0, PIXELS({16*y})"
         require(actor_table.count(anchor) == 1,
                 f"{name} scene anchor missing/duplicate")
+    # The optional sign must be the LAST placed actor: original NPC/decor
+    # actor IDs stay fixed, and it must not consume the sole south exit cell.
+    SIGN = (30, 60)
+    sign_anchor = f"PIXELS({SIGN[0]*16}), 0, PIXELS({SIGN[1]*16})"
+    require(actor_table.count("SPRITE_SIGNPOST") == 1
+            and actor_table.count(sign_anchor) == 1,
+            "Gate sign sprite or position changed")
+    require(actor_table.index("SPRITE_SIGNPOST")
+            > actor_table.index("SPRITE_ASTER_ADDITIONAL_HOME"),
+            "Gate sign must follow all seven NPCs and four decor actors")
+    require("ACTOR_ASTER_GATE_SIGN = ACTOR_ASTER_MIRROR + 5" in scene,
+            "Gate sign actor ID shifted; existing IDs must remain intact")
+    need_gate_trigger = ("{TRIGGER_TALK, ACTOR_ASTER_GATE_SIGN, CONDITION_ALWAYS,"
+                         " EVENT(Aster_ReadGateSign)}")
+    require(" ".join(need_gate_trigger.split())
+            in " ".join(scene.split()),
+            "Gate sign TALK trigger missing")
+    gate = scene.split("static void Aster_ReadGateSign(void) {", 1)
+    require(len(gate) == 2, "Gate sign reader missing")
+    gate = gate[1].split("\n}", 1)[0]
+    require(gate.count("MsgAsterArrivalGate") == 1
+            and gate.count("MsgAsterFractureGate") == 1
+            and gate.count("MsgAsterRevelationGate") == 1
+            and gate.index("ASTER_REVEALED") < gate.index("ASTER_FRACTURED"),
+            "Stage-dependent gate sign dialogue is missing or ordered wrong")
+    greeter = scene.split("static void Aster_TalkGreeter(void) {", 1)
+    require(len(greeter) == 2, "Greeter talk event missing")
+    greeter = greeter[1].split("\n}", 1)[0]
+    require(greeter.count("MsgAsterRevelationExit") == 1
+            and greeter.index("ASTER_REVEALED") < greeter.index("ASTER_FRACTURED"),
+            "Revelation farewell must be optional greeter dialogue")
+    require(scene.count("{TRIGGER_EXIT, ASTER_TO_WORLD_MAP, CONDITION_ALWAYS,"
+                        " ASTER_TO_WORLD_MAP}") == 1,
+            "Normal south exit replaced by a custom event")
     require("SCENE_EXIT(ASTER_TO_WORLD_MAP, WorldMap, 98)" in scene,
             "Integrated test return must target reserved world entrance 98")
     require("SCENE_EXITS(Aster)" in scene, "Scene exit table was changed")
@@ -174,6 +208,7 @@ def main():
         require(not solid(*pos), f"Event {pos} is solid")
     for name,x,y in EXPECTED_ACTORS:
         require(not solid(x,y), f"Actor {name} in solid scenery")
+    require(not solid(*SIGN), "Gate sign placed in solid scenery")
     require(not solid(32,61) and not solid(32,62) and not solid(32,63),
             "Southern entrance, event, or edge is blocked")
     # Flood-fill native ground behavior. This does not prove engine priorities.
@@ -193,10 +228,9 @@ def main():
     require(edge == {(32,63)}, f"Unexpected reachable map exits: {sorted(edge)}")
     require((0,35) not in visited, "Unwired west exit is open")
     require((32,34) not in visited, "Well's solid core is walkable")
-    # A route through an NPC's own tile is not a playable route. Model all
-    # seven stationary NPCs as occupied at the same time, then verify the
-    # scene still has reachable interactions and adjacent talk positions.
-    npc_cells = {(x, y) for _, x, y in EXPECTED_ACTORS}
+    # A route through a placed actor is not a playable route. Model all
+    # seven stationary NPCs and the extra sign as occupied at once.
+    npc_cells = {(x, y) for _, x, y in EXPECTED_ACTORS} | {SIGN}
     accessible = set()
     pending = deque([(32, 61)])
     while pending:
@@ -213,6 +247,8 @@ def main():
         neighbors = ((x-1, y), (x+1, y), (x, y-1), (x, y+1))
         require(any(pos in accessible for pos in neighbors),
                 f"NPC {name} cannot be approached for dialogue")
+    require((31, 60) in accessible and (32, 61) in accessible,
+            "Gate sign blocks its talk approach or the party spawn")
     occupied_edge = {(x, y) for x, y in accessible
                      if x in (0, 63) or y in (0, 63)}
     require(occupied_edge == {(32, 63)},
@@ -233,7 +269,8 @@ def main():
     print("PASS staged Aster V14 native map: 128x128 packed, original metatiles")
     print("PASS eight story markers, one south exit; seven aligned NPC anchors")
     print("PASS six solid native house facades, two reserved new sites")
-    print("PASS four indexed scenery actors follow the seven dialogue NPCs")
+    print("PASS original seven NPC IDs and four scenery actors; added gate sign last")
+    print("PASS stage-dependent sign text, optional greeter farewell, unchanged exit")
     print(f"PASS source-grid reachability: {len(visited)} cells, only south edge open")
     print("NOT VERIFIED: sprite priorities, collision in engine, world contact,")
     print("Sanctum or house interiors, final water/cliff art, ROM build, emulator")
