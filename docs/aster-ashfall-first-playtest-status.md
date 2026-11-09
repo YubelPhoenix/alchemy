@@ -11,9 +11,10 @@ run in an emulator, playtested, or merged to `dark-story-rewrite` or `main`.
 
 - The native 64x64 Aster map (Map180) and original Vale tile/palette/
   animation references, including its 18-cell west-bridge test.
-- Aster scene 201 with seven NPCs, four scenery sprites, eight staged
-  interactions, and 36 authored dialogue contexts. The Sanctum and houses
-  have exterior thresholds but **no working interior maps**.
+- Aster scene 201 with seven NPCs, four indexed scenery sprites, a standard
+  Golden Sun signpost beside the south lane, eight staged map interactions,
+  and 36 authored dialogue contexts. The Sanctum and houses still have
+  exterior thresholds but **no working interior maps**.
 - Indexed `SPR_505`–`SPR_509` PNG assets, their metadata, sprite
   registrations, and scene/map/resource/object table entries.
 - Aster's source `en.po` is exactly the inherited vanilla Ashfall
@@ -112,11 +113,21 @@ artifact safety gate **before any future manually authorized IPS build**.
   all five threshold functions use the one-shot helper and that the
   eleven new flags remain in separate scene-temp slots 0x20E..0x218.
   This is source contract checking, not actual input/controller QA.
-- **Unreachable authored copy still to integrate:** arrival, fracture,
-  and revelation *gate sign* messages, plus the revelation *exit*
-  dialogue, have no trigger in the current scene. They should remain
-  marked unfinished until a deliberately designed sign/exit event can
-  be added and tested without changing the single south exit.
+- **November 8 follow-up:** the three gate-sign messages now have an
+  optional TALK interaction on a native Golden Sun signpost at (30,60),
+  just west of the south lane. It is appended AFTER the original seven
+  NPCs and four scenery actors: no existing talk/mind-read IDs shift.
+  The final revelation farewell is now an optional second conversation
+  with the original greeter. This does **not** become an automatic
+  departure cutscene: the south exit trigger and its original map cell
+  are unchanged.
+- Source-only reachability was rechecked with the sign treated as an
+  occupied tile. The (32,61) player entry, (32,62) south exit marker,
+  all eight original story marker tiles, and an adjacent sign talk
+  approach remain accessible in the native map graph. The checker
+  enforces these points and the stage-message references. Sprite
+  appearance, actual talk/exit input and runtime collision still
+  require a local emulator playtest.
 - **Story persistence is provisional:** the town's fracture/revelation
   flags also use scene-temporary storage, so the encounter resets upon
   a normal re-entry. We are deliberately **not** assigning permanent
@@ -129,6 +140,7 @@ artifact safety gate **before any future manually authorized IPS build**.
   move away and re-enter. Confirm no impassable ground or auto-loop.
 - Town: verify native tiles, woodland/river/bridge/waterfall, sprite
   priorities, seven NPC talks and mind reads, eight marker events,
+  signpost TALK in all three stages, the greeter's optional farewell,
   south exit, and story fracture in different discovery orders.
 - Save/menu: use disposable new saves; verify party, Djinn, items,
   camera, saves/reloads, and town/world transitions remain intact.
