@@ -399,9 +399,9 @@ def check_integrated_gameplay() -> None:
         require(symbol in ai, f"Missing boss AI lifecycle: {symbol}")
     enemies = read("games/tbs/src/game/enemies.c")
     for comment, hp, defense in (
-        ("// Ash Jenna, the optional super boss of Vale", 9000, 90),
-        ("// Heart (Chalice), the secret super boss of Kolima", 9500, 100),
-        ("// Kegare, the Water Adept who mimics Mia", 8000, 80),
+        ("// Ash Jenna, the optional super boss of Vale", 11000, 90),
+        ("// Heart (Chalice), the secret super boss of Kolima", 11500, 100),
+        ("// Kegare, the Water Adept who mimics Mia", 9500, 80),
     ):
         require(comment in enemies, f"Boss balancing anchor missing: {comment}")
         row = enemies[enemies.index(comment):enemies.index(comment) + 300]
