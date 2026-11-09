@@ -45,6 +45,7 @@ In an existing checkout of this exact branch (no hosted Actions):
 ```bash
 python3 -B tools/check_aster_ashfall_integration.py
 python3 -B tools/prepare_aster_ashfall_dialogue.py --check
+# The first command includes the save-flag collision and story-order checks.
 ```
 
 The checker verifies map/sprite/dialogue registration, that the
@@ -62,14 +63,14 @@ world/Aster entrance and exit. **This is not a terrain walkability test.**
 preflight. It requires a clean checkout of this exact branch with
 Ashfall baseline commit `62dd7b5331a7e23a12df0090e9e823a3aed8f425`
 available in the local Git history. It checks the exact set of Aster-only
-added files and the size/status of approved changes to eleven inherited
+added files and the size/status of approved changes to twelve inherited
 Ashfall files. A new file outside the approved list, or extra edits to
 world-map/story/sprite/resource registrations, stops the gate before any
 compile. To expand the scope later, first review the new baseline diff and
 explicitly update the audit list; never bypass it to force a build.
 The isolated branch's reviewed file inventory permits Aster-only additions
-and 11 deliberate registration/catalogue changes, but no battle or
-workflow modifications. Validate the current inventory before every build.
+and 12 reviewed inherited-file changes (now including named save flags),
+but no battle or workflow modifications. Validate the current inventory before every build.
 
 Passing does **not** prove successful compilation or game behavior.
 
@@ -107,8 +108,9 @@ artifact safety gate **before any future manually authorized IPS build**.
   the duplicate house also has a separate revelation-stage flag.
   This leaves room for the town's changed dialogue when the player
   uncovers another history. `Scene_Arrive` clears these flags on
-  ordinary re-entry; no permanent flags, items, Djinn or save layouts
-  were changed.
+  ordinary re-entry. The threshold controls remain scene-local; the five
+  major Aster discoveries described below now use permanent flags. No
+  items, Djinn, existing save structures or battle logic were changed.
 - The existing `check_aster_v14.py` source preflight now checks that
   all five threshold functions use the one-shot helper and that the
   eleven new flags remain in separate scene-temp slots 0x20E..0x218.
@@ -128,11 +130,26 @@ artifact safety gate **before any future manually authorized IPS build**.
   enforces these points and the stage-message references. Sprite
   appearance, actual talk/exit input and runtime collision still
   require a local emulator playtest.
-- **Story persistence is provisional:** the town's fracture/revelation
-  flags also use scene-temporary storage, so the encounter resets upon
-  a normal re-entry. We are deliberately **not** assigning permanent
-  Ashfall save flags before save compatibility and story progression
-  are tested. This is not a final-release narrative state system.
+- **November 8 persistence pass (source integrated, NOT emulator-tested):**
+  reserved five unused entries in the existing save-backed story flag
+  range: `0x8d9` well investigated, `0x8da` memorial investigated,
+  `0x8db` greeter heard, `0x8dc` fracture triggered, and `0x8dd`
+  other Isaac revelation completed. These are named `FLAG_DARK_ASTER_*`
+  in `games/tbs/include/flags.h` and replace the old scene-temp aliases
+  in `aster.c`. Isaac can leave between clues and continue investigating,
+  or return after the fracture/revelation without resetting the stage.
+- All door-threshold read-once flags, NPC greeting repeats, and other
+  moment-to-moment state **remain scene temporary**. The full revelation
+  memorial/echo may play once per visit, not once per entire save. The
+  prototype intentionally has no permanent battle, inventory or reward
+  mutations.
+- The preflight now invokes `tools/check_aster_persistence.py`: it checks
+  the unique five-value allocation, cross-visit alias usage, the three
+  fracture prerequisites, the revelation's ordering, and searches native
+  scene/include C source for conflicting raw numeric IDs. No file-save
+  layout was expanded. This does not replace testing with **fresh and
+  existing disposable saves** before approval; it is not yet a
+  release-ready persistence guarantee.
 
 ## Emulator acceptance gates
 
@@ -142,8 +159,12 @@ artifact safety gate **before any future manually authorized IPS build**.
   priorities, seven NPC talks and mind reads, eight marker events,
   signpost TALK in all three stages, the greeter's optional farewell,
   south exit, and story fracture in different discovery orders.
-- Save/menu: use disposable new saves; verify party, Djinn, items,
-  camera, saves/reloads, and town/world transitions remain intact.
+- Save/menu: use disposable fresh saves AND duplicated old Ashfall saves;
+  find one or two clues, exit/re-enter and verify they remain remembered;
+  trigger fracture, exit/re-enter and verify the new stage remains; meet
+  other Isaac, exit/re-enter and verify revelation text persists. Save,
+  reload and repeat while checking party, Djinn, items, camera, menus and
+  world transitions remain intact. Never overwrite the original SAV.
 - Story: early Flint/Vault/Hammet progression, mid-game transitions,
   late-game Ash Jenna, Kegare, Heart, Sarah and their tactical AI.
 - Interiors/settlement: no house or Sanctum interiors yet; this is a
