@@ -78,10 +78,65 @@ def add_eye_shine(img):
     return img
 
 
+# How far the breath has swung her hair and cloak out on each idle frame (the
+# drawings' left edge runs 18, 16, 12, 9, 5, 5, 8, 16).  Only the cloak's left
+# side moves in the drawings, so the red lining on the right, beside the spear,
+# and the patch under the coat sway with it here, a pixel at a time.
+SWING = [0.0, 0.15, 0.46, 0.69, 1.0, 1.0, 0.77, 0.23]
+
+
+def sway_cape(img, frame):
+    import math
+    px = img.load()
+
+    def is_red(x, y):
+        r, g, b, a = px[x, y]
+        return a >= 128 and r > g + 45 and r > b + 45
+
+    def shift_run(y, x0, x1, dx):
+        """Moves the red run x0..x1 of row y by dx (-1), the pixel it leaves
+        taking its right-hand neighbour's colour and the one it covers red."""
+        red = px[x0, y]
+        leave = px[x1 + 1, y]
+        for x in range(x0, x1 + 1):
+            if x + dx < x0:
+                px[x + dx, y] = red
+        px[x1, y] = leave
+
+    swing = SWING[frame]
+    for y in range(40, 54):
+        # the lining on the right, columns 39-43
+        wave = math.sin(0.8 * y + 1.3 * frame)
+        if swing * wave > 0.35:
+            x = 39
+            while x < 44 and not is_red(x, y):
+                x += 1
+            x1 = x
+            while x1 < 45 and is_red(x1 + 1, y):
+                x1 += 1
+            if x < 44 and is_red(x, y) and not is_red(x - 1, y):
+                shift_run(y, x, x1, -1)
+    for y in range(53, 56):
+        # the patch of lining under the coat, between the legs
+        wave = math.sin(1.1 * y + 0.9 * frame)
+        if swing * wave > 0.3:
+            x = 29
+            while x < 36 and not is_red(x, y):
+                x += 1
+            if x < 36:
+                x1 = x
+                while x1 < 36 and is_red(x1 + 1, y):
+                    x1 += 1
+                shift_run(y, x, x1, -1)
+    return img
+
+
 def load(name):
     img = Image.open(SOURCE / f"{name}.png").convert("RGBA")
     if img.size != (FRAME, FRAME):
         raise ValueError(f"{name} is {img.size}, expected {FRAME}x{FRAME}")
+    if name.startswith("idle"):
+        img = sway_cape(img, int(name[4:]))
     return add_eye_shine(img)
 
 
