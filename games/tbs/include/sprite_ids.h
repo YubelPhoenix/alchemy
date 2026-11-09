@@ -747,7 +747,10 @@ enum SpriteId {
   SPRITE_WATER_DROP = 0x1f7,
   /// ★ Named from what the player sees: an island of green hills around a
   /// mountain (spr_504.png)
-  SPRITE_WORLD_MAP_ISLAND = 0x1f8
+  SPRITE_WORLD_MAP_ISLAND = 0x1f8,
+  /// The "???" commander in her dark coat and cap, with a halberd (spr_490.png,
+  /// built by tools/dark_story/build_mystery_overworld.py)
+  SPRITE_MYSTERY_LEADER = 0x1ea
 };
 
 /// SPRITE_STUMP's animations beyond its standing frame (spr_212.tsv).
