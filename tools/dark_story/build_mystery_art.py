@@ -58,11 +58,31 @@ def to_lab(rgb):
 palette_lab = to_lab(colors)
 
 
+EYE = (195, 54, 64)        # her eyes are single red pixels in the drawings
+EYE_GLOW = (255, 104, 112)
+EYE_SHINE = (255, 236, 240)
+
+
+def add_eye_shine(img):
+    """Brightens each red eye pixel in the head and lights the pixel above it,
+    so the eyes catch the light.  The scarf and cloak, lower down, are not
+    touched."""
+    px = img.load()
+    for y in range(0, 30):
+        for x in range(FRAME):
+            r, g, b, a = px[x, y]
+            if a >= 128 and (r, g, b) == EYE:
+                px[x, y] = EYE_GLOW + (255,)
+                if y > 0 and px[x, y - 1][3] >= 128:
+                    px[x, y - 1] = EYE_SHINE + (255,)
+    return img
+
+
 def load(name):
     img = Image.open(SOURCE / f"{name}.png").convert("RGBA")
     if img.size != (FRAME, FRAME):
         raise ValueError(f"{name} is {img.size}, expected {FRAME}x{FRAME}")
-    return img
+    return add_eye_shine(img)
 
 
 def feet_x(img):
