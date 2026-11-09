@@ -812,6 +812,9 @@ enum {
   VAULT_REVISIT_FROM_STONE_ROOMS = 12,
   VAULT_REVISIT_FROM_VAULT_CAVE_PASSAGE = 13,
   VAULT_REVISIT_FROM_VAULT_CAVE_MOUTH = 14,
+  /// Where the party stood to face Kegare; her battle returns it here
+  /// (VaultRevisit_KegareAftermath).
+  VAULT_REVISIT_FROM_KEGARE = 15,
 };
 /// SceneId_VaultRevisit's exits.
 enum {
