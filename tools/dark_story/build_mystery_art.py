@@ -128,20 +128,20 @@ def sway_cape(img, frame):
                 while x1 < 36 and is_red(x1 + 1, y):
                     x1 += 1
                 shift_run(y, x, x1, -1)
-    # The hem at the cloak's lower left (rows 50-54, columns 20-27) is the same
-    # in every drawing: draw it swinging out with the rest of the left side.
-    hem = {}
-    for y in range(50, 55):
-        hem[y] = [px[x, y] for x in range(20, 28)]
-    for y in range(50, 55):
-        d = round(swing * (1.0 + 0.7 * math.sin(0.9 * y + 1.3 * frame)) * 1.5)
-        d = max(0, min(d, 2))
+    # The hem at the cloak's lower left (rows 50-56, columns 18-27) is the same
+    # in every drawing: draw it swinging out with the rest of the left side, the
+    # lowest tip, which hangs furthest, travelling furthest.
+    for y in range(50, 57):
+        row = [px[x, y] for x in range(18, 28)]
+        reach = 1.4 + 1.2 * (y - 50) / 6 + 0.5 * math.sin(0.9 * y + 1.3 * frame)
+        d = max(0, min(round(swing * reach), 3))
+        if d == 0:
+            continue
         for k in range(d):
             px[27 - k, y] = px[28, y]
-        for k, colour in enumerate(hem[y]):
-            if colour[3] >= 128 or d == 0:
-                if 20 + k - d >= 0:
-                    px[20 + k - d, y] = colour
+        for k, colour in enumerate(row):
+            if colour[3] >= 128 and 18 + k - d >= 0:
+                px[18 + k - d, y] = colour
     return img
 
 
