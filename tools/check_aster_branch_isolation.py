@@ -13,7 +13,7 @@ EXPECTED_BRANCH = "experiment/ashfall-aster-first-playtest"
 APPROVED_BASE = "62dd7b5331a7e23a12df0090e9e823a3aed8f425"
 
 # Exact baseline-relative file inventory: all changes must be Aster additions
-# or the eleven deliberately reconciled Ashfall integration registrations.
+# or the twelve reviewed inherited Ashfall files.
 # Any new path or increased removal/addition counts needs explicit review.
 ADDED = set([
   "docs/aster-ashfall-first-playtest-status.md",
@@ -44,6 +44,7 @@ ADDED = set([
   "tools/check_aster_ashfall_integration.py",
   "tools/check_aster_branch_isolation.py",
   "tools/check_aster_overworld_contract.py",
+  "tools/check_aster_persistence.py",
   "tools/check_aster_native_bridge.py",
   "tools/check_aster_native_decor.py",
   "tools/check_aster_native_foliage.py",
@@ -52,6 +53,10 @@ ADDED = set([
   "tools/prepare_aster_ashfall_dialogue.py"
 ])
 MODIFIED_STATS = {
+  "games/tbs/include/flags.h": [
+    18,
+    0
+  ],
   "games/tbs/include/scene_exits.h": [
     2,
     0
