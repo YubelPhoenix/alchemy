@@ -149,6 +149,7 @@ jobs:
               "05576": ("You want to follow them?", "Get past me first."),
               "05580": ("Then we stay together.", "Don\u0027t give him an opening."),
               "05586": ("The", "Mercury beacon is", "draining my strength!"),
+              "05590": ("Mercury's light hurt you.", "Why stay here to fight?"),
           }
           for msg_id, fragments in expected.items():
               match = re.search(r'msgid "' + msg_id + r'"\nmsgstr ([\s\S]*?)(?=\n\n|$)', catalog)
@@ -156,23 +157,35 @@ jobs:
                   raise SystemExit(f"Corrected Ashfall dialogue missing from build: {msg_id}")
           # The Mia/Isaac handoff uses newly allocated dialogue IDs.
           # Validate their named contexts, not guessed numeric IDs.
-          custom = (
-              ("MsgDarkDuelMiaStops", "Menardi's getting away"),
-              ("MsgDarkDuelIsaacNoTime", "Then I have to go"),
-              ("MsgDarkDuelMiaPlace", "Saturos is still here"),
-              ("MsgDarkDuelIsaacRefuse", "We can't let either"),
-              ("MsgDarkDuelMiaDraw", "I'll go after Menardi"),
-              ("MsgDarkDuelSaturosAmused", "You won't catch her"),
-              ("MsgDarkDuelMiaLost", "There's another path"),
-              ("MsgDarkDuelMiaStop", "If I hurry, I can"),
-              ("MsgDarkDuelIsaacNotEnemy", "Mia, be careful"),
-              ("MsgDarkDuelMiaTrust", "I know. That's why"),
-              ("MsgDarkDuelMiaKeepUp", "I'll bring them back"),
-              ("MsgDarkDuelSaturosResumes", "Your healer is gone."),
-          )
-          for context, fragment in custom:
+          # The canonical dialogue now lives in the TSV inputs, not in this
+          # workflow. Read its approved first line for each 12-step scene
+          # message so an intentional wording revision cannot leave behind
+          # a stale hardcoded canary that stops the ROM build.
+          custom = {}
+          for row in Path("tools/dark_story/phase24_mia_duel.tsv").read_text(
+                  encoding="utf-8").splitlines():
+              parts = row.split("\t")
+              if len(parts) == 3 and parts[0].startswith("N") and (
+                      parts[1].startswith("MsgDarkDuel")):
+                  context, message = parts[1], parts[2]
+                  if context in custom:
+                      raise SystemExit("Duplicate Mercury dialogue: " + context)
+                  custom[context] = message.split(r"\n", 1)[0]
+          if len(custom) != 12:
+              raise SystemExit(f"Expected 12 Mercury duel messages; found {len(custom)}")
+          # Kraden's warning changed speaker and context during the audit.
+          for row in Path("tools/dark_story/phase14_aerie.tsv").read_text(
+                  encoding="utf-8").splitlines():
+              parts = row.split("\t")
+              if len(parts) == 3 and parts[0] == "N48":
+                  if parts[1] != "MsgDarkAerieKradenWarn":
+                      raise SystemExit("Unexpected Mercury Kraden warning context")
+                  custom[parts[1]] = parts[2].split(r"\n", 1)[0]
+          if len(custom) != 13:
+              raise SystemExit("Kraden's Mercury warning is missing from TSV")
+          for context, fragment in sorted(custom.items()):
               match = re.search(r'^msgctxt "' + re.escape(context) + r'"\nmsgid "[0-9]+"\nmsgstr ([\s\S]*?)(?=\n\n|\Z)', catalog, re.MULTILINE)
-              if not match or fragment not in match.group(1):
+              if not match or not fragment or fragment not in match.group(1):
                   raise SystemExit(f"Mercury Aerie exchange missing from build: {context}")
           scene = Path("games/tbs/src/scene/mercury_lighthouse_aerie.c").read_text(encoding="utf-8")
           for anchor in ("Event_SetMessageId(MsgMercuryLighthouseAlreadyLit)",
