@@ -1684,13 +1684,8 @@ s32 Vale_Initialize(void) {
   if (GameFlag_Get(FLAG_DARK_ASH_VALE_PENDING) != 0) {
     Vale_AshJennaAftermath();
   }
-  // A save that beat Heart before "???" existed: she is in the square from
-  // the next time Vale is entered.
-  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0 &&
-      GameFlag_Get(FLAG_DARK_MYSTERY_DONE) == 0) {
-    GameFlag_Set(FLAG_DARK_MYSTERY_AVAILABLE);
-  }
-  if (GameFlag_Get(FLAG_DARK_MYSTERY_AVAILABLE) != 0) {
+  // She stands in the square from the start, like Ash Jenna, until beaten.
+  if (GameFlag_Get(FLAG_DARK_MYSTERY_DONE) == 0) {
     Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
                                SPRITE_COLOR_BLACK);
   }
@@ -3809,8 +3804,8 @@ struct ActorTemplate gVale_ActorTemplatesAfterKalay[] = {
     // Ash Jenna, waiting in the square until she is beaten.
     { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, FLAG_DARK_ASH_VALE_FOUGHT, MOVEMENT_TYPE_STAND,
         PIXELS(400), 0, PIXELS(800), FACING_SOUTH, TALK_FACING_PARTY, 0 },
-    // "???", a black figure in the square once Heart is beaten, until she is.
-    { SPRITE_WOMAN_WITH_BLACK_HAIR, IF_FLAG_SET(FLAG_DARK_MYSTERY_AVAILABLE), MOVEMENT_TYPE_STAND,
+    // "???", a black figure in the square until she is beaten.
+    { SPRITE_WOMAN_WITH_BLACK_HAIR, FLAG_DARK_MYSTERY_DONE, MOVEMENT_TYPE_STAND,
         PIXELS(416), 0, PIXELS(848), FACING_WEST, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
@@ -3930,7 +3925,7 @@ struct Trigger gVale_TriggersAfterLeaving[] = {
 
 struct Trigger gVale_TriggersAfterKalay[] = {
     { TRIGGER_TALK, ACTOR_ASH_JENNA_AFTER_KALAY, FLAG_DARK_ASH_VALE_FOUGHT, EVENT(Vale_TalkToAshJenna) },
-    { TRIGGER_TALK, ACTOR_MYSTERY_LEADER_AFTER_KALAY, IF_FLAG_SET(FLAG_DARK_MYSTERY_AVAILABLE), EVENT(Vale_TalkToMysteryLeader) },
+    { TRIGGER_TALK, ACTOR_MYSTERY_LEADER_AFTER_KALAY, FLAG_DARK_MYSTERY_DONE, EVENT(Vale_TalkToMysteryLeader) },
     { TRIGGER_TALK, ACTOR_GARETS_SISTER_AFTER_KALAY, FLAG_VALE_GARET_MET_SISTER, EVENT(Vale_GaretMeetsHisSister) },
     { TRIGGER_TALK, ACTOR_GARETS_SISTER_AFTER_KALAY, CONDITION_ALWAYS, MSGNO(MsgValeICanTellJustByLooking) },
     { TRIGGER_TALK, ACTOR_GARETS_BROTHER_AFTER_KALAY, FLAG_VALE_GARET_ASKED_TO_PROTECT_FAMILY, EVENT(Vale_GaretAsksToProtectFamily) },

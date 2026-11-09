@@ -2006,7 +2006,6 @@ static void Kolima_HeartAftermath(void) {
   Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_HEART, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_HEART_BEATEN);
-  GameFlag_Set(FLAG_DARK_MYSTERY_AVAILABLE);
   Event_End();
 }
 
