@@ -500,6 +500,8 @@ static void Kolima_LowerBridge(void) {
   Event_End();
 }
 
+// Return beside Heart after battle, rather than Kolima's unrelated entrance 0.
+enum { KOLIMA_FROM_HEART_BATTLE = 13 };
 static void Kolima_HeartAftermath(void);
 
 /// Sets up whichever scene is entered: Kolima Bridge as the curse and the
@@ -1790,8 +1792,9 @@ u16 gKolima_DoorCells[] = {
     MAPGRID_ANIMATION_STEPS_END,
 };
 
-/// Kolima's entrances. No exit leads to entrances 2, 10 and 12;
+/// Kolima's entrances. No exit leads to entrances 2, 10, 12 or 13;
 /// entrance 10 puts the party where KOLIMA_FROM_WORLD_MAP does.
+/// Entrance 13 is a post-battle return point facing Heart.
 struct SceneEntrance gKolimaEntrances[] = {
     {0, CONDITION_ALWAYS, 232, 0, 120, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     {KOLIMA_FROM_WORLD_MAP, CONDITION_ALWAYS, 44, 0, 267, FACING_EAST, 0, -1,
@@ -1811,6 +1814,8 @@ struct SceneEntrance gKolimaEntrances[] = {
      -1, -1, -1, -1, 0},
     {10, CONDITION_ALWAYS, 44, 0, 267, FACING_EAST, 0, -1, -1, -1, -1, 0},
     {12, CONDITION_ALWAYS, 232, 0, 176, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
+    {KOLIMA_FROM_HEART_BATTLE, CONDITION_ALWAYS, 84, 0, 268, FACING_EAST,
+     0, -1, -1, -1, -1, 0},
     {SCENE_TABLE_END},
 };
 
@@ -1979,7 +1984,8 @@ static void Kolima_TalkToHeart(void) {
   GameFlag_Set(FLAG_DARK_HEART_FOUGHT);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
-  Event_SetAfterBattleDestination((s32)&SceneId_Kolima, 0);
+  Event_SetAfterBattleDestination((s32)&SceneId_Kolima,
+                                  KOLIMA_FROM_HEART_BATTLE);
   // A defeat goes to the restart point (the last Sanctum).
   Event_SetDefeatDestination(-1, -1);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
