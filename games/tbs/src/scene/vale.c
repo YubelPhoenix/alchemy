@@ -1779,6 +1779,23 @@ static void Vale_TalkToMysteryLeader(void) {
   Vale_MysterySays();
   Vale_IsaacAnswers();
   Vale_MysterySays();
+  // Show the bind taking hold before the companions lose their turns. The
+  // field palette pulse is cosmetic; the solo roster drives the actual duel.
+  Actor_SetSpriteColorById(ACTOR_GARET, SPRITE_COLOR_RBG);
+  Actor_SetSpriteColorById(ACTOR_IVAN, SPRITE_COLOR_RBG);
+  Actor_SetSpriteColorById(ACTOR_MIA, SPRITE_COLOR_RBG);
+  Event_WaitFrames(20);
+  Event_SetMessageId(MsgDarkMysteryGaretBound);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Vale_MysterySays();
+  // Release the palette effect before transitioning; the companions remain
+  // unable to participate until the battle has ended.
+  Actor_SetSpriteColorById(ACTOR_GARET, SPRITE_COLOR_NORMAL);
+  Actor_SetSpriteColorById(ACTOR_IVAN, SPRITE_COLOR_NORMAL);
+  Actor_SetSpriteColorById(ACTOR_MIA, SPRITE_COLOR_NORMAL);
   // The mystery commander challenges Isaac alone. Keep the companions
   // out of the battle, then restore them in the post-battle Vale event.
   Party_RemoveMember(GARET);
@@ -1831,6 +1848,8 @@ static void Vale_MysteryLeaderAftermath(void) {
   Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
                              SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_MYSTERY_LEADER_AFTER_KALAY, PIXELS(0), PIXELS(0));
+  Event_SetMessageId(MsgDarkMysteryMiaAfter);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   GameFlag_Set(FLAG_DARK_MYSTERY_DONE);
   GameFlag_Clear(FLAG_DARK_MYSTERY_AVAILABLE);
   // Release the fixed camera before player control returns.
