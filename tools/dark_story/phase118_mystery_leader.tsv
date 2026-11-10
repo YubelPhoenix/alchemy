@@ -9,12 +9,12 @@ N362	MsgDarkMystery07	That wasn't me.{end_wait}
 N363	MsgDarkMystery08	I know. He wears\nyour face. Amusing,\nisn't it.{end_wait}
 N364	MsgDarkMystery09	Where would you have\nmet someone who looks\nlike me?{end_wait}
 N365	MsgDarkMystery10	Not yet, Isaac.\nNot for a long while.\nThat is the point.{end_wait}
-N366	MsgDarkMystery11	I wanted to see the\noriginal. I'm curious,\nthat's all.{end_wait}
-N367	MsgDarkMystery12	I will not use my\npowers. Call it a\ncourtesy.{page_break}I don't want to break\nyou before I know\nwhat you are.{end_wait}
+N366	MsgDarkMystery11	I wanted to see the\noriginal. I'm curious,\nthat's all.{page_break}The other Jenna. Sarah.\nEven that thing you\ncall Kegare.{page_break}They all found you,\ndidn't they?{end_wait}
+N367	MsgDarkMystery12	A word at the right\ntime can change a path.\nThey chose their own.{page_break}I'll hold back in\nour fight. Consider\nit a courtesy.{page_break}I don't want to break\nyou before I know\nwhat you are.{end_wait}
 N368	MsgDarkMystery13	...You're\nunderestimating me.{end_wait}
-N369	MsgDarkMystery14	Perhaps.\nDraw your sword.{end_wait}
+N369	MsgDarkMystery14	Perhaps.\nDraw your sword.{page_break}Your friends are bound.\nThey won't interfere.{page_break}They're unharmed.\nThis is between us,\nIsaac.{end_wait}
 N370	MsgDarkMystery15	Tell me who you are.{end_wait}
-N371	MsgDarkMystery16	You've asked three\ntimes now. That's\nthree more than most.{end_wait}
+N371	MsgDarkMystery16	You've asked three\ntimes now. That's\nthree more than most.{page_break}Your friends are free.\nI kept my word.{end_wait}
 N372	MsgDarkMystery17	This was only a test,\nIsaac. You passed it.{page_break}Be glad you did not\nneed the rest of me.{end_wait}
 N373	MsgDarkMystery18	A test of what?{end_wait}
 N374	MsgDarkMystery19	Of whether you are\nworth the trouble.{end_wait}
