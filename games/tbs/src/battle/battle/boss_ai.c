@@ -862,42 +862,42 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
   }
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 }
-/// She holds back until 95% HP, then drains PP, seals Psynergy and strips buffs.
+/// Her attacks change below 95% HP: pressure PP, seals and raised stats.
+/// One killing attack per round; high-PP targets are selected elsewhere.
 static s32 BossAI_MysteryChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   u32 memory = unit->aiActionIndex;
-  u32 turns = (memory >> MYSTERY_TURNS_SHIFT) & 3;
-  u32 kills = (memory >> MYSTERY_KILL_SHIFT) & 3;
   s32 roll = Battle_RandomFar() & 0xff;
-  s32 roll2 = Battle_RandomFar() & 0xff;
   struct BossPartyView view;
   s32 full = BossAI_MysteryFullPower(unit);
+
   BossAI_ViewParty(&view);
   if (!firstPick)
-    return full ? MYSTERY_DARK_BLESSING : MYSTERY_DEMON_NIGHT;
+    return MYSTERY_DARK_BLESSING;
   if (!full) {
-    if ((memory & MYSTERY_EARLY_KILL_BIT) == 0 && turns >= 1 &&
-        view.alive > 0 && roll < MYSTERY_EARLY_KILL_CHANCE)
+    if ((memory & MYSTERY_EARLY_KILL_BIT) == 0 &&
+        ((memory >> MYSTERY_TURNS_SHIFT) & 3) != 0 && view.alive > 0 &&
+        roll < MYSTERY_EARLY_KILL_CHANCE)
       return MYSTERY_ANNIHILATION;
-    return (roll2 & 1) ? MYSTERY_DEMON_NIGHT : MYSTERY_DARK_BLESSING;
+    return roll & 1 ? MYSTERY_DEMON_NIGHT : MYSTERY_DARK_BLESSING;
   }
-  if (turns == 0 && view.buffed > 0 &&
-      (memory & MYSTERY_BREAK_USED_BIT) == 0 && roll < 200)
+  if (((memory >> MYSTERY_TURNS_SHIFT) & 3) == 0 &&
+      view.buffed > 0 && roll < 200)
     return MYSTERY_BREAK;
-  if (view.pp > 0 && (memory & MYSTERY_DRAIN_USED_BIT) == 0 &&
-      roll2 < 150)
+  if (view.pp > 0 && (memory & MYSTERY_DRAIN_USED_BIT) == 0 && roll < 150)
     return MYSTERY_PSY_DRAIN;
   if (view.alive > view.sealed && view.sealed < 2 &&
-      (memory & MYSTERY_BIND_USED_BIT) == 0 && roll2 < 105)
+      (memory & MYSTERY_BIND_USED_BIT) == 0 && roll < 105)
     return MYSTERY_BIND;
-  if (view.alive > 0 && (s32)kills < MYSTERY_KILLS_PER_ROUND) {
+  if (view.alive > 0 &&
+      ((memory >> MYSTERY_KILL_SHIFT) & 3) < MYSTERY_KILLS_PER_ROUND) {
     if (roll < MYSTERY_ANNIHILATION_CHANCE)
       return MYSTERY_ANNIHILATION;
     if (roll < MYSTERY_ANNIHILATION_CHANCE + MYSTERY_DEATH_SIZE_CHANCE)
       return MYSTERY_DEATH_SIZE;
   }
-  if (view.alive > 0 && view.haunted * 2 < view.alive && roll2 < 130)
+  if (view.haunted * 2 < view.alive && roll < 130)
     return MYSTERY_DEMON_NIGHT;
-  return (roll2 & 1) ? MYSTERY_GRAND_GAIA : MYSTERY_DARK_BLESSING;
+  return roll & 1 ? MYSTERY_GRAND_GAIA : MYSTERY_DARK_BLESSING;
 }
 
 /// Starts a round for the bosses: their per-round memory is cleared and their
