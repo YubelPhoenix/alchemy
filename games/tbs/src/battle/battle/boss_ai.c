@@ -645,90 +645,70 @@ static void BossAI_HeartNoteTurn(struct Unit *unit,
 #endif
 }
 
-/// Heart warns before a major blow. Compact selection is important here:
-/// the battle engine's ROM bank has a fixed limit. Every warned payoff still
-/// obeys the same cooldown and party-safety checks as before.
+/// Heart signals her finishing attacks a round in advance; pressure from
+/// Evil Blessing and Psy Drain fills the gaps between warning and payoff.
 static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
 #if BOSS_AI_HEART
   u32 memory = unit->aiActionIndex;
   u32 turns = (memory >> HEART_TURNS_SHIFT) & 3;
-  u32 rounds = (memory >> HEART_ROUNDS_SHIFT) & 7;
-  u32 wait = (memory >> HEART_ANNIHILATION_WAIT_SHIFT) & 15;
   struct BossPartyView view;
   s32 roll = Battle_RandomFar() & 0xff;
   s32 roll2 = Battle_RandomFar() & 0xff;
   s32 ready = (memory & HEART_PAYOFF_READY_BIT) != 0;
-  s32 warned = (memory & HEART_WARNED_BIT) != 0;
   s32 payoff = ready && turns != 0 && firstPick &&
                (memory & HEART_PAYOFF_USED_BIT) == 0;
-  s32 mayWarn;
-  s32 mayAnnihilate;
-  s32 mayDeathPlunge;
-  s32 mayOuterSpace;
+  s32 warn;
 
   BossAI_ViewParty(&view);
-  mayWarn = firstPick && turns == 0 && !ready && !warned &&
-            view.down <= 1 && view.hp * 100 >=
-                view.hpMax * HEART_WARNING_ABOVE_PERCENT;
-  mayAnnihilate = payoff && rounds >= HEART_ANNIHILATION_FIRST_ROUND &&
-                  wait == 0 && view.down <= 1 && view.unavailable <= 2 &&
-                  (memory & HEART_DISABLE_BIT) == 0;
-  mayDeathPlunge = payoff && view.unavailable <= 2 &&
-                   (memory & HEART_DISABLE_BIT) == 0;
-  mayOuterSpace = payoff && view.down <= 1 &&
-                  (memory & HEART_BIG_BIT) == 0;
-
-  if (firstPick && roll >= HEART_MISTAKE_CHANCE) {
-    if (mayWarn && roll2 < HEART_WARNING_CHANCE)
+  warn = firstPick && turns == 0 && !ready &&
+         (memory & HEART_WARNED_BIT) == 0 &&
+         ((memory >> HEART_CALM_SHIFT) & 3) == 0 &&
+         view.down <= 1 &&
+         view.hp * 100 >= view.hpMax * HEART_WARNING_ABOVE_PERCENT;
+  if (firstPick) {
+    if (warn && roll >= HEART_MISTAKE_CHANCE &&
+        roll2 < HEART_WARNING_CHANCE)
       slot = HEART_HEARTRENDER;
-    else if (payoff) {
+    else if (payoff && roll >= HEART_MISTAKE_CHANCE) {
       switch (roll2 & 3) {
-      case 0:
-        slot = HEART_OUTER_SPACE;
-        break;
-      case 1:
-        slot = HEART_DEATH_PLUNGE;
-        break;
-      case 2:
-        slot = HEART_ANNIHILATION;
-        break;
-      default:
-        slot = HEART_SEVERE_BLOW;
-        break;
+      case 0: slot = HEART_OUTER_SPACE; break;
+      case 1: slot = HEART_DEATH_PLUNGE; break;
+      case 2: slot = HEART_ANNIHILATION; break;
+      default: slot = HEART_SEVERE_BLOW; break;
       }
-    }
+    } else if (turns != 0 && !payoff && view.pp > 0 &&
+               (memory & HEART_DRAIN_USED_BIT) == 0 && roll2 < 105)
+      slot = HEART_PSY_DRAIN;
   }
-  // A single drain per round makes repeated recovery costly, without allowing
-  // Heart to consume three full actions just stealing PP.
-  if (firstPick && turns != 0 && !payoff && view.pp > 0 &&
-      (memory & HEART_DRAIN_USED_BIT) == 0 && roll2 < 105)
-    slot = HEART_PSY_DRAIN;
-
+  // An invalid stock choice or payoff becomes a safe, non-lethal attack.
   switch (slot) {
   case HEART_HEARTRENDER:
-    if (!mayWarn)
-      slot = HEART_DARK_BLESSING;
+    if (!warn) slot = HEART_DARK_BLESSING;
     break;
   case HEART_OUTER_SPACE:
-    if (!mayOuterSpace)
+    if (!payoff || view.down > 1 || (memory & HEART_BIG_BIT))
       slot = HEART_DARK_BLESSING;
     break;
   case HEART_DEATH_PLUNGE:
   case HEART_SEVERE_BLOW:
-    if (!mayDeathPlunge)
+    if (!payoff || view.unavailable > 2 || (memory & HEART_DISABLE_BIT))
       slot = HEART_DARK_BLESSING;
     break;
   case HEART_ANNIHILATION:
-    if (!mayAnnihilate)
+    if (!payoff || ((memory >> HEART_ROUNDS_SHIFT) & 7) <
+                       HEART_ANNIHILATION_FIRST_ROUND ||
+        ((memory >> HEART_ANNIHILATION_WAIT_SHIFT) & 15) != 0 ||
+        view.down > 1 || view.unavailable > 2 ||
+        (memory & HEART_DISABLE_BIT))
       slot = HEART_DARK_BLESSING;
     break;
   case HEART_EVIL_BLESSING:
-    if ((memory & HEART_BIG_BIT) != 0 || warned || ready ||
-        view.haunted * 2 >= view.alive)
+    if ((memory & HEART_BIG_BIT) || (memory & HEART_WARNED_BIT) ||
+        ready || view.haunted * 2 >= view.alive)
       slot = HEART_DARK_BLESSING;
     break;
   case HEART_PSY_DRAIN:
-    if (view.pp == 0 || (memory & HEART_DRAIN_USED_BIT) != 0)
+    if (!firstPick || view.pp == 0 || (memory & HEART_DRAIN_USED_BIT))
       slot = HEART_DARK_BLESSING;
     break;
   }
