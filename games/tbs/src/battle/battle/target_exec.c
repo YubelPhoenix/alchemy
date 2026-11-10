@@ -592,6 +592,11 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         if (pass == 0)
           elementBonus = 0;
         power = ability->power;
+        // Ash Jenna's Mars spells must threaten a fully developed party.
+        // This affects only her elemental damage, not any other unit.
+        if (actor->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
+            IS_PARTY_UNIT(targetId))
+          power += power / 2;
         // A summon adds 3% of the target's max HP for each Djinni it costs.
         if (plan->command == COMMAND_SUMMON) {
           s32 maxHpPercent;

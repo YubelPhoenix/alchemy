@@ -89,13 +89,13 @@ enum KegareSlot {
                      KEGARE_DRAIN_USED_BIT | KEGARE_BIND_USED_BIT)
 STATIC_ASSERT((KEGARE_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((KEGARE_BITS & BOSS_LAST_AIM_BITS) == 0);
-/// She may heal (Ply Well, her own pick or the stock cycle's) only below this
+/// She may heal (Pure Ply) only below this
 /// percent of her HP, and then not again for this many of her actions after a
 /// heal that was really cast.
 #define KEGARE_HEAL_BELOW_PERCENT 60
 #define KEGARE_HEAL_WAIT 3
 /// Out of 256: how often a turn of hers is Annihilation when one is allowed.
-#define KEGARE_ANNIHILATION_CHANCE 100
+#define KEGARE_ANNIHILATION_CHANCE 170
 /// Out of 256: how often she keeps the stock choice instead of her own plan.
 #define KEGARE_MISTAKE_CHANCE 51
 /// Out of 256: how often she aims at the member who is most open.
@@ -156,7 +156,7 @@ static void BossAI_KegareNoteTurn(struct BattleAction *request, s32 result) {
 #endif
 }
 
-/// Kegare mirrors Mia's healing while wearing down the party's resources.
+/// Keep Pure Ply at critical HP, but break stalling with early offense.
 static s32 BossAI_KegareChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
 #if BOSS_AI_KEGARE
   static const u8 pressure[4] = {KEGARE_FREEZE_PRISM, KEGARE_ICE_BLESSING,
@@ -166,17 +166,16 @@ static s32 BossAI_KegareChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   s32 roll2 = Battle_RandomFar() & 0xff;
   s32 mayHeal = ((memory >> KEGARE_HEAL_WAIT_SHIFT) & 7) == 0 &&
                 unit->hp * 100 < unit->hpMax * KEGARE_HEAL_BELOW_PERCENT;
-
   if (firstPick) {
-    if (mayHeal)
+    if (mayHeal && (unit->hp * 100 < unit->hpMax * 35 || roll2 < 116))
       slot = KEGARE_PURE_PLY;
-    else if ((memory & KEGARE_DRAIN_USED_BIT) == 0 && roll2 < 78)
-      slot = KEGARE_PSY_DRAIN;
-    else if ((memory & KEGARE_BIND_USED_BIT) == 0 && roll2 < 122)
-      slot = KEGARE_BIND;
     else if ((memory & KEGARE_ANNIHILATION_THIS_ROUND_BIT) == 0 &&
              roll < KEGARE_ANNIHILATION_CHANCE)
       slot = KEGARE_ANNIHILATION;
+    else if ((memory & KEGARE_DRAIN_USED_BIT) == 0 && roll2 < 24)
+      slot = KEGARE_PSY_DRAIN;
+    else if ((memory & KEGARE_BIND_USED_BIT) == 0 && roll2 < 48)
+      slot = KEGARE_BIND;
     else
       slot = pressure[roll2 & 3];
   }
@@ -355,7 +354,7 @@ enum AshSlot {
 #define ASH_BITS (0x3ff0u)
 STATIC_ASSERT((ASH_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((ASH_BITS & BOSS_LAST_AIM_BITS) == 0);
-#define ASH_ANNIHILATION_CHANCE 112
+#define ASH_ANNIHILATION_CHANCE 156
 #define ASH_BREAK_AFTER_ROUNDS 2
 
 /// Ash Jenna's memory brought up to date at the start of a round.
@@ -413,7 +412,7 @@ static void BossAI_AshNoteTurn(struct Unit *unit,
 #endif
 }
 
-/// Ash Jenna attacks recklessly, but changes tactics against large HP/PP pools.
+/// Attack from the opening turn, with a deadlier second phase.
 static s32 BossAI_AshChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
 #if BOSS_AI_ASH_JENNA
   static const u8 pressure[4] = {ASH_PYROCLASM, ASH_ACID_BLESSING,
@@ -425,22 +424,25 @@ static s32 BossAI_AshChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   s32 roll = Battle_RandomFar() & 0xff;
   s32 roll2 = Battle_RandomFar() & 0xff;
   struct BossPartyView view;
-  s32 limit = unit->hp * 2 < unit->hpMax ? 2 : 1;
-
+  s32 late = unit->hp * 2 < unit->hpMax;
+  s32 limit = late ? 2 : 1;
   BossAI_ViewParty(&view);
   if (!firstPick)
     return ASH_ACID_BLESSING;
-  if (turns == 0 && (memory & ASH_MELTDOWN_THIS_ROUND_BIT) == 0 &&
-      (!(memory & ASH_STARTED_BIT) || since >= ASH_BREAK_AFTER_ROUNDS))
-    return ASH_MELTDOWN;
-  if (view.pp > 0 && (memory & ASH_DRAIN_USED_BIT) == 0 && roll2 < 45)
-    return ASH_PSY_DRAIN;
-  if (view.alive > 0 && (s32)done < limit && roll < ASH_ANNIHILATION_CHANCE)
+  if (view.alive > 1 && (s32)done < limit &&
+      roll < (late ? 196 : ASH_ANNIHILATION_CHANCE))
     return ASH_ANNIHILATION;
-  if (view.down <= 1 && (memory & ASH_SEVERE_USED_BIT) == 0 && roll2 < 102)
+  if (turns == 0 && (memory & ASH_MELTDOWN_THIS_ROUND_BIT) == 0 &&
+      (!(memory & ASH_STARTED_BIT) || since >= ASH_BREAK_AFTER_ROUNDS) &&
+      roll2 < 56)
+    return ASH_MELTDOWN;
+  if (view.alive > 0 && view.down <= 1 &&
+      (memory & ASH_SEVERE_USED_BIT) == 0 && roll2 < 104)
     return ASH_SEVERE_BLOW;
-  if (view.alive > 0 && view.haunted * 2 < view.alive && roll2 < 136)
+  if (view.alive > 0 && view.haunted * 2 < view.alive && roll2 < 132)
     return ASH_DEMON_FIRE;
+  if (view.pp > 0 && (memory & ASH_DRAIN_USED_BIT) == 0 && roll2 > 239)
+    return ASH_PSY_DRAIN;
   slot = pressure[roll2 & 3];
 #endif
   return slot;
@@ -496,15 +498,15 @@ STATIC_ASSERT((HEART_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((HEART_BITS & BOSS_LAST_AIM_BITS) == 0);
 /// Rounds after an Annihilation before she may try it again: the next try is
 /// seven rounds on, so six rounds pass between.
-#define HEART_ANNIHILATION_WAIT 3
+#define HEART_ANNIHILATION_WAIT 2
 /// Annihilation is never tried until this round.
-#define HEART_ANNIHILATION_FIRST_ROUND 2
+#define HEART_ANNIHILATION_FIRST_ROUND 1
 /// Out of 256: how often she keeps the stock choice, and how often a round
 /// that may begin with the warning does.
 #define HEART_MISTAKE_CHANCE 51
-#define HEART_WARNING_CHANCE 200
+#define HEART_WARNING_CHANCE 72
 /// Calm rounds after a payoff round before the next warning may come.
-#define HEART_CALM_ROUNDS 0
+#define HEART_CALM_ROUNDS 1
 /// The party must have at least this percent of its HP for her to warn.
 #define HEART_WARNING_ABOVE_PERCENT 40
 
@@ -599,8 +601,8 @@ static void BossAI_HeartNoteTurn(struct Unit *unit,
 #endif
 }
 
-/// Heart signals her finishing attacks a round in advance; pressure from
-/// Evil Blessing and Psy Drain fills the gaps between warning and payoff.
+/// Heart fights offensively every round; a warning guarantees a payoff on
+/// the following round's second action, with a chance to respond beforehand.
 static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
 #if BOSS_AI_HEART
   u32 memory = unit->aiActionIndex;
@@ -609,63 +611,46 @@ static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   s32 roll = Battle_RandomFar() & 0xff;
   s32 roll2 = Battle_RandomFar() & 0xff;
   s32 ready = (memory & HEART_PAYOFF_READY_BIT) != 0;
-  s32 payoff = ready && turns != 0 && firstPick &&
-               (memory & HEART_PAYOFF_USED_BIT) == 0;
-  s32 warn;
-
+  s32 canHard;
+  s32 canAnnih;
   BossAI_ViewParty(&view);
-  warn = firstPick && turns == 0 && !ready &&
-         (memory & HEART_WARNED_BIT) == 0 &&
-         ((memory >> HEART_CALM_SHIFT) & 3) == 0 &&
-         view.down <= 1 &&
-         view.hp * 100 >= view.hpMax * HEART_WARNING_ABOVE_PERCENT;
-  if (firstPick) {
-    if (warn && roll >= HEART_MISTAKE_CHANCE &&
-        roll2 < HEART_WARNING_CHANCE)
-      slot = HEART_HEARTRENDER;
-    else if (payoff && roll >= HEART_MISTAKE_CHANCE) {
-      switch (roll2 & 3) {
-      case 0: slot = HEART_OUTER_SPACE; break;
-      case 1: slot = HEART_DEATH_PLUNGE; break;
-      case 2: slot = HEART_ANNIHILATION; break;
-      default: slot = HEART_SEVERE_BLOW; break;
-      }
-    } else if (turns != 0 && !payoff && view.pp > 0 &&
-               (memory & HEART_DRAIN_USED_BIT) == 0 && roll2 < 105)
-      slot = HEART_PSY_DRAIN;
+  canHard = view.alive > 1 && (memory & HEART_DISABLE_BIT) == 0;
+  canAnnih = canHard &&
+             ((memory >> HEART_ROUNDS_SHIFT) & 7) >=
+                 HEART_ANNIHILATION_FIRST_ROUND &&
+             ((memory >> HEART_ANNIHILATION_WAIT_SHIFT) & 15) == 0;
+  if (!firstPick)
+    return HEART_DARK_BLESSING;
+  if (ready && turns == 0)
+    return HEART_DARK_BLESSING;
+  if (ready && (memory & HEART_PAYOFF_USED_BIT) == 0) {
+    if (canAnnih && roll < 160)
+      return HEART_ANNIHILATION;
+    if (canHard)
+      return HEART_DEATH_PLUNGE;
+    if ((memory & HEART_BIG_BIT) == 0)
+      return HEART_OUTER_SPACE;
+    return HEART_DARK_BLESSING;
   }
-  // An invalid stock choice or payoff becomes a safe, non-lethal attack.
-  switch (slot) {
-  case HEART_HEARTRENDER:
-    if (!warn) slot = HEART_DARK_BLESSING;
-    break;
-  case HEART_OUTER_SPACE:
-    if (!payoff || view.down > 1 || (memory & HEART_BIG_BIT))
-      slot = HEART_DARK_BLESSING;
-    break;
-  case HEART_DEATH_PLUNGE:
-  case HEART_SEVERE_BLOW:
-    if (!payoff || view.unavailable > 2 || (memory & HEART_DISABLE_BIT))
-      slot = HEART_DARK_BLESSING;
-    break;
-  case HEART_ANNIHILATION:
-    if (!payoff || ((memory >> HEART_ROUNDS_SHIFT) & 7) <
-                       HEART_ANNIHILATION_FIRST_ROUND ||
-        ((memory >> HEART_ANNIHILATION_WAIT_SHIFT) & 15) != 0 ||
-        view.down > 1 || view.unavailable > 2 ||
-        (memory & HEART_DISABLE_BIT))
-      slot = HEART_DARK_BLESSING;
-    break;
-  case HEART_EVIL_BLESSING:
-    if ((memory & HEART_BIG_BIT) || (memory & HEART_WARNED_BIT) ||
-        ready || view.haunted * 2 >= view.alive)
-      slot = HEART_DARK_BLESSING;
-    break;
-  case HEART_PSY_DRAIN:
-    if (!firstPick || view.pp == 0 || (memory & HEART_DRAIN_USED_BIT))
-      slot = HEART_DARK_BLESSING;
-    break;
-  }
+  if (turns == 0 && !ready && ((memory >> HEART_CALM_SHIFT) & 3) == 0 &&
+      view.down <= 1 && view.hp * 100 >=
+          view.hpMax * HEART_WARNING_ABOVE_PERCENT &&
+      roll < HEART_WARNING_CHANCE)
+    return HEART_HEARTRENDER;
+  if (canAnnih && roll < 110)
+    return HEART_ANNIHILATION;
+  if (canHard && roll < 171)
+    return HEART_DEATH_PLUNGE;
+  if (canHard && roll < 194)
+    return HEART_SEVERE_BLOW;
+  if ((memory & HEART_BIG_BIT) == 0 && roll < 218)
+    return HEART_OUTER_SPACE;
+  if (view.pp > 0 && (memory & HEART_DRAIN_USED_BIT) == 0 && roll2 < 16)
+    return HEART_PSY_DRAIN;
+  if ((memory & HEART_BIG_BIT) == 0 && view.haunted * 2 < view.alive &&
+      roll2 < 36)
+    return HEART_EVIL_BLESSING;
+  slot = HEART_DARK_BLESSING;
 #endif
   return slot;
 }
@@ -747,10 +732,10 @@ enum MysterySlot {
 #define MYSTERY_BITS (0x1ff0u)
 STATIC_ASSERT((MYSTERY_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((MYSTERY_BITS & BOSS_LAST_AIM_BITS) == 0);
-#define MYSTERY_FULL_POWER_BELOW_PERCENT 95
-#define MYSTERY_EARLY_KILL_CHANCE 140
-#define MYSTERY_ANNIHILATION_CHANCE 95
-#define MYSTERY_DEATH_SIZE_CHANCE 45
+#define MYSTERY_FULL_POWER_BELOW_PERCENT 98
+#define MYSTERY_EARLY_KILL_CHANCE 150
+#define MYSTERY_ANNIHILATION_CHANCE 140
+#define MYSTERY_DEATH_SIZE_CHANCE 60
 #define MYSTERY_KILLS_PER_ROUND 1
 
 static s32 BossAI_MysteryFullPower(const struct Unit *unit) {
@@ -796,40 +781,37 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
   }
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 }
-/// Her attacks change below 95% HP: pressure PP, seals and raised stats.
-/// One killing attack per round; high-PP targets are selected elsewhere.
+/// A Dark Adept's lethal attacks come before her occasional tactical debuffs.
 static s32 BossAI_MysteryChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   u32 memory = unit->aiActionIndex;
   s32 roll = Battle_RandomFar() & 0xff;
   struct BossPartyView view;
-  s32 full = BossAI_MysteryFullPower(unit);
-
   BossAI_ViewParty(&view);
   if (!firstPick)
     return MYSTERY_DARK_BLESSING;
-  if (!full) {
-    if ((memory & MYSTERY_EARLY_KILL_BIT) == 0 &&
-        ((memory >> MYSTERY_TURNS_SHIFT) & 3) != 0 && view.alive > 0 &&
+  if (!BossAI_MysteryFullPower(unit)) {
+    if (view.alive > 1 && (memory & MYSTERY_EARLY_KILL_BIT) == 0 &&
+        ((memory >> MYSTERY_KILL_SHIFT) & 3) == 0 &&
         roll < MYSTERY_EARLY_KILL_CHANCE)
-      return MYSTERY_ANNIHILATION;
-    return roll & 1 ? MYSTERY_DEMON_NIGHT : MYSTERY_DARK_BLESSING;
-  }
-  if (((memory >> MYSTERY_TURNS_SHIFT) & 3) == 0 &&
-      view.buffed > 0 && roll < 200)
-    return MYSTERY_BREAK;
-  if (view.pp > 0 && (memory & MYSTERY_DRAIN_USED_BIT) == 0 && roll < 150)
-    return MYSTERY_PSY_DRAIN;
-  if (view.alive > view.sealed && view.sealed < 2 &&
-      (memory & MYSTERY_BIND_USED_BIT) == 0 && roll < 105)
-    return MYSTERY_BIND;
-  if (view.alive > 0 &&
-      ((memory >> MYSTERY_KILL_SHIFT) & 3) < MYSTERY_KILLS_PER_ROUND) {
-    if (roll < MYSTERY_ANNIHILATION_CHANCE)
-      return MYSTERY_ANNIHILATION;
-    if (roll < MYSTERY_ANNIHILATION_CHANCE + MYSTERY_DEATH_SIZE_CHANCE)
       return MYSTERY_DEATH_SIZE;
+    return roll < 192 ? MYSTERY_GRAND_GAIA : MYSTERY_DEMON_NIGHT;
   }
-  if (view.haunted * 2 < view.alive && roll < 130)
+  if (view.alive > 1 &&
+      ((memory >> MYSTERY_KILL_SHIFT) & 3) < MYSTERY_KILLS_PER_ROUND &&
+      roll < MYSTERY_ANNIHILATION_CHANCE + MYSTERY_DEATH_SIZE_CHANCE)
+    return roll < MYSTERY_ANNIHILATION_CHANCE ?
+           MYSTERY_ANNIHILATION : MYSTERY_DEATH_SIZE;
+  if (((memory >> MYSTERY_TURNS_SHIFT) & 3) == 0 &&
+      view.buffed > 0 && (memory & MYSTERY_BREAK_USED_BIT) == 0 &&
+      roll < 32)
+    return MYSTERY_BREAK;
+  if (view.pp > 0 && (memory & MYSTERY_DRAIN_USED_BIT) == 0 &&
+      roll < 26)
+    return MYSTERY_PSY_DRAIN;
+  if (view.alive > view.sealed && (memory & MYSTERY_BIND_USED_BIT) == 0 &&
+      roll < 42)
+    return MYSTERY_BIND;
+  if (view.haunted * 2 < view.alive && roll < 96)
     return MYSTERY_DEMON_NIGHT;
   return roll & 1 ? MYSTERY_GRAND_GAIA : MYSTERY_DARK_BLESSING;
 }
