@@ -1684,8 +1684,13 @@ s32 Vale_Initialize(void) {
   if (GameFlag_Get(FLAG_DARK_ASH_VALE_PENDING) != 0) {
     Vale_AshJennaAftermath();
   }
-  // A black figure in the square until she is beaten.
-  if (GameFlag_Get(FLAG_DARK_MYSTERY_DONE) == 0) {
+  // The commander cannot confront Isaac before Heart's defeat.
+  // Hide her without changing the actor's completion-flag semantics.
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) == 0 ||
+      GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0) {
+    Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
+                               SPRITE_COLOR_HIDDEN);
+  } else {
     Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
                                SPRITE_COLOR_BLACK);
   }
@@ -1763,6 +1768,11 @@ static void Vale_IsaacAnswers(void) {
 /// "???" in the square, after Heart: Isaac tries to learn who she is, she says
 /// little, and the battle starts. A defeat comes back here and she waits.
 static void Vale_TalkToMysteryLeader(void) {
+  // The actor's talk trigger uses her completion flag; enforce the
+  // separate story prerequisite here as well.
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) == 0 ||
+      GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0)
+    return;
   Event_Start();
   Event_SetMessageId(MsgDarkMystery01);
   Vale_IsaacAnswers();
