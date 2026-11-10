@@ -78,21 +78,14 @@ enum KegareSlot {
   KEGARE_PLY_WELL = 7
 };
 
-/// Kegare's memory in Unit.aiActionIndex:
-/// bits 12..10 actions until she may heal again | 9..8 rounds in a row with a
-/// heavy move | 7 a heavy move this round (and the last-aim bits above).
-#define KEGARE_HEAVY_THIS_ROUND_BIT (1u << 7)
-#define KEGARE_HEAVY_ROUNDS_SHIFT 8
+/// Kegare only needs a heal cooldown and one Annihilation-per-round bit.
+/// The old heavy-attack streak was recorded but never used to choose a move.
 #define KEGARE_HEAL_WAIT_SHIFT 10
-/// 13 an Annihilation this round.
 #define KEGARE_ANNIHILATION_THIS_ROUND_BIT (1u << 13)
-#define KEGARE_BITS                                                            \
-  (KEGARE_HEAVY_THIS_ROUND_BIT | (3u << KEGARE_HEAVY_ROUNDS_SHIFT) |           \
-   (7u << KEGARE_HEAL_WAIT_SHIFT) | KEGARE_ANNIHILATION_THIS_ROUND_BIT)
+#define KEGARE_BITS ((7u << KEGARE_HEAL_WAIT_SHIFT) | \
+                     KEGARE_ANNIHILATION_THIS_ROUND_BIT)
 STATIC_ASSERT((KEGARE_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((KEGARE_BITS & BOSS_LAST_AIM_BITS) == 0);
-/// After this many rounds in a row with a heavy move, one round has none.
-#define KEGARE_HEAVY_ROUNDS_LIMIT 2
 /// She may heal (Ply Well, her own pick or the stock cycle's) only below this
 /// percent of her HP, and then not again for this many of her actions after a
 /// heal that was really cast.
@@ -105,18 +98,6 @@ STATIC_ASSERT((KEGARE_BITS & BOSS_LAST_AIM_BITS) == 0);
 /// Out of 256: how often she aims at the member who is most open.
 #define KEGARE_AIM_CHANCE 102
 
-/// Whether the ability id is one of the heavy moves in the row's action list.
-static s32 BossAI_KegareIsHeavy(struct Unit *unit, s32 abilityId) {
-  struct EnemyDefinition *enemy =
-      (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
-
-  return abilityId == enemy->abilities[KEGARE_FREEZE_PRISM] ||
-         abilityId == enemy->abilities[KEGARE_ICE_MISSILE] ||
-         abilityId == enemy->abilities[KEGARE_FROTH_SPIRAL] ||
-         abilityId == enemy->abilities[KEGARE_STORM_BLESSING] ||
-         abilityId == enemy->abilities[KEGARE_ICE_BLESSING];
-}
-
 /// A party member Kegare can exploit: HP under half, Defense lowered (the
 /// member's own, by anyone), or unable to act. Nobody who is down counts.
 static s32 BossAI_MemberIsOpen(struct Unit *member) {
@@ -125,28 +106,12 @@ static s32 BossAI_MemberIsOpen(struct Unit *member) {
           member->sleep != 0 || member->stun != 0);
 }
 
-/// Starts a round for the bosses: their per-round memory is cleared, and the
-/// number of rounds in a row with a heavy move is brought up to date.
-/// Called once a round by BattleTurnOrder_Sort, before anyone acts.
+/// Start Kegare's round; cooldown is already counted by staged actions.
 static void BossAI_KegareBeginRound(void) {
 #if BOSS_AI_KEGARE
   struct Unit *kegare = BossAI_FindRow(ENEMY_ROW_KEGARE);
-  u32 memory;
-  u32 rounds;
-
-  if (kegare != 0) {
-    memory = kegare->aiActionIndex;
-    rounds = (memory >> KEGARE_HEAVY_ROUNDS_SHIFT) & 3;
-    if (memory & KEGARE_HEAVY_THIS_ROUND_BIT) {
-      if (rounds < 3)
-        rounds++;
-    } else {
-      rounds = 0;
-    }
-    memory &= ~(KEGARE_HEAVY_THIS_ROUND_BIT | KEGARE_ANNIHILATION_THIS_ROUND_BIT |
-                (3u << KEGARE_HEAVY_ROUNDS_SHIFT));
-    kegare->aiActionIndex = memory | (rounds << KEGARE_HEAVY_ROUNDS_SHIFT);
-  }
+  if (kegare != 0)
+    kegare->aiActionIndex &= ~KEGARE_ANNIHILATION_THIS_ROUND_BIT;
 #endif
 }
 
@@ -180,8 +145,6 @@ static void BossAI_KegareNoteTurn(struct BattleAction *request, s32 result) {
   if (abilityId == ((struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id))
                        ->abilities[KEGARE_PLY_WELL])
     wait = KEGARE_HEAL_WAIT;
-  if (BossAI_KegareIsHeavy(unit, abilityId))
-    memory |= KEGARE_HEAVY_THIS_ROUND_BIT;
   if (abilityId == ((struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id))
                        ->abilities[KEGARE_ANNIHILATION])
     memory |= KEGARE_ANNIHILATION_THIS_ROUND_BIT;
