@@ -286,7 +286,7 @@ def check_mystery_dialogue() -> None:
                 "Missing High Empyror sequential message boundaries")
         excerpt = body.split(start, 1)[1].split(stop, 1)[0]
         return re.findall(
-            r"\\bVale_(IsaacAnswers|MysterySays)\\s*\\(\\s*\\)\\s*;",
+            r"\bVale_(IsaacAnswers|MysterySays)\s*\(\s*\)\s*;",
             excerpt,
         )
 
