@@ -1785,7 +1785,8 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .actionStrategy = ACTION_STRATEGY_FALLING,
         // Meltdown to break Defense, then fire and the Blessings, with
         // Annihilation often (boss_ai.c picks; this is the order it reads).
-        .abilities = {223, 431, 50, 53, 432, 59, 178, 226},
+        // Vale: fire pressure, summon punishment, HP/PP threat.
+        .abilities = {223, 432, 53, 59, 178, 517, 226, 126},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 4000,
         .item = ITEM_ELIXIR,
@@ -2003,7 +2004,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .itemChance = 7,
         .experience = 362,
     },
-    // Kegare, the Water Adept who mimics Mia: Tolbi's optional boss.
+    // Kegare, the otherworldly demon mimicking Mia: Tolbi's optional boss.
     {
         .name = "              ",
         .level = 44,
@@ -2017,7 +2018,8 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 19,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_RANDOM_START,
-        .abilities = {32, 29, 38, 434, 178, 26, 428, 94},
+        // Mia's Mercury powers distorted by haunting, Bind and PP theft.
+        .abilities = {32, 428, 434, 178, 161, 126, 121, 95},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 4500,
         .item = ITEM_MURAMASA,

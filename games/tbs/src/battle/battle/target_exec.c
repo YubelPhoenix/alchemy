@@ -483,11 +483,13 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         elementBonus = elementPower - target->element[element].resistance;
       power = ability->power;
       amount = Battle_CalculatePsynergyPowerFar(power, elementBonus, FULL_RATE);
-      // Scaling PP drain applies only to the two Dark Adept superbosses.
+      // Scaling Psy Drain is limited to Ashfall's four superbosses.
       if (ability->effect == ABILITY_EFFECT_DRAIN_PP &&
           IS_PARTY_UNIT(targetId) &&
           (actor->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART ||
-           actor->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)) {
+           actor->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER ||
+           actor->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE ||
+           actor->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)) {
         amount = target->ppMax / 5;
         if (amount < 30)
           amount = 30;

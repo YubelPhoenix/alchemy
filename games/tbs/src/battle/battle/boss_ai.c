@@ -66,24 +66,27 @@ static s32 BossAI_RequestSlot(struct Unit *unit, struct BattleAction *request) {
   return -1;
 }
 
-/// Kegare's places in her action list (enemies.c).
+/// Kegare's eight attacks and status effects, matching enemies.c.
 enum KegareSlot {
   KEGARE_FREEZE_PRISM = 0,
-  KEGARE_ICE_MISSILE = 1,
-  KEGARE_FROTH_SPIRAL = 2,
-  KEGARE_STORM_BLESSING = 3,
-  KEGARE_ANNIHILATION = 4,
-  KEGARE_GLACIER = 5,
-  KEGARE_ICE_BLESSING = 6,
-  KEGARE_PLY_WELL = 7
+  KEGARE_ICE_BLESSING = 1,
+  KEGARE_STORM_BLESSING = 2,
+  KEGARE_ANNIHILATION = 3,
+  KEGARE_DEMON_NIGHT = 4,
+  KEGARE_PSY_DRAIN = 5,
+  KEGARE_BIND = 6,
+  KEGARE_PURE_PLY = 7
 };
 
 /// Kegare only needs a heal cooldown and one Annihilation-per-round bit.
 /// The old heavy-attack streak was recorded but never used to choose a move.
 #define KEGARE_HEAL_WAIT_SHIFT 10
 #define KEGARE_ANNIHILATION_THIS_ROUND_BIT (1u << 13)
+#define KEGARE_DRAIN_USED_BIT (1u << 14)
+#define KEGARE_BIND_USED_BIT (1u << 15)
 #define KEGARE_BITS ((7u << KEGARE_HEAL_WAIT_SHIFT) | \
-                     KEGARE_ANNIHILATION_THIS_ROUND_BIT)
+                     KEGARE_ANNIHILATION_THIS_ROUND_BIT | \
+                     KEGARE_DRAIN_USED_BIT | KEGARE_BIND_USED_BIT)
 STATIC_ASSERT((KEGARE_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((KEGARE_BITS & BOSS_LAST_AIM_BITS) == 0);
 /// She may heal (Ply Well, her own pick or the stock cycle's) only below this
@@ -111,85 +114,81 @@ static void BossAI_KegareBeginRound(void) {
 #if BOSS_AI_KEGARE
   struct Unit *kegare = BossAI_FindRow(ENEMY_ROW_KEGARE);
   if (kegare != 0)
-    kegare->aiActionIndex &= ~KEGARE_ANNIHILATION_THIS_ROUND_BIT;
+    kegare->aiActionIndex &= ~(KEGARE_ANNIHILATION_THIS_ROUND_BIT |
+                               KEGARE_DRAIN_USED_BIT | KEGARE_BIND_USED_BIT);
 #endif
 }
 
-/// Records a turn that was really staged (result 0): which move a boss used,
-/// and whom it aimed at. Called by BattleStaging_DispatchAction after the
-/// turn, with the request it settled.
+/// Only staged actions affect Kegare's healing and once-a-round limits.
 static void BossAI_KegareNoteTurn(struct BattleAction *request, s32 result) {
 #if BOSS_AI_KEGARE
   struct Unit *unit;
   u32 memory;
   u32 wait;
-  s32 abilityId;
+  s32 slot;
 
   if (result != 0 || request->unitId == BATTLE_UNIT_LIST_END)
     return;
   unit = Unit_GetFar(request->unitId);
   if (unit->id != ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)
     return;
-  if (request->command != COMMAND_ENEMY_ABILITY &&
-      request->command != COMMAND_PSYNERGY &&
-      request->command != COMMAND_ATTACK)
+  slot = BossAI_RequestSlot(unit, request);
+  if (slot < 0)
     return;
-
-  abilityId = request->parameter;
-  if (request->command == COMMAND_ATTACK)
-    abilityId = ABILITY_ATTACK;
   memory = unit->aiActionIndex;
   wait = (memory >> KEGARE_HEAL_WAIT_SHIFT) & 7;
   if (wait != 0)
     wait--;
-  if (abilityId == ((struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id))
-                       ->abilities[KEGARE_PLY_WELL])
+  if (slot == KEGARE_PURE_PLY)
     wait = KEGARE_HEAL_WAIT;
-  if (abilityId == ((struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id))
-                       ->abilities[KEGARE_ANNIHILATION])
+  if (slot == KEGARE_ANNIHILATION)
     memory |= KEGARE_ANNIHILATION_THIS_ROUND_BIT;
+  if (slot == KEGARE_PSY_DRAIN)
+    memory |= KEGARE_DRAIN_USED_BIT;
+  if (slot == KEGARE_BIND)
+    memory |= KEGARE_BIND_USED_BIT;
   memory &= ~((7u << KEGARE_HEAL_WAIT_SHIFT) | BOSS_LAST_AIM_BITS);
   memory |= wait << KEGARE_HEAL_WAIT_SHIFT;
   if ((request->target & 0x180) == 0x100)
-    memory |= (u32)(((request->target & 7) + 1) & 7) << BOSS_LAST_AIM_SHIFT;
+    memory |= (u32)(((request->target & 7) + 1) & 7)
+              << BOSS_LAST_AIM_SHIFT;
   unit->aiActionIndex = memory;
 #endif
 }
 
-/// Kegare's pick. Her plan, on the first pick of a turn: heal when under
-/// 60% of her HP and she has not healed lately, else Annihilation about four
-/// turns in ten (one a round), else one of her heavy Mercury moves or Storm
-/// Blessing. Returns her place in her action list.
+/// Kegare mirrors Mia's healing while wearing down the party's resources.
 static s32 BossAI_KegareChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
 #if BOSS_AI_KEGARE
+  static const u8 pressure[4] = {KEGARE_FREEZE_PRISM, KEGARE_ICE_BLESSING,
+                                 KEGARE_STORM_BLESSING, KEGARE_DEMON_NIGHT};
   u32 memory = unit->aiActionIndex;
-  u32 wait = (memory >> KEGARE_HEAL_WAIT_SHIFT) & 7;
   s32 roll = Battle_RandomFar() & 0xff;
   s32 roll2 = Battle_RandomFar() & 0xff;
-  s32 mayHeal;
-
-  mayHeal =
-      wait == 0 && unit->hp * 100 < unit->hpMax * KEGARE_HEAL_BELOW_PERCENT;
+  s32 mayHeal = ((memory >> KEGARE_HEAL_WAIT_SHIFT) & 7) == 0 &&
+                unit->hp * 100 < unit->hpMax * KEGARE_HEAL_BELOW_PERCENT;
 
   if (firstPick) {
-    if (mayHeal) {
-      slot = KEGARE_PLY_WELL;
-    } else if ((memory & KEGARE_ANNIHILATION_THIS_ROUND_BIT) == 0 &&
-               roll < KEGARE_ANNIHILATION_CHANCE) {
+    if (mayHeal)
+      slot = KEGARE_PURE_PLY;
+    else if ((memory & KEGARE_DRAIN_USED_BIT) == 0 && roll2 < 78)
+      slot = KEGARE_PSY_DRAIN;
+    else if ((memory & KEGARE_BIND_USED_BIT) == 0 && roll2 < 122)
+      slot = KEGARE_BIND;
+    else if ((memory & KEGARE_ANNIHILATION_THIS_ROUND_BIT) == 0 &&
+             roll < KEGARE_ANNIHILATION_CHANCE)
       slot = KEGARE_ANNIHILATION;
-    } else {
-      static const u8 heavy[5] = {KEGARE_FREEZE_PRISM, KEGARE_STORM_BLESSING,
-                                  KEGARE_ICE_BLESSING, KEGARE_ICE_MISSILE,
-                                  KEGARE_FROTH_SPIRAL};
-
-      slot = heavy[(roll2 * 5) >> 8];
-    }
+    else
+      slot = pressure[roll2 & 3];
   }
-  if (slot == KEGARE_PLY_WELL && !mayHeal)
+  if (slot == KEGARE_PURE_PLY && !mayHeal)
     slot = KEGARE_ICE_BLESSING;
   else if (slot == KEGARE_ANNIHILATION &&
            (memory & KEGARE_ANNIHILATION_THIS_ROUND_BIT))
     slot = KEGARE_STORM_BLESSING;
+  else if (slot == KEGARE_PSY_DRAIN && (memory & KEGARE_DRAIN_USED_BIT))
+    slot = KEGARE_ICE_BLESSING;
+  else if (slot == KEGARE_BIND && (memory & KEGARE_BIND_USED_BIT))
+    slot = KEGARE_DEMON_NIGHT;
 #endif
   return slot;
 }
@@ -335,34 +334,28 @@ static u32 BossAI_RememberAim(u32 memory, struct BattleAction *request) {
   return memory;
 }
 
-/// Ash Jenna's places in her action list in Vale (enemies.c).
+/// Vale Ash Jenna: destructive fire, a dangerous physical finish and PP theft.
 enum AshSlot {
   ASH_MELTDOWN = 0,
-  ASH_DARK_BLESSING = 1,
-  ASH_INFERNO = 2,
-  ASH_PYROCLASM = 3,
-  ASH_ACID_BLESSING = 4,
-  ASH_SUPERNOVA = 5,
-  ASH_ANNIHILATION = 6,
-  ASH_DEMON_FIRE = 7
+  ASH_ACID_BLESSING = 1,
+  ASH_PYROCLASM = 2,
+  ASH_SUPERNOVA = 3,
+  ASH_ANNIHILATION = 4,
+  ASH_SEVERE_BLOW = 5,
+  ASH_DEMON_FIRE = 6,
+  ASH_PSY_DRAIN = 7
 };
-
-/// Ash Jenna's memory in Unit.aiActionIndex (bits 4..11, and the last-aim
-/// bits above): 11..10 turns she has taken this round | 9..8 rounds since her
-/// last Defense break | 7..6 Annihilations this round | 5 a Meltdown this
-/// round | 4 the first round has begun.
-/// Her rush flags (bits 30 and 31) and the stock cycle's bits are not here.
 #define ASH_STARTED_BIT (1u << 4)
 #define ASH_MELTDOWN_THIS_ROUND_BIT (1u << 5)
 #define ASH_ANNIHILATION_SHIFT 6
 #define ASH_BREAK_SHIFT 8
 #define ASH_TURNS_SHIFT 10
-#define ASH_BITS (0xff0u)
+#define ASH_DRAIN_USED_BIT (1u << 12)
+#define ASH_SEVERE_USED_BIT (1u << 13)
+#define ASH_BITS (0x3ff0u)
 STATIC_ASSERT((ASH_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((ASH_BITS & BOSS_LAST_AIM_BITS) == 0);
-/// Out of 256: how often a turn of hers is Annihilation when one is allowed.
 #define ASH_ANNIHILATION_CHANCE 112
-/// She breaks the party's Defense again after this many rounds without.
 #define ASH_BREAK_AFTER_ROUNDS 2
 
 /// Ash Jenna's memory brought up to date at the start of a round.
@@ -379,7 +372,8 @@ static void BossAI_AshBeginRound(void) {
   if ((memory & ASH_STARTED_BIT) && since < 3)
     since++;
   memory &= ~(ASH_MELTDOWN_THIS_ROUND_BIT | (3u << ASH_ANNIHILATION_SHIFT) |
-              (3u << ASH_BREAK_SHIFT) | (3u << ASH_TURNS_SHIFT));
+              (3u << ASH_BREAK_SHIFT) | (3u << ASH_TURNS_SHIFT) |
+              ASH_DRAIN_USED_BIT | ASH_SEVERE_USED_BIT);
   memory |= ASH_STARTED_BIT | (since << ASH_BREAK_SHIFT);
   ash->aiActionIndex = memory;
 #endif
@@ -400,8 +394,7 @@ static void BossAI_AshNoteTurn(struct Unit *unit,
     count++;
   memory &= ~(3u << ASH_TURNS_SHIFT);
   memory |= count << ASH_TURNS_SHIFT;
-  if (slot == ASH_MELTDOWN || slot == ASH_DARK_BLESSING ||
-      slot == ASH_ACID_BLESSING) {
+  if (slot == ASH_MELTDOWN || slot == ASH_ACID_BLESSING) {
     memory &= ~(3u << ASH_BREAK_SHIFT);
     if (slot == ASH_MELTDOWN)
       memory |= ASH_MELTDOWN_THIS_ROUND_BIT;
@@ -412,22 +405,19 @@ static void BossAI_AshNoteTurn(struct Unit *unit,
     memory &= ~(3u << ASH_ANNIHILATION_SHIFT);
     memory |= count << ASH_ANNIHILATION_SHIFT;
   }
+  if (slot == ASH_SEVERE_BLOW)
+    memory |= ASH_SEVERE_USED_BIT;
+  if (slot == ASH_PSY_DRAIN)
+    memory |= ASH_DRAIN_USED_BIT;
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 #endif
 }
 
-/// Ash Jenna's pick. Her plan, on the first pick of a turn: break the party's
-/// Defense first (Meltdown as her first turn of a round, once the last break
-/// is two rounds old), then Annihilation about four turns in ten (one a
-/// round, two once she is under half her HP), else one of her big fire
-/// moves; now and then Demon Fire while less than half the living party is
-/// haunted. A re-pick after a refused move (too little PP, sealed) takes a
-/// Blessing, which needs neither. Her punish pick never reaches here.
+/// Ash Jenna attacks recklessly, but changes tactics against large HP/PP pools.
 static s32 BossAI_AshChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
 #if BOSS_AI_ASH_JENNA
-  static const u8 pressure[6] = {ASH_PYROCLASM,   ASH_ACID_BLESSING,
-                                 ASH_INFERNO,     ASH_DARK_BLESSING,
-                                 ASH_SUPERNOVA,   ASH_ACID_BLESSING};
+  static const u8 pressure[4] = {ASH_PYROCLASM, ASH_ACID_BLESSING,
+                                 ASH_SUPERNOVA, ASH_PYROCLASM};
   u32 memory = unit->aiActionIndex;
   u32 turns = (memory >> ASH_TURNS_SHIFT) & 3;
   u32 since = (memory >> ASH_BREAK_SHIFT) & 3;
@@ -435,22 +425,23 @@ static s32 BossAI_AshChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   s32 roll = Battle_RandomFar() & 0xff;
   s32 roll2 = Battle_RandomFar() & 0xff;
   struct BossPartyView view;
-  s32 limit;
-  s32 started = (memory & ASH_STARTED_BIT) != 0;
+  s32 limit = unit->hp * 2 < unit->hpMax ? 2 : 1;
 
   BossAI_ViewParty(&view);
-  limit = unit->hp * 2 < unit->hpMax ? 2 : 1;
-  if (!firstPick) {
-    return (roll & 1) ? ASH_ACID_BLESSING : ASH_DARK_BLESSING;
-  }
+  if (!firstPick)
+    return ASH_ACID_BLESSING;
   if (turns == 0 && (memory & ASH_MELTDOWN_THIS_ROUND_BIT) == 0 &&
-      (!started || since >= ASH_BREAK_AFTER_ROUNDS))
+      (!(memory & ASH_STARTED_BIT) || since >= ASH_BREAK_AFTER_ROUNDS))
     return ASH_MELTDOWN;
+  if (view.pp > 0 && (memory & ASH_DRAIN_USED_BIT) == 0 && roll2 < 45)
+    return ASH_PSY_DRAIN;
   if (view.alive > 0 && (s32)done < limit && roll < ASH_ANNIHILATION_CHANCE)
     return ASH_ANNIHILATION;
-  if (roll2 < 24 && view.alive > 0 && view.haunted * 2 < view.alive)
+  if (view.down <= 1 && (memory & ASH_SEVERE_USED_BIT) == 0 && roll2 < 102)
+    return ASH_SEVERE_BLOW;
+  if (view.alive > 0 && view.haunted * 2 < view.alive && roll2 < 136)
     return ASH_DEMON_FIRE;
-  slot = pressure[(roll2 * 6) >> 8];
+  slot = pressure[roll2 & 3];
 #endif
   return slot;
 }
@@ -896,10 +887,19 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
                         s32 count) {
   struct Unit *user = Unit_GetFar(userId);
 
-  if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)
+  if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE) {
+    if (action->effect == ABILITY_EFFECT_DRAIN_PP ||
+        action->effect == ABILITY_EFFECT_SEAL)
+      return BossAI_AimAtPp(unitIds, count,
+                            action->effect == ABILITY_EFFECT_SEAL);
     return BossAI_KegareChooseTarget(unitIds, targetPositions, count, userId);
-  if (user->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE && userId > ALLY_MAX)
+  }
+  if (user->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
+      userId > ALLY_MAX) {
+    if (action->effect == ABILITY_EFFECT_DRAIN_PP)
+      return BossAI_AimAtPp(unitIds, count, 0);
     return BossAI_AshChooseTarget(user, targetPositions, count);
+  }
   if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER &&
       userId > ALLY_MAX) {
     if (action->effect == ABILITY_EFFECT_DRAIN_PP ||
