@@ -3167,18 +3167,19 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     {
         .name = "              ",
         .level = 50,
-        .hp = 16000,
+        .hp = 6500,
         .pp = 999,
-        .atk = 560,
+        .atk = 420,
         .def = 140,
-        .agi = 200,
+        .agi = 180,
         .luck = 45,
-        .turns = 3,
+        .turns = 1,
         .elementPreset = 45,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // Dark Adept: seals, stat stripping, and PP pressure.
-        .abilities = {430, 161, 178, 513, 11, 126, 121, 127},
+        // Deliberately restrained for Isaac's solo test: no instant-death
+        // or sealing move that would end a one-person run by chance.
+        .abilities = {430, 161, 127, 11, 126, ABILITY_ATTACK, ABILITY_ATTACK, 165},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 8000,
         .item = ITEM_ELIXIR,
