@@ -238,6 +238,53 @@ def check_optional_battles() -> None:
             "A lost Kegare battle must allow retry")
 
 
+
+def check_mystery_solo_encounter() -> None:
+    """Guard Isaac's scripted duel and its new companion dialogue."""
+    vale = scene("vale.c")
+    approach = function(vale, "Vale_TalkToMysteryLeader")
+    aftermath = function(vale, "Vale_MysteryLeaderAftermath")
+    for name in ("GARET", "IVAN", "MIA"):
+        require(f"Party_RemoveMember({name});" in approach,
+                f"Mystery duel must bench {name}")
+        require(f"Party_AddMember({name});" in aftermath,
+                f"Mystery aftermath must restore {name}")
+        require(f"Actor_SetSpriteColorById(ACTOR_{name}, SPRITE_COLOR_RBG);" in approach,
+                f"Missing visible Psynergy bind on {name}")
+    require(approach.index("Event_SetMessageId(MsgDarkMysteryGaretBound)")
+            < approach.index("Party_RemoveMember(GARET)"),
+            "Companions must respond before Isaac fights alone")
+    require(aftermath.index("Party_AddMember(MIA);")
+            < aftermath.index("Event_SetMessageId(MsgDarkMystery15)"),
+            "Restore Mia before showing the victory sequence")
+    require("Event_SetMessageId(MsgDarkMysteryMiaAfter)" in aftermath,
+            "Mia's thirty-year foreshadowing is missing")
+    require("Event_SetDefeatDestination(-1, -1);" in approach
+            and "gSaveBlock.sequenceResult == -1" in aftermath,
+            "Solo duel must retain the safe defeat/restart flow")
+
+    lines = messages("phase118_mystery_leader.tsv")
+    require({f"N{i}" for i in range(356, 387)} == set(lines),
+            "Mystery exchange requires N356-N386 without missing lines")
+    for key, value in lines.items():
+        for page in value.split("{page_break}"):
+            visible = re.sub(r"\{[^{}]*\}", "", page)
+            dialogue_lines = visible.split(r"\n")
+            require(len(dialogue_lines) <= 3,
+                    f"Mystery dialogue {key} exceeds three lines")
+            for dialogue in dialogue_lines:
+                require(len(dialogue) <= 27,
+                        f"Mystery dialogue {key} exceeds 27 characters")
+
+    enemies = read("games/tbs/src/game/enemies.c")
+    boss = enemies.split("// ???, Heart's Dark Adept leader:", 1)[1]
+    boss = boss.split("    },", 1)[0]
+    require(".hp = 6500," in boss and ".turns = 1," in boss,
+            "Mystery's solo-fight HP/turn balance regressed")
+    require(".abilities = {430, 161, 127, 11, 126, ABILITY_ATTACK, ABILITY_ATTACK, 165}," in boss,
+            "Solo duel must not regain instant death or Psynergy sealing")
+
+
 def check_story_text() -> None:
     # This is a presentation check only; it does NOT certify whether writing
     # is good or whether a visible scene's meaning is earned.
@@ -429,6 +476,7 @@ def main() -> None:
     check_visual_identity()
     check_flags_and_quest_order()
     check_optional_battles()
+    check_mystery_solo_encounter()
     check_story_text()
     print(f"Ashfall: {checks} static story contracts passed "
           "(visual/branch playthrough still required).")
