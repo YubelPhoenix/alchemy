@@ -1779,6 +1779,11 @@ static void Vale_TalkToMysteryLeader(void) {
   Vale_MysterySays();
   Vale_IsaacAnswers();
   Vale_MysterySays();
+  // The mystery commander challenges Isaac alone. Keep the companions
+  // out of the battle, then restore them in the post-battle Vale event.
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
   GameFlag_Set(FLAG_DARK_MYSTERY_PENDING);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
@@ -1794,6 +1799,10 @@ static void Vale_TalkToMysteryLeader(void) {
 /// is gone; after a defeat she waits.
 static void Vale_MysteryLeaderAftermath(void) {
   GameFlag_Clear(FLAG_DARK_MYSTERY_PENDING);
+  // Restore the full party before the victory scene or any return to control.
+  Party_AddMember(GARET);
+  Party_AddMember(IVAN);
+  Party_AddMember(MIA);
   Event_Start();
   MapGrid_CenterOnFollowedPoint();
   WaitFrames(1);
