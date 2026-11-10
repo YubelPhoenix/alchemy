@@ -601,161 +601,134 @@ static void BossAI_HeartBeginRound(void) {
 #endif
 }
 
-/// Records Heart's turn when it was really staged.
+/// Record Heart's successful action without scanning her eight slots twice.
 static void BossAI_HeartNoteTurn(struct Unit *unit,
                                  struct BattleAction *request) {
 #if BOSS_AI_HEART
-  struct EnemyDefinition *enemy =
-      (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
   u32 memory = unit->aiActionIndex;
   u32 turns = (memory >> HEART_TURNS_SHIFT) & 3;
-  s32 abilityId;
   s32 slot;
 
   if (request->command != COMMAND_ENEMY_ABILITY &&
       request->command != COMMAND_PSYNERGY &&
       request->command != COMMAND_ATTACK)
     return;
-  abilityId = request->parameter;
-  if (request->command == COMMAND_ATTACK)
-    abilityId = ABILITY_ATTACK;
+  slot = BossAI_RequestSlot(unit, request);
   if (turns < 3)
     turns++;
   memory &= ~(3u << HEART_TURNS_SHIFT);
   memory |= turns << HEART_TURNS_SHIFT;
-  for (slot = 0; slot < 8; slot++) {
-    if (enemy->abilities[slot] != abilityId)
-      continue;
-    switch (slot) {
-    case HEART_HEARTRENDER:
-      memory |= HEART_WARNED_BIT;
-      break;
-    case HEART_EVIL_BLESSING:
-      memory |= HEART_BIG_BIT;
-      break;
-    case HEART_PSY_DRAIN:
-      memory |= HEART_DRAIN_USED_BIT;
-      break;
-    case HEART_OUTER_SPACE:
-      memory |= HEART_BIG_BIT | HEART_PAYOFF_USED_BIT;
-      break;
-    case HEART_DEATH_PLUNGE:
-    case HEART_SEVERE_BLOW:
-      memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
-      break;
-    case HEART_ANNIHILATION:
-      memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
-      memory &= ~(15u << HEART_ANNIHILATION_WAIT_SHIFT);
-      memory |= (u32)HEART_ANNIHILATION_WAIT << HEART_ANNIHILATION_WAIT_SHIFT;
-      break;
-    }
+  switch (slot) {
+  case HEART_HEARTRENDER:
+    memory |= HEART_WARNED_BIT;
+    break;
+  case HEART_EVIL_BLESSING:
+    memory |= HEART_BIG_BIT;
+    break;
+  case HEART_PSY_DRAIN:
+    memory |= HEART_DRAIN_USED_BIT;
+    break;
+  case HEART_OUTER_SPACE:
+    memory |= HEART_BIG_BIT | HEART_PAYOFF_USED_BIT;
+    break;
+  case HEART_DEATH_PLUNGE:
+  case HEART_SEVERE_BLOW:
+    memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
+    break;
+  case HEART_ANNIHILATION:
+    memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
+    memory &= ~(15u << HEART_ANNIHILATION_WAIT_SHIFT);
+    memory |= (u32)HEART_ANNIHILATION_WAIT << HEART_ANNIHILATION_WAIT_SHIFT;
     break;
   }
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 #endif
 }
 
-/// Heart's pick. A round in which she may warn begins, some of the time, with
-/// Heartrender; in the round after it she picks one payoff (Outer Space,
-/// Death Plunge, Annihilation or Death Size, weighted 40, 25, 35 and 25 among
-/// those allowed)
-/// as one of her later turns. Her limits apply to every pick, and a move they
-/// refuse becomes Grand Gaia or Stone Spire: Heartrender only warns;
-/// a payoff only follows a warning, not as her first turn, once a round, and
-/// not on a re-pick; Annihilation needs round 2 or later, at most one down, three
-/// rounds since the last try and at most two members unable to act, and
-/// Death Plunge at most one unable to act; Outer Space at most one down; Dark
-/// Blessing once a round and not in a warning or payoff round; and no Haunt
-/// move once half the living party is haunted.
+/// Heart warns before a major blow. Compact selection is important here:
+/// the battle engine's ROM bank has a fixed limit. Every warned payoff still
+/// obeys the same cooldown and party-safety checks as before.
 static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
 #if BOSS_AI_HEART
   u32 memory = unit->aiActionIndex;
   u32 turns = (memory >> HEART_TURNS_SHIFT) & 3;
   u32 rounds = (memory >> HEART_ROUNDS_SHIFT) & 7;
   u32 wait = (memory >> HEART_ANNIHILATION_WAIT_SHIFT) & 15;
-  u32 calm = (memory >> HEART_CALM_SHIFT) & 3;
   struct BossPartyView view;
   s32 roll = Battle_RandomFar() & 0xff;
   s32 roll2 = Battle_RandomFar() & 0xff;
   s32 ready = (memory & HEART_PAYOFF_READY_BIT) != 0;
   s32 warned = (memory & HEART_WARNED_BIT) != 0;
-  s32 payoffRound =
-      ready && turns >= 1 && firstPick && (memory & HEART_PAYOFF_USED_BIT) == 0;
+  s32 payoff = ready && turns != 0 && firstPick &&
+               (memory & HEART_PAYOFF_USED_BIT) == 0;
   s32 mayWarn;
   s32 mayAnnihilate;
   s32 mayDeathPlunge;
   s32 mayOuterSpace;
-  s32 total;
-  s32 pick;
-  s32 light[3] = {HEART_DARK_BLESSING, HEART_PSY_DRAIN, HEART_DARK_BLESSING};
 
   BossAI_ViewParty(&view);
-  mayWarn = firstPick && turns == 0 && !ready && !warned && calm == 0 &&
-            view.down <= 1 &&
-            view.hp * 100 >= view.hpMax * HEART_WARNING_ABOVE_PERCENT;
-  mayAnnihilate = payoffRound && rounds >= HEART_ANNIHILATION_FIRST_ROUND &&
+  mayWarn = firstPick && turns == 0 && !ready && !warned &&
+            view.down <= 1 && view.hp * 100 >=
+                view.hpMax * HEART_WARNING_ABOVE_PERCENT;
+  mayAnnihilate = payoff && rounds >= HEART_ANNIHILATION_FIRST_ROUND &&
                   wait == 0 && view.down <= 1 && view.unavailable <= 2 &&
                   (memory & HEART_DISABLE_BIT) == 0;
-  mayDeathPlunge =
-      payoffRound && view.unavailable <= 2 && (memory & HEART_DISABLE_BIT) == 0;
-  mayOuterSpace =
-      payoffRound && view.down <= 1 && (memory & HEART_BIG_BIT) == 0;
+  mayDeathPlunge = payoff && view.unavailable <= 2 &&
+                   (memory & HEART_DISABLE_BIT) == 0;
+  mayOuterSpace = payoff && view.down <= 1 &&
+                  (memory & HEART_BIG_BIT) == 0;
 
   if (firstPick && roll >= HEART_MISTAKE_CHANCE) {
-    if (mayWarn && roll2 < HEART_WARNING_CHANCE) {
+    if (mayWarn && roll2 < HEART_WARNING_CHANCE)
       slot = HEART_HEARTRENDER;
-    } else if (payoffRound) {
-      total = (mayOuterSpace ? 40 : 0) + (mayDeathPlunge ? 25 : 0) +
-              (mayAnnihilate ? 35 : 0) + (mayDeathPlunge ? 25 : 0);
-      if (total > 0) {
-        pick = (roll2 * total) >> 8;
-
-        if (mayOuterSpace && pick < 40) {
-          slot = HEART_OUTER_SPACE;
-        } else {
-          pick -= mayOuterSpace ? 40 : 0;
-          if (mayDeathPlunge && pick < 25) {
-            slot = HEART_DEATH_PLUNGE;
-          } else {
-            pick -= mayDeathPlunge ? 25 : 0;
-            if (mayAnnihilate && pick < 35)
-              slot = HEART_ANNIHILATION;
-            else
-              slot = HEART_SEVERE_BLOW;
-          }
-        }
+    else if (payoff) {
+      switch (roll2 & 3) {
+      case 0:
+        slot = HEART_OUTER_SPACE;
+        break;
+      case 1:
+        slot = HEART_DEATH_PLUNGE;
+        break;
+      case 2:
+        slot = HEART_ANNIHILATION;
+        break;
+      default:
+        slot = HEART_SEVERE_BLOW;
+        break;
       }
     }
   }
-
-  if (firstPick && view.pp > 0 && (memory & HEART_DRAIN_USED_BIT) == 0 &&
-      turns > 0 && !payoffRound && roll2 < 105)
+  // A single drain per round makes repeated recovery costly, without allowing
+  // Heart to consume three full actions just stealing PP.
+  if (firstPick && turns != 0 && !payoff && view.pp > 0 &&
+      (memory & HEART_DRAIN_USED_BIT) == 0 && roll2 < 105)
     slot = HEART_PSY_DRAIN;
 
   switch (slot) {
   case HEART_HEARTRENDER:
     if (!mayWarn)
-      slot = light[roll % 3];
+      slot = HEART_DARK_BLESSING;
     break;
   case HEART_OUTER_SPACE:
     if (!mayOuterSpace)
-      slot = light[roll % 3];
+      slot = HEART_DARK_BLESSING;
     break;
   case HEART_DEATH_PLUNGE:
   case HEART_SEVERE_BLOW:
     if (!mayDeathPlunge)
-      slot = light[roll % 3];
+      slot = HEART_DARK_BLESSING;
     break;
   case HEART_ANNIHILATION:
     if (!mayAnnihilate)
-      slot = light[roll % 3];
+      slot = HEART_DARK_BLESSING;
     break;
   case HEART_EVIL_BLESSING:
-    if ((memory & HEART_BIG_BIT) != 0 || warned || ready)
-      slot = light[roll % 3];
+    if ((memory & HEART_BIG_BIT) != 0 || warned || ready ||
+        view.haunted * 2 >= view.alive)
+      slot = HEART_DARK_BLESSING;
     break;
   case HEART_PSY_DRAIN:
-    if (view.pp <= 0 || (memory & HEART_DRAIN_USED_BIT) != 0)
+    if (view.pp == 0 || (memory & HEART_DRAIN_USED_BIT) != 0)
       slot = HEART_DARK_BLESSING;
     break;
   }
@@ -986,10 +959,10 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
     return BossAI_AshChooseTarget(user, targetPositions, count);
   if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER &&
       userId > ALLY_MAX) {
-    if (action->effect == ABILITY_EFFECT_DRAIN_PP)
-      return BossAI_AimAtPp(unitIds, count, 0);
-    if (action->effect == ABILITY_EFFECT_SEAL)
-      return BossAI_AimAtPp(unitIds, count, 1);
+    if (action->effect == ABILITY_EFFECT_DRAIN_PP ||
+        action->effect == ABILITY_EFFECT_SEAL)
+      return BossAI_AimAtPp(unitIds, count,
+                            action->effect == ABILITY_EFFECT_SEAL);
     return BossAI_AimAwayFromLast(user, targetPositions, count);
   }
   if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART && userId > ALLY_MAX)
