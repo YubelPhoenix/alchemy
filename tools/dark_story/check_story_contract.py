@@ -401,7 +401,7 @@ def check_integrated_gameplay() -> None:
     for comment, hp, defense in (
         ("// Ash Jenna, the optional super boss of Vale", 11000, 90),
         ("// Heart (Chalice), the secret super boss of Kolima", 11500, 100),
-        ("// Kegare, the Water Adept who mimics Mia", 9500, 80),
+        ("// Kegare, the otherworldly demon mimicking Mia", 9500, 80),
     ):
         require(comment in enemies, f"Boss balancing anchor missing: {comment}")
         row = enemies[enemies.index(comment):enemies.index(comment) + 300]
