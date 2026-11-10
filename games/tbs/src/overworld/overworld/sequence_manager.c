@@ -127,6 +127,15 @@ void Scene_ReturnFromSequence(s32 result) {
     // fight can be tried again.
     GameFlag_ClearFar(FLAG_DARK_ASH_VALE_PENDING);
     GameFlag_ClearFar(FLAG_DARK_ASH_GATE_PENDING);
+    // The mystery commander temporarily removes the other three party
+    // members for Isaac's solo battle. Defeat does not reload a saved roster:
+    // restore the members before sending the party back to the Sanctum.
+    if (GameFlag_GetFar(FLAG_DARK_MYSTERY_PENDING) != 0) {
+      Party_AddMember(GARET);
+      Party_AddMember(IVAN);
+      Party_AddMember(MIA);
+      GameFlag_ClearFar(FLAG_DARK_MYSTERY_PENDING);
+    }
     if (GameFlag_GetFar(FLAG_DARK_HEART_BEATEN) == 0)
       GameFlag_ClearFar(FLAG_DARK_HEART_FOUGHT);
     if (GameFlag_GetFar(FLAG_DARK_KEGARE_BEATEN) == 0) {
