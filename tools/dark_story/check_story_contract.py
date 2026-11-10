@@ -262,6 +262,14 @@ def check_mystery_solo_encounter() -> None:
     require("Event_SetDefeatDestination(-1, -1);" in approach
             and "gSaveBlock.sequenceResult == -1" in aftermath,
             "Solo duel must retain the safe defeat/restart flow")
+    sequence = read("games/tbs/src/overworld/overworld/sequence_manager.c")
+    defeat = sequence.split("void Scene_ReturnFromSequence(s32 result)", 1)[1]
+    defeat = defeat.split("} else {\n    // An after-battle destination", 1)[0]
+    require("GameFlag_GetFar(FLAG_DARK_MYSTERY_PENDING)" in defeat
+            and all(f"Party_AddMember({name});" in defeat
+                    for name in ("GARET", "IVAN", "MIA"))
+            and "GameFlag_ClearFar(FLAG_DARK_MYSTERY_PENDING);" in defeat,
+            "Defeat must restore Garet, Ivan, and Mia before the Sanctum return")
 
     lines = messages("phase118_mystery_leader.tsv")
     require({f"N{i}" for i in range(356, 387)} == set(lines),
