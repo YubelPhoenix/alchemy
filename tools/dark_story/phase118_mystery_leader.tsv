@@ -24,3 +24,9 @@ N377	MsgDarkMystery22	Even a lens needs\nsomeone to point it.{end_wait}
 N378	MsgDarkMystery23	When the Grave Eclipse\ncomes, remember\nthis day.{end_wait}
 N379	MsgDarkMystery24	Thirty years, Isaac.\nI will see you then.{end_wait}
 N380	MsgDarkMystery25	???
+N381	MsgDarkMysteryGaretBound	Isaac! I can't move!\nWhat did you do to us?{end_wait}
+N382	MsgDarkMysteryIvanBound	My Psynergy won't answer.\nShe's holding it back.{end_wait}
+N383	MsgDarkMysteryMiaBound	She's been waiting for us.\nIsaac, don't believe this\nwas a chance meeting.{end_wait}
+N384	MsgDarkMysteryIsaacDefies	Let them go.\nI'm the one you want.{end_wait}
+N385	MsgDarkMysteryAnswerDefies	I have what I want.\nShow me what you can do.{end_wait}
+N386	MsgDarkMysteryMiaAfter	Thirty years?\nWhat did she mean by that?{end_wait}
