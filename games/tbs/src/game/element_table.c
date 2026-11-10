@@ -471,6 +471,17 @@ const struct EnemyElementPreset gEnemy_ElementPresetTable[] = {
             PRESET_STATS(110, 175),
         },
     },
+    // Ashfall Dark Adepts: Venus strength, Mercury weakness.
+    {
+        .first = ELEMENT_VENUS,
+        .digits = {14, 7, 9, 9},
+        .values = {
+            PRESET_STATS(110, 175),
+            PRESET_STATS(95, 72),
+            PRESET_STATS(100, 127),
+            PRESET_STATS(100, 127),
+        },
+    },
 };
 
 const s16 gElement_PowerResistCurve[5][2] = {

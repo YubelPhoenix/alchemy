@@ -483,6 +483,17 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         elementBonus = elementPower - target->element[element].resistance;
       power = ability->power;
       amount = Battle_CalculatePsynergyPowerFar(power, elementBonus, FULL_RATE);
+      // Scaling PP drain applies only to the two Dark Adept superbosses.
+      if (ability->effect == ABILITY_EFFECT_DRAIN_PP &&
+          IS_PARTY_UNIT(targetId) &&
+          (actor->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART ||
+           actor->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)) {
+        amount = target->ppMax / 5;
+        if (amount < 30)
+          amount = 30;
+        if (amount > 120)
+          amount = 120;
+      }
       amount = amount * gRangeFalloff_PpLoss[distance] / 100;
       amount *= multiplier;
       REDUCE_BY_GUARD(amount, target);

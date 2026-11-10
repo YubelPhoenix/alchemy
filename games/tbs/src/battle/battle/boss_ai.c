@@ -286,6 +286,8 @@ struct BossPartyView {
   s32 haunted;     ///< living members with an evil spirit on them
   s32 buffed;      ///< living members with a raised Attack, Defense or
                    ///< Resistance stage
+  s32 pp;          ///< combined PP of living party members
+  s32 sealed;      ///< living party members with Psynergy sealed
   s32 hp;          ///< all members' HP
   s32 hpMax;       ///< all members' maximum HP
 };
@@ -297,7 +299,7 @@ static void BossAI_ViewParty(struct BossPartyView *view) {
   s32 index;
 
   view->alive = view->down = view->unavailable = view->haunted = 0;
-  view->buffed = view->hp = view->hpMax = 0;
+  view->buffed = view->pp = view->sealed = view->hp = view->hpMax = 0;
   for (index = 0; work->partyUnits[index] != BATTLE_UNIT_LIST_END; index++) {
     if (work->partyUnits[index] == BATTLE_UNIT_REMOVED)
       continue;
@@ -310,6 +312,9 @@ static void BossAI_ViewParty(struct BossPartyView *view) {
       continue;
     }
     view->alive++;
+    view->pp += member->pp;
+    if (member->psySeal != 0)
+      view->sealed++;
     if (member->sleep != 0 || member->stun != 0)
       view->unavailable++;
     if (member->haunt != 0)
@@ -339,6 +344,24 @@ static s32 BossAI_AimAwayFromLast(struct Unit *user, const s32 *targetPositions,
   if (otherCount == 0)
     return BOSS_AIM_STOCK;
   return others[(Random16() * otherCount) >> 16];
+}
+
+/// Select the living party member with the most PP. Bind skips sealed targets.
+static s32 BossAI_AimAtPp(const s32 *unitIds, s32 count, s32 unsealed) {
+  s32 index;
+  s32 best = BOSS_AIM_STOCK;
+  s32 value = 0;
+  for (index = 0; index < count; index++) {
+    struct Unit *member = Unit_GetFar(unitIds[index]);
+    if (member->hp == 0 || member->pp <= 0 ||
+        (unsealed && member->psySeal != 0))
+      continue;
+    if (member->pp > value) {
+      value = member->pp;
+      best = index;
+    }
+  }
+  return best;
 }
 
 /// Records the party place a boss just aimed at, for the next aim.
@@ -482,14 +505,14 @@ static s32 BossAI_AshChooseTarget(struct Unit *user, const s32 *targetPositions,
 
 /// Heart's places in her action list (enemies.c).
 enum HeartSlot {
-  HEART_GRAND_GAIA = 0,
-  HEART_DARK_BLESSING = 1,
-  HEART_STONE_SPIRE = 2,
+  HEART_DARK_BLESSING = 0,
+  HEART_EVIL_BLESSING = 1,
+  HEART_PSY_DRAIN = 2,
   HEART_DEATH_PLUNGE = 3,
   HEART_HEARTRENDER = 4,
   HEART_OUTER_SPACE = 5,
   HEART_ANNIHILATION = 6,
-  HEART_DEATH_SIZE = 7
+  HEART_SEVERE_BLOW = 7
 };
 
 /// Heart's memory in Unit.aiActionIndex: bits 25..20 the party places that
@@ -513,7 +536,8 @@ enum HeartSlot {
 #define HEART_DISABLE_BIT (1u << 18)
 #define HEART_PAYOFF_USED_BIT (1u << 19)
 #define HEART_DOWN_SHIFT 20
-#define HEART_BITS (0x03fffff0u)
+#define HEART_DRAIN_USED_BIT (1u << 29)
+#define HEART_BITS (0x03fffff0u | HEART_DRAIN_USED_BIT)
 STATIC_ASSERT((HEART_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((HEART_BITS & BOSS_LAST_AIM_BITS) == 0);
 /// Rounds after an Annihilation before she may try it again: the next try is
@@ -606,14 +630,17 @@ static void BossAI_HeartNoteTurn(struct Unit *unit,
     case HEART_HEARTRENDER:
       memory |= HEART_WARNED_BIT;
       break;
-    case HEART_DARK_BLESSING:
+    case HEART_EVIL_BLESSING:
       memory |= HEART_BIG_BIT;
+      break;
+    case HEART_PSY_DRAIN:
+      memory |= HEART_DRAIN_USED_BIT;
       break;
     case HEART_OUTER_SPACE:
       memory |= HEART_BIG_BIT | HEART_PAYOFF_USED_BIT;
       break;
     case HEART_DEATH_PLUNGE:
-    case HEART_DEATH_SIZE:
+    case HEART_SEVERE_BLOW:
       memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
       break;
     case HEART_ANNIHILATION:
@@ -660,7 +687,7 @@ static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   s32 mayOuterSpace;
   s32 total;
   s32 pick;
-  s32 light[3] = {HEART_GRAND_GAIA, HEART_STONE_SPIRE, HEART_GRAND_GAIA};
+  s32 light[3] = {HEART_DARK_BLESSING, HEART_PSY_DRAIN, HEART_DARK_BLESSING};
 
   BossAI_ViewParty(&view);
   mayWarn = firstPick && turns == 0 && !ready && !warned && calm == 0 &&
@@ -694,12 +721,16 @@ static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
             if (mayAnnihilate && pick < 35)
               slot = HEART_ANNIHILATION;
             else
-              slot = HEART_DEATH_SIZE;
+              slot = HEART_SEVERE_BLOW;
           }
         }
       }
     }
   }
+
+  if (firstPick && view.pp > 0 && (memory & HEART_DRAIN_USED_BIT) == 0 &&
+      turns > 0 && !payoffRound && roll2 < 105)
+    slot = HEART_PSY_DRAIN;
 
   switch (slot) {
   case HEART_HEARTRENDER:
@@ -711,7 +742,7 @@ static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
       slot = light[roll % 3];
     break;
   case HEART_DEATH_PLUNGE:
-  case HEART_DEATH_SIZE:
+  case HEART_SEVERE_BLOW:
     if (!mayDeathPlunge)
       slot = light[roll % 3];
     break;
@@ -719,9 +750,13 @@ static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
     if (!mayAnnihilate)
       slot = light[roll % 3];
     break;
-  case HEART_DARK_BLESSING:
+  case HEART_EVIL_BLESSING:
     if ((memory & HEART_BIG_BIT) != 0 || warned || ready)
       slot = light[roll % 3];
+    break;
+  case HEART_PSY_DRAIN:
+    if (view.pp <= 0 || (memory & HEART_DRAIN_USED_BIT) != 0)
+      slot = HEART_DARK_BLESSING;
     break;
   }
 #endif
@@ -748,6 +783,8 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
   s32 hard = action->effect == ABILITY_EFFECT_STUN ||
              action->effect == ABILITY_EFFECT_INSTANT_DEATH;
 
+  if (action->effect == ABILITY_EFFECT_DRAIN_PP)
+    return BossAI_AimAtPp(unitIds, count, 0);
   if (!hard)
     return BossAI_AimAwayFromLast(user, targetPositions, count);
   for (index = 0; index < count && allowedCount < 6; index++) {
@@ -783,70 +820,51 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
 #endif
 }
 
-/// The "???" commander's places in her action list (enemies.c).
+/// Heart's leader uses the same Dark Adept art with greater discipline.
 enum MysterySlot {
-  MYSTERY_ATTACK = 0,
-  MYSTERY_WING_STROKE = 1,
+  MYSTERY_DARK_BLESSING = 0,
+  MYSTERY_DEMON_NIGHT = 1,
   MYSTERY_ANNIHILATION = 2,
-  MYSTERY_THUNDERSTORM = 3,
-  MYSTERY_STORM_BLESSING = 4,
-  MYSTERY_SPARK_PLASMA = 5,
-  MYSTERY_DEATH_SIZE = 6,
-  MYSTERY_LUFF = 7
+  MYSTERY_DEATH_SIZE = 3,
+  MYSTERY_GRAND_GAIA = 4,
+  MYSTERY_PSY_DRAIN = 5,
+  MYSTERY_BIND = 6,
+  MYSTERY_BREAK = 7
 };
-
-/// Her memory in Unit.aiActionIndex (bits 4..11, like Ash Jenna's): 11..10
-/// turns taken this round | 9 Luff cast this round | 8 Luff cast last round |
-/// 7..6 killing moves this round | 5 her one early Annihilation is used | 4
-/// unused. Her rush flags (30, 31) and the stock cycle's bits are not here.
 #define MYSTERY_EARLY_KILL_BIT (1u << 5)
 #define MYSTERY_KILL_SHIFT 6
-#define MYSTERY_LUFF_LAST_BIT (1u << 8)
-#define MYSTERY_LUFF_THIS_BIT (1u << 9)
+#define MYSTERY_DRAIN_USED_BIT (1u << 8)
+#define MYSTERY_BIND_USED_BIT (1u << 9)
 #define MYSTERY_TURNS_SHIFT 10
-#define MYSTERY_BITS (0xff0u)
+#define MYSTERY_BREAK_USED_BIT (1u << 12)
+#define MYSTERY_BITS (0x1ff0u)
 STATIC_ASSERT((MYSTERY_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((MYSTERY_BITS & BOSS_LAST_AIM_BITS) == 0);
-/// She holds back until her HP is under this percent, then fights in full.
 #define MYSTERY_FULL_POWER_BELOW_PERCENT 95
-/// Out of 256, a turn of hers: her one early Annihilation (from her second
-/// turn of a round while she still holds back).
 #define MYSTERY_EARLY_KILL_CHANCE 140
-/// Out of 256, a turn of hers once she fights in full: Annihilation, then
-/// Death Size beside it; at most MYSTERY_KILLS_PER_ROUND of the two a round.
-#define MYSTERY_ANNIHILATION_CHANCE 100
-#define MYSTERY_DEATH_SIZE_CHANCE 40
-#define MYSTERY_KILLS_PER_ROUND 2
-/// Out of 256: Luff as her first turn of a round, never two rounds running.
-#define MYSTERY_LUFF_CHANCE 150
+#define MYSTERY_ANNIHILATION_CHANCE 95
+#define MYSTERY_DEATH_SIZE_CHANCE 45
+#define MYSTERY_KILLS_PER_ROUND 1
 
-/// Whether her HP is under the line at which she stops holding back.
 static s32 BossAI_MysteryFullPower(const struct Unit *unit) {
   return unit->hp * 100 < unit->hpMax * MYSTERY_FULL_POWER_BELOW_PERCENT;
 }
-
-/// Her memory brought up to date at the start of a round.
 static void BossAI_MysteryBeginRound(void) {
   struct Unit *unit = BossAI_FindRow(ENEMY_ROW_MYSTERY_LEADER);
   u32 memory;
-
   if (unit == 0)
     return;
   memory = unit->aiActionIndex;
-  memory &= ~(MYSTERY_LUFF_LAST_BIT | MYSTERY_LUFF_THIS_BIT |
-              (3u << MYSTERY_KILL_SHIFT) | (3u << MYSTERY_TURNS_SHIFT));
-  if (unit->aiActionIndex & MYSTERY_LUFF_THIS_BIT)
-    memory |= MYSTERY_LUFF_LAST_BIT;
+  memory &= ~(MYSTERY_DRAIN_USED_BIT | MYSTERY_BIND_USED_BIT |
+              MYSTERY_BREAK_USED_BIT | (3u << MYSTERY_KILL_SHIFT) |
+              (3u << MYSTERY_TURNS_SHIFT));
   unit->aiActionIndex = memory;
 }
-
-/// Records her turn when it was really staged.
 static void BossAI_MysteryNoteTurn(struct Unit *unit,
                                    struct BattleAction *request) {
   u32 memory = unit->aiActionIndex;
   u32 count = (memory >> MYSTERY_TURNS_SHIFT) & 3;
   s32 slot = BossAI_RequestSlot(unit, request);
-
   if (slot < 0 && request->command != COMMAND_ENEMY_ABILITY &&
       request->command != COMMAND_PSYNERGY && request->command != COMMAND_ATTACK)
     return;
@@ -854,9 +872,13 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
     count++;
   memory &= ~(3u << MYSTERY_TURNS_SHIFT);
   memory |= count << MYSTERY_TURNS_SHIFT;
-  if (slot == MYSTERY_LUFF) {
-    memory |= MYSTERY_LUFF_THIS_BIT;
-  } else if (slot == MYSTERY_ANNIHILATION || slot == MYSTERY_DEATH_SIZE) {
+  if (slot == MYSTERY_PSY_DRAIN)
+    memory |= MYSTERY_DRAIN_USED_BIT;
+  else if (slot == MYSTERY_BIND)
+    memory |= MYSTERY_BIND_USED_BIT;
+  else if (slot == MYSTERY_BREAK)
+    memory |= MYSTERY_BREAK_USED_BIT;
+  else if (slot == MYSTERY_ANNIHILATION || slot == MYSTERY_DEATH_SIZE) {
     count = (memory >> MYSTERY_KILL_SHIFT) & 3;
     if (count < 3)
       count++;
@@ -867,18 +889,8 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
   }
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 }
-
-/// Her pick. Holding back (HP at 95% or more): her blade and Dark Blessing, and
-/// once, from her second turn of a round, an Annihilation. In full power
-/// (under 95%): Luff as her first turn of a round to act twice next round,
-/// then Annihilation or Death Size (two killing moves a round at most), else
-/// Thunderstorm, Storm Blessing or Spark Plasma. A re-pick after a refused
-/// move (too little PP, sealed) takes Dark Blessing or Storm Blessing, which
-/// need none.
+/// She holds back until 95% HP, then drains PP, seals Psynergy and strips buffs.
 static s32 BossAI_MysteryChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
-  static const u8 heavy[5] = {MYSTERY_THUNDERSTORM, MYSTERY_STORM_BLESSING,
-                              MYSTERY_SPARK_PLASMA, MYSTERY_THUNDERSTORM,
-                              MYSTERY_STORM_BLESSING};
   u32 memory = unit->aiActionIndex;
   u32 turns = (memory >> MYSTERY_TURNS_SHIFT) & 3;
   u32 kills = (memory >> MYSTERY_KILL_SHIFT) & 3;
@@ -886,26 +898,33 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) 
   s32 roll2 = Battle_RandomFar() & 0xff;
   struct BossPartyView view;
   s32 full = BossAI_MysteryFullPower(unit);
-
   BossAI_ViewParty(&view);
   if (!firstPick)
-    return full ? MYSTERY_STORM_BLESSING : MYSTERY_WING_STROKE;
+    return full ? MYSTERY_DARK_BLESSING : MYSTERY_DEMON_NIGHT;
   if (!full) {
     if ((memory & MYSTERY_EARLY_KILL_BIT) == 0 && turns >= 1 &&
         view.alive > 0 && roll < MYSTERY_EARLY_KILL_CHANCE)
       return MYSTERY_ANNIHILATION;
-    return (roll2 & 1) ? MYSTERY_WING_STROKE : MYSTERY_ATTACK;
+    return (roll2 & 1) ? MYSTERY_DEMON_NIGHT : MYSTERY_DARK_BLESSING;
   }
-  if (turns == 0 && (memory & (MYSTERY_LUFF_LAST_BIT | MYSTERY_LUFF_THIS_BIT)) == 0 &&
-      roll < MYSTERY_LUFF_CHANCE)
-    return MYSTERY_LUFF;
+  if (turns == 0 && view.buffed > 0 &&
+      (memory & MYSTERY_BREAK_USED_BIT) == 0 && roll < 200)
+    return MYSTERY_BREAK;
+  if (view.pp > 0 && (memory & MYSTERY_DRAIN_USED_BIT) == 0 &&
+      roll2 < 150)
+    return MYSTERY_PSY_DRAIN;
+  if (view.alive > view.sealed && view.sealed < 2 &&
+      (memory & MYSTERY_BIND_USED_BIT) == 0 && roll2 < 105)
+    return MYSTERY_BIND;
   if (view.alive > 0 && (s32)kills < MYSTERY_KILLS_PER_ROUND) {
-    if (roll2 < MYSTERY_ANNIHILATION_CHANCE)
+    if (roll < MYSTERY_ANNIHILATION_CHANCE)
       return MYSTERY_ANNIHILATION;
-    if (roll2 < MYSTERY_ANNIHILATION_CHANCE + MYSTERY_DEATH_SIZE_CHANCE)
+    if (roll < MYSTERY_ANNIHILATION_CHANCE + MYSTERY_DEATH_SIZE_CHANCE)
       return MYSTERY_DEATH_SIZE;
   }
-  return heavy[(Battle_RandomFar() & 0xff) * 5 >> 8];
+  if (view.alive > 0 && view.haunted * 2 < view.alive && roll2 < 130)
+    return MYSTERY_DEMON_NIGHT;
+  return (roll2 & 1) ? MYSTERY_GRAND_GAIA : MYSTERY_DARK_BLESSING;
 }
 
 /// Starts a round for the bosses: their per-round memory is cleared and their
@@ -966,8 +985,13 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
   if (user->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE && userId > ALLY_MAX)
     return BossAI_AshChooseTarget(user, targetPositions, count);
   if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER &&
-      userId > ALLY_MAX)
+      userId > ALLY_MAX) {
+    if (action->effect == ABILITY_EFFECT_DRAIN_PP)
+      return BossAI_AimAtPp(unitIds, count, 0);
+    if (action->effect == ABILITY_EFFECT_SEAL)
+      return BossAI_AimAtPp(unitIds, count, 1);
     return BossAI_AimAwayFromLast(user, targetPositions, count);
+  }
   if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART && userId > ALLY_MAX)
     return BossAI_HeartChooseTarget(user, action, unitIds, targetPositions,
                                     count);

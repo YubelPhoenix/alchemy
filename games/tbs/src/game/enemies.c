@@ -1952,10 +1952,10 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .agi = 190,
         .luck = 40,
         .turns = 3,
-        .elementPreset = 41,
+        .elementPreset = 45,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        .abilities = {11, 431, 8, 176, 488, 514, 178, 513},
+        .abilities = {430, 445, 126, 176, 488, 514, 178, 517},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 5000,
         .item = ITEM_ELIXIR,
@@ -3158,7 +3158,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .experience = 677,
     },
     // (no name message)
-    // ???, the Jupiter commander above Heart: Vale's last optional super boss
+    // ???, Heart's Dark Adept leader: Vale's last optional super boss
     // (Vale_TalkToMysteryLeader). Row 164 is outside the base game's enemies;
     // its name is row 0's "???" (Enemy_BuildUnit) and its picture a copy of
     // the Siren's (gBattleSprites).
@@ -3172,11 +3172,11 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .agi = 200,
         .luck = 45,
         .turns = 3,
-        .elementPreset = 21,
+        .elementPreset = 45,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // Slot 1 is Dark Blessing (430, 110): Wing Stroke drew behind her cast pose.
-        .abilities = {ABILITY_ATTACK, 430, 178, 190, 434, 74, 513, 366},
+        // Dark Adept: seals, stat stripping, and PP pressure.
+        .abilities = {430, 161, 178, 513, 11, 126, 121, 127},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 8000,
         .item = ITEM_ELIXIR,
