@@ -270,6 +270,9 @@ def check_mystery_solo_encounter() -> None:
                     for name in ("GARET", "IVAN", "MIA"))
             and "GameFlag_ClearFar(FLAG_DARK_MYSTERY_PENDING);" in defeat,
             "Defeat must restore Garet, Ivan, and Mia before the Sanctum return")
+    require(defeat.index("Party_AddMember(MIA);")
+            < defeat.index("if (result == -1) {"),
+            "Restore all companions before loading either destination scene")
 
     lines = messages("phase118_mystery_leader.tsv")
     require({f"N{i}" for i in range(356, 387)} == set(lines),
