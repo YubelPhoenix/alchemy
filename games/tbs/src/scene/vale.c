@@ -1779,6 +1779,12 @@ static void Vale_TalkToMysteryLeader(void) {
   Vale_MysterySays();
   Vale_IsaacAnswers();
   Vale_MysterySays();
+  // Solo challenge: temporarily keep Isaac as the only battle participant.
+  // The normal four-person roster is restored on return from a victory.
+  // Defeat follows the existing Sanctum restart path (which reloads the save).
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
   GameFlag_Set(FLAG_DARK_MYSTERY_PENDING);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
@@ -1794,6 +1800,11 @@ static void Vale_TalkToMysteryLeader(void) {
 /// is gone; after a defeat she waits.
 static void Vale_MysteryLeaderAftermath(void) {
   GameFlag_Clear(FLAG_DARK_MYSTERY_PENDING);
+  // Restore the original companions before any post-battle dialogue or menus.
+  // This event is available only after Heart, when all four have joined.
+  Party_AddMember(GARET);
+  Party_AddMember(IVAN);
+  Party_AddMember(MIA);
   Event_Start();
   MapGrid_CenterOnFollowedPoint();
   WaitFrames(1);
