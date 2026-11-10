@@ -266,6 +266,59 @@ def check_story_text() -> None:
             "Garet's miner callback must not borrow Ash Jenna's contempt")
 
 
+
+def check_mystery_dialogue() -> None:
+    """Ensure ???'s sequential messages stay paired with the right speaker.
+
+    A previous revision accidentally wrote Isaac's question in a message
+    delivered by ???. N356-N369 are prebattle lines, N370-N379 aftermath,
+    and N380 is the optional boss name (not spoken dialogue).
+    """
+    vale = scene("vale.c")
+    pre = function(vale, "Vale_TalkToMysteryLeader")
+    post = function(vale, "Vale_MysteryLeaderAftermath")
+    mystery = messages("phase118_mystery_leader.tsv")
+    require(set(mystery) == {f"N{i}" for i in range(356, 381)},
+            "High Empyror messages must cover N356-N380 exactly")
+
+    def read_speakers(body: str, start: str, stop: str) -> list[str]:
+        require(start in body and stop in body,
+                "Missing High Empyror sequential message boundaries")
+        excerpt = body.split(start, 1)[1].split(stop, 1)[0]
+        return re.findall(
+            r"\\bVale_(IsaacAnswers|MysterySays)\\s*\\(\\s*\\)\\s*;",
+            excerpt,
+        )
+
+    pre_speakers = read_speakers(
+        pre, "Event_SetMessageId(MsgDarkMystery01);",
+        "GameFlag_Set(FLAG_DARK_MYSTERY_PENDING);")
+    post_speakers = read_speakers(
+        post, "Event_SetMessageId(MsgDarkMystery15);",
+        "Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,")
+    require(pre_speakers == [
+        "IsaacAnswers", "MysterySays", "IsaacAnswers", "MysterySays",
+        "IsaacAnswers", "MysterySays", "IsaacAnswers", "MysterySays",
+        "IsaacAnswers", "MysterySays", "MysterySays", "MysterySays",
+        "IsaacAnswers", "MysterySays",
+    ], "Prebattle ??? speaker order changed: audit N356-N369")
+    require(post_speakers == [
+        "IsaacAnswers", "MysterySays", "MysterySays", "IsaacAnswers",
+        "MysterySays", "MysterySays", "IsaacAnswers", "MysterySays",
+        "MysterySays", "MysterySays",
+    ], "Aftermath ??? speaker order changed: audit N370-N379")
+
+    # Guard against reintroducing the specific old mistake in N366.
+    require("What do you know" not in mystery["N366"],
+            "N366 is spoken by ???, not Isaac")
+    require("commanders" in mystery["N375"],
+            "??? must establish command authority over Heart")
+    require("Grave Eclipse" in mystery["N378"],
+            "??? must retain the Dark Dawn clue")
+    require("GameFlag_Get(FLAG_DARK_HEART_BEATEN) == 0" in pre,
+            "??? confrontation must require Heart's defeat")
+
+
 def check_dormant_palette_cache_is_disabled() -> None:
     color = read("games/tbs/src/overworld/overworld/color.c")
     scene_manager = read("games/tbs/src/overworld/overworld/scene_manager.c")
@@ -430,6 +483,7 @@ def main() -> None:
     check_flags_and_quest_order()
     check_optional_battles()
     check_story_text()
+    check_mystery_dialogue()
     print(f"Ashfall: {checks} static story contracts passed "
           "(visual/branch playthrough still required).")
 
