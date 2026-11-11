@@ -1956,7 +1956,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 45,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        .abilities = {430, 445, 126, 176, 488, 514, 178, 517},
+        .abilities = {430, 166, 515, 176, 488, 514, 178, 517},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 5000,
         .item = ITEM_ELIXIR,
@@ -3179,7 +3179,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .actionStrategy = ACTION_STRATEGY_FALLING,
         // Deliberately restrained for Isaac's solo test: no instant-death
         // or sealing move that would end a one-person run by chance.
-        .abilities = {430, 161, 127, 11, 126, ABILITY_ATTACK, ABILITY_ATTACK, 165},
+        .abilities = {430, 161, 127, 11, 126, 163, 166, 165},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 8000,
         .item = ITEM_ELIXIR,
