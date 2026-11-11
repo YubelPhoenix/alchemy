@@ -507,23 +507,18 @@ static s32 BossAI_HeartChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
 #endif
 }
 
-/// Heart's aim. A single-target disable or an instant death (Death Plunge,
-/// Annihilation) skips a member who was down when the round began (so one
-/// revived this round is safe from it), and one who is already asleep or
-/// stunned; with no one left it picks again. Every other move aims at a
-/// member other than the one she aimed at last, when there is another.
+/// Heart's aim: avoid targets already asleep or stunned for disabling moves.
+/// Otherwise rotate targets when possible.
 static s32 BossAI_HeartChooseTarget(struct Unit *user,
                                     struct AbilityDefinition *action,
                                     const s32 *unitIds,
                                     const s32 *targetPositions, s32 count) {
 #if BOSS_AI_HEART
-  u32 down = (user->aiActionIndex >> HEART_DOWN_SHIFT) & 0x3f;
   s32 last = (s32)((user->aiActionIndex >> BOSS_LAST_AIM_SHIFT) & 7) - 1;
   s32 allowed[6];
   s32 allowedCount = 0;
   s32 index;
   struct Unit *member;
-  s32 place;
   s32 hard = action->effect == ABILITY_EFFECT_STUN ||
              action->effect == ABILITY_EFFECT_INSTANT_DEATH;
 
@@ -533,10 +528,7 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
     return BossAI_AimAwayFromLast(user, targetPositions, count);
   for (index = 0; index < count && allowedCount < 6; index++) {
     member = Unit_GetFar(unitIds[index]);
-    place = targetPositions[index] & 7;
     if (member->hp == 0 || member->sleep != 0 || member->stun != 0)
-      continue;
-    if (place < 6 && (down & (1u << place)) != 0)
       continue;
     allowed[allowedCount++] = index;
   }
@@ -565,8 +557,8 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
 }
 
 /// Heart's leader tests Isaac alone. The slots must match enemies.c row 164:
-/// Dark Blessing, Demon Night, Break, Grand Gaia, Psy Drain, Attack, Attack,
-/// Rockslide. No instant death or Psynergy seal in this solo fight.
+/// Dark Blessing, Demon Night, Break, Grand Gaia, Psy Drain, Quick Strike,
+/// Avalanche, Rockslide. No instant death or Psynergy seal in this solo fight.
 enum MysterySlot {
   MYSTERY_DARK_BLESSING = 0,
   MYSTERY_DEMON_NIGHT = 1,
