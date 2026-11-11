@@ -712,108 +712,106 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
 #endif
 }
 
-/// Heart's leader uses the same Dark Adept art with greater discipline.
+/// Heart's leader tests Isaac alone. The slots must match enemies.c row 164:
+/// Dark Blessing, Demon Night, Break, Grand Gaia, Psy Drain, Attack, Attack,
+/// Rockslide. No instant death or Psynergy seal in this solo fight.
 enum MysterySlot {
   MYSTERY_DARK_BLESSING = 0,
   MYSTERY_DEMON_NIGHT = 1,
-  MYSTERY_ANNIHILATION = 2,
-  MYSTERY_DEATH_SIZE = 3,
-  MYSTERY_GRAND_GAIA = 4,
-  MYSTERY_PSY_DRAIN = 5,
-  MYSTERY_BIND = 6,
-  MYSTERY_BREAK = 7
+  MYSTERY_BREAK = 2,
+  MYSTERY_GRAND_GAIA = 3,
+  MYSTERY_PSY_DRAIN = 4,
+  MYSTERY_ATTACK = 5,
+  MYSTERY_ATTACK_ALT = 6,
+  MYSTERY_ROCKSLIDE = 7
 };
-#define MYSTERY_EARLY_KILL_BIT (1u << 5)
-#define MYSTERY_KILL_SHIFT 6
-#define MYSTERY_DRAIN_USED_BIT (1u << 8)
-#define MYSTERY_BIND_USED_BIT (1u << 9)
-#define MYSTERY_TURNS_SHIFT 10
-#define MYSTERY_BREAK_USED_BIT (1u << 12)
-#define MYSTERY_BITS (0x1ff0u)
+/// Two turns must pass between drains; Break also has a short cooldown.
+/// These bits are independent of the stock action cycle and other boss memory.
+#define MYSTERY_DRAIN_WAIT_SHIFT 4
+#define MYSTERY_BREAK_WAIT_SHIFT 6
+#define MYSTERY_BITS ((3u << MYSTERY_DRAIN_WAIT_SHIFT) | \
+                      (3u << MYSTERY_BREAK_WAIT_SHIFT))
 STATIC_ASSERT((MYSTERY_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((MYSTERY_BITS & BOSS_LAST_AIM_BITS) == 0);
-#define MYSTERY_FULL_POWER_BELOW_PERCENT 98
-#define MYSTERY_EARLY_KILL_CHANCE 150
-#define MYSTERY_ANNIHILATION_CHANCE 140
-#define MYSTERY_DEATH_SIZE_CHANCE 60
-#define MYSTERY_KILLS_PER_ROUND 1
 
-static s32 BossAI_MysteryFullPower(const struct Unit *unit) {
-  return unit->hp * 100 < unit->hpMax * MYSTERY_FULL_POWER_BELOW_PERCENT;
-}
+/// Count down tactical-move cooldowns once per round, not once per re-pick.
 static void BossAI_MysteryBeginRound(void) {
   struct Unit *unit = BossAI_FindRow(ENEMY_ROW_MYSTERY_LEADER);
   u32 memory;
+  u32 drainWait;
+  u32 breakWait;
   if (unit == 0)
     return;
   memory = unit->aiActionIndex;
-  memory &= ~(MYSTERY_DRAIN_USED_BIT | MYSTERY_BIND_USED_BIT |
-              MYSTERY_BREAK_USED_BIT | (3u << MYSTERY_KILL_SHIFT) |
-              (3u << MYSTERY_TURNS_SHIFT));
+  drainWait = (memory >> MYSTERY_DRAIN_WAIT_SHIFT) & 3;
+  breakWait = (memory >> MYSTERY_BREAK_WAIT_SHIFT) & 3;
+  if (drainWait != 0)
+    drainWait--;
+  if (breakWait != 0)
+    breakWait--;
+  memory &= ~MYSTERY_BITS;
+  memory |= (drainWait << MYSTERY_DRAIN_WAIT_SHIFT) |
+            (breakWait << MYSTERY_BREAK_WAIT_SHIFT);
   unit->aiActionIndex = memory;
 }
+
+/// Only a move that actually executes starts its cooldown.
 static void BossAI_MysteryNoteTurn(struct Unit *unit,
                                    struct BattleAction *request) {
   u32 memory = unit->aiActionIndex;
-  u32 count = (memory >> MYSTERY_TURNS_SHIFT) & 3;
   s32 slot = BossAI_RequestSlot(unit, request);
   if (slot < 0 && request->command != COMMAND_ENEMY_ABILITY &&
       request->command != COMMAND_PSYNERGY && request->command != COMMAND_ATTACK)
     return;
-  if (count < 3)
-    count++;
-  memory &= ~(3u << MYSTERY_TURNS_SHIFT);
-  memory |= count << MYSTERY_TURNS_SHIFT;
-  if (slot == MYSTERY_PSY_DRAIN)
-    memory |= MYSTERY_DRAIN_USED_BIT;
-  else if (slot == MYSTERY_BIND)
-    memory |= MYSTERY_BIND_USED_BIT;
-  else if (slot == MYSTERY_BREAK)
-    memory |= MYSTERY_BREAK_USED_BIT;
-  else if (slot == MYSTERY_ANNIHILATION || slot == MYSTERY_DEATH_SIZE) {
-    count = (memory >> MYSTERY_KILL_SHIFT) & 3;
-    if (count < 3)
-      count++;
-    memory &= ~(3u << MYSTERY_KILL_SHIFT);
-    memory |= count << MYSTERY_KILL_SHIFT;
-    if (!BossAI_MysteryFullPower(unit))
-      memory |= MYSTERY_EARLY_KILL_BIT;
+  if (slot == MYSTERY_PSY_DRAIN) {
+    memory &= ~(3u << MYSTERY_DRAIN_WAIT_SHIFT);
+    memory |= 3u << MYSTERY_DRAIN_WAIT_SHIFT;
+  } else if (slot == MYSTERY_BREAK) {
+    memory &= ~(3u << MYSTERY_BREAK_WAIT_SHIFT);
+    memory |= 2u << MYSTERY_BREAK_WAIT_SHIFT;
   }
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 }
-/// A Dark Adept's lethal attacks come before her occasional tactical debuffs.
+
+/// Solo combat: spend most turns dealing damage, not draining an empty PP pool.
+/// Below half HP the commander increases pressure rather than gaining a
+/// chance to kill Isaac instantly. A rejected choice always becomes damage.
 static s32 BossAI_MysteryChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
   u32 memory = unit->aiActionIndex;
   s32 roll = Battle_RandomFar() & 0xff;
+  s32 late = unit->hp * 2 <= unit->hpMax;
   struct BossPartyView view;
   BossAI_ViewParty(&view);
   if (!firstPick)
     return MYSTERY_DARK_BLESSING;
-  if (!BossAI_MysteryFullPower(unit)) {
-    if (view.alive > 1 && (memory & MYSTERY_EARLY_KILL_BIT) == 0 &&
-        ((memory >> MYSTERY_KILL_SHIFT) & 3) == 0 &&
-        roll < MYSTERY_EARLY_KILL_CHANCE)
-      return MYSTERY_DEATH_SIZE;
-    return roll < 192 ? MYSTERY_GRAND_GAIA : MYSTERY_DEMON_NIGHT;
-  }
-  if (view.alive > 1 &&
-      ((memory >> MYSTERY_KILL_SHIFT) & 3) < MYSTERY_KILLS_PER_ROUND &&
-      roll < MYSTERY_ANNIHILATION_CHANCE + MYSTERY_DEATH_SIZE_CHANCE)
-    return roll < MYSTERY_ANNIHILATION_CHANCE ?
-           MYSTERY_ANNIHILATION : MYSTERY_DEATH_SIZE;
-  if (((memory >> MYSTERY_TURNS_SHIFT) & 3) == 0 &&
-      view.buffed > 0 && (memory & MYSTERY_BREAK_USED_BIT) == 0 &&
-      roll < 32)
+  if (view.buffed != 0 &&
+      ((memory >> MYSTERY_BREAK_WAIT_SHIFT) & 3) == 0 && roll < 32)
     return MYSTERY_BREAK;
-  if (view.pp > 0 && (memory & MYSTERY_DRAIN_USED_BIT) == 0 &&
-      roll < 26)
+  // A depleted Isaac never gives her a wasted drain turn.
+  if (view.pp >= 16 &&
+      ((memory >> MYSTERY_DRAIN_WAIT_SHIFT) & 3) == 0 &&
+      roll >= 32 && roll < 44)
     return MYSTERY_PSY_DRAIN;
-  if (view.alive > view.sealed && (memory & MYSTERY_BIND_USED_BIT) == 0 &&
-      roll < 42)
-    return MYSTERY_BIND;
-  if (view.haunted * 2 < view.alive && roll < 96)
+  if (late) {
+    if (roll < 145)
+      return MYSTERY_GRAND_GAIA;
+    if (roll < 205)
+      return MYSTERY_DARK_BLESSING;
+    if (roll < 231)
+      return MYSTERY_ATTACK;
+    if (roll < 248)
+      return MYSTERY_ROCKSLIDE;
     return MYSTERY_DEMON_NIGHT;
-  return roll & 1 ? MYSTERY_GRAND_GAIA : MYSTERY_DARK_BLESSING;
+  }
+  if (roll < 86)
+    return MYSTERY_GRAND_GAIA;
+  if (roll < 166)
+    return MYSTERY_DARK_BLESSING;
+  if (roll < 210)
+    return MYSTERY_ROCKSLIDE;
+  if (roll < 238)
+    return MYSTERY_DEMON_NIGHT;
+  return MYSTERY_ATTACK;
 }
 
 /// Starts a round for the bosses: their per-round memory is cleared and their
