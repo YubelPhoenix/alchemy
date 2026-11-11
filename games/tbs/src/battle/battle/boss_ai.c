@@ -459,219 +459,66 @@ static s32 BossAI_AshChooseTarget(struct Unit *user, const s32 *targetPositions,
 #endif
 }
 
-/// Heart's places in her action list (enemies.c).
+/// Heart: immediate pressure, no warning or payoff rounds.
 enum HeartSlot {
-  HEART_DARK_BLESSING = 0,
-  HEART_EVIL_BLESSING = 1,
-  HEART_PSY_DRAIN = 2,
-  HEART_DEATH_PLUNGE = 3,
-  HEART_HEARTRENDER = 4,
-  HEART_OUTER_SPACE = 5,
-  HEART_ANNIHILATION = 6,
-  HEART_SEVERE_BLOW = 7
+ HEART_DARK_BLESSING=0, HEART_AVALANCHE=1, HEART_DRAGON_DRIVER=2,
+ HEART_DEATH_PLUNGE=3, HEART_HEARTRENDER=4, HEART_OUTER_SPACE=5,
+ HEART_ANNIHILATION=6, HEART_SEVERE_BLOW=7
 };
-
-/// Heart's memory in Unit.aiActionIndex: bits 25..20 the party places that
-/// were down when the round began | 19 a payoff was used this round | 18 a
-/// hard disable this round | 17 a big move this round | 16..14 rounds begun so
-/// far, up to 7 | 13..10 rounds until Annihilation may be tried again |
-/// 9..8 calm rounds before the next warning | 7..6 turns she has taken this
-/// round | 5 the warning was given last round, so a payoff may come now |
-/// 4 the warning was given this round.
-/// A warning is Heartrender, which does no damage and is her only use of it.
-/// A payoff is Outer Space, Death Plunge or Annihilation, and comes in the
-/// round after the warning, never as her first turn of it, so what the party
-/// chose after seeing the warning acts before it.
-#define HEART_WARNED_BIT (1u << 4)
-#define HEART_PAYOFF_READY_BIT (1u << 5)
-#define HEART_TURNS_SHIFT 6
-#define HEART_CALM_SHIFT 8
-#define HEART_ANNIHILATION_WAIT_SHIFT 10
-#define HEART_ROUNDS_SHIFT 14
-#define HEART_BIG_BIT (1u << 17)
-#define HEART_DISABLE_BIT (1u << 18)
-#define HEART_PAYOFF_USED_BIT (1u << 19)
-#define HEART_DOWN_SHIFT 20
-#define HEART_DRAIN_USED_BIT (1u << 29)
-#define HEART_BITS (0x03fffff0u | HEART_DRAIN_USED_BIT)
+#define HEART_ANNIHILATION_USED_BIT (1u << 16)
+#define HEART_HEARTRENDER_USED_BIT (1u << 17)
+#define HEART_BITS (HEART_ANNIHILATION_USED_BIT | HEART_HEARTRENDER_USED_BIT)
 STATIC_ASSERT((HEART_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((HEART_BITS & BOSS_LAST_AIM_BITS) == 0);
-/// Rounds after an Annihilation before she may try it again: the next try is
-/// seven rounds on, so six rounds pass between.
-#define HEART_ANNIHILATION_WAIT 2
-/// Annihilation is never tried until this round.
-#define HEART_ANNIHILATION_FIRST_ROUND 1
-/// Out of 256: how often she keeps the stock choice, and how often a round
-/// that may begin with the warning does.
-#define HEART_MISTAKE_CHANCE 51
-#define HEART_WARNING_CHANCE 72
-/// Calm rounds after a payoff round before the next warning may come.
-#define HEART_CALM_ROUNDS 1
-/// The party must have at least this percent of its HP for her to warn.
-#define HEART_WARNING_ABOVE_PERCENT 40
-
-/// Starts a round for Heart: the warning of last round becomes this round's
-/// permission for a payoff, her per-round memory is cleared, and the party
-/// places that are down are noted, which is how a member revived during the
-/// round is told from one who was standing.
 static void BossAI_HeartBeginRound(void) {
 #if BOSS_AI_HEART
-  struct Unit *heart = BossAI_FindRow(ENEMY_ROW_HEART);
-  struct BattleWork *work = gBattleWork;
-  u32 memory;
-  u32 calm;
-  u32 wait;
-  u32 rounds;
-  u32 down = 0;
-  s32 index;
-  s32 wasReady;
-
-  if (heart == 0)
-    return;
-  memory = heart->aiActionIndex;
-  wasReady = (memory & HEART_PAYOFF_READY_BIT) != 0;
-  calm = (memory >> HEART_CALM_SHIFT) & 3;
-  wait = (memory >> HEART_ANNIHILATION_WAIT_SHIFT) & 15;
-  rounds = (memory >> HEART_ROUNDS_SHIFT) & 7;
-  if (calm != 0)
-    calm--;
-  if (wasReady)
-    calm = HEART_CALM_ROUNDS;
-  if (wait != 0)
-    wait--;
-  if (rounds < 7)
-    rounds++;
-  for (index = 0; work->partyUnits[index] != BATTLE_UNIT_LIST_END && index < 6;
-       index++) {
-    if (work->partyUnits[index] != BATTLE_UNIT_REMOVED &&
-        Unit_GetFar(work->partyUnits[index])->hp == 0)
-      down |= 1u << index;
-  }
-  memory &= ~HEART_BITS;
-  memory |=
-      (heart->aiActionIndex & HEART_WARNED_BIT) ? HEART_PAYOFF_READY_BIT : 0;
-  memory |= (calm << HEART_CALM_SHIFT) |
-            (wait << HEART_ANNIHILATION_WAIT_SHIFT) |
-            (rounds << HEART_ROUNDS_SHIFT) | (down << HEART_DOWN_SHIFT);
-  heart->aiActionIndex = memory;
+ struct Unit *heart=BossAI_FindRow(ENEMY_ROW_HEART);
+ if (heart != 0) heart->aiActionIndex &= ~HEART_BITS;
 #endif
 }
-
-/// Record Heart's successful action without scanning her eight slots twice.
-static void BossAI_HeartNoteTurn(struct Unit *unit,
-                                 struct BattleAction *request) {
+static void BossAI_HeartNoteTurn(struct Unit *unit, struct BattleAction *request) {
 #if BOSS_AI_HEART
-  u32 memory = unit->aiActionIndex;
-  u32 turns = (memory >> HEART_TURNS_SHIFT) & 3;
-  s32 slot;
-
-  if (request->command != COMMAND_ENEMY_ABILITY &&
-      request->command != COMMAND_PSYNERGY &&
-      request->command != COMMAND_ATTACK)
-    return;
-  slot = BossAI_RequestSlot(unit, request);
-  if (turns < 3)
-    turns++;
-  memory &= ~(3u << HEART_TURNS_SHIFT);
-  memory |= turns << HEART_TURNS_SHIFT;
-  switch (slot) {
-  case HEART_HEARTRENDER:
-    memory |= HEART_WARNED_BIT;
-    break;
-  case HEART_EVIL_BLESSING:
-    memory |= HEART_BIG_BIT;
-    break;
-  case HEART_PSY_DRAIN:
-    memory |= HEART_DRAIN_USED_BIT;
-    break;
-  case HEART_OUTER_SPACE:
-    memory |= HEART_BIG_BIT | HEART_PAYOFF_USED_BIT;
-    break;
-  case HEART_DEATH_PLUNGE:
-  case HEART_SEVERE_BLOW:
-    memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
-    break;
-  case HEART_ANNIHILATION:
-    memory |= HEART_DISABLE_BIT | HEART_PAYOFF_USED_BIT;
-    memory &= ~(15u << HEART_ANNIHILATION_WAIT_SHIFT);
-    memory |= (u32)HEART_ANNIHILATION_WAIT << HEART_ANNIHILATION_WAIT_SHIFT;
-    break;
-  }
-  unit->aiActionIndex = BossAI_RememberAim(memory, request);
+ s32 slot=BossAI_RequestSlot(unit,request);
+ u32 memory=unit->aiActionIndex;
+ if (slot==HEART_ANNIHILATION) memory |= HEART_ANNIHILATION_USED_BIT;
+ if (slot==HEART_HEARTRENDER) memory |= HEART_HEARTRENDER_USED_BIT;
+ unit->aiActionIndex=BossAI_RememberAim(memory,request);
 #endif
 }
-
-/// Heart fights offensively every round; a warning guarantees a payoff on
-/// the following round's second action, with a chance to respond beforehand.
-static s32 BossAI_HeartChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
+static s32 BossAI_HeartChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
 #if BOSS_AI_HEART
-  u32 memory = unit->aiActionIndex;
-  u32 turns = (memory >> HEART_TURNS_SHIFT) & 3;
-  struct BossPartyView view;
-  s32 roll = Battle_RandomFar() & 0xff;
-  s32 roll2 = Battle_RandomFar() & 0xff;
-  s32 ready = (memory & HEART_PAYOFF_READY_BIT) != 0;
-  s32 canHard;
-  s32 canAnnih;
-  BossAI_ViewParty(&view);
-  canHard = view.alive > 1 && (memory & HEART_DISABLE_BIT) == 0;
-  canAnnih = canHard &&
-             ((memory >> HEART_ROUNDS_SHIFT) & 7) >=
-                 HEART_ANNIHILATION_FIRST_ROUND &&
-             ((memory >> HEART_ANNIHILATION_WAIT_SHIFT) & 15) == 0;
-  if (!firstPick)
-    return HEART_DARK_BLESSING;
-  if (ready && turns == 0)
-    return HEART_DARK_BLESSING;
-  if (ready && (memory & HEART_PAYOFF_USED_BIT) == 0) {
-    if (canAnnih && roll < 160)
-      return HEART_ANNIHILATION;
-    if (canHard)
-      return HEART_DEATH_PLUNGE;
-    if ((memory & HEART_BIG_BIT) == 0)
-      return HEART_OUTER_SPACE;
-    return HEART_DARK_BLESSING;
-  }
-  if (turns == 0 && !ready && ((memory >> HEART_CALM_SHIFT) & 3) == 0 &&
-      view.down <= 1 && view.hp * 100 >=
-          view.hpMax * HEART_WARNING_ABOVE_PERCENT &&
-      roll < HEART_WARNING_CHANCE)
-    return HEART_HEARTRENDER;
-  if (canAnnih && roll < 110)
-    return HEART_ANNIHILATION;
-  if (canHard && roll < 171)
-    return HEART_DEATH_PLUNGE;
-  if (canHard && roll < 194)
-    return HEART_SEVERE_BLOW;
-  if ((memory & HEART_BIG_BIT) == 0 && roll < 218)
-    return HEART_OUTER_SPACE;
-  if (view.pp > 0 && (memory & HEART_DRAIN_USED_BIT) == 0 && roll2 < 16)
-    return HEART_PSY_DRAIN;
-  if ((memory & HEART_BIG_BIT) == 0 && view.haunted * 2 < view.alive &&
-      roll2 < 36)
-    return HEART_EVIL_BLESSING;
-  slot = HEART_DARK_BLESSING;
+ u32 memory=unit->aiActionIndex;
+ struct BossPartyView view;
+ s32 roll=Battle_RandomFar() & 0xff;
+ s32 late=unit->hp*2<=unit->hpMax;
+ BossAI_ViewParty(&view);
+ if (!firstPick) return HEART_AVALANCHE;
+ if (view.alive>1 && !(memory & HEART_ANNIHILATION_USED_BIT) &&
+     roll<(late?43:32)) return HEART_ANNIHILATION;
+ if (roll<(late?112:99)) return HEART_OUTER_SPACE;
+ if (roll<(late?161:148)) return HEART_DEATH_PLUNGE;
+ if (roll<189) return HEART_DRAGON_DRIVER;
+ if (roll<220) return HEART_AVALANCHE;
+ if (!(memory & HEART_HEARTRENDER_USED_BIT) && roll<233) return HEART_HEARTRENDER;
+ if (roll<245) return HEART_SEVERE_BLOW;
+ return HEART_DARK_BLESSING;
+#else
+ return slot;
 #endif
-  return slot;
 }
 
-/// Heart's aim. A single-target disable or an instant death (Death Plunge,
-/// Annihilation) skips a member who was down when the round began (so one
-/// revived this round is safe from it), and one who is already asleep or
-/// stunned; with no one left it picks again. Every other move aims at a
-/// member other than the one she aimed at last, when there is another.
+/// Heart's aim: avoid targets already asleep or stunned for disabling moves.
+/// Otherwise rotate targets when possible.
 static s32 BossAI_HeartChooseTarget(struct Unit *user,
                                     struct AbilityDefinition *action,
                                     const s32 *unitIds,
                                     const s32 *targetPositions, s32 count) {
 #if BOSS_AI_HEART
-  u32 down = (user->aiActionIndex >> HEART_DOWN_SHIFT) & 0x3f;
   s32 last = (s32)((user->aiActionIndex >> BOSS_LAST_AIM_SHIFT) & 7) - 1;
   s32 allowed[6];
   s32 allowedCount = 0;
   s32 index;
   struct Unit *member;
-  s32 place;
   s32 hard = action->effect == ABILITY_EFFECT_STUN ||
              action->effect == ABILITY_EFFECT_INSTANT_DEATH;
 
@@ -681,10 +528,7 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
     return BossAI_AimAwayFromLast(user, targetPositions, count);
   for (index = 0; index < count && allowedCount < 6; index++) {
     member = Unit_GetFar(unitIds[index]);
-    place = targetPositions[index] & 7;
     if (member->hp == 0 || member->sleep != 0 || member->stun != 0)
-      continue;
-    if (place < 6 && (down & (1u << place)) != 0)
       continue;
     allowed[allowedCount++] = index;
   }
@@ -713,16 +557,16 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
 }
 
 /// Heart's leader tests Isaac alone. The slots must match enemies.c row 164:
-/// Dark Blessing, Demon Night, Break, Grand Gaia, Psy Drain, Attack, Attack,
-/// Rockslide. No instant death or Psynergy seal in this solo fight.
+/// Dark Blessing, Demon Night, Break, Grand Gaia, Psy Drain, Quick Strike,
+/// Avalanche, Rockslide. No instant death or Psynergy seal in this solo fight.
 enum MysterySlot {
   MYSTERY_DARK_BLESSING = 0,
   MYSTERY_DEMON_NIGHT = 1,
   MYSTERY_BREAK = 2,
   MYSTERY_GRAND_GAIA = 3,
   MYSTERY_PSY_DRAIN = 4,
-  MYSTERY_ATTACK = 5,
-  MYSTERY_ATTACK_ALT = 6,
+  MYSTERY_QUICK_STRIKE = 5,
+  MYSTERY_AVALANCHE = 6,
   MYSTERY_ROCKSLIDE = 7
 };
 /// Two turns must pass between drains; Break also has a short cooldown.
@@ -776,42 +620,30 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
 /// Solo combat: spend most turns dealing damage, not draining an empty PP pool.
 /// Below half HP the commander increases pressure rather than gaining a
 /// chance to kill Isaac instantly. A rejected choice always becomes damage.
-static s32 BossAI_MysteryChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
-  u32 memory = unit->aiActionIndex;
-  s32 roll = Battle_RandomFar() & 0xff;
-  s32 late = unit->hp * 2 <= unit->hpMax;
-  struct BossPartyView view;
-  BossAI_ViewParty(&view);
-  if (!firstPick)
-    return MYSTERY_DARK_BLESSING;
-  if (view.buffed != 0 &&
-      ((memory >> MYSTERY_BREAK_WAIT_SHIFT) & 3) == 0 && roll < 32)
-    return MYSTERY_BREAK;
-  // A depleted Isaac never gives her a wasted drain turn.
-  if (view.pp >= 16 &&
-      ((memory >> MYSTERY_DRAIN_WAIT_SHIFT) & 3) == 0 &&
-      roll >= 32 && roll < 44)
-    return MYSTERY_PSY_DRAIN;
-  if (late) {
-    if (roll < 145)
-      return MYSTERY_GRAND_GAIA;
-    if (roll < 205)
-      return MYSTERY_DARK_BLESSING;
-    if (roll < 231)
-      return MYSTERY_ATTACK;
-    if (roll < 248)
-      return MYSTERY_ROCKSLIDE;
-    return MYSTERY_DEMON_NIGHT;
-  }
-  if (roll < 86)
-    return MYSTERY_GRAND_GAIA;
-  if (roll < 166)
-    return MYSTERY_DARK_BLESSING;
-  if (roll < 210)
-    return MYSTERY_ROCKSLIDE;
-  if (roll < 238)
-    return MYSTERY_DEMON_NIGHT;
-  return MYSTERY_ATTACK;
+static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
+ u32 memory=unit->aiActionIndex;
+ s32 roll=Battle_RandomFar() & 0xff;
+ s32 late=unit->hp*2<=unit->hpMax;
+ struct BossPartyView view;
+ BossAI_ViewParty(&view);
+ if (!firstPick) return MYSTERY_ROCKSLIDE;
+ if (view.buffed && ((memory>>MYSTERY_BREAK_WAIT_SHIFT)&3)==0 && roll<24)
+   return MYSTERY_BREAK;
+ if (view.pp>=16 && ((memory>>MYSTERY_DRAIN_WAIT_SHIFT)&3)==0 &&
+     roll>=24 && roll<36) return MYSTERY_PSY_DRAIN;
+ if (late) {
+   if (roll<100) return MYSTERY_GRAND_GAIA;
+   if (roll<169) return MYSTERY_AVALANCHE;
+   if (roll<210) return MYSTERY_DARK_BLESSING;
+   if (roll<237) return MYSTERY_QUICK_STRIKE;
+   return MYSTERY_ROCKSLIDE;
+ }
+ if (roll<75) return MYSTERY_GRAND_GAIA;
+ if (roll<132) return MYSTERY_AVALANCHE;
+ if (roll<187) return MYSTERY_DARK_BLESSING;
+ if (roll<225) return MYSTERY_ROCKSLIDE;
+ if (roll<245) return MYSTERY_QUICK_STRIKE;
+ return MYSTERY_DEMON_NIGHT;
 }
 
 /// Starts a round for the bosses: their per-round memory is cleared and their
