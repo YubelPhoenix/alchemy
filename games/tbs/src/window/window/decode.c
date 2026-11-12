@@ -599,8 +599,12 @@ s32 Message_Decode(s32 script, s32 clear) {
             break;
           case MESSAGE_ARGUMENT_ABILITY_NAME:
             argument = MessageArgument_Lookup(MESSAGE_ARGUMENT_ABILITY, clear);
-            Message_DecodeRaw(argument + MsgAbilityName, name,
-                              MESSAGE_NAME_HALFWORDS);
+            if (argument == ABILITY_GOTTERKANONE)
+              Message_DecodeRaw(MsgGotterkanoneName, name,
+                                MESSAGE_NAME_HALFWORDS);
+            else
+              Message_DecodeRaw(argument + MsgAbilityName, name,
+                                MESSAGE_NAME_HALFWORDS);
             p = name;
             nextPosition = writePosition;
             while (*p != 0) {
@@ -1057,8 +1061,12 @@ s32 Message_Decode(s32 script, s32 clear) {
             break;
           case MESSAGE_ARGUMENT_ABILITY_NAME:
             argument = MessageArgument_Lookup(MESSAGE_ARGUMENT_ABILITY, clear);
-            Message_DecodeRaw(argument + MsgAbilityName, name,
-                              MESSAGE_NAME_HALFWORDS);
+            if (argument == ABILITY_GOTTERKANONE)
+              Message_DecodeRaw(MsgGotterkanoneName, name,
+                                MESSAGE_NAME_HALFWORDS);
+            else
+              Message_DecodeRaw(argument + MsgAbilityName, name,
+                                MESSAGE_NAME_HALFWORDS);
             writePosition = Message_AppendArticleName(mode, name, writePosition,
                                                       entry, 0, 0, 0);
             break;

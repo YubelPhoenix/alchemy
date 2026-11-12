@@ -68290,3 +68290,12 @@ msgstr "Parameter"
 msgctxt "MsgDebugSampleName"
 msgid "10907"
 msgstr "Ha hi fu he ho"
+
+msgctxt "MsgGotterkanoneAttack"
+msgid "10908"
+msgstr "{argument_actor_name:1} entfesselt\nGotterkanone!"
+
+msgctxt "MsgGotterkanoneName"
+msgid "10909"
+msgstr "Gotterkanone"
+

@@ -294,8 +294,8 @@ def check_mystery_solo_encounter() -> None:
             "Mystery's solo-fight HP/turn balance regressed")
     # The two redundant basic attacks were upgraded to Quick Strike and
     # Avalanche. Neither has an instant-death or Psynergy-sealing effect.
-    require(".abilities = {430, 161, 127, 11, 126, 163, 166, 165}," in boss,
-            "Solo duel must keep its approved non-lethal, non-sealing moveset")
+    require(".abilities = {ABILITY_GOTTERKANONE, 161, 127, 11, 126, 163, 166, 165}," in boss,
+            "Solo duel must keep Gotterkanone and its approved non-lethal, non-sealing moveset")
 
 
 def check_story_text() -> None:

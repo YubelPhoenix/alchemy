@@ -4112,5 +4112,13 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .power = 30,
     },
+    // Gotterkanone: Mystery Leader (ability ID 519).
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_JUPITER,
+        .range = 1,
+        .power = 100,
+    },
 };
 // clang-format on

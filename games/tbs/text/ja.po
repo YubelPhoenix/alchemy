@@ -64799,3 +64799,12 @@ msgstr ""
 msgctxt "message"
 msgid "11116"
 msgstr ""
+
+msgctxt "MsgGotterkanoneAttack"
+msgid "11117"
+msgstr "{argument_actor_name:234}\nGotterkanoneをはき出した!"
+
+msgctxt "MsgGotterkanoneName"
+msgid "11118"
+msgstr "Gotterkanone"
+

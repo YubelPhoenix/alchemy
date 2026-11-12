@@ -665,6 +665,8 @@ BattleAnimHandler gBattleAnim_Handlers[BATTLE_ANIM_COUNT - 1] = {
         BattleAnim_RunEvilBlessing, // burst_shower.c: Evil Blessing
     [BATTLE_ANIM_DEADLY_GAS - 1] =
         BattleAnim_RunDeadlyGas, // burst_shower.c: Deadly Gas
+    [BATTLE_ANIM_GOTTERKANONE - 1] =
+        BattleAnim_RunGotterkanone, // gotterkanone_native.c: Gotterkanone
 };
 
 // boreas.c, cybele.c and drain.c: Rock and ice animation geometry.

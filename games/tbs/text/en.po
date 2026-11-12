@@ -64925,3 +64925,12 @@ msgstr ""
 msgctxt "message"
 msgid "10722"
 msgstr ""
+
+msgctxt "MsgGotterkanoneAttack"
+msgid "10723"
+msgstr "{argument_actor_name:1} unleashes\nGotterkanone!"
+
+msgctxt "MsgGotterkanoneName"
+msgid "10724"
+msgstr "Gotterkanone"
+

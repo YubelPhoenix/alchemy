@@ -65224,3 +65224,12 @@ msgstr "Ha hi fu he ho"
 msgctxt "MsgDebugSecondForm"
 msgid "10908"
 msgstr ""
+
+msgctxt "MsgGotterkanoneAttack"
+msgid "10909"
+msgstr "¡{argument_actor_name:1} usa\nGotterkanone!"
+
+msgctxt "MsgGotterkanoneName"
+msgid "10910"
+msgstr "Gotterkanone"
+

@@ -420,6 +420,11 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
     abilityId = request->parameter;
     if (BattleTurn_SetTargets(abilityId) == TURN_REPORTED)
       return TURN_REPORTED;
+    if (abilityId == ABILITY_GOTTERKANONE) {
+      MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
+      BattleMessage_ShowAndWaitFar(MsgGotterkanoneAttack);
+      break;
+    }
     MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
     MessageArgument_PushFar(abilityId, MESSAGE_ARGUMENT_ABILITY);
     if ((Ability_Get(abilityId)->flags & ABILITY_FORMULA_MASK) ==
@@ -748,7 +753,7 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
     // raised to the first target's multiplier less one (a double or triple
     // blow); then the staging, from gAbilityStaging where it gives one. The
     // two tables end at ABILITY_THRASH and ABILITY_SEVERE_BLOW.
-    if (abilityId >= 0 && abilityId <= ABILITY_THRASH) {
+    if (abilityId >= 0 && abilityId <= ABILITY_GOTTERKANONE) {
       plan->animation = gAbilityAnimations[abilityId];
       if (plan->targetMultiplier[0] > 1)
         plan->animation = gAbilityAnimations[abilityId] +

@@ -202,7 +202,8 @@ enum BattleAnimId {
   BATTLE_ANIM_STORM_BLESSING = 405,
   BATTLE_ANIM_EVIL_BLESSING = 406,
   BATTLE_ANIM_DEADLY_GAS = 407,
-  BATTLE_ANIM_COUNT = 408 ///< one more than the last kind
+  BATTLE_ANIM_GOTTERKANONE = 408,
+  BATTLE_ANIM_COUNT = 409 ///< one more than the last kind
 };
 
 /// An animation's variant: the strength of the ability that plays it, from bits
@@ -657,6 +658,9 @@ void BattleAnim_RunFlashingStrike(struct BattleAnimArgs *args, s32 mode);
 
 // undead_sword.c
 void BattleAnim_RunUndeadSword(struct BattleAnimArgs *args);
+
+// gotterkanone_native.c
+void BattleAnim_RunGotterkanone(struct BattleAnimArgs *args);
 
 // blitter.c
 s32 BattleAnim_BuildBlitter(s32 slot, s32 widthShift, s32 heightShift,

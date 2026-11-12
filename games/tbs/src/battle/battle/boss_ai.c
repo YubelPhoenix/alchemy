@@ -557,10 +557,10 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
 }
 
 /// Heart's leader tests Isaac alone. The slots must match enemies.c row 164:
-/// Dark Blessing, Demon Night, Break, Grand Gaia, Psy Drain, Quick Strike,
+/// Gotterkanone, Demon Night, Break, Grand Gaia, Psy Drain, Quick Strike,
 /// Avalanche, Rockslide. No instant death or Psynergy seal in this solo fight.
 enum MysterySlot {
-  MYSTERY_DARK_BLESSING = 0,
+  MYSTERY_GOTTERKANONE = 0,
   MYSTERY_DEMON_NIGHT = 1,
   MYSTERY_BREAK = 2,
   MYSTERY_GRAND_GAIA = 3,
@@ -634,13 +634,13 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
  if (late) {
    if (roll<100) return MYSTERY_GRAND_GAIA;
    if (roll<169) return MYSTERY_AVALANCHE;
-   if (roll<210) return MYSTERY_DARK_BLESSING;
+   if (roll<210) return MYSTERY_GOTTERKANONE;
    if (roll<237) return MYSTERY_QUICK_STRIKE;
    return MYSTERY_ROCKSLIDE;
  }
  if (roll<75) return MYSTERY_GRAND_GAIA;
  if (roll<132) return MYSTERY_AVALANCHE;
- if (roll<187) return MYSTERY_DARK_BLESSING;
+ if (roll<187) return MYSTERY_GOTTERKANONE;
  if (roll<225) return MYSTERY_ROCKSLIDE;
  if (roll<245) return MYSTERY_QUICK_STRIKE;
  return MYSTERY_DEMON_NIGHT;

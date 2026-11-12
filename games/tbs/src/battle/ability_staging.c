@@ -1050,5 +1050,6 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_DRAIN_FANG, // Drain Fang
     ANIM_ID_SEVERE_BLOW | ANIM_BY_ID_RANGE, // Severe Blow
     BATTLE_ANIM_THRASH, // Thrash
+    BATTLE_ANIM_GOTTERKANONE, // Gotterkanone (519)
 };
 // clang-format on
