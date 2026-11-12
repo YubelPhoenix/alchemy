@@ -50,7 +50,7 @@ void BattleAnim_RunGotterkanone(struct BattleAnimArgs *args) {
   targetX = destination.x / 2;
   targetY = destination.y;
   ANIM_LOAD_BLITTER(HEAP_SLOT_RAM_CODE, ANIM_CLIP_BOUNDS, COMPOSITE_LIGHTEN);
-  draw = ANIM_SLOT(slots, HEAP_SLOT_RAM_CODE);
+  draw = (DrawRectangle)ANIM_SLOT(slots, HEAP_SLOT_RAM_CODE);
   ANIM_START_TRANSFER(work, CANVAS_COPY_AND_FADE, CANVAS_FADE_THREE_QUARTERS);
 
   for (tick = 0; tick < 36; ++tick) {

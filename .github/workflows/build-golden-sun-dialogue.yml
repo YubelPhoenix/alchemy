@@ -113,6 +113,24 @@ jobs:
       - name: Apply and validate the dark-story dialogue pass
         run: python3 tools/dark_story_rewrite.py
 
+      - name: Verify Gotterkanone text IDs after dialogue rewrite
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          text = Path("games/tbs/text/en.po").read_text(encoding="utf-8")
+          ids = [int(value) for value in re.findall(r'^msgid "([0-9]{5})"$', text, re.MULTILINE)]
+          if ids != list(range(len(ids))):
+              raise SystemExit("Gotterkanone text: duplicate or skipped message ID")
+          for context in ("MsgGotterkanoneAttack", "MsgGotterkanoneName"):
+              if text.count('msgctxt "' + context + '"') != 1:
+                  raise SystemExit("Gotterkanone text: missing or duplicate " + context)
+          if not re.search(r'#, alchemy-null\nmsgctxt "message"\nmsgid "[0-9]{5}"\nmsgstr ""\s*\Z', text):
+              raise SystemExit("Gotterkanone text: null terminator must be last")
+          print("Gotterkanone message IDs contiguous and unique:", len(ids))
+          PY
+
       - name: Confirm town dialogue overlays reached the build input
         run: |
           python3 - <<'PY'

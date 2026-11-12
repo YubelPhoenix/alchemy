@@ -64921,16 +64921,16 @@ msgstr ""
 "of frogs coming from\n"
 "inside.{end_wait}"
 
-#, alchemy-null
-msgctxt "message"
-msgid "10722"
-msgstr ""
-
 msgctxt "MsgGotterkanoneAttack"
-msgid "10723"
+msgid "10722"
 msgstr "{argument_actor_name:1} unleashes\nGotterkanone!"
 
 msgctxt "MsgGotterkanoneName"
-msgid "10724"
+msgid "10723"
 msgstr "Gotterkanone"
+
+#, alchemy-null
+msgctxt "message"
+msgid "10724"
+msgstr ""
 
