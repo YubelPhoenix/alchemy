@@ -292,8 +292,10 @@ def check_mystery_solo_encounter() -> None:
     boss = boss.split("    },", 1)[0]
     require(".hp = 6500," in boss and ".turns = 1," in boss,
             "Mystery's solo-fight HP/turn balance regressed")
-    require(".abilities = {430, 161, 127, 11, 126, ABILITY_ATTACK, ABILITY_ATTACK, 165}," in boss,
-            "Solo duel must not regain instant death or Psynergy sealing")
+    # The two redundant basic attacks were upgraded to Quick Strike and
+    # Avalanche. Neither has an instant-death or Psynergy-sealing effect.
+    require(".abilities = {430, 161, 127, 11, 126, 163, 166, 165}," in boss,
+            "Solo duel must keep its approved non-lethal, non-sealing moveset")
 
 
 def check_story_text() -> None:
