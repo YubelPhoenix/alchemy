@@ -557,24 +557,28 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
 }
 
 /// Heart's leader tests Isaac alone. The slots must match enemies.c row 164:
-/// Gotterkanone, Demon Night, Break, Grand Gaia, Psy Drain, Quick Strike,
-/// Avalanche, Rockslide. No instant death or Psynergy seal in this solo fight.
+/// Gotterkanone, P-Storm, P-Vortex, Explosion, Glepnir, EX Gotterkanone,
+/// EX Sternbrecher, Ransnetz. None is Psynergy, so nothing about her fighting
+/// gives her away; each keeps the numbers of the move it replaced (Demon
+/// Night, Break, Grand Gaia, Psy Drain, Quick Strike, Avalanche, Rockslide).
+/// No instant death or Psynergy seal in this solo fight.
 enum MysterySlot {
   MYSTERY_GOTTERKANONE = 0,
-  MYSTERY_DEMON_NIGHT = 1,
-  MYSTERY_BREAK = 2,
-  MYSTERY_GRAND_GAIA = 3,
-  MYSTERY_PSY_DRAIN = 4,
-  MYSTERY_QUICK_STRIKE = 5,
-  MYSTERY_AVALANCHE = 6,
-  MYSTERY_ROCKSLIDE = 7
+  MYSTERY_P_STORM = 1,
+  MYSTERY_P_VORTEX = 2,
+  MYSTERY_EXPLOSION = 3,
+  MYSTERY_GLEPNIR = 4,
+  MYSTERY_EX_GOTTERKANONE = 5,
+  MYSTERY_STERNBRECHER = 6,
+  MYSTERY_RANSNETZ = 7
 };
-/// Two turns must pass between drains; Break also has a short cooldown.
+/// Two turns must pass between Glepnir's drains; P-Vortex also has a short
+/// cooldown.
 /// These bits are independent of the stock action cycle and other boss memory.
-#define MYSTERY_DRAIN_WAIT_SHIFT 4
-#define MYSTERY_BREAK_WAIT_SHIFT 6
-#define MYSTERY_BITS ((3u << MYSTERY_DRAIN_WAIT_SHIFT) | \
-                      (3u << MYSTERY_BREAK_WAIT_SHIFT))
+#define MYSTERY_GLEPNIR_WAIT_SHIFT 4
+#define MYSTERY_VORTEX_WAIT_SHIFT 6
+#define MYSTERY_BITS ((3u << MYSTERY_GLEPNIR_WAIT_SHIFT) | \
+                      (3u << MYSTERY_VORTEX_WAIT_SHIFT))
 STATIC_ASSERT((MYSTERY_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((MYSTERY_BITS & BOSS_LAST_AIM_BITS) == 0);
 
@@ -582,20 +586,20 @@ STATIC_ASSERT((MYSTERY_BITS & BOSS_LAST_AIM_BITS) == 0);
 static void BossAI_MysteryBeginRound(void) {
   struct Unit *unit = BossAI_FindRow(ENEMY_ROW_MYSTERY_LEADER);
   u32 memory;
-  u32 drainWait;
-  u32 breakWait;
+  u32 glepnirWait;
+  u32 vortexWait;
   if (unit == 0)
     return;
   memory = unit->aiActionIndex;
-  drainWait = (memory >> MYSTERY_DRAIN_WAIT_SHIFT) & 3;
-  breakWait = (memory >> MYSTERY_BREAK_WAIT_SHIFT) & 3;
-  if (drainWait != 0)
-    drainWait--;
-  if (breakWait != 0)
-    breakWait--;
+  glepnirWait = (memory >> MYSTERY_GLEPNIR_WAIT_SHIFT) & 3;
+  vortexWait = (memory >> MYSTERY_VORTEX_WAIT_SHIFT) & 3;
+  if (glepnirWait != 0)
+    glepnirWait--;
+  if (vortexWait != 0)
+    vortexWait--;
   memory &= ~MYSTERY_BITS;
-  memory |= (drainWait << MYSTERY_DRAIN_WAIT_SHIFT) |
-            (breakWait << MYSTERY_BREAK_WAIT_SHIFT);
+  memory |= (glepnirWait << MYSTERY_GLEPNIR_WAIT_SHIFT) |
+            (vortexWait << MYSTERY_VORTEX_WAIT_SHIFT);
   unit->aiActionIndex = memory;
 }
 
@@ -607,12 +611,12 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
   if (slot < 0 && request->command != COMMAND_ENEMY_ABILITY &&
       request->command != COMMAND_PSYNERGY && request->command != COMMAND_ATTACK)
     return;
-  if (slot == MYSTERY_PSY_DRAIN) {
-    memory &= ~(3u << MYSTERY_DRAIN_WAIT_SHIFT);
-    memory |= 3u << MYSTERY_DRAIN_WAIT_SHIFT;
-  } else if (slot == MYSTERY_BREAK) {
-    memory &= ~(3u << MYSTERY_BREAK_WAIT_SHIFT);
-    memory |= 2u << MYSTERY_BREAK_WAIT_SHIFT;
+  if (slot == MYSTERY_GLEPNIR) {
+    memory &= ~(3u << MYSTERY_GLEPNIR_WAIT_SHIFT);
+    memory |= 3u << MYSTERY_GLEPNIR_WAIT_SHIFT;
+  } else if (slot == MYSTERY_P_VORTEX) {
+    memory &= ~(3u << MYSTERY_VORTEX_WAIT_SHIFT);
+    memory |= 2u << MYSTERY_VORTEX_WAIT_SHIFT;
   }
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 }
@@ -626,24 +630,24 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
  s32 late=unit->hp*2<=unit->hpMax;
  struct BossPartyView view;
  BossAI_ViewParty(&view);
- if (!firstPick) return MYSTERY_ROCKSLIDE;
- if (view.buffed && ((memory>>MYSTERY_BREAK_WAIT_SHIFT)&3)==0 && roll<24)
-   return MYSTERY_BREAK;
- if (view.pp>=16 && ((memory>>MYSTERY_DRAIN_WAIT_SHIFT)&3)==0 &&
-     roll>=24 && roll<36) return MYSTERY_PSY_DRAIN;
+ if (!firstPick) return MYSTERY_RANSNETZ;
+ if (view.buffed && ((memory>>MYSTERY_VORTEX_WAIT_SHIFT)&3)==0 && roll<24)
+   return MYSTERY_P_VORTEX;
+ if (view.pp>=16 && ((memory>>MYSTERY_GLEPNIR_WAIT_SHIFT)&3)==0 &&
+     roll>=24 && roll<36) return MYSTERY_GLEPNIR;
  if (late) {
-   if (roll<100) return MYSTERY_GRAND_GAIA;
-   if (roll<169) return MYSTERY_AVALANCHE;
+   if (roll<100) return MYSTERY_EXPLOSION;
+   if (roll<169) return MYSTERY_STERNBRECHER;
    if (roll<210) return MYSTERY_GOTTERKANONE;
-   if (roll<237) return MYSTERY_QUICK_STRIKE;
-   return MYSTERY_ROCKSLIDE;
+   if (roll<237) return MYSTERY_EX_GOTTERKANONE;
+   return MYSTERY_RANSNETZ;
  }
- if (roll<75) return MYSTERY_GRAND_GAIA;
- if (roll<132) return MYSTERY_AVALANCHE;
+ if (roll<75) return MYSTERY_EXPLOSION;
+ if (roll<132) return MYSTERY_STERNBRECHER;
  if (roll<187) return MYSTERY_GOTTERKANONE;
- if (roll<225) return MYSTERY_ROCKSLIDE;
- if (roll<245) return MYSTERY_QUICK_STRIKE;
- return MYSTERY_DEMON_NIGHT;
+ if (roll<225) return MYSTERY_RANSNETZ;
+ if (roll<245) return MYSTERY_EX_GOTTERKANONE;
+ return MYSTERY_P_STORM;
 }
 
 /// Starts a round for the bosses: their per-round memory is cleared and their

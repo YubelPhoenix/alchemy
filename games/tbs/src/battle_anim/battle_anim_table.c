@@ -667,6 +667,16 @@ BattleAnimHandler gBattleAnim_Handlers[BATTLE_ANIM_COUNT - 1] = {
         BattleAnim_RunDeadlyGas, // burst_shower.c: Deadly Gas
     [BATTLE_ANIM_GOTTERKANONE - 1] =
         BattleAnim_RunGotterkanone, // gotterkanone_native.c: Gotterkanone
+    [BATTLE_ANIM_EX_GOTTERKANONE - 1] =
+        BattleAnim_RunExGotterkanone, // perfecti.c: EX Gotterkanone
+    [BATTLE_ANIM_RANSNETZ - 1] = BattleAnim_RunRansnetz, // perfecti.c: Ransnetz
+    [BATTLE_ANIM_PERFECTI_EXPLOSION - 1] =
+        BattleAnim_RunPerfectiExplosion, // perfecti.c: Explosion
+    [BATTLE_ANIM_P_VORTEX - 1] = BattleAnim_RunPVortex, // perfecti.c: P-Vortex
+    [BATTLE_ANIM_GLEPNIR - 1] = BattleAnim_RunGlepnir,  // perfecti.c: Glepnir
+    [BATTLE_ANIM_STERNBRECHER - 1] =
+        BattleAnim_RunSternbrecher, // perfecti.c: EX Sternbrecher
+    [BATTLE_ANIM_P_STORM - 1] = BattleAnim_RunPStorm, // perfecti.c: P-Storm
 };
 
 // boreas.c, cybele.c and drain.c: Rock and ice animation geometry.

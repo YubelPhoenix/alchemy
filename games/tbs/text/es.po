@@ -65233,3 +65233,35 @@ msgctxt "MsgGotterkanoneName"
 msgid "10910"
 msgstr "Gotterkanone"
 
+msgctxt "message"
+msgid "10911"
+msgstr "EX Gotterkanone"
+
+msgctxt "message"
+msgid "10912"
+msgstr "Ransnetz"
+
+msgctxt "message"
+msgid "10913"
+msgstr "Explosion"
+
+msgctxt "message"
+msgid "10914"
+msgstr "P-Vortex"
+
+msgctxt "message"
+msgid "10915"
+msgstr "Glepnir"
+
+msgctxt "message"
+msgid "10916"
+msgstr "EX Sternbrecher"
+
+msgctxt "message"
+msgid "10917"
+msgstr "P-Storm"
+
+msgctxt "MsgMysteryUnleashesAbility"
+msgid "10918"
+msgstr "¡{argument_actor_name:1} usa\n{argument_ability_name}!"
+

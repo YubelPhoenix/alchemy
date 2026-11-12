@@ -64808,3 +64808,35 @@ msgctxt "MsgGotterkanoneName"
 msgid "11118"
 msgstr "Gotterkanone"
 
+msgctxt "message"
+msgid "11119"
+msgstr "EX Gotterkanone"
+
+msgctxt "message"
+msgid "11120"
+msgstr "Ransnetz"
+
+msgctxt "message"
+msgid "11121"
+msgstr "Explosion"
+
+msgctxt "message"
+msgid "11122"
+msgstr "P-Vortex"
+
+msgctxt "message"
+msgid "11123"
+msgstr "Glepnir"
+
+msgctxt "message"
+msgid "11124"
+msgstr "EX Sternbrecher"
+
+msgctxt "message"
+msgid "11125"
+msgstr "P-Storm"
+
+msgctxt "MsgMysteryUnleashesAbility"
+msgid "11126"
+msgstr "{argument_actor_name:234}\n{argument_ability_name}をはき出した!"
+

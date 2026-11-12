@@ -94,7 +94,19 @@ enum AbilityId {
   ABILITY_SEVERE_BLOW = 0x205,
   /// The last row of abilities.c and gAbilityAnimations.
   ABILITY_THRASH = 0x206,
-  ABILITY_GOTTERKANONE = 0x207
+  ABILITY_GOTTERKANONE = 0x207,
+  /// The Mystery Leader's other attacks (Ashfall), in her eight slots'
+  /// order after Gotterkanone. Each is named by the message after
+  /// MsgGotterkanoneName at the same distance as from ABILITY_GOTTERKANONE.
+  ABILITY_EX_GOTTERKANONE = 0x208,
+  ABILITY_RANSNETZ = 0x209,
+  ABILITY_PERFECTI_EXPLOSION = 0x20a,
+  ABILITY_P_VORTEX = 0x20b,
+  ABILITY_GLEPNIR = 0x20c,
+  ABILITY_STERNBRECHER = 0x20d,
+  ABILITY_P_STORM = 0x20e,
+  /// The last row of abilities.c and gAbilityAnimations.
+  ABILITY_LAST = ABILITY_P_STORM
 };
 
 #endif

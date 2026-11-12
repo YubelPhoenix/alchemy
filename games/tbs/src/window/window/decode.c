@@ -599,9 +599,11 @@ s32 Message_Decode(s32 script, s32 clear) {
             break;
           case MESSAGE_ARGUMENT_ABILITY_NAME:
             argument = MessageArgument_Lookup(MESSAGE_ARGUMENT_ABILITY, clear);
-            if (argument == ABILITY_GOTTERKANONE)
-              Message_DecodeRaw(MsgGotterkanoneName, name,
-                                MESSAGE_NAME_HALFWORDS);
+            // Abilities past the original table are named after it.
+            if (argument >= ABILITY_GOTTERKANONE && argument <= ABILITY_LAST)
+              Message_DecodeRaw(MsgGotterkanoneName +
+                                    (argument - ABILITY_GOTTERKANONE),
+                                name, MESSAGE_NAME_HALFWORDS);
             else
               Message_DecodeRaw(argument + MsgAbilityName, name,
                                 MESSAGE_NAME_HALFWORDS);
@@ -1061,9 +1063,11 @@ s32 Message_Decode(s32 script, s32 clear) {
             break;
           case MESSAGE_ARGUMENT_ABILITY_NAME:
             argument = MessageArgument_Lookup(MESSAGE_ARGUMENT_ABILITY, clear);
-            if (argument == ABILITY_GOTTERKANONE)
-              Message_DecodeRaw(MsgGotterkanoneName, name,
-                                MESSAGE_NAME_HALFWORDS);
+            // Abilities past the original table are named after it.
+            if (argument >= ABILITY_GOTTERKANONE && argument <= ABILITY_LAST)
+              Message_DecodeRaw(MsgGotterkanoneName +
+                                    (argument - ABILITY_GOTTERKANONE),
+                                name, MESSAGE_NAME_HALFWORDS);
             else
               Message_DecodeRaw(argument + MsgAbilityName, name,
                                 MESSAGE_NAME_HALFWORDS);

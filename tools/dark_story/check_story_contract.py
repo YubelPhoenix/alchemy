@@ -292,10 +292,20 @@ def check_mystery_solo_encounter() -> None:
     boss = boss.split("    },", 1)[0]
     require(".hp = 6500," in boss and ".turns = 1," in boss,
             "Mystery's solo-fight HP/turn balance regressed")
-    # The two redundant basic attacks were upgraded to Quick Strike and
-    # Avalanche. Neither has an instant-death or Psynergy-sealing effect.
-    require(".abilities = {ABILITY_GOTTERKANONE, 161, 127, 11, 126, 163, 166, 165}," in boss,
-            "Solo duel must keep Gotterkanone and its approved non-lethal, non-sealing moveset")
+    # She fights only with her own attacks: none is Psynergy, and each keeps
+    # the numbers of the move it replaced, so the solo test stays winnable.
+    require(".abilities = {ABILITY_GOTTERKANONE, ABILITY_P_STORM, ABILITY_P_VORTEX, "
+            "ABILITY_PERFECTI_EXPLOSION, ABILITY_GLEPNIR, ABILITY_EX_GOTTERKANONE, "
+            "ABILITY_STERNBRECHER, ABILITY_RANSNETZ}," in boss,
+            "Solo duel must keep the Mystery Leader's own non-lethal, non-sealing moveset")
+    table = read("games/tbs/src/game/abilities.c")
+    own = table.split("// Gotterkanone: Mystery Leader (ability ID 519).", 1)[1]
+    rows = re.findall(r"\{\s*\.targetMode.*?\}", own, re.S)
+    require(len(rows) == 8, f"Mystery Leader needs 8 ability rows after Gotterkanone's, found {len(rows)}")
+    for row in rows:
+        require(".ppCost" not in row, "A Mystery Leader attack costs PP, so it would count as Psynergy")
+        for banned in ("INSTANT_DEATH", "KILL", "SEAL", "STUN", "SLEEP", "HAUNT"):
+            require(banned not in row, f"Mystery Leader attack has a forbidden effect: {banned}")
 
 
 def check_story_text() -> None:

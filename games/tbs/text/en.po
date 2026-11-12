@@ -64929,8 +64929,40 @@ msgctxt "MsgGotterkanoneName"
 msgid "10723"
 msgstr "Gotterkanone"
 
-#, alchemy-null
 msgctxt "message"
 msgid "10724"
+msgstr "EX Gotterkanone"
+
+msgctxt "message"
+msgid "10725"
+msgstr "Ransnetz"
+
+msgctxt "message"
+msgid "10726"
+msgstr "Explosion"
+
+msgctxt "message"
+msgid "10727"
+msgstr "P-Vortex"
+
+msgctxt "message"
+msgid "10728"
+msgstr "Glepnir"
+
+msgctxt "message"
+msgid "10729"
+msgstr "EX Sternbrecher"
+
+msgctxt "message"
+msgid "10730"
+msgstr "P-Storm"
+
+msgctxt "MsgMysteryUnleashesAbility"
+msgid "10731"
+msgstr "{argument_actor_name:1} unleashes\n{argument_ability_name}!"
+
+#, alchemy-null
+msgctxt "message"
+msgid "10732"
 msgstr ""
 

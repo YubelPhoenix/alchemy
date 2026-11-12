@@ -203,7 +203,14 @@ enum BattleAnimId {
   BATTLE_ANIM_EVIL_BLESSING = 406,
   BATTLE_ANIM_DEADLY_GAS = 407,
   BATTLE_ANIM_GOTTERKANONE = 408,
-  BATTLE_ANIM_COUNT = 409 ///< one more than the last kind
+  BATTLE_ANIM_EX_GOTTERKANONE = 409,
+  BATTLE_ANIM_RANSNETZ = 410,
+  BATTLE_ANIM_PERFECTI_EXPLOSION = 411,
+  BATTLE_ANIM_P_VORTEX = 412,
+  BATTLE_ANIM_GLEPNIR = 413,
+  BATTLE_ANIM_STERNBRECHER = 414,
+  BATTLE_ANIM_P_STORM = 415,
+  BATTLE_ANIM_COUNT = 416 ///< one more than the last kind
 };
 
 /// An animation's variant: the strength of the ability that plays it, from bits
@@ -661,6 +668,15 @@ void BattleAnim_RunUndeadSword(struct BattleAnimArgs *args);
 
 // gotterkanone_native.c
 void BattleAnim_RunGotterkanone(struct BattleAnimArgs *args);
+
+// perfecti.c
+void BattleAnim_RunExGotterkanone(struct BattleAnimArgs *args);
+void BattleAnim_RunRansnetz(struct BattleAnimArgs *args);
+void BattleAnim_RunPerfectiExplosion(struct BattleAnimArgs *args);
+void BattleAnim_RunPVortex(struct BattleAnimArgs *args);
+void BattleAnim_RunGlepnir(struct BattleAnimArgs *args);
+void BattleAnim_RunSternbrecher(struct BattleAnimArgs *args);
+void BattleAnim_RunPStorm(struct BattleAnimArgs *args);
 
 // blitter.c
 s32 BattleAnim_BuildBlitter(s32 slot, s32 widthShift, s32 heightShift,

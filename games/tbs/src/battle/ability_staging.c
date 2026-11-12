@@ -1051,5 +1051,12 @@ const u32 gAbilityAnimations[] = {
     ANIM_ID_SEVERE_BLOW | ANIM_BY_ID_RANGE, // Severe Blow
     BATTLE_ANIM_THRASH, // Thrash
     BATTLE_ANIM_GOTTERKANONE, // Gotterkanone (519)
+    BATTLE_ANIM_EX_GOTTERKANONE, // EX Gotterkanone
+    BATTLE_ANIM_RANSNETZ, // Ransnetz
+    BATTLE_ANIM_PERFECTI_EXPLOSION, // Explosion
+    BATTLE_ANIM_P_VORTEX, // P-Vortex
+    BATTLE_ANIM_GLEPNIR, // Glepnir
+    BATTLE_ANIM_STERNBRECHER, // EX Sternbrecher
+    BATTLE_ANIM_P_STORM, // P-Storm
 };
 // clang-format on

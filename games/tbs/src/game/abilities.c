@@ -4120,5 +4120,66 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .power = 100,
     },
+    // The Mystery Leader's other attacks (abilities 520 to 526). Each keeps
+    // the numbers of the move it replaced in her solo test, so the fight's
+    // balance is unchanged, and costs no PP: nothing marks it as Psynergy
+    // (Ability_IsPsynergy), so it can't be sealed.
+    // EX Gotterkanone, for Quick Strike: a blow times 1.8.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_JUPITER,
+        .range = 1,
+        .power = 18,
+    },
+    // Ransnetz, for Rockslide.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 90,
+    },
+    // Explosion, for Grand Gaia.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 200,
+    },
+    // P-Vortex, for Break: undoes raised stats.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_BREAK,
+        .range = ABILITY_RANGE_ALL,
+    },
+    // Glepnir, for Psy Drain: takes PP.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_JUPITER,
+        .effect = ABILITY_EFFECT_DRAIN_PP,
+        .range = 1,
+        .power = 15,
+    },
+    // EX Sternbrecher, for Avalanche.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 160,
+    },
+    // P-Storm, for Demon Night: its Haunt left out, as nothing lingers.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_VENUS,
+        .range = 2,
+        .power = 60,
+    },
 };
 // clang-format on

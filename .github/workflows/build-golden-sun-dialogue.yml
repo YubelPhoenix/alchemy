@@ -123,11 +123,16 @@ jobs:
           ids = [int(value) for value in re.findall(r'^msgid "([0-9]{5})"$', text, re.MULTILINE)]
           if ids != list(range(len(ids))):
               raise SystemExit("Gotterkanone text: duplicate or skipped message ID")
-          for context in ("MsgGotterkanoneAttack", "MsgGotterkanoneName"):
+          for context in ("MsgGotterkanoneAttack", "MsgGotterkanoneName", "MsgMysteryUnleashesAbility"):
               if text.count('msgctxt "' + context + '"') != 1:
                   raise SystemExit("Gotterkanone text: missing or duplicate " + context)
           if not re.search(r'#, alchemy-null\nmsgctxt "message"\nmsgid "[0-9]{5}"\nmsgstr ""\s*\Z', text):
               raise SystemExit("Gotterkanone text: null terminator must be last")
+          # The Mystery Leader's other attacks are named in order after Gotterkanone.
+          names = re.findall(r'msgstr "([^"]*)"', text.split('msgstr "Gotterkanone"\n', 1)[1])[:7]
+          if names != ["EX Gotterkanone", "Ransnetz", "Explosion", "P-Vortex", "Glepnir",
+                       "EX Sternbrecher", "P-Storm"]:
+              raise SystemExit("Mystery Leader attack names out of order: " + repr(names))
           print("Gotterkanone message IDs contiguous and unique:", len(ids))
           PY
 
