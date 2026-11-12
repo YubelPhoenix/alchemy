@@ -559,8 +559,9 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
 /// Heart's leader tests Isaac alone. The slots must match enemies.c row 164:
 /// Gotterkanone, P-Storm, P-Vortex, Explosion, Glepnir, EX Gotterkanone,
 /// EX Sternbrecher, Ransnetz. None is Psynergy, so nothing about her fighting
-/// gives her away; each keeps the numbers of the move it replaced (Demon
-/// Night, Break, Grand Gaia, Psy Drain, Quick Strike, Avalanche, Rockslide).
+/// gives her away. All but P-Storm keep the numbers of the move they
+/// replaced (Break, Grand Gaia, Psy Drain, Quick Strike, Avalanche,
+/// Rockslide); P-Storm, in Demon Night's slot, is her late finisher.
 /// No instant death or Psynergy seal in this solo fight.
 enum MysterySlot {
   MYSTERY_GOTTERKANONE = 0,
@@ -623,7 +624,7 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
 
 /// Solo combat: spend most turns dealing damage, not draining an empty PP pool.
 /// Below half HP the commander increases pressure rather than gaining a
-/// chance to kill Isaac instantly. A rejected choice always becomes damage.
+/// chance to kill Isaac instantly: P-Storm, her finisher, comes only then. A rejected choice always becomes damage.
 static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
  u32 memory=unit->aiActionIndex;
  s32 roll=Battle_RandomFar() & 0xff;
@@ -640,14 +641,14 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
    if (roll<169) return MYSTERY_STERNBRECHER;
    if (roll<210) return MYSTERY_GOTTERKANONE;
    if (roll<237) return MYSTERY_EX_GOTTERKANONE;
-   return MYSTERY_RANSNETZ;
+   return MYSTERY_P_STORM;
  }
  if (roll<75) return MYSTERY_EXPLOSION;
  if (roll<132) return MYSTERY_STERNBRECHER;
  if (roll<187) return MYSTERY_GOTTERKANONE;
  if (roll<225) return MYSTERY_RANSNETZ;
  if (roll<245) return MYSTERY_EX_GOTTERKANONE;
- return MYSTERY_P_STORM;
+ return MYSTERY_RANSNETZ;
 }
 
 /// Starts a round for the bosses: their per-round memory is cleared and their

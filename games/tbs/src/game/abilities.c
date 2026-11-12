@@ -4120,9 +4120,9 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .power = 100,
     },
-    // The Mystery Leader's other attacks (abilities 520 to 526). Each keeps
-    // the numbers of the move it replaced in her solo test, so the fight's
-    // balance is unchanged, and costs no PP: nothing marks it as Psynergy
+    // The Mystery Leader's other attacks (abilities 520 to 526). All but
+    // P-Storm keep the numbers of the move they replaced in her solo test,
+    // and none hits harder than Explosion; each costs no PP: nothing marks it as Psynergy
     // (Ability_IsPsynergy), so it can't be sealed.
     // EX Gotterkanone, for Quick Strike: a blow times 1.8.
     {
@@ -4173,13 +4173,14 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 3,
         .power = 160,
     },
-    // P-Storm, for Demon Night: its Haunt left out, as nothing lingers.
+    // P-Storm, her finisher below half HP, in Demon Night's slot: as strong
+    // as EX Sternbrecher, so no hit outdoes Explosion's, and nothing lingers.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
-        .range = 2,
-        .power = 60,
+        .range = 3,
+        .power = 160,
     },
 };
 // clang-format on
