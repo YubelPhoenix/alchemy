@@ -320,7 +320,8 @@ Resource_DirectoryTable:
 	resource SarahSprites, Monster_SarahSprites
 	resource HeartBackdrop, Battle_HeartBackdrop
 	resource MysterySprites, Monster_MysterySprites
-	unused 21
+	resource MysteryBackdrop, Battle_MysteryBackdrop
+	unused 20
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp

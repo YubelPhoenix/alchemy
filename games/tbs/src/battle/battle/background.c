@@ -262,6 +262,7 @@ void Heart_StepBackdropGlow(void) {
 /// Battle_Run as the battle ends.
 void BattleBackground_Free(void) {
   Task_Remove(Heart_StepBackdropGlow);
+  Task_Remove(Mystery_StepBackdropGlow);
   FreeHeapSlot(HEAP_SLOT_BATTLE_SCANLINES);
 }
 
@@ -325,6 +326,10 @@ void BattleBackground_Load(s32 mode, s32 resourceId, s32 level) {
   Task_Remove(Heart_StepBackdropGlow);
   if ((u16)resourceId == (u16)(s32)&ResourceId_HeartBackdrop)
     Task_Add(Heart_StepBackdropGlow, TASK_PASS_VBLANK);
+  // The Mystery Leader's beacons and stars (battle/mystery_backdrop.c).
+  Task_Remove(Mystery_StepBackdropGlow);
+  if ((u16)resourceId == (u16)(s32)&ResourceId_MysteryBackdrop)
+    Task_Add(Mystery_StepBackdropGlow, TASK_PASS_VBLANK);
   view->mode = mode;
   if (mode == BATTLE_BACKGROUND_FIXED)
     REG_BG1CNT = BATTLE_BG1CNT;

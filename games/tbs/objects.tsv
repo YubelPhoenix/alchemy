@@ -435,6 +435,7 @@ main	rom_tail_01	games/tbs/src/graphics/animref2	.rodata
 main	rom_tail_01	games/tbs/src/graphics/sprite/sprites	.rodata.b
 main	rom_tail_02	games/tbs/src/system/resource/directory
 main	rom_tail_02	games/tbs/src/battle_anim/perfecti
+main	rom_tail_02	games/tbs/src/battle/mystery_backdrop
 main	rom_tail_02	games/tbs/src/graphics/ui/ui
 main	rom_tail_02	games/tbs/src/graphics/title/title
 main	rom_tail_02	games/tbs/src/graphics/battle_bg/battle_bg
