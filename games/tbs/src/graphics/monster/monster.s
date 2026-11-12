@@ -179,6 +179,7 @@ Monster_KrakenSprites:
 Monster_SlimeSprites:
 	.incbin "games/tbs/src/graphics/monster/slime.frames.lz"
 	.byte 0x40, 0x2c	@ PACKER: left in the buffer by Monster_KrakenSprites+0x36c6
+	.balign 4, 0	@ Ashfall: re-align after art whose size differs from the original
 	.global Monster_SaturosSprites
 Monster_SaturosSprites:
 	.incbin "games/tbs/src/graphics/monster/saturos.frames.lz"
@@ -204,12 +205,15 @@ Monster_RedWarriorSprites:
 	.global Monster_SwordGirlSprites
 Monster_SwordGirlSprites:
 	.incbin "games/tbs/src/graphics/monster/sword_girl.frames.lz"
+	.balign 4, 0	@ Ashfall: re-align after art whose size differs from the original
 	.global Monster_KegareSprites
 Monster_KegareSprites:
 	.incbin "games/tbs/src/graphics/monster/kegare.frames.lz"
+	.balign 4, 0	@ Ashfall: re-align after art whose size differs from the original
 	.global Monster_SarahSprites
 Monster_SarahSprites:
 	.incbin "games/tbs/src/graphics/monster/sarah.frames.lz"
+	.balign 4, 0	@ Ashfall: re-align after art whose size differs from the original
 	.global Monster_MysterySprites
 Monster_MysterySprites:
 	.incbin "games/tbs/src/graphics/monster/mystery.frames.lz"
