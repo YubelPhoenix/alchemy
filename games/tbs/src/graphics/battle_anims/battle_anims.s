@@ -698,3 +698,4 @@ BattleAnim_LightningPillarSheet:
 	.global gGotterkanoneCompressedFrames
 gGotterkanoneCompressedFrames:
 	.incbin "games/tbs/src/battle_anim/parts/gotterkanone.rle"
+	.balign 4, 0xff	@ Gotterkanone is 16249 bytes: re-align, as the assets after it assume a word-aligned start

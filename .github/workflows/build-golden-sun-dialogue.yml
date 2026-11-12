@@ -281,6 +281,9 @@ jobs:
             XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/"
           test -s "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba"
 
+      - name: Check no resource lost word alignment
+        run: python3 tools/ci/check_resource_alignment.py "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba" out/tbs-en/tbs-en.gba
+
       - name: Create an IPS patch (not a redistributable ROM)
         run: |
           python3 - "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba" "out/tbs-en/tbs-en.gba" "$RUNNER_TEMP/Golden-Sun-Ashfall.ips" <<'PY'
@@ -306,7 +309,12 @@ jobs:
                   i += 1
                   continue
               start = i
+              # An offset of 0x454F46 spells "EOF" and ends every IPS reader:
+              # begin that record one byte earlier instead.
               data = bytearray()
+              if start == 0x454F46:
+                  start -= 1
+                  data.append(modified[start])
               while i < len(original) and original[i] != modified[i] and len(data) < 65535:
                   data.append(modified[i])
                   i += 1
