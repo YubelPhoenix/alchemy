@@ -288,9 +288,9 @@ def main():
         lines.append(f"#define PERFECTI_{name}_FIRST {first}")
         lines.append(f"#define PERFECTI_{name}_COUNT {count}")
     body = ", ".join(str(o) for o in offsets)
-    lines.append(f"static const u16 sPerfectiFrameOffsets[{len(offsets)}] = {{{body}}};")
-    if max(offsets) > 0xFFFF:
-        raise SystemExit("frame stream exceeds 64 KB: widen the offsets to u32")
+    # u32, not u16: the table sits among the ROM tail's packed assets, which
+    # assume a word-aligned start, so its size must be a multiple of 4.
+    lines.append(f"static const u32 sPerfectiFrameOffsets[{len(offsets)}] = {{{body}}};")
     lines.append("#endif")
     (PARTS / "perfecti_frames.h").write_text("\n".join(lines) + "\n")
     print(f"{len(all_frames)} frames, {len(stream)} bytes")
