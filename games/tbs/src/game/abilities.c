@@ -4182,5 +4182,51 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 3,
         .power = 160,
     },
+    // Sarah's pike techniques (abilities 527 to 531): a human's weapon work,
+    // with no element and no PP, each a blow times power / 10.
+    // Piercing Thrust: drives through armour, lowering Defense.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .effect = ABILITY_EFFECT_DEFENSE_DOWN,
+        .range = 1,
+        .power = 13,
+    },
+    // Haft Strike: the butt of the pike to the head; may stun.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .effect = ABILITY_EFFECT_STUN,
+        .range = 1,
+        .power = 10,
+    },
+    // Disarm: a strike at the weapon hand, lowering Attack.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .effect = ABILITY_EFFECT_ATTACK_DOWN,
+        .range = 1,
+        .power = 11,
+    },
+    // Sweeping Arc: the pike's reach, across three foes.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .range = 3,
+        .power = 10,
+    },
+    // Vaulting Strike: she vaults on the pike and drives it down; her
+    // heaviest blow.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .range = 1,
+        .power = 18,
+    },
 };
 // clang-format on

@@ -106,6 +106,16 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
       }
     }
   }
+  if (index == ENEMY_ROW_SARAH) {
+    // Sarah carries as many Potions as her fight allows; her row holds the
+    // most.
+    const struct SarahStage *stage =
+        &gSarahStages[(GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT0) != 0) |
+                      ((GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT1) != 0) << 1)];
+
+    for (i = stage->potions; i < INVENTORY_SLOTS; i++)
+      unit->inventory[i] = 0;
+  }
   unit->aiActionIndex = enemy->aiActionIndex;
   unit->classId = 0;
   unit->id = enemyId;

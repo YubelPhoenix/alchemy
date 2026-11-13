@@ -64965,8 +64965,28 @@ msgctxt "MsgMysteryEnraged"
 msgid "10732"
 msgstr "You've earned a glimpse\nof the Empyror's light."
 
+msgctxt "MsgSarahTechniqueName"
+msgid "10733"
+msgstr "Piercing Thrust"
+
+msgctxt "message"
+msgid "10734"
+msgstr "Haft Strike"
+
+msgctxt "message"
+msgid "10735"
+msgstr "Disarm"
+
+msgctxt "message"
+msgid "10736"
+msgstr "Sweeping Arc"
+
+msgctxt "message"
+msgid "10737"
+msgstr "Vaulting Strike"
+
 #, alchemy-null
 msgctxt "message"
-msgid "10733"
+msgid "10738"
 msgstr ""
 

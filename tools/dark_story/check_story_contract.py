@@ -300,6 +300,7 @@ def check_mystery_solo_encounter() -> None:
             "Solo duel must keep the Mystery Leader's own non-lethal, non-sealing moveset")
     table = read("games/tbs/src/game/abilities.c")
     own = table.split("// Gotterkanone: Mystery Leader (ability ID 519).", 1)[1]
+    own = own.split("// Sarah's pike techniques", 1)[0]
     rows = re.findall(r"\{\s*\.targetMode.*?\}", own, re.S)
     require(len(rows) == 8, f"Mystery Leader needs 8 ability rows after Gotterkanone's, found {len(rows)}")
     for row in rows:

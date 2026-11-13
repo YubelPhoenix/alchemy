@@ -4,6 +4,7 @@
 // Part of battle.c.
 
 #include "../battle_internal.h"
+#include "sarah_stage.h"
 
 /// Returns 1 for an effect that still applies when the ability's damage has
 /// just knocked its target out: the drains, which give the damage they dealt
@@ -530,6 +531,11 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
           power, element == ELEMENT_NONE ? 100 : elementPower, FULL_RATE);
       amount = amount * gRangeFalloff_HealHp[distance] / 100;
       amount *= multiplier;
+      // Sarah's own Potions are field draughts: 15 percent of her HP, as a
+      // fixed Potion would barely touch a duelist of her size.
+      if (actor->id == ENEMY_ID_FIRST + ENEMY_ROW_SARAH &&
+          plan->command == COMMAND_ITEM)
+        amount = target->hpMax * 15 / 100;
       amount += Battle_RandomFar() & 3;
       newHp += amount;
       if (newHp > target->hpMax) {
@@ -634,6 +640,10 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
             break;
 #endif
           }
+          // Sarah is only human: no elemental essence for the Djinn to burn,
+          // so a summon takes half its usual share of her HP.
+          if (target->id == ENEMY_ID_FIRST + ENEMY_ROW_SARAH)
+            maxHpPercent /= 2;
           power += target->hpMax * maxHpPercent / 100;
         }
         amount =

@@ -599,10 +599,17 @@ s32 Message_Decode(s32 script, s32 clear) {
             break;
           case MESSAGE_ARGUMENT_ABILITY_NAME:
             argument = MessageArgument_Lookup(MESSAGE_ARGUMENT_ABILITY, clear);
-            // Abilities past the original table are named after it.
-            if (argument >= ABILITY_GOTTERKANONE && argument <= ABILITY_LAST)
+            // Abilities past the original table are named after it: the
+            // Mystery Leader's, then Sarah's.
+            if (argument >= ABILITY_GOTTERKANONE &&
+                argument <= ABILITY_MYSTERY_LAST)
               Message_DecodeRaw(MsgGotterkanoneName +
                                     (argument - ABILITY_GOTTERKANONE),
+                                name, MESSAGE_NAME_HALFWORDS);
+            else if (argument >= ABILITY_PIERCING_THRUST &&
+                     argument <= ABILITY_LAST)
+              Message_DecodeRaw(MsgSarahTechniqueName +
+                                    (argument - ABILITY_PIERCING_THRUST),
                                 name, MESSAGE_NAME_HALFWORDS);
             else
               Message_DecodeRaw(argument + MsgAbilityName, name,
@@ -1063,10 +1070,17 @@ s32 Message_Decode(s32 script, s32 clear) {
             break;
           case MESSAGE_ARGUMENT_ABILITY_NAME:
             argument = MessageArgument_Lookup(MESSAGE_ARGUMENT_ABILITY, clear);
-            // Abilities past the original table are named after it.
-            if (argument >= ABILITY_GOTTERKANONE && argument <= ABILITY_LAST)
+            // Abilities past the original table are named after it: the
+            // Mystery Leader's, then Sarah's.
+            if (argument >= ABILITY_GOTTERKANONE &&
+                argument <= ABILITY_MYSTERY_LAST)
               Message_DecodeRaw(MsgGotterkanoneName +
                                     (argument - ABILITY_GOTTERKANONE),
+                                name, MESSAGE_NAME_HALFWORDS);
+            else if (argument >= ABILITY_PIERCING_THRUST &&
+                     argument <= ABILITY_LAST)
+              Message_DecodeRaw(MsgSarahTechniqueName +
+                                    (argument - ABILITY_PIERCING_THRUST),
                                 name, MESSAGE_NAME_HALFWORDS);
             else
               Message_DecodeRaw(argument + MsgAbilityName, name,

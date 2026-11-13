@@ -174,6 +174,10 @@ select_again:
         gSarahStages[(GameFlag_GetFar(FLAG_DARK_SARAH_STAGE_BIT0) != 0) |
                      ((GameFlag_GetFar(FLAG_DARK_SARAH_STAGE_BIT1) != 0) << 1)]
             .abilities[selection & 7];
+    // A Potion only when badly hurt (below 40 percent), half the time;
+    // never otherwise, whatever the place.
+    useItem = itemsAllowed && unit->hp * 100 < unit->hpMax * 40 &&
+              (Battle_RandomFar() & 1);
   }
   if (punish != 0) {
     abilityId = ABILITY_ANNIHILATION;

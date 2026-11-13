@@ -68334,3 +68334,23 @@ msgstr "{argument_actor_name:1} entfesselt\n{argument_ability_name}!"
 msgctxt "MsgMysteryEnraged"
 msgid "10918"
 msgstr "Sieh nun das Licht\ndes Imperators."
+
+msgctxt "MsgSarahTechniqueName"
+msgid "10919"
+msgstr "Durchbohren"
+
+msgctxt "message"
+msgid "10920"
+msgstr "Schaftschlag"
+
+msgctxt "message"
+msgid "10921"
+msgstr "Entwaffnen"
+
+msgctxt "message"
+msgid "10922"
+msgstr "Weiter Schwung"
+
+msgctxt "message"
+msgid "10923"
+msgstr "Sprungstoß"

@@ -1058,5 +1058,10 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_GLEPNIR, // Glepnir
     BATTLE_ANIM_STERNBRECHER, // EX Sternbrecher
     BATTLE_ANIM_P_STORM, // P-Storm
+    BATTLE_ANIM_QUICK_STRIKE,   // Piercing Thrust
+    BATTLE_ANIM_RAPID_SMASH,    // Haft Strike
+    BATTLE_ANIM_HELM_SPLITTER,  // Disarm
+    0x82 | ANIM_BY_ID_RANGE,    // Sweeping Arc, as Cyclone Slash
+    BATTLE_ANIM_DEATH_PLUNGE,   // Vaulting Strike
 };
 // clang-format on

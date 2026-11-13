@@ -64843,3 +64843,23 @@ msgstr "{argument_actor_name:234}\n{argument_ability_name}をはき出した!"
 msgctxt "MsgMysteryEnraged"
 msgid "11127"
 msgstr "こうていの ひかりを\nみせてやろう。"
+
+msgctxt "MsgSarahTechniqueName"
+msgid "11128"
+msgstr "つらぬき"
+
+msgctxt "message"
+msgid "11129"
+msgstr "えだうち"
+
+msgctxt "message"
+msgid "11130"
+msgstr "ぶきおとし"
+
+msgctxt "message"
+msgid "11131"
+msgstr "なぎはらい"
+
+msgctxt "message"
+msgid "11132"
+msgstr "とびこみづき"

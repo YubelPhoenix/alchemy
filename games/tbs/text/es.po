@@ -65268,3 +65268,23 @@ msgstr "¡{argument_actor_name:1} usa\n{argument_ability_name}!"
 msgctxt "MsgMysteryEnraged"
 msgid "10919"
 msgstr "Contempla ahora la luz\ndel Emperador."
+
+msgctxt "MsgSarahTechniqueName"
+msgid "10920"
+msgstr "Estocada"
+
+msgctxt "message"
+msgid "10921"
+msgstr "Golpe de asta"
+
+msgctxt "message"
+msgid "10922"
+msgstr "Desarme"
+
+msgctxt "message"
+msgid "10923"
+msgstr "Arco amplio"
+
+msgctxt "message"
+msgid "10924"
+msgstr "Salto con pica"

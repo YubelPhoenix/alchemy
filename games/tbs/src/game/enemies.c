@@ -2593,21 +2593,27 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     // place of the removed Isaac-vs-Mia Mia (formation 383, zone 105 slot 1).
     {
         .name = "              ",
-        .level = 28,
-        .hp = 6000,
+        .level = 34,
+        .hp = 7000,
         .pp = 0,
-        .atk = 335,
-        .def = 125,
-        .agi = 160,
+        .atk = 500,
+        .def = 180,
+        .agi = 200,
         .luck = 40,
-        .turns = 2,
+        .turns = 3,
         .elementPreset = 40,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
         // A human with a pike, not an Adept: weapon skills only. Her moves in
         // each fight come from sarah_stage.h (BattleEnemy_ChooseAction); this
         // is the last fight's.
-        .abilities = {ABILITY_ATTACK, 225, 234, 228, 235, 232, 162, 178},
+        .abilities = {ABILITY_PIERCING_THRUST, ABILITY_SWEEPING_ARC,
+                      ABILITY_HAFT_STRIKE, ABILITY_DISARM,
+                      ABILITY_VAULTING_STRIKE, ABILITY_SWEEPING_ARC,
+                      ABILITY_PIERCING_THRUST, ABILITY_VAULTING_STRIKE},
+        // Potions, drunk when badly hurt; the fight sets how many.
+        .items = {ITEM_POTION},
+        .counts = {3},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN_2, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 1500,
         .item = ITEM_ELIXIR,

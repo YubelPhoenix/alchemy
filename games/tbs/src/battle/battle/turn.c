@@ -427,7 +427,7 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
     }
     // The Mystery Leader's other attacks share one wording, broken before
     // the name so the longest fit the battle window.
-    if (abilityId > ABILITY_GOTTERKANONE && abilityId <= ABILITY_LAST) {
+    if (abilityId > ABILITY_GOTTERKANONE && abilityId <= ABILITY_MYSTERY_LAST) {
       MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
       MessageArgument_PushFar(abilityId, MESSAGE_ARGUMENT_ABILITY);
       BattleMessage_ShowAndWaitFar(MsgMysteryUnleashesAbility);

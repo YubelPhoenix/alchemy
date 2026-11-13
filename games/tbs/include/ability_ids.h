@@ -105,8 +105,17 @@ enum AbilityId {
   ABILITY_GLEPNIR = 0x20c,
   ABILITY_STERNBRECHER = 0x20d,
   ABILITY_P_STORM = 0x20e,
+  /// The last of the Mystery Leader's attacks.
+  ABILITY_MYSTERY_LAST = ABILITY_P_STORM,
+  /// Sarah's pike techniques (Ashfall): physical, no PP, so she can use
+  /// them; named by the messages from MsgSarahTechniqueName on, in order.
+  ABILITY_PIERCING_THRUST = 0x20f,
+  ABILITY_HAFT_STRIKE = 0x210,
+  ABILITY_DISARM = 0x211,
+  ABILITY_SWEEPING_ARC = 0x212,
+  ABILITY_VAULTING_STRIKE = 0x213,
   /// The last row of abilities.c and gAbilityAnimations.
-  ABILITY_LAST = ABILITY_P_STORM
+  ABILITY_LAST = ABILITY_VAULTING_STRIKE
 };
 
 #endif

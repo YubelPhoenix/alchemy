@@ -65743,3 +65743,23 @@ msgstr "{argument_actor_name:1} scatena\n{argument_ability_name}!"
 msgctxt "MsgMysteryEnraged"
 msgid "10921"
 msgstr "Ammira ora la luce\ndell'Imperatore."
+
+msgctxt "MsgSarahTechniqueName"
+msgid "10922"
+msgstr "Affondo"
+
+msgctxt "message"
+msgid "10923"
+msgstr "Colpo d'asta"
+
+msgctxt "message"
+msgid "10924"
+msgstr "Disarmo"
+
+msgctxt "message"
+msgid "10925"
+msgstr "Arco ampio"
+
+msgctxt "message"
+msgid "10926"
+msgstr "Colpo in salto"
