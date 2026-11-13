@@ -113,6 +113,7 @@
 #include "field_effect.h"
 #include "map_grid_scroll.h"
 #include "fixed_math.h"
+#include "io_reg.h"
 #include "macros.h"
 #include "flags.h"
 #include "songs.h"
@@ -1779,11 +1780,22 @@ static void Vale_TalkToMysteryLeader(void) {
   Vale_MysterySays();
   Vale_IsaacAnswers();
   Vale_MysterySays();
-  // Show the bind taking hold before the companions lose their turns. The
-  // field palette pulse is cosmetic; the solo roster drives the actual duel.
+  // Show the bind taking hold before the companions lose their turns: a
+  // thunderclap, the whole screen white and a jolt, then as the white fades
+  // Garet, Ivan and Mia are left pulsing in her bind. The field palette
+  // pulse is cosmetic; the solo roster drives the actual duel.
+  Sound_PlaySong(SE_THUNDER_LOUD);
+  PaletteFade_SetTarget(RGB(31, 31, 31), PALETTES_ALL);
+  PaletteFade_StartInterpolation(1);
+  MapGrid_SetShake(PIXELS(4), PIXELS(4), Q16_ONE);
+  WaitFrames(6);
   Actor_SetSpriteColorById(ACTOR_GARET, SPRITE_COLOR_RBG);
   Actor_SetSpriteColorById(ACTOR_IVAN, SPRITE_COLOR_RBG);
   Actor_SetSpriteColorById(ACTOR_MIA, SPRITE_COLOR_RBG);
+  PaletteFade_SetTarget(PALETTE_TINT_NONE, PALETTES_ALL);
+  PaletteFade_StartInterpolation(16);
+  MapGrid_SetShake(-1, -1, 9 * Q16_ONE / 10);
+  MapGrid_WaitForShakeToSettle();
   Event_WaitFrames(20);
   Event_SetMessageId(MsgDarkMysteryGaretBound);
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
