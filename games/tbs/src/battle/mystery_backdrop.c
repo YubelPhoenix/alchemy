@@ -49,7 +49,8 @@ static u16 Mystery_MixColor(s32 r0, s32 g0, s32 b0, s32 r1, s32 g1, s32 b1,
 }
 
 /// How far toward crimson her rage turns the void and deck, 0 to 256: none
-/// while she has more than half her HP, then 70 percent at once, so the
+/// while she has more than half her HP or has yet to act below it (the
+/// flash of BossAI_MysteryAwaken sets MYSTERY_ENRAGED), then 70 percent at once, so the
 /// change is plain the moment she speaks, rising to full as her HP runs out.
 static s32 Mystery_Rage(struct BattleWork *battle, s32 *mysteryId) {
   s32 index;
@@ -69,7 +70,8 @@ static s32 Mystery_Rage(struct BattleWork *battle, s32 *mysteryId) {
       return 0;
     *mysteryId = unitId;
     half = unit->hpMax / 2;
-    if (half <= 0 || unit->hp > half)
+    if (half <= 0 || unit->hp > half ||
+        (unit->aiActionIndex & MYSTERY_ENRAGED) == 0)
       return 0;
     return 180 + 76 * (half - unit->hp) / half;
   }

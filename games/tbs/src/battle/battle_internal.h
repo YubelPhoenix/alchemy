@@ -226,6 +226,12 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
 /// over every layer, to fade them.
 #define BLEND_SPRITES_OVER_ALL (BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL)
 
+/// The Mystery Leader's boss memory (Unit.aiActionIndex): set the first time
+/// she acts at or below half HP, when the screen flashes and her backdrop
+/// snaps to crimson (BossAI_MysteryAwaken). Her backdrop's rage waits for it
+/// (battle/mystery_backdrop.c).
+#define MYSTERY_ENRAGED (1u << 8)
+
 /// The keys that take the player on past a message: A, B, L and R.
 #define KEY_ADVANCE (KEY_A | KEY_B | KEYS_SHOULDERS)
 

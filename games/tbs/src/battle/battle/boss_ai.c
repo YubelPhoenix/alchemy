@@ -582,8 +582,6 @@ enum MysterySlot {
                       (3u << MYSTERY_VORTEX_WAIT_SHIFT))
 STATIC_ASSERT((MYSTERY_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((MYSTERY_BITS & BOSS_LAST_AIM_BITS) == 0);
-/// Set once she has spoken on first falling below half HP (MsgMysteryEnraged).
-#define MYSTERY_ENRAGED (1u << 8)
 STATIC_ASSERT((MYSTERY_ENRAGED & (BOSS_RESERVED_BITS | BOSS_LAST_AIM_BITS |
                                   MYSTERY_BITS)) == 0);
 
@@ -626,6 +624,52 @@ static void BossAI_MysteryNoteTurn(struct Unit *unit,
   unit->aiActionIndex = BossAI_RememberAim(memory, request);
 }
 
+/// Frames the screen stays white, then frames it fades back, one level of
+/// REG_BLDY each.
+#define MYSTERY_AWAKEN_HOLD 6
+#define MYSTERY_AWAKEN_FADE 16
+/// The camera's shake, in 1/65536 turns of yaw: about 6 pixels of the
+/// background at first, easing to nothing as the white fades.
+#define MYSTERY_AWAKEN_SHAKE 0x200
+/// Frames of stillness before she speaks.
+#define MYSTERY_AWAKEN_PAUSE 24
+
+/// Her turn into her second phase, the first time she acts at or below half
+/// HP: a thunderclap, the whole screen white, and under the white her
+/// backdrop snaps to crimson (MYSTERY_ENRAGED, which mystery_backdrop.c
+/// waits for); then the white fades while the camera shakes and settles, a
+/// moment of stillness, and her line. The shake swings the camera's yaw,
+/// which moves the background and every battler together; the yaw and the
+/// blend registers are put back after.
+static void BossAI_MysteryAwaken(struct Unit *unit) {
+  struct BattleCamera *camera = HEAP_SLOT_BLOCK(HEAP_SLOT_CAMERA);
+  u16 savedBlend = REG_BLDCNT;
+  u16 baseYaw = camera->yaw;
+  s32 frame, level, shake;
+
+  Sound_PlaySongFar(SE_THUNDER);
+  REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
+  REG_BLDY = 16;
+  unit->aiActionIndex |= MYSTERY_ENRAGED;
+  for (frame = 0; frame < MYSTERY_AWAKEN_HOLD + MYSTERY_AWAKEN_FADE; frame++) {
+    level = 16;
+    if (frame >= MYSTERY_AWAKEN_HOLD)
+      level = 16 - (frame - MYSTERY_AWAKEN_HOLD + 1) * 16 / MYSTERY_AWAKEN_FADE;
+    REG_BLDY = level;
+    shake = MYSTERY_AWAKEN_SHAKE * (MYSTERY_AWAKEN_HOLD + MYSTERY_AWAKEN_FADE -
+                                    frame) /
+            (MYSTERY_AWAKEN_HOLD + MYSTERY_AWAKEN_FADE);
+    if (frame & 1)
+      shake = -shake;
+    camera->yaw = baseYaw + shake;
+    WaitFrames(1);
+  }
+  camera->yaw = baseYaw;
+  REG_BLDY = 0;
+  REG_BLDCNT = savedBlend;
+  WaitFrames(MYSTERY_AWAKEN_PAUSE);
+}
+
 /// Solo combat: spend most turns dealing damage, not draining an empty PP pool.
 /// Below half HP the commander increases pressure rather than gaining a
 /// chance to kill Isaac instantly: P-Storm, her finisher, comes only then. A rejected choice always becomes damage.
@@ -636,9 +680,9 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
  struct BossPartyView view;
  BossAI_ViewParty(&view);
  // The first time she falls below half HP she stops holding back, and says
- // so; her backdrop turns crimson by her HP (battle/mystery_backdrop.c).
+ // so, after the screen flashes and her backdrop snaps to crimson.
  if (late && firstPick && (memory & MYSTERY_ENRAGED) == 0) {
-   unit->aiActionIndex = memory | MYSTERY_ENRAGED;
+   BossAI_MysteryAwaken(unit);
    memory = unit->aiActionIndex;
    BattleMessage_ShowAndWaitFar(MsgMysteryEnraged);
    BattleMessage_WaitForAdvance();
