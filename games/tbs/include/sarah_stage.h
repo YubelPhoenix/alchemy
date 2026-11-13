@@ -28,7 +28,7 @@ static const struct SarahStage gSarahStages[4] = {
     // Vault: introduces her and tests basic combat; a party under level 5
     // struggles, one at 7 wins (party levels 5 to 7).
     {7, 1, 520, 68, 26, 42, 12, 150, 80,
-     // Plain spear work: Attack and Quick Strike, Vorpal Slash to finish.
+     // Plain pike work: Attack and Quick Strike, Vorpal Slash to finish.
      {1, 1, 1, 163, 1, 163, 228, 163}},
     // Kalay: party coordination and Djinn management (14 to 16).
     {16, 2, 1500, 150, 58, 85, 20, 500, 260,

@@ -1,4 +1,4 @@
-# Sarah: a human with a gun, met four times (Vault, Kalay, Tolbi, Lalivero), stronger each time.
+# Sarah: a human with a pike, met four times (Vault, Kalay, Tolbi, Lalivero), stronger each time.
 N340	MsgDarkSarahGreet	Isaac. I spoke to a\ntraveler here in Kalay.\nHe claims he saw her.{page_break}But when I asked where,\nhe couldn't tell me.\nIt's always the same.{end_wait}
 N341	MsgDarkSarahIsaac	Then why follow\nanother rumor?{end_wait}
 N342	MsgDarkSarahChallenge	Because one of them\nmight be true.{page_break}You've grown stronger\nsince Vault. Let me see\nwhat you've learned.{end_wait}

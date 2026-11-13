@@ -2604,7 +2604,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 40,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        // A human with a gun, not an Adept: weapon skills only. Her moves in
+        // A human with a pike, not an Adept: weapon skills only. Her moves in
         // each fight come from sarah_stage.h (BattleEnemy_ChooseAction); this
         // is the last fight's.
         .abilities = {ABILITY_ATTACK, 225, 234, 228, 235, 232, 162, 178},
