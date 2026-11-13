@@ -68331,3 +68331,6 @@ msgctxt "MsgMysteryUnleashesAbility"
 msgid "10917"
 msgstr "{argument_actor_name:1} entfesselt\n{argument_ability_name}!"
 
+msgctxt "MsgMysteryEnraged"
+msgid "10918"
+msgstr "Sieh nun das Licht\ndes Imperators."

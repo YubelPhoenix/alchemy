@@ -64840,3 +64840,6 @@ msgctxt "MsgMysteryUnleashesAbility"
 msgid "11126"
 msgstr "{argument_actor_name:234}\n{argument_ability_name}をはき出した!"
 
+msgctxt "MsgMysteryEnraged"
+msgid "11127"
+msgstr "こうていの ひかりを\nみせてやろう。"

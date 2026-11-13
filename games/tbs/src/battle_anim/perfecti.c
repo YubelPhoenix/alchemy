@@ -21,6 +21,10 @@ extern const u8 gPerfectiCompressedFrames[];
 #define PERFECTI_FADE_FRAMES 8
 /// Frames a struck battler flashes white.
 #define PERFECTI_FLASH_FRAMES 6
+/// Frames the battlefield darkens over for her heaviest attacks, to 60
+/// percent, as the summons and beams darken it; the canvas's close
+/// (BattleAnim_EndCanvasLayer) brings it back.
+#define PERFECTI_DIM_FRAMES 24
 
 /// What every attack draws with: the canvas, its blitter and the middle of
 /// the user's and first target's sprites, in canvas texels (half the
@@ -37,8 +41,9 @@ struct PerfectiStage {
 
 /// Opens the canvas, writes the 64-step violet-to-white ramp and builds an
 /// additive blitter, so overlapping light and fading trails build to white.
+/// With `dim`, the battlefield darkens behind the attack.
 static void Perfecti_Start(struct BattleAnimArgs *args,
-                           struct PerfectiStage *stage) {
+                           struct PerfectiStage *stage, s32 dim) {
   void **slots;
   void **cursor;
   struct ScreenPoint point;
@@ -73,6 +78,10 @@ static void Perfecti_Start(struct BattleAnimArgs *args,
   stage->draw = (DrawRectangle)ANIM_SLOT(slots, HEAP_SLOT_RAM_CODE);
   ANIM_START_TRANSFER(stage->work, CANVAS_COPY_AND_FADE,
                       CANVAS_FADE_THREE_QUARTERS);
+  if (dim) {
+    stage->work->fadeFrames = PERFECTI_DIM_FRAMES;
+    stage->work->fadeStep = 0;
+  }
 }
 
 /// Unpacks frame `frame` into `out`: a control byte with bit 7 set repeats
@@ -185,6 +194,7 @@ struct PerfectiVolley {
   s32 pulses;
   struct PerfectiImpact each, final;
   s32 heavy;
+  s32 dim;     ///< darken the battlefield behind it
 };
 
 /// Frames a landing burst plays: the Explosion's twelve, two at a time.
@@ -195,7 +205,7 @@ static void Perfecti_RunVolley(struct BattleAnimArgs *args,
   struct PerfectiStage stage;
   s32 tick, copy, local, x, y, spread, last, end, burst;
 
-  Perfecti_Start(args, &stage);
+  Perfecti_Start(args, &stage, v->dim);
   Perfecti_Charge(&stage, v->charge);
   last = (v->copies - 1) * v->stagger + v->travel;
   end = last + v->pulses * 5 + PERFECTI_BURST_FRAMES;
@@ -256,11 +266,11 @@ static void Perfecti_RunVolley(struct BattleAnimArgs *args,
 static void Perfecti_RunAtTarget(struct BattleAnimArgs *args, s32 first,
                                  s32 count, s32 ticks, s32 rate, s32 loop,
                                  s32 sound, s32 hit, s32 every,
-                                 struct PerfectiImpact *impact) {
+                                 struct PerfectiImpact *impact, s32 dim) {
   struct PerfectiStage stage;
   s32 tick, frame;
 
-  Perfecti_Start(args, &stage);
+  Perfecti_Start(args, &stage, dim);
   Sound_PlaySongFar(sound);
   for (tick = 0; tick < ticks; tick++) {
     frame = tick / rate;
@@ -291,11 +301,11 @@ static void Perfecti_RunAtTarget(struct BattleAnimArgs *args, s32 first,
 static void Perfecti_RunBeam(struct BattleAnimArgs *args, s32 first,
                              s32 charge, s32 grow, s32 loopCount, s32 sustain,
                              s32 shrink, s32 sound, s32 hit,
-                             struct PerfectiImpact *impact) {
+                             struct PerfectiImpact *impact, s32 dim) {
   struct PerfectiStage stage;
   s32 tick, frame, beamTick, total, tile;
 
-  Perfecti_Start(args, &stage);
+  Perfecti_Start(args, &stage, dim);
   if (charge != 0)
     Sound_PlaySongFar(SE_POWER_UP);
   total = charge * 4 + grow * 2 + sustain + shrink * 2;
@@ -345,6 +355,7 @@ void BattleAnim_RunGotterkanone(struct BattleAnimArgs *args) {
   PERFECTI_IMPACT(v.each, -1, 0, 0);
   PERFECTI_IMPACT(v.final, KNOCKBACK_HOP, 6, 20);
   v.heavy = SE_HEAVY_IMPACT;
+  v.dim = 0;
   Perfecti_RunVolley(args, &v);
 }
 
@@ -361,6 +372,7 @@ void BattleAnim_RunExGotterkanone(struct BattleAnimArgs *args) {
   PERFECTI_IMPACT(v.each, KNOCKBACK_JOLT, 3, 10);
   PERFECTI_IMPACT(v.final, KNOCKBACK_LEAP, 10, 40);
   v.heavy = SE_HEAVY_IMPACT;
+  v.dim = 1;
   Perfecti_RunVolley(args, &v);
 }
 
@@ -376,6 +388,7 @@ void BattleAnim_RunRansnetz(struct BattleAnimArgs *args) {
   PERFECTI_IMPACT(v.each, KNOCKBACK_JOLT, 3, 0);
   PERFECTI_IMPACT(v.final, KNOCKBACK_HOP, 5, 16);
   v.heavy = SE_IMPACT;
+  v.dim = 0;
   Perfecti_RunVolley(args, &v);
 }
 
@@ -386,7 +399,7 @@ void BattleAnim_RunPerfectiExplosion(struct BattleAnimArgs *args) {
 
   PERFECTI_IMPACT(impact, KNOCKBACK_LAUNCH, 12, 48);
   Perfecti_RunAtTarget(args, PERFECTI_EXPLOSION_FIRST, PERFECTI_EXPLOSION_COUNT,
-                       36, 3, 0, SE_BOOM, 4, 0, &impact);
+                       36, 3, 0, SE_BOOM, 4, 0, &impact, 1);
 }
 
 /// Abilities: P-Vortex. Three spiral arms wind around the target, wrenching
@@ -396,7 +409,7 @@ void BattleAnim_RunPVortex(struct BattleAnimArgs *args) {
 
   PERFECTI_IMPACT(impact, KNOCKBACK_JOLT, 6, 24);
   Perfecti_RunAtTarget(args, PERFECTI_P_VORTEX_FIRST, PERFECTI_P_VORTEX_COUNT,
-                       48, 2, 1, SE_SWIRL, 20, 8, &impact);
+                       48, 2, 1, SE_SWIRL, 20, 8, &impact, 0);
 }
 
 /// Abilities: Glepnir. A binding beam cracks across the screen at the
@@ -406,7 +419,7 @@ void BattleAnim_RunGlepnir(struct BattleAnimArgs *args) {
 
   PERFECTI_IMPACT(impact, KNOCKBACK_SKID, 8, 32);
   Perfecti_RunBeam(args, PERFECTI_GLEPNIR_FIRST, 0, 3, 6, 30, 3, SE_THUNDER,
-                   4, &impact);
+                   4, &impact, 0);
 }
 
 /// Abilities: EX Sternbrecher. Light gathers at the user, then a thick laser
@@ -416,7 +429,7 @@ void BattleAnim_RunSternbrecher(struct BattleAnimArgs *args) {
 
   PERFECTI_IMPACT(impact, KNOCKBACK_HURL, 16, 63);
   Perfecti_RunBeam(args, PERFECTI_STERNBRECHER_FIRST, 4, 0, 8, 40, 0,
-                   SE_THUNDER_LOUD, 2, &impact);
+                   SE_THUNDER_LOUD, 2, &impact, 1);
 }
 
 /// Abilities: P-Storm. Bolts rain down around the target, three a frame,
@@ -428,7 +441,7 @@ void BattleAnim_RunPStorm(struct BattleAnimArgs *args) {
   s32 tick, bolt, x, y;
   u32 seed = 0x2545f491;
 
-  Perfecti_Start(args, &stage);
+  Perfecti_Start(args, &stage, 1);
   for (tick = 0; tick < 48; tick++) {
     for (bolt = 0; bolt < 3; bolt++) {
       seed = seed * 1103515245 + 12345;

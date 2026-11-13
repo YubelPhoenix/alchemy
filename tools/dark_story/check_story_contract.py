@@ -290,7 +290,7 @@ def check_mystery_solo_encounter() -> None:
     enemies = read("games/tbs/src/game/enemies.c")
     boss = enemies.split("// ???, Heart's Dark Adept leader:", 1)[1]
     boss = boss.split("    },", 1)[0]
-    require(".hp = 6500," in boss and ".turns = 1," in boss,
+    require(".hp = 5500," in boss and ".turns = 1," in boss,
             "Mystery's solo-fight HP/turn balance regressed")
     # She fights only with her own attacks: none is Psynergy, and each keeps
     # the numbers of the move it replaced, so the solo test stays winnable.

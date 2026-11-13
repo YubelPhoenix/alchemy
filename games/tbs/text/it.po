@@ -65740,3 +65740,6 @@ msgctxt "MsgMysteryUnleashesAbility"
 msgid "10920"
 msgstr "{argument_actor_name:1} scatena\n{argument_ability_name}!"
 
+msgctxt "MsgMysteryEnraged"
+msgid "10921"
+msgstr "Ammira ora la luce\ndell'Imperatore."

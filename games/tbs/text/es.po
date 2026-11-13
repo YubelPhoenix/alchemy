@@ -65265,3 +65265,6 @@ msgctxt "MsgMysteryUnleashesAbility"
 msgid "10918"
 msgstr "¡{argument_actor_name:1} usa\n{argument_ability_name}!"
 
+msgctxt "MsgMysteryEnraged"
+msgid "10919"
+msgstr "Contempla ahora la luz\ndel Emperador."

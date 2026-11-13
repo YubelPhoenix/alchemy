@@ -582,6 +582,10 @@ enum MysterySlot {
                       (3u << MYSTERY_VORTEX_WAIT_SHIFT))
 STATIC_ASSERT((MYSTERY_BITS & BOSS_RESERVED_BITS) == 0);
 STATIC_ASSERT((MYSTERY_BITS & BOSS_LAST_AIM_BITS) == 0);
+/// Set once she has spoken on first falling below half HP (MsgMysteryEnraged).
+#define MYSTERY_ENRAGED (1u << 8)
+STATIC_ASSERT((MYSTERY_ENRAGED & (BOSS_RESERVED_BITS | BOSS_LAST_AIM_BITS |
+                                  MYSTERY_BITS)) == 0);
 
 /// Count down tactical-move cooldowns once per round, not once per re-pick.
 static void BossAI_MysteryBeginRound(void) {
@@ -631,6 +635,15 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
  s32 late=unit->hp*2<=unit->hpMax;
  struct BossPartyView view;
  BossAI_ViewParty(&view);
+ // The first time she falls below half HP she stops holding back, and says
+ // so; her backdrop turns crimson by her HP (battle/mystery_backdrop.c).
+ if (late && firstPick && (memory & MYSTERY_ENRAGED) == 0) {
+   unit->aiActionIndex = memory | MYSTERY_ENRAGED;
+   memory = unit->aiActionIndex;
+   BattleMessage_ShowAndWaitFar(MsgMysteryEnraged);
+   BattleMessage_WaitForAdvance();
+   MessageArgument_ClearAllFar();
+ }
  if (!firstPick) return MYSTERY_RANSNETZ;
  if (view.buffed && ((memory>>MYSTERY_VORTEX_WAIT_SHIFT)&3)==0 && roll<24)
    return MYSTERY_P_VORTEX;

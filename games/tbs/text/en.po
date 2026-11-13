@@ -64961,8 +64961,12 @@ msgctxt "MsgMysteryUnleashesAbility"
 msgid "10731"
 msgstr "{argument_actor_name:1} unleashes\n{argument_ability_name}!"
 
+msgctxt "MsgMysteryEnraged"
+msgid "10732"
+msgstr "You've earned a glimpse\nof the Empyror's light."
+
 #, alchemy-null
 msgctxt "message"
-msgid "10732"
+msgid "10733"
 msgstr ""
 
