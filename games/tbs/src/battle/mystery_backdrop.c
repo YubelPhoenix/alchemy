@@ -7,6 +7,7 @@
 /// gains the two calls in BattleBackground_Load and BattleBackground_Free.
 
 #include "battle_internal.h"
+#include "unit/battle_anim/battle_anim.h"
 
 /// The backdrop's own colours, as built from mystery_citadel.png: the first
 /// entries of its resource (battle_bg.s), before any rage.
@@ -44,12 +45,13 @@ static u16 Mystery_MixColor(s32 r0, s32 g0, s32 b0, s32 r1, s32 g1, s32 b1,
 /// How far toward crimson her rage turns the void and deck, 0 to 256: none
 /// while she has more than half her HP, then 70 percent at once, so the
 /// change is plain the moment she speaks, rising to full as her HP runs out.
-static s32 Mystery_Rage(struct BattleWork *battle) {
+static s32 Mystery_Rage(struct BattleWork *battle, s32 *mysteryId) {
   s32 index;
   s32 unitId;
   struct Unit *unit;
   s32 half;
 
+  *mysteryId = -1;
   for (index = 0; battle->enemyIds[index] != BATTLE_UNIT_LIST_END; index++) {
     unitId = battle->enemyIds[index];
     if (unitId == BATTLE_UNIT_REMOVED)
@@ -57,6 +59,9 @@ static s32 Mystery_Rage(struct BattleWork *battle) {
     unit = Unit_GetFar(unitId);
     if (unit->id != ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)
       continue;
+    if (unit->hp == 0)
+      return 0;
+    *mysteryId = unitId;
     half = unit->hpMax / 2;
     if (half <= 0 || unit->hp > half)
       return 0;
@@ -85,7 +90,7 @@ void Mystery_StepBackdropGlow(void) {
   struct BattleBackgroundWork *view =
       HEAP_SLOT_BLOCK(HEAP_SLOT_BATTLE_BACKGROUND);
   u32 frame = gVBlankCount;
-  s32 scale, pulse, level, k, rage, zoomed;
+  s32 scale, pulse, level, k, rage, zoomed, mysteryId, beat;
   const u16 *source;
   u16 colour;
   s32 red, green, blue, high, low;
@@ -106,7 +111,19 @@ void Mystery_StepBackdropGlow(void) {
   // under an attack and its return keep the crimson; written to the screen,
   // scaled by the battle's brightness, only while the background is zoomed,
   // as battle animations take the palette over otherwise.
-  rage = Mystery_Rage(battle);
+  rage = Mystery_Rage(battle, &mysteryId);
+
+  // Her heartbeat: in rage she flares violet twice a beacon pulse, for four
+  // frames each (the blue raised to full, SPRITE_COLOR_BLUE_TINT), then
+  // takes her own colours back (BattleAnim_TintBattler with palette 0). Only
+  // the changes are written, so her sprite is redrawn four times a beat.
+  if (rage != 0 && mysteryId >= 0) {
+    beat = frame % MYSTERY_BEACON_PERIOD_ENRAGED;
+    if (beat == 0 || beat == 10)
+      BattleAnim_TintBattler(mysteryId, SPRITE_COLOR_BLUE_TINT, -1, -1, 0);
+    else if (beat == 4 || beat == 14)
+      BattleAnim_TintBattler(mysteryId, 0, -1, -1, 0);
+  }
   source = Battle_MysteryBackdrop;
   for (k = 0; k < MYSTERY_ART_ENTRIES; k++) {
     colour = source[k];

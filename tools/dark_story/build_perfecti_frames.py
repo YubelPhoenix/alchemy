@@ -246,6 +246,37 @@ def burst(rng):
     return frames
 
 
+def ghost(rng):
+    """Her afterimage: the outline of her standing frame (monster/
+    mystery.png), glowing, at her size on screen (about 54 pixels; her
+    sprite is drawn at 0xb8/0x100 and enlarged by the battle camera), as a
+    top and a bottom 32x32 quarter of a 32x64 texel area."""
+    from PIL import Image, ImageFilter
+    art = Image.open(ROOT / "games/tbs/src/graphics/monster/mystery.png").convert("RGBA")
+    frame = art.crop((0, 0, 64, 64))
+    rgb = np.array(frame)[..., :3].astype(float)
+    body = rgb.sum(axis=2) > 0
+    luma = (rgb[..., 0] * 0.3 + rgb[..., 1] * 0.59 + rgb[..., 2] * 0.11) / 255
+    size = 54
+    def fit(values):
+        img = Image.fromarray(np.clip(values * 255, 0, 255).astype(np.uint8))
+        img = img.resize((size, size), Image.LANCZOS)
+        out = Image.new("L", (64, 64), 0)
+        out.paste(img, ((64 - size) // 2, (64 - size) // 2))
+        return out
+    mask = fit(body.astype(float))
+    # A bright rim where the outline glows, a dimmer inside that keeps her
+    # coat, hair and polearm readable.
+    rim = np.array(mask.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.GaussianBlur(1.0))).astype(float) / 255
+    inside = np.array(mask.filter(ImageFilter.MinFilter(3))).astype(float) / 255
+    detail = np.array(fit(luma * body)).astype(float) / 255
+    level = np.clip(rim - inside, 0, 1) * 58 + inside * (18 + detail * 34)
+    texels = level.reshape(64, 32, 2).mean(axis=2)          # halve across
+    out = np.round(texels)
+    out[out < 7] = 0
+    return [out[0:32].copy(), out[32:64].copy()]
+
+
 MOVES = [
     ("GOTTERKANONE", gotterkanone),
     ("EX_GOTTERKANONE", ex_gotterkanone),
@@ -256,6 +287,7 @@ MOVES = [
     ("STERNBRECHER", ex_sternbrecher),
     ("P_STORM", p_storm),
     ("BURST", burst),
+    ("GHOST", ghost),
 ]
 
 
@@ -307,7 +339,7 @@ def main():
     all_frames = []
     for name, draw in MOVES:
         drawn = draw(np.random.default_rng(7))
-        if name in ("GOTTERKANONE", "BURST"):     # already canvas texels 0-63
+        if name in ("GOTTERKANONE", "BURST", "GHOST"):  # already canvas texels
             frames = [np.clip(np.round(f), 0, 63).astype(np.uint8) for f in drawn]
         else:
             frames = [finish(f) for f in drawn]

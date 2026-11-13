@@ -233,6 +233,37 @@ static void Perfecti_Finish(struct PerfectiStage *stage) {
   ANIM_FINISH_CANVAS_ONE_BLITTER();
 }
 
+/// Frames her afterimages take: a pair every three frames, then their fade.
+#define PERFECTI_AFTERIMAGE_FRAMES 24
+
+/// In her rage (at or below half HP), violet afterimages of her split off
+/// left and right before an attack, each pair farther out than the last and
+/// each fading as the canvas does (a quarter a frame). Her outline is two
+/// frames, a top and a bottom quarter of her size on screen, drawn around the
+/// middle of her sprite.
+static void Perfecti_Afterimages(struct PerfectiStage *stage) {
+  struct Unit *user = Unit_GetFar(stage->args->user);
+  s32 tick, pair, offset;
+
+  if (user->hp * 2 > user->hpMax)
+    return;
+  Sound_PlaySongFar(SE_WHOOSH);
+  for (tick = 0; tick < PERFECTI_AFTERIMAGE_FRAMES; tick++) {
+    if (tick % 3 == 0 && tick < PERFECTI_AFTERIMAGE_FRAMES - 6) {
+      pair = tick / 3;
+      // 3, 3, 6, 6, 9, 9 texels (twice that on screen), alternating sides.
+      offset = 3 + pair / 2 * 3;
+      if (pair & 1)
+        offset = -offset;
+      Perfecti_Draw(stage, PERFECTI_GHOST_FIRST, stage->userX + offset,
+                    stage->userY - PERFECTI_FRAME_HEIGHT / 2);
+      Perfecti_Draw(stage, PERFECTI_GHOST_FIRST + 1, stage->userX + offset,
+                    stage->userY + PERFECTI_FRAME_HEIGHT / 2);
+    }
+    Perfecti_EndFrame(stage);
+  }
+}
+
 /// Gathers light at the user for `ticks` frames (the charge frames of EX
 /// Sternbrecher, four frames each, held on the brightest).
 static void Perfecti_Charge(struct PerfectiStage *stage, s32 ticks) {
@@ -274,6 +305,7 @@ static void Perfecti_RunVolley(struct BattleAnimArgs *args,
   s32 tick, copy, local, x, y, spread, last, end, burst;
 
   Perfecti_Start(args, &stage, v->dim);
+  Perfecti_Afterimages(&stage);
   Perfecti_Charge(&stage, v->charge);
   last = (v->copies - 1) * v->stagger + v->travel;
   end = last + v->pulses * 5 + PERFECTI_BURST_FRAMES;
@@ -335,6 +367,7 @@ static void Perfecti_RunAtTarget(struct BattleAnimArgs *args, s32 first,
   s32 tick, frame;
 
   Perfecti_Start(args, &stage, dim);
+  Perfecti_Afterimages(&stage);
   Sound_PlaySongFar(sound);
   for (tick = 0; tick < ticks; tick++) {
     frame = tick / rate;
@@ -370,6 +403,7 @@ static void Perfecti_RunBeam(struct BattleAnimArgs *args, s32 first,
   s32 tick, frame, beamTick, total, tile;
 
   Perfecti_Start(args, &stage, dim);
+  Perfecti_Afterimages(&stage);
   if (charge != 0)
     Sound_PlaySongFar(SE_POWER_UP);
   total = charge * 4 + grow * 2 + sustain + shrink * 2;
@@ -508,6 +542,7 @@ void BattleAnim_RunPStorm(struct BattleAnimArgs *args) {
   u32 seed = 0x2545f491;
 
   Perfecti_Start(args, &stage, 1);
+  Perfecti_Afterimages(&stage);
   for (tick = 0; tick < 48; tick++) {
     for (bolt = 0; bolt < 3; bolt++) {
       seed = seed * 1103515245 + 12345;
