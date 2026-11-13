@@ -8,6 +8,10 @@
 
 #include "battle_internal.h"
 
+/// The backdrop's own colours, as built from mystery_citadel.png: the first
+/// entries of its resource (battle_bg.s), before any rage.
+extern const u16 Battle_MysteryBackdrop[];
+
 /// Each beacon's core, then its three halo rings, outermost last.
 #define MYSTERY_BEACON_FIRST 112
 #define MYSTERY_BEACON_ENTRIES 4
@@ -81,12 +85,14 @@ void Mystery_StepBackdropGlow(void) {
   struct BattleBackgroundWork *view =
       HEAP_SLOT_BLOCK(HEAP_SLOT_BATTLE_BACKGROUND);
   u32 frame = gVBlankCount;
-  s32 scale, pulse, level, k, rage;
-  u16 *source;
+  s32 scale, pulse, level, k, rage, zoomed;
+  const u16 *source;
+  u16 colour;
   s32 red, green, blue, high, low;
 
-  if (battle == NULL || view == NULL || view->mode != BATTLE_BACKGROUND_ZOOMED)
+  if (battle == NULL || view == NULL)
     return;
+  zoomed = view->mode == BATTLE_BACKGROUND_ZOOMED;
   scale = battle->brightness;
   if (scale > Q16_ONE)
     scale = Q16_ONE;
@@ -94,15 +100,20 @@ void Mystery_StepBackdropGlow(void) {
   // Her rage: violet turns to crimson. Red rises to the larger of red and
   // blue (and a little past it), blue falls to a third of the smaller and
   // green to a third, so violet becomes deep red, the deck's red seams stay
-  // red and its greys turn a dark, warm red. Written from the backdrop's own colours every frame,
-  // scaled by the battle's brightness as the battle's own fade does.
+  // red and its greys turn a dark, warm red. Worked out every frame from the
+  // backdrop's own colours in ROM and kept in battle->palette, the colours
+  // the battle repaints the background from, so the battlefield's darkening
+  // under an attack and its return keep the crimson; written to the screen,
+  // scaled by the battle's brightness, only while the background is zoomed,
+  // as battle animations take the palette over otherwise.
   rage = Mystery_Rage(battle);
-  if (rage != 0) {
-    source = battle->palette;
-    for (k = 0; k < MYSTERY_ART_ENTRIES; k++) {
-      red = source[k] & 31;
-      green = (source[k] >> 5) & 31;
-      blue = (source[k] >> 10) & 31;
+  source = Battle_MysteryBackdrop;
+  for (k = 0; k < MYSTERY_ART_ENTRIES; k++) {
+    colour = source[k];
+    if (rage != 0) {
+      red = colour & 31;
+      green = (colour >> 5) & 31;
+      blue = (colour >> 10) & 31;
       high = red > blue ? red : blue;
       low = red < blue ? red : blue;
       high += high / 4;
@@ -111,12 +122,17 @@ void Mystery_StepBackdropGlow(void) {
       red += (high - red) * rage >> 8;
       blue -= (blue - low / 3) * rage >> 8;
       green -= green * 2 / 3 * rage >> 8;
-      red = red * scale >> 16;
-      green = green * scale >> 16;
-      blue = blue * scale >> 16;
-      BATTLE_BG_PALETTE[k] = (blue << 10) | (green << 5) | red;
+      colour = (blue << 10) | (green << 5) | red;
     }
+    battle->palette[k] = colour;
+    if (zoomed && rage != 0)
+      BATTLE_BG_PALETTE[k] =
+          ((((colour >> 10) & 31) * scale >> 16) << 10) |
+          ((((colour >> 5) & 31) * scale >> 16) << 5) |
+          ((colour & 31) * scale >> 16);
   }
+  if (!zoomed)
+    return;
 
   // The core glows from a dim ember to bright crimson; each halo ring takes
   // half the light of the one inside it, over the void's violet. Enraged,
