@@ -233,27 +233,36 @@ static void Perfecti_Finish(struct PerfectiStage *stage) {
   ANIM_FINISH_CANVAS_ONE_BLITTER();
 }
 
-/// Frames her afterimages take: a pair every three frames, then their fade.
-#define PERFECTI_AFTERIMAGE_FRAMES 24
+/// Her afterimages: one every PERFECTI_AFTERIMAGE_GAP frames, four in all,
+/// then a short hold while they fade.
+#define PERFECTI_AFTERIMAGE_GAP 6
+#define PERFECTI_AFTERIMAGE_COUNT 4
+#define PERFECTI_AFTERIMAGE_FRAMES                                             \
+  (PERFECTI_AFTERIMAGE_GAP * PERFECTI_AFTERIMAGE_COUNT + 12)
+/// Levels her afterimages lose a frame: an outline at 58 fades over about
+/// half a second, slower and softer than the canvas's usual quarter a frame.
+#define PERFECTI_AFTERIMAGE_FADE 2
 
 /// In her rage (at or below half HP), violet afterimages of her split off
-/// left and right before an attack, each pair farther out than the last and
-/// each fading as the canvas does (a quarter a frame). Her outline is two
-/// frames, a top and a bottom quarter of her size on screen, drawn around the
-/// middle of her sprite.
+/// left and right before an attack, each farther out than the last, and
+/// fade slowly. Her outline is two frames, a top and a bottom quarter of her
+/// size on screen, drawn around the middle of her sprite.
 static void Perfecti_Afterimages(struct PerfectiStage *stage) {
   struct Unit *user = Unit_GetFar(stage->args->user);
-  s32 tick, pair, offset;
+  s32 tick, image, offset;
 
   if (user->hp * 2 > user->hpMax)
     return;
   Sound_PlaySongFar(SE_WHOOSH);
+  ANIM_SET_TRANSFER(stage->work, CANVAS_COPY_AND_DARKEN,
+                    CANVAS_FILL_WORD(PERFECTI_AFTERIMAGE_FADE));
   for (tick = 0; tick < PERFECTI_AFTERIMAGE_FRAMES; tick++) {
-    if (tick % 3 == 0 && tick < PERFECTI_AFTERIMAGE_FRAMES - 6) {
-      pair = tick / 3;
-      // 3, 3, 6, 6, 9, 9 texels (twice that on screen), alternating sides.
-      offset = 3 + pair / 2 * 3;
-      if (pair & 1)
+    if (tick % PERFECTI_AFTERIMAGE_GAP == 0 &&
+        tick < PERFECTI_AFTERIMAGE_GAP * PERFECTI_AFTERIMAGE_COUNT) {
+      image = tick / PERFECTI_AFTERIMAGE_GAP;
+      // 4, 4, 8, 8 texels (twice that on screen), right then left.
+      offset = 4 + image / 2 * 4;
+      if (image & 1)
         offset = -offset;
       Perfecti_Draw(stage, PERFECTI_GHOST_FIRST, stage->userX + offset,
                     stage->userY - PERFECTI_FRAME_HEIGHT / 2);
@@ -262,6 +271,8 @@ static void Perfecti_Afterimages(struct PerfectiStage *stage) {
     }
     Perfecti_EndFrame(stage);
   }
+  ANIM_SET_TRANSFER(stage->work, CANVAS_COPY_AND_FADE,
+                    CANVAS_FADE_THREE_QUARTERS);
 }
 
 /// Gathers light at the user for `ticks` frames (the charge frames of EX
