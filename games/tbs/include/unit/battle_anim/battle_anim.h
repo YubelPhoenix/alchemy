@@ -666,10 +666,8 @@ void BattleAnim_RunFlashingStrike(struct BattleAnimArgs *args, s32 mode);
 // undead_sword.c
 void BattleAnim_RunUndeadSword(struct BattleAnimArgs *args);
 
-// gotterkanone_native.c
-void BattleAnim_RunGotterkanone(struct BattleAnimArgs *args);
-
 // perfecti.c
+void BattleAnim_RunGotterkanone(struct BattleAnimArgs *args);
 void BattleAnim_RunExGotterkanone(struct BattleAnimArgs *args);
 void BattleAnim_RunRansnetz(struct BattleAnimArgs *args);
 void BattleAnim_RunPerfectiExplosion(struct BattleAnimArgs *args);

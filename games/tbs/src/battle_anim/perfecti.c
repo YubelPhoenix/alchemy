@@ -1,26 +1,30 @@
 /// @file
-/// The Mystery Leader's own attacks (Ashfall): seven canvas animations drawn
-/// from the RLE frames of parts/perfecti_frames.rle, in Gotterkanone's violet
-/// ramp. This object sits at the start of the ROM tail rather than in the
+/// The Mystery Leader's own attacks (Ashfall): eight canvas animations,
+/// Gotterkanone's among them, drawn from the RLE frames of
+/// parts/perfecti_frames.rle in a violet ramp. Each frame is 32x32 canvas
+/// texels, 64x32 on screen, about a battler's size, centred on the middle of
+/// the battler's sprite. This object sits at the start of the ROM tail rather than in the
 /// battle-animation bank, which the original game left almost full; its calls
 /// into that bank stay within a Thumb branch's 4 MB reach.
 
 #include "battle_anim_internal.h"
-#include "parts/gotterkanone_stream.h"
 #include "parts/perfecti_frames.h"
 
 extern const u8 gPerfectiCompressedFrames[];
 
-#define PERFECTI_FRAME_WIDTH 64
-#define PERFECTI_FRAME_HEIGHT 48
+#define PERFECTI_FRAME_WIDTH 32
+#define PERFECTI_FRAME_HEIGHT 32
+/// The canvas is 128 texels across; a beam is this many frames side by side.
+#define PERFECTI_BEAM_TILES (128 / PERFECTI_FRAME_WIDTH)
 #define PERFECTI_FRAME_BYTES (PERFECTI_FRAME_WIDTH * PERFECTI_FRAME_HEIGHT)
 /// Frames the canvas keeps fading after the last picture, so trails clear.
 #define PERFECTI_FADE_FRAMES 8
 /// Frames a struck battler flashes white.
 #define PERFECTI_FLASH_FRAMES 6
 
-/// What every attack draws with: the canvas, its blitter and where the user
-/// and first target stand, in canvas texels (half the screen's x).
+/// What every attack draws with: the canvas, its blitter and the middle of
+/// the user's and first target's sprites, in canvas texels (half the
+/// screen's x).
 struct PerfectiStage {
   struct BattleAnimArgs *args;
   struct BattleAnimWork *work;
@@ -59,10 +63,10 @@ static void Perfecti_Start(struct BattleAnimArgs *args,
     }
     palette[level] = RGB(red, green, blue);
   }
-  Projection_Unit(args->user, &point);
+  Projection_Sprite(args->user, &point);
   stage->userX = point.x / 2;
   stage->userY = point.y;
-  Projection_Unit(args->targets[0], &point);
+  Projection_Sprite(args->targets[0], &point);
   stage->targetX = point.x / 2;
   stage->targetY = point.y;
   ANIM_LOAD_BLITTER(HEAP_SLOT_RAM_CODE, ANIM_CLIP_BOUNDS, COMPOSITE_LIGHTEN);
@@ -71,19 +75,44 @@ static void Perfecti_Start(struct BattleAnimArgs *args,
                       CANVAS_FADE_THREE_QUARTERS);
 }
 
+/// Unpacks frame `frame` into `out`: a control byte with bit 7 set repeats
+/// the next byte, clear copies that many bytes; its low seven bits are the
+/// count less one. Returns 0 unless the frame unpacks to exactly
+/// PERFECTI_FRAME_BYTES.
+static s32 Perfecti_Unpack(s32 frame, u8 *out) {
+  const u8 *in = gPerfectiCompressedFrames + sPerfectiFrameOffsets[frame];
+  const u8 *end = gPerfectiCompressedFrames + sPerfectiFrameOffsets[frame + 1];
+  u32 written = 0;
+  u32 count;
+  u8 control;
+  u8 value;
+
+  while (in < end) {
+    control = *in++;
+    count = (control & 127) + 1;
+    if (count > PERFECTI_FRAME_BYTES - written)
+      return 0;
+    if (control & 128) {
+      value = *in++;
+      while (count-- != 0)
+        out[written++] = value;
+    } else {
+      while (count-- != 0)
+        out[written++] = *in++;
+    }
+  }
+  return written == PERFECTI_FRAME_BYTES;
+}
+
 /// Draws frame `frame` centred on (x, y). Only one frame is unpacked into
 /// the sheet at a time, so each tick draws copies of a single frame.
 static void Perfecti_Draw(struct PerfectiStage *stage, s32 frame, s32 x,
                           s32 y) {
-  const u8 *source;
-
   if (stage->decoded != frame) {
-    source = gPerfectiCompressedFrames + sPerfectiFrameOffsets[frame];
-    if (gotterkanone_decode_frame(source,
-                                  sPerfectiFrameOffsets[frame + 1] -
-                                      sPerfectiFrameOffsets[frame],
-                                  stage->work->sheet, PERFECTI_FRAME_BYTES) != 0)
+    if (!Perfecti_Unpack(frame, stage->work->sheet)) {
+      stage->decoded = -1;
       return;
+    }
     stage->decoded = frame;
   }
   stage->draw(stage->canvas, stage->work->sheet, x - PERFECTI_FRAME_WIDTH / 2,
@@ -189,7 +218,7 @@ static void Perfecti_RunBeam(struct BattleAnimArgs *args, s32 first,
                              s32 charge, s32 grow, s32 loopCount, s32 sustain,
                              s32 shrink, s32 hit) {
   struct PerfectiStage stage;
-  s32 tick, frame, beamTick, total;
+  s32 tick, frame, beamTick, total, tile;
 
   Perfecti_Start(args, &stage);
   total = charge * 4 + grow * 2 + sustain + shrink * 2;
@@ -206,10 +235,10 @@ static void Perfecti_RunBeam(struct BattleAnimArgs *args, s32 first,
       frame = charge + grow + (beamTick - grow * 2) / 2 % loopCount;
     else
       frame = charge + grow + loopCount + (beamTick - grow * 2 - sustain) / 2;
-    Perfecti_Draw(&stage, first + frame, PERFECTI_FRAME_WIDTH / 2,
-                  stage.targetY);
-    Perfecti_Draw(&stage, first + frame, PERFECTI_FRAME_WIDTH * 3 / 2,
-                  stage.targetY);
+    for (tile = 0; tile < PERFECTI_BEAM_TILES; tile++)
+      Perfecti_Draw(&stage, first + frame,
+                    PERFECTI_FRAME_WIDTH * tile + PERFECTI_FRAME_WIDTH / 2,
+                    stage.targetY);
     if (beamTick == grow * 2 + hit) {
       Perfecti_Strike(&stage);
       ANIM_SHOW_DAMAGE(SE_IMPACT);
@@ -217,6 +246,12 @@ static void Perfecti_RunBeam(struct BattleAnimArgs *args, s32 first,
     ANIM_END_FRAME(stage.work);
   }
   Perfecti_Finish(&stage);
+}
+
+/// Abilities: Gotterkanone. A violet bolt flies from her to the target.
+void BattleAnim_RunGotterkanone(struct BattleAnimArgs *args) {
+  Perfecti_RunVolley(args, PERFECTI_GOTTERKANONE_FIRST,
+                     PERFECTI_GOTTERKANONE_COUNT, 1, 0, 30, 0, 0);
 }
 
 /// Abilities: EX Gotterkanone. A bigger orb flies at the target and bursts
@@ -230,7 +265,7 @@ void BattleAnim_RunExGotterkanone(struct BattleAnimArgs *args) {
 /// apart and close in on the target.
 void BattleAnim_RunRansnetz(struct BattleAnimArgs *args) {
   Perfecti_RunVolley(args, PERFECTI_RANSNETZ_FIRST, PERFECTI_RANSNETZ_COUNT, 3,
-                     6, 24, 12, 0);
+                     6, 24, 8, 0);
 }
 
 /// Abilities: Explosion. A flash and a flattened shock ring burst on the
@@ -270,9 +305,10 @@ void BattleAnim_RunPStorm(struct BattleAnimArgs *args) {
   for (tick = 0; tick < 48; tick++) {
     for (bolt = 0; bolt < 3; bolt++) {
       seed = seed * 1103515245 + 12345;
-      x = stage.targetX + (s32)((seed >> 16) % 96) - 48;
+      x = stage.targetX + (s32)((seed >> 16) % 64) - 32;
       seed = seed * 1103515245 + 12345;
-      y = stage.targetY - 20 + (s32)((seed >> 16) % 16) - 8;
+      // Each bolt's flare lands near the target's feet.
+      y = stage.targetY + 8 + (s32)((seed >> 16) % 8) - 4;
       Perfecti_Draw(&stage, PERFECTI_P_STORM_FIRST + tick / 2 % PERFECTI_P_STORM_COUNT,
                     x, y);
     }

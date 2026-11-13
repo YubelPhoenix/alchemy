@@ -11,13 +11,10 @@ struct AbilityDefinition *Ability_GetDirect(s32 abilityId) {
   u32 entryIndex;
 
   entryIndex = abilityId & PSYNERGY_ABILITY_MASK;
-  // BUG: the bound is one past the table's 519 rows, so id 519 reads the
-  // enemy table's first bytes as an action.
-#ifdef BUGFIX
-  if (entryIndex >= 519U) {
-#else
-  if (entryIndex >= 0x208U) {
-#endif
+  // Ashfall: the table runs to ABILITY_LAST (the Mystery Leader's attacks);
+  // an id past it reads row 0. The original bound, 0x208, was one past its
+  // 519 rows and would turn every added ability into row 0, "Nothing".
+  if (entryIndex > ABILITY_LAST) {
     entryIndex = 0;
   }
   return (struct AbilityDefinition *)&gAbilityDefinitions[entryIndex];

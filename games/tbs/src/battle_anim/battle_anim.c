@@ -109,8 +109,6 @@
 #include "parts/growth.c"
 #include "parts/bolt.c"
 #include "parts/projectiles.c"
-#include "parts/gotterkanone_stream.c"
-#include "parts/gotterkanone_native.c"
 #include "parts/rushing_strike.c"
 #include "parts/djinn_attacks.c"
 #include "parts/hail.c"

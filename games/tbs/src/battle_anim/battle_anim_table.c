@@ -666,7 +666,7 @@ BattleAnimHandler gBattleAnim_Handlers[BATTLE_ANIM_COUNT - 1] = {
     [BATTLE_ANIM_DEADLY_GAS - 1] =
         BattleAnim_RunDeadlyGas, // burst_shower.c: Deadly Gas
     [BATTLE_ANIM_GOTTERKANONE - 1] =
-        BattleAnim_RunGotterkanone, // gotterkanone_native.c: Gotterkanone
+        BattleAnim_RunGotterkanone, // perfecti.c: Gotterkanone
     [BATTLE_ANIM_EX_GOTTERKANONE - 1] =
         BattleAnim_RunExGotterkanone, // perfecti.c: EX Gotterkanone
     [BATTLE_ANIM_RANSNETZ - 1] = BattleAnim_RunRansnetz, // perfecti.c: Ransnetz
