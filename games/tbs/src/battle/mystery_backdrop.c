@@ -125,10 +125,12 @@ void Mystery_StepBackdropGlow(void) {
   // SPRITE_COLOR_BLUE_TINT) twice a beat, a lub and a dub, then rests, and
   // takes her own colours back between (BattleAnim_TintBattler with palette
   // 0). Only the changes are written, so her sprite is redrawn four times a
-  // beat.
+  // beat. No flare starts while an attack plays (the background is not
+  // zoomed then), so the heartbeat never doubles her afterimage flares
+  // (battle_anim/perfecti.c); one already under way still ends on time.
   if (rage != 0 && mysteryId >= 0) {
     beat = frame % MYSTERY_HEARTBEAT_PERIOD;
-    if (beat == 0 || beat == MYSTERY_DUB_FRAMES)
+    if (zoomed && (beat == 0 || beat == MYSTERY_DUB_FRAMES))
       BattleAnim_TintBattler(mysteryId, SPRITE_COLOR_BLUE_TINT, -1, -1, 0);
     else if (beat == MYSTERY_FLARE_FRAMES ||
              beat == MYSTERY_DUB_FRAMES + MYSTERY_FLARE_FRAMES)
