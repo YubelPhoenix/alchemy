@@ -1780,18 +1780,15 @@ static void Vale_TalkToMysteryLeader(void) {
   Vale_MysterySays();
   Vale_IsaacAnswers();
   Vale_MysterySays();
-  // Show the bind taking hold before the companions lose their turns: a
-  // thunderclap, the whole screen white and a jolt, then as the white fades
-  // Garet, Ivan and Mia are left pulsing in her bind. The field palette
-  // pulse is cosmetic; the solo roster drives the actual duel.
+  // Her bind: a thunderclap, the whole screen white and a jolt, then the
+  // white fades and the shake settles. Garet, Ivan and Mia are not on the
+  // map (only the leader walks the field); their lines say what she did, and
+  // the solo roster drives the actual duel.
   Sound_PlaySong(SE_THUNDER_LOUD);
   PaletteFade_SetTarget(RGB(31, 31, 31), PALETTES_ALL);
   PaletteFade_StartInterpolation(1);
   MapGrid_SetShake(PIXELS(4), PIXELS(4), Q16_ONE);
   WaitFrames(6);
-  Actor_SetSpriteColorById(ACTOR_GARET, SPRITE_COLOR_RBG);
-  Actor_SetSpriteColorById(ACTOR_IVAN, SPRITE_COLOR_RBG);
-  Actor_SetSpriteColorById(ACTOR_MIA, SPRITE_COLOR_RBG);
   PaletteFade_SetTarget(PALETTE_TINT_NONE, PALETTES_ALL);
   PaletteFade_StartInterpolation(16);
   MapGrid_SetShake(-1, -1, 9 * Q16_ONE / 10);
@@ -1803,11 +1800,6 @@ static void Vale_TalkToMysteryLeader(void) {
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Vale_MysterySays();
-  // Release the palette effect before transitioning; the companions remain
-  // unable to participate until the battle has ended.
-  Actor_SetSpriteColorById(ACTOR_GARET, SPRITE_COLOR_NORMAL);
-  Actor_SetSpriteColorById(ACTOR_IVAN, SPRITE_COLOR_NORMAL);
-  Actor_SetSpriteColorById(ACTOR_MIA, SPRITE_COLOR_NORMAL);
   // The mystery commander challenges Isaac alone. Keep the companions
   // out of the battle, then restore them in the post-battle Vale event.
   Party_RemoveMember(GARET);
