@@ -519,10 +519,13 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
     Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
     Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_ASH);
   }
-  // Back from Sarah's battle.
+  // Back from Sarah's battle. She stands on the terrace above a stair two
+  // cells wide, Isaac on its west half: she steps a cell east and walks down
+  // its east half and on down the street, off the screen. East of her is wall.
   if (SARAH_PENDING_AT(2)) {
-    SARAH_AFTERMATH_VANISH(ACTOR_TOLBI_SARAH, 232, 320, MsgDarkSarahTolbiBeaten,
-                    FLAG_DARK_SARAH_TOLBI_FOUGHT);
+    SARAH_AFTERMATH_BY(ACTOR_TOLBI_SARAH, 232, 320, MsgDarkSarahTolbiBeaten,
+                       FLAG_DARK_SARAH_TOLBI_FOUGHT,
+                       SARAH_WALK_SOUTH(ACTOR_TOLBI_SARAH, 16, 144));
   }
   return 0;
 }

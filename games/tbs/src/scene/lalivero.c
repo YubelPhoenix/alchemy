@@ -978,11 +978,13 @@ s32 Lalivero_Initialize(void) {
       Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA,
                                  SPRITE_COLOR_ASH);
     }
-    // Back from Sarah's battle.
+    // Back from Sarah's battle: she walks east along the open street by the
+    // wharf, off the screen.
     if (SARAH_PENDING_AT(3)) {
-      SARAH_AFTERMATH_VANISH(ACTOR_LALIVERO_SARAH, 176, 264,
-                      MsgDarkSarahLaliveroBeaten,
-                      FLAG_DARK_SARAH_LALIVERO_FOUGHT);
+      SARAH_AFTERMATH_BY(ACTOR_LALIVERO_SARAH, 176, 264,
+                         MsgDarkSarahLaliveroBeaten,
+                         FLAG_DARK_SARAH_LALIVERO_FOUGHT,
+                         SARAH_WALK_EAST(ACTOR_LALIVERO_SARAH, 144));
     }
   } else {
     // The first visit: the two soldiers lie on the ground, drawn under the

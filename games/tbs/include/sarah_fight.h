@@ -53,27 +53,35 @@
         ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 1);                               \
   } while (0)
 
-/// She turns and walks off east, then is gone (her place is parked off the
-/// map); no warp flicker, she is a human.
-#define SARAH_WALK_AWAY(actorId)                                               \
+/// She turns and walks `dx` pixels east, then is gone (her place is parked
+/// off the map); no warp flicker, she is a human.
+#define SARAH_WALK_EAST(actorId, dx)                                           \
   do {                                                                         \
     Actor_FaceDirection((actorId), FACING_EAST, 10);                           \
-    Actor_WalkByAndWait((actorId), 112, 0);                                    \
+    Actor_WalkByAndWait((actorId), (dx), 0);                                   \
     Actor_ConfigureSpriteColor((actorId), SPRITE_COLOR_HIDDEN);                \
   } while (0)
 
-/// She turns away and is gone where she stands, for a place where a walk east
-/// would meet a wall.
-#define SARAH_VANISH(actorId)                                                  \
+/// Kalay's road east, far enough to leave the screen.
+#define SARAH_WALK_AWAY(actorId) SARAH_WALK_EAST((actorId), 112)
+
+/// She steps `sideX` pixels east, clear of Isaac standing south of her, then
+/// walks `dz` pixels south and is gone.
+#define SARAH_WALK_SOUTH(actorId, sideX, dz)                                   \
   do {                                                                         \
     Actor_FaceDirection((actorId), FACING_EAST, 10);                           \
+    Actor_WalkByAndWait((actorId), (sideX), 0);                                \
+    Actor_FaceDirection((actorId), FACING_SOUTH, 6);                           \
+    Actor_WalkByAndWait((actorId), 0, (dz));                                   \
     Actor_ConfigureSpriteColor((actorId), SPRITE_COLOR_HIDDEN);                \
   } while (0)
 
 /// Back from her battle, in the scene she was fought in: the party stands
 /// where it faced her; a defeat leaves her waiting, a win has her say her
-/// last words, walk away and set `foughtFlag`.
-#define SARAH_AFTERMATH(actorId, leaderX, leaderY, beatenMessage, foughtFlag)  \
+/// last words, leave by `leave` (one of the walks above) and set
+/// `foughtFlag`.
+#define SARAH_AFTERMATH_BY(actorId, leaderX, leaderY, beatenMessage,           \
+                           foughtFlag, leave)                                  \
   do {                                                                         \
     GameFlag_Clear(FLAG_DARK_SARAH_PENDING);                                   \
     Event_Start();                                                             \
@@ -88,32 +96,7 @@
       Event_End();                                                             \
     } else {                                                                   \
       SARAH_SAYS((actorId), (beatenMessage));                                  \
-      SARAH_WALK_AWAY(actorId);                                                \
-      Actor_SetPosition((actorId), PIXELS(0), PIXELS(0));                      \
-      GameFlag_Set(foughtFlag);                                                \
-      FieldCamera_MoveTo(-1, -1, -1, 0);                                       \
-      Event_End();                                                             \
-    }                                                                          \
-  } while (0)
-
-/// As SARAH_AFTERMATH, for a scene with no clear road east: she turns away and
-/// is gone where she stands.
-#define SARAH_AFTERMATH_VANISH(actorId, leaderX, leaderY, beatenMessage, foughtFlag)  \
-  do {                                                                         \
-    GameFlag_Clear(FLAG_DARK_SARAH_PENDING);                                   \
-    Event_Start();                                                             \
-    Actor_SetPosition(ACTOR_PARTY_LEADER, PIXELS(leaderX), PIXELS(leaderY));   \
-    Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);                  \
-    MapGrid_CenterOnFollowedPoint();                                           \
-    WaitFrames(1);                                                             \
-    Event_StartScreenTransition();                                             \
-    Event_WaitTransitionFrames();                                              \
-    if (gSaveBlock.sequenceResult == -1) {                                     \
-      FieldCamera_MoveTo(-1, -1, -1, 0);                                       \
-      Event_End();                                                             \
-    } else {                                                                   \
-      SARAH_SAYS((actorId), (beatenMessage));                                  \
-      SARAH_VANISH(actorId);                                                \
+      leave;                                                                   \
       Actor_SetPosition((actorId), PIXELS(0), PIXELS(0));                      \
       GameFlag_Set(foughtFlag);                                                \
       FieldCamera_MoveTo(-1, -1, -1, 0);                                       \

@@ -1007,10 +1007,12 @@ s32 Scene_Initialize(void) {
       }
     }
   }
-  // Back from Sarah's battle.
+  // Back from Sarah's battle. Isaac stands just south of her, so she steps
+  // a cell east and walks south across the open square, off the screen.
   if (SARAH_PENDING_AT(0)) {
-    SARAH_AFTERMATH_VANISH(ACTOR_VAULT_SARAH, 392, 400, MsgDarkSarahVaultBeaten,
-                    FLAG_DARK_SARAH_VAULT_FOUGHT);
+    SARAH_AFTERMATH_BY(ACTOR_VAULT_SARAH, 392, 400, MsgDarkSarahVaultBeaten,
+                       FLAG_DARK_SARAH_VAULT_FOUGHT,
+                       SARAH_WALK_SOUTH(ACTOR_VAULT_SARAH, 16, 144));
   }
   return 0;
 }
