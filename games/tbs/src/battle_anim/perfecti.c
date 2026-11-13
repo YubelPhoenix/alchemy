@@ -245,16 +245,39 @@ static void Perfecti_Finish(struct PerfectiStage *stage) {
 /// Frames she flares violet as each afterimage leaves her.
 #define PERFECTI_AFTERIMAGE_FLARE 2
 
+/// Her afterimage poses: one per frame of her sprite, two canvas frames each.
+#define PERFECTI_GHOST_POSES (PERFECTI_GHOST_COUNT / 2)
+
+/// The frame of her sprite she is showing now (its first layer's frameBase),
+/// so an afterimage can take the same pose; 0 if she has no picture or
+/// shows none.
+static s32 Perfecti_Pose(s32 unitId) {
+  struct BattleObject *object = GetBattleObjectSlotFar(unitId);
+  struct Sprite *record;
+  struct SpriteAnim *part;
+
+  if (object == NULL || object->actor == NULL)
+    return 0;
+  record = GetMotionRecordFar(object->actor, 0);
+  if (record == NULL)
+    return 0;
+  part = record->entries[0];
+  if (part == NULL || part->frameBase >= PERFECTI_GHOST_POSES)
+    return 0;
+  return part->frameBase;
+}
+
 /// In her rage (at or below half HP), violet afterimages of her split off
 /// left and right before an attack, each pair farther out than the last, and
-/// she flares violet as each leaves her. Her outline is two frames, a top
-/// and a bottom quarter of her size on screen, drawn around the middle of her
+/// she flares violet as each leaves her. Each is her silhouette in the pose
+/// she shows at that moment, two frames, a top and a bottom quarter of her
+/// size on screen, drawn around the middle of her
 /// sprite. The tint timers restore only targets, so her flare is switched
 /// off here.
 static void Perfecti_Afterimages(struct PerfectiStage *stage) {
   s32 userId = stage->args->user;
   struct Unit *user = Unit_GetFar(userId);
-  s32 tick, image, offset;
+  s32 tick, image, offset, pose;
 
   if (user->hp * 2 > user->hpMax)
     return;
@@ -269,9 +292,12 @@ static void Perfecti_Afterimages(struct PerfectiStage *stage) {
         offset = 3 + image / 2 * 3;
         if (image & 1)
           offset = -offset;
-        Perfecti_Draw(stage, PERFECTI_GHOST_FIRST, stage->userX + offset,
+        pose = Perfecti_Pose(userId);
+        Perfecti_Draw(stage, PERFECTI_GHOST_FIRST + pose * 2,
+                      stage->userX + offset,
                       stage->userY - PERFECTI_FRAME_HEIGHT / 2);
-        Perfecti_Draw(stage, PERFECTI_GHOST_FIRST + 1, stage->userX + offset,
+        Perfecti_Draw(stage, PERFECTI_GHOST_FIRST + pose * 2 + 1,
+                      stage->userX + offset,
                       stage->userY + PERFECTI_FRAME_HEIGHT / 2);
         BattleAnim_TintBattler(userId, SPRITE_COLOR_BLUE_TINT, -1, -1, 0);
       } else if (tick % PERFECTI_AFTERIMAGE_GAP == PERFECTI_AFTERIMAGE_FLARE)
