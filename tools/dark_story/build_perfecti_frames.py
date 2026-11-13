@@ -219,6 +219,33 @@ def p_storm(rng):
     return frames
 
 
+def burst(rng):
+    """The big impact on her heavy hits: a white-hot flash with twelve rays and
+    a shock ring, 64x64 texels (128x64 on screen) over eight steps. Each step
+    is stored as four 32x32 quarters, top left, top right, bottom left,
+    bottom right, which perfecti.c draws around the impact point."""
+    bx, by = np.mgrid[0:64 * SS, 0:128 * SS][1] / SS + 0.5 / SS, np.mgrid[0:64 * SS, 0:128 * SS][0] / SS + 0.5 / SS
+    cx, cy = 64.0, 32.0
+    dx, dy = (bx - cx) / 2.0, by - cy        # rounder on screen
+    r = np.hypot(dx, dy)
+    ang = np.arctan2(dy, dx)
+    frames = []
+    for step in range(8):
+        t = step / 7
+        core = np.clip(1 - r / (12 + 12 * t ** 0.6), 0, 1) ** 0.7 * max(0.0, 1.3 - 1.3 * t)
+        rays = (np.cos(ang * 12) * 0.5 + 0.5) ** 8 * np.clip(1 - r / (20 + 34 * t), 0, 1) \
+            * max(0.0, 1.0 - t)
+        ring = np.exp(-((r - (6 + 26 * t)) / (2.2 + 1.5 * t)) ** 2) * max(0.0, 1.0 - t * 0.95)
+        img = np.clip(core + 0.9 * rays + 0.8 * ring, 0, 1)
+        img = img.reshape(64, SS, 128, SS).mean(axis=(1, 3)).reshape(64, 64, 2).mean(axis=2)
+        out = np.round(img * 63)
+        out[out < 7] = 0
+        for qy in (0, 32):
+            for qx in (0, 32):
+                frames.append(out[qy:qy + 32, qx:qx + 32].copy())
+    return frames
+
+
 MOVES = [
     ("GOTTERKANONE", gotterkanone),
     ("EX_GOTTERKANONE", ex_gotterkanone),
@@ -228,6 +255,7 @@ MOVES = [
     ("GLEPNIR", glepnir),
     ("STERNBRECHER", ex_sternbrecher),
     ("P_STORM", p_storm),
+    ("BURST", burst),
 ]
 
 
@@ -279,7 +307,7 @@ def main():
     all_frames = []
     for name, draw in MOVES:
         drawn = draw(np.random.default_rng(7))
-        if name == "GOTTERKANONE":     # already canvas texels 0-63
+        if name in ("GOTTERKANONE", "BURST"):     # already canvas texels 0-63
             frames = [np.clip(np.round(f), 0, 63).astype(np.uint8) for f in drawn]
         else:
             frames = [finish(f) for f in drawn]

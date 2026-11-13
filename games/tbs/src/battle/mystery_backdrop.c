@@ -38,8 +38,8 @@ static u16 Mystery_MixColor(s32 r0, s32 g0, s32 b0, s32 r1, s32 g1, s32 b1,
 }
 
 /// How far toward crimson her rage turns the void and deck, 0 to 256: none
-/// while she has more than half her HP, then half way, rising to full as
-/// her HP runs out.
+/// while she has more than half her HP, then 70 percent at once, so the
+/// change is plain the moment she speaks, rising to full as her HP runs out.
 static s32 Mystery_Rage(struct BattleWork *battle) {
   s32 index;
   s32 unitId;
@@ -56,7 +56,7 @@ static s32 Mystery_Rage(struct BattleWork *battle) {
     half = unit->hpMax / 2;
     if (half <= 0 || unit->hp > half)
       return 0;
-    return 128 + 128 * (half - unit->hp) / half;
+    return 180 + 76 * (half - unit->hp) / half;
   }
   return 0;
 }
@@ -91,9 +91,10 @@ void Mystery_StepBackdropGlow(void) {
   if (scale > Q16_ONE)
     scale = Q16_ONE;
 
-  // Her rage: violet bleeds to crimson (red takes the larger of red and
-  // blue, blue and green fall), so the deck's red seams stay red and its
-  // greys only warm. Written from the backdrop's own colours every frame,
+  // Her rage: violet turns to crimson. Red rises to the larger of red and
+  // blue (and a little past it), blue falls to a third of the smaller and
+  // green to a third, so violet becomes deep red, the deck's red seams stay
+  // red and its greys turn a dark, warm red. Written from the backdrop's own colours every frame,
   // scaled by the battle's brightness as the battle's own fade does.
   rage = Mystery_Rage(battle);
   if (rage != 0) {
@@ -104,9 +105,12 @@ void Mystery_StepBackdropGlow(void) {
       blue = (source[k] >> 10) & 31;
       high = red > blue ? red : blue;
       low = red < blue ? red : blue;
+      high += high / 4;
+      if (high > 31)
+        high = 31;
       red += (high - red) * rage >> 8;
-      blue -= (blue - low) * rage * 3 >> 10;
-      green -= green * rage * 2 >> 10;
+      blue -= (blue - low / 3) * rage >> 8;
+      green -= green * 2 / 3 * rage >> 8;
       red = red * scale >> 16;
       green = green * scale >> 16;
       blue = blue * scale >> 16;
@@ -123,8 +127,10 @@ void Mystery_StepBackdropGlow(void) {
       Mystery_MixColor(14, 2, 2, 31, 10, 8, pulse, scale);
   for (k = 1; k < MYSTERY_BEACON_ENTRIES; k++) {
     level = (64 + pulse * 3 / 4) >> (k - 1);
+    // The rings start from the sky's own colour: violet, or crimson in rage.
     BATTLE_BG_PALETTE[MYSTERY_BEACON_FIRST + k] =
-        Mystery_MixColor(5, 3, 8, 31, 6, 5, level * 3 / 4, scale);
+        rage != 0 ? Mystery_MixColor(9, 1, 2, 31, 8, 6, level * 3 / 4, scale)
+                  : Mystery_MixColor(5, 3, 8, 31, 6, 5, level * 3 / 4, scale);
   }
 
   // Each group runs at its own speed and phase. A star is dim violet most of

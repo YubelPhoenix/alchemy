@@ -37,7 +37,12 @@ struct PerfectiStage {
   s32 userX, userY;
   s32 targetX, targetY;
   s32 decoded; ///< the frame now in work->sheet, or -1
+  s32 burstX, burstY; ///< where the big impact burst plays
+  s32 burstTick;      ///< frames into the burst, or -1 for none
 };
+
+/// The big impact burst: eight steps, two frames each, of four quarters.
+#define PERFECTI_BURST_STEPS 8
 
 /// Opens the canvas, writes the 64-step violet-to-white ramp and builds an
 /// additive blitter, so overlapping light and fading trails build to white.
@@ -54,6 +59,7 @@ static void Perfecti_Start(struct BattleAnimArgs *args,
   stage->args = args;
   stage->work->args = args;
   stage->decoded = -1;
+  stage->burstTick = -1;
   BattleAnim_StartCanvasLayer(BGCNT_PRIORITY(1));
   palette = (u16 *)BG_PLTT;
   for (level = 0; level < 64; level++) {
@@ -131,17 +137,50 @@ static void Perfecti_Draw(struct PerfectiStage *stage, s32 frame, s32 x,
 
 /// How hard a blow lands: knockback is an enum BattleKnockback variant, or
 /// -1 for none; shake is camera-shake frames; flash, 0 or the brightness the
-/// whole canvas jumps to for a frame before the fade takes it down.
+/// whole canvas jumps to after the blow, which the fade then takes down;
+/// stop, the frames everything freezes as it lands (hit-stop); burst, 1 to
+/// play the big impact burst on the target.
 struct PerfectiImpact {
   s32 knockback;
   s32 shake;
   s32 flash;
+  s32 stop;
+  s32 burst;
 };
 
-/// Lands a blow on every target: white flash and damage pose, knockback,
-/// camera shake and, if asked, a screen flash.
-static void Perfecti_Hit(struct PerfectiStage *stage, s32 knockback, s32 shake,
-                         s32 flash) {
+/// Draws the big burst's current step, if one is playing: four 32x32
+/// quarters around its centre.
+static void Perfecti_DrawBurst(struct PerfectiStage *stage) {
+  s32 step, quarter, first;
+
+  if (stage->burstTick < 0)
+    return;
+  step = stage->burstTick / 2;
+  if (step >= PERFECTI_BURST_STEPS) {
+    stage->burstTick = -1;
+    return;
+  }
+  first = PERFECTI_BURST_FIRST + step * 4;
+  for (quarter = 0; quarter < 4; quarter++)
+    Perfecti_Draw(stage, first + quarter,
+                  stage->burstX + ((quarter & 1) ? PERFECTI_FRAME_WIDTH / 2
+                                                 : -PERFECTI_FRAME_WIDTH / 2),
+                  stage->burstY + ((quarter & 2) ? PERFECTI_FRAME_HEIGHT / 2
+                                                 : -PERFECTI_FRAME_HEIGHT / 2));
+}
+
+/// Ends a frame: draws a playing burst and moves it on, then presents.
+static void Perfecti_EndFrame(struct PerfectiStage *stage) {
+  Perfecti_DrawBurst(stage);
+  if (stage->burstTick >= 0)
+    stage->burstTick++;
+  ANIM_END_FRAME(stage->work);
+}
+
+/// Lands a blow on every target: white flash and damage pose, knockback and
+/// camera shake.
+static void Perfecti_Hit(struct PerfectiStage *stage, s32 knockback,
+                         s32 shake) {
   s32 i;
 
   for (i = 0; i < stage->args->targetCount; i++) {
@@ -152,16 +191,45 @@ static void Perfecti_Hit(struct PerfectiStage *stage, s32 knockback, s32 shake,
   }
   if (shake > stage->work->shakeFrames)
     stage->work->shakeFrames = shake;
-  if (flash != 0)
-    Iwram_FillWords(stage->canvas, CANVAS_BYTES, CANVAS_FILL_WORD(flash));
 }
 
-/// Lets the trails fade, then closes the canvas.
+/// Lands a blow as `impact` says. With a burst, its brightest step is drawn
+/// over what this frame already holds; with hit-stop, the canvas then stops
+/// fading and the frame is shown `stop` times, so everything freezes on the
+/// impact; then the flash, and the burst plays on from its next step.
+static void Perfecti_Land(struct PerfectiStage *stage,
+                          struct PerfectiImpact *impact) {
+  s32 frame;
+
+  Perfecti_Hit(stage, impact->knockback, impact->shake);
+  if (impact->burst) {
+    stage->burstX = stage->targetX;
+    stage->burstY = stage->targetY;
+    stage->burstTick = 0;
+    Perfecti_DrawBurst(stage);
+  }
+  if (impact->stop > 0) {
+    ANIM_SET_TRANSFER(stage->work, CANVAS_COPY, 0);
+    for (frame = 0; frame < impact->stop; frame++)
+      ANIM_END_FRAME(stage->work);
+    ANIM_SET_TRANSFER(stage->work, CANVAS_COPY_AND_FADE,
+                      CANVAS_FADE_THREE_QUARTERS);
+  }
+  if (impact->flash != 0)
+    Iwram_FillWords(stage->canvas, CANVAS_BYTES,
+                    CANVAS_FILL_WORD(impact->flash));
+  if (impact->burst)
+    stage->burstTick = 2;
+}
+
+/// Lets the trails and any burst fade, then closes the canvas.
 static void Perfecti_Finish(struct PerfectiStage *stage) {
   s32 tick;
 
-  for (tick = 0; tick < PERFECTI_FADE_FRAMES; tick++)
-    ANIM_END_FRAME(stage->work);
+  for (tick = 0; tick < PERFECTI_FADE_FRAMES ||
+                 (stage->burstTick >= 0 && tick < 2 * PERFECTI_BURST_STEPS);
+       tick++)
+    Perfecti_EndFrame(stage);
   ANIM_FINISH_CANVAS_ONE_BLITTER();
 }
 
@@ -176,7 +244,7 @@ static void Perfecti_Charge(struct PerfectiStage *stage, s32 ticks) {
       frame = 0;
     Perfecti_Draw(stage, PERFECTI_STERNBRECHER_FIRST + frame, stage->userX,
                   stage->userY);
-    ANIM_END_FRAME(stage->work);
+    Perfecti_EndFrame(stage);
   }
 }
 
@@ -225,12 +293,10 @@ static void Perfecti_RunVolley(struct BattleAnimArgs *args,
       }
       if (local == v->travel) {
         if (copy == v->copies - 1 && v->pulses == 0) {
-          Perfecti_Hit(&stage, v->final.knockback, v->final.shake,
-                       v->final.flash);
           ANIM_SHOW_DAMAGE(v->heavy);
+          Perfecti_Land(&stage, &v->final);
         } else
-          Perfecti_Hit(&stage, v->each.knockback, v->each.shake,
-                       v->each.flash);
+          Perfecti_Land(&stage, &v->each);
       }
       // The landing burst.
       burst = local - v->travel;
@@ -246,15 +312,13 @@ static void Perfecti_RunVolley(struct BattleAnimArgs *args,
                     stage.targetY);
       if ((tick - last) % 5 == 0) {
         if (tick == last + v->pulses * 5) {
-          Perfecti_Hit(&stage, v->final.knockback, v->final.shake,
-                       v->final.flash);
           ANIM_SHOW_DAMAGE(v->heavy);
+          Perfecti_Land(&stage, &v->final);
         } else
-          Perfecti_Hit(&stage, v->each.knockback, v->each.shake,
-                       v->each.flash);
+          Perfecti_Land(&stage, &v->each);
       }
     }
-    ANIM_END_FRAME(stage.work);
+    Perfecti_EndFrame(&stage);
   }
   Perfecti_Finish(&stage);
 }
@@ -283,11 +347,11 @@ static void Perfecti_RunAtTarget(struct BattleAnimArgs *args, s32 first,
     Perfecti_Draw(&stage, first + frame, stage.targetX, stage.targetY);
     Perfecti_Draw(&stage, first + frame, stage.targetX, stage.targetY - 1);
     if (tick == hit) {
-      Perfecti_Hit(&stage, impact->knockback, impact->shake, impact->flash);
       ANIM_SHOW_DAMAGE(SE_HEAVY_IMPACT);
+      Perfecti_Land(&stage, impact);
     } else if (every != 0 && tick > hit && (tick - hit) % every == 0)
-      Perfecti_Hit(&stage, -1, 3, 0);
-    ANIM_END_FRAME(stage.work);
+      Perfecti_Hit(&stage, -1, 3);
+    Perfecti_EndFrame(&stage);
   }
   Perfecti_Finish(&stage);
 }
@@ -312,7 +376,7 @@ static void Perfecti_RunBeam(struct BattleAnimArgs *args, s32 first,
   for (tick = 0; tick < total; tick++) {
     if (tick < charge * 4) {
       Perfecti_Draw(&stage, first + tick / 4, stage.userX, stage.userY);
-      ANIM_END_FRAME(stage.work);
+      Perfecti_EndFrame(&stage);
       continue;
     }
     beamTick = tick - charge * 4;
@@ -329,19 +393,20 @@ static void Perfecti_RunBeam(struct BattleAnimArgs *args, s32 first,
                     PERFECTI_FRAME_WIDTH * tile + PERFECTI_FRAME_WIDTH / 2,
                     stage.targetY);
     if (beamTick == grow * 2 + hit) {
-      Perfecti_Hit(&stage, impact->knockback, impact->shake, impact->flash);
       ANIM_SHOW_DAMAGE(SE_HEAVY_IMPACT);
+      Perfecti_Land(&stage, impact);
     } else if (beamTick > grow * 2 + hit && beamTick < grow * 2 + sustain &&
                stage.work->shakeFrames < 1)
       stage.work->shakeFrames = 1;
-    ANIM_END_FRAME(stage.work);
+    Perfecti_EndFrame(&stage);
   }
   Perfecti_Finish(&stage);
 }
 
 /// Sets a struct PerfectiImpact.
-#define PERFECTI_IMPACT(impact, k, s, f)                                       \
-  ((impact).knockback = (k), (impact).shake = (s), (impact).flash = (f))
+#define PERFECTI_IMPACT(impact, k, s, f, st, b)                                \
+  ((impact).knockback = (k), (impact).shake = (s), (impact).flash = (f),       \
+   (impact).stop = (st), (impact).burst = (b))
 
 /// Abilities: Gotterkanone. A short charge, then a violet bolt flies at the
 /// target and bursts on it.
@@ -352,8 +417,8 @@ void BattleAnim_RunGotterkanone(struct BattleAnimArgs *args) {
   v.count = PERFECTI_GOTTERKANONE_COUNT;
   v.copies = 1, v.stagger = 0, v.travel = 24, v.bow = 0;
   v.charge = 10, v.launch = SE_WHOOSH, v.pulses = 0;
-  PERFECTI_IMPACT(v.each, -1, 0, 0);
-  PERFECTI_IMPACT(v.final, KNOCKBACK_HOP, 6, 20);
+  PERFECTI_IMPACT(v.each, -1, 0, 0, 0, 0);
+  PERFECTI_IMPACT(v.final, KNOCKBACK_HOP, 6, 24, 4, 1);
   v.heavy = SE_HEAVY_IMPACT;
   v.dim = 0;
   Perfecti_RunVolley(args, &v);
@@ -369,8 +434,8 @@ void BattleAnim_RunExGotterkanone(struct BattleAnimArgs *args) {
   v.count = PERFECTI_EX_GOTTERKANONE_COUNT;
   v.copies = 1, v.stagger = 0, v.travel = 22, v.bow = 0;
   v.charge = 16, v.launch = SE_WHOOSH, v.pulses = 5;
-  PERFECTI_IMPACT(v.each, KNOCKBACK_JOLT, 3, 10);
-  PERFECTI_IMPACT(v.final, KNOCKBACK_LEAP, 10, 40);
+  PERFECTI_IMPACT(v.each, KNOCKBACK_JOLT, 3, 10, 2, 0);
+  PERFECTI_IMPACT(v.final, KNOCKBACK_LEAP, 12, 48, 8, 1);
   v.heavy = SE_HEAVY_IMPACT;
   v.dim = 1;
   Perfecti_RunVolley(args, &v);
@@ -385,8 +450,8 @@ void BattleAnim_RunRansnetz(struct BattleAnimArgs *args) {
   v.count = PERFECTI_RANSNETZ_COUNT;
   v.copies = 3, v.stagger = 6, v.travel = 22, v.bow = 10;
   v.charge = 0, v.launch = SE_WHOOSH, v.pulses = 0;
-  PERFECTI_IMPACT(v.each, KNOCKBACK_JOLT, 3, 0);
-  PERFECTI_IMPACT(v.final, KNOCKBACK_HOP, 5, 16);
+  PERFECTI_IMPACT(v.each, KNOCKBACK_JOLT, 3, 0, 1, 0);
+  PERFECTI_IMPACT(v.final, KNOCKBACK_HOP, 6, 20, 3, 0);
   v.heavy = SE_IMPACT;
   v.dim = 0;
   Perfecti_RunVolley(args, &v);
@@ -397,7 +462,7 @@ void BattleAnim_RunRansnetz(struct BattleAnimArgs *args) {
 void BattleAnim_RunPerfectiExplosion(struct BattleAnimArgs *args) {
   struct PerfectiImpact impact;
 
-  PERFECTI_IMPACT(impact, KNOCKBACK_LAUNCH, 12, 48);
+  PERFECTI_IMPACT(impact, KNOCKBACK_LAUNCH, 14, 56, 8, 1);
   Perfecti_RunAtTarget(args, PERFECTI_EXPLOSION_FIRST, PERFECTI_EXPLOSION_COUNT,
                        36, 3, 0, SE_BOOM, 4, 0, &impact, 1);
 }
@@ -407,7 +472,7 @@ void BattleAnim_RunPerfectiExplosion(struct BattleAnimArgs *args) {
 void BattleAnim_RunPVortex(struct BattleAnimArgs *args) {
   struct PerfectiImpact impact;
 
-  PERFECTI_IMPACT(impact, KNOCKBACK_JOLT, 6, 24);
+  PERFECTI_IMPACT(impact, KNOCKBACK_JOLT, 6, 28, 4, 0);
   Perfecti_RunAtTarget(args, PERFECTI_P_VORTEX_FIRST, PERFECTI_P_VORTEX_COUNT,
                        48, 2, 1, SE_SWIRL, 20, 8, &impact, 0);
 }
@@ -417,7 +482,7 @@ void BattleAnim_RunPVortex(struct BattleAnimArgs *args) {
 void BattleAnim_RunGlepnir(struct BattleAnimArgs *args) {
   struct PerfectiImpact impact;
 
-  PERFECTI_IMPACT(impact, KNOCKBACK_SKID, 8, 32);
+  PERFECTI_IMPACT(impact, KNOCKBACK_SKID, 10, 40, 5, 1);
   Perfecti_RunBeam(args, PERFECTI_GLEPNIR_FIRST, 0, 3, 6, 30, 3, SE_THUNDER,
                    4, &impact, 0);
 }
@@ -427,7 +492,7 @@ void BattleAnim_RunGlepnir(struct BattleAnimArgs *args) {
 void BattleAnim_RunSternbrecher(struct BattleAnimArgs *args) {
   struct PerfectiImpact impact;
 
-  PERFECTI_IMPACT(impact, KNOCKBACK_HURL, 16, 63);
+  PERFECTI_IMPACT(impact, KNOCKBACK_HURL, 20, 63, 10, 1);
   Perfecti_RunBeam(args, PERFECTI_STERNBRECHER_FIRST, 4, 0, 8, 40, 0,
                    SE_THUNDER_LOUD, 2, &impact, 1);
 }
@@ -438,6 +503,7 @@ void BattleAnim_RunSternbrecher(struct BattleAnimArgs *args) {
 /// numbers are left alone.
 void BattleAnim_RunPStorm(struct BattleAnimArgs *args) {
   struct PerfectiStage stage;
+  struct PerfectiImpact impact;
   s32 tick, bolt, x, y;
   u32 seed = 0x2545f491;
 
@@ -456,11 +522,12 @@ void BattleAnim_RunPStorm(struct BattleAnimArgs *args) {
     if (tick % 12 == 0)
       Sound_PlaySongFar(SE_THUNDER);
     if (tick == 36) {
-      Perfecti_Hit(&stage, KNOCKBACK_LAUNCH, 12, 48);
       ANIM_SHOW_DAMAGE(SE_HEAVY_IMPACT);
+      PERFECTI_IMPACT(impact, KNOCKBACK_LAUNCH, 14, 56, 8, 1);
+      Perfecti_Land(&stage, &impact);
     } else if (tick % 6 == 0 && tick != 0)
-      Perfecti_Hit(&stage, KNOCKBACK_JOLT, 4, 0);
-    ANIM_END_FRAME(stage.work);
+      Perfecti_Hit(&stage, KNOCKBACK_JOLT, 4);
+    Perfecti_EndFrame(&stage);
   }
   Perfecti_Finish(&stage);
 }
