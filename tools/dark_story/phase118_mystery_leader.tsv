@@ -4,15 +4,15 @@ N357	MsgDarkMystery02	Does that frighten you?{end_wait}
 N358	MsgDarkMystery03	It makes me careful.\nWhat do you want?{end_wait}
 N359	MsgDarkMystery04	Heart took you for\nsomeone else. You saw\nhow she looked at you.{end_wait}
 N360	MsgDarkMystery05	Matthew. She kept\ncalling me Matthew.{end_wait}
-N361	MsgDarkMystery06	He has been a nuisance\nto my commanders.{page_break}Heart cared about\nher looks more than\nanything else.{page_break}Matthew ruined her face.\nShe can't bear to look\nat her reflection now.{page_break}She saw him in you.\nI knew she would.{end_wait}
+N361	MsgDarkMystery06	He will be a nuisance\nto my commanders.{page_break}Heart cared about her\nbeauty more than anything\nelse.{page_break}Matthew ruined her face.\nShe can't bear to look\nat her own reflection.{page_break}She saw him in you.\nI knew she would.{end_wait}
 N362	MsgDarkMystery07	That wasn't me.{end_wait}
 N363	MsgDarkMystery08	I know. He wears\nyour face. Amusing,\nisn't it.{end_wait}
 N364	MsgDarkMystery09	Where would you have\nmet someone who looks\nlike me?{end_wait}
 N365	MsgDarkMystery10	Not yet, Isaac.\nNot for a long while.\nThat is the point.{end_wait}
-N366	MsgDarkMystery11	I wanted to see the\noriginal. I'm curious,\nthat's all.{page_break}Ash Jenna is cruel,\nbut she fears being\nleft alone.{page_break}Sarah is looking for\na missing family member.\nShe'll follow any lead.{page_break}Kegare copied Mia's\nface. She wants the\nfriends Mia has.{page_break}They all found you,\ndidn't they?{end_wait}
+N366	MsgDarkMystery11	I wanted to see the\noriginal. I'm curious,\nthat's all.{page_break}You've met a few others\nalong the way. I know them\nbetter than you think.{page_break}Ash Jenna lost everything.\nShe's cruel, but she's\nafraid of being left alone.{page_break}Sarah is searching for\na lost family member.\nShe followed one rumor{page_break}after another, hoping\none would finally lead\nher somewhere.{page_break}And Kegare. A demon\nwho used Mia's face\nto deceive people.{page_break}Yet she was lonely, too.\nShe wanted friends\nand companionship.{page_break}They all found you,\ndidn't they?{end_wait}
 N367	MsgDarkMystery12	A word at the right\ntime can change a path.\nThey chose their own.{page_break}I'll hold back in\nour fight. Consider\nit a courtesy.{page_break}I don't want to break\nyou before I know\nwhat you are.{end_wait}
 N368	MsgDarkMystery13	...You're\nunderestimating me.{end_wait}
-N369	MsgDarkMystery14	Perhaps.\nDraw your sword.{page_break}Your friends are bound.\nThey won't interfere.{page_break}They're unharmed.\nThis is between us,\nIsaac.{end_wait}
+N369	MsgDarkMystery14	Perhaps.\nDraw your sword.{end_wait}
 N370	MsgDarkMystery15	Tell me who you are.{end_wait}
 N371	MsgDarkMystery16	You've asked three\ntimes now. That's\nthree more than most.{page_break}Your friends are free.\nI kept my word.{end_wait}
 N372	MsgDarkMystery17	This was only a test,\nIsaac. You passed it.{page_break}Be glad you did not\nneed the rest of me.{end_wait}
@@ -28,5 +28,13 @@ N381	MsgDarkMysteryGaretBound	Isaac! I can't move!\nWhat did you do to us?{end_w
 N382	MsgDarkMysteryIvanBound	My Psynergy won't answer.\nShe's holding it back.{end_wait}
 N383	MsgDarkMysteryMiaBound	She's been waiting for us.\nIsaac, don't believe this\nwas a chance meeting.{end_wait}
 N384	MsgDarkMysteryIsaacDefies	Let them go.\nI'm the one you want.{end_wait}
-N385	MsgDarkMysteryAnswerDefies	I have what I want.\nShow me what you can do.{end_wait}
-N386	MsgDarkMysteryMiaAfter	Thirty years?\nWhat did she mean by that?{end_wait}
+N385	MsgDarkMysteryAnswerDefies	They're unharmed.\nBut they won't interfere.\nThis is between us, Isaac.{page_break}Show me what you can do.{end_wait}
+N386	MsgDarkMysteryMiaAfter	And thirty years?\nWhat did she mean by that?{end_wait}
+N387	MsgDarkMysteryIsaacSuspects	You knew they'd find me.{end_wait}
+N388	MsgDarkMysteryGaretAfter	Isaac! Are you all right?\nWe couldn't do a thing\nwhile you fought her.{end_wait}
+N389	MsgDarkMysteryIsaacChecksParty	I'm fine.\nAre you three okay?{end_wait}
+N390	MsgDarkMysteryIvanAfter	I am. But she blocked\nmy Psynergy completely.\nHow did she do that?{end_wait}
+N391	MsgDarkMysteryGaretOthers	And those others...\nYou think she wanted\nthem to find us?{end_wait}
+N392	MsgDarkMysteryMiaOthers	Maybe she didn't need\nto do much. She knew\nwhat each of them wanted.{page_break}She could have\nused that.{end_wait}
+N393	MsgDarkMysteryIvanWatched	Then how long has she\nbeen watching us?{end_wait}
+N394	MsgDarkMysteryIsaacAfter	I don't know, Mia.\nI wish I did.{end_wait}

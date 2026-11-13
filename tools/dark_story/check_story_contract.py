@@ -280,8 +280,16 @@ def check_mystery_solo_encounter() -> None:
             "Restore all companions before loading either destination scene")
 
     lines = messages("phase118_mystery_leader.tsv")
-    require({f"N{i}" for i in range(356, 387)} == set(lines),
-            "Mystery exchange requires N356-N386 without missing lines")
+    require({f"N{i}" for i in range(356, 395)} == set(lines),
+            "Mystery exchange requires N356-N394 without missing lines")
+    require("Your friends are bound." not in lines["N369"],
+            "Binding must not be announced before the screen flash")
+    require("He will be a nuisance" in lines["N361"],
+            "The Matthew reference must retain its future tense")
+    require("Event_SetMessageId(MsgDarkMysteryIsaacSuspects);" in approach
+            and "Event_SetMessageId(MsgDarkMysteryGaretAfter);" in aftermath
+            and "Event_SetMessageId(MsgDarkMysteryIsaacAfter);" in aftermath,
+            "Isaac's discovery and full-party aftermath must be staged")
     for key, value in lines.items():
         for page in value.split("{page_break}"):
             visible = re.sub(r"\{[^{}]*\}", "", page)

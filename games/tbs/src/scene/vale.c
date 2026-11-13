@@ -1777,6 +1777,10 @@ static void Vale_TalkToMysteryLeader(void) {
   Vale_IsaacAnswers();
   Vale_MysterySays();
   Vale_MysterySays();
+  // Isaac sees the connection between the earlier superboss encounters.
+  Event_SetMessageId(MsgDarkMysteryIsaacSuspects);
+  Vale_IsaacAnswers();
+  Event_SetMessageId(MsgDarkMystery12);
   Vale_MysterySays();
   Vale_IsaacAnswers();
   Vale_MysterySays();
@@ -1852,8 +1856,18 @@ static void Vale_MysteryLeaderAftermath(void) {
   Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
                              SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_MYSTERY_LEADER_AFTER_KALAY, PIXELS(0), PIXELS(0));
+  // The party responds once the commander has gone.
+  Event_SetMessageId(MsgDarkMysteryGaretAfter);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Vale_IsaacAnswers();
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   Event_SetMessageId(MsgDarkMysteryMiaAfter);
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_SetMessageId(MsgDarkMysteryIsaacAfter);
+  Vale_IsaacAnswers();
   GameFlag_Set(FLAG_DARK_MYSTERY_DONE);
   GameFlag_Clear(FLAG_DARK_MYSTERY_AVAILABLE);
   // Release the fixed camera before player control returns.
