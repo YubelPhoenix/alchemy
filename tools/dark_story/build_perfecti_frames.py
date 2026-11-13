@@ -246,40 +246,6 @@ def burst(rng):
     return frames
 
 
-GHOST_POSES = 18  # frames in monster/mystery.png, 64x64 each
-
-
-def ghost(rng):
-    """Her afterimages: for each frame of her sprite (monster/mystery.png,
-    18 frames: idle 0-7, the rest her attack poses), a soft filled
-    silhouette of that frame at her size on screen (about 54 pixels; her
-    sprite is drawn at 0xb8/0x100 and enlarged by the battle camera), as a
-    top and a bottom 32x32 quarter of a 32x64 texel area: frame 2n is pose
-    n's top, 2n+1 its bottom. Perfecti_Afterimages picks the pose she is
-    showing, so her hair and coat match the moment each one leaves her."""
-    from PIL import Image, ImageFilter
-    art = Image.open(ROOT / "games/tbs/src/graphics/monster/mystery.png").convert("RGBA")
-    size = 54
-    frames = []
-    for pose in range(GHOST_POSES):
-        frame = art.crop((0, pose * 64, 64, pose * 64 + 64))
-        rgb = np.array(frame)[..., :3].astype(float)
-        body = rgb.sum(axis=2) > 0
-        img = Image.fromarray((body * 255).astype(np.uint8))
-        img = img.resize((size, size), Image.LANCZOS)
-        mask = Image.new("L", (64, 64), 0)
-        mask.paste(img, ((64 - size) // 2, (64 - size) // 2))
-        # A soft, filled silhouette: her whole shape in a pale pink-white,
-        # its edge blurred so it reads as light rather than a cut-out.
-        soft = np.array(mask.filter(ImageFilter.GaussianBlur(0.8))).astype(float) / 255
-        level = soft * 54
-        texels = level.reshape(64, 32, 2).mean(axis=2)          # halve across
-        out = np.round(texels)
-        out[out < 7] = 0
-        frames += [out[0:32].copy(), out[32:64].copy()]
-    return frames
-
-
 MOVES = [
     ("GOTTERKANONE", gotterkanone),
     ("EX_GOTTERKANONE", ex_gotterkanone),
@@ -290,7 +256,6 @@ MOVES = [
     ("STERNBRECHER", ex_sternbrecher),
     ("P_STORM", p_storm),
     ("BURST", burst),
-    ("GHOST", ghost),
 ]
 
 
@@ -342,7 +307,7 @@ def main():
     all_frames = []
     for name, draw in MOVES:
         drawn = draw(np.random.default_rng(7))
-        if name in ("GOTTERKANONE", "BURST", "GHOST"):  # already canvas texels
+        if name in ("GOTTERKANONE", "BURST"):  # already canvas texels
             frames = [np.clip(np.round(f), 0, 63).astype(np.uint8) for f in drawn]
         else:
             frames = [finish(f) for f in drawn]

@@ -263,6 +263,7 @@ void Heart_StepBackdropGlow(void) {
 void BattleBackground_Free(void) {
   Task_Remove(Heart_StepBackdropGlow);
   Task_Remove(Mystery_StepBackdropGlow);
+  Task_Remove(Mystery_StepIdleGhosts);
   FreeHeapSlot(HEAP_SLOT_BATTLE_SCANLINES);
 }
 
@@ -328,8 +329,12 @@ void BattleBackground_Load(s32 mode, s32 resourceId, s32 level) {
     Task_Add(Heart_StepBackdropGlow, TASK_PASS_VBLANK);
   // The Mystery Leader's beacons and stars (battle/mystery_backdrop.c).
   Task_Remove(Mystery_StepBackdropGlow);
-  if ((u16)resourceId == (u16)(s32)&ResourceId_MysteryBackdrop)
+  Task_Remove(Mystery_StepIdleGhosts);
+  if ((u16)resourceId == (u16)(s32)&ResourceId_MysteryBackdrop) {
     Task_Add(Mystery_StepBackdropGlow, TASK_PASS_VBLANK);
+    // After the sprites are projected (TASK_PASS_FRAME), in the same frame.
+    Task_Add(Mystery_StepIdleGhosts, TASK_PASS_FRAME - 2);
+  }
   view->mode = mode;
   if (mode == BATTLE_BACKGROUND_FIXED)
     REG_BG1CNT = BATTLE_BG1CNT;

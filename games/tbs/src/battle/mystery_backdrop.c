@@ -189,3 +189,114 @@ void Mystery_StepBackdropGlow(void) {
         Mystery_MixColor(12, 9, 18, 31, 29, 31, level, scale);
   }
 }
+
+/// Her idle afterimages, kept in BattleWork.mysteryGhosts: the copies of her
+/// sprite queued this frame, and REG_BLDCNT as it was before the first.
+struct MysteryGhosts {
+  struct AnimationSpritePart parts[4];
+  u16 savedBlend;
+  u16 blendSaved; ///< nonzero while savedBlend holds REG_BLDCNT
+};
+STATIC_ASSERT(sizeof(struct MysteryGhosts) <= 0x34);
+
+/// Frames each pair of afterimages lasts, sliding back into her.
+#define MYSTERY_GHOST_LIFE 24
+/// How far out, in screen pixels, the lub's pair and the dub's pair start.
+#define MYSTERY_GHOST_NEAR 10
+#define MYSTERY_GHOST_FAR 18
+/// Their opacity at the lub, in sixteenths; it falls to a third by the time
+/// the dub's pair has gone back into her.
+#define MYSTERY_GHOST_ALPHA 8
+/// Under every battler (whose slots start at 1) and over the shadows (0):
+/// the OAM list is built from slot 255 down, so a lower slot draws beneath.
+#define MYSTERY_GHOST_DEPTH 1
+
+/// Puts REG_BLDCNT back if the afterimages changed it.
+static void Mystery_RestoreGhostBlend(struct MysteryGhosts *ghosts) {
+  if (ghosts->blendSaved) {
+    REG_BLDCNT = ghosts->savedBlend;
+    ghosts->blendSaved = 0;
+  }
+}
+
+/// In her rage, while she stands idle (the background zoomed, no unit
+/// highlighted for a turn or a target), see-through copies of her sprite
+/// split off left and right on each heartbeat flash, a near pair on the lub
+/// and a far pair on the dub, and slide back into her as they fade. Each
+/// copy is her own sprite's OAM entry again, moved sideways and made
+/// semi-transparent, so it takes her pose and her colours (the flare's too)
+/// and needs no VRAM. Semi-transparent sprites blend over the layers
+/// REG_BLDCNT names second, at REG_BLDALPHA; both are set while copies show,
+/// and REG_BLDCNT put back after. Runs in the main-loop pass after the
+/// sprites are projected, so her entry and its affine matrix are this
+/// frame's; added and removed with Mystery_StepBackdropGlow.
+void Mystery_StepIdleGhosts(void) {
+  struct BattleWork *battle = gBattleWork;
+  struct BattleBackgroundWork *view =
+      HEAP_SLOT_BLOCK(HEAP_SLOT_BATTLE_BACKGROUND);
+  struct ActorSystemWork *actors = HEAP_SLOT_BLOCK(HEAP_SLOT_ACTOR_SYSTEM);
+  struct MysteryGhosts *ghosts;
+  struct BattleObject *object;
+  struct Sprite *record;
+  struct AnimationSpritePart *copy;
+  s32 mysteryId, beat, age, pair, side, offset, alpha, count, x;
+
+  if (battle == NULL || view == NULL)
+    return;
+  ghosts = (struct MysteryGhosts *)battle->mysteryGhosts;
+  beat = gVBlankCount % MYSTERY_HEARTBEAT_PERIOD;
+  if (view->mode != BATTLE_BACKGROUND_ZOOMED ||
+      battle->highlightMode != HIGHLIGHT_OFF ||
+      (actors != NULL && actors->suspended) ||
+      Mystery_Rage(battle, &mysteryId) == 0 || mysteryId < 0 ||
+      beat >= MYSTERY_DUB_FRAMES + MYSTERY_GHOST_LIFE) {
+    Mystery_RestoreGhostBlend(ghosts);
+    return;
+  }
+  object = BattleObject_Get(mysteryId);
+  if (object == NULL || object->actor == NULL || object->fading) {
+    Mystery_RestoreGhostBlend(ghosts);
+    return;
+  }
+  record = GetMotionRecord(object->actor, 0);
+  if (record == NULL || record->image.y >= DISPLAY_HEIGHT) {
+    Mystery_RestoreGhostBlend(ghosts);
+    return;
+  }
+
+  count = 0;
+  for (pair = 0; pair < 2; pair++) {
+    age = beat - (pair == 0 ? 0 : MYSTERY_DUB_FRAMES);
+    if (age < 0 || age >= MYSTERY_GHOST_LIFE)
+      continue;
+    offset = (pair == 0 ? MYSTERY_GHOST_NEAR : MYSTERY_GHOST_FAR) *
+             (MYSTERY_GHOST_LIFE - age) / MYSTERY_GHOST_LIFE;
+    if (offset == 0)
+      continue;
+    for (side = -1; side <= 1; side += 2) {
+      copy = &ghosts->parts[count++];
+      *copy = record->image;
+      x = record->image.x + side * offset;
+      copy->x = x;
+      copy->objectMode = OBJ_MODE_SEMI_TRANSPARENT;
+      Oam_AddSpriteAtDepth(copy, MYSTERY_GHOST_DEPTH);
+    }
+  }
+  if (count == 0) {
+    Mystery_RestoreGhostBlend(ghosts);
+    return;
+  }
+  if (!ghosts->blendSaved) {
+    // Not while the screen is being lightened (BossAI_MysteryAwaken's
+    // flash), whose REG_BLDCNT would be saved and put back after it.
+    if ((REG_BLDCNT & BLDCNT_EFFECT_DARKEN) >= BLDCNT_EFFECT_LIGHTEN)
+      return;
+    ghosts->savedBlend = REG_BLDCNT;
+    ghosts->blendSaved = 1;
+  }
+  alpha = MYSTERY_GHOST_ALPHA -
+          MYSTERY_GHOST_ALPHA * 2 / 3 * beat /
+              (MYSTERY_DUB_FRAMES + MYSTERY_GHOST_LIFE);
+  REG_BLDCNT = ghosts->savedBlend | BLDCNT_TGT2_ALL;
+  REG_BLDALPHA = BLEND_ALPHA(alpha, 16 - alpha);
+}
