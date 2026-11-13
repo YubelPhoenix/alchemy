@@ -248,7 +248,7 @@ def burst(rng):
 
 def ghost(rng):
     """Her afterimage: the outline of her standing frame (monster/
-    mystery.png), glowing, at her size on screen (about 54 pixels; her
+    mystery.png), a soft filled silhouette, at her size on screen (about 54 pixels; her
     sprite is drawn at 0xb8/0x100 and enlarged by the battle camera), as a
     top and a bottom 32x32 quarter of a 32x64 texel area."""
     from PIL import Image, ImageFilter
@@ -256,7 +256,6 @@ def ghost(rng):
     frame = art.crop((0, 0, 64, 64))
     rgb = np.array(frame)[..., :3].astype(float)
     body = rgb.sum(axis=2) > 0
-    luma = (rgb[..., 0] * 0.3 + rgb[..., 1] * 0.59 + rgb[..., 2] * 0.11) / 255
     size = 54
     def fit(values):
         img = Image.fromarray(np.clip(values * 255, 0, 255).astype(np.uint8))
@@ -265,12 +264,10 @@ def ghost(rng):
         out.paste(img, ((64 - size) // 2, (64 - size) // 2))
         return out
     mask = fit(body.astype(float))
-    # A bright rim where the outline glows, a dimmer inside that keeps her
-    # coat, hair and polearm readable.
-    rim = np.array(mask.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.GaussianBlur(1.0))).astype(float) / 255
-    inside = np.array(mask.filter(ImageFilter.MinFilter(3))).astype(float) / 255
-    detail = np.array(fit(luma * body)).astype(float) / 255
-    level = np.clip(rim - inside, 0, 1) * 58 + inside * (18 + detail * 34)
+    # A soft, filled silhouette: her whole shape in a pale pink-white, its edge
+    # blurred so it reads as light rather than a cut-out.
+    soft = np.array(mask.filter(ImageFilter.GaussianBlur(0.8))).astype(float) / 255
+    level = soft * 54
     texels = level.reshape(64, 32, 2).mean(axis=2)          # halve across
     out = np.round(texels)
     out[out < 7] = 0
