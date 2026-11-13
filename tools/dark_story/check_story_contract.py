@@ -249,8 +249,13 @@ def check_mystery_solo_encounter() -> None:
                 f"Mystery duel must bench {name}")
         require(f"Party_AddMember({name});" in aftermath,
                 f"Mystery aftermath must restore {name}")
-        require(f"Actor_SetSpriteColorById(ACTOR_{name}, SPRITE_COLOR_RBG);" in approach,
-                f"Missing visible Psynergy bind on {name}")
+    # Garet, Ivan and Mia are not on the map (only the leader walks the
+    # field), so her bind is shown as a screen-wide flash before their lines.
+    require("PaletteFade_SetTarget(RGB(31, 31, 31), PALETTES_ALL);" in approach,
+            "Missing the visible flash of her Psynergy bind")
+    require(approach.index("PaletteFade_SetTarget(RGB(31, 31, 31), PALETTES_ALL);")
+            < approach.index("Event_SetMessageId(MsgDarkMysteryGaretBound)"),
+            "Her bind must flash before the companions speak")
     require(approach.index("Event_SetMessageId(MsgDarkMysteryGaretBound)")
             < approach.index("Party_RemoveMember(GARET)"),
             "Companions must respond before Isaac fights alone")
