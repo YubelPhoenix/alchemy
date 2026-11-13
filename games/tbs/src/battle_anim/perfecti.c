@@ -233,22 +233,27 @@ static void Perfecti_Finish(struct PerfectiStage *stage) {
   ANIM_FINISH_CANVAS_ONE_BLITTER();
 }
 
-/// Her afterimages: one every PERFECTI_AFTERIMAGE_GAP frames, four in all,
+/// Her afterimages: one every PERFECTI_AFTERIMAGE_GAP frames, six in all,
 /// then a short hold while they fade.
-#define PERFECTI_AFTERIMAGE_GAP 6
-#define PERFECTI_AFTERIMAGE_COUNT 4
+#define PERFECTI_AFTERIMAGE_GAP 4
+#define PERFECTI_AFTERIMAGE_COUNT 6
 #define PERFECTI_AFTERIMAGE_FRAMES                                             \
-  (PERFECTI_AFTERIMAGE_GAP * PERFECTI_AFTERIMAGE_COUNT + 12)
-/// Levels her afterimages lose a frame: an outline at 58 fades over about
-/// half a second, slower and softer than the canvas's usual quarter a frame.
-#define PERFECTI_AFTERIMAGE_FADE 2
+  (PERFECTI_AFTERIMAGE_GAP * PERFECTI_AFTERIMAGE_COUNT + 10)
+/// Levels her afterimages lose a frame: an outline at 58 fades over about a
+/// quarter of a second, a little gentler than the canvas's quarter a frame.
+#define PERFECTI_AFTERIMAGE_FADE 4
+/// Frames she flares violet as each afterimage leaves her.
+#define PERFECTI_AFTERIMAGE_FLARE 2
 
 /// In her rage (at or below half HP), violet afterimages of her split off
-/// left and right before an attack, each farther out than the last, and
-/// fade slowly. Her outline is two frames, a top and a bottom quarter of her
-/// size on screen, drawn around the middle of her sprite.
+/// left and right before an attack, each pair farther out than the last, and
+/// she flares violet as each leaves her. Her outline is two frames, a top
+/// and a bottom quarter of her size on screen, drawn around the middle of her
+/// sprite. The tint timers restore only targets, so her flare is switched
+/// off here.
 static void Perfecti_Afterimages(struct PerfectiStage *stage) {
-  struct Unit *user = Unit_GetFar(stage->args->user);
+  s32 userId = stage->args->user;
+  struct Unit *user = Unit_GetFar(userId);
   s32 tick, image, offset;
 
   if (user->hp * 2 > user->hpMax)
@@ -257,20 +262,24 @@ static void Perfecti_Afterimages(struct PerfectiStage *stage) {
   ANIM_SET_TRANSFER(stage->work, CANVAS_COPY_AND_DARKEN,
                     CANVAS_FILL_WORD(PERFECTI_AFTERIMAGE_FADE));
   for (tick = 0; tick < PERFECTI_AFTERIMAGE_FRAMES; tick++) {
-    if (tick % PERFECTI_AFTERIMAGE_GAP == 0 &&
-        tick < PERFECTI_AFTERIMAGE_GAP * PERFECTI_AFTERIMAGE_COUNT) {
-      image = tick / PERFECTI_AFTERIMAGE_GAP;
-      // 4, 4, 8, 8 texels (twice that on screen), right then left.
-      offset = 4 + image / 2 * 4;
-      if (image & 1)
-        offset = -offset;
-      Perfecti_Draw(stage, PERFECTI_GHOST_FIRST, stage->userX + offset,
-                    stage->userY - PERFECTI_FRAME_HEIGHT / 2);
-      Perfecti_Draw(stage, PERFECTI_GHOST_FIRST + 1, stage->userX + offset,
-                    stage->userY + PERFECTI_FRAME_HEIGHT / 2);
+    if (tick < PERFECTI_AFTERIMAGE_GAP * PERFECTI_AFTERIMAGE_COUNT) {
+      if (tick % PERFECTI_AFTERIMAGE_GAP == 0) {
+        image = tick / PERFECTI_AFTERIMAGE_GAP;
+        // 3, 3, 6, 6, 9, 9 texels (twice that on screen), right then left.
+        offset = 3 + image / 2 * 3;
+        if (image & 1)
+          offset = -offset;
+        Perfecti_Draw(stage, PERFECTI_GHOST_FIRST, stage->userX + offset,
+                      stage->userY - PERFECTI_FRAME_HEIGHT / 2);
+        Perfecti_Draw(stage, PERFECTI_GHOST_FIRST + 1, stage->userX + offset,
+                      stage->userY + PERFECTI_FRAME_HEIGHT / 2);
+        BattleAnim_TintBattler(userId, SPRITE_COLOR_BLUE_TINT, -1, -1, 0);
+      } else if (tick % PERFECTI_AFTERIMAGE_GAP == PERFECTI_AFTERIMAGE_FLARE)
+        BattleAnim_TintBattler(userId, 0, -1, -1, 0);
     }
     Perfecti_EndFrame(stage);
   }
+  BattleAnim_TintBattler(userId, 0, -1, -1, 0);
   ANIM_SET_TRANSFER(stage->work, CANVAS_COPY_AND_FADE,
                     CANVAS_FADE_THREE_QUARTERS);
 }

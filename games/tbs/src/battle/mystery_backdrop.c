@@ -23,10 +23,12 @@ extern const u16 Battle_MysteryBackdrop[];
 /// once she is below half HP (0.8 seconds).
 #define MYSTERY_BEACON_PERIOD 96
 #define MYSTERY_BEACON_PERIOD_ENRAGED 48
-/// Frames from one heartbeat to the next (1.6 seconds); each beat is two
-/// flares, a lub and a dub, of MYSTERY_FLARE_FRAMES with as long between.
-#define MYSTERY_HEARTBEAT_PERIOD 96
-#define MYSTERY_FLARE_FRAMES 8
+/// Frames from one heartbeat to the next (about 1.1 seconds); each beat is
+/// two flares, a lub and a dub, of MYSTERY_FLARE_FRAMES, the dub starting
+/// MYSTERY_DUB_FRAMES after the lub.
+#define MYSTERY_HEARTBEAT_PERIOD 64
+#define MYSTERY_FLARE_FRAMES 5
+#define MYSTERY_DUB_FRAMES 12
 /// The entries the picture keeps, which her rage tints toward crimson.
 #define MYSTERY_ART_ENTRIES 112
 /// Frames for one star's twinkle cycle, before its group's own speed.
@@ -124,9 +126,10 @@ void Mystery_StepBackdropGlow(void) {
   // beat.
   if (rage != 0 && mysteryId >= 0) {
     beat = frame % MYSTERY_HEARTBEAT_PERIOD;
-    if (beat == 0 || beat == 2 * MYSTERY_FLARE_FRAMES)
+    if (beat == 0 || beat == MYSTERY_DUB_FRAMES)
       BattleAnim_TintBattler(mysteryId, SPRITE_COLOR_BLUE_TINT, -1, -1, 0);
-    else if (beat == MYSTERY_FLARE_FRAMES || beat == 3 * MYSTERY_FLARE_FRAMES)
+    else if (beat == MYSTERY_FLARE_FRAMES ||
+             beat == MYSTERY_DUB_FRAMES + MYSTERY_FLARE_FRAMES)
       BattleAnim_TintBattler(mysteryId, 0, -1, -1, 0);
   }
   source = Battle_MysteryBackdrop;
