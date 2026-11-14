@@ -171,7 +171,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Spark
+    // Torchbearer
     {
         .series = 2,
         .required = {0, 0, 5},
@@ -198,7 +198,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DEFENSE_DOWN_2, ABILITY_EFFECT_DEFENSE_DOWN},
     },
-    // Ember
+    // Firebrand
     {
         .series = 2,
         .required = {0, 0, 7},
@@ -225,7 +225,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DEFENSE_DOWN_2, ABILITY_EFFECT_DEFENSE_DOWN},
     },
-    // Firebrand
+    // Blazeknight
     {
         .series = 2,
         .required = {0, 0, 9},
@@ -255,7 +255,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DEFENSE_DOWN_2, ABILITY_EFFECT_DEFENSE_DOWN},
     },
-    // Blazeknight
+    // Flamelord
     {
         .series = 2,
         .required = {0, 0, 11},
@@ -285,7 +285,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DEFENSE_DOWN_2, ABILITY_EFFECT_DEFENSE_DOWN},
     },
-    // Inferno
+    // Sunforged
     {
         .series = 2,
         .required = {0, 0, 13},
@@ -325,7 +325,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Breeze
+    // Windreader
     {
         .series = 7,
         .required = {0, 0, 0, 5},
@@ -484,7 +484,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Mourner
+    // Tidereader
     {
         .series = 6,
         .required = {0, 5},
@@ -512,7 +512,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 127, .level = 30},
         },
     },
-    // Plaguewitch
+    // Mistscribe
     {
         .series = 6,
         .required = {0, 7},
@@ -540,7 +540,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 127, .level = 30},
         },
     },
-    // Bloodreaver
+    // Mender
     {
         .series = 6,
         .required = {0, 9},
@@ -569,7 +569,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 193, .level = 6},
         },
     },
-    // Hellcaller
+    // Tidesaint
     {
         .series = 6,
         .required = {0, 11},
@@ -598,7 +598,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 193, .level = 6},
         },
     },
-    // Death Queen
+    // Seraph
     {
         .series = 6,
         .required = {0, 13},
@@ -637,7 +637,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Barrowman
+    // Riverblade
     {
         .series = 3,
         .required = {5},
@@ -711,7 +711,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 127, .level = 30},
         },
     },
-    // Abyssguard
+    // Floodguard
     {
         .series = 3,
         .required = {6, 6},
@@ -777,7 +777,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Steamhand
+    // Steamblade
     {
         .series = 3,
         .required = {0, 0, 5},
@@ -799,7 +799,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 99, .level = 5},
         },
     },
-    // Scalder
+    // Mistguard
     {
         .series = 3,
         .required = {0, 2, 5},
@@ -851,7 +851,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 195, .level = 11},
         },
     },
-    // Wraithlight
+    // Lightbearer
     {
         .series = 3,
         .required = {0, 6, 6},
@@ -879,7 +879,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 194, .level = 8},
         },
     },
-    // Vaporlord
+    // Dawnbringer
     {
         .series = 3,
         .required = {0, 7, 7},
@@ -917,7 +917,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Ashdrake
+    // Drakeknight
     {
         .series = 3,
         .required = {3, 3, 3},
@@ -941,7 +941,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DRAIN_PP, ABILITY_EFFECT_PSY_LEECH},
     },
-    // Doomknight
+    // Oathkeeper
     {
         .series = 3,
         .required = {4, 4, 4},
@@ -969,7 +969,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DRAIN_PP, ABILITY_EFFECT_PSY_LEECH},
     },
-    // Oathbreaker
+    // Dawnwarden
     {
         .series = 3,
         .required = {4, 5, 4},
@@ -1011,7 +1011,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Scavenger
+    // Dustwalker
     {
         .series = 5,
         .required = {5},
@@ -1034,7 +1034,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SEAL, ABILITY_EFFECT_SEAL_2_TURNS},
     },
-    // Dusthexer
+    // Mirage
     {
         .series = 5,
         .required = {5, 0, 0, 2},
@@ -1088,7 +1088,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SEAL, ABILITY_EFFECT_SEAL_2_TURNS},
     },
-    // Boneweaver
+    // Stoneweaver
     {
         .series = 5,
         .required = {6, 0, 0, 6},
@@ -1258,7 +1258,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SEAL, ABILITY_EFFECT_SEAL_2_TURNS},
     },
-    // Burnwraith
+    // Firestorm
     {
         .series = 5,
         .required = {0, 0, 7, 7},
@@ -1320,7 +1320,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SEAL, ABILITY_EFFECT_SEAL_2_TURNS},
     },
-    // Shadowbound
+    // Shadowstep
     {
         .series = 5,
         .required = {4, 0, 4, 4},
@@ -1346,7 +1346,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SEAL, ABILITY_EFFECT_SEAL_2_TURNS},
     },
-    // Reaper
+    // Duskmaster
     {
         .series = 5,
         .required = {4, 0, 4, 5},
@@ -1410,7 +1410,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SLEEP},
     },
-    // Mudseer
+    // Rootseer
     {
         .series = 8,
         .required = {2, 5},
@@ -1437,7 +1437,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SLEEP},
     },
-    // Bogcaller
+    // Grovecaller
     {
         .series = 8,
         .required = {4, 5},
@@ -1467,7 +1467,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SLEEP},
     },
-    // Rotdruid
+    // Oakdruid
     {
         .series = 8,
         .required = {6, 6},
@@ -1497,7 +1497,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SLEEP},
     },
-    // Gravecaller
+    // Stoneoracle
     {
         .series = 8,
         .required = {7, 7},
@@ -1614,7 +1614,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SLEEP},
     },
-    // Hollowdruid
+    // Mossdruid
     {
         .series = 8,
         .required = {6, 0, 0, 6},
@@ -1733,7 +1733,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_STUN},
     },
-    // Soulreaper
+    // Eclipsemage
     {
         .series = 8,
         .required = {5, 4, 0, 4},
@@ -1827,7 +1827,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DELUSION},
     },
-    // Hollowmonk
+    // Stillmonk
     {
         .series = 9,
         .required = {0, 5, 4},
@@ -1927,7 +1927,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Wildfire
+    // Kindler
     {
         .series = 9,
         .required = {0, 0, 0, 5},
@@ -1977,7 +1977,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DELUSION},
     },
-    // Burnmonk
+    // Hearthmonk
     {
         .series = 9,
         .required = {0, 0, 4, 5},
@@ -2075,7 +2075,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Stalker
+    // Pathfinder
     {
         .series = 9,
         .required = {0, 3, 3, 3},
@@ -2097,7 +2097,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DELUSION},
     },
-    // Plaguebard
+    // Balladeer
     {
         .series = 9,
         .required = {0, 4, 4, 4},
@@ -2123,7 +2123,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DELUSION},
     },
-    // Hexlock
+    // Spellbinder
     {
         .series = 9,
         .required = {0, 4, 5, 4},
@@ -2163,7 +2163,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Thug
+    // Brawler
     {
         .series = 4,
         .required = {1, 0, 1},
@@ -2210,7 +2210,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_ATTACK_DOWN_2, ABILITY_EFFECT_ATTACK_DOWN},
     },
-    // Warbrute
+    // Wildborn
     {
         .series = 4,
         .required = {4, 0, 4},
@@ -2268,7 +2268,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_ATTACK_DOWN_2, ABILITY_EFFECT_ATTACK_DOWN},
     },
-    // Doomraider
+    // Berserker
     {
         .series = 4,
         .required = {6, 0, 6},
@@ -2298,7 +2298,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_ATTACK_DOWN_2, ABILITY_EFFECT_ATTACK_DOWN},
     },
-    // Ruinlord
+    // Warlord
     {
         .series = 4,
         .required = {7, 0, 7},
@@ -2336,7 +2336,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Wraithblade
+    // Swordsaint
     {
         .series = 4,
         .required = {4, 0, 4, 3},
@@ -2364,7 +2364,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_ATTACK_DOWN_2, ABILITY_EFFECT_ATTACK_DOWN},
     },
-    // Ghostblade
+    // Exileblade
     {
         .series = 4,
         .required = {5, 0, 5, 4},
@@ -2408,7 +2408,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Mistling
+    // Recluse
     {
         .series = 10,
         .required = {0, 1, 0, 1},
@@ -2432,7 +2432,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DRAIN_PP, ABILITY_EFFECT_PSY_LEECH},
     },
-    // Gloomseer
+    // Greyelder
     {
         .series = 10,
         .required = {0, 2, 0, 2},
@@ -2551,7 +2551,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DRAIN_PP, ABILITY_EFFECT_PSY_LEECH},
     },
-    // Rainwraith
+    // Skyweaver
     {
         .series = 10,
         .required = {0, 7, 0, 7},
@@ -2589,7 +2589,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Blightmage
+    // Dawnmage
     {
         .series = 10,
         .required = {3, 4, 0, 4},
@@ -2617,7 +2617,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 195, .level = 11},
         },
     },
-    // Voidmage
+    // Lumenmage
     {
         .series = 10,
         .required = {4, 5, 0, 5},
