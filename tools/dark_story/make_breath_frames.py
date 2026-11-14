@@ -37,5 +37,18 @@ for source, dest in JOBS:
         o2[45:, :22] = 0
         o2[45:63, :22] = o[46:64, :22]
         out = Image.fromarray(o2)
+    if source.startswith("sarah"):
+        # Her pike runs from its butt at the upper left (8, 25) down to the
+        # blade's tip at the lower right (54, 61). Above row 52 it already
+        # rises a pixel with her hands; lift the blade below that a pixel
+        # too, so the whole pike moves as one and its tip breathes with her.
+        o = np.asarray(src)
+        o2 = np.asarray(out).copy()
+        for y in range(51, 64):
+            edge = int(8 + (y - 25) * 46 / 36) - 2
+            o2[y, edge:] = 0
+            if y + 1 < 64:
+                o2[y, edge:] = o[y + 1, edge:]
+        out = Image.fromarray(o2)
     out.save(ROOT / "assets" / dest)
     print(dest, "rows", h, "->", new.shape[0], "bbox", out.getchannel("A").getbbox())

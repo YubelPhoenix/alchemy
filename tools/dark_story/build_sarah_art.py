@@ -120,6 +120,10 @@ for index in range(FRAMES):
     bottom = src.getchannel("A").getbbox()[3]
     if pose in ("idle1", "idle2", "idle3"):
         bottom = 60   # the three idle drawings keep their own heights (the bob)
+    if pose == "idle_breath":
+        # placed like the standing pose it breathes from, so her feet stay put
+        # (its own lowest row is the lifted pike's tip, a row higher)
+        bottom = Image.open(SOURCE / "idle_new.png").getchannel("A").getbbox()[3]
     frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
     frame.alpha_composite(src, (0, FRAME - bottom))
     sheet.alpha_composite(frame, (0, index * FRAME))

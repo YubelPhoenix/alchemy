@@ -29,6 +29,50 @@
 /// check, are filled from row 0. Called by the battle set-up (Battle_Run,
 /// BattleFormation_BuildEnemyList) and by BattleAbility_ApplyToTarget when an
 /// enemy calls for help.
+/// Sarah keeps up with the party she meets, from her second fight on: a
+/// party stronger than her fight was tuned for raises her Attack and HP, a
+/// weaker one leaves her stage's figures. Her Attack is set so a plain blow
+/// takes about a fifth to a quarter of the party's average max HP
+/// (Battle_CalculateAttackDamage: half of Attack minus Defense), less with
+/// three actions a round, and her HP so the party's plain attacks, a quarter
+/// more for Psynergy and Djinn, need about her fight's planned rounds.
+static void Sarah_MatchParty(struct Unit *unit, const struct SarahStage *stage) {
+  s32 count = Party_CountMembers();
+  s32 i, hp = 0, def = 0, atk = 0, wanted, perHit, rounds;
+
+  if (count <= 0)
+    return;
+  for (i = 0; i < count; i++) {
+    struct Unit *member = Unit_Get(gSaveBlock.party[i]);
+
+    hp += member->hpMax;
+    def += member->def;
+    atk += member->atk;
+  }
+  hp /= count;
+  def /= count;
+  atk /= count;
+  // A plain blow: 24 percent of the average max HP with two actions a round,
+  // 21 percent with three.
+  wanted = def + hp * (stage->turns >= 3 ? 42 : 48) / 100;
+  if (wanted > 999)
+    wanted = 999;
+  if (wanted > unit->baseAttack)
+    unit->baseAttack = wanted;
+  rounds = stage->turns >= 3 ? 10 : (stage->hp >= 3000 ? 9 : 8);
+  perHit = (atk - stage->def) / 2;
+  if (perHit > 0) {
+    wanted = count * perHit * rounds * 5 / 4;
+    if (wanted > 9999)
+      wanted = 9999;
+    if (wanted > unit->baseHp) {
+      unit->baseHp = wanted;
+      unit->hp = wanted;
+      unit->hpMax = wanted;
+    }
+  }
+}
+
 s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   struct Unit *unit;
   const struct EnemyDefinition *enemy;
@@ -79,6 +123,8 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
     unit->baseAgility = stage->agi;
     unit->baseLuck = stage->luck;
     unit->baseActionCount = stage->turns;
+    if (stage != &gSarahStages[0])
+      Sarah_MatchParty(unit, stage);
   }
   unit->baseHpRegen = enemy->hpRegen;
   unit->basePpRegen = enemy->ppRegen;
