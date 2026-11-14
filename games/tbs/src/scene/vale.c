@@ -1812,8 +1812,10 @@ static void Vale_TalkToMysteryLeader(void) {
   GameFlag_Set(FLAG_DARK_MYSTERY_PENDING);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
-  Event_SetAfterBattleDestination((s32)&SceneId_Vale, VALE_FROM_ASH_JENNA);
-  // A defeat goes to the restart point (the last Sanctum).
+  // No after-battle destination: a win returns to Vale with the party where
+  // it stood when Isaac spoke to her (FLAG_KEEP_PARTY_POSITION, the actors
+  // as Actor_Snapshot saved them). A defeat goes to the restart point (the
+  // last Sanctum).
   Event_SetDefeatDestination(-1, -1);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 6);

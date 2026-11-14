@@ -794,7 +794,10 @@ static void Altin_CheckPillarMoved(void) {
 s32 Scene_Initialize(void) {
   s16 sceneId;
 
-  WorldState_Apply();
+  // Rain in the village only: this overlay also holds its houses, shops and
+  // inn (SceneId_CottageRoomsD).
+  if (gSaveBlock.sceneId == MAP_ALTIN_VILLAGE)
+    WorldState_Apply();
 
   if (GameFlag_Get(FLAG_ALTIN_MINE_FIRST_DRAIN) != 0) {
     GameFlag_Set(FLAG_ALTIN_WATER_DROPPED_ONCE);
