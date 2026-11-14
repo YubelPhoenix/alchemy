@@ -494,6 +494,16 @@ static void LemurianShip_SetSail(void) {
   Actor_SetAnimationAndWait(ACTOR_MIA, ANIM_NOD);
   Event_WaitFrames(20);
   Event_ShowMessageAndWait(ACTOR_MIA, 0);
+  Event_WaitFrames(20);
+  // Isaac answers (phase119_isaac_voice.tsv); the cursor is put back
+  // so the scene's own messages stay aligned.
+  {
+    s32 resume = gFieldWork->message;
+
+    Event_SetMessageId(MsgDarkIsaacShipJenna);
+    Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
+    gFieldWork->message = resume;
+  }
   Sound_PlaySong(SONG_FADE_OUT_BGM);
   Event_WaitFrames(10);
   Import_ActorSetAnimation(ACTOR_PARTY_LEADER, ANIM_NOD);

@@ -2838,6 +2838,15 @@ static void VenusLighthouseAerie_PlayShebasFall(void) {
   if (stepPending != 0) {
     gFieldWork->message += 3;
   }
+  // Isaac answers (phase119_isaac_voice.tsv); the cursor is put back
+  // so the scene's own messages stay aligned.
+  {
+    s32 resume = gFieldWork->message;
+
+    Event_SetMessageId(MsgDarkIsaacAerieJenna);
+    Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
+    gFieldWork->message = resume;
+  }
   VenusLighthouseAerie_FaceActor(ACTOR_PARTY_LEADER, FACING_SOUTH);
   Actor_SetAttachedEffect(ACTOR_PARTY_LEADER,
                           ATTACHED_EFFECT_IN_FRONT | ATTACHED_EFFECT_ONCE);

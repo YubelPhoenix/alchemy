@@ -1110,6 +1110,15 @@ static void CottageRoomsB_VisitSickDora(void) {
   Actor_SetSpeed(ACTOR_DORA, PIXELS(2) / 5, PIXELS(1) / 5);
   Actor_WalkToAndWait(ACTOR_DORA, 572, 384);
   Event_ShowMessageThenWait(ACTOR_DORA, 0, 20);
+  // Isaac answers (phase119_isaac_voice.tsv); the cursor is put back
+  // so the scene's own messages stay aligned.
+  {
+    s32 resume = gFieldWork->message;
+
+    Event_SetMessageId(MsgDarkIsaacPromisesDora);
+    Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
+    gFieldWork->message = resume;
+  }
   Actor_SetAnimationAndWait(ACTOR_PARTY_LEADER, ANIM_NOD);
   Event_WaitFrames(20);
   Actor_SetAnimationAndWait(ACTOR_DORA, ANIM_NOD);
