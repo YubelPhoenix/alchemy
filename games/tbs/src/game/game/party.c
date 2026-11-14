@@ -32,9 +32,9 @@
 /// Sarah keeps up with the party she meets, from her second fight on: a
 /// party stronger than her fight was tuned for raises her Attack and HP, a
 /// weaker one leaves her stage's figures. Her Attack is set so a plain blow
-/// takes about a fifth to a quarter of the party's average max HP
-/// (Battle_CalculateAttackDamage: half of Attack minus Defense), less with
-/// three actions a round, and her HP so the party's plain attacks, a quarter
+/// takes about 30 percent of the party's average max HP (26 with three
+/// actions a round; Battle_CalculateAttackDamage: half of Attack minus
+/// Defense), so her heavier techniques threaten a member, and her HP so the party's plain attacks, a quarter
 /// more for Psynergy and Djinn, need about her fight's planned rounds.
 static void Sarah_MatchParty(struct Unit *unit, const struct SarahStage *stage) {
   s32 count = Party_CountMembers();
@@ -52,9 +52,9 @@ static void Sarah_MatchParty(struct Unit *unit, const struct SarahStage *stage) 
   hp /= count;
   def /= count;
   atk /= count;
-  // A plain blow: 24 percent of the average max HP with two actions a round,
-  // 21 percent with three.
-  wanted = def + hp * (stage->turns >= 3 ? 42 : 48) / 100;
+  // A plain blow: 30 percent of the average max HP with two actions a round,
+  // 26 percent with three; Vaulting Strike (power 18) near half.
+  wanted = def + hp * (stage->turns >= 3 ? 52 : 60) / 100;
   if (wanted > 999)
     wanted = 999;
   if (wanted > unit->baseAttack)
