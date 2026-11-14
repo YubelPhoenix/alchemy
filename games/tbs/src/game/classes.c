@@ -484,7 +484,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Cutthroat
+    // Mourner
     {
         .series = 6,
         .required = {0, 5},
@@ -711,7 +711,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
             {.ability = 127, .level = 30},
         },
     },
-    // Drownguard
+    // Abyssguard
     {
         .series = 3,
         .required = {6, 6},
@@ -1034,7 +1034,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SEAL, ABILITY_EFFECT_SEAL_2_TURNS},
     },
-    // Dustwitch
+    // Dusthexer
     {
         .series = 5,
         .required = {5, 0, 0, 2},
@@ -1158,7 +1158,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
     {0},
     // ?
     {0},
-    // Ashling
+    // Cindling
     {
         .series = 5,
         .required = {0, 0, 5},
@@ -1230,7 +1230,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SEAL, ABILITY_EFFECT_SEAL_2_TURNS},
     },
-    // Pyrewitch
+    // Pyrecaller
     {
         .series = 5,
         .required = {0, 0, 6, 6},
@@ -1437,7 +1437,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SLEEP},
     },
-    // Bogwitch
+    // Bogcaller
     {
         .series = 8,
         .required = {4, 5},
@@ -1560,7 +1560,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_SLEEP},
     },
-    // Gravelmage
+    // Shalemage
     {
         .series = 8,
         .required = {2, 0, 0, 5},
@@ -1887,7 +1887,7 @@ const struct ClassDefinition gClass_DefinitionTable[] = {
         },
         .weakEffects = {ABILITY_EFFECT_DELUSION},
     },
-    // Drownsage
+    // Depthsage
     {
         .series = 9,
         .required = {0, 7, 7},
