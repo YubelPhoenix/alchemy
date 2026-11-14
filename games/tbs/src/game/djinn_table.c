@@ -7,7 +7,7 @@
 
 // clang-format off
 const struct DjinnDefinition gDjinn_DefinitionTable[] = {
-    // Grave
+    // Mire
     {
         .abilityId = ABILITY_DJINNI_FIRST,
         .hp = 12,
@@ -15,7 +15,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .def = 4,
         .luck = 1,
     },
-    // Barrow
+    // Blight
     {
         .abilityId = 301,
         .hp = 9,
@@ -23,7 +23,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .def = 1,
         .agi = 3,
     },
-    // Shard
+    // Wither
     {
         .abilityId = 302,
         .hp = 8,
@@ -31,7 +31,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .atk = 3,
         .def = 1,
     },
-    // Briar
+    // Shard
     {
         .abilityId = 303,
         .hp = 9,
@@ -39,14 +39,14 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .agi = 2,
         .luck = 1,
     },
-    // Blight
+    // Briar
     {
         .abilityId = 304,
         .hp = 12,
         .atk = 4,
         .def = 1,
     },
-    // Mire
+    // Grave
     {
         .abilityId = 305,
         .hp = 10,
@@ -54,7 +54,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .def = 1,
         .agi = 3,
     },
-    // Bane
+    // Barrow
     {
         .abilityId = 306,
         .hp = 10,
@@ -122,7 +122,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .atk = 3,
         .luck = 1,
     },
-    // Sleet
+    // Pall
     {
         .abilityId = 321,
         .hp = 8,
@@ -130,21 +130,21 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .def = 2,
         .luck = 2,
     },
-    // Pall
+    // Leech
     {
         .abilityId = 322,
         .hp = 9,
         .pp = 5,
         .def = 3,
     },
-    // Leech
+    // Drown
     {
         .abilityId = 323,
         .hp = 13,
         .pp = 5,
         .agi = 4,
     },
-    // Hail
+    // Tears
     {
         .abilityId = 324,
         .hp = 11,
@@ -158,7 +158,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .pp = 5,
         .agi = 3,
     },
-    // Tears
+    // Gloom
     {
         .abilityId = 326,
         .hp = 9,
@@ -218,7 +218,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     {
         .abilityId = 339,
     },
-    // Pyre
+    // Soot
     {
         .abilityId = 340,
         .hp = 9,
@@ -227,7 +227,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .def = 2,
         .agi = 2,
     },
-    // Fever
+    // Kiln
     {
         .abilityId = 341,
         .hp = 9,
@@ -240,7 +240,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .hp = 8,
         .atk = 4,
     },
-    // Scorch
+    // Smolder
     {
         .abilityId = 343,
         .hp = 12,
@@ -249,7 +249,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .def = 3,
         .luck = 1,
     },
-    // Ash
+    // Pyre
     {
         .abilityId = 344,
         .hp = 10,
@@ -324,7 +324,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
     {
         .abilityId = 359,
     },
-    // Wail
+    // Dirge
     {
         .abilityId = 360,
         .hp = 11,
@@ -332,7 +332,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .agi = 3,
         .luck = 1,
     },
-    // Shriek
+    // Specter
     {
         .abilityId = 361,
         .hp = 11,
@@ -341,14 +341,14 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .agi = 1,
         .luck = 1,
     },
-    // Specter
+    // Wail
     {
         .abilityId = 362,
         .hp = 10,
         .atk = 5,
         .agi = 1,
     },
-    // Smog
+    // Shriek
     {
         .abilityId = 363,
         .hp = 12,
@@ -364,7 +364,7 @@ const struct DjinnDefinition gDjinn_DefinitionTable[] = {
         .atk = 3,
         .agi = 1,
     },
-    // Squall
+    // Dread
     {
         .abilityId = 365,
         .hp = 8,
