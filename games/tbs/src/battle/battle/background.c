@@ -240,12 +240,17 @@ void Heart_StepBackdropGlow(void) {
     }
     gain = strike[index];
     // the sky and floor brighten by a share of the strike: a third for the
-    // bigger flash, an eighth for a distant flicker
+    // bigger flash, an eighth for a distant flicker. Divided once, not per
+    // entry: Thumb has no divide instruction, and this runs in VBlank.
+    {
+      s32 share = gain / skyShare;
+      s32 blueShare = share + gain / (skyShare * 2);
+
     for (i = 0; i < HEART_SKY_ENTRIES; i++) {
       u32 pixel = source[i];
-      s32 red = (pixel & 31) + gain / skyShare;
-      s32 green = ((pixel >> 5) & 31) + gain / skyShare;
-      s32 blue = ((pixel >> 10) & 31) + gain / skyShare + gain / (skyShare * 2);
+      s32 red = (pixel & 31) + share;
+      s32 green = ((pixel >> 5) & 31) + share;
+      s32 blue = ((pixel >> 10) & 31) + blueShare;
 
       if (red > 31)
         red = 31;
@@ -254,6 +259,7 @@ void Heart_StepBackdropGlow(void) {
       if (blue > 31)
         blue = 31;
       destination[i] = (blue << 10) | (green << 5) | red;
+    }
     }
   }
 }

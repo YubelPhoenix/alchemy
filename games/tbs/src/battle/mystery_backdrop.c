@@ -145,12 +145,15 @@ void Mystery_StepBackdropGlow(void) {
       blue = (colour >> 10) & 31;
       high = red > blue ? red : blue;
       low = red < blue ? red : blue;
-      high += high / 4;
+      // Shifts and multiplies, not divisions: Thumb has no divide
+      // instruction, and this runs for 112 colours every VBlank. For 0 to
+      // 31, (x * 43) >> 7 is exactly x / 3 and (x * 86) >> 7 is x * 2 / 3.
+      high += high >> 2;
       if (high > 31)
         high = 31;
       red += (high - red) * rage >> 8;
-      blue -= (blue - low / 3) * rage >> 8;
-      green -= green * 2 / 3 * rage >> 8;
+      blue -= (blue - ((low * 43) >> 7)) * rage >> 8;
+      green -= ((green * 86) >> 7) * rage >> 8;
       colour = (blue << 10) | (green << 5) | red;
     }
     battle->palette[k] = colour;
