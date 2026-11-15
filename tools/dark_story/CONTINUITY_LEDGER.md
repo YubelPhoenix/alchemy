@@ -72,7 +72,7 @@ These are custom additions or altered encounters. They must be treated as revisi
 | Existing phase file(s) | Content / placement note |
 |---|---|
 | `phase28_tolbi.tsv` | Tolbi dialogue coverage. Verify each message against its actual pre-Colosso, Colosso, or post-Colosso state. |
-| `phase29_altin.tsv`, `phase31_altin_bread.tsv` | Altin-related material. Do not assume these files represent the first visit merely because of their names. |
+| `phase29_altin.tsv` | Altin-related material (the bread-for-the-hungry scene was removed). Do not assume these files represent the first visit merely because of their names. |
 | `phase30_tolbi_ash_jenna.tsv` | Later Tolbi Ash Jenna encounter; its event condition places it after Colosso and after Mercury Lighthouse is lit. |
 | `phase32_imil_tolbi_kindness.tsv`, `phase33_kegare.tsv` | Optional kindness route and Kegare encounter-access gates. Preserve the underlying decision flags and conditional availability. |
 | `phase34_mogall_lamakan.tsv`, `phase35_lamakan_jenna.tsv` | Mogall and Lamakan custom material. Verify each encounter's trigger and ensure Ash Jenna's later appearance acknowledges the earlier meeting. |

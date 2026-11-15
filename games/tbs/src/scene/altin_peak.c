@@ -3067,8 +3067,10 @@ struct ActorTemplate gAltinPeak_SpritzActorTemplates[] = {
 struct ActorTemplate gAltinPeak_JunctionActorTemplates[] = {
     {SPRITE_ROUND_BOULDER, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(536), 0, PIXELS(636), FACING_SOUTH,
         TALK_FACING_KEEP, 0},
-    {SPRITE_BURLY_MAN_WITH_GREY_HAIR, IF_FLAG_SET(FLAG_MERCURY_LIGHTHOUSE_LIT), MOVEMENT_TYPE_STAND, PIXELS(352), 0,
-        PIXELS(930), FACING_EAST, TALK_FACING_PARTY, 0},
+    // On the floor west of the rails, a few steps north of the way in from
+    // Altin (408, 970); at x 352 he stood in the rock wall.
+    {SPRITE_BURLY_MAN_WITH_GREY_HAIR, IF_FLAG_SET(FLAG_MERCURY_LIGHTHOUSE_LIT), MOVEMENT_TYPE_STAND, PIXELS(404), 0,
+        PIXELS(925), FACING_SOUTH, TALK_FACING_PARTY, 0},
     {SCENE_TABLE_END},
 };
 
