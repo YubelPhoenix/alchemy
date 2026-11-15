@@ -234,8 +234,8 @@ def check_optional_battles() -> None:
 
 
 
-def check_mystery_solo_encounter() -> None:
-    """Guard Isaac's scripted duel and its new companion dialogue."""
+def check_mystery_rescue_encounter() -> None:
+    """Guard Isaac's solo opening, three companion rescues, and dialogue."""
     vale = scene("vale.c")
     approach = function(vale, "Vale_TalkToMysteryLeader")
     aftermath = function(vale, "Vale_MysteryLeaderAftermath")
@@ -303,14 +303,54 @@ def check_mystery_solo_encounter() -> None:
     enemies = read("games/tbs/src/game/enemies.c")
     boss = enemies.split("// ???, Heart's Dark Adept leader:", 1)[1]
     boss = boss.split("    },", 1)[0]
-    require(".hp = 5500," in boss and ".turns = 1," in boss,
-            "Mystery's solo-fight HP/turn balance regressed")
-    # She fights only with her own attacks: none is Psynergy, and each keeps
-    # the numbers of the move it replaced, so the solo test stays winnable.
+    require(".hp = 10000," in boss and ".turns = 1," in boss,
+            "Mystery's four-person rescue battle HP/turn balance regressed")
+    # She opens against Isaac alone, then faces Mia, Garet, and Ivan.
+    # Her own attacks remain non-lethal/non-sealing in the scripted opener.
     require(".abilities = {ABILITY_GOTTERKANONE, ABILITY_P_STORM, ABILITY_P_VORTEX, "
             "ABILITY_PERFECTI_EXPLOSION, ABILITY_GLEPNIR, ABILITY_EX_GOTTERKANONE, "
             "ABILITY_STERNBRECHER, ABILITY_RANSNETZ}," in boss,
             "Solo duel must keep the Mystery Leader's own non-lethal, non-sealing moveset")
+    # Validate the new story mechanics, not just the old solo setup.
+    join = read("games/tbs/src/battle/party_join.c")
+    boss_ai = read("games/tbs/src/battle/battle/boss_ai.c")
+    require("#define PARTY_JOIN_ENABLED 1" in join
+            and "#define RESCUE_ROUND 2" in join,
+            "Mystery companion rescue must be enabled in round two")
+    for name in ("MIA", "GARET", "IVAN"):
+        require(f"PartyJoin_Arrive({name})" in join,
+                f"Mystery battle must bring {name} into the live battle")
+    require(join.index("PartyJoin_Arrive(MIA)") <
+            join.index("PartyJoin_Arrive(GARET)") <
+            join.index("PartyJoin_Arrive(IVAN)"),
+            "Rescue companions must arrive Mia, Garet, then Ivan")
+    require("#define GARET_BELOW_PERCENT 75" in join
+            and "#define IVAN_LATEST_ROUNDS 5" in join
+            and "mystery->hpMax * GARET_BELOW_PERCENT" in join,
+            "Mystery's companion arrival thresholds changed unexpectedly")
+    require("#define SAY_HOLD_FRAMES 150" in join
+            and "#define SAY_KEY_LINE_FRAMES 180" in join
+            and "#define SAY_QUIET_FRAMES 15" in join
+            and "TextPrinter_AllFinishedFar()" in join
+            and "gKeysHeld & (KEY_ADVANCE | KEY_B)" in join,
+            "Rescue text must remain readable and resist held-button skipping")
+    require("PartyJoin_SayKeyLine(MsgMysteryEnraged)" in boss_ai,
+            "Mystery's awakened revelation needs protected reading time")
+    battle_lines = messages("phase_fight_together.tsv")
+    require(set(battle_lines) == {f"N{i}" for i in range(399, 414)},
+            "Mystery rescue must keep exactly 15 indexed battle dialogue lines")
+    for key, value in battle_lines.items():
+        require("{page_break}" not in value and "{end_" not in value,
+                f"Mystery battle {key} must use plain battle text")
+        short_lines = value.split(r"\n")
+        require(len(short_lines) <= 2,
+                f"Mystery battle {key} exceeds the two-line battle window")
+        require(all(len(line) <= 27 for line in short_lines),
+                f"Mystery battle {key} exceeds 27 characters per line")
+    require("We couldn't do a thing" not in lines["N388"]
+            and "I kept my word" not in lines["N371"],
+            "Post-battle dialogue must reflect companions breaking free")
+
     table = read("games/tbs/src/game/abilities.c")
     own = table.split("// Gotterkanone: Mystery Leader (ability ID 519).", 1)[1]
     own = own.split("// Sarah's pike techniques", 1)[0]
@@ -509,7 +549,7 @@ def main() -> None:
     check_visual_identity()
     check_flags_and_quest_order()
     check_optional_battles()
-    check_mystery_solo_encounter()
+    check_mystery_rescue_encounter()
     check_story_text()
     print(f"Ashfall: {checks} static story contracts passed "
           "(visual/branch playthrough still required).")
