@@ -3167,13 +3167,15 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     },
     // (no name message)
     // ???, Heart's Dark Adept leader: Vale's last optional super boss
-    // (Vale_TalkToMysteryLeader). Row 164 is outside the base game's enemies;
+    // (Vale_TalkToMysteryLeader). With companions joining during the battle,
+    // 10000 HP gives the rescue and second phase time to unfold. Row 164
+    // is outside the base game's enemies;
     // its name is row 0's "???" (Enemy_BuildUnit) and its picture a copy of
     // the Siren's (gBattleSprites).
     {
         .name = "              ",
         .level = 50,
-        .hp = 5500,
+        .hp = 10000,
         .pp = 999,
         .atk = 420,
         .def = 140,
