@@ -279,8 +279,13 @@ def check_mystery_solo_encounter() -> None:
             "Mystery exchange requires N356-N394 without missing lines")
     require("Your friends are bound." not in lines["N369"],
             "Binding must not be announced before the screen flash")
-    require("He will be a nuisance" in lines["N361"],
-            "The Matthew reference must retain its future tense")
+    # The Colosso test encounter cannot assume Heart or Matthew has
+    # already appeared. Keep the later antagonists' setup and Ash Jenna's
+    # established fear of abandonment instead of requiring retired dialogue.
+    require("There are others." in lines["N361"]
+            and "Ash Jenna lost everything." in lines["N366"]
+            and "afraid of being left alone." in lines["N366"],
+            "Mystery dialogue must preserve the future encounters and Ash Jenna's motive")
     require("Event_SetMessageId(MsgDarkMysteryIsaacSuspects);" in approach
             and "Event_SetMessageId(MsgDarkMysteryGaretAfter);" in aftermath
             and "Event_SetMessageId(MsgDarkMysteryIsaacAfter);" in aftermath,
