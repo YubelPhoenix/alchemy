@@ -1871,7 +1871,6 @@ static void Vale_MysteryLeaderAftermath(void) {
   Event_SetMessageId(MsgDarkMysteryIsaacAfter);
   Vale_IsaacAnswers();
   GameFlag_Set(FLAG_DARK_MYSTERY_DONE);
-  GameFlag_Clear(FLAG_DARK_MYSTERY_AVAILABLE);
   // Release the fixed camera before player control returns.
   FieldCamera_MoveTo(-1, -1, -1, 0);
   Event_End();

@@ -2704,8 +2704,6 @@
 #define FLAG_DARK_WATCHER_VAULT 0x885
 /// Sol Sanctum's statue room.
 #define FLAG_DARK_WATCHER_SANCTUM_STATUE 0x886
-/// Sol Sanctum's eruption.
-#define FLAG_DARK_WATCHER_SANCTUM_ERUPTION 0x887
 
 /// The Menardi duel in the Luna and Sol rooms is over.
 #define FLAG_DARK_MENARDI_DUEL_DONE 0x888
@@ -2723,9 +2721,6 @@
 /// Ash Jenna has spoken to the party in Tolbi after Colosso, and slipped away.
 #define FLAG_DARK_ASH_JENNA_TOLBI 0x88d
 
-/// Isaac paid for bread in Altin (Altin_TalkToHungryMother): the first of the
-/// three kindnesses that earn a Tide Shard.
-#define FLAG_DARK_TIDE_ALTIN 0x88e
 /// Isaac paid for sandbags in Imil (Imil_TalkToSandbagMan): the second Tide
 /// Shard kindness.
 #define FLAG_DARK_TIDE_IMIL 0x8b4
@@ -2828,10 +2823,6 @@
 #define FLAG_DARK_SARAH_TOLBI_FOUGHT 0x8ed
 #define FLAG_DARK_SARAH_LALIVERO_FOUGHT 0x8ee
 
-/// "???", the Jupiter commander above Heart (Vale_TalkToMysteryLeader): she is
-/// in the square while this is set, from Heart's defeat until her own
-/// (Vale sets it again for a save that already holds Heart's).
-#define FLAG_DARK_MYSTERY_AVAILABLE 0x8d9
 /// Set from her greeting until Vale's start-up has seen the battle's result.
 #define FLAG_DARK_MYSTERY_PENDING 0x8da
 /// She has been beaten and has gone.
