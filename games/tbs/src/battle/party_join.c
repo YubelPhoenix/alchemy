@@ -113,31 +113,35 @@ static s32 PartyJoin_FindMystery(void) {
   return -1;
 }
 
-/// Frames a line stays up, once typed, before a press can move on (1.5
-/// seconds), and then the frames every button must be left alone first (a
-/// quarter second), which a player mashing a button never does.
-#define SAY_HOLD_FRAMES 90
+/// Keep ordinary story lines visible for at least 2.5 seconds and the
+/// commander's key lines for at least 3 seconds after text finishes.
+/// Then require a quarter-second with no advance button held: the battle's
+/// normal advance prompt accepts held B immediately and held A after 16
+/// frames, so BOTH must be released before the prompt is allowed to open.
+#define SAY_HOLD_FRAMES 150
+#define SAY_KEY_LINE_FRAMES 180
 #define SAY_QUIET_FRAMES 15
 
-/// Shows one line of the story as the battle's own text, at the bottom of the
-/// screen with no window (two lines at most), and waits for the player. Once
-/// typed it stays up SAY_HOLD_FRAMES; then every button must be left alone for
-/// SAY_QUIET_FRAMES before a press moves on, so a button held or mashed
-/// through the battle cannot skip the story. (A window
-/// such as the Djinn tutorial's needs its font, which only that battle
-/// loads: WindowSystem_InitBattleFar.)
-static void PartyJoin_Say(s32 message) {
+/// Show one story message as the battle's own two-line text. The minimum
+/// display time cannot be skipped; afterward wait for a clean button release,
+/// then let the usual battle advance prompt stay up until the player presses.
+/// (A framed tutorial window needs a font only the tutorial battle loads.)
+static void PartyJoin_SayWithHold(s32 message, s32 holdFrames) {
   s32 quiet;
 
   MessageArgument_ClearAllFar();
   BattleMessage_ShowAndWaitFar(message);
-  WaitFrames(SAY_HOLD_FRAMES);
+  WaitFrames(holdFrames);
   for (quiet = 0; quiet < SAY_QUIET_FRAMES; quiet++) {
-    if (gKeysHeld & KEY_ADVANCE)
+    if (gKeysHeld & (KEY_ADVANCE | KEY_B))
       quiet = -1;
     WaitFrames(1);
   }
   BattleMessage_WaitForAdvance();
+}
+
+static void PartyJoin_Say(s32 message) {
+  PartyJoin_SayWithHold(message, SAY_HOLD_FRAMES);
 }
 
 /// Turns the camera to the party over `frames` frames and waits for it.
@@ -336,7 +340,7 @@ s32 PartyJoin_TakeBrinkTurn(void) {
     return 0;
   if (battle->joinBrink == BRINK_PENDING) {
     battle->joinBrink = BRINK_STRIKING;
-    PartyJoin_Say(MsgPartyJoinMysteryBrink);
+    PartyJoin_SayWithHold(MsgPartyJoinMysteryBrink, SAY_KEY_LINE_FRAMES);
     MessageArgument_ClearAllFar();
   }
   return 1;
@@ -394,8 +398,8 @@ void PartyJoin_RunRoundEnd(void) {
       if (PartyJoin_Arrive(IVAN)) {
         PartyJoin_Say(MsgPartyJoinIvanArrives);
         PartyJoin_Say(MsgPartyJoinIvanArrives2);
-        PartyJoin_Say(MsgPartyJoinMysteryNotAlone);
-        PartyJoin_Say(MsgPartyJoinMysteryNotAlone2);
+        PartyJoin_SayWithHold(MsgPartyJoinMysteryNotAlone, SAY_KEY_LINE_FRAMES);
+        PartyJoin_SayWithHold(MsgPartyJoinMysteryNotAlone2, SAY_KEY_LINE_FRAMES);
       }
     }
     break;
