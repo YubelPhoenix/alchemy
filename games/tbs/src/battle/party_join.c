@@ -113,36 +113,22 @@ static s32 PartyJoin_FindMystery(void) {
   return -1;
 }
 
-/// Where a line's window opens, in tiles: the middle of the screen, below the
-/// party status window (Message_OpenWindowFar fits the window to the text
-/// near this point).
-#define SAY_WINDOW_X 3
-#define SAY_WINDOW_Y 7
-/// Frames a line stays up, once typed, before a press can close it.
+/// Frames a line stays up, once typed, before a press can move on.
 #define SAY_HOLD_FRAMES 30
 
-/// Shows one line of the story in a window in the middle of the screen, as
-/// the Djinn tutorial shows its lessons (Battle_Run), and waits for the
-/// player. The window zooms open and the line is typed; then it stays up
-/// SAY_HOLD_FRAMES, and only a fresh press closes it, so a button held or
-/// mashed through the battle cannot skip the story.
+/// Shows one line of the story as the battle's own text, at the bottom of the
+/// screen with no window (two lines at most), and waits for the player. Once
+/// typed it stays up SAY_HOLD_FRAMES, and only a fresh press moves on, so a
+/// button held or mashed through the battle cannot skip the story. (A window
+/// such as the Djinn tutorial's needs its font, which only that battle
+/// loads: WindowSystem_InitBattleFar.)
 static void PartyJoin_Say(s32 message) {
-  struct Window *window;
-
   MessageArgument_ClearAllFar();
-  window = Message_OpenWindowFar(message, SAY_WINDOW_X, SAY_WINDOW_Y, 1);
-  if (window == NULL)
-    return;
-  while (TextPrinter_AllFinishedFar() == 0)
-    WaitFrames(1);
+  BattleMessage_ShowAndWaitFar(message);
   WaitFrames(SAY_HOLD_FRAMES);
   while (gKeysHeld & KEY_ADVANCE)
     WaitFrames(1);
-  // The advance arrow, inside the window's bottom right corner (pixels).
-  BattleMessage_WaitForAdvanceAtFar((window->x + window->width - 1) * 8,
-                                    (window->y + window->height - 1) * 8 + 4);
-  Window_CloseFar(window, 1);
-  WaitFrames(1);
+  BattleMessage_WaitForAdvance();
 }
 
 /// Turns the camera to the party over `frames` frames and waits for it.
@@ -388,6 +374,7 @@ void PartyJoin_RunRoundEnd(void) {
           Sound_PlaySongFar(FULL_PARTY_SONG);
         PartyJoin_Say(MsgPartyJoinGaretArrives);
         PartyJoin_Say(MsgPartyJoinGaretArrives2);
+        PartyJoin_Say(MsgPartyJoinGaretArrives3);
       }
     }
     break;
