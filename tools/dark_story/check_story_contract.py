@@ -90,46 +90,34 @@ def assert_speaker(body: str, message: str, actor: str) -> None:
 
 
 def check_visual_identity() -> None:
-    lamakan = scene("lamakan_desert.c")
-    tolbi = scene("tolbi.c")
-    lalivero = scene("lalivero.c")
-
-    # Each antagonist uses a distinct ACTOR_ID but the correct existing
-    # *character* sprite. Greyscale is applied at runtime; this is not the
-    # user's animation's custom pixel artwork.
-    require(
-        re.search(r"\{\s*ACTOR_JENNA\s*,\s*IF_FLAG_SET\(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE\)", 
-                  template(lamakan, "gLamakanDesertManticoreActorTemplates")) is not None,
-        "Lamakan Ash Jenna must use Jenna's recognizable field sprite",
-    )
-    require(
-        re.search(r"\{\s*ACTOR_JENNA\s*,\s*CONDITION_ALWAYS", 
-                  template(tolbi, "gTolbiActorTemplates")) is not None,
-        "Tolbi Ash Jenna must use Jenna's recognizable field sprite",
-    )
-    require(
-        re.search(r"\{\s*ACTOR_JENNA\s*,\s*CONDITION_ALWAYS", 
-                  template(lalivero, "gLaliveroActorTemplatesAfterLighthouse")) is not None,
-        "Post-Venus Ash Jenna must use Jenna's recognizable field sprite",
-    )
+    """Ash Jenna uses the supplied sprite art in all five appearances."""
+    for file, table in (
+        ("lamakan_desert.c", "gLamakanDesertManticoreActorTemplates"),
+        ("tolbi.c", "gTolbiActorTemplates"),
+        ("suhalla_gate.c", "gSuhallaGateCheckpointActorTemplatesAfterAudience"),
+        ("vale.c", "gVale_ActorTemplatesAfterKalay"),
+        ("lalivero.c", "gLaliveroActorTemplatesAfterLighthouse"),
+    ):
+        require(re.search(r"\{\s*SPRITE_ASH_JENNA\s*,", template(scene(file), table)) is not None,
+                f"{file}: Ash Jenna must use her supplied overworld sprite")
+    ids = read("games/tbs/include/sprite_ids.h")
+    sprites = read("games/tbs/src/graphics/sprite/sprites.tsv")
+    layout = read("games/tbs/src/graphics/sprite/layout.tsv")
+    workflow = read(".github/workflows/build-golden-sun-dialogue.yml")
+    require("SPRITE_ASH_JENNA = 0x5e" in ids, "Ash Jenna sprite id is missing")
+    require(re.search(r"^SPR_094\t32\t32\t", sprites, re.M) is not None,
+            "SPR_094 must be a real field sprite")
+    require("SPR_094" in layout.splitlines(), "SPR_094 must be packed into the ROM")
+    require("python3 tools/dark_story/build_ash_jenna_overworld.py" in workflow,
+            "CI must generate Ash Jenna's supplied overworld art")
+    for n in range(1, 5):
+        require((ROOT / f"assets/ash_jenna/overworld_{n}.png").exists(),
+                f"Missing supplied Ash Jenna pose {n}")
     require(
         re.search(r"// Kegare impersonates Mia;.*?\{\s*SPRITE_WOMAN_IN_BLUE_DRESS\s*,\s*CONDITION_ALWAYS",
                   template(scene("vault_revisit.c"), "gVaultRevisit_ActorTemplates"), re.S) is not None,
-        "Kegare must visibly mimic Mia with her own sprite (Mia is in the party)",
+        "Kegare must still visibly mimic Mia",
     )
-    require(
-        all(
-            f"Actor_ConfigureSpriteColor({actor}, SPRITE_COLOR_ASH)" in source
-            for actor, source in [
-                ("ACTOR_LAMAKAN_ASH_JENNA", lamakan),
-                ("ACTOR_TOLBI_ASH_JENNA", tolbi),
-            ]
-        ),
-        "Alternate Jenna must retain her distinguishable recolor",
-    )
-    require("SPRITE_COLOR_ASH" in function(lalivero, "Lalivero_TalkToAshJenna")
-            or "SPRITE_COLOR_ASH" in lalivero,
-            "Alternate Jenna's Lalivero tint must remain configured")
 
 
 def check_flags_and_quest_order() -> None:
@@ -139,73 +127,66 @@ def check_flags_and_quest_order() -> None:
     values = [int(v, 16) for _k, v in dark]
     require(len(set(values)) == len(values), "Two Ashfall flags share the same bit")
     required = {
-        "FLAG_DARK_ASH_JENNA_LAMAKAN_MET",
-        "FLAG_DARK_FINALE_DONE",
-        "FLAG_DARK_ASH_JENNA_ACCEPTED",
-        "FLAG_DARK_ASH_JENNA_REFUSED",
-        "FLAG_DARK_ASH_JENNA_TOLBI",
-        "FLAG_DARK_ASH_JENNA_LALIVERO",
-        "FLAG_DARK_MINER_STAYED",
-        "FLAG_DARK_HEART_BEATEN",
+        "FLAG_DARK_ASH_JENNA_LAMAKAN_MET", "FLAG_DARK_FINALE_DONE",
+        "FLAG_DARK_ASH_JENNA_TOLBI", "FLAG_DARK_ASH_JENNA_LALIVERO",
+        "FLAG_DARK_MANTICORE_RETURN_SEEN", "FLAG_DARK_ASH_GATE_FOUGHT",
+        "FLAG_DARK_MINER_STAYED", "FLAG_DARK_HEART_BEATEN",
         "FLAG_DARK_KEGARE_BEATEN",
     }
-    require(required.issubset({k for k, _v in dark}), "A story gate or choice flag is missing")
+    require(required.issubset({k for k, _v in dark}), "An Ashfall story flag is missing")
 
     lamakan = scene("lamakan_desert.c")
     finale = function(lamakan, "LamakanDesert_AshJennaFinale")
-    require(
-        re.search(r"if\s*\(GameFlag_Get\(FLAG_DARK_MINER_STAYED\).*?"
-                  r"Event_SetMessageId\(MsgDarkEchoMiner\);\s*"
-                  r"Event_ShowMessageThenWait\(ACTOR_GARET\s*,", finale, re.S) is not None,
-        "Altin stay callback must be Garet's voice, conditional on staying",
-    )
+    check = function(lamakan, "LamakanDesert_ManticoreAftermath")
+    require("MsgDarkManticoreGaretCheck" in check and
+            "FLAG_DARK_MANTICORE_RETURN_SEEN" in check,
+            "The Manticore aftermath must be the short party check")
+    require("MsgDarkManticoreMiaGloat" not in lamakan,
+            "The discarded Mia anger subplot must not play")
+    require("Event_AskYesNo" not in finale and
+            "FLAG_DARK_ASH_JENNA_ACCEPTED" not in finale and
+            "FLAG_DARK_ASH_JENNA_REFUSED" not in finale,
+            "Ash Jenna cannot recruit Isaac or trigger a Lamakan choice")
     assert_speaker(finale, "MsgDarkFinaleJenna2", "ACTOR_LAMAKAN_ASH_JENNA")
-    require(
-        "GameFlag_Set(FLAG_DARK_ASH_JENNA_ACCEPTED)" in finale
-        and "GameFlag_Set(FLAG_DARK_ASH_JENNA_REFUSED)" in finale,
-        "Lamakan must preserve both explicit Isaac choice outcomes",
-    )
-    require(
-        "GameFlag_Set(FLAG_DARK_FINALE_DONE)" in finale,
-        "Lamakan finale must record its completion",
-    )
+    require("MsgDarkFinaleJennaThreat" in finale and
+            "GameFlag_Set(FLAG_DARK_FINALE_DONE)" in finale,
+            "The linear Lamakan scene must end cleanly")
 
     tolbi = scene("tolbi.c")
     meeting = function(tolbi, "Tolbi_MeetAshJenna")
-    for required_msg in [
-        "MsgDarkTolbiJennaAccepted", "MsgDarkTolbiJennaRefused",
-        "MsgDarkTolbiJennaAsh", "MsgDarkMiaTolbiConcern",
-    ]:
-        require(required_msg in meeting, f"Missing Tolbi choice/callback: {required_msg}")
-    # New branch lines N240/N241 MUST NOT cause the fixed N76-N83
-    # sequence to start from the wrong message ID.
-    require(
-        meeting.index("Event_SetMessageId(MsgDarkTolbiJennaAsh)")
-        > meeting.index("Event_SetMessageId(MsgDarkTolbiJennaRefused)"),
-        "Tolbi must explicitly reset the message cursor after both branches",
-    )
-    require("GameFlag_Set(FLAG_DARK_ASH_JENNA_TOLBI)" in meeting,
-            "Tolbi completion must persist")
+    require("MsgDarkTolbiJennaProtest" in meeting and
+            "GameFlag_Set(FLAG_DARK_ASH_JENNA_TOLBI)" in meeting,
+            "Tolbi's linear Ash Jenna encounter must complete")
+    for obsolete in ("MsgDarkTolbiJennaAccepted", "MsgDarkTolbiJennaRefused",
+                     "MsgDarkMiaTolbiConcern", "FLAG_DARK_ASH_JENNA_ACCEPTED",
+                     "FLAG_DARK_ASH_JENNA_REFUSED"):
+        require(obsolete not in meeting, f"Tolbi retained an obsolete branch: {obsolete}")
 
     lalivero = scene("lalivero.c")
     coda = function(lalivero, "Lalivero_TalkToAshJenna")
     init = function(lalivero, "Lalivero_Initialize")
-    require(
-        "FLAG_DARK_ASH_JENNA_TOLBI" in init
-        and "FLAG_DARK_ASH_JENNA_LALIVERO" in init,
-        "Lalivero actor should appear only after Tolbi and before coda completion",
-    )
-    require("MsgDarkLaliveroIsaacAccepted" in coda
-            and "MsgDarkLaliveroIsaacRefused" in coda
-            and "Event_SetMessageId(MsgDarkLaliveroAshJenna)" in coda,
-            "Lalivero must honor each earlier choice and reconverge cleanly",
-    )
-    require("GameFlag_Set(FLAG_DARK_ASH_JENNA_LALIVERO)" in coda,
-            "Lalivero meeting must be a one-time event")
-    require(
-        "ACTOR_LALIVERO_ASH_JENNA" not in template(lalivero, "gLaliveroActorTemplates"),
-        "Post-Venus Ash Jenna actor must not be inserted into pre-Venus roster",
-    )
+    require("FLAG_DARK_ASH_JENNA_TOLBI" in init and
+            "FLAG_DARK_ASH_JENNA_LALIVERO" in init,
+            "Lalivero must remain an optional follow-up to Tolbi")
+    require("MsgDarkLaliveroIsaacInnocents" in coda and
+            "MsgDarkLaliveroAshStrangers" in coda and
+            "GameFlag_Set(FLAG_DARK_ASH_JENNA_LALIVERO)" in coda,
+            "Lalivero's linear coda must end once")
+    require("FLAG_DARK_ASH_JENNA_ACCEPTED" not in coda and
+            "FLAG_DARK_ASH_JENNA_REFUSED" not in coda,
+            "Lalivero cannot assume a discarded choice")
+    require("ACTOR_LALIVERO_ASH_JENNA" not in
+            template(lalivero, "gLaliveroActorTemplates"),
+            "Ash Jenna must not appear in pre-Venus Lalivero")
+
+    vale = scene("vale.c")
+    gate = scene("suhalla_gate.c")
+    require("FLAG_COLOSSO_OVER" in function(vale, "Vale_Initialize"),
+            "Vale optional bosses must not appear before Colosso")
+    require("SuhallaGate_AshJennaBlocksPassage" not in gate,
+            "Suhalla's Ash Jenna boss must not trigger just by crossing")
+    require("TRIGGER_TALK, ACTOR_ASH_JENNA" in gate,
+            "Suhalla's Ash Jenna boss must remain talk-triggered")
 
 
 def check_optional_battles() -> None:
@@ -344,10 +325,6 @@ def check_story_text() -> None:
     heart = messages("phase38_heart.tsv")
     require("We will meet again" not in heart["N132"],
             "Heart must not promise an unimplemented rematch")
-    miner = messages("phase47_finale.tsv")
-    require("miner" in miner["N203"].lower()
-            and "generous" not in miner["N203"].lower(),
-            "Garet's miner callback must not borrow Ash Jenna's contempt")
 
 
 def check_dormant_palette_cache_is_disabled() -> None:

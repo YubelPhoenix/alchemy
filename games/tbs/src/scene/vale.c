@@ -1681,6 +1681,13 @@ s32 Vale_Initialize(void) {
     MapGrid_CenterOnFollowedPoint();
     WaitFrames(1);
   }
+  // Keep Vale's optional test bosses hidden until after Colosso.
+  // Do not require defeating Heart or any other optional opponent.
+  if (GameFlag_Get(FLAG_KALAY_REACHED) != 0 &&
+      GameFlag_Get(FLAG_COLOSSO_OVER) == 0) {
+    Actor_SetPosition(ACTOR_ASH_JENNA_AFTER_KALAY, PIXELS(0), PIXELS(0));
+    Actor_SetPosition(ACTOR_MYSTERY_LEADER_AFTER_KALAY, PIXELS(0), PIXELS(0));
+  }
   // Back from Ash Jenna's battle.
   if (GameFlag_Get(FLAG_DARK_ASH_VALE_PENDING) != 0) {
     Vale_AshJennaAftermath();
@@ -1761,7 +1768,7 @@ static void Vale_IsaacAnswers(void) {
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
 }
 
-/// "???" in the square, after Heart: Isaac tries to learn who she is, she says
+/// "???" in the square after Colosso: Isaac tries to learn who she is; she says
 /// little, and the battle starts. A defeat comes back here and she waits.
 static void Vale_TalkToMysteryLeader(void) {
   Event_Start();
@@ -1777,7 +1784,7 @@ static void Vale_TalkToMysteryLeader(void) {
   Vale_IsaacAnswers();
   Vale_MysterySays();
   Vale_MysterySays();
-  // Isaac sees the connection between the earlier superboss encounters.
+  // Isaac asks about possible future encounters, not battles already won.
   Event_SetMessageId(MsgDarkMysteryIsaacSuspects);
   Vale_IsaacAnswers();
   Event_SetMessageId(MsgDarkMystery12);
@@ -3849,7 +3856,7 @@ struct ActorTemplate gVale_ActorTemplatesAfterKalay[] = {
     { SPRITE_STONE_PILLAR, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(378), 0, PIXELS(584), FACING_EAST, TALK_FACING_KEEP, 0 },
     // Ash Jenna, waiting in the square until she is beaten.
-    { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, FLAG_DARK_ASH_VALE_FOUGHT, MOVEMENT_TYPE_STAND,
+    { SPRITE_ASH_JENNA, FLAG_DARK_ASH_VALE_FOUGHT, MOVEMENT_TYPE_STAND,
         PIXELS(400), 0, PIXELS(800), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     // "???", a black figure in the square until she is beaten.
     { SPRITE_WOMAN_WITH_BLACK_HAIR, FLAG_DARK_MYSTERY_DONE, MOVEMENT_TYPE_STAND,

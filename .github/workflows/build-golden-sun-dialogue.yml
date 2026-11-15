@@ -17,6 +17,8 @@ on:
       - 'tools/dark_story/*.tsv'
       - 'tools/dark_story/audit_live_dialogue.py'
       - 'tools/dark_story/build_heart_art.py'
+      - 'tools/dark_story/build_ash_jenna_overworld.py'
+      - 'assets/ash_jenna/**'
       - 'tools/dark_story/check_story_contract.py'
       - '.github/workflows/build-golden-sun-dialogue.yml'
       - 'assets/heart/**'
@@ -228,6 +230,9 @@ jobs:
           python3 -m pip install --break-system-packages Pillow numpy opencv-python-headless
           python3 tools/dark_story/build_heart_art.py
           python3 tools/dark_story/build_ash_jenna_art.py
+          python3 tools/dark_story/build_ash_jenna_overworld.py
+          test -s games/tbs/src/graphics/sprite/spr_094.png
+          test -s games/tbs/src/graphics/sprite/spr_094.tsv
           python3 tools/dark_story/build_kegare_art.py
           python3 tools/dark_story/build_sarah_art.py
           python3 tools/dark_story/build_sarah_overworld.py

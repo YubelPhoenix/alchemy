@@ -2753,9 +2753,9 @@
 /// (AltinPeak_TalkToTrappedMiner).
 #define FLAG_DARK_MINERS_FREED 0x8cb
 
-/// The party has seen Mia's reaction to the Manticore and her post-battle
-/// aftermath has played (LamakanDesert_ManticoreAftermath).
-#define FLAG_DARK_MIA_MANTICORE_SEEN 0x8cc
+/// The brief post-Manticore party check has played.
+/// Retains its previous save bit for compatibility with earlier test builds.
+#define FLAG_DARK_MANTICORE_RETURN_SEEN 0x8cc
 
 /// Mia rejoined the party on the road south of Imil after Menardi's defeat
 /// (WorldMap_MiaRejoinsParty), so a battle that reloads the entrance does not
@@ -2765,9 +2765,9 @@
 #define FLAG_DARK_MINER_STAYED 0x8d3
 /// Ash Jenna's Lamakan confrontation has played.
 #define FLAG_DARK_FINALE_DONE 0x8d4
-/// Isaac accepted Ash Jenna's offer to confront the Wise One.
+/// Retired Lamakan choice bits, reserved only for save compatibility.
+/// No active scene reads or writes these flags.
 #define FLAG_DARK_ASH_JENNA_ACCEPTED 0x8d6
-/// Isaac refused Ash Jenna's offer and chose his own course.
 #define FLAG_DARK_ASH_JENNA_REFUSED 0x8d7
 /// Ash Jenna's optional closing talk in Lalivero after the Venus Lighthouse
 /// collapse. Set after the scene; hides her on subsequent town entries.

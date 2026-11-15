@@ -528,6 +528,8 @@ enum SpriteId {
   /// build_sarah_overworld.py in the place of the lute player of the Bilibin
   /// cottage (spr_129.png).
   SPRITE_SARAH = 0x81,
+  /// Custom Ash Jenna overworld art, in the unused SPR_094 slot.
+  SPRITE_ASH_JENNA = 0x5e,
   /// ★ Named from what the player sees: a young man with brown hair and a
   /// white headband in a white top and blue trousers (spr_130.png)
   SPRITE_YOUTH_WITH_HEADBAND = 0x82,

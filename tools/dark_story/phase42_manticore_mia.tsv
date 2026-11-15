@@ -1,6 +1,6 @@
-# Lamakan Desert: Mia is shaken by the Manticore, recognizes her anger, and asks the others to stay close.
-N149	MsgDarkManticoreMiaGloat	When it attacked us,\nI wanted to make it\nsuffer, not just stop it.{page_break}Even after it fell,\nI was still angry.\nThat frightened me.{end_wait}
-N150	MsgDarkManticoreGaretSmile	You went quiet\nwhen the fight ended.\nI thought you were hurt.{page_break}You wouldn't answer me.{end_wait}
-N151	MsgDarkManticoreMiaPlace	I wasn't hurt, Garet.\nI couldn't answer\nyou while I was angry.{end_wait}
-N152	MsgDarkManticoreMiaSoft	Please give me a moment.\nMy hands are\nstill shaking.{end_wait}
-N153	MsgDarkManticoreIsaacSupport	Take the time you need.\nWe'll stay with you.{end_wait}
+# Brief post-Manticore group check; Mia's anger subplot has been removed.
+N149	MsgDarkManticoreGaretCheck	That was close.\nEveryone all right?{end_wait}
+N150	MsgDarkManticoreMiaReady	I'm fine, Garet.\nWhat about the others?{end_wait}
+N151	MsgDarkManticoreIvanReady	I'm all right.\nThe heat's getting worse.{end_wait}
+N152	MsgDarkManticoreIsaacMove	We should keep moving.{end_wait}
+N153	MsgDarkManticoreGaretSees	Isaac, wait.\nSomeone's up ahead.{end_wait}

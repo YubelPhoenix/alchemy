@@ -104,7 +104,7 @@ enum SuhallaGateCheckpointActorId {
   /// brings him out of the party.
   /// ★ Named from the game: "Iodem..." (MsgSuhallaIodem)
   ACTOR_IODEM,
-  /// Ash Jenna, barring the passage (SuhallaGate_TalkToAshJenna), until she is
+  /// Ash Jenna, an optional challenge after Iodem's report, until she is
   /// beaten (FLAG_DARK_ASH_GATE_FOUGHT).
   ACTOR_ASH_JENNA
 };
@@ -159,16 +159,6 @@ static void SuhallaGate_TalkToAshJenna(void) {
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 5);
   Event_End();
-}
-
-/// The passage trigger (TRIGGER_STEP 10) also fires when a save made standing
-/// in the passage is loaded, which threw the party into the fight with no
-/// chance to prepare. Only a step the player is walking starts it; a load
-/// leaves the party standing there until it moves or talks to her.
-static void SuhallaGate_AshJennaBlocksPassage(void) {
-  if ((gKeysHeld & KEYS_DPAD) == 0)
-    return;
-  SuhallaGate_TalkToAshJenna();
 }
 
 /// Back from Ash Jenna's battle at the gate: after a win she says her last
@@ -512,8 +502,8 @@ static void SuhallaGate_IodemQuestionsGuards(void) {
   MapGrid_CopyCellAttributes(9, 26, 2, 1, destinationColumn, 26);
 #endif
   GameFlag_Set(FLAG_SUHALLA_GATE_ATTACK_SEEN);
-  // Now Ash Jenna steps into the passage.
-  Actor_SetPosition(ACTOR_ASH_JENNA, PIXELS(152), PIXELS(388));
+  // After the report, Ash Jenna waits off the passage for optional talk.
+  Actor_SetPosition(ACTOR_ASH_JENNA, PIXELS(184), PIXELS(388));
   Actor_ConfigureSpriteColor(ACTOR_ASH_JENNA, SPRITE_COLOR_NORMAL);
   Event_End();
 }
@@ -750,9 +740,9 @@ struct ActorTemplate gSuhallaGateCheckpointActorTemplatesAfterAudience[] = {
 #endif
     { SPRITE_IODEM, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_EAST, TALK_FACING_KEEP, 0 },
-    // Ash Jenna, up by the wounded guards (off the stairs) until she is beaten.
-    { SPRITE_WOMAN_WITH_ORANGE_PONYTAIL, FLAG_DARK_ASH_GATE_FOUGHT, MOVEMENT_TYPE_STAND,
-        PIXELS(152), 0, PIXELS(388), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    // Ash Jenna waits beside the north passage; passing does not start a fight.
+    { SPRITE_ASH_JENNA, FLAG_DARK_ASH_GATE_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(184), 0, PIXELS(388), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -765,9 +755,6 @@ struct Trigger gSuhallaGateTriggersOther[] = {
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 3, CONDITION_ALWAYS, EVENT(SuhallaGate_EnterHouse) },
     { TRIGGER_STEP, 10, FLAG_BABI_SPOKE_AFTER_COLOSSO, EVENT(SuhallaGate_GuardsBlockPassage) },
     { TRIGGER_STEP, 10, FLAG_SUHALLA_GATE_ATTACK_SEEN, EVENT(SuhallaGate_IodemQuestionsGuards) },
-    // Once Iodem has questioned the guards, Ash Jenna blocks the north passage.
-    // The same passage trigger makes this a story fight rather than talk-only.
-    { TRIGGER_STEP, 10, FLAG_DARK_ASH_GATE_FOUGHT, EVENT(SuhallaGate_AshJennaBlocksPassage) },
     { TRIGGER_TALK, ACTOR_WEST_GUARD, FLAG_SUHALLA_GATE_ATTACK_SEEN, MSGNO(MsgSuhallaTravelPapersRequired) },
     { TRIGGER_TALK, ACTOR_WEST_GUARD, CONDITION_ALWAYS, MSGNO(MsgSuhallaSendHelpFromTower) },
     { TRIGGER_TALK, ACTOR_EAST_GUARD, CONDITION_ALWAYS, EVENT(SuhallaGate_TalkToEastGuard) },

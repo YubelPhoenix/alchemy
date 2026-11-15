@@ -206,15 +206,10 @@ static void Lalivero_TalkToAshJenna(void) {
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_SetMessageId(MsgDarkLaliveroAshBurden);
   Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
-  if (GameFlag_Get(FLAG_DARK_ASH_JENNA_ACCEPTED) != 0) {
-    Event_SetMessageId(MsgDarkLaliveroIsaacAccepted);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  } else {
-    // The only other Lamakan outcome is refusal. Keep an explicit reset
-    // after either branch instead of relying on the message cursor.
-    Event_SetMessageId(MsgDarkLaliveroIsaacRefused);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  }
+  Event_SetMessageId(MsgDarkLaliveroIsaacInnocents);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshStrangers);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
   Event_SetMessageId(MsgDarkLaliveroAshJenna);
   Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
   Event_SetMessageId(MsgDarkLaliveroIsaacOthers);
@@ -976,7 +971,7 @@ s32 Lalivero_Initialize(void) {
       Actor_SetPosition(ACTOR_LALIVERO_ASH_JENNA, PIXELS(128), PIXELS(240));
       Actor_FaceDirection(ACTOR_LALIVERO_ASH_JENNA, FACING_SOUTH, 0);
       Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA,
-                                 SPRITE_COLOR_ASH);
+                                 SPRITE_COLOR_NORMAL);
     }
     // Back from Sarah's battle: she walks east along the open street by the
     // wharf, off the screen.
@@ -1197,7 +1192,7 @@ struct ActorTemplate gLaliveroActorTemplatesAfterLighthouse[] = {
     // After the Black Orb: the unrepentant alternate Jenna wears Jenna's
     // recognizable field sprite, shaded grey, not a random NPC appearance.
     // Lalivero_Initialize reveals her only after Tolbi and before the coda.
-    { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+    { SPRITE_ASH_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-64), 0, PIXELS(-64), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     // Sarah, waiting by the wharf until she is beaten.
     { SPRITE_SARAH, FLAG_DARK_SARAH_LALIVERO_FOUGHT, MOVEMENT_TYPE_STAND,

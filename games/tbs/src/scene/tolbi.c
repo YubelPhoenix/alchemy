@@ -517,7 +517,7 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
       GameFlag_Get(FLAG_DARK_ASH_JENNA_TOLBI) == 0) {
     Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(232), PIXELS(256));
     Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
-    Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_ASH);
+    Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_NORMAL);
   }
   // Back from Sarah's battle. She stands on the terrace above a stair two
   // cells wide, Isaac on its west half: she steps a cell east and walks down
@@ -541,10 +541,8 @@ static void Tolbi_TalkToSarah(void) {
   Event_End();
 }
 
-/// Ash Jenna, grey and hostile, confronts the party in the rain after Colosso.
-/// She *blames* the Wise One for the destruction of her own world, but her
-/// accusation is unverified. She threatens people who obstruct her, needles
-/// Mia about the Manticore, and warns of the next lighthouse.
+/// Ash Jenna's unconditional post-Colosso confrontation. Her hostility
+/// escalates when Isaac chooses to leave; no rejected story branches remain.
 static void Tolbi_MeetAshJenna(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkTolbiJennaFound);
@@ -552,17 +550,6 @@ static void Tolbi_MeetAshJenna(void) {
   Event_WaitFrames(30);
   Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  // The Lamakan choice changes how she addresses Isaac in Tolbi. The
-  // rest of the exchange is shared, regardless of his answer.
-  if (GameFlag_Get(FLAG_DARK_ASH_JENNA_ACCEPTED) != 0) {
-    Event_SetMessageId(MsgDarkTolbiJennaAccepted);
-    Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
-  } else if (GameFlag_Get(FLAG_DARK_ASH_JENNA_REFUSED) != 0) {
-    Event_SetMessageId(MsgDarkTolbiJennaRefused);
-    Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
-  }
-  // Resume the existing consecutive messages at N76, not after the
-  // newly allocated branch line's message index.
   Event_SetMessageId(MsgDarkTolbiJennaAsh);
   Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
@@ -572,28 +559,17 @@ static void Tolbi_MeetAshJenna(void) {
   Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkTolbiJennaProtest);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
   Event_SetMessageId(MsgDarkTolbiIvanJenna);
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  // She turns away and fades into the rain.
   Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_EAST, 0);
   Event_WaitFrames(20);
   AshWarp_Out(ACTOR_TOLBI_ASH_JENNA);
   Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_ASH_JENNA_TOLBI);
-  // Mia admits that Ash Jenna's personal attack unsettled her, but the
-  // party reassures her. No weapon, possession, or transfer choice is involved.
-  Event_SetMessageId(MsgDarkMiaTolbiConcern);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  Event_SetMessageId(MsgDarkMiaTolbiAdmit);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-  Event_SetMessageId(MsgDarkMiaTolbiSupport);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  Event_SetMessageId(MsgDarkMiaTolbiResolve);
-  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+  Event_SetMessageId(MsgDarkTolbiGaretMove);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
   Event_End();
 }
 
@@ -937,7 +913,7 @@ struct ActorTemplate gTolbiActorTemplates[] = {
         PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     // Ash Jenna's field sprite uses Jenna's identity with a sinister tint.
     // Parked until Tolbi_ApplyEntryState brings her out.
-    { ACTOR_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+    { SPRITE_ASH_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     // Sarah, waiting in the street until she is beaten. She stands well clear of the Spring gate's visitor (302,296), whose
     // talk trigger was answering when Isaac spoke to her from the east.

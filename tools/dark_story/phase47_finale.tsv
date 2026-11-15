@@ -1,21 +1,21 @@
-# Lamakan confrontation: Ash Jenna's origin, her offer, and Isaac's response.
-N224	MsgDarkFinaleJennaMet	You came back.\nI knew you wouldn't\nleave a mystery alone.{end_wait}
-N225	MsgDarkFinaleIsaacMet	I saw you before.\nYou look like Jenna.\nTell me who you are.{end_wait}
-N195	MsgDarkFinaleJenna1	You kept going,\njust as I thought.\nGood, Isaac.{end_wait}
-N196	MsgDarkFinaleIsaac1	I know Jenna.\nYou have her face.\nWho are you?{end_wait}
-N197	MsgDarkFinaleJenna2	I'm Jenna. Not yours.\nThe beacons in my world\nwere all lit.{page_break}Then our home was gone.\nThe Wise One did nothing.\nI was there to see it.{end_wait}
-N198	MsgDarkFinaleGaret	Why come to Isaac?\nWhat can he do\nthat you couldn't?{end_wait}
-N199	MsgDarkFinaleJenna3	He gave you a task.\nYou can reach him.\nThat makes you useful.{page_break}I'll make him answer\nfor what happened.\nHelp me, or stand aside.{end_wait}
-N200	MsgDarkFinaleIvan	She wants Isaac to\nbring her closer to him.\nWe can't trust her.{end_wait}
-N201	MsgDarkFinaleMia	She may believe it.\nBut look what she's\nasking Isaac to do.{end_wait}
+# Ash Jenna's automatic post-Manticore confrontation. No recruitment choice.
+N224	MsgDarkFinaleJennaMet	You again, Isaac.\nI'm surprised the desert\ndidn't finish you.{end_wait}
+N225	MsgDarkFinaleIsaacMet	You knew my name before.\nTell me who you are.{end_wait}
+N195	MsgDarkFinaleJenna1	So you survived.\nI wondered whether\nyou would.{end_wait}
+N196	MsgDarkFinaleIsaac1	You look like Jenna.\nWho are you?{end_wait}
+N197	MsgDarkFinaleJenna2	I am Jenna.\nJust not the one\nyou're searching for.{page_break}You lost her once.\nAnd everyone here\nstill follows you.{end_wait}
+N198	MsgDarkFinaleGaret	We chose to come.\nIsaac didn't make us.{end_wait}
+N199	MsgDarkFinaleJenna3	How loyal.\nI wonder how long\nthat will last.{page_break}It only takes one\nto decide the rest\naren't worth saving.{end_wait}
+N200	MsgDarkFinaleIvan	We know why we're here.\nYou don't get to\nmake that choice.{end_wait}
+N201	MsgDarkFinaleMia	You haven't told us\nwhat you want.\nWhy are you here?{end_wait}
 N203	MsgDarkEchoMiner	You stayed with that\nminer when he was afraid.\nI remember that, Isaac.{end_wait}
-N208	MsgDarkFinaleAsk	Help her confront\nthe Wise One?{end_now}
-N209	MsgDarkFinaleYesIsaac	I'll help find the truth.\nBut I won't hurt\nanyone for you.{end_wait}
-N210	MsgDarkFinaleYesJenna	We'll see how long\nyou hold to that\nwhen the time comes.{end_wait}
-N211	MsgDarkFinaleYesIvan	Isaac, be careful.\nShe has Jenna's face,\nnot Jenna's heart.{end_wait}
-N212	MsgDarkFinaleYesJenna2	Remember my face,\nIsaac. You'll need it\nwhen the time comes.{end_wait}
-N213	MsgDarkFinaleNoIsaac	No. I won't help\nyou hunt someone\non your word alone.{end_wait}
-N214	MsgDarkFinaleRefusalJenna	Refuse all you like.\nYou'll still have to\nlive with what comes.{end_wait}
-N215	MsgDarkFinaleRefusalIvan	We need to go.\nJenna's still with them.{end_wait}
-N216	MsgDarkFinaleRefusalMia	Don't let her put\nher anger in your\nhands, Isaac.{end_wait}
-N221	MsgDarkFinaleHook	Your Jenna and Kraden\nare still with Menardi.\nFelix travels with them.{page_break}The road goes to Kalay.\nI'd hurry if I were you.\nWe'll meet again.{end_wait}
+N208	MsgDarkFinaleJennaThreat	I wanted to see\nwhat Isaac would do\nwith my face.{end_wait}
+N209	MsgDarkFinaleIsaacDemand	Have you seen Jenna?\nIs she safe?{end_wait}
+N210	MsgDarkFinaleJennaCruel	You still think I'd\ngive you that answer?\nHow sweet.{page_break}I could tell you\nanything, Isaac.\nYou'd want it to be true.{end_wait}
+N211	MsgDarkFinaleIvanLeave	That's enough.\nShe's playing with us.{end_wait}
+N212	MsgDarkFinaleJennaDismiss	Then walk away.\nI won't stop you.\nNot today.{end_wait}
+N213	MsgDarkFinaleIsaacWarning	Stay away from\nmy friends.{end_wait}
+N214	MsgDarkFinaleJennaParting	You can't watch\nover all of them\nforever.{page_break}Remember that when\none of them is missing.{end_wait}
+N215	MsgDarkFinaleGaretEnough	We're leaving, Isaac.\nShe's wasting our time.{end_wait}
+N216	MsgDarkFinaleMiaKeepMoving	We should go.\nThe real Jenna\nis still out there.{end_wait}
+N221	MsgDarkFinaleHook	Walking away already?\nFine. Go.{page_break}I'll be there when\nsomething finally\nbreaks your little group.{end_wait}

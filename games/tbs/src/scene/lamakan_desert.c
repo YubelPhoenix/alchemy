@@ -265,7 +265,7 @@ const struct ActorTemplate *LamakanDesert_GetActorTemplates(void) {
       GameFlag_Get(FLAG_SATUROS_BEATEN_AT_MERCURY) != 0 &&
       GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0 &&
       (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0 ||
-       GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) != 0 ||
+       GameFlag_Get(FLAG_DARK_MANTICORE_RETURN_SEEN) != 0 ||
        GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0 ||
        gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE)) {
     GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
@@ -316,16 +316,12 @@ static void LamakanDesert_SayMia(void) {
   GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
 }
 
-/// After the Manticore, the hostile Ash Jenna claims to come from a lost
-/// world and tries to recruit Isaac against the Wise One. Her accusation is
-/// unverified, and she is not redeemed. Garet (not Ash Jenna) voices the
-/// optional Altin miner callback, affirming Isaac's decision to stay.
-/// The rescue does not decide Isaac's answer. Once.
+/// The automatic encounter after the Manticore, whether or not the first
+/// optional sighting was seen. No recruitment choice or miner callback.
 static void LamakanDesert_AshJennaFinale(void) {
   Event_Start();
-  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_ASH);
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_NORMAL);
   if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0) {
-    // Isaac has already seen her watching the desert; acknowledge that meeting.
     Event_SetMessageId(MsgDarkFinaleJennaMet);
     Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
     Event_SetMessageId(MsgDarkFinaleIsaacMet);
@@ -346,28 +342,24 @@ static void LamakanDesert_AshJennaFinale(void) {
   Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
   Event_SetMessageId(MsgDarkFinaleMia);
   LamakanDesert_SayMia();
-  if (GameFlag_Get(FLAG_DARK_MINER_STAYED) != 0) {
-    Event_SetMessageId(MsgDarkEchoMiner);
-    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-  }
-  Event_SetMessageId(MsgDarkFinaleAsk);
-  if (Event_AskYesNo(ACTOR_PARTY_LEADER, 0) == 0) {
-    // Isaac agrees to help Ash Jenna confront the Wise One.
-    Event_SetMessageId(MsgDarkFinaleYesIsaac);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
-    GameFlag_Set(FLAG_DARK_ASH_JENNA_ACCEPTED);
-  } else {
-    // Isaac refuses to follow her without knowing the whole truth.
-    Event_SetMessageId(MsgDarkFinaleNoIsaac);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-    LamakanDesert_SayMia();
-    GameFlag_Set(FLAG_DARK_ASH_JENNA_REFUSED);
-  }
+  Event_SetMessageId(MsgDarkFinaleJennaThreat);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleIsaacDemand);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleJennaCruel);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleIvanLeave);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleJennaDismiss);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleIsaacWarning);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleJennaParting);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleGaretEnough);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleMiaKeepMoving);
+  LamakanDesert_SayMia();
   Event_SetMessageId(MsgDarkFinaleHook);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
   Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_EAST, 0);
@@ -382,12 +374,12 @@ static void LamakanDesert_AshJennaFinale(void) {
 /// Ash Jenna, grey, watches the ash-streaked desert and slips away from Isaac.
 /// After the Manticore aftermath, she delivers the finale instead.
 static void LamakanDesert_MeetAshJenna(void) {
-  if (GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) != 0) {
+  if (GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) {
     LamakanDesert_AshJennaFinale();
     return;
   }
   Event_Start();
-  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_ASH);
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_NORMAL);
   Event_SetMessageId(MsgDarkLamakanJennaWatch);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
@@ -1073,31 +1065,25 @@ static void LamakanDesert_MeetManticore(void) {
   }
 }
 
-/// After the Manticore battle, Mia reacts to what the beast did. Her anger
-/// unsettles the party, but she recognizes it as her own and remains
-/// accountable. The aftermath plays once on the return from battle. Once.
+/// The short group check after the Manticore. Mia's abandoned anger subplot
+/// is removed; Ash Jenna appears immediately afterward.
 static void LamakanDesert_ManticoreAftermath(void) {
   Event_Start();
-  // Run from the scene's start-up: bring the picture in before anyone speaks.
   MapGrid_CenterOnFollowedPoint();
   WaitFrames(1);
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
-  if (GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) == 0) {
-    Event_SetMessageId(MsgDarkManticoreMiaGloat);
-    GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-    GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-    Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-    GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-    GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-    Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-    Event_SetMessageId(MsgDarkManticoreIvanConcern);
-    Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  }
-  GameFlag_Set(FLAG_DARK_MIA_MANTICORE_SEEN);
+  Event_SetMessageId(MsgDarkManticoreGaretCheck);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_SetMessageId(MsgDarkManticoreMiaReady);
+  LamakanDesert_SayMia();
+  Event_SetMessageId(MsgDarkManticoreIvanReady);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_SetMessageId(MsgDarkManticoreIsaacMove);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkManticoreGaretSees);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  GameFlag_Set(FLAG_DARK_MANTICORE_RETURN_SEEN);
   Event_End();
 }
 
@@ -1151,15 +1137,12 @@ s32 LamakanDesert_Initialize(void) {
       (gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE ||
        GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) &&
       GameFlag_Get(FLAG_SATUROS_BEATEN_AT_MERCURY) != 0 &&
-      GameFlag_Get(FLAG_DARK_MIA_MANTICORE_SEEN) == 0) {
-    LamakanDesert_ManticoreAftermath();
-    // Mia's aftermath plays on the return from battle. Ash Jenna then
-    // appears for the finale automatically.
-    if (GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0) {
-      Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(167), PIXELS(184));
-      Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_NORTH, 0);
-      LamakanDesert_AshJennaFinale();
-    }
+      GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0) {
+    if (GameFlag_Get(FLAG_DARK_MANTICORE_RETURN_SEEN) == 0)
+      LamakanDesert_ManticoreAftermath();
+    Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(167), PIXELS(184));
+    Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_NORTH, 0);
+    LamakanDesert_AshJennaFinale();
   }
   return 0;
 }
@@ -1481,7 +1464,7 @@ struct ActorTemplate gLamakanDesertManticoreActorTemplates[] = {
     { 0xc1, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(128), 0, PIXELS(316), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     // The evil counterpart must look like Jenna, not a generic villager.
-    { ACTOR_JENNA, IF_FLAG_SET(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE), MOVEMENT_TYPE_STAND,
+    { SPRITE_ASH_JENNA, IF_FLAG_SET(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE), MOVEMENT_TYPE_STAND,
         PIXELS(128), 0, PIXELS(250), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };

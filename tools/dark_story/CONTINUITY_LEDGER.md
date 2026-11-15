@@ -591,3 +591,40 @@ The final source audit caught a real discrepancy: `Scene_Arrive` had used `FLAG_
 
 `SceneManager_Run` calls the town's `triggers()` and `actorTemplates()` **before** `Lalivero_Initialize`. The original getters looked only at a persistent `FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED` that the initializer itself sets when entering from the Venus aerie. That can select first-visit tables on the first post-Venus entry, including no optional Ash Jenna actor despite a later coda initialization attempting to operate on her. Both getters now use `Lalivero_IsPostVenusState()`, checking the saved flag **or** `ENTRANCE_FROM_AERIE` / `ENTRANCE_FROM_AERIE_QUIETLY`, with the old flag assignment retained. The story contract guards correct early table selection and source-local named scene exits in all 19 modified scene C files. Actual event/actor tests in emulator remain mandatory.
 
+
+## 14 November 2026 — Ash Jenna progression and art integration (supersedes earlier draft notes)
+
+The prior Lamakan recruitment dialogue, Isaac's Yes/No Wise One agreement, and
+Mia's anger after the Manticore are **retired**. Earlier entries in this ledger
+describing those paths are historical, not active story instructions.
+
+- **Lamakan Desert**: an optional first sighting is followed by a required,
+  linear post-Manticore confrontation. The normal Manticore group check no
+  longer contains Mia's anger. Isaac does not accept or refuse a pact with
+  Ash Jenna. The old accepted/refused flag numbers are reserved only for save
+  compatibility; no active scene sets or reads them.
+- **Ash Jenna's characterization**: she is cruel and threatening, not redeemed
+  or seeking Isaac's help. Her fear of abandonment is shown in how she reacts
+  when Isaac and his companions walk away; the explicit explanation belongs
+  to ???, who says she is cruel but afraid of being left alone.
+- **Character knowledge**: Ivan knows the party only from Vault and Goma Cave
+  onward. None of the early dialogue gives him Vale memories. The Lamakan
+  confrontation cannot assume the optional first sighting was seen.
+- **Tolbi**: one encounter after Colosso, no choice-dependent line or Mia
+  anger callback. **Lalivero**: optional, post-Venus, only if Tolbi happened,
+  and independent of Lamakan choice flags.
+- **Testing access**: Vale's Ash Jenna and ??? super bosses are visible from
+  post-Colosso onward, without requiring other optional fights. The mystery
+  commander's dialogue can mention Heart, Sarah and Kegare without asserting
+  Isaac fought them. Ash Jenna's Suhalla Gate battle remains optional after
+  Iodem's investigation: talk to initiate; crossing north does not start it.
+  The separate Vale boss remains optional and independent.
+- **Art**: all five Ash Jenna field actors use sprite id 0x5e (SPR_094),
+  generated from the user's existing four PNG poses. The CI workflow creates
+  the field sheet and animations before compiling; the separate supplied
+  battle art and mugshot pipeline is unchanged. Build/compiler success alone
+  will not prove in-emulator animation, memory usage or physical accessibility.
+
+This entry states the current intended implementation. If a subsequent
+in-game test reveals a trigger, collision, palette, or text-window issue,
+correct that specific issue before claiming the entire route is finished.
