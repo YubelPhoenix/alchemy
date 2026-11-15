@@ -181,8 +181,22 @@ def check_flags_and_quest_order() -> None:
 
     vale = scene("vale.c")
     gate = scene("suhalla_gate.c")
-    require("FLAG_COLOSSO_OVER" in function(vale, "Vale_Initialize"),
-            "Vale optional bosses must not appear before Colosso")
+    # Vale_Initialize contains #if/#else branches. The lightweight function()
+    # extractor counts braces from both mutually exclusive C branches, so it
+    # cannot reliably parse that function. Validate the exact gating block
+    # instead, including both optional bosses being hidden before Colosso.
+    require(
+        re.search(
+            r"if\s*\(\s*GameFlag_Get\(FLAG_KALAY_REACHED\)\s*!=\s*0\s*&&\s*"
+            r"GameFlag_Get\(FLAG_COLOSSO_OVER\)\s*==\s*0\s*\)\s*\{\s*"
+            r"Actor_SetPosition\(ACTOR_ASH_JENNA_AFTER_KALAY,\s*"
+            r"PIXELS\(0\),\s*PIXELS\(0\)\);\s*"
+            r"Actor_SetPosition\(ACTOR_MYSTERY_LEADER_AFTER_KALAY,\s*"
+            r"PIXELS\(0\),\s*PIXELS\(0\)\);",
+            vale, re.S,
+        ) is not None,
+        "Vale optional bosses must remain hidden until after Colosso",
+    )
     require("SuhallaGate_AshJennaBlocksPassage" not in gate,
             "Suhalla's Ash Jenna boss must not trigger just by crossing")
     require("TRIGGER_TALK, ACTOR_ASH_JENNA" in gate,
