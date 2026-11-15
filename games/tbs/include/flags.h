@@ -2721,12 +2721,6 @@
 /// Ash Jenna has spoken to the party in Tolbi after Colosso, and slipped away.
 #define FLAG_DARK_ASH_JENNA_TOLBI 0x88d
 
-/// Isaac paid for sandbags in Imil (Imil_TalkToSandbagMan): the second Tide
-/// Shard kindness.
-#define FLAG_DARK_TIDE_IMIL 0x8b4
-/// Isaac paid a stranded family's fare in Tolbi (Tolbi_TalkToStrandedFather):
-/// the third Tide Shard kindness.
-#define FLAG_DARK_TIDE_TOLBI 0x8b5
 /// Kegare's battle in Tolbi has begun (Tolbi_TalkToKegare); set before it, so a
 /// win returns to a Tolbi where she is gone.
 #define FLAG_DARK_KEGARE_FOUGHT 0x8b6
