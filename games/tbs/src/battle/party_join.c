@@ -6,14 +6,17 @@
 ///
 /// The fight:
 ///  1. Isaac fights her alone. While he is alone he cannot fall: a blow that
-///     would fell him leaves him at 1 HP instead (PartyJoin_ClampDamage), and
-///     the rescue starts right after it.
-///  2. Otherwise, at the end of RESCUE_ROUND she speaks, the music fades out,
-///     and she unleashes Gotterkanone (BossAI_MysteryChooseSlot picks it while
-///     PartyJoin_IsBrink), which leaves him at exactly 1 HP; the number shown
-///     is the HP he lost. She speaks again.
-///  3. Mia breaks free and runs in, the music changes to RESCUE_SONG, and she
-///     casts Pure Ply on Isaac. "???" and Mia each have a line.
+///     would fell him leaves him at 1 HP instead (PartyJoin_ClampDamage).
+///  2. Her turn in RESCUE_ROUND is Gotterkanone: she speaks, the music fades
+///     out, and the blow leaves him at exactly 1 HP; the number shown is the
+///     HP he lost (BossAI_MysteryChooseSlot asks PartyJoin_TakeBrinkTurn).
+///  3. At the end of that round, or of any round that left Isaac alone at
+///     1 HP, she speaks; Mia breaks free and runs in, the music changes to
+///     RESCUE_SONG, and she casts Pure Ply on Isaac. "???" and Mia speak.
+///  Everything here plays at the end of a round, after the game's own round
+///  end, or inside her own turn, so the screen is in the state the game
+///  leaves it between rounds; the one extra action, Mia's Pure Ply, is
+///  followed by PartyJoin_Settle.
 ///  4. Garet breaks free at the end of the first round that leaves "???" below
 ///     GARET_BELOW_PERCENT of her HP.
 ///  5. Ivan breaks free at the end of the round she awakens in, below half HP
@@ -69,12 +72,18 @@
 #define joinRound unusedAfterEscapes
 /// How far the story has gone (enum JoinStage).
 #define joinStage unusedAfterChannels[0]
-/// Set while her scripted Gotterkanone is played: it leaves 1 HP.
+/// Her Gotterkanone turn (enum JoinBrink): it leaves Isaac 1 HP.
 #define joinBrink unusedAfterChannels[1]
 /// The round the last arrival came in.
 #define joinLastArrival unusedAfterPlacement[0]
 /// Set when a blow left Isaac, alone, at 1 HP: the rescue follows it.
 #define joinEdge unusedAfterPlacement[1]
+
+enum JoinBrink {
+  BRINK_NONE = 0,    ///< not this round
+  BRINK_PENDING = 1, ///< her next turn is Gotterkanone
+  BRINK_STRIKING = 2 ///< her Gotterkanone is being played
+};
 
 enum JoinStage {
   JOIN_ALONE = 0, ///< Isaac alone
@@ -115,6 +124,27 @@ static void PartyJoin_FaceParty(s32 frames) {
   view->targetYaw = YAW_PARTY_TURN;
   view->frames = frames;
   WaitFrames(frames);
+}
+
+/// Puts the screen back as the game sets it before each action
+/// (BattleStaging_DispatchAction) and between rounds: no highlight, full
+/// brightness, the action camera's projection, and the zoomed background
+/// with its saved palette. Called after an action this file plays itself.
+static void PartyJoin_Settle(void) {
+  struct BattleBackgroundWork *view =
+      HEAP_SLOT_BLOCK(HEAP_SLOT_BATTLE_BACKGROUND);
+  struct BattleCamera *camera = HEAP_SLOT_BLOCK(HEAP_SLOT_CAMERA);
+  struct BattleWork *battle = gBattleWork;
+
+  BattleHighlight_SetModes(0, HIGHLIGHT_OFF);
+  view->flag = 0;
+  battle->brightness = Q16_ONE;
+  Transform_Reset();
+  Transform_SetLookAt(camera->eye, camera->focus);
+  Projection_Set(0x01fe0000, Iwram_RatioMulQ14(0x01fe0000, 0xc000), 0x7fff0000);
+  BattleBackground_SetMode(BATTLE_BACKGROUND_ZOOMED, battle->background,
+                           BATTLE_BACKGROUND_FADE_RESTORE);
+  WaitFrames(1);
 }
 
 /// Brings character unitId into the battle at the party's next place: they
@@ -215,36 +245,53 @@ static void PartyJoin_Act(s32 unitId, s32 command, s32 abilityId,
   BattleStaging_DispatchAction(&request, 10);
 }
 
-/// "???" has Isaac at 1 HP, by her scripted Gotterkanone (strike, at the end
-/// of RESCUE_ROUND) or by a blow that would have felled him; Mia breaks free
+/// End of a round that left Isaac, alone, at 1 HP (her Gotterkanone, or a
+/// blow that would have felled him): she speaks; Mia breaks free, runs in
 /// and heals him.
-static void PartyJoin_RunRescue(s32 mysteryId, s32 strike) {
+static void PartyJoin_RunRescue(void) {
   struct BattleWork *battle = gBattleWork;
 
   battle->joinStage = JOIN_MIA;
   battle->joinEdge = 0;
-  if (strike) {
-    PartyJoin_Say(MsgPartyJoinMysteryBrink);
-    Sound_PlaySongFar(SONG_FADE_OUT_BGM);
-    battle->joinBrink = 1;
-    PartyJoin_Act(mysteryId, COMMAND_ENEMY_ABILITY, ABILITY_GOTTERKANONE,
-                  TARGET_ISAAC);
-    battle->joinBrink = 0;
-    if (BattleUnit_ListLiving(BATTLE_SIDE_MASK_PARTY, 0) == 0)
-      return;
-  } else {
-    Sound_PlaySongFar(SONG_FADE_OUT_BGM);
-    WaitFrames(30);
-  }
+  battle->joinBrink = BRINK_NONE;
+  // The music has faded already after her Gotterkanone; not after a blow.
+  Sound_PlaySongFar(SONG_FADE_OUT_BGM);
+  WaitFrames(40);
   PartyJoin_Say(MsgPartyJoinMysteryAlone);
+  WaitFrames(30);
 
   if (PartyJoin_Arrive(MIA) == 0)
     return;
   Sound_PlaySongFar(RESCUE_SONG);
   PartyJoin_Say(MsgPartyJoinMiaArrives);
   PartyJoin_Act(MIA, COMMAND_PSYNERGY, ABILITY_PURE_PLY, TARGET_ISAAC);
+  PartyJoin_Settle();
+  PartyStatus_DrawFar(battle->partyStatus);
   PartyJoin_Say(MsgPartyJoinMysteryReacts);
   PartyJoin_Say(MsgPartyJoinMiaAnswers);
+}
+
+/// Her turn in RESCUE_ROUND: says her line and fades the music, and returns
+/// 1 while the turn should be Gotterkanone. Called by
+/// BossAI_MysteryChooseSlot at each of her picks; the line plays once.
+s32 PartyJoin_TakeBrinkTurn(void) {
+#if PARTY_JOIN_ENABLED
+  struct BattleWork *battle = gBattleWork;
+
+  if (battle->joinBrink == BRINK_NONE || battle->joinStage != JOIN_ALONE)
+    return 0;
+  if (battle->joinBrink == BRINK_PENDING) {
+    battle->joinBrink = BRINK_STRIKING;
+    MessageArgument_ClearAllFar();
+    BattleMessage_ShowAndWaitFar(MsgPartyJoinMysteryBrink);
+    BattleMessage_WaitForAdvance();
+    MessageArgument_ClearAllFar();
+    Sound_PlaySongFar(SONG_FADE_OUT_BGM);
+  }
+  return 1;
+#else
+  return 0;
+#endif
 }
 
 /// Counts the round that just ended and plays whatever the story has next.
@@ -269,8 +316,12 @@ void PartyJoin_RunRoundEnd(void) {
 
   switch (battle->joinStage) {
   case JOIN_ALONE:
-    if (battle->joinRound >= RESCUE_ROUND)
-      PartyJoin_RunRescue(mysteryId, 1);
+    // Her next turn is the Gotterkanone; the round it lands in, or any
+    // round that left Isaac at 1 HP, ends with Mia.
+    if (battle->joinEdge != 0 || battle->joinRound >= RESCUE_ROUND)
+      PartyJoin_RunRescue();
+    else if (battle->joinRound == RESCUE_ROUND - 1)
+      battle->joinBrink = BRINK_PENDING;
     break;
   case JOIN_MIA:
     if (mystery->hp * 100 < mystery->hpMax * GARET_BELOW_PERCENT ||
@@ -294,28 +345,16 @@ void PartyJoin_RunRoundEnd(void) {
 #endif
 }
 
-/// Starts the rescue at once if the action just played left Isaac, alone, at
-/// 1 HP (PartyJoin_ClampDamage). Called by Battle_Run after every action.
+/// Ends her Gotterkanone turn once it has played, so only that blow leaves
+/// Isaac at exactly 1 HP. Called by Battle_Run after every action.
 void PartyJoin_RunAfterAction(void) {
 #if PARTY_JOIN_ENABLED
   struct BattleWork *battle = gBattleWork;
-  s32 mysteryId;
 
-  if (battle->joinEdge == 0 || battle->joinStage != JOIN_ALONE)
-    return;
-  mysteryId = PartyJoin_FindMystery();
-  if (mysteryId >= 0)
-    PartyJoin_RunRescue(mysteryId, 0);
-#endif
-}
-
-/// Returns 1 while her scripted Gotterkanone is being played. Read by
-/// BossAI_MysteryChooseSlot, to pick it.
-s32 PartyJoin_IsBrink(void) {
-#if PARTY_JOIN_ENABLED
-  return gBattleWork->joinBrink != 0;
-#else
-  return 0;
+  if (battle->joinBrink == BRINK_STRIKING) {
+    battle->joinBrink = BRINK_NONE;
+    battle->joinEdge = 1;
+  }
 #endif
 }
 
@@ -331,7 +370,7 @@ s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount) {
 
   if (targetId < 0 || targetId > ALLY_MAX || battle->isLink != 0)
     return amount;
-  if (battle->joinBrink != 0) {
+  if (battle->joinBrink == BRINK_STRIKING) {
     amount = hp - 1;
   } else if (battle->joinStage == JOIN_ALONE && amount >= hp &&
              PartyJoin_FindMystery() >= 0) {

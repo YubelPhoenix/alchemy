@@ -1,10 +1,10 @@
 # "You're not alone": battle lines for the "???" fight (battle/party_join.c).
-# PLACEHOLDER TEXT, to be rewritten. Battle lines take no {end_wait}.
-N399	MsgPartyJoinMysteryBrink	Enough. Let me see\nwhat you are alone.
-N400	MsgPartyJoinMysteryAlone	There. That is all\nyou are, alone.
-N401	MsgPartyJoinMiaArrives	Isaac! Hold on,\nI'm coming!
-N402	MsgPartyJoinMysteryReacts	...She broke\nmy bind?
-N403	MsgPartyJoinMiaAnswers	You won't have him\nalone. Not while\nwe're here.
-N404	MsgPartyJoinGaretArrives	Sorry we're late!\nNobody fights alone\naround here!
-N405	MsgPartyJoinIvanArrives	Her hold slipped!\nIsaac, we're all\nwith you now!
-N406	MsgPartyJoinMysteryNotAlone	So the original\ndoes not stand alone.
+# Battle lines take no {end_wait}.
+N399	MsgPartyJoinMysteryBrink	You stand well alone.\nLet me see what's left\nwhen that breaks.
+N400	MsgPartyJoinMysteryAlone	There. No one is\ncoming, Isaac.{page_break}This is all you are\nwithout them.
+N401	MsgPartyJoinMiaArrives	Isaac!{page_break}I won't watch you\nfall. Not while I can\nstill reach you!
+N402	MsgPartyJoinMysteryReacts	...You broke my bind?\nHow?
+N403	MsgPartyJoinMiaAnswers	You held our bodies.\nNot our hearts.{page_break}He was never alone.\nNot for one moment.
+N404	MsgPartyJoinGaretArrives	You stubborn idiot!\nDid you think I'd just\nstand there and watch?{page_break}We left Vale together.\nWe finish this\ntogether!
+N405	MsgPartyJoinIvanArrives	I felt you holding on,\nIsaac. It broke\nher hold on me.{page_break}We're all here now.\nYou're not alone!
+N406	MsgPartyJoinMysteryNotAlone	So this is what\nyou are, Isaac.{page_break}Not one.\nFour.

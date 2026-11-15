@@ -283,7 +283,7 @@ s32 Battle_Run(s32 enemyGroup) {
       }
       Heap_GetRemainingIwram();
       Heap_GetRemainingEwram();
-      // Ashfall: the "???" battle's rescue, when a blow left Isaac at 1 HP.
+      // Ashfall: the end of her Gotterkanone turn in the "???" battle.
       PartyJoin_RunAfterAction();
       if (BattleUnit_ListLiving(BATTLE_SIDE_MASK_PARTY, 0) == 0)
         goto party_lost;
