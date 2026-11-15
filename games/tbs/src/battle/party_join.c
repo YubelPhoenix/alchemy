@@ -7,12 +7,11 @@
 /// The fight:
 ///  1. Isaac fights her alone. While he is alone he cannot fall: a blow that
 ///     would fell him leaves him at 1 HP instead (PartyJoin_ClampDamage).
-///  2. Her turn in RESCUE_ROUND is Gotterkanone: she speaks, the music fades
-///     out, and the blow leaves him at exactly 1 HP; the number shown is the
+///  2. Her turn in RESCUE_ROUND is Gotterkanone: she speaks, and the blow leaves him at exactly 1 HP; the number shown is the
 ///     HP he lost (BossAI_MysteryChooseSlot asks PartyJoin_TakeBrinkTurn).
 ///  3. At the end of that round, or of any round that left Isaac alone at
-///     1 HP, she speaks; Mia breaks free and runs in, the music changes to
-///     RESCUE_SONG, and she casts Pure Ply on Isaac. "???" and Mia speak.
+///     1 HP, she speaks; Mia breaks free and runs in and casts Pure Ply on
+///     Isaac. "???" and Mia speak.
 ///  Everything here plays at the end of a round, after the game's own round
 ///  end, or inside her own turn, so the screen is in the state the game
 ///  leaves it between rounds; the one extra action, Mia's Pure Ply, is
@@ -23,7 +22,8 @@
 ///     (BossAI_MysteryAwaken sets MYSTERY_ENRAGED): with her full power turned
 ///     on Isaac she can no longer hold his Psynergy back. "???" has a last
 ///     word with the party whole.
-///  RESCUE_SONG plays from Mia's arrival, FULL_PARTY_SONG from Ivan's.
+///  MUS_FIGHT_TOGETHER plays from the battle's start, FULL_PARTY_SONG from
+///  Garet's arrival.
 ///  Each of 4 and 5 also happens after a few rounds regardless (the _LATEST_
 ///  counts), so every player sees all three arrive; one arrival a round.
 ///
@@ -48,9 +48,9 @@
 
 /// The round at whose end she brings Isaac to 1 HP and Mia arrives.
 #define RESCUE_ROUND 2
-/// The song from Mia's arrival until the party is whole, and the song once
-/// Ivan has joined (the battle opens with MUS_BOSS_BATTLE).
-#define RESCUE_SONG MUS_FIGHT_TOGETHER
+/// The song from Garet's arrival on. Until then the battle plays its own,
+/// MUS_FIGHT_TOGETHER, which Vale_TalkToMysteryLeader chooses for it, with no
+/// break: through Isaac alone, her Gotterkanone and Mia's rescue.
 #define FULL_PARTY_SONG MUS_FUSION_DRAGON_BATTLE
 /// Garet arrives once "???" is below this percent of her HP, or this many
 /// rounds after Mia, whichever is first.
@@ -287,15 +287,12 @@ static void PartyJoin_RunRescue(void) {
   battle->joinStage = JOIN_MIA;
   battle->joinEdge = 0;
   battle->joinBrink = BRINK_NONE;
-  // The music has faded already after her Gotterkanone; not after a blow.
-  Sound_PlaySongFar(SONG_FADE_OUT_BGM);
   WaitFrames(40);
   PartyJoin_Say(MsgPartyJoinMysteryAlone);
   WaitFrames(30);
 
   if (PartyJoin_Arrive(MIA) == 0)
     return;
-  Sound_PlaySongFar(RESCUE_SONG);
   PartyJoin_Say(MsgPartyJoinMiaArrives);
   PartyJoin_Act(MIA, COMMAND_PSYNERGY, ABILITY_PURE_PLY, TARGET_ISAAC);
   PartyJoin_Settle();
@@ -319,7 +316,6 @@ s32 PartyJoin_TakeBrinkTurn(void) {
     BattleMessage_ShowAndWaitFar(MsgPartyJoinMysteryBrink);
     BattleMessage_WaitForAdvance();
     MessageArgument_ClearAllFar();
-    Sound_PlaySongFar(SONG_FADE_OUT_BGM);
   }
   return 1;
 #else
@@ -360,8 +356,10 @@ void PartyJoin_RunRoundEnd(void) {
     if (mystery->hp * 100 < mystery->hpMax * GARET_BELOW_PERCENT ||
         sinceArrival >= GARET_LATEST_ROUNDS) {
       battle->joinStage = JOIN_GARET;
-      if (PartyJoin_Arrive(GARET))
+      if (PartyJoin_Arrive(GARET)) {
+        Sound_PlaySongFar(FULL_PARTY_SONG);
         PartyJoin_Say(MsgPartyJoinGaretArrives);
+      }
     }
     break;
   case JOIN_GARET:
@@ -369,7 +367,6 @@ void PartyJoin_RunRoundEnd(void) {
                              sinceArrival >= IVAN_LATEST_ROUNDS)) {
       battle->joinStage = JOIN_IVAN;
       if (PartyJoin_Arrive(IVAN)) {
-        Sound_PlaySongFar(FULL_PARTY_SONG);
         PartyJoin_Say(MsgPartyJoinIvanArrives);
         PartyJoin_Say(MsgPartyJoinMysteryNotAlone);
       }

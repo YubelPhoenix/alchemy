@@ -1826,6 +1826,9 @@ static void Vale_TalkToMysteryLeader(void) {
   Event_SetDefeatDestination(-1, -1);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 6);
+  // Her battle opens with its own song, which plays until Garet breaks free
+  // (battle/party_join.c); the request has just chosen the boss battle music.
+  gSaveBlock.battleMusic = MUS_FIGHT_TOGETHER;
   Event_End();
 }
 

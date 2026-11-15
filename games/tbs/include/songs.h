@@ -54,8 +54,8 @@
 /// Field music of Tolbi before the Colosso; afterwards Tolbi plays MUS_TOWN.
 /// ★ Named from its area name: Tolbi
 #define MUS_TOLBI 10
-/// Ashfall: plays in the "???" battle from Mia breaking free until the whole
-/// party is together (battle/party_join.c). The song is
+/// Ashfall: the "???" battle's song, from its start until Garet breaks free
+/// (scene/vale.c, battle/party_join.c). The song is
 /// sound/songs/mus_fight_together.mid; until it is written, a copy of
 /// MUS_BOSS_BATTLE stands in. It takes slot 11, empty in the original.
 #define MUS_FIGHT_TOGETHER 11
