@@ -113,21 +113,30 @@ static s32 PartyJoin_FindMystery(void) {
   return -1;
 }
 
-/// Frames a line stays up, once typed, before a press can move on.
-#define SAY_HOLD_FRAMES 30
+/// Frames a line stays up, once typed, before a press can move on (1.5
+/// seconds), and then the frames every button must be left alone first (a
+/// quarter second), which a player mashing a button never does.
+#define SAY_HOLD_FRAMES 90
+#define SAY_QUIET_FRAMES 15
 
 /// Shows one line of the story as the battle's own text, at the bottom of the
 /// screen with no window (two lines at most), and waits for the player. Once
-/// typed it stays up SAY_HOLD_FRAMES, and only a fresh press moves on, so a
-/// button held or mashed through the battle cannot skip the story. (A window
+/// typed it stays up SAY_HOLD_FRAMES; then every button must be left alone for
+/// SAY_QUIET_FRAMES before a press moves on, so a button held or mashed
+/// through the battle cannot skip the story. (A window
 /// such as the Djinn tutorial's needs its font, which only that battle
 /// loads: WindowSystem_InitBattleFar.)
 static void PartyJoin_Say(s32 message) {
+  s32 quiet;
+
   MessageArgument_ClearAllFar();
   BattleMessage_ShowAndWaitFar(message);
   WaitFrames(SAY_HOLD_FRAMES);
-  while (gKeysHeld & KEY_ADVANCE)
+  for (quiet = 0; quiet < SAY_QUIET_FRAMES; quiet++) {
+    if (gKeysHeld & KEY_ADVANCE)
+      quiet = -1;
     WaitFrames(1);
+  }
   BattleMessage_WaitForAdvance();
 }
 
