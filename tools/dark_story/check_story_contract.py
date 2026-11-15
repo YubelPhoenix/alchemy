@@ -315,8 +315,9 @@ def check_mystery_rescue_encounter() -> None:
     join = read("games/tbs/src/battle/party_join.c")
     boss_ai = read("games/tbs/src/battle/battle/boss_ai.c")
     require("#define PARTY_JOIN_ENABLED 1" in join
-            and "#define RESCUE_ROUND 2" in join,
-            "Mystery companion rescue must be enabled in round two")
+            and "#define RESCUE_ROUND 3" in join
+            and "if (battle->joinRound >= RESCUE_ROUND)" in join,
+            "Mia must arrive after three solo rounds")
     for name in ("MIA", "GARET", "IVAN"):
         require(f"PartyJoin_Arrive({name})" in join,
                 f"Mystery battle must bring {name} into the live battle")

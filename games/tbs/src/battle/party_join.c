@@ -9,8 +9,8 @@
 ///     would fell him leaves him at 1 HP instead (PartyJoin_ClampDamage).
 ///  2. Her turn in RESCUE_ROUND is Gotterkanone: she speaks, and the blow leaves him at exactly 1 HP; the number shown is the
 ///     HP he lost (BossAI_MysteryChooseSlot asks PartyJoin_TakeBrinkTurn).
-///  3. At the end of that round, or of any round that left Isaac alone at
-///     1 HP, she speaks; Mia breaks free and runs in and casts Pure Ply on
+///  3. After round three, before round four begins, she speaks; Mia breaks
+///     free and runs in and casts Pure Ply on
 ///     Isaac. "???" and Mia speak.
 ///  Everything here plays at the end of a round, after the game's own round
 ///  end, or inside her own turn, so the screen is in the state the game
@@ -47,7 +47,7 @@
 #define PARTY_JOIN_ENABLED 1
 
 /// The round at whose end she brings Isaac to 1 HP and Mia arrives.
-#define RESCUE_ROUND 2
+#define RESCUE_ROUND 3
 /// The song from Garet's arrival on. Until then the battle plays the song
 /// Vale_TalkToMysteryLeader chooses for it, with no break: through Isaac
 /// alone, her Gotterkanone and Mia's rescue. While that is this same song,
@@ -80,8 +80,6 @@
 #define joinBrink unusedAfterChannels[1]
 /// The round the last arrival came in.
 #define joinLastArrival unusedAfterPlacement[0]
-/// Set when a blow left Isaac, alone, at 1 HP: the rescue follows it.
-#define joinEdge unusedAfterPlacement[1]
 
 enum JoinBrink {
   BRINK_NONE = 0,    ///< not this round
@@ -312,14 +310,12 @@ static void PartyJoin_Act(s32 unitId, s32 command, s32 abilityId,
   BattleStaging_DispatchAction(&request, 10);
 }
 
-/// End of a round that left Isaac, alone, at 1 HP (her Gotterkanone, or a
-/// blow that would have felled him): she speaks; Mia breaks free, runs in
+/// At the end of RESCUE_ROUND, she speaks; Mia breaks free, runs in
 /// and heals him.
 static void PartyJoin_RunRescue(void) {
   struct BattleWork *battle = gBattleWork;
 
   battle->joinStage = JOIN_MIA;
-  battle->joinEdge = 0;
   battle->joinBrink = BRINK_NONE;
   WaitFrames(40);
   PartyJoin_Say(MsgPartyJoinMysteryAlone);
@@ -380,9 +376,8 @@ void PartyJoin_RunRoundEnd(void) {
 
   switch (battle->joinStage) {
   case JOIN_ALONE:
-    // Her next turn is the Gotterkanone; the round it lands in, or any
-    // round that left Isaac at 1 HP, ends with Mia.
-    if (battle->joinEdge != 0 || battle->joinRound >= RESCUE_ROUND)
+    // Prepare Gotterkanone one round before Mia's arrival.
+    if (battle->joinRound >= RESCUE_ROUND)
       PartyJoin_RunRescue();
     else if (battle->joinRound == RESCUE_ROUND - 1)
       battle->joinBrink = BRINK_PENDING;
@@ -424,7 +419,6 @@ void PartyJoin_RunAfterAction(void) {
 
   if (battle->joinBrink == BRINK_STRIKING) {
     battle->joinBrink = BRINK_NONE;
-    battle->joinEdge = 1;
   }
 #endif
 }
@@ -433,7 +427,7 @@ void PartyJoin_RunAfterAction(void) {
 /// BattleAbility_ApplyToTarget has worked it out, so the number shown is the
 /// HP really lost. In the "???" battle: during her scripted Gotterkanone,
 /// exactly enough to leave Isaac 1 HP; and while he is alone, never enough to
-/// fell him (a blow that would sets joinEdge, and the rescue follows it).
+/// fell him before Mia arrives.
 /// Every other battle and unit keeps its damage.
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount) {
 #if PARTY_JOIN_ENABLED
@@ -446,7 +440,6 @@ s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount) {
   } else if (battle->joinStage == JOIN_ALONE && amount >= hp &&
              PartyJoin_FindMystery() >= 0) {
     amount = hp - 1;
-    battle->joinEdge = 1;
   }
   if (amount < 0)
     amount = 0;
