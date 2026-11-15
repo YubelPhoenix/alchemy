@@ -74,7 +74,7 @@ These are custom additions or altered encounters. They must be treated as revisi
 | `phase28_tolbi.tsv` | Tolbi dialogue coverage. Verify each message against its actual pre-Colosso, Colosso, or post-Colosso state. |
 | `phase29_altin.tsv` | Altin-related material (the bread-for-the-hungry scene was removed). Do not assume these files represent the first visit merely because of their names. |
 | `phase30_tolbi_ash_jenna.tsv` | Later Tolbi Ash Jenna encounter; its event condition places it after Colosso and after Mercury Lighthouse is lit. |
-| `phase33_kegare.tsv` | Kegare encounter-access gates. Preserve the underlying decision flags and conditional availability. (The Altin/Imil/Tolbi kindness payments and their Tide Shards were scrapped and removed.) |
+| `phase33_kegare.tsv` | Kegare's optional fight in Vault, available after Colosso. (The harbor child and the Altin/Imil/Tolbi kindness payments with their Tide Shards were scrapped.) |
 | `phase34_mogall_lamakan.tsv`, `phase35_lamakan_jenna.tsv` | Mogall and Lamakan custom material. Verify each encounter's trigger and ensure Ash Jenna's later appearance acknowledges the earlier meeting. |
 | `phase37_mia_tolbi.tsv`, `phase38_heart.tsv` | Mia's post-Tolbi recovery scene and the separate Heart cameo dialogue. Keep Heart and Kegare distinct. |
 | `phase40_altin_peak_miners.tsv`, `phase41_altin_peak_mood.tsv` | Altin Peak rescue and aftermath. Preserve the rescue choice and the miner's subsequent condition. |
@@ -223,7 +223,7 @@ This pass confirms the event order and the existence of the branch/state distinc
 
 A source-backed audit records the pre-repair continuity failures. The normal post-Manticore return now runs Mia's emotional aftermath and then Ash Jenna's full revelation/finale before the party proceeds to Kalay. The discarded caravan sequence and its choice are not part of the current story. The shorter N106–N110 Lamakan watch exchange is an optional conversation on the Manticore pass, distinct from that automatic return sequence. The later Tolbi encounter follows the guaranteed Lamakan revelation and has now been rewritten as a continuation.
 
-Kegare's encounter access comes from sheltering the harbor child (the Altin/Imil/Tolbi kindness payments were scrapped). Those conditions are access gates only; they do not explain her origin or motive. Her dialogue now centers on deliberately mimicking Mia and intending to replace her, without falsely claiming Isaac rescued the child. The fishermen question has been removed, and the harbor child remains a separate Ashfall thread. Lamakan NPC text now matches the desert's source-defined sand/heat mechanics.
+Kegare is available in Vault as soon as Colosso is over, until she is beaten; she has no other access condition (the harbor child and the Altin/Imil/Tolbi kindness payments were scrapped). Those conditions are access gates only; they do not explain her origin or motive. Her dialogue now centers on deliberately mimicking Mia and intending to replace her, without falsely claiming Isaac rescued the child. The fishermen question has been removed. Lamakan NPC text now matches the desert's source-defined sand/heat mechanics.
 
 See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the verified event order, trigger behavior, and repair record. The initial audit did not change event logic; subsequent dialogue corrections are recorded below.
 
@@ -232,7 +232,7 @@ See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the verified event ord
 
 The character previously named Ondra is **Kegare (穢れ)**, meaning impurity/defilement. Per the user's sprite-animation continuity, Kegare deliberately mimics Mia and ultimately intends to replace her. She is a cameo super boss from that wider continuity, in the same broad cameo category as Heart, not a native Golden Sun sea goddess or a benevolent entity created by kindness.
 
-The earlier Tideglass Queen / shared-tide explanation is noncanonical and must be discarded. Child-rescue and three-kindness flags, if retained, are encounter-discovery/access conditions only; they do not explain Kegare's origin or motive. The harbor child is a separate story thread unless a coherent connection is established independently. Keep Kegare and Heart distinct. Her dialogue should emphasize unsettling imitation and replacement while keeping her full origin restrained enough that she remains a cameo rather than taking over Golden Sun's main plot. See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the superseding character definition and revision requirements.
+The earlier Tideglass Queen / shared-tide explanation is noncanonical and must be discarded. She becomes available after Colosso with no other condition; the scrapped child-rescue and kindness routes never explained her origin or motive. Keep Kegare and Heart distinct. Her dialogue should emphasize unsettling imitation and replacement while keeping her full origin restrained enough that she remains a cameo rather than taking over Golden Sun's main plot. See `docs/ashfall-lamakan-tolbi-continuity-repair.md` for the superseding character definition and revision requirements.
 
 ### Cameo superboss balance requirements
 
