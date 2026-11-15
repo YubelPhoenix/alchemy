@@ -289,16 +289,19 @@ static void PartyJoin_RunRescue(void) {
   battle->joinBrink = BRINK_NONE;
   WaitFrames(40);
   PartyJoin_Say(MsgPartyJoinMysteryAlone);
+  PartyJoin_Say(MsgPartyJoinMysteryAlone2);
   WaitFrames(30);
 
   if (PartyJoin_Arrive(MIA) == 0)
     return;
   PartyJoin_Say(MsgPartyJoinMiaArrives);
+  PartyJoin_Say(MsgPartyJoinMiaArrives2);
   PartyJoin_Act(MIA, COMMAND_PSYNERGY, ABILITY_PURE_PLY, TARGET_ISAAC);
   PartyJoin_Settle();
   PartyStatus_DrawFar(battle->partyStatus);
   PartyJoin_Say(MsgPartyJoinMysteryReacts);
   PartyJoin_Say(MsgPartyJoinMiaAnswers);
+  PartyJoin_Say(MsgPartyJoinMiaAnswers2);
 }
 
 /// Her turn in RESCUE_ROUND: says her line and fades the music, and returns
@@ -359,6 +362,7 @@ void PartyJoin_RunRoundEnd(void) {
       if (PartyJoin_Arrive(GARET)) {
         Sound_PlaySongFar(FULL_PARTY_SONG);
         PartyJoin_Say(MsgPartyJoinGaretArrives);
+        PartyJoin_Say(MsgPartyJoinGaretArrives2);
       }
     }
     break;
@@ -368,7 +372,9 @@ void PartyJoin_RunRoundEnd(void) {
       battle->joinStage = JOIN_IVAN;
       if (PartyJoin_Arrive(IVAN)) {
         PartyJoin_Say(MsgPartyJoinIvanArrives);
+        PartyJoin_Say(MsgPartyJoinIvanArrives2);
         PartyJoin_Say(MsgPartyJoinMysteryNotAlone);
+        PartyJoin_Say(MsgPartyJoinMysteryNotAlone2);
       }
     }
     break;

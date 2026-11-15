@@ -1,10 +1,18 @@
 # "You're not alone": battle lines for the "???" fight (battle/party_join.c).
-# Battle lines take no {end_wait}.
+# Battle lines take no {end_wait}, and each is one page: a {page_break} makes
+# the battle draw the message in a framed box, so a longer line is two
+# messages, the second named ...2.
 N399	MsgPartyJoinMysteryBrink	You stand well alone.\nLet me see what's left\nwhen that breaks.
-N400	MsgPartyJoinMysteryAlone	There. No one is\ncoming, Isaac.{page_break}This is all you are\nwithout them.
-N401	MsgPartyJoinMiaArrives	Isaac!{page_break}I won't watch you\nfall. Not while I can\nstill reach you!
+N400	MsgPartyJoinMysteryAlone	There. No one is\ncoming, Isaac.
+N407	MsgPartyJoinMysteryAlone2	This is all you are\nwithout them.
+N401	MsgPartyJoinMiaArrives	Isaac!
+N408	MsgPartyJoinMiaArrives2	I won't watch you\nfall. Not while I can\nstill reach you!
 N402	MsgPartyJoinMysteryReacts	...You broke my bind?\nHow?
-N403	MsgPartyJoinMiaAnswers	You held our bodies.\nNot our hearts.{page_break}He was never alone.\nNot for one moment.
-N404	MsgPartyJoinGaretArrives	You stubborn idiot!\nDid you think I'd just\nstand there and watch?{page_break}We left Vale together.\nWe finish this\ntogether!
-N405	MsgPartyJoinIvanArrives	I felt you holding on,\nIsaac. It broke\nher hold on me.{page_break}We're all here now.\nYou're not alone!
-N406	MsgPartyJoinMysteryNotAlone	So this is what\nyou are, Isaac.{page_break}Not one.\nFour.
+N403	MsgPartyJoinMiaAnswers	You held our bodies.\nNot our hearts.
+N409	MsgPartyJoinMiaAnswers2	He was never alone.\nNot for one moment.
+N404	MsgPartyJoinGaretArrives	You stubborn idiot!\nDid you think I'd just\nstand there and watch?
+N410	MsgPartyJoinGaretArrives2	We left Vale together.\nWe finish this\ntogether!
+N405	MsgPartyJoinIvanArrives	I felt you holding on,\nIsaac. It broke\nher hold on me.
+N411	MsgPartyJoinIvanArrives2	We're all here now.\nYou're not alone!
+N406	MsgPartyJoinMysteryNotAlone	So this is what\nyou are, Isaac.
+N412	MsgPartyJoinMysteryNotAlone2	Not one.\nFour.
