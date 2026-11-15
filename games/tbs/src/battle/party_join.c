@@ -131,6 +131,9 @@ static void PartyJoin_SayWithHold(s32 message, s32 holdFrames) {
 
   MessageArgument_ClearAllFar();
   BattleMessage_ShowAndWaitFar(message);
+  // Start the minimum reading time only after every character is visible.
+  while (!TextPrinter_AllFinishedFar())
+    WaitFrames(1);
   WaitFrames(holdFrames);
   for (quiet = 0; quiet < SAY_QUIET_FRAMES; quiet++) {
     if (gKeysHeld & (KEY_ADVANCE | KEY_B))
@@ -142,6 +145,12 @@ static void PartyJoin_SayWithHold(s32 message, s32 holdFrames) {
 
 static void PartyJoin_Say(s32 message) {
   PartyJoin_SayWithHold(message, SAY_HOLD_FRAMES);
+}
+
+/// Important battle revelations, including her half-HP transformation.
+/// Also called by the commander's boss AI, which runs in the battle bank.
+void PartyJoin_SayKeyLine(s32 message) {
+  PartyJoin_SayWithHold(message, SAY_KEY_LINE_FRAMES);
 }
 
 /// Turns the camera to the party over `frames` frames and waits for it.
@@ -340,7 +349,7 @@ s32 PartyJoin_TakeBrinkTurn(void) {
     return 0;
   if (battle->joinBrink == BRINK_PENDING) {
     battle->joinBrink = BRINK_STRIKING;
-    PartyJoin_SayWithHold(MsgPartyJoinMysteryBrink, SAY_KEY_LINE_FRAMES);
+    PartyJoin_SayKeyLine(MsgPartyJoinMysteryBrink);
     MessageArgument_ClearAllFar();
   }
   return 1;
@@ -398,8 +407,8 @@ void PartyJoin_RunRoundEnd(void) {
       if (PartyJoin_Arrive(IVAN)) {
         PartyJoin_Say(MsgPartyJoinIvanArrives);
         PartyJoin_Say(MsgPartyJoinIvanArrives2);
-        PartyJoin_SayWithHold(MsgPartyJoinMysteryNotAlone, SAY_KEY_LINE_FRAMES);
-        PartyJoin_SayWithHold(MsgPartyJoinMysteryNotAlone2, SAY_KEY_LINE_FRAMES);
+        PartyJoin_SayKeyLine(MsgPartyJoinMysteryNotAlone);
+        PartyJoin_SayKeyLine(MsgPartyJoinMysteryNotAlone2);
       }
     }
     break;

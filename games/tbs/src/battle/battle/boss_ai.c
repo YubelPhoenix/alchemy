@@ -687,8 +687,8 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
  if (late && firstPick && (memory & MYSTERY_ENRAGED) == 0) {
    BossAI_MysteryAwaken(unit);
    memory = unit->aiActionIndex;
-   BattleMessage_ShowAndWaitFar(MsgMysteryEnraged);
-   BattleMessage_WaitForAdvance();
+   // Give the transformation reveal the same protected reading time.
+   PartyJoin_SayKeyLine(MsgMysteryEnraged);
    MessageArgument_ClearAllFar();
  }
  if (!firstPick) return MYSTERY_RANSNETZ;

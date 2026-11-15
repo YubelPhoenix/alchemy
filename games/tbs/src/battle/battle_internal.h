@@ -204,6 +204,7 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
 /// damage code call the others.
 void PartyJoin_RunRoundEnd(void);
 void PartyJoin_RunAfterAction(void);
+void PartyJoin_SayKeyLine(s32 message);
 s32 PartyJoin_TakeBrinkTurn(void);
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount);
 
