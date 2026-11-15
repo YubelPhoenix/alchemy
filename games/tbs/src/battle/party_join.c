@@ -23,6 +23,7 @@
 ///     (BossAI_MysteryAwaken sets MYSTERY_ENRAGED): with her full power turned
 ///     on Isaac she can no longer hold his Psynergy back. "???" has a last
 ///     word with the party whole.
+///  RESCUE_SONG plays from Mia's arrival, FULL_PARTY_SONG from Ivan's.
 ///  Each of 4 and 5 also happens after a few rounds regardless (the _LATEST_
 ///  counts), so every player sees all three arrive; one arrival a round.
 ///
@@ -47,8 +48,10 @@
 
 /// The round at whose end she brings Isaac to 1 HP and Mia arrives.
 #define RESCUE_ROUND 2
-/// The song from Mia's arrival on (the battle opens with MUS_BOSS_BATTLE).
-#define RESCUE_SONG MUS_FUSION_DRAGON_BATTLE
+/// The song from Mia's arrival until the party is whole, and the song once
+/// Ivan has joined (the battle opens with MUS_BOSS_BATTLE).
+#define RESCUE_SONG MUS_FIGHT_TOGETHER
+#define FULL_PARTY_SONG MUS_FUSION_DRAGON_BATTLE
 /// Garet arrives once "???" is below this percent of her HP, or this many
 /// rounds after Mia, whichever is first.
 #define GARET_BELOW_PERCENT 75
@@ -366,6 +369,7 @@ void PartyJoin_RunRoundEnd(void) {
                              sinceArrival >= IVAN_LATEST_ROUNDS)) {
       battle->joinStage = JOIN_IVAN;
       if (PartyJoin_Arrive(IVAN)) {
+        Sound_PlaySongFar(FULL_PARTY_SONG);
         PartyJoin_Say(MsgPartyJoinIvanArrives);
         PartyJoin_Say(MsgPartyJoinMysteryNotAlone);
       }
