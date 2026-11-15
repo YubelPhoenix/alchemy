@@ -126,6 +126,9 @@ SECTIONS
                      DEFINED(TBS_EDITION_ES) || DEFINED(TBS_EDITION_FR) ? 0x08321800 :
                                                                           0x08320000);
         INCLUDE "rom_tail_02.ld"
+        /* New sprites' frames that did not fit before 0x08320000 (layout.tsv
+           "frames" rows), after everything else at the open end of the ROM. */
+        INCLUDE "rom_tail_03.ld"
     } > ROM
     IwramRuntime_Rom = LOADADDR(.iwram_runtime);
     SoundMainRAM_Rom = LOADADDR(.iwram_mixer) + 1;

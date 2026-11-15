@@ -477,6 +477,11 @@ freeBank(Bank *bank)
 /*
  * The flat layout groups tables and payloads. The sectioned layout follows
  * layout.tsv and emits each frame list after that sprite's frame payload.
+ * Frame payloads go at the end of the last section, unless a "frames\tNAME"
+ * row sends the frames of the sprites listed after it to .rodata.NAME
+ * instead (emitted after the rest, in their own section), until a
+ * "frames\t-" row; so a ROM hack can place new sprites' graphics outside a
+ * full fixed region.
  */
 Buffer
 spriteSource(const char *input, bool blocks)
@@ -512,11 +517,18 @@ spriteSource(const char *input, bool blocks)
 	{
 		Buffer layout = readSibling(input, "layout.tsv");
 		Strings lines = split((char *) layout.data, '\n'), order = {0};
+		Strings placed = {0}; /* each order entry's frames section, "" for the last */
+		const char *framesSection = "";
 		for (size_t i = 0; i < lines.len; i++)
 		{
 			char *line = trim(lines.items[i]);
 			if (!*line)
 				continue;
+			if (!strncmp(line, "frames\t", 7))
+			{
+				framesSection = strcmp(line + 7, "-") ? line + 7 : "";
+				continue;
+			}
 			if (!strncmp(line, "section\t", 8))
 			{
 				appendAssemblySource(&out, &data);
@@ -535,12 +547,13 @@ spriteSource(const char *input, bool blocks)
 					animationList(&bank, s, &data);
 				}
 				addString(&order, line);
+				addString(&placed, framesSection);
 			}
 		}
 		for (size_t i = 0; i < order.len; i++)
 		{
 			Sprite *s = find(&bank, order.items[i]);
-			if (!owns(s, s->frames))
+			if (*placed.items[i] || !owns(s, s->frames))
 				continue;
 			Assembly list = {0}, image = {0};
 			frames(&bank, s, &list, &image);
@@ -552,9 +565,43 @@ spriteSource(const char *input, bool blocks)
 			freeAssembly(&image);
 		}
 		appendAssemblySource(&out, &data);
+		freeAssembly(&data);
+		data = (Assembly) {0};
+		/* Frames sent elsewhere by "frames" rows, each section once, in order. */
+		for (size_t i = 0; i < order.len; i++)
+		{
+			const char *section = placed.items[i];
+			bool first = true;
+			if (!*section)
+				continue;
+			for (size_t k = 0; k < i; k++)
+				if (!strcmp(placed.items[k], section))
+					first = false;
+			if (!first)
+				continue;
+			for (size_t j = i; j < order.len; j++)
+			{
+				Sprite *s = find(&bank, order.items[j]);
+				if (strcmp(placed.items[j], section) || !owns(s, s->frames))
+					continue;
+				Assembly list = {0}, image = {0};
+				frames(&bank, s, &list, &image);
+				appendAssembly(&data, &image);
+				alignAssembly(&data, 4, 0);
+				appendAssembly(&data, &list);
+				word(&data.bytes, 0);
+				freeAssembly(&list);
+				freeAssembly(&image);
+			}
+			print(&out, "\t.section .rodata.%s,\"a\"\n\t.balign 4\n", section);
+			appendAssemblySource(&out, &data);
+			freeAssembly(&data);
+			data = (Assembly) {0};
+		}
 		free(layout.data);
 		freeStrings(&lines);
 		freeStrings(&order);
+		freeStrings(&placed);
 	}
 	freeAssembly(&data);
 	freeBank(&bank);
