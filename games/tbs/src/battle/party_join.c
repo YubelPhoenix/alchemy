@@ -32,9 +32,12 @@
 ///
 /// The party stays as it is when the battle ends; Vale's aftermath
 /// (Vale_MysteryLeaderAftermath) puts it back in its usual order.
-// Part of battle.c.
+///
+/// This object sits in the ROM tail beside mystery_backdrop.c, because the
+/// battle bank is full: the bank only gains the calls into it (Battle_Run,
+/// BossAI_MysteryChooseSlot and BattleAbility_ApplyToTarget).
 
-#include "../battle_internal.h"
+#include "battle_internal.h"
 
 /// Set to 0 to give the "???" battle back its plain solo fight.
 #define PARTY_JOIN_ENABLED 1
