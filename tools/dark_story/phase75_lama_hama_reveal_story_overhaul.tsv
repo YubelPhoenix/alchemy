@@ -19,7 +19,9 @@
 06503	MsgAlpineCrossingLamaTempleISenseImpureThoughtsFromThe	He's thinking about\nfood again. Perhaps\nhe should eat first.{end_wait}
 06504	MsgAlpineCrossingLamaTempleChiIsButAFragmentOf	Chi is only one of\nMaster Hama's gifts.\nHer wisdom runs deeper.{end_wait}
 06505	MsgXianMasterHamaMeditatingPleaseExtremely	Master Hama is\nmeditating. Please\nspeak quietly.{end_wait}
+06507	message	Do you believe she\nexpected us?{end_now}
 06508	message	But how did she know\nwe'd arrive today?{end_wait}
+06509	message	I don't believe her,\n{actor_name:1}. Why would\nshe say that?{end_wait}
 06510	message	I saw a glimpse of\nyour arrival some\ntime ago.{end_wait}
 06511	message	You really saw us\ncoming?{end_wait}
 06512	message	I've waited a long\ntime to meet you.{page_break}You're pursuing the\nElemental Stars,\naren't you?{end_wait}
@@ -32,6 +34,7 @@
 06526	message	Not every glimpse\nfeels like a vision.\nYou will understand.{end_wait}
 06527	message	Seeing the future...\nI didn't know Jupiter\ncould do that.{end_wait}
 06532	message	It shows what ordinary\nsight cannot. I have\nwaited to teach it.{end_wait}
+06533	message	You waited here all\nthis time to teach\n{actor_name:3} Reveal?{end_wait}
 06534	message	On the road ahead,\nwhat you cannot see\nmay hurt you most.{end_wait}
 06535	message	Jupiter Adepts can\nlearn Reveal in time,\neven without a teacher.{end_wait}
 06536	message	But time is something\nyou cannot spare while\nSaturos moves ahead.{end_wait}
@@ -40,7 +43,9 @@
 06541	message	That is his story\nto tell. I cannot\ntell it for him.{end_wait}
 06542	message	For now, we must\nspeak of Reveal.{end_wait}
 06543	message	You will need it to\ncross Lamakan Desert.{page_break}The heat is not all\nthat is wrong there.{end_wait}
-06544	message	There's something wrong\nwith the desert itself?{end_now}
+06544	message	Do you think the desert\nitself has changed?{end_now}
+06545	message	You think so,\n{actor_name:1}? Then what\nchanged it?{end_wait}
+06546	message	I hope you're right,\n{actor_name:1}. But Hama\nseems worried.{end_wait}
 06547	message	Then how will Reveal\nhelp us get across?{end_wait}
 06548	message	Lamakan was always\ndangerous. Its heat\ncould kill the unwary.{end_wait}
 06549	message	Now the air itself\nseems to burn. The\nheat has grown worse.{end_wait}

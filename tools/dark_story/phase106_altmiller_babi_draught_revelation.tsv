@@ -7,6 +7,7 @@
 08575	MsgAltmillerForgetOrderRock	Have you forgotten the\norder of the colored rocks?{end_now}
 08578	MsgAltmillerNeedDraught	If they don't bring the\ndraught back soon... I\ndon't know how much longer{page_break}I can last.{end_wait}
 08579	MsgAltmillerCameBackPleaseDraughtQuickly	You came back. Please, give\nme the draught before I\nlose my strength again.{end_wait}
+08585	message	Did I startle you\nwhen I appeared?{end_now}
 08586	MsgAltmillerWouldHaveRevealedMyselfSooner	I would have shown myself\nearlier if I could. I\ncouldn't even move.{end_wait}
 08587	MsgAltmillerMustTraveledIndeedIfDidnt	You took that rather\ncalmly. I suppose you've\nseen stranger things on{page_break}your travels.{end_wait}
 08588	MsgAltmillerHowDidBecomeParalyzedWhile	How could you be invisible\nand unable to move at the\nsame time?{end_wait}

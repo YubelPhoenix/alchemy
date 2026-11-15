@@ -2,13 +2,13 @@
 06052	MsgXianFollowThemDoNot	You mean to follow\nthe creatures,\ndon't you?{end_now}
 06060	MsgXianMustSurviveTestGrottoBefore	To cross Mogall Forest,\nyou must pass the grotto.{page_break}Will you take the test?{end_now}
 06078	MsgXianExcellentIsaac	Well done, {actor_name:1}.{end_wait}
-06088	MsgXianCanReadMindsKnowCurious	I can read minds, you\nknow. No need to hide\nyour curiosity.{end_now}
+06088	MsgXianCanReadMindsKnowCurious	I can read minds, you\nknow. Still curious\nabout what I know?{end_now}
 06089	MsgXianMonstersWaitInHidingWould	If one leapt out,\nwould you try to\nfight it?{end_now}
 06095	MsgFuchinTempleNowThatIHavePassedMy	That is what I can\nteach you. The rest\nyou must learn yourself.{page_break}Travel safely,\n{actor_name:1}.{end_wait}
 06099	MsgFuchinTempleOhIsaacWhatTookYouSo	So you've come back,\n{actor_name:1}.{page_break}Master Nyunpa no longer\nanswers when we call.{end_wait}
-06102	MsgXianNowHeTrulyBeyondWorlds	He gave up so much\nfor his discipline.{page_break}Is he truly at peace?\nI wish I knew.{end_now}
+06102	MsgXianNowHeTrulyBeyondWorlds	He gave up so much\nfor his discipline.{page_break}Do you think he\nfound peace?{end_now}
 06111	MsgXianIsaacAmCountingOnBring	I... need you, {actor_name:1}...{page_break}Bring peace back,\nif you can...{end_wait}
-06112	MsgXianDontTryHard	You're still curious.\nThat's a good thing.{page_break}But listen before\nyou make up your mind.{end_now}
+06112	MsgXianDontTryHard	You don't have to try\nso hard. Still curious?{end_now}
 06684	MsgXianImTravelingAroundWorldSpread	I visit one village\nafter another.{page_break}People are more willing\nto listen than you'd think.{end_wait}
 06685	MsgFuchinTempleSinceImHereIdLikeTo	I wanted to learn\nwhat Fuchin teaches.{page_break}Seems I have a lot\nof hard work ahead.{end_wait}
 06665	MsgFuchinTempleMasterHamaIsMeditatingAskingFor	Master Hama is\nmeditating and praying\nfor your safety.{end_wait}

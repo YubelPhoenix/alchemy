@@ -20,7 +20,9 @@
 07455	MsgKalayBoardWaitSetSail	Please board and wait.\nWe'll tell you when we can\nleave.{end_wait}
 07456	MsgKalayWantGoAshore	Do you want to go ashore?{end_now}
 07459	MsgKalayFinishedOutHereBoardShip	If you're finished here,\nplease board the ship.{end_wait}
-07945	MsgKalayHearScaryTrip	They say monsters attacked\nyou at sea. I don't think I\ncould get on that ship{page_break}again.{end_now}
+07945	MsgKalayHearScaryTrip	Did you really face\na Kraken at sea?{end_now}
+07946	message	So the rumors were true.\nThe Karagol isn't safe\nanymore.{end_wait}
+07947	message	Then maybe it was Kaja.\nPeople say he killed\nthe Kraken.{end_wait}
 07948	MsgKalayTolbiDocksSighIThinkWereDoneSailing	We've lost a ship already.\nI don't know when we can\nrisk another voyage.{end_wait}
 07949	MsgKalayTolbiDocksIGuessWeWontBeSeeing	My family's back in Angara.\nI don't know when I'll see\nthem again.{end_wait}
 07950	MsgKalayTolbiDocksIThinkThatMissingShipMust	People keep blaming a\nKraken for the missing\nship. No one's shown me{page_break}proof.{end_wait}
