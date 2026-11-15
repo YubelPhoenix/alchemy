@@ -453,6 +453,8 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
           amount = hp - 1;
         }
       }
+      // Ashfall: the "???" battle may hold the blow back (party_join.c).
+      amount = PartyJoin_ClampDamage(targetId, hp, amount);
       // The flinch, then "<target> takes <amount> damage"; a fall queues the
       // defeat before its message, and a target still standing is redrawn.
       hp -= amount;
@@ -670,6 +672,8 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
           amount = newHp;
         }
       }
+      // Ashfall: the "???" battle may hold the blow back (party_join.c).
+      amount = PartyJoin_ClampDamage(targetId, newHp, amount);
       BattlePlayback_Push(PLAYBACK_HIT, targetId);
       BattlePlayback_Push(PLAYBACK_NUMBER, amount);
       BattlePlayback_Push(PLAYBACK_UNIT_NAME, targetId);

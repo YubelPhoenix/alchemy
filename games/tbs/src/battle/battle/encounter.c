@@ -283,6 +283,8 @@ s32 Battle_Run(s32 enemyGroup) {
       }
       Heap_GetRemainingIwram();
       Heap_GetRemainingEwram();
+      // Ashfall: the "???" battle's rescue, when a blow left Isaac at 1 HP.
+      PartyJoin_RunAfterAction();
       if (BattleUnit_ListLiving(BATTLE_SIDE_MASK_PARTY, 0) == 0)
         goto party_lost;
       if (BattleUnit_ListLiving(BATTLE_SIDE_MASK_ENEMIES, 0) == 0) {
@@ -305,6 +307,8 @@ s32 Battle_Run(s32 enemyGroup) {
         goto aborted;
     } else {
       WaitFrames(20);
+      // Ashfall: the "???" battle's story between rounds (party_join.c).
+      PartyJoin_RunRoundEnd();
     }
     if (GameFlag_GetFar(FLAG_DJINN_LESSON) == 0)
       continue;

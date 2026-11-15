@@ -1834,6 +1834,12 @@ static void Vale_TalkToMysteryLeader(void) {
 static void Vale_MysteryLeaderAftermath(void) {
   GameFlag_Clear(FLAG_DARK_MYSTERY_PENDING);
   // Restore the full party before the victory scene or any return to control.
+  // Its friends joined the battle in the order they broke free (Mia first,
+  // battle/party_join.c), so all three are taken out and put back in the
+  // party's usual order.
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
   Party_AddMember(GARET);
   Party_AddMember(IVAN);
   Party_AddMember(MIA);

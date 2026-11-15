@@ -199,6 +199,14 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
                         const s32 *unitIds, const s32 *targetPositions,
                         s32 count);
 
+/// Ashfall's "You're not alone" in the "???" battle (party_join.c): Battle_Run
+/// calls the first two after each round and each action; the boss AI and the
+/// damage code read the others.
+void PartyJoin_RunRoundEnd(void);
+void PartyJoin_RunAfterAction(void);
+s32 PartyJoin_IsBrink(void);
+s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount);
+
 /// BattleAI_ChooseTarget's results when it picks no one: the side it
 /// may target lists no one, or no one there is worth the ability.
 #define TARGET_PICK_SIDE_EMPTY -2
