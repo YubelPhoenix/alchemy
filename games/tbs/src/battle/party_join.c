@@ -113,11 +113,36 @@ static s32 PartyJoin_FindMystery(void) {
   return -1;
 }
 
-/// Shows one battle line and waits for the player.
+/// Where a line's window opens, in tiles: the middle of the screen, below the
+/// party status window (Message_OpenWindowFar fits the window to the text
+/// near this point).
+#define SAY_WINDOW_X 3
+#define SAY_WINDOW_Y 7
+/// Frames a line stays up, once typed, before a press can close it.
+#define SAY_HOLD_FRAMES 30
+
+/// Shows one line of the story in a window in the middle of the screen, as
+/// the Djinn tutorial shows its lessons (Battle_Run), and waits for the
+/// player. The window zooms open and the line is typed; then it stays up
+/// SAY_HOLD_FRAMES, and only a fresh press closes it, so a button held or
+/// mashed through the battle cannot skip the story.
 static void PartyJoin_Say(s32 message) {
+  struct Window *window;
+
   MessageArgument_ClearAllFar();
-  BattleMessage_ShowAndWaitFar(message);
-  BattleMessage_WaitForAdvance();
+  window = Message_OpenWindowFar(message, SAY_WINDOW_X, SAY_WINDOW_Y, 1);
+  if (window == NULL)
+    return;
+  while (TextPrinter_AllFinishedFar() == 0)
+    WaitFrames(1);
+  WaitFrames(SAY_HOLD_FRAMES);
+  while (gKeysHeld & KEY_ADVANCE)
+    WaitFrames(1);
+  // The advance arrow, inside the window's bottom right corner (pixels).
+  BattleMessage_WaitForAdvanceAtFar((window->x + window->width - 1) * 8,
+                                    (window->y + window->height - 1) * 8 + 4);
+  Window_CloseFar(window, 1);
+  WaitFrames(1);
 }
 
 /// Turns the camera to the party over `frames` frames and waits for it.
@@ -316,9 +341,7 @@ s32 PartyJoin_TakeBrinkTurn(void) {
     return 0;
   if (battle->joinBrink == BRINK_PENDING) {
     battle->joinBrink = BRINK_STRIKING;
-    MessageArgument_ClearAllFar();
-    BattleMessage_ShowAndWaitFar(MsgPartyJoinMysteryBrink);
-    BattleMessage_WaitForAdvance();
+    PartyJoin_Say(MsgPartyJoinMysteryBrink);
     MessageArgument_ClearAllFar();
   }
   return 1;
