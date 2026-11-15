@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Rebuild Heart's battle sheet and mugshot from her supplied 64x64 poses
-(assets/heart/v2).
+(assets/heart/v2; the poses through assets/heart/v3, where fix_heart_horn.py
+keeps her single horn on the same side of her head once idle and damage are
+mirrored).
 
 Golden Sun's battle engine draws monster frames as 64x64, 8 bits per pixel.
 Every pixel is a raw index into the shared 224-colour sprite palette
@@ -20,7 +22,8 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = ROOT / "assets" / "heart" / "v2"
+SOURCE = ROOT / "assets" / "heart" / "v3"
+MUGSHOT_SOURCE = ROOT / "assets" / "heart" / "v2"
 DEST = ROOT / "games/tbs/src/graphics/monster/purple_beast.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
@@ -125,7 +128,7 @@ print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, "
 # Claude's portrait hook already points at ICON_66. Replace that placeholder
 # with the supplied 32x32 Heart mugshot; no changes to Mia or other portraits.
 # This icon atlas requires each entry to be 32x32 with at most 16 colours.
-canvas = Image.open(SOURCE / "mugshot_32.png").convert("RGB")
+canvas = Image.open(MUGSHOT_SOURCE / "mugshot_32.png").convert("RGB")
 if canvas.size != (32, 32):
     raise ValueError(f"Heart mugshot is {canvas.size}, expected 32x32")
 portrait_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_66.png"
