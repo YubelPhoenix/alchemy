@@ -126,6 +126,39 @@ static void PartyJoin_FaceParty(s32 frames) {
   WaitFrames(frames);
 }
 
+/// The party status window's column widths, in tiles, as
+/// PartyStatus_BuildLayoutBounds lays it out (party_status.c keeps them
+/// private).
+#define STATUS_COLUMN_WIDTH 6
+#define STATUS_DJINN_WIDTH 5
+
+/// Widens the party status window for the party now fighting, keeping its
+/// heap block. It must not be closed and opened again: freeing a heap slot
+/// also frees every block taken after it (FreeHeapSlot), and the battle's
+/// background, palette and sprite work were all taken after this one, so a
+/// new block would be laid over them. Lays it out as
+/// PartyStatus_BuildLayoutBounds does, a column for each party member at the
+/// screen's right edge, then redraws it.
+static void PartyJoin_WidenStatusWindow(void) {
+  struct PartyStatusWindow *layout = HEAP_SLOT_BLOCK(HEAP_SLOT_PARTY_STATUS);
+  s32 width;
+  s32 height;
+
+  height = 3;
+  if (layout->flags & PARTY_STATUS_SHOW_PP)
+    height++;
+  width = BattleParty_PrepareMembers(0) * STATUS_COLUMN_WIDTH + 1;
+  if (layout->flags & PARTY_STATUS_SHOW_DJINN)
+    width += STATUS_DJINN_WIDTH;
+  Window_CloseFar(layout->window, 1);
+  layout->x = 30 - width;
+  layout->width = width;
+  layout->height = height;
+  layout->window =
+      Window_CreateFar(layout->x, layout->y, layout->width, layout->height, 6);
+  PartyStatus_DrawFar(gBattleWork->partyStatus);
+}
+
 /// Puts the screen back as the game sets it before each action
 /// (BattleStaging_DispatchAction) and between rounds: no highlight, full
 /// brightness, the action camera's projection, and the zoomed background
@@ -219,11 +252,8 @@ static s32 PartyJoin_Arrive(s32 unitId) {
   else
     battle->partyStatus = PARTY_STATUS_NO_SUMMONS;
 
-  // The party status window takes its width from the party size when it is
-  // made, so it is made again, and drawn.
-  PartyStatus_CloseFar();
-  PartyStatus_CreateWindowFar(PARTY_STATUS_CLOSED);
-  PartyStatus_DrawFar(battle->partyStatus);
+  // The party status window takes its width from the party size.
+  PartyJoin_WidenStatusWindow();
 
   battle->joinLastArrival = battle->joinRound;
   return 1;
