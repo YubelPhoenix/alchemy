@@ -29,16 +29,16 @@
 06076	MsgFuchinTempleMasterNyunpaIsWaitingForYou	Master Nyunpa waits\nat the temple.{page_break}Go to him now.{end_wait}
 06077	MsgFuchinTempleTheWarriorsHaveMasteredTheSecrets	The travelers have\npassed the trial.{page_break}Nyunpa will surely\nbe pleased.{end_wait}
 06079	message	You have done well\nto master our art.{end_wait}
-06080	message	We call this power\nKi at Fuchin Temple.{end_wait}
-06083	message	You have shown\npatience and wisdom.{page_break}But there is more\nyou should know.{end_wait}
-06085	message	As promised, I will\nshow you the way.{page_break}Use this power\nwithin the forest.{end_wait}
-06086	message	What might happen\nif you used Force\namong the trees?{end_wait}
-06087	message	Ha! Still curious,\nI see.{end_now}
-06090	message	Strength is useful.\nBut not every path\nopens through battle.{end_wait}
-06091	message	Good. There is no\nwisdom in needless\nviolence.{end_wait}
-06092	message	The beasts will flee\nwhen they know\nyou can see them.{end_wait}
-06093	message	The creatures know\ntheir own forest.{page_break}Follow their path\nand you may survive.{end_wait}
-06094	MsgFuchinTempleUseThisEnergyToFindThe	Use Force to reveal\nthe hidden beasts.{page_break}Follow them through\nthe trees.{end_wait}
+06080	message	The power you found\nis called Ki here.\nYou know it as Force.{end_wait}
+06083	message	You have learned much\nalready, {actor_name:1}. But\nhear me out.{end_wait}
+06085	message	Now I shall keep my\npromise. Force will\nhelp you cross Mogall.{end_wait}
+06086	message	In Mogall Forest, some\napes hide inside the\nhollow tree stumps.{end_wait}
+06087	message	Ha! Now you're curious,\naren't you?{end_now}
+06090	message	Not every creature\nyou meet needs to\nbe your enemy.{end_wait}
+06091	message	Good. Watching may\nteach you more than\nfighting ever would.{end_wait}
+06092	message	Most of the apes will\nrun when startled.\nSome may fight back.{end_wait}
+06093	message	They know the paths\nthrough Mogall Forest,\neven when you do not.{end_wait}
+06094	MsgFuchinTempleUseThisEnergyToFindThe	Use Force on the\nhollow stumps. Watch\nwhere the apes flee.{page_break}Their path can lead\nyou through the woods.{end_wait}
 06096	message	Nyunpa seems at peace.{page_break}Do not waste\nwhat he taught you.{end_wait}
 06097	message	We cannot leave\neverything to strangers.{page_break}We must learn\nto help ourselves.{end_wait}
 06098	MsgFuchinTempleTheFuchinTempleIsAPleasant	It used to be quiet\nhere at the temple.{page_break}Now every traveler\nbrings fearful news.{end_wait}
