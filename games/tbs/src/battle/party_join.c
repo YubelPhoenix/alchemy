@@ -22,7 +22,7 @@
 ///     (BossAI_MysteryAwaken sets MYSTERY_ENRAGED): with her full power turned
 ///     on Isaac she can no longer hold his Psynergy back. "???" has a last
 ///     word with the party whole.
-///  MUS_FIGHT_TOGETHER plays from the battle's start, FULL_PARTY_SONG from
+///  The battle's own song plays from its start, FULL_PARTY_SONG from
 ///  Garet's arrival.
 ///  Each of 4 and 5 also happens after a few rounds regardless (the _LATEST_
 ///  counts), so every player sees all three arrive; one arrival a round.
@@ -48,9 +48,10 @@
 
 /// The round at whose end she brings Isaac to 1 HP and Mia arrives.
 #define RESCUE_ROUND 2
-/// The song from Garet's arrival on. Until then the battle plays its own,
-/// MUS_FIGHT_TOGETHER, which Vale_TalkToMysteryLeader chooses for it, with no
-/// break: through Isaac alone, her Gotterkanone and Mia's rescue.
+/// The song from Garet's arrival on. Until then the battle plays the song
+/// Vale_TalkToMysteryLeader chooses for it, with no break: through Isaac
+/// alone, her Gotterkanone and Mia's rescue. While that is this same song,
+/// it plays on without starting again.
 #define FULL_PARTY_SONG MUS_FUSION_DRAGON_BATTLE
 /// Garet arrives once "???" is below this percent of her HP, or this many
 /// rounds after Mia, whichever is first.
@@ -360,7 +361,8 @@ void PartyJoin_RunRoundEnd(void) {
         sinceArrival >= GARET_LATEST_ROUNDS) {
       battle->joinStage = JOIN_GARET;
       if (PartyJoin_Arrive(GARET)) {
-        Sound_PlaySongFar(FULL_PARTY_SONG);
+        if (gSaveBlock.battleMusic != FULL_PARTY_SONG)
+          Sound_PlaySongFar(FULL_PARTY_SONG);
         PartyJoin_Say(MsgPartyJoinGaretArrives);
         PartyJoin_Say(MsgPartyJoinGaretArrives2);
       }

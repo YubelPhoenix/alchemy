@@ -1826,9 +1826,11 @@ static void Vale_TalkToMysteryLeader(void) {
   Event_SetDefeatDestination(-1, -1);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 6);
-  // Her battle opens with its own song, which plays until Garet breaks free
-  // (battle/party_join.c); the request has just chosen the boss battle music.
-  gSaveBlock.battleMusic = MUS_FIGHT_TOGETHER;
+  // Her battle's song, in place of the boss battle music the request has
+  // just chosen. It plays until Garet breaks free (battle/party_join.c). The
+  // Fusion Dragon's song until MUS_FIGHT_TOGETHER's is written; then this
+  // becomes MUS_FIGHT_TOGETHER.
+  gSaveBlock.battleMusic = MUS_FUSION_DRAGON_BATTLE;
   Event_End();
 }
 
