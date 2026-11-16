@@ -2,12 +2,12 @@
 # Shown as plain battle text at the bottom of the screen, which holds two
 # lines: each message is at most two lines, with no {page_break} and no
 # {end_wait}. A longer line is several messages, the later ones named ...2, ...3.
-N399	MsgPartyJoinMysteryBrink	Let's see what's left\nwhen they can't help you.
+N399	MsgPartyJoinMysteryBrink	Now. Show me what\nyou are on your own.
 N400	MsgPartyJoinMysteryAlone	There. Look around you.\nNo one is coming.
 N407	MsgPartyJoinMysteryAlone2	Not because they won't.\nBecause they can't.
 N401	MsgPartyJoinMiaArrives	No. You're wrong.
 N408	MsgPartyJoinMiaArrives2	He was never alone.
-N402	MsgPartyJoinMysteryReacts	That bind should have\nheld a god.
+N402	MsgPartyJoinMysteryReacts	That's not possible.\nMy hold was perfect.
 N403	MsgPartyJoinMiaAnswers	I fought Menardi alone\nand lost Jenna and Kraden.
 N409	MsgPartyJoinMiaAnswers2	Never again.
 N404	MsgPartyJoinGaretArrives	Get away from him!
@@ -16,7 +16,7 @@ N413	MsgPartyJoinGaretArrives3	I'm not starting now!
 N405	MsgPartyJoinIvanArrives	I told you, Isaac.\nWe'd find a way.
 N411	MsgPartyJoinIvanArrives2	I could hear you\nthe whole time.
 N406	MsgPartyJoinMysteryNotAlone	I came to see the\noriginal. Alone.
-N412	MsgPartyJoinMysteryNotAlone2	I see now that\nwas never possible.
+N412	MsgPartyJoinMysteryNotAlone2	Your healer was right.\nHe was never alone.
 # Isaac's memories in the dark, his friends' own words from earlier: Garet on
 # the stormy night (phase1_vale.tsv 03796), Ivan and Mia at the aerie
 # (phase14_aerie.tsv MsgDarkAerieIvanAlone, MsgDarkAerieMiaTogether).
