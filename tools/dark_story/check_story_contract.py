@@ -100,6 +100,10 @@ def check_visual_identity() -> None:
     ):
         require(re.search(r"\{\s*SPRITE_ASH_JENNA\s*,", template(scene(file), table)) is not None,
                 f"{file}: Ash Jenna must use her supplied overworld sprite")
+    lamakan = scene("lamakan_desert.c")
+    require(re.search(r"ACTOR_LAMAKAN_ASH_JENNA\\s*=\\s*ACTOR_FIRST_PLACED\\s*\\+\\s*2\\b", lamakan) is not None,
+            "Lamakan Ash Jenna is the third placed NPC (slot 10), not party ACTOR_JENNA (slot 5)")
+
     ids = read("games/tbs/include/sprite_ids.h")
     sprites = read("games/tbs/src/graphics/sprite/sprites.tsv")
     layout = read("games/tbs/src/graphics/sprite/layout.tsv")

@@ -165,10 +165,10 @@ enum {
   /// Smog, a Jupiter Djinni.
   /// ★ Named from the game: "Smog" (MsgDjinnName)
   ACTOR_SMOG = ACTOR_LAST_PIT + 1,
-  /// Ash Jenna (ACTOR_JENNA), glimpsed in LamakanDesertManticore's pass once
-  /// Saturos has been defeated at Mercury (LamakanDesert_MeetAshJenna). Only that scene
-  /// places her, as its third actor.
-  ACTOR_LAMAKAN_ASH_JENNA = ACTOR_JENNA
+  /// Ash Jenna is the Manticore scene's third placed actor (id 10): the
+  /// Manticore is id 8 and its pit is id 9. ACTOR_JENNA is a party slot (5),
+  /// not this NPC; using it hides the sprite and misroutes her event actions.
+  ACTOR_LAMAKAN_ASH_JENNA = ACTOR_FIRST_PLACED + 2
 };
 
 /// The desert's two Psynergy Stones, area temp flags: each is back once
