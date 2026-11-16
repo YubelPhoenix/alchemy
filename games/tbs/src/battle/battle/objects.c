@@ -143,8 +143,11 @@ void BattleObject_UpdateSpritePriorities(void) {
 #define ICON_DELUSION 0x20
 #define ICON_HAUNT 0x40
 #define ICON_GRIM_REAPER 6 ///< the curse's turns left, 1 to 7, as bits 7 to 13
+/// Ashfall: Regenerate's healing waters (battle/regenerate.c), drawn by
+/// sprites 354 and 369, which the original left empty after its icons.
+#define ICON_REGENERATE 0x4000
 
-#define ICON_MAX 14 ///< the kinds of icon
+#define ICON_MAX 15 ///< the kinds of icon
 
 /// Builds the status icon bits of unit id's statuses into its battle
 /// object's activeStatuses, which BattleStatusIcon_Cycle shows. Called
@@ -184,6 +187,8 @@ s32 BattleUnit_BuildStatusFlags(s32 unitId, struct BattleObject *battleObject) {
     flags |= ICON_SLEEP;
   if (unit->grimReaper != 0)
     flags |= 1 << (unit->grimReaper + ICON_GRIM_REAPER);
+  if (unit->regenerate != 0)
+    flags |= ICON_REGENERATE;
   battleObject->activeStatuses = flags;
 }
 
@@ -192,7 +197,7 @@ s32 BattleUnit_BuildStatusFlags(s32 unitId, struct BattleObject *battleObject) {
 
 /// The icons' first animations, for units 32 pixels wide and for the rest:
 /// each adds the icon's bit number (ICON_POISON's 0 up), so sprites 340 to
-/// 353 and 355 to 368.
+/// 354 and 355 to 369 (Ashfall's ICON_REGENERATE the last of each).
 #define ICON_ANIMATION_NARROW 340
 #define ICON_ANIMATION_WIDE 355
 
