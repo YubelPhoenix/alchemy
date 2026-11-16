@@ -11,8 +11,8 @@
 /// (ICON_REGENERATE, objects.c) and heals here.
 ///
 /// As in Final Fantasy IX, the healing goes on in the background: no message
-/// stops the battle, only the recovery sound, a blue shimmer on the unit and
-/// its HP rising. It comes at each round's end, whether or not the unit
+/// stops the battle and no sound plays (a sound every round soon grates), only
+/// a blue shimmer on the unit and its HP rising. It comes at each round's end, whether or not the unit
 /// acted, as Final Fantasy IX's Regen ticks on the battle's clock. There each
 /// tick heals 1/16 of the maximum HP, and the Spirit stat makes the ticks
 /// come more often; here the unit's Luck adds to the amount instead.
@@ -57,7 +57,6 @@ void Regenerate_RunRoundEnd(s32 unitId) {
     heal = unit->hpMax - unit->hp;
 
   Unit_AddHpFar(unitId, heal);
-  Sound_PlaySongFar(SE_RECOVERY);
   actor = BattleObject_Get(unitId)->actor;
   if (actor != NULL) {
     for (flash = 0; flash < REGEN_SHIMMERS; flash++) {
