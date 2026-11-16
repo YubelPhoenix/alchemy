@@ -72,10 +72,15 @@
 
 /// Pure Ply, two after Ply in abilities.c (ability_ids.h names only Ply).
 #define ABILITY_PURE_PLY (ABILITY_PLY + 2)
+/// Ice Missile, Mia's entrance: its row in abilities.c ("// Ice Missile"),
+/// which ability_ids.h does not name.
+#define ABILITY_ICE_MISSILE 0x1d
 
 /// An action's target is a place on a side, not a unit id: bit 7 clear is
 /// the party's side, and Isaac, who starts alone, is its place 0.
 #define TARGET_ISAAC 0
+/// "???", the battle's one enemy: the enemy side (bit 7) and its place 0.
+#define TARGET_MYSTERY 0x80
 
 /// The battle's state, kept in BattleWork's spare bytes, which Battle_Run
 /// clears as every battle starts and no other code uses.
@@ -305,13 +310,31 @@ static void PartyJoin_BreakFlash(s32 style) {
   REG_BLDCNT = savedBlend;
 }
 
+static void PartyJoin_Act(s32 unitId, s32 command, s32 abilityId,
+                          s32 target);
+
+/// Sets unitId's sprite off the battlefield, three times as far out as its
+/// spot, where the party runs to when it flees (BattleMotion_SetupEscapeObject).
+static void PartyJoin_PlaceOffstage(s32 unitId) {
+  struct BattleObject *battleObject = BattleObject_Get(unitId);
+  struct Actor *actor = battleObject->actor;
+
+  if (actor == NULL)
+    return;
+  actor->x.fixed = battleObject->anchorX * 3;
+  actor->y.fixed = 0;
+  actor->z.fixed = battleObject->anchorZ;
+}
+
 /// Brings character unitId into the battle at the party's next place: the
 /// bind breaks in the friend's way (PartyJoin_BreakFlash, enum JoinBreak),
+/// casts entranceAbility at "???" from off the battlefield, if not 0, then
 /// they run in from off the battlefield
 /// with a hop, raise a hand and burst with the light of their element, and
 /// the gloom eases to `gloom`. Returns 0 if they could not join (already
 /// fighting, or no place left).
-static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style) {
+static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
+                            s32 entranceAbility) {
   struct BattleWork *battle;
   struct BattleObject *battleObject;
   struct Actor *actor;
@@ -346,16 +369,42 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style) {
                     gBattlePlacement_StepPairs[place * 2],
                     gBattlePlacement_StepPairs[place * 2 + 1]);
 
-  // The camera on the party; then the sprite is made, set three times as far
-  // out as the spot (where the party runs to when it flees,
-  // BattleMotion_SetupEscapeObject), and sent running in to it with a hop.
+  // Their Djinn on standby count toward summons, as at the battle's start,
+  // and the party status window takes its width from the party size: both
+  // before anything is staged with them in the party.
+  DjinnRecovery_Reconcile();
+  BattleSummon_UpdateAvailability();
+  if (((struct BattleSummonState *)Djinn_GetRecoveryTableFar(
+           DJINN_RECOVERY_PARTY))
+          ->availableMask != 0)
+    battle->partyStatus = PARTY_STATUS_SUMMONS;
+  else
+    battle->partyStatus = PARTY_STATUS_NO_SUMMONS;
+  PartyJoin_WidenStatusWindow();
+
+  // The camera on the party, the bind breaking, and the sprite made off
+  // the battlefield, three times as far out as the spot (where the party
+  // runs to when it flees, BattleMotion_SetupEscapeObject).
   PartyJoin_FaceParty(ARRIVAL_CAMERA_FRAMES);
   PartyJoin_BreakFlash(style);
   BattleObject_Put();
+  PartyJoin_PlaceOffstage(unitId);
+
+  // An entrance attack, cast from off the battlefield before they are seen:
+  // their glow at the screen's edge, then the Psynergy striking "???". The
+  // action ends with every unit back on its spot, so they are put off the
+  // battlefield again before the next frame.
+  if (entranceAbility != 0) {
+    PartyJoin_Act(unitId, COMMAND_PSYNERGY, entranceAbility, TARGET_MYSTERY);
+    PartyJoin_PlaceOffstage(unitId);
+    PartyJoin_Settle();
+    PartyJoin_FaceParty(ARRIVAL_CAMERA_FRAMES);
+  }
+
+  // The run in to the spot, with a hop.
+  battleObject = BattleObject_Get(unitId);
   actor = battleObject->actor;
   if (actor != NULL) {
-    actor->x.fixed = battleObject->anchorX * 3;
-    actor->z.fixed = battleObject->anchorZ;
     actor->acceleration = 0x20000;
     actor->speedLimit = 0x80000;
     actor->velocityY = 0x50000;
@@ -383,19 +432,6 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style) {
   BattlePlayback_WaitForReady();
   PartyJoin_Settle();
   BattleMotion_ReturnToSpot(unitId);
-
-  // Their Djinn on standby count toward summons, as at the battle's start.
-  DjinnRecovery_Reconcile();
-  BattleSummon_UpdateAvailability();
-  if (((struct BattleSummonState *)Djinn_GetRecoveryTableFar(
-           DJINN_RECOVERY_PARTY))
-          ->availableMask != 0)
-    battle->partyStatus = PARTY_STATUS_SUMMONS;
-  else
-    battle->partyStatus = PARTY_STATUS_NO_SUMMONS;
-
-  // The party status window takes its width from the party size.
-  PartyJoin_WidenStatusWindow();
 
   battle->joinLastArrival = battle->joinRound;
   return 1;
@@ -448,7 +484,8 @@ static void PartyJoin_RunRescue(void) {
   PartyJoin_Say(MsgPartyJoinMemoryMia);
   WaitFrames(MEMORY_SILENCE_FRAMES);
 
-  if (PartyJoin_Arrive(MIA, ELEMENT_MERCURY, GLOOM_MIA, BREAK_GENTLE) == 0)
+  if (PartyJoin_Arrive(MIA, ELEMENT_MERCURY, GLOOM_MIA, BREAK_GENTLE,
+                       ABILITY_ICE_MISSILE) == 0)
     return;
   PartyJoin_Say(MsgPartyJoinMiaArrives);
   PartyJoin_Say(MsgPartyJoinMiaArrives2);
@@ -539,7 +576,7 @@ void PartyJoin_RunRoundEnd(void) {
     if (mystery->hp * 100 < mystery->hpMax * GARET_BELOW_PERCENT ||
         sinceArrival >= GARET_LATEST_ROUNDS) {
       battle->joinStage = JOIN_GARET;
-      if (PartyJoin_Arrive(GARET, ELEMENT_MARS, GLOOM_GARET, BREAK_FORCE)) {
+      if (PartyJoin_Arrive(GARET, ELEMENT_MARS, GLOOM_GARET, BREAK_FORCE, 0)) {
         if (gSaveBlock.battleMusic != FULL_PARTY_SONG)
           Sound_PlaySongFar(FULL_PARTY_SONG);
         PartyJoin_Say(MsgPartyJoinGaretArrives);
@@ -552,7 +589,7 @@ void PartyJoin_RunRoundEnd(void) {
     if (sinceArrival > 0 && ((mystery->aiActionIndex & MYSTERY_ENRAGED) != 0 ||
                              sinceArrival >= IVAN_LATEST_ROUNDS)) {
       battle->joinStage = JOIN_IVAN;
-      if (PartyJoin_Arrive(IVAN, ELEMENT_JUPITER, 0, BREAK_WHOLE)) {
+      if (PartyJoin_Arrive(IVAN, ELEMENT_JUPITER, 0, BREAK_WHOLE, 0)) {
         PartyJoin_Say(MsgPartyJoinIvanArrives);
         PartyJoin_Say(MsgPartyJoinIvanArrives2);
         PartyJoin_SayKeyLine(MsgPartyJoinMysteryNotAlone);
