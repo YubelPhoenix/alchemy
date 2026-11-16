@@ -307,10 +307,10 @@ static void LamaTemple_EnterHamasRoom(void) {
 }
 
 /// Hama's farewell, once the party has freed Hsu and been brought back to Lama
-/// Temple: she thanks the Adepts, Garet and Mia squabble over whose idea
-/// helping was, and Hama goes back to her room. Ivan wonders aloud about what
-/// Hama told him, and Garet, Ivan and Mia rejoin the party. Garet's two
-/// questions are yes or no choices.
+/// Temple: she thanks the Adepts, Garet tries to ease the tense moment with a
+/// joke, and Hama goes back to her room. Ivan weighs whether to press her about
+/// her earlier words, and Garet, Ivan and Mia rejoin the party. Both yes/no
+/// choices and their responses stay in their original order.
 static void LamaTemple_RunHamasFarewell(void) {
   Event_Start();
   Actor_SetPosition(ACTOR_TEMPLE_HAMA, PIXELS(136), PIXELS(168));
@@ -354,7 +354,7 @@ static void LamaTemple_RunHamasFarewell(void) {
   Actor_ShowEmote(ACTOR_IVAN, EMOTE_IN_FRONT | EMOTE_WINCE, 60);
   Event_WaitFrames(120);
 
-  // Garet claims that helping was his idea and asks the leader to agree.
+  // Garet clumsily jokes about taking credit and asks the leader to agree.
   Actor_RunRepeatedMotion(ACTOR_GARET, 2);
   Event_WaitFrames(20);
   Actor_FaceDirection(ACTOR_GARET, FACING_SOUTHWEST, 20);

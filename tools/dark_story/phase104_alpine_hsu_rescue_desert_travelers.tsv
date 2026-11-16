@@ -1,7 +1,7 @@
 # Alpine crossing: Hsu's injury, rescue, workers after clearing, Lama Temple visitors and Lamakan gameplay hints.
 06329	MsgMountainDoDoWarriorShouldReturn	Should I go back to Xian? I\ncan't be much help standing\nhere, can I?{end_now}
 06502	MsgAlpineCrossingLamaTempleIAmHungry	.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}\n.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}\nI{pause_20_skippable}{pause_20_skippable}{pause_20_skippable} am hungry...{end_wait}
-06607	MsgMountainHsuOkay	Hsu! Can you hear us?{end_wait}
+06607	MsgMountainHsuOkay	Hsu! Are you hurt?{end_wait}
 06612	MsgAlpineCrossingLamaTempleWellIsaacAdeptsYouCameTo	{actor_name:1}! Thank goodness.\nWe cannot shift\nthe boulder.{page_break}Can any of you\nhelp us?{end_wait}
 06613	MsgAlpineCrossingLamaTempleBeStrongHsuWeWillHelp	Hold on, Hsu!\nWe'll get you free!{end_wait}
 06614	MsgAlpineCrossingLamaTempleIAmTrappedBetweenTheseTwo	I'm stuck between\ntwo boulders.{page_break}At least I wasn't\ncrushed. Please...\nhurry.{end_wait}
@@ -9,7 +9,33 @@
 06616	MsgAlpineCrossingLamaTempleHsuTiresHeLooksExhaustedI	Hsu is exhausted.\nWe have to hurry.{end_wait}
 06617	MsgAlpineCrossingLamaTempleIWantToScreamButFeizhi	I have to stay calm.\nFeizhi hates it\nwhen I panic.{end_wait}
 06618	MsgMountainIsaacDidLiftBoulder	{actor_name:1}, was that you?\nThe boulder moved!{end_wait}
-06633	MsgMountainAdeptsLetMeThankAgain	You saved Hsu.\nI know this delayed\nyour journey. Thank you.{end_wait}
+06633	MsgMountainAdeptsLetMeThankAgain	Hsu is safe because\nof you. Thank you for\nstopping to help.{end_wait}
+06634	message	And I know you still\nhave a long road ahead.{end_wait}
+06635	message	You taught Ivan Reveal.\nHelping Hsu was the\nleast we could do.{end_wait}
+06636	message	Master Hama, about\nwhat you told me\nearlier...{end_wait}
+06637	message	I know, {actor_name:3}.\nThere is more I wish\nI could explain.{end_wait}
+06638	message	We saved Hsu, at least.\nI said we should help,\nright?{end_now}
+06639	message	We were still chasing\n{actor_name:5}, {actor_name:2}.\nBut we all chose to help.{end_wait}
+06640	message	I know, {actor_name:4}!\nJust trying to\nlighten the mood.{end_wait}
+06641	message	We all helped,\n{actor_name:2}. That's what\nmatters.{end_wait}
+06642	message	All right, {actor_name:1}.\n{actor_name:4}, I'm just\nglad he's safe.{end_wait}
+06643	message	There's no need to\nargue, {actor_name:2}.\nI'm grateful to you all.{end_wait}
+06644	message	Lamakan will test you.\nRemember to use Reveal\nwhen the path seems lost.{end_wait}
+06645	message	Take care, all of you.\nI hope we meet again.{end_wait}
+06646	message	Ivan, you never got\nto finish what you\nwanted to ask Hama.{end_wait}
+06647	message	She looked troubled.\nI don't think she\nmeant to brush him off.{end_wait}
+06648	message	{actor_name:1}, should we\ngo back and ask her?{end_now}
+06649	message	I thought you'd say\nthat. We could still\ncatch her.{end_wait}
+06650	message	Maybe you're right.\nWe shouldn't push her.{end_wait}
+06651	message	Ivan, how do you\nfeel about it?{end_wait}
+06652	message	I wanted to ask, but...\nI think she needs\na little time.{end_wait}
+06653	message	Time? You really\nthink she'll tell you\nlater?{end_wait}
+06654	message	She knows something\nshe can't tell me yet.\nI could see it.{end_wait}
+06655	message	She seemed worried\nwhen she spoke to you.{end_wait}
+06656	message	If I press her now,\nI doubt she'll tell\nme anything more.{end_wait}
+06657	message	I don't know how\nyou can leave it\nat that.{end_wait}
+06658	message	I trust her, Garet.\nPerhaps she'll explain\nwhen this is over.{end_wait}
+06659	message	For now, let's keep\nmoving.{end_wait}
 06660	MsgAlpineCrossingLamaTempleItIsVeryDangerousToCross	Lamakan is dangerous.\nKeep your wits about\nyou out there.{end_wait}
 06661	MsgAlpineCrossingLamaTempleTheEvilDesertIsHotterThan	The desert's heat\ncan kill. Look for\nthe oases!{end_wait}
 06662	MsgAlpineCrossingLamaTempleIBelieveItIsPossibleTo	Perhaps meditation\nwill teach me to see\nwhat lies ahead.{end_wait}

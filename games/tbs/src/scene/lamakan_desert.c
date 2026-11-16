@@ -1463,9 +1463,11 @@ struct ActorTemplate gLamakanDesertManticoreActorTemplates[] = {
         PIXELS(168), 0, PIXELS(104), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { 0xc1, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(128), 0, PIXELS(316), FACING_SOUTH, TALK_FACING_PARTY, 0 },
-    // The evil counterpart must look like Jenna, not a generic villager.
+    // Ash Jenna's optional first sighting is on the open route near the
+    // southern cave junction (entrance at 599,296), rather than hidden far
+    // west beside the Manticore. Keep the supplied Ash Jenna sprite.
     { SPRITE_ASH_JENNA, IF_FLAG_SET(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE), MOVEMENT_TYPE_STAND,
-        PIXELS(128), 0, PIXELS(250), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+        PIXELS(616), 0, PIXELS(280), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
