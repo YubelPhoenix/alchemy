@@ -328,10 +328,9 @@ static void PartyJoin_PlaceOffstage(s32 unitId) {
 
 /// Brings character unitId into the battle at the party's next place: the
 /// bind breaks in the friend's way (PartyJoin_BreakFlash, enum JoinBreak),
-/// casts entranceAbility at "???" from off the battlefield, if not 0, then
-/// they run in from off the battlefield
-/// with a hop, raise a hand and burst with the light of their element, and
-/// the gloom eases to `gloom`. Returns 0 if they could not join (already
+/// they run in from off the battlefield with a hop, and their light breaks
+/// through, easing the gloom to `gloom`: entranceAbility cast at "???" if
+/// not 0, else a hand raised and the burst of their element. Returns 0 if they could not join (already
 /// fighting, or no place left).
 static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
                             s32 entranceAbility) {
@@ -390,17 +389,6 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
   BattleObject_Put();
   PartyJoin_PlaceOffstage(unitId);
 
-  // An entrance attack, cast from off the battlefield before they are seen:
-  // their glow at the screen's edge, then the Psynergy striking "???". The
-  // action ends with every unit back on its spot, so they are put off the
-  // battlefield again before the next frame.
-  if (entranceAbility != 0) {
-    PartyJoin_Act(unitId, COMMAND_PSYNERGY, entranceAbility, TARGET_MYSTERY);
-    PartyJoin_PlaceOffstage(unitId);
-    PartyJoin_Settle();
-    PartyJoin_FaceParty(ARRIVAL_CAMERA_FRAMES);
-  }
-
   // The run in to the spot, with a hop.
   battleObject = BattleObject_Get(unitId);
   actor = battleObject->actor;
@@ -420,16 +408,22 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
   }
   BattleMotion_ReturnToSpot(unitId);
 
-  // A hand raised and the burst of their element, as a Djinni set at a
-  // round's end bursts (BattleUnit_ProcessTurnEnd); the glow puts the
-  // background in BATTLE_BACKGROUND_FIXED, so the screen is settled after.
-  // The light returns with them.
-  actor = BattleObject_Get(unitId)->actor;
-  if (actor != NULL)
-    Actor_SelectAnimationFar(actor, POSE_CAST);
+  // Their light breaks through, and the gloom eases with it: an entrance
+  // attack on "???" (a cast's own glow is its light), or else a hand raised
+  // and the burst of their element, as a Djinni set at a round's end bursts
+  // (Battle_ProcessRoundEnd). Either puts the background in
+  // BATTLE_BACKGROUND_FIXED, so the screen is settled after. ElementGlow_Play
+  // returns when the glow is over; BattlePlayback_WaitForReady must not
+  // follow it here, since it waits for a playback task only an action runs.
   battle->joinGloomTarget = gloom;
-  ElementGlow_Play(unitId, element, GLOW_BURST, 0);
-  BattlePlayback_WaitForReady();
+  if (entranceAbility != 0) {
+    PartyJoin_Act(unitId, COMMAND_PSYNERGY, entranceAbility, TARGET_MYSTERY);
+  } else {
+    actor = BattleObject_Get(unitId)->actor;
+    if (actor != NULL)
+      Actor_SelectAnimationFar(actor, POSE_CAST);
+    ElementGlow_Play(unitId, element, GLOW_BURST, 0);
+  }
   PartyJoin_Settle();
   BattleMotion_ReturnToSpot(unitId);
 
@@ -488,7 +482,6 @@ static void PartyJoin_RunRescue(void) {
                        ABILITY_ICE_MISSILE) == 0)
     return;
   PartyJoin_Say(MsgPartyJoinMiaArrives);
-  PartyJoin_Say(MsgPartyJoinMiaArrives2);
   PartyJoin_Act(MIA, COMMAND_PSYNERGY, ABILITY_PURE_PLY, TARGET_ISAAC);
   PartyJoin_Settle();
   isaac = BattleObject_Get(battle->partyUnits[0])->actor;
@@ -496,8 +489,6 @@ static void PartyJoin_RunRescue(void) {
     Actor_SelectAnimationFar(isaac, POSE_STANDING);
   PartyStatus_DrawFar(battle->partyStatus);
   PartyJoin_Say(MsgPartyJoinMysteryReacts);
-  PartyJoin_Say(MsgPartyJoinMiaAnswers);
-  PartyJoin_Say(MsgPartyJoinMiaAnswers2);
 }
 
 /// Her turn in RESCUE_ROUND: says her line and fades the music, and returns
@@ -536,7 +527,6 @@ static void PartyJoin_RunUnison(void) {
   }
   WaitFrames(20);
   ElementGlow_Play(battle->partyUnits[0], ELEMENT_VENUS, GLOW_BURST, 0);
-  BattlePlayback_WaitForReady();
   PartyJoin_Settle();
   for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++)
     BattleMotion_ReturnToSpot(battle->partyUnits[place]);

@@ -5,11 +5,8 @@
 N399	MsgPartyJoinMysteryBrink	Now. Show me what\nyou are on your own.
 N400	MsgPartyJoinMysteryAlone	There. Look around you.\nNo one is coming.
 N407	MsgPartyJoinMysteryAlone2	Not because they won't.\nBecause they can't.
-N401	MsgPartyJoinMiaArrives	No. You're wrong.
-N408	MsgPartyJoinMiaArrives2	He was never alone.
+N401	MsgPartyJoinMiaArrives	No. You're wrong.\nHe was never alone.
 N402	MsgPartyJoinMysteryReacts	That's not possible.\nMy hold was perfect.
-N403	MsgPartyJoinMiaAnswers	I fought Menardi alone\nand lost Jenna and Kraden.
-N409	MsgPartyJoinMiaAnswers2	Never again.
 N404	MsgPartyJoinGaretArrives	Get away from him!
 N410	MsgPartyJoinGaretArrives2	I didn't let him go\nalone that night.
 N413	MsgPartyJoinGaretArrives3	I'm not starting now!
