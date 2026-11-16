@@ -1147,15 +1147,17 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = ABILITY_RANGE_ALL,
         .ppCost = 5,
     },
-    // Regenerate
+    // Regenerate. Ashfall finishes it (battle/regenerate.c): the original
+    // left it out of reach with no icon, and its power of 60 hurt the ally
+    // it was cast on, so it has Wish's icon and no power.
     {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_MERCURY,
         .effect = ABILITY_EFFECT_REGENERATE,
+        .icon = 67,
         .range = 1,
         .ppCost = 6,
-        .power = 60,
     },
     // Reflect
     {
