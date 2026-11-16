@@ -504,6 +504,8 @@ s32 Battle_ProcessRoundEnd(void) {
           BattleMessage_ShowAndWaitFar(MsgCureSeal);
           BattleMessage_WaitForAdvance();
         }
+        // Ashfall: Regenerate's healing waters (regenerate.c).
+        Regenerate_RunRoundEnd(unitId);
         if (BattleUnit_TickRegenerate(unitId) != 0) {
           BattleUnit_BuildStatusFlags(unitId, BattleObject_Get(unitId));
           MessageArgument_PushFar(unitId, MESSAGE_ARGUMENT_ACTOR);
@@ -713,8 +715,6 @@ s32 BattleUnit_ProcessTurnEnd(struct BattleTurn *plan) {
     }
     BattlePlayback_RunAll();
     BattlePlayback_Reset();
-    // Ashfall: Regenerate's healing waters (regenerate.c).
-    Regenerate_RunTurnEnd(unitId);
     // At 0 the Reaper takes far more HP than any unit has. The downed
     // message is MsgGoesDown or MsgStrengthExhausted, three either side of
     // MsgReaperCalls (see Matching on message offsets).

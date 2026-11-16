@@ -209,7 +209,7 @@ s32 PartyJoin_TakeBrinkTurn(void);
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount);
 s32 PartyJoin_StepGloom(s32 *repaint);
 /// Ashfall's finished Regenerate (regenerate.c).
-void Regenerate_RunTurnEnd(s32 unitId);
+void Regenerate_RunRoundEnd(s32 unitId);
 
 /// BattleAI_ChooseTarget's results when it picks no one: the side it
 /// may target lists no one, or no one there is worth the ability.
