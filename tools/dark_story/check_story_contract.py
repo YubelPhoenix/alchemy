@@ -339,8 +339,15 @@ def check_mystery_rescue_encounter() -> None:
     require("PartyJoin_SayKeyLine(MsgMysteryEnraged)" in boss_ai,
             "Mystery's awakened revelation needs protected reading time")
     battle_lines = messages("phase_fight_together.tsv")
-    require(set(battle_lines) == {f"N{i}" for i in range(399, 414)},
-            "Mystery rescue must keep exactly 15 indexed battle dialogue lines")
+    require(set(battle_lines) == {f"N{i}" for i in range(399, 417)},
+            "Mystery rescue must keep exactly 18 indexed battle dialogue lines")
+    # Isaac's memories in the dark, oldest first, Mia's last so it turns into
+    # her voice.
+    require(join.index("PartyJoin_Say(MsgPartyJoinMemoryGaret)") <
+            join.index("PartyJoin_Say(MsgPartyJoinMemoryIvan)") <
+            join.index("PartyJoin_Say(MsgPartyJoinMemoryMia)") <
+            join.index("PartyJoin_Arrive(MIA,"),
+            "Isaac's memories must play Garet, Ivan, Mia, before Mia arrives")
     for key, value in battle_lines.items():
         require("{page_break}" not in value and "{end_" not in value,
                 f"Mystery battle {key} must use plain battle text")

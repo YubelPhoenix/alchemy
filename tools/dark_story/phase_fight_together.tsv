@@ -17,3 +17,9 @@ N405	MsgPartyJoinIvanArrives	I felt her hold slip.\nI pushed until it broke.
 N411	MsgPartyJoinIvanArrives2	Isaac, be careful.\nShe's not finished yet.
 N406	MsgPartyJoinMysteryNotAlone	I underestimated\nyour friends, Isaac.
 N412	MsgPartyJoinMysteryNotAlone2	I won't make that\nmistake again.
+# Isaac's memories in the dark, his friends' own words from earlier: Garet on
+# the stormy night (phase1_vale.tsv 03796), Ivan and Mia at the aerie
+# (phase14_aerie.tsv MsgDarkAerieIvanAlone, MsgDarkAerieMiaTogether).
+N414	MsgPartyJoinMemoryGaret	"...I can't let him\ngo alone... I won't."
+N415	MsgPartyJoinMemoryIvan	"...Then we find a way."
+N416	MsgPartyJoinMemoryMia	"...We go together."

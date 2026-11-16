@@ -103,12 +103,29 @@
 #define GLOOM_GARET 60
 #define GLOOM_STEP 2
 
-/// The bind breaking: frames the screen stays white, frames it fades back
-/// (one level of REG_BLDY each), and the camera's shake in 1/65536 turns of
-/// yaw, as BossAI_MysteryAwaken flashes, but shorter.
+/// How each friend breaks the bind, rising one to the next: Mia gently, with
+/// no crack, only her light; Garet with a crack, a white flash and a shake;
+/// Ivan, who makes the party whole, with a louder crack, a longer flash and a
+/// harder shake. Frames the screen stays white, frames it fades back (one
+/// level of REG_BLDY each), and the shake in 1/65536 turns of yaw, as
+/// BossAI_MysteryAwaken flashes.
+enum JoinBreak {
+  BREAK_GENTLE, ///< Mia: no crack, no flash
+  BREAK_FORCE,  ///< Garet
+  BREAK_WHOLE   ///< Ivan
+};
 #define BREAK_HOLD 4
 #define BREAK_FADE 14
 #define BREAK_SHAKE 0x180
+#define BREAK_WHOLE_HOLD 8
+#define BREAK_WHOLE_FADE 24
+#define BREAK_WHOLE_SHAKE 0x280
+
+/// The darkest moment: frames Isaac stands alone, slumped, before she speaks;
+/// between each memory; and in the silence after them, before Mia comes.
+#define ALONE_SILENCE_FRAMES 120
+#define MEMORY_GAP_FRAMES 45
+#define MEMORY_SILENCE_FRAMES 90
 
 enum JoinBrink {
   BRINK_NONE = 0,    ///< not this round
@@ -244,26 +261,40 @@ static void PartyJoin_Settle(void) {
   WaitFrames(1);
 }
 
-/// The bind breaking as a friend breaks free: a crack, the whole screen
-/// white, and the white fading while the camera shakes and settles, as her
-/// own awakening flashes (BossAI_MysteryAwaken). The yaw and the blend
+/// The bind breaking as a friend breaks free, in the friend's way
+/// (enum JoinBreak): a crack, the whole screen white, and the white fading
+/// while the camera shakes and settles, as her own awakening flashes
+/// (BossAI_MysteryAwaken); nothing for BREAK_GENTLE. The yaw and the blend
 /// registers are put back after.
-static void PartyJoin_BreakFlash(void) {
+static void PartyJoin_BreakFlash(s32 style) {
   struct BattleCamera *camera = HEAP_SLOT_BLOCK(HEAP_SLOT_CAMERA);
   u16 savedBlend = REG_BLDCNT;
   u16 baseYaw = camera->yaw;
   s32 frame;
   s32 shake;
+  s32 hold;
+  s32 fade;
+  s32 strength;
 
+  if (style == BREAK_GENTLE)
+    return;
+  hold = BREAK_HOLD;
+  fade = BREAK_FADE;
+  strength = BREAK_SHAKE;
+  if (style == BREAK_WHOLE) {
+    hold = BREAK_WHOLE_HOLD;
+    fade = BREAK_WHOLE_FADE;
+    strength = BREAK_WHOLE_SHAKE;
+    Sound_PlaySongFar(SE_THUNDER_LOUD);
+  }
   Sound_PlaySongFar(SE_ITEM_BREAK);
   REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
-  for (frame = 0; frame < BREAK_HOLD + BREAK_FADE; frame++) {
-    if (frame < BREAK_HOLD)
+  for (frame = 0; frame < hold + fade; frame++) {
+    if (frame < hold)
       REG_BLDY = 16;
     else
-      REG_BLDY = 16 - (frame - BREAK_HOLD + 1) * 16 / BREAK_FADE;
-    shake = BREAK_SHAKE * (BREAK_HOLD + BREAK_FADE - frame) /
-            (BREAK_HOLD + BREAK_FADE);
+      REG_BLDY = 16 - (frame - hold + 1) * 16 / fade;
+    shake = strength * (hold + fade - frame) / (hold + fade);
     if (frame & 1)
       shake = -shake;
     camera->yaw = baseYaw + shake;
@@ -275,11 +306,12 @@ static void PartyJoin_BreakFlash(void) {
 }
 
 /// Brings character unitId into the battle at the party's next place: the
-/// bind breaks (PartyJoin_BreakFlash), they run in from off the battlefield
+/// bind breaks in the friend's way (PartyJoin_BreakFlash, enum JoinBreak),
+/// they run in from off the battlefield
 /// with a hop, raise a hand and burst with the light of their element, and
 /// the gloom eases to `gloom`. Returns 0 if they could not join (already
 /// fighting, or no place left).
-static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom) {
+static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style) {
   struct BattleWork *battle;
   struct BattleObject *battleObject;
   struct Actor *actor;
@@ -318,7 +350,7 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom) {
   // out as the spot (where the party runs to when it flees,
   // BattleMotion_SetupEscapeObject), and sent running in to it with a hop.
   PartyJoin_FaceParty(ARRIVAL_CAMERA_FRAMES);
-  PartyJoin_BreakFlash();
+  PartyJoin_BreakFlash(style);
   BattleObject_Put();
   actor = battleObject->actor;
   if (actor != NULL) {
@@ -401,12 +433,22 @@ static void PartyJoin_RunRescue(void) {
   isaac = BattleObject_Get(battle->partyUnits[0])->actor;
   if (isaac != NULL)
     Actor_SelectAnimationFar(isaac, POSE_PARTY_HELD);
-  WaitFrames(40);
+  WaitFrames(ALONE_SILENCE_FRAMES);
   PartyJoin_Say(MsgPartyJoinMysteryAlone);
   PartyJoin_Say(MsgPartyJoinMysteryAlone2);
-  WaitFrames(30);
+  // She says no one can come; in the dark, Isaac remembers his friends'
+  // words, oldest first: Garet's on the stormy night, when he would not let
+  // Isaac go for help alone; Ivan's and Mia's at Mercury Lighthouse. Mia's
+  // is last, so her memory turns into her voice.
+  WaitFrames(MEMORY_GAP_FRAMES);
+  PartyJoin_Say(MsgPartyJoinMemoryGaret);
+  WaitFrames(MEMORY_GAP_FRAMES);
+  PartyJoin_Say(MsgPartyJoinMemoryIvan);
+  WaitFrames(MEMORY_GAP_FRAMES);
+  PartyJoin_Say(MsgPartyJoinMemoryMia);
+  WaitFrames(MEMORY_SILENCE_FRAMES);
 
-  if (PartyJoin_Arrive(MIA, ELEMENT_MERCURY, GLOOM_MIA) == 0)
+  if (PartyJoin_Arrive(MIA, ELEMENT_MERCURY, GLOOM_MIA, BREAK_GENTLE) == 0)
     return;
   PartyJoin_Say(MsgPartyJoinMiaArrives);
   PartyJoin_Say(MsgPartyJoinMiaArrives2);
@@ -439,6 +481,29 @@ s32 PartyJoin_TakeBrinkTurn(void) {
 #else
   return 0;
 #endif
+}
+
+/// The party whole: all four raise their hands together, and Isaac, the one
+/// she wanted alone, bursts with the light of Venus. Silent, as Isaac is;
+/// what it says, it shows.
+static void PartyJoin_RunUnison(void) {
+  struct BattleWork *battle = gBattleWork;
+  struct Actor *actor;
+  s32 place;
+
+  PartyJoin_FaceParty(ARRIVAL_CAMERA_FRAMES);
+  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++) {
+    actor = BattleObject_Get(battle->partyUnits[place])->actor;
+    if (actor != NULL)
+      Actor_SelectAnimationFar(actor, POSE_CAST);
+  }
+  WaitFrames(20);
+  ElementGlow_Play(battle->partyUnits[0], ELEMENT_VENUS, GLOW_BURST, 0);
+  BattlePlayback_WaitForReady();
+  PartyJoin_Settle();
+  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++)
+    BattleMotion_ReturnToSpot(battle->partyUnits[place]);
+  WaitFrames(30);
 }
 
 /// Counts the round that just ended and plays whatever the story has next.
@@ -474,7 +539,7 @@ void PartyJoin_RunRoundEnd(void) {
     if (mystery->hp * 100 < mystery->hpMax * GARET_BELOW_PERCENT ||
         sinceArrival >= GARET_LATEST_ROUNDS) {
       battle->joinStage = JOIN_GARET;
-      if (PartyJoin_Arrive(GARET, ELEMENT_MARS, GLOOM_GARET)) {
+      if (PartyJoin_Arrive(GARET, ELEMENT_MARS, GLOOM_GARET, BREAK_FORCE)) {
         if (gSaveBlock.battleMusic != FULL_PARTY_SONG)
           Sound_PlaySongFar(FULL_PARTY_SONG);
         PartyJoin_Say(MsgPartyJoinGaretArrives);
@@ -487,11 +552,12 @@ void PartyJoin_RunRoundEnd(void) {
     if (sinceArrival > 0 && ((mystery->aiActionIndex & MYSTERY_ENRAGED) != 0 ||
                              sinceArrival >= IVAN_LATEST_ROUNDS)) {
       battle->joinStage = JOIN_IVAN;
-      if (PartyJoin_Arrive(IVAN, ELEMENT_JUPITER, 0)) {
+      if (PartyJoin_Arrive(IVAN, ELEMENT_JUPITER, 0, BREAK_WHOLE)) {
         PartyJoin_Say(MsgPartyJoinIvanArrives);
         PartyJoin_Say(MsgPartyJoinIvanArrives2);
         PartyJoin_SayKeyLine(MsgPartyJoinMysteryNotAlone);
         PartyJoin_SayKeyLine(MsgPartyJoinMysteryNotAlone2);
+        PartyJoin_RunUnison();
       }
     }
     break;
