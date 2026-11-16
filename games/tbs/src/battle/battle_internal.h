@@ -207,6 +207,7 @@ void PartyJoin_RunAfterAction(void);
 void PartyJoin_SayKeyLine(s32 message);
 s32 PartyJoin_TakeBrinkTurn(void);
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount);
+s32 PartyJoin_StepGloom(s32 *repaint);
 
 /// BattleAI_ChooseTarget's results when it picks no one: the side it
 /// may target lists no one, or no one there is worth the ability.

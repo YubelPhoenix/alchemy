@@ -317,12 +317,14 @@ def check_mystery_rescue_encounter() -> None:
     require("#define PARTY_JOIN_ENABLED 1" in join
             and "#define RESCUE_ROUND 2" in join,
             "Mystery companion rescue must be enabled in round two")
+    # Each arrival names the friend first, then their element and the gloom
+    # their light leaves.
     for name in ("MIA", "GARET", "IVAN"):
-        require(f"PartyJoin_Arrive({name})" in join,
+        require(f"PartyJoin_Arrive({name}," in join,
                 f"Mystery battle must bring {name} into the live battle")
-    require(join.index("PartyJoin_Arrive(MIA)") <
-            join.index("PartyJoin_Arrive(GARET)") <
-            join.index("PartyJoin_Arrive(IVAN)"),
+    require(join.index("PartyJoin_Arrive(MIA,") <
+            join.index("PartyJoin_Arrive(GARET,") <
+            join.index("PartyJoin_Arrive(IVAN,"),
             "Rescue companions must arrive Mia, Garet, then Ivan")
     require("#define GARET_BELOW_PERCENT 75" in join
             and "#define IVAN_LATEST_ROUNDS 5" in join
