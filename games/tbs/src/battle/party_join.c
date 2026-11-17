@@ -7,7 +7,7 @@
 /// The fight:
 ///  1. Isaac fights her alone. While he is alone he cannot fall: a blow that
 ///     would fell him leaves him at 1 HP instead (PartyJoin_ClampDamage).
-///  2. Her turn in RESCUE_ROUND is Gotterkanone: she speaks, and the blow leaves him at exactly 1 HP; the number shown is the
+///  2. Her turn in RESCUE_ROUND is P-Storm: she speaks, and the blow leaves him at exactly 1 HP; the number shown is the
 ///     HP he lost (BossAI_MysteryChooseSlot asks PartyJoin_TakeBrinkTurn).
 ///  3. At the end of that round, or of any round that left Isaac alone at
 ///     1 HP, she speaks; Mia breaks free and runs in and casts Pure Ply on
@@ -27,7 +27,7 @@
 ///  Each of 4 and 5 also happens after a few rounds regardless (the _LATEST_
 ///  counts), so every player sees all three arrive; one arrival a round.
 ///
-/// How it looks: from the moment Gotterkanone lands the battlefield sinks
+/// How it looks: from the moment P-Storm lands the battlefield sinks
 /// into darkness, and Isaac, slumped in the pose of a downed party member,
 /// stands almost alone in it; each friend brings part of the light back, and
 /// with all four the battlefield is lit again (the gloom: her backdrop,
@@ -57,7 +57,7 @@
 #define RESCUE_ROUND 2
 /// The song from Garet's arrival on. Until then the battle plays the song
 /// Vale_TalkToMysteryLeader chooses for it, with no break: through Isaac
-/// alone, her Gotterkanone and Mia's rescue. While that is this same song,
+/// alone, her P-Storm and Mia's rescue. While that is this same song,
 /// it plays on without starting again.
 #define FULL_PARTY_SONG MUS_FUSION_DRAGON_BATTLE
 /// Garet arrives once "???" is below this percent of her HP, or this many
@@ -88,7 +88,7 @@
 #define joinRound unusedAfterEscapes
 /// How far the story has gone (enum JoinStage).
 #define joinStage unusedAfterChannels[0]
-/// Her Gotterkanone turn (enum JoinBrink): it leaves Isaac 1 HP.
+/// Her P-Storm turn (enum JoinBrink): it leaves Isaac 1 HP.
 #define joinBrink unusedAfterChannels[1]
 /// The round the last arrival came in.
 #define joinLastArrival unusedAfterPlacement[0]
@@ -129,13 +129,12 @@ enum JoinBreak {
 /// The darkest moment: frames Isaac stands alone, slumped, before she speaks;
 /// between each memory; and in the silence after them, before Mia comes.
 #define ALONE_SILENCE_FRAMES 120
-#define MEMORY_GAP_FRAMES 45
 #define MEMORY_SILENCE_FRAMES 90
 
 enum JoinBrink {
   BRINK_NONE = 0,    ///< not this round
-  BRINK_PENDING = 1, ///< her next turn is Gotterkanone
-  BRINK_STRIKING = 2 ///< her Gotterkanone is being played
+  BRINK_PENDING = 1, ///< her next turn is P-Storm
+  BRINK_STRIKING = 2 ///< her P-Storm is being played
 };
 
 enum JoinStage {
@@ -447,7 +446,7 @@ static void PartyJoin_Act(s32 unitId, s32 command, s32 abilityId,
   BattleStaging_DispatchAction(&request, 10);
 }
 
-/// End of a round that left Isaac, alone, at 1 HP (her Gotterkanone, or a
+/// End of a round that left Isaac, alone, at 1 HP (her P-Storm, or a
 /// blow that would have felled him): she speaks; Mia breaks free, runs in
 /// and heals him.
 static void PartyJoin_RunRescue(void) {
@@ -466,16 +465,6 @@ static void PartyJoin_RunRescue(void) {
   WaitFrames(ALONE_SILENCE_FRAMES);
   PartyJoin_Say(MsgPartyJoinMysteryAlone);
   PartyJoin_Say(MsgPartyJoinMysteryAlone2);
-  // She says no one can come; in the dark, Isaac remembers his friends'
-  // words, oldest first: Garet's on the stormy night, when he would not let
-  // Isaac go for help alone; Ivan's and Mia's at Mercury Lighthouse. Mia's
-  // is last, so her memory turns into her voice.
-  WaitFrames(MEMORY_GAP_FRAMES);
-  PartyJoin_Say(MsgPartyJoinMemoryGaret);
-  WaitFrames(MEMORY_GAP_FRAMES);
-  PartyJoin_Say(MsgPartyJoinMemoryIvan);
-  WaitFrames(MEMORY_GAP_FRAMES);
-  PartyJoin_Say(MsgPartyJoinMemoryMia);
   WaitFrames(MEMORY_SILENCE_FRAMES);
 
   if (PartyJoin_Arrive(MIA, ELEMENT_MERCURY, GLOOM_MIA, BREAK_GENTLE,
@@ -492,7 +481,7 @@ static void PartyJoin_RunRescue(void) {
 }
 
 /// Her turn in RESCUE_ROUND: says her line and fades the music, and returns
-/// 1 while the turn should be Gotterkanone. Called by
+/// 1 while the turn should be P-Storm. Called by
 /// BossAI_MysteryChooseSlot at each of her picks; the line plays once.
 s32 PartyJoin_TakeBrinkTurn(void) {
 #if PARTY_JOIN_ENABLED
@@ -555,7 +544,7 @@ void PartyJoin_RunRoundEnd(void) {
 
   switch (battle->joinStage) {
   case JOIN_ALONE:
-    // Her next turn is the Gotterkanone; the round it lands in, or any
+    // Her next turn is the P-Storm; the round it lands in, or any
     // round that left Isaac at 1 HP, ends with Mia.
     if (battle->joinEdge != 0 || battle->joinRound >= RESCUE_ROUND)
       PartyJoin_RunRescue();
@@ -592,7 +581,7 @@ void PartyJoin_RunRoundEnd(void) {
 #endif
 }
 
-/// Ends her Gotterkanone turn once it has played, so only that blow leaves
+/// Ends her P-Storm turn once it has played, so only that blow leaves
 /// Isaac at exactly 1 HP. Called by Battle_Run after every action.
 void PartyJoin_RunAfterAction(void) {
 #if PARTY_JOIN_ENABLED
@@ -639,7 +628,7 @@ s32 PartyJoin_StepGloom(s32 *repaint) {
 
 /// The HP damage a blow or an ability does to a unit at hp, as
 /// BattleAbility_ApplyToTarget has worked it out, so the number shown is the
-/// HP really lost. In the "???" battle: during her scripted Gotterkanone,
+/// HP really lost. In the "???" battle: during her scripted P-Storm,
 /// exactly enough to leave Isaac 1 HP; and while he is alone, never enough to
 /// fell him (a blow that would sets joinEdge, and the rescue follows it).
 /// Every other battle and unit keeps its damage.

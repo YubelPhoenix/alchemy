@@ -340,17 +340,11 @@ def check_mystery_rescue_encounter() -> None:
             "Mystery's awakened revelation needs protected reading time")
     battle_lines = messages("phase_fight_together.tsv")
     # N403, N408 and N409 were Mia's lighthouse lines and the second half of
-    # her arrival, cut to keep her section short.
-    require(set(battle_lines) == {f"N{i}" for i in range(399, 417)} -
+    # her arrival, cut to keep her section short; Isaac's memories (N414 to
+    # N416) were cut so "???" alone speaks before Mia arrives.
+    require(set(battle_lines) == {f"N{i}" for i in range(399, 414)} -
             {"N403", "N408", "N409"},
-            "Mystery rescue must keep exactly 15 indexed battle dialogue lines")
-    # Isaac's memories in the dark, oldest first, Mia's last so it turns into
-    # her voice.
-    require(join.index("PartyJoin_Say(MsgPartyJoinMemoryGaret)") <
-            join.index("PartyJoin_Say(MsgPartyJoinMemoryIvan)") <
-            join.index("PartyJoin_Say(MsgPartyJoinMemoryMia)") <
-            join.index("PartyJoin_Arrive(MIA,"),
-            "Isaac's memories must play Garet, Ivan, Mia, before Mia arrives")
+            "Mystery rescue must keep exactly 12 indexed battle dialogue lines")
     for key, value in battle_lines.items():
         require("{page_break}" not in value and "{end_" not in value,
                 f"Mystery battle {key} must use plain battle text")

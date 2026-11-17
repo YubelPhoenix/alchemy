@@ -17,6 +17,3 @@ N412	MsgPartyJoinMysteryNotAlone2	Your healer was right.\nHe was never alone.
 # Isaac's memories in the dark, his friends' own words from earlier: Garet on
 # the stormy night (phase1_vale.tsv 03796), Ivan and Mia at the aerie
 # (phase14_aerie.tsv MsgDarkAerieIvanAlone, MsgDarkAerieMiaTogether).
-N414	MsgPartyJoinMemoryGaret	"...I can't let him\ngo alone... I won't."
-N415	MsgPartyJoinMemoryIvan	"...Then we find a way."
-N416	MsgPartyJoinMemoryMia	"...We go together."
