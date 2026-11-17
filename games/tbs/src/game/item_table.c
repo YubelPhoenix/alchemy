@@ -108,7 +108,8 @@ const struct ItemDefinition gItem_DefinitionTable[] = {
             {.kind = EQUIP_EFFECT_ADD_VENUS_RESIST, .amount = 20},
         },
     },
-    // Sol Blade. Left unfinished, with no Unleash; Ashfall gives it Megiddo
+    // Sol Blade, the Sealed Sol Blade in Ashfall. Left unfinished, with no
+    // Unleash; Ashfall gives it Megiddo
     // (ability 239) at the other great swords' chance.
     {
         .price = 19000,

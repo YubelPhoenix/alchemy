@@ -2,3 +2,6 @@
 # description in the empty slot's messages.
 01058	message	Megiddo
 01577	message	Unleash a blast of sunfire.
+# The blade itself is renamed: Camelot left it unfinished, so in Ashfall it is
+# sealed, its full power not yet woken.
+00396	message	{article_class:2}Sealed Sol Blade
