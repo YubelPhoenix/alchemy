@@ -58,7 +58,29 @@ enum { PSYNERGY_FROM_CLASS = 0x8000, PSYNERGY_FROM_ITEM = 0x4000 };
 
 /// Moves only one of the four heroes learns, whatever their class: a class
 /// is shared by anyone whose Djinni put them in it, and without these the four
-/// end the game with the same list. Each row is {ability, level}; every hero's
+/// end the game with the same list. Each row is {ability, level, {next}}:
+/// every hero's own-element moves are chosen to suit their element and kept
+/// out of their class lines. next (in the struct's padding) names the
+/// stronger tier of the same line; once that is learned the weaker one drops
+/// off the list (Unit_RefreshPsynergy), as a hero has only 32 slots.
+static const struct ClassAbility sSignatureMoves[4][10] = {
+    // Isaac: earth and steel
+    {{179, 5, {180}}, {164, 10, {165}}, {180, 22, {181}}, {165, 26, {166}},
+     {181, 40}, {166, 50},
+     {133, 1}}, // TEST ONLY: Rune Strike
+    // Garet: fire and bombs
+    {{182, 6, {183}}, {167, 12, {168}}, {160, 16}, {183, 20, {184}},
+     {168, 28, {169}}, {184, 44}, {169, 50},
+     {131, 1}, {132, 1}}, // TEST ONLY: Ember Burst, Sky Breaker
+    // Ivan: wind and lightning
+    {{185, 4, {186}}, {191, 8}, {188, 10, {189}}, {177, 14}, {186, 22, {187}},
+     {189, 30, {190}}, {187, 46}, {190, 52},
+     {134, 1}, {135, 1}}, // TEST ONLY: Starfall, Vertigo
+    // Mia: water, frost and ward
+    {{36, 6, {37}}, {128, 8}, {30, 10, {31}}, {37, 22, {38}}, {129, 26},
+     {31, 28, {32}}, {38, 42}, {32, 48},
+     {130, 1}, {137, 1}}, // TEST ONLY: Djinn's Grace, Fading Wind
+}; every hero's
 /// own-element moves are chosen to suit their element and kept out of their
 /// class lines.
 static const struct ClassAbility sSignatureMoves[4][10] = {
@@ -166,6 +188,18 @@ s32 Unit_RefreshPsynergy(s32 unitId) {
       classAbility = (struct ClassAbility *)(pass ? &sFieldMoves[unitId][sourceIndex] : &sSignatureMoves[unitId][sourceIndex]);
       if (classAbility->ability == 0 || unit->level < classAbility->level)
         continue;
+      // A weaker tier drops off once its row's stronger tier is learned.
+      if (classAbility->padding[0] != 0) {
+        s32 tier;
+        for (tier = 0; tier < 10; tier++) {
+          if (sSignatureMoves[unitId][tier].ability ==
+                  classAbility->padding[0] &&
+              unit->level >= sSignatureMoves[unitId][tier].level)
+            break;
+        }
+        if (tier < 10)
+          continue;
+      }
       slot = 0;
       while (slot < 32 && (PSYNERGY_ACTION_AT(abilities, slot) &
                            PSYNERGY_ABILITY_MASK) != classAbility->ability)
