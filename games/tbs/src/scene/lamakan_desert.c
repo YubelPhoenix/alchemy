@@ -372,14 +372,10 @@ static void LamakanDesert_AshJennaFinale(void) {
   Event_End();
 }
 
-/// Ash Jenna, grey, watches the ash-streaked desert and slips away from Isaac.
-/// After the Manticore aftermath, she delivers the finale instead.
-static void LamakanDesert_MeetAshJenna(void) {
-  if (GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) {
-    LamakanDesert_AshJennaFinale();
-    return;
-  }
-  Event_Start();
+/// Ash Jenna's first sighting: her lines with the leader, then she flickers
+/// away. Played by LamakanDesert_MeetManticore as the leader stops before the
+/// Manticore, or by talking to her. Leaves FLAG_DARK_ASH_JENNA_LAMAKAN_MET set.
+static void LamakanDesert_AshJennaWatches(void) {
   Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_NORMAL);
   Event_SetMessageId(MsgDarkLamakanJennaWatch);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
@@ -393,6 +389,17 @@ static void LamakanDesert_MeetAshJenna(void) {
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_MET);
   GameFlag_Clear(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
+}
+
+/// Ash Jenna, grey, watches the ash-streaked desert and slips away from Isaac.
+/// After the Manticore aftermath, she delivers the finale instead.
+static void LamakanDesert_MeetAshJenna(void) {
+  if (GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) {
+    LamakanDesert_AshJennaFinale();
+    return;
+  }
+  Event_Start();
+  LamakanDesert_AshJennaWatches();
   Event_End();
 }
 
@@ -1036,6 +1043,20 @@ static void LamakanDesert_MeetManticore(void) {
       record = Actor_Get(ACTOR_PARTY_LEADER);
       record->targetZ = ACTOR_NO_TARGET;
       Import_ActorSetAnimation(ACTOR_PARTY_LEADER, ANIM_STAND);
+      // Ash Jenna steps out of the haze just ahead of the leader, before the
+      // Manticore rises (her first sighting, once Mercury is done).
+      if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE) != 0 &&
+          GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0) {
+        record = Actor_GetById(ACTOR_PARTY_LEADER);
+        Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, record->x.fixed,
+                          record->z.fixed - PIXELS(32));
+        Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_SOUTH, 0);
+        Actor_FaceActor(ACTOR_PARTY_LEADER, ACTOR_LAMAKAN_ASH_JENNA, 0);
+        AshWarp_In(ACTOR_LAMAKAN_ASH_JENNA);
+        Event_WaitFrames(20);
+        LamakanDesert_AshJennaWatches();
+        Event_WaitFrames(30);
+      }
       Actor_FaceActor(ACTOR_PARTY_LEADER, ACTOR_MANTICORE, 0);
       Event_WaitFrames(40);
       Actor_StartRepeatedMotion(ACTOR_PARTY_LEADER, 2);
@@ -1469,8 +1490,10 @@ struct ActorTemplate gLamakanDesertManticoreActorTemplates[] = {
     { 0xc1, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(128), 0, PIXELS(316), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     // The evil counterpart must look like Jenna, not a generic villager.
+    // Parked out of sight; she steps in before the Manticore rises
+    // (LamakanDesert_MeetManticore) and again after its battle.
     { SPRITE_ASH_JENNA, IF_FLAG_SET(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE), MOVEMENT_TYPE_STAND,
-        PIXELS(128), 0, PIXELS(250), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+        PIXELS(-9), 0, PIXELS(488), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
