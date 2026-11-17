@@ -461,10 +461,14 @@ static s32 Reveal_HideSecrets(void) {
   }
   Import_ActorSetPosition(ACTOR_MANTICORE, 0, 0);
   Import_ActorSetPosition(ACTOR_FIRST_PIT, 0, 0);
-  Import_ActorSetPosition(ACTOR_FIRST_PIT + 1, 0, 0);
-  Import_ActorSetPosition(ACTOR_FIRST_PIT + 2, 0, 0);
-  Import_ActorSetPosition(ACTOR_LAST_PIT, 0, 0);
-  Import_ActorSetPosition(ACTOR_SMOG, 0, 0);
+  // The Manticore's pass places only those two; its third actor is Ash
+  // Jenna (ACTOR_LAMAKAN_ASH_JENNA, ACTOR_FIRST_PIT + 1), who must stay put.
+  if (gSaveBlock.sceneId != (s32)&SceneId_LamakanDesertManticore) {
+    Import_ActorSetPosition(ACTOR_FIRST_PIT + 1, 0, 0);
+    Import_ActorSetPosition(ACTOR_FIRST_PIT + 2, 0, 0);
+    Import_ActorSetPosition(ACTOR_LAST_PIT, 0, 0);
+    Import_ActorSetPosition(ACTOR_SMOG, 0, 0);
+  }
   // Hide the treasure spots independently of the actor templates.
   markerId = 100;
   do {
