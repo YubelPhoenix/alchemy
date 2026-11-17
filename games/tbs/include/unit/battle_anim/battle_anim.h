@@ -107,6 +107,10 @@ enum BattleAnimId {
   BATTLE_ANIM_DROWN = 66,
   BATTLE_ANIM_UNUSED_TRIANGLE_STRIKE = 67, ///< no ability uses it
   BATTLE_ANIM_ASTRAL_BLAST = 68,
+  BATTLE_ANIM_DJINN_HEAL = 69,     ///< Ashfall: Djinn's Grace
+  BATTLE_ANIM_SWIRLING_STARS = 70, ///< Ashfall: Starfall
+  BATTLE_ANIM_ORBITING_SKULLS = 71, ///< Ashfall: Death Knell
+  BATTLE_ANIM_TARGET_BURSTS = 72,  ///< Ashfall: Ember Burst
   BATTLE_ANIM_GRANITE = 200,
   BATTLE_ANIM_QUARTZ = 201,
   BATTLE_ANIM_VINE = 202,

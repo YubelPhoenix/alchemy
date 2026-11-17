@@ -1,0 +1,18 @@
+# Ashfall's new Psynergy, in empty ability slots 130 to 136 (abilities.c),
+# each drawn with an animation the original game never showed. Names are
+# MsgAbilityName + id (819 + id), descriptions MsgAbilityDescription + id
+# (1338 + id).
+00949	message	Djinn's Grace
+00950	message	Ember Burst
+00951	message	Sky Breaker
+00952	message	Rune Strike
+00953	message	Starfall
+00954	message	Vertigo
+00955	message	Death Knell
+01468	message	A Djinni heals all allies.
+01469	message	Fire bursts on three foes.
+01470	message	Leap for a mighty blow.
+01471	message	Strike through a rune.
+01472	message	Stars rain on all foes.
+01473	message	Confuse up to three foes.
+01474	message	Curse a foe with doom.

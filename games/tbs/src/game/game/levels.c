@@ -63,13 +63,17 @@ enum { PSYNERGY_FROM_CLASS = 0x8000, PSYNERGY_FROM_ITEM = 0x4000 };
 /// class lines.
 static const struct ClassAbility sSignatureMoves[4][9] = {
     // Isaac: earth and steel
-    {{179, 5}, {164, 10}, {180, 22}, {165, 26}, {181, 40}, {166, 50}},
+    {{179, 5}, {164, 10}, {180, 22}, {165, 26}, {181, 40}, {166, 50},
+     {133, 1}, {135, 1}, {136, 1}}, // TEST ONLY: Rune Strike, Vertigo, Death Knell
     // Garet: fire and bombs
-    {{182, 6}, {167, 12}, {160, 16}, {183, 20}, {168, 28}, {184, 44}, {169, 50}},
+    {{182, 6}, {167, 12}, {160, 16}, {183, 20}, {168, 28}, {184, 44}, {169, 50},
+     {131, 1}, {132, 1}}, // TEST ONLY: Ember Burst, Sky Breaker
     // Ivan: wind and lightning
-    {{185, 4}, {191, 8}, {188, 10}, {177, 14}, {186, 22}, {189, 30}, {187, 46}, {190, 52}},
+    {{185, 4}, {191, 8}, {188, 10}, {177, 14}, {186, 22}, {189, 30}, {187, 46}, {190, 52},
+     {134, 1}}, // TEST ONLY: Starfall
     // Mia: water, frost and ward
-    {{36, 6}, {30, 10}, {128, 14}, {37, 22}, {129, 26}, {31, 28}, {38, 42}, {32, 48}},
+    {{36, 6}, {30, 10}, {128, 14}, {37, 22}, {129, 26}, {31, 28}, {38, 42}, {32, 48},
+     {130, 1}}, // TEST ONLY: Djinn's Grace
 };
 
 /// The field Psynergy every story gate needs, split by hero so each keeps it

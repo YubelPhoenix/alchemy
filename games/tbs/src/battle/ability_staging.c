@@ -139,13 +139,13 @@ const u8 gAbilityStaging[] = {
     0, // Break
     0, // Regenerate
     0, // Reflect
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
+    0, // Djinn's Grace (Ashfall)
+    0, // Ember Burst (Ashfall)
+    0, // Sky Breaker (Ashfall)
+    0, // Rune Strike (Ashfall)
+    0, // Starfall (Ashfall)
+    0, // Vertigo (Ashfall)
+    0, // Death Knell (Ashfall)
     0, // ?
     0, // ?
     0, // ?
@@ -661,13 +661,13 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_BREAK, // Break
     BATTLE_ANIM_REGENERATE, // Regenerate
     BATTLE_ANIM_REFLECT, // Reflect
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
+    BATTLE_ANIM_DJINN_HEAL, // Djinn's Grace (Ashfall)
+    BATTLE_ANIM_TARGET_BURSTS, // Ember Burst (Ashfall)
+    BATTLE_ANIM_UNUSED_SEVERE_BLOW_LEAP, // Sky Breaker (Ashfall)
+    BATTLE_ANIM_UNUSED_TRIANGLE_STRIKE, // Rune Strike (Ashfall)
+    BATTLE_ANIM_SWIRLING_STARS, // Starfall (Ashfall)
+    BATTLE_ANIM_UNUSED_ORBITING_SPIRALS, // Vertigo (Ashfall)
+    BATTLE_ANIM_ORBITING_SKULLS, // Death Knell (Ashfall)
     0, // ?
     0, // ?
     0, // ?

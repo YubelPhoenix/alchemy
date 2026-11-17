@@ -1170,39 +1170,81 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 5,
     },
     // ?
+    // Djinn's Grace (Ashfall): a Djinni heals every ally; unused Djinn Heal animation.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_FIELD | ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_HP,
+        .element = ELEMENT_MERCURY,
+        .icon = 69,
+        .range = ABILITY_RANGE_ALL,
+        .ppCost = 16,
+        .power = 250,
     },
     // ?
+    // Ember Burst (Ashfall): Mars bursts on up to three foes; unused Target Bursts.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MARS,
+        .icon = 33,
+        .range = 2,
+        .ppCost = 10,
+        .power = 70,
     },
     // ?
+    // Sky Breaker (Ashfall): a leaping blow; the unused Severe Blow leap.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .element = ELEMENT_MARS,
+        .icon = 134,
+        .range = 1,
+        .ppCost = 9,
+        .power = 45,
     },
     // ?
+    // Rune Strike (Ashfall): a blow through a rune; unused Triangle Strike.
     {
-        .targetMode = ABILITY_TARGET_ONE,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
         .element = ELEMENT_VENUS,
+        .icon = 137,
+        .range = 1,
+        .ppCost = 8,
+        .power = 40,
     },
     // ?
+    // Starfall (Ashfall): stars gather and strike every foe; unused Swirling Stars.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_JUPITER,
+        .icon = 54,
+        .range = 4,
+        .ppCost = 26,
+        .power = 130,
     },
     // ?
+    // Vertigo (Ashfall): confuses up to three foes; unused Orbiting Spirals.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_JUPITER,
+        .effect = ABILITY_EFFECT_CONFUSION,
+        .icon = 85,
+        .range = 2,
+        .ppCost = 6,
     },
     // ?
+    // Death Knell (Ashfall): curses one foe; unused Orbiting Skulls.
     {
-        .targetMode = ABILITY_TARGET_ONE,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_VENUS,
+        .effect = ABILITY_EFFECT_CURSE,
+        .icon = 89,
+        .range = 1,
+        .ppCost = 10,
     },
     // ?
     {

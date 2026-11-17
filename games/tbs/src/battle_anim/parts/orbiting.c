@@ -19,7 +19,7 @@
 /// though only 64 are drawn.
 ///
 /// Nothing calls it. Draws through the side's blitters mirrored (side ^ 1).
-UNUSED void BattleAnim_RunSwirlingStars(struct BattleAnimArgs *args) {
+void BattleAnim_RunSwirlingStars(struct BattleAnimArgs *args) {
   void **slots;
   void **cursor;
   struct BattleAnimWork *work;
@@ -116,7 +116,7 @@ UNUSED void BattleAnim_RunSwirlingStars(struct BattleAnimArgs *args) {
 /// Nothing calls it. Copies the skull palette over the first 128 bytes of BG
 /// palette RAM; writes REG_BG2PA, REG_BG2X and REG_BLDALPHA; keeps each
 /// skull's angle in velocityX of work->particles, three to a target.
-UNUSED void BattleAnim_RunOrbitingSkulls(void) {
+void BattleAnim_RunOrbitingSkulls(void) {
   struct BattleAnimWork *work;
   void *canvas;
   s32 point[3];
@@ -230,7 +230,7 @@ UNUSED void BattleAnim_RunOrbitingSkulls(void) {
 ///
 /// Nothing calls it. Copies the pink burst palette over the first 128 bytes
 /// of BG palette RAM, uses work->particles six to a target.
-UNUSED void BattleAnim_RunTargetBursts(struct BattleAnimArgs *args) {
+void BattleAnim_RunTargetBursts(struct BattleAnimArgs *args) {
   void **slots;
   void **cursor;
   struct BattleAnimWork *work;

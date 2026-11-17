@@ -506,6 +506,15 @@ BattleAnimHandler gBattleAnim_Handlers[BATTLE_ANIM_COUNT - 1] = {
         BattleAnim_RunUnusedTriangleStrike, // bind.c
     [BATTLE_ANIM_ASTRAL_BLAST - 1] =
         BattleAnim_RunAstralBlast,                     // stars.c: Astral Blast
+    [BATTLE_ANIM_DJINN_HEAL - 1] =
+        BattleAnim_RunDjinnHeal, // djinn_heal.c: Djinn's Grace (Ashfall)
+    [BATTLE_ANIM_SWIRLING_STARS - 1] =
+        BattleAnim_RunSwirlingStars, // orbiting.c: Starfall (Ashfall)
+    // Takes no arguments: it reads work->args, which the dispatcher sets.
+    [BATTLE_ANIM_ORBITING_SKULLS - 1] =
+        (BattleAnimHandler)BattleAnim_RunOrbitingSkulls, // orbiting.c: Death Knell (Ashfall)
+    [BATTLE_ANIM_TARGET_BURSTS - 1] =
+        BattleAnim_RunTargetBursts, // orbiting.c: Ember Burst (Ashfall)
     [BATTLE_ANIM_GRANITE - 1] = BattleAnim_RunGranite, // stat_change.c: Granite
     [BATTLE_ANIM_QUARTZ - 1] = BattleAnim_RunRevive,   // djinn_beams.c: Revive
     [BATTLE_ANIM_VINE - 1] = BattleAnim_RunVine,       // growth.c: Vine
