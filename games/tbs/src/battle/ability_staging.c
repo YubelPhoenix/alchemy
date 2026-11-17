@@ -146,7 +146,7 @@ const u8 gAbilityStaging[] = {
     0, // Starfall (Ashfall)
     0, // Vertigo (Ashfall)
     0, // Death Knell (Ashfall)
-    0, // ?
+    0, // Fading Wind (Ashfall)
     0, // ?
     0, // ?
     0, // Move
@@ -668,7 +668,7 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_SWIRLING_STARS, // Starfall (Ashfall)
     BATTLE_ANIM_UNUSED_ORBITING_SPIRALS, // Vertigo (Ashfall)
     BATTLE_ANIM_ORBITING_SKULLS, // Death Knell (Ashfall)
-    0, // ?
+    BATTLE_ANIM_DEW, // Fading Wind (Ashfall): Dew's Mercury light, no Djinni
     0, // ?
     0, // ?
     0, // Move

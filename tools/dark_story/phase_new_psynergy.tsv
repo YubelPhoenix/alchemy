@@ -16,3 +16,7 @@
 01472	message	Stars rain on all foes.
 01473	message	Confuse up to three foes.
 01474	message	Curse a foe with doom.
+# Fading Wind (ability 137): Mia's party revive, after the leaf-and-wind move
+# she uses in a pre-release screenshot.
+00956	message	Fading Wind
+01475	message	Revives all fallen allies.

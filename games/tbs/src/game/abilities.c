@@ -1247,9 +1247,18 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 10,
     },
     // ?
+    // Fading Wind (Ashfall): revives every fallen ally at half HP. A nod
+    // to the leaf-and-wind move Mia uses in a pre-release screenshot, which
+    // never made the final game. Revive effects take downed allies as
+    // targets (BattleTurn_SetTargets) and pass over standing ones.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_REVIVE_HALF,
+        .icon = 72,
+        .range = ABILITY_RANGE_ALL,
+        .ppCost = 24,
     },
     // ?
     {

@@ -61,7 +61,7 @@ enum { PSYNERGY_FROM_CLASS = 0x8000, PSYNERGY_FROM_ITEM = 0x4000 };
 /// end the game with the same list. Each row is {ability, level}; every hero's
 /// own-element moves are chosen to suit their element and kept out of their
 /// class lines.
-static const struct ClassAbility sSignatureMoves[4][9] = {
+static const struct ClassAbility sSignatureMoves[4][10] = {
     // Isaac: earth and steel
     {{179, 5}, {164, 10}, {180, 22}, {165, 26}, {181, 40}, {166, 50},
      {133, 1}, {135, 1}, {136, 1}}, // TEST ONLY: Rune Strike, Vertigo, Death Knell
@@ -73,7 +73,7 @@ static const struct ClassAbility sSignatureMoves[4][9] = {
      {134, 1}}, // TEST ONLY: Starfall
     // Mia: water, frost and ward
     {{36, 6}, {30, 10}, {128, 14}, {37, 22}, {129, 26}, {31, 28}, {38, 42}, {32, 48},
-     {130, 1}}, // TEST ONLY: Djinn's Grace
+     {130, 1}, {137, 1}}, // TEST ONLY: Djinn's Grace, Fading Wind
 };
 
 /// The field Psynergy every story gate needs, split by hero so each keeps it
@@ -162,7 +162,7 @@ s32 Unit_RefreshPsynergy(s32 unitId) {
   if (unitId >= 0 && unitId < 4) {
     s32 pass;
     for (pass = 0; pass < 2; pass++)
-    for (sourceIndex = 0; sourceIndex < (pass ? 8 : 9); sourceIndex++) {
+    for (sourceIndex = 0; sourceIndex < (pass ? 8 : 10); sourceIndex++) {
       classAbility = (struct ClassAbility *)(pass ? &sFieldMoves[unitId][sourceIndex] : &sSignatureMoves[unitId][sourceIndex]);
       if (classAbility->ability == 0 || unit->level < classAbility->level)
         continue;
