@@ -109,7 +109,7 @@ const struct ItemDefinition gItem_DefinitionTable[] = {
         },
     },
     // Sol Blade, the Sealed Sol Blade in Ashfall. Left unfinished, with no
-    // Unleash; Ashfall gives it Megiddo
+    // Unleash; Ashfall gives it Dawnbreak
     // (ability 239) at the other great swords' chance.
     {
         .price = 19000,

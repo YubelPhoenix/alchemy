@@ -2069,9 +2069,9 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .power = 57,
     },
-    // Megiddo (Ashfall): the Sol Blade's Unleash, in an empty slot. A
-    // sun-fire blast that outdoes Titan Blade, drawn with Supernova's
-    // explosion (ability_staging.c).
+    // Dawnbreak (Ashfall): the Sealed Sol Blade's Unleash, in an empty slot. A
+    // sunfire blow that outdoes Titan Blade, drawn with the leap and rising
+    // sparks no ability used (ability_staging.c).
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,

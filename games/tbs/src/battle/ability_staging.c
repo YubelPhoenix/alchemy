@@ -248,7 +248,7 @@ const u8 gAbilityStaging[] = {
     STAGING_ATTACK, // Asura
     STAGING_ENEMY_CAST, // Titan Blade
     0, // Shining Star
-    0, // Megiddo (Ashfall)
+    0, // Sealed Sol Blade Unleash (Ashfall)
     0, // ?
     0, // ?
     0, // ?
@@ -770,7 +770,7 @@ const u32 gAbilityAnimations[] = {
     0x84 | ANIM_BY_ID_RANGE, // Asura
     BATTLE_ANIM_TITAN_BLADE, // Titan Blade
     BATTLE_ANIM_SHINING_STAR, // Shining Star
-    BATTLE_ANIM_NOVA | (2 << ANIM_VARIANT_SHIFT), // Megiddo (Ashfall)
+    BATTLE_ANIM_UNUSED_SEVERE_BLOW_LEAP, // Sealed Sol Blade Unleash (Ashfall)
     0, // ?
     0, // ?
     0, // ?
