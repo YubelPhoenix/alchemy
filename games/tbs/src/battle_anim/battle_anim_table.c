@@ -467,6 +467,8 @@ BattleAnimHandler gBattleAnim_Handlers[BATTLE_ANIM_COUNT - 1] = {
         BattleAnim_RunImpact, // stat_change.c: Impact
     [BATTLE_ANIM_UNUSED_IMPAIR - 1] =
         BattleAnim_RunImpair, // stat_change.c: Impair
+    [BATTLE_ANIM_BLADE_RAIN - 1] =
+        BattleAnim_RunBladeRain, // death_plunge.c: Dawnbreak (Ashfall)
     [BATTLE_ANIM_DRAGON_CLOUD - 1] =
         BattleAnim_RunDragonCloud, // dragon_cloud.c: Dragon Cloud
     [BATTLE_ANIM_DEMON_NIGHT - 1] =
