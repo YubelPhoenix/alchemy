@@ -770,7 +770,7 @@ const u32 gAbilityAnimations[] = {
     0x84 | ANIM_BY_ID_RANGE, // Asura
     BATTLE_ANIM_TITAN_BLADE, // Titan Blade
     BATTLE_ANIM_SHINING_STAR, // Shining Star
-    BATTLE_ANIM_UNUSED_SEVERE_BLOW_LEAP, // Sealed Sol Blade Unleash (Ashfall)
+    BATTLE_ANIM_UNUSED_TRIANGLE_STRIKE, // Sealed Sol Blade Unleash (Ashfall)
     0, // ?
     0, // ?
     0, // ?

@@ -2070,8 +2070,8 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .power = 57,
     },
     // Dawnbreak (Ashfall): the Sealed Sol Blade's Unleash, in an empty slot. A
-    // sunfire blow that outdoes Titan Blade, drawn with the leap and rising
-    // sparks no ability used (ability_staging.c).
+    // sunfire blow that outdoes Titan Blade, drawn with the spinning triangle
+    // and rune no ability used (ability_staging.c).
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
