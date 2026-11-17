@@ -80,22 +80,6 @@ static const struct ClassAbility sSignatureMoves[4][10] = {
     {{36, 6, {37}}, {128, 8}, {30, 10, {31}}, {37, 22, {38}}, {129, 26},
      {31, 28, {32}}, {38, 42}, {32, 48},
      {130, 1}, {137, 1}}, // TEST ONLY: Djinn's Grace, Fading Wind
-}; every hero's
-/// own-element moves are chosen to suit their element and kept out of their
-/// class lines.
-static const struct ClassAbility sSignatureMoves[4][10] = {
-    // Isaac: earth and steel
-    {{179, 5}, {164, 10}, {180, 22}, {165, 26}, {181, 40}, {166, 50},
-     {133, 1}, {135, 1}}, // TEST ONLY: Rune Strike, Vertigo (Ivan's)
-    // Garet: fire and bombs
-    {{182, 6}, {167, 12}, {160, 16}, {183, 20}, {168, 28}, {184, 44}, {169, 50},
-     {131, 1}, {132, 1}}, // TEST ONLY: Ember Burst, Sky Breaker
-    // Ivan: wind and lightning
-    {{185, 4}, {191, 8}, {188, 10}, {177, 14}, {186, 22}, {189, 30}, {187, 46}, {190, 52},
-     {134, 1}}, // TEST ONLY: Starfall
-    // Mia: water, frost and ward
-    {{36, 6}, {128, 8}, {30, 10}, {37, 22}, {129, 26}, {31, 28}, {38, 42}, {32, 48},
-     {130, 1}, {137, 1}}, // TEST ONLY: Djinn's Grace, Fading Wind
 };
 
 /// The field Psynergy every story gate needs, split by hero so each keeps it
