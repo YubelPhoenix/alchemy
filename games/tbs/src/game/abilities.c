@@ -1157,7 +1157,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .effect = ABILITY_EFFECT_REGENERATE,
         .icon = 67,
         .range = 1,
-        .ppCost = 6,
+        .ppCost = 4,
     },
     // Reflect
     {
@@ -1170,7 +1170,8 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 5,
     },
     // ?
-    // Djinn's Grace (Ashfall): a Djinni heals every ally; unused Djinn Heal animation.
+    // Djinn's Grace (Ashfall): a Djinni heals every ally and leaves each
+    // regenerating (regenerate.c); unused Djinn Heal animation.
     {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_FIELD | ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_HP,
@@ -1179,9 +1180,11 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = ABILITY_RANGE_ALL,
         .ppCost = 16,
         .power = 250,
+        .effect = ABILITY_EFFECT_REGENERATE,
     },
     // ?
-    // Ember Burst (Ashfall): Mars bursts on up to three foes; unused Target Bursts.
+    // Ember Burst (Ashfall): Mars bursts on up to three foes that lower their
+    // Resistance; unused Target Bursts.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
@@ -1190,9 +1193,11 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 2,
         .ppCost = 10,
         .power = 70,
+        .effect = ABILITY_EFFECT_RESISTANCE_DOWN,
     },
     // ?
-    // Sky Breaker (Ashfall): a leaping blow; the unused Severe Blow leap.
+    // Sky Breaker (Ashfall): a leaping blow through half the foe's Defense;
+    // the unused Severe Blow leap.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
@@ -1201,9 +1206,11 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .ppCost = 9,
         .power = 45,
+        .effect = ABILITY_EFFECT_HALVE_DEFENSE,
     },
     // ?
-    // Rune Strike (Ashfall): a blow through a rune; unused Triangle Strike.
+    // Rune Strike (Ashfall): a blow through a rune that seals the foe's
+    // Psynergy; unused Triangle Strike.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
@@ -1212,31 +1219,36 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .ppCost = 8,
         .power = 40,
+        .effect = ABILITY_EFFECT_SEAL,
     },
     // ?
-    // Starfall (Ashfall): stars gather and strike every foe; unused Swirling Stars.
+    // Starfall (Ashfall): stars gather, strike and daze every foe (Delusion);
+    // unused Swirling Stars.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
         .element = ELEMENT_JUPITER,
         .icon = 54,
         .range = 4,
-        .ppCost = 26,
-        .power = 130,
+        .ppCost = 22,
+        .power = 100,
+        .effect = ABILITY_EFFECT_DELUSION,
     },
     // ?
-    // Vertigo (Ashfall): confuses up to three foes; unused Orbiting Spirals.
+    // Vertigo (Ashfall): confuses every foe, where Confuse takes three;
+    // unused Orbiting Spirals.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_JUPITER,
         .effect = ABILITY_EFFECT_CONFUSION,
         .icon = 85,
-        .range = 2,
-        .ppCost = 6,
+        .range = ABILITY_RANGE_ALL,
+        .ppCost = 10,
     },
     // ?
-    // Death Knell (Ashfall): curses one foe; unused Orbiting Skulls.
+    // Death Knell (Ashfall): curses one foe; unused Orbiting Skulls. For
+    // enemies only, so it never stands beside the party's Curse.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
