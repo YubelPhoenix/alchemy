@@ -118,7 +118,8 @@ const struct ItemDefinition gItem_DefinitionTable[] = {
         .equipMask = 0x1b,
         .icon = 10,
         .primaryBonus = 138,
-        .unleashChance = 7,
+        // TEST ONLY: 20 is a 100% Unleash; 7 (35%) is the real value.
+        .unleashChance = 20,
         .unleashAbility = 239,
         .element = ELEMENT_NONE,
     },

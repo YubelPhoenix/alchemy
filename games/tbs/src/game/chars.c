@@ -17,7 +17,9 @@ const struct CharacterDefinition gCharacter_DefinitionTable[] = {
         .luck = {3, 3, 3, 3, 3, 3},
         .elementBonus = {54, 3, 1, 2},
         .startingLevel = 1,
-        .items = {ITEM_MACHETE, ITEM_COTTON_SHIRT, ITEM_PADDED_GLOVES, ITEM_HERB, ITEM_HERB, ITEM_HERB},
+        // TEST ONLY (Dawnbreak): the Sealed Sol Blade (item 10) in place of
+        // the Machete. Revert before release.
+        .items = {10, ITEM_COTTON_SHIRT, ITEM_PADDED_GLOVES, ITEM_HERB, ITEM_HERB, ITEM_HERB},
     },
     // Garet
     {
