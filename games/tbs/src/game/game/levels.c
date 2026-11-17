@@ -125,6 +125,22 @@ s32 Unit_RefreshPsynergy(s32 unitId) {
     if (PSYNERGY_ACTION_AT(abilities, sourceIndex) & originFlag)
       PSYNERGY_ACTION_AT(abilities, sourceIndex) = 0;
   }
+  // A hero's own moves are rebuilt below like class actions. An older save
+  // can hold them as permanent entries, which would keep a dropped tier and
+  // fill the list, so any copy of them goes too.
+  if (unitId >= 0 && unitId < 4) {
+    s32 tier;
+    for (sourceIndex = 0; sourceIndex < 32; sourceIndex++) {
+      for (tier = 0; tier < 10; tier++) {
+        if (sSignatureMoves[unitId][tier].ability != 0 &&
+            (PSYNERGY_ACTION_AT(abilities, sourceIndex) &
+             PSYNERGY_ABILITY_MASK) == sSignatureMoves[unitId][tier].ability) {
+          PSYNERGY_ACTION_AT(abilities, sourceIndex) = 0;
+          break;
+        }
+      }
+    }
+  }
   // Pack permanent actions at the end to leave room for class abilities.
   for (slot = 31, sourceIndex = 31; slot >= 0;) {
     if (PSYNERGY_ACTION_AT(abilities, slot) == 0) {
