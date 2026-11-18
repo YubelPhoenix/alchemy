@@ -146,9 +146,9 @@ const u8 gAbilityStaging[] = {
     0, // Starfall (Ashfall)
     0, // Vertigo (Ashfall)
     0, // Death Knell (Ashfall)
-    0, // Fading Wind (Ashfall)
+    0, // Falling Wind (Ashfall)
     STAGING_SUMMON, // P-Storm, "???"'s summon (Ashfall)
-    0, // ?
+    0, // Falling Wind's revive (Ashfall)
     0, // Move
     0, // Mind Read
     0, // Force
@@ -668,9 +668,9 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_SWIRLING_STARS, // Starfall (Ashfall)
     BATTLE_ANIM_UNUSED_ORBITING_SPIRALS, // Vertigo (Ashfall)
     BATTLE_ANIM_ORBITING_SKULLS, // Death Knell (Ashfall)
-    BATTLE_ANIM_DEW, // Fading Wind (Ashfall): Dew's Mercury light, no Djinni
+    BATTLE_ANIM_FALLING_WIND, // Falling Wind's storm (Ashfall)
     BATTLE_ANIM_DOUSE | ANIM_SUMMON, // P-Storm (Ashfall): Judgment's summon with "???" as its figure (judgment.c)
-    0, // ?
+    BATTLE_ANIM_FALLING_WIND_REVIVE, // Falling Wind's revive (Ashfall)
     0, // Move
     0, // Mind Read
     0, // Force

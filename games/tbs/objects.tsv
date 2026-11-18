@@ -436,6 +436,7 @@ main	rom_tail_01	games/tbs/src/graphics/sprite/sprites	.rodata.b
 main	rom_tail_02	games/tbs/src/system/resource/directory
 main	rom_tail_02	games/tbs/src/battle_anim/perfecti
 main	rom_tail_02	games/tbs/src/battle_anim/judgment_dark
+main	rom_tail_02	games/tbs/src/battle_anim/falling_wind
 main	rom_tail_02	games/tbs/src/battle/mystery_backdrop
 main	rom_tail_02	games/tbs/src/battle/party_join
 main	rom_tail_02	games/tbs/src/battle/regenerate

@@ -600,6 +600,41 @@ void PartyJoin_RunRoundEnd(void) {
 
 /// Ends her P-Storm turn once it has played, so only that blow leaves
 /// Isaac at exactly 1 HP. Called by Battle_Run after every action.
+/// Falling Wind's second part (Ashfall): after its storm, if the caster still
+/// stands, an enemy remains and an ally is down, the leaves settle on the
+/// fallen and every one rises at half HP (ABILITY_FALLING_WIND_REVIVE),
+/// played at once as its own action. With nobody down it passes quietly.
+static void FallingWind_RunAfterAction(void) {
+  struct BattleWork *battle = gBattleWork;
+  struct BattleTurn *turn = &battle->turn;
+  struct BattleAction request;
+  s32 place, downed;
+
+  if (turn->command != COMMAND_PSYNERGY ||
+      turn->abilityId != ABILITY_FALLING_WIND ||
+      turn->failure != TURN_FAILURE_NONE)
+    return;
+  if (Unit_GetFar(turn->unitId)->hp == 0 ||
+      BattleUnit_ListLiving(BATTLE_SIDE_MASK_ENEMIES, 0) == 0)
+    return;
+  downed = -1;
+  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++) {
+    if (Unit_GetFar(battle->partyUnits[place])->hp == 0) {
+      downed = place;
+      break;
+    }
+  }
+  if (downed < 0)
+    return;
+  Iwram_ClearWords(&request, sizeof(request));
+  request.unitId = turn->unitId;
+  request.command = COMMAND_PSYNERGY;
+  request.parameter = ABILITY_FALLING_WIND_REVIVE;
+  request.target = downed;
+  request.range = Ability_Get(ABILITY_FALLING_WIND_REVIVE)->range;
+  BattleStaging_DispatchAction(&request, 10);
+}
+
 void PartyJoin_RunAfterAction(void) {
 #if PARTY_JOIN_ENABLED
   struct BattleWork *battle = gBattleWork;
@@ -612,6 +647,7 @@ void PartyJoin_RunAfterAction(void) {
   if (battle->joinEdge != 0 && battle->joinStage == JOIN_ALONE)
     battle->joinGloomTarget = GLOOM_ALONE;
 #endif
+  FallingWind_RunAfterAction();
 }
 
 /// Eases the gloom one frame toward where the story has it and returns it,

@@ -108,6 +108,11 @@ enum AbilityId {
   /// P-Storm as "???" casts it in Ashfall: an empty Psynergy slot, so it is
   /// staged as a summon (her figure in Judgment's sequence).
   ABILITY_P_STORM_SUMMON = 0x8a,
+  /// Falling Wind (Ashfall), Mia's two-part move: its storm on the enemies,
+  /// then its revive (ABILITY_FALLING_WIND_REVIVE), which follows it
+  /// (FallingWind_RunAfterAction) and nobody learns.
+  ABILITY_FALLING_WIND = 0x89,
+  ABILITY_FALLING_WIND_REVIVE = 0x8b,
   /// The last of the Mystery Leader's attacks.
   ABILITY_MYSTERY_LAST = ABILITY_P_STORM,
   /// Sarah's pike techniques (Ashfall): physical, no PP, so she can use

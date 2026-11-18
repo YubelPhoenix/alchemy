@@ -79,7 +79,7 @@ static const struct ClassAbility sSignatureMoves[4][10] = {
     // Mia: water, frost and ward
     {{36, 6, {37}}, {128, 8}, {30, 10, {31}}, {37, 22, {38}}, {129, 26},
      {31, 28, {32}}, {38, 42}, {32, 48},
-     {130, 1}, {137, 1}}, // TEST ONLY: Djinn's Grace, Fading Wind
+     {130, 1}, {137, 1}}, // TEST ONLY: Djinn's Grace, Falling Wind
 };
 
 /// The field Psynergy every story gate needs, split by hero so each keeps it

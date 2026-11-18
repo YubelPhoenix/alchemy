@@ -515,6 +515,10 @@ BattleAnimHandler gBattleAnim_Handlers[BATTLE_ANIM_COUNT - 1] = {
         (BattleAnimHandler)BattleAnim_RunOrbitingSkulls, // orbiting.c: Death Knell (Ashfall)
     [BATTLE_ANIM_TARGET_BURSTS - 1] =
         BattleAnim_RunTargetBursts, // orbiting.c: Ember Burst (Ashfall)
+    [BATTLE_ANIM_FALLING_WIND - 1] =
+        BattleAnim_RunFallingWind, // falling_wind.c (Ashfall)
+    [BATTLE_ANIM_FALLING_WIND_REVIVE - 1] =
+        BattleAnim_RunFallingWindRevive, // falling_wind.c (Ashfall)
     [BATTLE_ANIM_GRANITE - 1] = BattleAnim_RunGranite, // stat_change.c: Granite
     [BATTLE_ANIM_QUARTZ - 1] = BattleAnim_RunRevive,   // djinn_beams.c: Revive
     [BATTLE_ANIM_VINE - 1] = BattleAnim_RunVine,       // growth.c: Vine

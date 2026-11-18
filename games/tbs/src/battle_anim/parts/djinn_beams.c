@@ -82,6 +82,21 @@ void BattleAnim_RunDjinnBeams(struct BattleAnimArgs *args, s32 element) {
   else
     palette = Resource_GetTableEntry((s32)&ResourceId_MercuryDjinnSheet);
   Iwram_CopyWords((void *)BG_PLTT, palette, 128);
+#ifdef DJINN_BEAMS_GREEN
+  // Ashfall: Falling Wind's revive (falling_wind.c) turns the light spring
+  // green: each colour keeps its brightness, in the green of new leaves.
+  {
+    u16 *colour = (u16 *)BG_PLTT;
+    s32 k;
+
+    for (k = 0; k < 64; k++) {
+      s32 c = colour[k];
+      s32 light = ((c & 31) * 77 + ((c >> 5) & 31) * 150 +
+                   ((c >> 10) & 31) * 29) >> 8;
+      colour[k] = RGB(light * 13 / 31, light, light * 9 / 31);
+    }
+  }
+#endif
   palette += 128;
   Decompress_TaggedLz(palette, work->sheet + DJINN_BEAMS_DJINNI_OFFSETS);
 
