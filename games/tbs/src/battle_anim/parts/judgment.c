@@ -5,6 +5,43 @@
 
 #include "../battle_anim_internal.h"
 
+// Ashfall: "???"'s Blitzkampf plays this animation from the ROM tail
+// (judgment_dark.c, which compiles this file again with JUDGMENT_DARK): her
+// figure rises in Judgment's place, and the sky and the lands the blast
+// sweeps over are sunk in darkness. The copy here, in the full battle-
+// animation bank, only hands an enemy's call over to it.
+#ifdef JUDGMENT_DARK
+#include "battle_work.h"
+#include "farcall/battle.h"
+#define JUDGMENT_FIGURE SPRITE_MYSTERY_JUDGMENT
+
+/// Sinks the backdrop just loaded into darkness: every colour of the battle
+/// background's copy (battle->palette) loses most of its light and colour and
+/// leans violet, and background palettes 6 to 13 are written from it again.
+static void Judgment_Darken(void) {
+  struct BattleWork *battle = gBattleWork;
+  s32 k;
+
+  for (k = 0; k != 128; k++) {
+    s32 c = battle->palette[k];
+    s32 r = c & 31;
+    s32 g = (c >> 5) & 31;
+    s32 b = (c >> 10) & 31;
+    s32 light = (r * 77 + g * 150 + b * 29) >> 8;
+    battle->palette[k] =
+        RGB((light * 3 + r) / 8, (light * 2 + g) / 10, (light * 4 + b) / 8);
+  }
+  Graphics_ScaleRgb555ClampedFar(battle->palette,
+                                 (u16 *)&BG_PLTT_COLOR(6, 0),
+                                 battle->brightness, 128);
+}
+#define JUDGMENT_AFTER_BACKDROP() Judgment_Darken()
+#else
+void BattleAnim_RunJudgmentDark(struct BattleAnimArgs *args);
+#define JUDGMENT_FIGURE SPRITE_JUDGMENT
+#define JUDGMENT_AFTER_BACKDROP() ((void)0)
+#endif
+
 /// The bytes of Judgment's work block before its dimmed mote copies.
 #define JUDGMENT_SHEET_BYTES 0x2710
 
@@ -104,6 +141,13 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   DrawRectangle blit;
   volatile u16 *ime;
 
+#ifndef JUDGMENT_DARK
+  // An enemy's call is "???"'s Blitzkampf (judgment_dark.c).
+  if (args->user > 7) {
+    BattleAnim_RunJudgmentDark(args);
+    return;
+  }
+#endif
   cache = &gHeapSlots[HEAP_SLOT_BATTLE_CANVAS];
   ime = (u16 *)&REG_IME;
   canvas = cache[0];
@@ -128,16 +172,12 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   // back.
   BattleAnim_WipeCanvas(CANVAS_WIPE_DOWN, CANVAS_WIPE_FILL);
   BattleAnim_SelectLivingTargets(work->args);
-  // Ashfall: when an enemy calls it ("???"'s P-Storm), she rises in
-  // Judgment's place (SPRITE_MYSTERY_JUDGMENT); party unit ids end at 7.
-  BattleAnim_SpawnObjects(JUDGMENT_FORMATION_OBJECTS,
-                          args->user > 7 ? SPRITE_MYSTERY_JUDGMENT
-                                         : SPRITE_JUDGMENT,
-                          1);
+  BattleAnim_SpawnObjects(JUDGMENT_FORMATION_OBJECTS, JUDGMENT_FIGURE, 1);
   gProjection.centerY = 240;
   WaitFrames(1);
   BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,
                            (s32)&ResourceId_VioletSkyBackdrop, 0);
+  JUDGMENT_AFTER_BACKDROP();
   // The animation owns BG1's scroll until frame 280 of the sweep.
   view->busy = 1;
   gBgScroll[1].x = 0;
@@ -490,6 +530,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   work->fadeStep = 0;
   BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,
                            (s32)&ResourceId_AerialViewBackdrop, 0);
+  JUDGMENT_AFTER_BACKDROP();
   REG_BG2PA = Q_8_8(1);
   REG_BG2X = -0x3c00;
   REG_BG2CNT = BGCNT_PRIORITY(0) | BGCNT_CHAR_BASE(1) | BGCNT_256_COLORS |
@@ -606,6 +647,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
       Dma_Set((const void *)&fill, canvas, JUDGMENT_DMA_FILL_CANVAS, REG_DMA3);
       BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,
                                (s32)&ResourceId_BeachBackdrop, 0);
+      JUDGMENT_AFTER_BACKDROP();
     }
 
     // Frame 214, the forest: 16 debris pieces start rising from the forest
@@ -618,6 +660,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
       Dma_Set((const void *)&fill, canvas, JUDGMENT_DMA_FILL_CANVAS, REG_DMA3);
       BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,
                                (s32)&ResourceId_ForestBackdrop, 0);
+      JUDGMENT_AFTER_BACKDROP();
       for (i = 0; i != JUDGMENT_DEBRIS_OBJECTS; i++) {
         particle = &work->particles[i];
         particle->x = ((Random16() & 63) + 32) << 16;
