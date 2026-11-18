@@ -37,6 +37,30 @@ static void Judgment_Darken(void) {
                                  battle->brightness, 128);
 }
 #define JUDGMENT_AFTER_BACKDROP() Judgment_Darken()
+
+/// One step of her draining the sky's light as it gathers into her: each
+/// colour of the battle background's copy moves an eighth of the way to its
+/// darkened, colourless value, and palettes 6 to 13 are written again. Fifteen
+/// steps over the gathering's first 64 frames leave about a third of the
+/// light, as Judgment_Darken does at once for the lands the blast sweeps.
+static void Judgment_DrainStep(void) {
+  struct BattleWork *battle = gBattleWork;
+  s32 k;
+
+  for (k = 0; k != 128; k++) {
+    s32 c = battle->palette[k];
+    s32 r = c & 31;
+    s32 g = (c >> 5) & 31;
+    s32 b = (c >> 10) & 31;
+    s32 light = (r * 77 + g * 150 + b * 29) >> 8;
+    battle->palette[k] = RGB((r * 7 + light * 5 / 16) / 8,
+                             (g * 7 + light * 5 / 16) / 8,
+                             (b * 7 + light * 6 / 16) / 8);
+  }
+  Graphics_ScaleRgb555ClampedFar(battle->palette,
+                                 (u16 *)&BG_PLTT_COLOR(6, 0),
+                                 battle->brightness, 128);
+}
 #else
 void BattleAnim_RunJudgmentDark(struct BattleAnimArgs *args);
 #define JUDGMENT_FIGURE SPRITE_JUDGMENT
@@ -178,7 +202,6 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   WaitFrames(1);
   BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,
                            (s32)&ResourceId_VioletSkyBackdrop, 0);
-  JUDGMENT_AFTER_BACKDROP();
   // The animation owns BG1's scroll until frame 280 of the sweep.
   view->busy = 1;
   gBgScroll[1].x = 0;
@@ -305,6 +328,13 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
         }
       }
     }
+
+#ifdef JUDGMENT_DARK
+    // She drains the sky as the light gathers into her: a step every 4
+    // frames from frame 8 to 64, finished before the stock fade below.
+    if (frame >= 8 && frame <= 64 && (frame & 3) == 0)
+      Judgment_DrainStep();
+#endif
 
     // Frame 72: the battle background starts its 24-frame fade
     // (Palette_StepFadeTransfer).
