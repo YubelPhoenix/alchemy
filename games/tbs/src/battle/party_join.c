@@ -482,6 +482,10 @@ static void PartyJoin_RunRescue(void) {
     Actor_SelectAnimationFar(isaac, POSE_STANDING);
   PartyStatus_DrawFar(battle->partyStatus);
   PartyJoin_Say(MsgPartyJoinMysteryReacts);
+  // She knows their future, where others take their places; they don't
+  // care.
+  PartyJoin_Say(MsgPartyJoinMysteryProphecyMia);
+  PartyJoin_Say(MsgPartyJoinMiaForgotten);
 }
 
 /// Her turn in RESCUE_ROUND: says her line and fades the music, and returns
@@ -569,6 +573,8 @@ void PartyJoin_RunRoundEnd(void) {
         PartyJoin_Say(MsgPartyJoinGaretArrives);
         PartyJoin_Say(MsgPartyJoinGaretArrives2);
         PartyJoin_Say(MsgPartyJoinGaretArrives3);
+        PartyJoin_Say(MsgPartyJoinMysteryProphecyGaret);
+        PartyJoin_Say(MsgPartyJoinGaretCount);
       }
     }
     break;
@@ -579,6 +585,9 @@ void PartyJoin_RunRoundEnd(void) {
       if (PartyJoin_Arrive(IVAN, ELEMENT_JUPITER, 0, BREAK_WHOLE, 0)) {
         PartyJoin_Say(MsgPartyJoinIvanArrives);
         PartyJoin_Say(MsgPartyJoinIvanArrives2);
+        PartyJoin_Say(MsgPartyJoinMysteryProphecyIvan);
+        PartyJoin_Say(MsgPartyJoinIvanForesee);
+        PartyJoin_Say(MsgPartyJoinIvanNotToday);
         PartyJoin_SayKeyLine(MsgPartyJoinMysteryNotAlone);
         PartyJoin_SayKeyLine(MsgPartyJoinMysteryNotAlone2);
         PartyJoin_RunUnison();

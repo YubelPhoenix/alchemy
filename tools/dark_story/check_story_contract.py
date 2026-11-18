@@ -341,12 +341,10 @@ def check_mystery_rescue_encounter() -> None:
     require("PartyJoin_SayKeyLine(MsgMysteryEnraged)" in boss_ai,
             "Mystery's awakened revelation needs protected reading time")
     battle_lines = messages("phase_fight_together.tsv")
-    # N403, N408 and N409 were Mia's lighthouse lines and the second half of
-    # her arrival, cut to keep her section short; Isaac's memories (N414 to
-    # N416) were cut so "???" alone speaks before Mia arrives.
-    require(set(battle_lines) == {f"N{i}" for i in range(399, 414)} -
-            {"N403", "N408", "N409"},
-            "Mystery rescue must keep exactly 12 indexed battle dialogue lines")
+    # N403, N408, N409 and N414 to N417 are her prophecy that others will take
+    # their places, and each friend's answer (Mia, Garet, Ivan).
+    require(set(battle_lines) == {f"N{i}" for i in range(399, 418)},
+            "Mystery rescue must keep exactly 19 indexed battle dialogue lines")
     for key, value in battle_lines.items():
         require("{page_break}" not in value and "{end_" not in value,
                 f"Mystery battle {key} must use plain battle text")
