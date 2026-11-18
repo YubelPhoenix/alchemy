@@ -20,7 +20,7 @@
 # a revive of every fallen ally, after the leaf-and-wind ability she uses in a
 # pre-release screenshot.
 00956	message	Falling Wind
-01475	message	Hits foes, revives allies.
+01475	message	Never forget who you were.
 # "???"'s summon (ability 138, ABILITY_P_STORM_SUMMON), her finisher.
 00957	message	Kaiserdammerung
 # Falling Wind's cast line (battle/battle/turn.c): Mia remembers it, as the move
