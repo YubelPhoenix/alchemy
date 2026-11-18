@@ -16,8 +16,9 @@
 #define JUDGMENT_FIGURE SPRITE_MYSTERY_JUDGMENT
 
 /// Sinks the backdrop just loaded into darkness: every colour of the battle
-/// background's copy (battle->palette) loses most of its light and colour and
-/// leans violet, and background palettes 6 to 13 are written from it again.
+/// background's copy (battle->palette) loses its colour and two thirds of its
+/// light, with a cold blue cast, so her purple figure and the blast's light
+/// stand out; background palettes 6 to 13 are written from it again.
 static void Judgment_Darken(void) {
   struct BattleWork *battle = gBattleWork;
   s32 k;
@@ -29,7 +30,7 @@ static void Judgment_Darken(void) {
     s32 b = (c >> 10) & 31;
     s32 light = (r * 77 + g * 150 + b * 29) >> 8;
     battle->palette[k] =
-        RGB((light * 3 + r) / 8, (light * 2 + g) / 10, (light * 4 + b) / 8);
+        RGB(light * 5 / 16, light * 5 / 16, light * 6 / 16);
   }
   Graphics_ScaleRgb555ClampedFar(battle->palette,
                                  (u16 *)&BG_PLTT_COLOR(6, 0),
