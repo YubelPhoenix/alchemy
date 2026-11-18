@@ -285,13 +285,21 @@ def check_mystery_rescue_encounter() -> None:
             "Mystery exchange requires N356-N394 without missing lines")
     require("Your friends are bound." not in lines["N369"],
             "Binding must not be announced before the screen flash")
-    # The Colosso test encounter cannot assume Heart or Matthew has
-    # already appeared. Keep the later antagonists' setup and Ash Jenna's
-    # established fear of abandonment instead of requiring retired dialogue.
-    require("There are others." in lines["N361"]
-            and "Ash Jenna lost everything." in lines["N366"]
-            and "afraid of being left alone." in lines["N366"],
-            "Mystery dialogue must preserve the future encounters and Ash Jenna's motive")
+    # Optional superbosses have no required defeat order. This pre-battle
+    # exchange assumes previous sightings or attempts, not victories.
+    # These approved lines must not be rewritten without explicit approval.
+    approved_prebattle = {}
+    for row in read("tools/dark_story/approved_mystery_prebattle.txt").splitlines():
+        if not row.startswith("N"):
+            continue
+        parts = row.split("\t", 2)
+        require(len(parts) == 3, "Malformed approved Isaac/??? dialogue")
+        approved_prebattle[parts[0]] = parts[2]
+    require(set(approved_prebattle) == {f"N{i}" for i in range(356, 370)} | {"N387"},
+            "Approved Isaac/??? pre-battle reference is incomplete")
+    for message_id, approved_text in approved_prebattle.items():
+        require(lines[message_id] == approved_text,
+                f"Isaac/??? pre-battle dialogue changed without approval: {message_id}")
     require("Event_SetMessageId(MsgDarkMysteryIsaacSuspects);" in approach
             and "Event_SetMessageId(MsgDarkMysteryGaretAfter);" in aftermath
             and "Event_SetMessageId(MsgDarkMysteryIsaacAfter);" in aftermath,

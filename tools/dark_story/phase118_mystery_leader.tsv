@@ -2,15 +2,15 @@
 N356	MsgDarkMystery01	...Who are you?\nYou don't feel like\nanyone I've met.{end_wait}
 N357	MsgDarkMystery02	Does that frighten you?{end_wait}
 N358	MsgDarkMystery03	It makes me careful.\nWhat do you want?{end_wait}
-N359	MsgDarkMystery04	You know Ash Jenna.\nOr you think you do.{end_wait}
-N360	MsgDarkMystery05	She looks just\nlike Jenna.{end_wait}
-N361	MsgDarkMystery06	The likeness isn't\nan accident.{page_break}There are others.\nDifferent faces.\nDifferent reasons.{end_wait}
-N362	MsgDarkMystery07	What do you want\nwith them?{end_wait}
-N363	MsgDarkMystery08	I don't need them\nto obey me.{page_break}They can make their\nown terrible choices.{end_wait}
-N364	MsgDarkMystery09	Have we met before?{end_wait}
+N359	MsgDarkMystery04	Heart took you for\nsomeone else. You saw\nhow she looked at you.{end_wait}
+N360	MsgDarkMystery05	Matthew. She kept\ncalling me Matthew.{end_wait}
+N361	MsgDarkMystery06	He will be a nuisance\nto my commanders.{page_break}Heart cared about her\nbeauty more than anything\nelse.{page_break}Matthew ruined her face.\nShe can't bear to look\nat her own reflection.{page_break}She saw him in you.\nI knew she would.{end_wait}
+N362	MsgDarkMystery07	That wasn't me.{end_wait}
+N363	MsgDarkMystery08	I know. He wears\nyour face. Amusing,\nisn't it.{end_wait}
+N364	MsgDarkMystery09	Where would you have\nmet someone who looks\nlike me?{end_wait}
 N365	MsgDarkMystery10	Not yet, Isaac.\nNot for a long while.\nThat is the point.{end_wait}
-N366	MsgDarkMystery11	I wanted to see\nthe original. I'm\ncurious, that's all.{page_break}You may meet others.\nI know them better\nthan you think.{page_break}Ash Jenna lost everything.\nShe's cruel, but she's\nafraid of being left alone.{page_break}Sarah is searching\nfor a lost family member.\nShe won't give up.{page_break}Kegare wore Mia's face\nto deceive people.\nShe wanted friends, too.{page_break}Heart cannot bear\nto look at herself.\nHer anger grows.{end_wait}
-N367	MsgDarkMystery12	A word at the right\ntime can change a path.\nThey choose their own.{page_break}I'll hold back in\nour fight. Consider\nit a courtesy.{page_break}I don't want to break\nyou before I know\nwhat you are.{end_wait}
+N366	MsgDarkMystery11	I wanted to see the\noriginal. I'm curious,\nthat's all.{page_break}You've met a few others\nalong the way. I know them\nbetter than you think.{page_break}Ash Jenna lost everything.\nShe's cruel, but she's\nafraid of being left alone.{page_break}Sarah is searching for\na lost family member.\nShe followed one rumor{page_break}after another, hoping\none would finally lead\nher somewhere.{page_break}And Kegare. A demon\nwho used Mia's face\nto deceive people.{page_break}Yet she was lonely, too.\nShe wanted friends\nand companionship.{page_break}They all found you,\ndidn't they?{end_wait}
+N367	MsgDarkMystery12	A word at the right\ntime can change a path.\nThey chose their own.{page_break}I'll hold back in\nour fight. Consider\nit a courtesy.{page_break}I don't want to break\nyou before I know\nwhat you are.{end_wait}
 N368	MsgDarkMystery13	...You're\nunderestimating me.{end_wait}
 N369	MsgDarkMystery14	Perhaps.\nDraw your sword.{end_wait}
 N370	MsgDarkMystery15	You still haven't\nanswered me. Who are you?{end_wait}
@@ -30,7 +30,7 @@ N383	MsgDarkMysteryMiaBound	She's been waiting for us.\nIsaac, don't believe thi
 N384	MsgDarkMysteryIsaacDefies	Let them go.\nI'm the one you want.{end_wait}
 N385	MsgDarkMysteryAnswerDefies	They're unharmed.\nBut they won't interfere.\nThis is between us, Isaac.{page_break}Show me what you can do.{end_wait}
 N386	MsgDarkMysteryMiaAfter	And thirty years?\nWhat did she mean by that?{end_wait}
-N387	MsgDarkMysteryIsaacSuspects	Are you sending\nthem after me?{end_wait}
+N387	MsgDarkMysteryIsaacSuspects	You knew they'd find me.{end_wait}
 N388	MsgDarkMysteryGaretAfter	You scared the life\nout of me, Isaac.\nAre you all right?{end_wait}
 N389	MsgDarkMysteryIsaacChecksParty	I'm fine.\nAre you three okay?{end_wait}
 N390	MsgDarkMysteryIvanAfter	I'm fine. But she\nstopped my Psynergy.\nI couldn't reach it.{page_break}I felt her hold weaken.\nI still don't know how\nshe managed it.{end_wait}

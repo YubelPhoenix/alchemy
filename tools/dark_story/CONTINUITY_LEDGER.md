@@ -614,11 +614,12 @@ describing those paths are historical, not active story instructions.
   anger callback. **Lalivero**: optional, post-Venus, only if Tolbi happened,
   and independent of Lamakan choice flags.
 - **Testing access**: Vale's Ash Jenna and ??? super bosses are visible from
-  post-Colosso onward, without requiring other optional fights. The mystery
-  commander's dialogue can mention Heart, Sarah and Kegare without asserting
-  Isaac fought them. Ash Jenna's Suhalla Gate battle remains optional after
-  Iodem's investigation: talk to initiate; crossing north does not start it.
-  The separate Vale boss remains optional and independent.
+  post-Colosso onward, without requiring other optional fights. The optional
+  superbosses have no fixed defeat order. The mystery commander's original
+  pre-battle exchange assumes Isaac has at least seen or attempted to defeat
+  Heart and the other bosses, not that he won. Ash Jenna's Suhalla Gate battle
+  remains optional after Iodem's investigation: talk to initiate; crossing
+  north does not start it. The separate Vale boss remains optional and independent.
 - **Art**: all five Ash Jenna field actors use sprite id 0x5e (SPR_094),
   generated from the user's existing four PNG poses. The CI workflow creates
   the field sheet and animations before compiling; the separate supplied
