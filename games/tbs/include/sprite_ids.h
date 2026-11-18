@@ -752,7 +752,11 @@ enum SpriteId {
   SPRITE_WORLD_MAP_ISLAND = 0x1f8,
   /// The "???" commander in her dark coat and cap, with a halberd (spr_490.png,
   /// built by tools/dark_story/build_mystery_overworld.py)
-  SPRITE_MYSTERY_LEADER = 0x1ea
+  SPRITE_MYSTERY_LEADER = 0x1ea,
+  /// "???" filling the sky in Judgment's place when she casts P-Storm: three
+  /// 128x128 frames, Judgment's layout (spr_509.png): crouched in her cloak
+  /// as she rises, arms thrown open, then the cloak spread at the climax.
+  SPRITE_MYSTERY_JUDGMENT = 0x1fd
 };
 
 /// SPRITE_STUMP's animations beyond its standing frame (spr_212.tsv).
