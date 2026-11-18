@@ -22,3 +22,6 @@
 01475	message	Revives all fallen allies.
 # "???"'s summon (ability 138, ABILITY_P_STORM_SUMMON), her finisher.
 00957	message	Kaiserdammerung
+# Fading Wind's cast line (battle/battle/turn.c): Mia remembers it, as the move
+# remembers the leaf-and-wind ability of a pre-release screenshot.
+N418	MsgFadingWindRemembered	{argument_actor_name:1} remembers\nthe past... Fading Wind!

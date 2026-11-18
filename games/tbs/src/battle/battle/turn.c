@@ -338,7 +338,10 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
       return TURN_REPORTED;
     MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
     MessageArgument_PushFar(abilityId, MESSAGE_ARGUMENT_ABILITY);
-    BattleMessage_ShowAndWaitFar(MsgActorCasts);
+    // Ashfall: Fading Wind (ability 137), after Mia's lost beta move, is
+    // remembered rather than cast.
+    BattleMessage_ShowAndWaitFar(abilityId == 137 ? MsgFadingWindRemembered
+                                                  : MsgActorCasts);
     // Fail if PP is insufficient or Psynergy is sealed (the seal wins); the
     // failure is shown by the staging (plan->failure). Only a cast that goes
     // ahead pays its PP.
