@@ -1272,10 +1272,16 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = ABILITY_RANGE_ALL,
         .ppCost = 24,
     },
-    // ?
+    // P-Storm (Ashfall): "???"'s finisher as she casts it, in an empty slot
+    // so it can be staged as a summon (gAbilityStaging stops at Severe
+    // Blow): Judgment's sequence with her as its figure. The numbers are
+    // P-Storm's (ABILITY_P_STORM), which this replaces in her list.
     {
-        .targetMode = ABILITY_TARGET_ONE,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 160,
     },
     // ?
     {
