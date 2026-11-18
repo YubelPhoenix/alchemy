@@ -425,6 +425,10 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
   }
   PartyJoin_Settle();
   BattleMotion_ReturnToSpot(unitId);
+  // The raised hand comes down: ReturnToSpot keeps whatever pose is shown.
+  actor = BattleObject_Get(unitId)->actor;
+  if (actor != NULL)
+    Actor_SelectAnimationFar(actor, POSE_STANDING);
 
   battle->joinLastArrival = battle->joinRound;
   return 1;
@@ -517,8 +521,12 @@ static void PartyJoin_RunUnison(void) {
   WaitFrames(20);
   ElementGlow_Play(battle->partyUnits[0], ELEMENT_VENUS, GLOW_BURST, 0);
   PartyJoin_Settle();
-  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++)
+  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++) {
     BattleMotion_ReturnToSpot(battle->partyUnits[place]);
+    actor = BattleObject_Get(battle->partyUnits[place])->actor;
+    if (actor != NULL)
+      Actor_SelectAnimationFar(actor, POSE_STANDING);
+  }
   WaitFrames(30);
 }
 
