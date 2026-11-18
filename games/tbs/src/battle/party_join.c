@@ -7,10 +7,10 @@
 /// The fight:
 ///  1. Isaac fights her alone. While he is alone he cannot fall: a blow that
 ///     would fell him leaves him at 1 HP instead (PartyJoin_ClampDamage).
-///  2. Her turn in RESCUE_ROUND is Gotterkanone: she speaks, and the blow leaves him at exactly 1 HP; the number shown is the
+///  2. Her turn in RESCUE_ROUND is P-Storm: she speaks, and the blow leaves him at exactly 1 HP; the number shown is the
 ///     HP he lost (BossAI_MysteryChooseSlot asks PartyJoin_TakeBrinkTurn).
-///  3. After round three, before round four begins, she speaks; Mia breaks
-///     free and runs in and casts Pure Ply on
+///  3. At the end of that round, or of any round that left Isaac alone at
+///     1 HP, she speaks; Mia breaks free and runs in and casts Pure Ply on
 ///     Isaac. "???" and Mia speak.
 ///  Everything here plays at the end of a round, after the game's own round
 ///  end, or inside her own turn, so the screen is in the state the game
@@ -27,9 +27,16 @@
 ///  Each of 4 and 5 also happens after a few rounds regardless (the _LATEST_
 ///  counts), so every player sees all three arrive; one arrival a round.
 ///
-/// Each arrival runs in from off the battlefield to their place, the way the
-/// party runs off when it flees, but backwards, with a hop and the camera
-/// turned to the party. They come in at full HP and PP. Getting a unit into
+/// How it looks: from the moment P-Storm lands the battlefield sinks
+/// into darkness, and Isaac, slumped in the pose of a downed party member,
+/// stands almost alone in it; each friend brings part of the light back, and
+/// with all four the battlefield is lit again (the gloom: her backdrop,
+/// mystery_backdrop.c, dims its colours by PartyJoin_StepGloom). Each
+/// arrival breaks her bind with a crack, a white flash and a shake, runs in
+/// from off the battlefield to their place, the way the party runs off when
+/// it flees, but backwards, with a hop and the camera turned to the party,
+/// and bursts with the light of their element. They come in at full HP and
+/// PP. Getting a unit into
 /// the battle copies what the engine does when an enemy calls for help
 /// (BattleAbility_ApplyToTarget, target_exec.c): into the unit list, a
 /// battle object at its spot, and BattleObject_Put for the sprite.
@@ -50,7 +57,7 @@
 #define RESCUE_ROUND 3
 /// The song from Garet's arrival on. Until then the battle plays the song
 /// Vale_TalkToMysteryLeader chooses for it, with no break: through Isaac
-/// alone, her Gotterkanone and Mia's rescue. While that is this same song,
+/// alone, her P-Storm and Mia's rescue. While that is this same song,
 /// it plays on without starting again.
 #define FULL_PARTY_SONG MUS_FUSION_DRAGON_BATTLE
 /// Garet arrives once "???" is below this percent of her HP, or this many
@@ -65,10 +72,15 @@
 
 /// Pure Ply, two after Ply in abilities.c (ability_ids.h names only Ply).
 #define ABILITY_PURE_PLY (ABILITY_PLY + 2)
+/// Ice Missile, Mia's entrance: its row in abilities.c ("// Ice Missile"),
+/// which ability_ids.h does not name.
+#define ABILITY_ICE_MISSILE 0x1d
 
 /// An action's target is a place on a side, not a unit id: bit 7 clear is
 /// the party's side, and Isaac, who starts alone, is its place 0.
 #define TARGET_ISAAC 0
+/// "???", the battle's one enemy: the enemy side (bit 7) and its place 0.
+#define TARGET_MYSTERY 0x80
 
 /// The battle's state, kept in BattleWork's spare bytes, which Battle_Run
 /// clears as every battle starts and no other code uses.
@@ -76,15 +88,54 @@
 #define joinRound unusedAfterEscapes
 /// How far the story has gone (enum JoinStage).
 #define joinStage unusedAfterChannels[0]
-/// Her Gotterkanone turn (enum JoinBrink): it leaves Isaac 1 HP.
+/// Her P-Storm turn (enum JoinBrink): it leaves Isaac 1 HP.
 #define joinBrink unusedAfterChannels[1]
 /// The round the last arrival came in.
 #define joinLastArrival unusedAfterPlacement[0]
+/// Set when Isaac reaches 1 HP alone: the gloom starts, but Mia waits
+/// until the end of the third solo round.
+#define joinEdge unusedAfterPlacement[1]
+/// The gloom over the battlefield, 0 (lit) to 256 (black), as shown, the
+/// gloom it is easing toward, and the gloom last written to the screen.
+#define joinGloom unusedAfterBackground[0]
+#define joinGloomTarget unusedAfterBackground[1]
+#define joinGloomShown unusedAfterBackground[2]
+
+/// The gloom while Isaac stands alone at 1 HP, with Mia, with Garet too, and
+/// the change in it each frame (from lit to darkest in a little over a
+/// second and a half).
+#define GLOOM_ALONE 200
+#define GLOOM_MIA 130
+#define GLOOM_GARET 60
+#define GLOOM_STEP 2
+
+/// How each friend breaks the bind, rising one to the next: Mia gently, with
+/// no crack, only her light; Garet with a crack, a white flash and a shake;
+/// Ivan, who makes the party whole, with a louder crack, a longer flash and a
+/// harder shake. Frames the screen stays white, frames it fades back (one
+/// level of REG_BLDY each), and the shake in 1/65536 turns of yaw, as
+/// BossAI_MysteryAwaken flashes.
+enum JoinBreak {
+  BREAK_GENTLE, ///< Mia: no crack, no flash
+  BREAK_FORCE,  ///< Garet
+  BREAK_WHOLE   ///< Ivan
+};
+#define BREAK_HOLD 4
+#define BREAK_FADE 14
+#define BREAK_SHAKE 0x180
+#define BREAK_WHOLE_HOLD 8
+#define BREAK_WHOLE_FADE 24
+#define BREAK_WHOLE_SHAKE 0x280
+
+/// The darkest moment: frames Isaac stands alone, slumped, before she speaks;
+/// between each memory; and in the silence after them, before Mia comes.
+#define ALONE_SILENCE_FRAMES 120
+#define MEMORY_SILENCE_FRAMES 90
 
 enum JoinBrink {
   BRINK_NONE = 0,    ///< not this round
-  BRINK_PENDING = 1, ///< her next turn is Gotterkanone
-  BRINK_STRIKING = 2 ///< her Gotterkanone is being played
+  BRINK_PENDING = 1, ///< her next turn is P-Storm
+  BRINK_STRIKING = 2 ///< her P-Storm is being played
 };
 
 enum JoinStage {
@@ -215,10 +266,74 @@ static void PartyJoin_Settle(void) {
   WaitFrames(1);
 }
 
-/// Brings character unitId into the battle at the party's next place: they
-/// run in from off the battlefield, with a hop, and turn to face the enemy.
-/// Returns 0 if they could not join (already fighting, or no place left).
-static s32 PartyJoin_Arrive(s32 unitId) {
+/// The bind breaking as a friend breaks free, in the friend's way
+/// (enum JoinBreak): a crack, the whole screen white, and the white fading
+/// while the camera shakes and settles, as her own awakening flashes
+/// (BossAI_MysteryAwaken); nothing for BREAK_GENTLE. The yaw and the blend
+/// registers are put back after.
+static void PartyJoin_BreakFlash(s32 style) {
+  struct BattleCamera *camera = HEAP_SLOT_BLOCK(HEAP_SLOT_CAMERA);
+  u16 savedBlend = REG_BLDCNT;
+  u16 baseYaw = camera->yaw;
+  s32 frame;
+  s32 shake;
+  s32 hold;
+  s32 fade;
+  s32 strength;
+
+  if (style == BREAK_GENTLE)
+    return;
+  hold = BREAK_HOLD;
+  fade = BREAK_FADE;
+  strength = BREAK_SHAKE;
+  if (style == BREAK_WHOLE) {
+    hold = BREAK_WHOLE_HOLD;
+    fade = BREAK_WHOLE_FADE;
+    strength = BREAK_WHOLE_SHAKE;
+    Sound_PlaySongFar(SE_THUNDER_LOUD);
+  }
+  Sound_PlaySongFar(SE_ITEM_BREAK);
+  REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
+  for (frame = 0; frame < hold + fade; frame++) {
+    if (frame < hold)
+      REG_BLDY = 16;
+    else
+      REG_BLDY = 16 - (frame - hold + 1) * 16 / fade;
+    shake = strength * (hold + fade - frame) / (hold + fade);
+    if (frame & 1)
+      shake = -shake;
+    camera->yaw = baseYaw + shake;
+    WaitFrames(1);
+  }
+  camera->yaw = baseYaw;
+  REG_BLDY = 0;
+  REG_BLDCNT = savedBlend;
+}
+
+static void PartyJoin_Act(s32 unitId, s32 command, s32 abilityId,
+                          s32 target);
+
+/// Sets unitId's sprite off the battlefield, three times as far out as its
+/// spot, where the party runs to when it flees (BattleMotion_SetupEscapeObject).
+static void PartyJoin_PlaceOffstage(s32 unitId) {
+  struct BattleObject *battleObject = BattleObject_Get(unitId);
+  struct Actor *actor = battleObject->actor;
+
+  if (actor == NULL)
+    return;
+  actor->x.fixed = battleObject->anchorX * 3;
+  actor->y.fixed = 0;
+  actor->z.fixed = battleObject->anchorZ;
+}
+
+/// Brings character unitId into the battle at the party's next place: the
+/// bind breaks in the friend's way (PartyJoin_BreakFlash, enum JoinBreak),
+/// they run in from off the battlefield with a hop, and their light breaks
+/// through, easing the gloom to `gloom`: entranceAbility cast at "???" if
+/// not 0, else a hand raised and the burst of their element. Returns 0 if they could not join (already
+/// fighting, or no place left).
+static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
+                            s32 entranceAbility) {
   struct BattleWork *battle;
   struct BattleObject *battleObject;
   struct Actor *actor;
@@ -253,15 +368,31 @@ static s32 PartyJoin_Arrive(s32 unitId) {
                     gBattlePlacement_StepPairs[place * 2],
                     gBattlePlacement_StepPairs[place * 2 + 1]);
 
-  // The camera on the party; then the sprite is made, set three times as far
-  // out as the spot (where the party runs to when it flees,
-  // BattleMotion_SetupEscapeObject), and sent running in to it with a hop.
+  // Their Djinn on standby count toward summons, as at the battle's start,
+  // and the party status window takes its width from the party size: both
+  // before anything is staged with them in the party.
+  DjinnRecovery_Reconcile();
+  BattleSummon_UpdateAvailability();
+  if (((struct BattleSummonState *)Djinn_GetRecoveryTableFar(
+           DJINN_RECOVERY_PARTY))
+          ->availableMask != 0)
+    battle->partyStatus = PARTY_STATUS_SUMMONS;
+  else
+    battle->partyStatus = PARTY_STATUS_NO_SUMMONS;
+  PartyJoin_WidenStatusWindow();
+
+  // The camera on the party, the bind breaking, and the sprite made off
+  // the battlefield, three times as far out as the spot (where the party
+  // runs to when it flees, BattleMotion_SetupEscapeObject).
   PartyJoin_FaceParty(ARRIVAL_CAMERA_FRAMES);
+  PartyJoin_BreakFlash(style);
   BattleObject_Put();
+  PartyJoin_PlaceOffstage(unitId);
+
+  // The run in to the spot, with a hop.
+  battleObject = BattleObject_Get(unitId);
   actor = battleObject->actor;
   if (actor != NULL) {
-    actor->x.fixed = battleObject->anchorX * 3;
-    actor->z.fixed = battleObject->anchorZ;
     actor->acceleration = 0x20000;
     actor->speedLimit = 0x80000;
     actor->velocityY = 0x50000;
@@ -277,18 +408,24 @@ static s32 PartyJoin_Arrive(s32 unitId) {
   }
   BattleMotion_ReturnToSpot(unitId);
 
-  // Their Djinn on standby count toward summons, as at the battle's start.
-  DjinnRecovery_Reconcile();
-  BattleSummon_UpdateAvailability();
-  if (((struct BattleSummonState *)Djinn_GetRecoveryTableFar(
-           DJINN_RECOVERY_PARTY))
-          ->availableMask != 0)
-    battle->partyStatus = PARTY_STATUS_SUMMONS;
-  else
-    battle->partyStatus = PARTY_STATUS_NO_SUMMONS;
-
-  // The party status window takes its width from the party size.
-  PartyJoin_WidenStatusWindow();
+  // Their light breaks through, and the gloom eases with it: an entrance
+  // attack on "???" (a cast's own glow is its light), or else a hand raised
+  // and the burst of their element, as a Djinni set at a round's end bursts
+  // (Battle_ProcessRoundEnd). Either puts the background in
+  // BATTLE_BACKGROUND_FIXED, so the screen is settled after. ElementGlow_Play
+  // returns when the glow is over; BattlePlayback_WaitForReady must not
+  // follow it here, since it waits for a playback task only an action runs.
+  battle->joinGloomTarget = gloom;
+  if (entranceAbility != 0) {
+    PartyJoin_Act(unitId, COMMAND_PSYNERGY, entranceAbility, TARGET_MYSTERY);
+  } else {
+    actor = BattleObject_Get(unitId)->actor;
+    if (actor != NULL)
+      Actor_SelectAnimationFar(actor, POSE_CAST);
+    ElementGlow_Play(unitId, element, GLOW_BURST, 0);
+  }
+  PartyJoin_Settle();
+  BattleMotion_ReturnToSpot(unitId);
 
   battle->joinLastArrival = battle->joinRound;
   return 1;
@@ -310,32 +447,41 @@ static void PartyJoin_Act(s32 unitId, s32 command, s32 abilityId,
   BattleStaging_DispatchAction(&request, 10);
 }
 
-/// At the end of RESCUE_ROUND, she speaks; Mia breaks free, runs in
-/// and heals him.
+/// After the third solo round, she speaks; Mia breaks free, runs in and
+/// heals him. Reaching 1 HP earlier does not skip the intended solo rounds.
 static void PartyJoin_RunRescue(void) {
   struct BattleWork *battle = gBattleWork;
 
+  struct Actor *isaac;
+
   battle->joinStage = JOIN_MIA;
+  battle->joinEdge = 0;
   battle->joinBrink = BRINK_NONE;
-  WaitFrames(40);
+  // Isaac slumps, as a downed party member does, until Mia's Pure Ply.
+  BattleObject_Put();
+  isaac = BattleObject_Get(battle->partyUnits[0])->actor;
+  if (isaac != NULL)
+    Actor_SelectAnimationFar(isaac, POSE_PARTY_HELD);
+  WaitFrames(ALONE_SILENCE_FRAMES);
   PartyJoin_Say(MsgPartyJoinMysteryAlone);
   PartyJoin_Say(MsgPartyJoinMysteryAlone2);
-  WaitFrames(30);
+  WaitFrames(MEMORY_SILENCE_FRAMES);
 
-  if (PartyJoin_Arrive(MIA) == 0)
+  if (PartyJoin_Arrive(MIA, ELEMENT_MERCURY, GLOOM_MIA, BREAK_GENTLE,
+                       ABILITY_ICE_MISSILE) == 0)
     return;
   PartyJoin_Say(MsgPartyJoinMiaArrives);
-  PartyJoin_Say(MsgPartyJoinMiaArrives2);
   PartyJoin_Act(MIA, COMMAND_PSYNERGY, ABILITY_PURE_PLY, TARGET_ISAAC);
   PartyJoin_Settle();
+  isaac = BattleObject_Get(battle->partyUnits[0])->actor;
+  if (isaac != NULL)
+    Actor_SelectAnimationFar(isaac, POSE_STANDING);
   PartyStatus_DrawFar(battle->partyStatus);
   PartyJoin_Say(MsgPartyJoinMysteryReacts);
-  PartyJoin_Say(MsgPartyJoinMiaAnswers);
-  PartyJoin_Say(MsgPartyJoinMiaAnswers2);
 }
 
 /// Her turn in RESCUE_ROUND: says her line and fades the music, and returns
-/// 1 while the turn should be Gotterkanone. Called by
+/// 1 while the turn should be P-Storm. Called by
 /// BossAI_MysteryChooseSlot at each of her picks; the line plays once.
 s32 PartyJoin_TakeBrinkTurn(void) {
 #if PARTY_JOIN_ENABLED
@@ -352,6 +498,28 @@ s32 PartyJoin_TakeBrinkTurn(void) {
 #else
   return 0;
 #endif
+}
+
+/// The party whole: all four raise their hands together, and Isaac, the one
+/// she wanted alone, bursts with the light of Venus. Silent, as Isaac is;
+/// what it says, it shows.
+static void PartyJoin_RunUnison(void) {
+  struct BattleWork *battle = gBattleWork;
+  struct Actor *actor;
+  s32 place;
+
+  PartyJoin_FaceParty(ARRIVAL_CAMERA_FRAMES);
+  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++) {
+    actor = BattleObject_Get(battle->partyUnits[place])->actor;
+    if (actor != NULL)
+      Actor_SelectAnimationFar(actor, POSE_CAST);
+  }
+  WaitFrames(20);
+  ElementGlow_Play(battle->partyUnits[0], ELEMENT_VENUS, GLOW_BURST, 0);
+  PartyJoin_Settle();
+  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++)
+    BattleMotion_ReturnToSpot(battle->partyUnits[place]);
+  WaitFrames(30);
 }
 
 /// Counts the round that just ended and plays whatever the story has next.
@@ -376,7 +544,8 @@ void PartyJoin_RunRoundEnd(void) {
 
   switch (battle->joinStage) {
   case JOIN_ALONE:
-    // Prepare Gotterkanone one round before Mia's arrival.
+    // P-Storm lands in the third solo round. An earlier close call can
+    // darken the field, but never brings Mia in before that round ends.
     if (battle->joinRound >= RESCUE_ROUND)
       PartyJoin_RunRescue();
     else if (battle->joinRound == RESCUE_ROUND - 1)
@@ -386,7 +555,7 @@ void PartyJoin_RunRoundEnd(void) {
     if (mystery->hp * 100 < mystery->hpMax * GARET_BELOW_PERCENT ||
         sinceArrival >= GARET_LATEST_ROUNDS) {
       battle->joinStage = JOIN_GARET;
-      if (PartyJoin_Arrive(GARET)) {
+      if (PartyJoin_Arrive(GARET, ELEMENT_MARS, GLOOM_GARET, BREAK_FORCE, 0)) {
         if (gSaveBlock.battleMusic != FULL_PARTY_SONG)
           Sound_PlaySongFar(FULL_PARTY_SONG);
         PartyJoin_Say(MsgPartyJoinGaretArrives);
@@ -399,11 +568,12 @@ void PartyJoin_RunRoundEnd(void) {
     if (sinceArrival > 0 && ((mystery->aiActionIndex & MYSTERY_ENRAGED) != 0 ||
                              sinceArrival >= IVAN_LATEST_ROUNDS)) {
       battle->joinStage = JOIN_IVAN;
-      if (PartyJoin_Arrive(IVAN)) {
+      if (PartyJoin_Arrive(IVAN, ELEMENT_JUPITER, 0, BREAK_WHOLE, 0)) {
         PartyJoin_Say(MsgPartyJoinIvanArrives);
         PartyJoin_Say(MsgPartyJoinIvanArrives2);
         PartyJoin_SayKeyLine(MsgPartyJoinMysteryNotAlone);
         PartyJoin_SayKeyLine(MsgPartyJoinMysteryNotAlone2);
+        PartyJoin_RunUnison();
       }
     }
     break;
@@ -411,7 +581,7 @@ void PartyJoin_RunRoundEnd(void) {
 #endif
 }
 
-/// Ends her Gotterkanone turn once it has played, so only that blow leaves
+/// Ends her P-Storm turn once it has played, so only that blow leaves
 /// Isaac at exactly 1 HP. Called by Battle_Run after every action.
 void PartyJoin_RunAfterAction(void) {
 #if PARTY_JOIN_ENABLED
@@ -419,15 +589,49 @@ void PartyJoin_RunAfterAction(void) {
 
   if (battle->joinBrink == BRINK_STRIKING) {
     battle->joinBrink = BRINK_NONE;
+    battle->joinEdge = 1;
   }
+  // Isaac alone at 1 HP: the battlefield sinks into darkness.
+  if (battle->joinEdge != 0 && battle->joinStage == JOIN_ALONE)
+    battle->joinGloomTarget = GLOOM_ALONE;
+#endif
+}
+
+/// Eases the gloom one frame toward where the story has it and returns it,
+/// 0 (lit) to 256 (black). Sets *repaint while the backdrop must write its
+/// colours to the screen: while there is gloom, and on the frame it lifts.
+/// Called by Mystery_StepBackdropGlow every frame of her battle.
+s32 PartyJoin_StepGloom(s32 *repaint) {
+#if PARTY_JOIN_ENABLED
+  struct BattleWork *battle = gBattleWork;
+  s32 gloom = battle->joinGloom;
+  s32 target = battle->joinGloomTarget;
+
+  if (gloom < target) {
+    gloom += GLOOM_STEP;
+    if (gloom > target)
+      gloom = target;
+  } else if (gloom > target) {
+    gloom -= GLOOM_STEP;
+    if (gloom < target)
+      gloom = target;
+  }
+  battle->joinGloom = gloom;
+  *repaint = gloom != 0 || battle->joinGloomShown != 0;
+  battle->joinGloomShown = gloom;
+  return gloom;
+#else
+  *repaint = 0;
+  return 0;
 #endif
 }
 
 /// The HP damage a blow or an ability does to a unit at hp, as
 /// BattleAbility_ApplyToTarget has worked it out, so the number shown is the
-/// HP really lost. In the "???" battle: during her scripted Gotterkanone,
+/// HP really lost. In the "???" battle: during her scripted P-Storm,
 /// exactly enough to leave Isaac 1 HP; and while he is alone, never enough to
-/// fell him before Mia arrives.
+/// fell him (a close call sets joinEdge for the darkened backdrop; it does
+/// not bring Mia in before the third round).
 /// Every other battle and unit keeps its damage.
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount) {
 #if PARTY_JOIN_ENABLED
@@ -440,6 +644,7 @@ s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount) {
   } else if (battle->joinStage == JOIN_ALONE && amount >= hp &&
              PartyJoin_FindMystery() >= 0) {
     amount = hp - 1;
+    battle->joinEdge = 1;
   }
   if (amount < 0)
     amount = 0;

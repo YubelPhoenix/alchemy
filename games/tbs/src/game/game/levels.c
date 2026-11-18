@@ -58,18 +58,28 @@ enum { PSYNERGY_FROM_CLASS = 0x8000, PSYNERGY_FROM_ITEM = 0x4000 };
 
 /// Moves only one of the four heroes learns, whatever their class: a class
 /// is shared by anyone whose Djinni put them in it, and without these the four
-/// end the game with the same list. Each row is {ability, level}; every hero's
-/// own-element moves are chosen to suit their element and kept out of their
-/// class lines.
-static const struct ClassAbility sSignatureMoves[4][9] = {
+/// end the game with the same list. Each row is {ability, level, {next}}:
+/// every hero's own-element moves are chosen to suit their element and kept
+/// out of their class lines. next (in the struct's padding) names the
+/// stronger tier of the same line; once that is learned the weaker one drops
+/// off the list (Unit_RefreshPsynergy), as a hero has only 32 slots.
+static const struct ClassAbility sSignatureMoves[4][10] = {
     // Isaac: earth and steel
-    {{179, 5}, {164, 10}, {180, 22}, {165, 26}, {181, 40}, {166, 50}},
+    {{179, 5, {180}}, {164, 10, {165}}, {180, 22, {181}}, {165, 26, {166}},
+     {181, 40}, {166, 50},
+     {133, 15}}, // Rune Strike
     // Garet: fire and bombs
-    {{182, 6}, {167, 12}, {160, 16}, {183, 20}, {168, 28}, {184, 44}, {169, 50}},
+    {{182, 6, {183}}, {167, 12, {168}}, {160, 16}, {183, 20, {184}},
+     {168, 28, {169}}, {184, 44}, {169, 50},
+     {131, 16}, {132, 24}}, // Ember Burst, Sky Breaker
     // Ivan: wind and lightning
-    {{185, 4}, {191, 8}, {188, 10}, {177, 14}, {186, 22}, {189, 30}, {187, 46}, {190, 52}},
+    {{185, 4, {186}}, {191, 8}, {188, 10, {189}}, {177, 14}, {186, 22, {187}},
+     {189, 30, {190}}, {187, 46}, {190, 52},
+     {134, 24}, {135, 18}}, // Starfall, Vertigo
     // Mia: water, frost and ward
-    {{36, 6}, {30, 10}, {128, 14}, {37, 22}, {129, 26}, {31, 28}, {38, 42}, {32, 48}},
+    {{36, 6, {37}}, {128, 8}, {30, 10, {31}}, {37, 22, {38}}, {129, 26},
+     {31, 28, {32}}, {38, 42}, {32, 48},
+     {130, 27}, {137, 30}}, // Djinn's Grace, Fading Wind
 };
 
 /// The field Psynergy every story gate needs, split by hero so each keeps it
@@ -115,6 +125,22 @@ s32 Unit_RefreshPsynergy(s32 unitId) {
     if (PSYNERGY_ACTION_AT(abilities, sourceIndex) & originFlag)
       PSYNERGY_ACTION_AT(abilities, sourceIndex) = 0;
   }
+  // A hero's own moves are rebuilt below like class actions. An older save
+  // can hold them as permanent entries, which would keep a dropped tier and
+  // fill the list, so any copy of them goes too.
+  if (unitId >= 0 && unitId < 4) {
+    s32 tier;
+    for (sourceIndex = 0; sourceIndex < 32; sourceIndex++) {
+      for (tier = 0; tier < 10; tier++) {
+        if (sSignatureMoves[unitId][tier].ability != 0 &&
+            (PSYNERGY_ACTION_AT(abilities, sourceIndex) &
+             PSYNERGY_ABILITY_MASK) == sSignatureMoves[unitId][tier].ability) {
+          PSYNERGY_ACTION_AT(abilities, sourceIndex) = 0;
+          break;
+        }
+      }
+    }
+  }
   // Pack permanent actions at the end to leave room for class abilities.
   for (slot = 31, sourceIndex = 31; slot >= 0;) {
     if (PSYNERGY_ACTION_AT(abilities, slot) == 0) {
@@ -158,10 +184,22 @@ s32 Unit_RefreshPsynergy(s32 unitId) {
   if (unitId >= 0 && unitId < 4) {
     s32 pass;
     for (pass = 0; pass < 2; pass++)
-    for (sourceIndex = 0; sourceIndex < (pass ? 8 : 9); sourceIndex++) {
+    for (sourceIndex = 0; sourceIndex < (pass ? 8 : 10); sourceIndex++) {
       classAbility = (struct ClassAbility *)(pass ? &sFieldMoves[unitId][sourceIndex] : &sSignatureMoves[unitId][sourceIndex]);
       if (classAbility->ability == 0 || unit->level < classAbility->level)
         continue;
+      // A weaker tier drops off once its row's stronger tier is learned.
+      if (classAbility->padding[0] != 0) {
+        s32 tier;
+        for (tier = 0; tier < 10; tier++) {
+          if (sSignatureMoves[unitId][tier].ability ==
+                  classAbility->padding[0] &&
+              unit->level >= sSignatureMoves[unitId][tier].level)
+            break;
+        }
+        if (tier < 10)
+          continue;
+      }
       slot = 0;
       while (slot < 32 && (PSYNERGY_ACTION_AT(abilities, slot) &
                            PSYNERGY_ABILITY_MASK) != classAbility->ability)

@@ -102,8 +102,10 @@ def check_visual_identity() -> None:
                 f"{file}: Ash Jenna must use her supplied overworld sprite")
     lamakan = scene("lamakan_desert.c")
     require(re.search(r"ACTOR_LAMAKAN_ASH_JENNA\s*=\s*ACTOR_FIRST_PLACED\s*\+\s*2\b", lamakan) is not None,
-            "Lamakan Ash Jenna is the third placed NPC (slot 10), not party ACTOR_JENNA (slot 5)")
-
+            "Lamakan Ash Jenna must be third placed NPC (10), not party Jenna (5)")
+    require("if (gSaveBlock.sceneId != (s32)&SceneId_LamakanDesertManticore)" in lamakan
+            and "LamakanDesert_AshJennaWatches();" in lamakan,
+            "Lamakan must keep Ash Jenna present and stage her before Manticore")
     ids = read("games/tbs/include/sprite_ids.h")
     sprites = read("games/tbs/src/graphics/sprite/sprites.tsv")
     layout = read("games/tbs/src/graphics/sprite/layout.tsv")
@@ -321,13 +323,15 @@ def check_mystery_rescue_encounter() -> None:
     require("#define PARTY_JOIN_ENABLED 1" in join
             and "#define RESCUE_ROUND 3" in join
             and "if (battle->joinRound >= RESCUE_ROUND)" in join,
-            "Mia must arrive after three solo rounds")
+            "Mia must arrive only after three solo rounds")
+    # Each arrival names the friend first, then their element and the gloom
+    # their light leaves.
     for name in ("MIA", "GARET", "IVAN"):
-        require(f"PartyJoin_Arrive({name})" in join,
+        require(f"PartyJoin_Arrive({name}," in join,
                 f"Mystery battle must bring {name} into the live battle")
-    require(join.index("PartyJoin_Arrive(MIA)") <
-            join.index("PartyJoin_Arrive(GARET)") <
-            join.index("PartyJoin_Arrive(IVAN)"),
+    require(join.index("PartyJoin_Arrive(MIA,") <
+            join.index("PartyJoin_Arrive(GARET,") <
+            join.index("PartyJoin_Arrive(IVAN,"),
             "Rescue companions must arrive Mia, Garet, then Ivan")
     require("#define GARET_BELOW_PERCENT 75" in join
             and "#define IVAN_LATEST_ROUNDS 5" in join
@@ -342,8 +346,12 @@ def check_mystery_rescue_encounter() -> None:
     require("PartyJoin_SayKeyLine(MsgMysteryEnraged)" in boss_ai,
             "Mystery's awakened revelation needs protected reading time")
     battle_lines = messages("phase_fight_together.tsv")
-    require(set(battle_lines) == {f"N{i}" for i in range(399, 414)},
-            "Mystery rescue must keep exactly 15 indexed battle dialogue lines")
+    # N403, N408 and N409 were Mia's lighthouse lines and the second half of
+    # her arrival, cut to keep her section short; Isaac's memories (N414 to
+    # N416) were cut so "???" alone speaks before Mia arrives.
+    require(set(battle_lines) == {f"N{i}" for i in range(399, 414)} -
+            {"N403", "N408", "N409"},
+            "Mystery rescue must keep exactly 12 indexed battle dialogue lines")
     for key, value in battle_lines.items():
         require("{page_break}" not in value and "{end_" not in value,
                 f"Mystery battle {key} must use plain battle text")

@@ -99,6 +99,7 @@ void Mystery_StepBackdropGlow(void) {
       HEAP_SLOT_BLOCK(HEAP_SLOT_BATTLE_BACKGROUND);
   u32 frame = gVBlankCount;
   s32 scale, pulse, level, k, rage, zoomed, mysteryId, beat;
+  s32 gloom, light, repaint;
   const u16 *source;
   u16 colour;
   s32 red, green, blue, high, low;
@@ -109,6 +110,12 @@ void Mystery_StepBackdropGlow(void) {
   scale = battle->brightness;
   if (scale > Q16_ONE)
     scale = Q16_ONE;
+  // The gloom of "You're not alone" (party_join.c): Isaac left alone at 1 HP
+  // in the dark, the light returning with each friend. It dims the picture's
+  // colours as they are kept in battle->palette, like the rage, so the
+  // battle's own repaints keep it, and the beacons and stars with them.
+  gloom = PartyJoin_StepGloom(&repaint);
+  light = 256 - gloom;
 
   // Her rage: violet turns to crimson. Red rises to the larger of red and
   // blue (and a little past it), blue falls to a third of the smaller and
@@ -156,8 +163,12 @@ void Mystery_StepBackdropGlow(void) {
       green -= ((green * 86) >> 7) * rage >> 8;
       colour = (blue << 10) | (green << 5) | red;
     }
+    if (gloom != 0)
+      colour = ((((colour >> 10) & 31) * light >> 8) << 10) |
+               ((((colour >> 5) & 31) * light >> 8) << 5) |
+               ((colour & 31) * light >> 8);
     battle->palette[k] = colour;
-    if (zoomed && rage != 0)
+    if (zoomed && (rage != 0 || repaint))
       BATTLE_BG_PALETTE[k] =
           ((((colour >> 10) & 31) * scale >> 16) << 10) |
           ((((colour >> 5) & 31) * scale >> 16) << 5) |
@@ -165,6 +176,7 @@ void Mystery_StepBackdropGlow(void) {
   }
   if (!zoomed)
     return;
+  scale = scale * light >> 8;
 
   // The core glows from a dim ember to bright crimson; each halo ring takes
   // half the light of the one inside it, over the void's violet. Enraged,

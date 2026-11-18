@@ -679,9 +679,9 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
  s32 late=unit->hp*2<=unit->hpMax;
  struct BossPartyView view;
  BossAI_ViewParty(&view);
- // Ashfall's "You're not alone" (party_join.c): her Gotterkanone turn,
+ // Ashfall's "You're not alone" (party_join.c): her P-Storm turn,
  // which leaves Isaac at 1 HP before Mia breaks free.
- if (PartyJoin_TakeBrinkTurn()) return MYSTERY_GOTTERKANONE;
+ if (PartyJoin_TakeBrinkTurn()) return MYSTERY_P_STORM;
  // The first time she falls below half HP she stops holding back, and says
  // so, after the screen flashes and her backdrop snaps to crimson.
  if (late && firstPick && (memory & MYSTERY_ENRAGED) == 0) {

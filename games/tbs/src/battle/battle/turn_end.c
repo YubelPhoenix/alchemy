@@ -504,6 +504,8 @@ s32 Battle_ProcessRoundEnd(void) {
           BattleMessage_ShowAndWaitFar(MsgCureSeal);
           BattleMessage_WaitForAdvance();
         }
+        // Ashfall: Regenerate's healing waters (regenerate.c).
+        Regenerate_RunRoundEnd(unitId);
         if (BattleUnit_TickRegenerate(unitId) != 0) {
           BattleUnit_BuildStatusFlags(unitId, BattleObject_Get(unitId));
           MessageArgument_PushFar(unitId, MESSAGE_ARGUMENT_ACTOR);

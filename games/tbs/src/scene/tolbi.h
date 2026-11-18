@@ -139,13 +139,13 @@ enum TolbiActorId {
   /// The "Missing Person" poster, placed with Babi's sprite (SPRITE_BABI).
   /// ★ Named from the game: "Missing Person" (MsgTolbiSeenAnyoneWho)
   ACTOR_TOLBI_MISSING_PERSON_POSTER = 32,
-  /// Ash Jenna (ACTOR_JENNA, drawn grey: a party member's row takes that id and
-  /// no placed slot, Event_SpawnActorTemplates), who waits in the rain after Colosso
-  /// once Mercury Lighthouse is lit (Tolbi_MeetAshJenna).
-  ACTOR_TOLBI_ASH_JENNA = ACTOR_JENNA,
+  /// Ash Jenna, who waits in the rain after Colosso once Mercury Lighthouse is
+  /// lit (Tolbi_MeetAshJenna). Her own sprite (SPRITE_ASH_JENNA) is not a party
+  /// member's, so her row takes a placed slot (Event_SpawnActorTemplates).
+  ACTOR_TOLBI_ASH_JENNA = 33,
   /// Sarah, her third fight (stage 2, level 21), waiting until she is beaten
-  /// (FLAG_DARK_SARAH_TOLBI_FOUGHT).
-  ACTOR_TOLBI_SARAH = 33,
+  /// (FLAG_DARK_SARAH_TOLBI_FOUGHT); in the slot after Ash Jenna's.
+  ACTOR_TOLBI_SARAH = 34,
 };
 
 /// The metatile behaviors Tolbi's coord and examine triggers answer besides the

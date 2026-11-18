@@ -108,7 +108,9 @@ const struct ItemDefinition gItem_DefinitionTable[] = {
             {.kind = EQUIP_EFFECT_ADD_VENUS_RESIST, .amount = 20},
         },
     },
-    // Sol Blade
+    // Sol Blade, the Sealed Sol Blade in Ashfall. Left unfinished, with no
+    // Unleash; Ashfall gives it Dawnbreak
+    // (ability 239) at the other great swords' chance.
     {
         .price = 19000,
         .type = ITEM_TYPE_WEAPON,
@@ -116,6 +118,9 @@ const struct ItemDefinition gItem_DefinitionTable[] = {
         .equipMask = 0x1b,
         .icon = 10,
         .primaryBonus = 138,
+        // Release chance: 7 out of 20 (35%).
+        .unleashChance = 7,
+        .unleashAbility = 239,
         .element = ELEMENT_NONE,
     },
     // Muramasa

@@ -552,6 +552,14 @@ menu_top:;
     if (v6 == -1) {
       goto menu_top;
     }
+    // Ashfall: rebuild the four heroes' Psynergy lists, so moves a newer
+    // build added (or tiers it drops) show at once on an older save, without
+    // waiting for a Djinni, piece of equipment or level to change.
+    {
+      s32 hero;
+      for (hero = 0; hero < 4; hero++)
+        Unit_RefreshPsynergy(hero);
+    }
     Event_SetFlag(FLAG_KEEP_PARTY_POSITION);
     state = &gSaveBlock;
     WindowColor_Apply(state->windowColor[0], state->windowColor[1]);
