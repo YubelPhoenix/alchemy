@@ -128,12 +128,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   // back.
   BattleAnim_WipeCanvas(CANVAS_WIPE_DOWN, CANVAS_WIPE_FILL);
   BattleAnim_SelectLivingTargets(work->args);
-  // Ashfall: when an enemy calls it ("???"'s P-Storm), she rises in
-  // Judgment's place (SPRITE_MYSTERY_JUDGMENT); party unit ids end at 7.
-  BattleAnim_SpawnObjects(JUDGMENT_FORMATION_OBJECTS,
-                          args->user > 7 ? SPRITE_MYSTERY_JUDGMENT
-                                         : SPRITE_JUDGMENT,
-                          1);
+  BattleAnim_SpawnObjects(JUDGMENT_FORMATION_OBJECTS, SPRITE_JUDGMENT, 1);
   gProjection.centerY = 240;
   WaitFrames(1);
   BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,

@@ -105,9 +105,6 @@ enum AbilityId {
   ABILITY_GLEPNIR = 0x20c,
   ABILITY_STERNBRECHER = 0x20d,
   ABILITY_P_STORM = 0x20e,
-  /// P-Storm as "???" casts it in Ashfall: an empty Psynergy slot, so it is
-  /// staged as a summon (her figure in Judgment's sequence).
-  ABILITY_P_STORM_SUMMON = 0x8a,
   /// The last of the Mystery Leader's attacks.
   ABILITY_MYSTERY_LAST = ABILITY_P_STORM,
   /// Sarah's pike techniques (Ashfall): physical, no PP, so she can use
