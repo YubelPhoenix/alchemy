@@ -282,6 +282,9 @@ enum {
   /// The square, where the party stood to face Ash Jenna; the battle brings
   /// the party back in here (Vale_AshJennaAftermath).
   VALE_FROM_ASH_JENNA = 18,
+  /// Return from the optional mystery commander's battle. Ordinary entrances
+  /// must never trigger the post-victory dialogue.
+  VALE_FROM_MYSTERY_BATTLE = 19,
 };
 /// SceneId_Vale's exits.
 enum {
