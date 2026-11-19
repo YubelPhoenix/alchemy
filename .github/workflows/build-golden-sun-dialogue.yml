@@ -3,7 +3,7 @@ name: Validate Golden Sun dialogue build
 on:
   workflow_dispatch:
   push:
-    branches: [dark-story-rewrite, ash-vale-aftermath, fight-together]
+    branches: [dark-story-rewrite, ash-vale-aftermath, fight-together, integration-fight-together-review]
     paths:
       - 'games/tbs/text/en.po'
       - 'games/tbs/src/**'
