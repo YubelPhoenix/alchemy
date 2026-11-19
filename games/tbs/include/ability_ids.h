@@ -113,6 +113,15 @@ enum AbilityId {
   /// (FallingWind_RunAfterAction) and nobody learns.
   ABILITY_FALLING_WIND = 0x89,
   ABILITY_FALLING_WIND_REVIVE = 0x8b,
+  /// The heroes' finishers (Ashfall), in the style of the Tales series'
+  /// mystic artes, in empty slots 151 to 157 (mystic_artes.c).
+  ABILITY_SOL_ASCENSION = 0x97,      ///< Isaac
+  ABILITY_LAST_EMBER = 0x98,         ///< Garet: stronger as his HP falls
+  ABILITY_FORESIGHT = 0x99,          ///< Ivan: may stun
+  ABILITY_LAST_TIDE = 0x9a,          ///< Mia: her sacrifice, then the three
+  ABILITY_LAST_TIDE_HEAL = 0x9b,     ///< follow-ups nobody learns: heal the
+  ABILITY_LAST_TIDE_REVIVE = 0x9c,   ///< living, raise the fallen, and
+  ABILITY_LAST_TIDE_COLLAPSE = 0x9d, ///< her collapse
   /// The last of the Mystery Leader's attacks.
   ABILITY_MYSTERY_LAST = ABILITY_P_STORM,
   /// Sarah's pike techniques (Ashfall): physical, no PP, so she can use

@@ -160,13 +160,13 @@ const u8 gAbilityStaging[] = {
     0, // Catch
     0, // Retreat
     0, // Avoid
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
+    0, // Sol Ascension (Ashfall)
+    STAGING_SUMMON, // Last Ember (Ashfall)
+    STAGING_SUMMON, // Foresight (Ashfall)
+    STAGING_SUMMON, // Last Tide (Ashfall)
+    0, // Last Tide's heal (Ashfall)
+    0, // Last Tide's revive (Ashfall)
+    0, // Last Tide's collapse (Ashfall)
     0, // ?
     0, // ?
     0, // Dragon Cloud
@@ -682,13 +682,13 @@ const u32 gAbilityAnimations[] = {
     0, // Catch
     0, // Retreat
     0, // Avoid
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
+    BATTLE_ANIM_BLADE_RAIN, // Sol Ascension (Ashfall)
+    BATTLE_ANIM_ICE | ANIM_SUMMON, // Last Ember (Ashfall): Tiamat's sequence for now
+    BATTLE_ANIM_FIRE | ANIM_SUMMON, // Foresight (Ashfall): Thor's sequence for now
+    BATTLE_ANIM_FROTH | ANIM_SUMMON, // Last Tide (Ashfall): Boreas's sequence for now
+    BATTLE_ANIM_DJINN_HEAL, // Last Tide's heal (Ashfall)
+    BATTLE_ANIM_FALLING_WIND_REVIVE, // Last Tide's revive (Ashfall)
+    BATTLE_ANIM_DRAIN, // Last Tide's collapse (Ashfall)
     0, // ?
     0, // ?
     BATTLE_ANIM_DRAGON_CLOUD, // Dragon Cloud

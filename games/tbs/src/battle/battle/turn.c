@@ -338,12 +338,9 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
       return TURN_REPORTED;
     MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
     MessageArgument_PushFar(abilityId, MESSAGE_ARGUMENT_ABILITY);
-    // Ashfall: Falling Wind, after Mia's lost beta move, is remembered
-    // rather than cast, and its revive follows without a second casting.
-    BattleMessage_ShowAndWaitFar(
-        abilityId == ABILITY_FALLING_WIND ? MsgFallingWindRemembered
-        : abilityId == ABILITY_FALLING_WIND_REVIVE ? MsgFallingWindSettles
-                                                   : MsgActorCasts);
+    // Ashfall: Falling Wind and the heroes' finishers have lines of their
+    // own (MysticArte_CastMessage).
+    BattleMessage_ShowAndWaitFar(MysticArte_CastMessage(abilityId));
     // Fail if PP is insufficient or Psynergy is sealed (the seal wins); the
     // failure is shown by the staging (plan->failure). Only a cast that goes
     // ahead pays its PP.
@@ -762,9 +759,9 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
             Battle_RollEffectSuccessFar(request->unitId, plan->targetIds[index],
                                         ability->element, ability->effect, 100);
     }
-    // Ashfall: Falling Wind's revive lands only on the fallen.
-    if (abilityId == ABILITY_FALLING_WIND_REVIVE)
-      FallingWind_KeepFallen(plan);
+    // Ashfall: the revives land only on the fallen, Last Tide's heal only
+    // on the living (MysticArte_AdjustPlan).
+    MysticArte_AdjustPlan(plan, abilityId);
     // How it is staged: the ability's row of gAbilityAnimations, its variant
     // raised to the first target's multiplier less one (a double or triple
     // blow); then the staging, from gAbilityStaging where it gives one. The

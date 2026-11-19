@@ -605,6 +605,8 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         if (actor->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
             IS_PARTY_UNIT(targetId))
           power += power / 2;
+        // Ashfall: Last Ember grows as Garet's HP falls.
+        power = MysticArte_Power(abilityId, actor, power);
         // A summon adds 3% of the target's max HP for each Djinni it costs.
         if (plan->command == COMMAND_SUMMON) {
           s32 maxHpPercent;

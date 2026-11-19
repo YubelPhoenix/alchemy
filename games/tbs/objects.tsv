@@ -440,6 +440,7 @@ main	rom_tail_02	games/tbs/src/battle_anim/falling_wind
 main	rom_tail_02	games/tbs/src/battle/mystery_backdrop
 main	rom_tail_02	games/tbs/src/battle/party_join
 main	rom_tail_02	games/tbs/src/battle/regenerate
+main	rom_tail_02	games/tbs/src/battle/mystic_artes
 main	rom_tail_02	games/tbs/sound/songs/mus_fight_together	.rodata
 main	rom_tail_02	games/tbs/src/graphics/ui/ui
 main	rom_tail_02	games/tbs/src/graphics/title/title

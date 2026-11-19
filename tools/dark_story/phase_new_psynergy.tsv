@@ -29,3 +29,25 @@ N418	MsgFallingWindRemembered	{argument_actor_name:1} remembers\nthe past... Fal
 # Its revive, which follows the storm when an ally is down.
 N419	MsgFallingWindSettles	The leaves settle\non the fallen...
 00958	message	Falling Wind
+# The heroes' finishers (abilities 151 to 157, mystic_artes.c), after the Tales
+# series' mystic artes: Isaac's after Zankuu Tenshouken, Garet's after Mary's
+# "ZAN!", Ivan's after Philia's Rebirth Crusader, and Mia's after Garr's
+# Sekkazan, where she gives everything and falls.
+00970	message	Sol Ascension
+00971	message	Last Ember
+00972	message	Foresight
+00973	message	Last Tide
+00974	message	Last Tide
+00975	message	Last Tide
+00976	message	Last Tide
+01489	message	A blade for all tomorrows.
+01490	message	Burns hotter near death.
+01491	message	Storm all foes; may stun.
+01492	message	Give all to save friends.
+N420	MsgSolAscensionCry	This blade carries our\nfuture! Sol Ascension!
+N421	MsgLastEmberCry	Burn it all down!\nLast Ember!
+N422	MsgForesightCry	I've already seen how\nthis ends. Foresight!
+N423	MsgLastTideCry	Remember me...\nLast Tide.
+N424	MsgLastTideHeal	Her light flows into\nthe others...
+N425	MsgLastTideRevive	The fallen rise\non the tide...
+N426	MsgLastTideCollapse	{argument_actor_name:1} gave\neverything...

@@ -1403,40 +1403,78 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 5,
         .fieldPsynergy = 16,
     },
-    // ?
+    // Sol Ascension (Ashfall): Isaac's finisher, after the Tales series'
+    // Zankuu Tenshouken: one foe, the heaviest Venus blow in the game.
     {
         .targetMode = ABILITY_TARGET_ONE,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
         .element = ELEMENT_VENUS,
+        .icon = 137,
+        .range = 1,
+        .ppCost = 40,
+        .power = 320,
     },
-    // ?
+    // Last Ember (Ashfall): Garet's finisher, an axe combo into an eruption;
+    // up to twice as strong as his HP falls (MysticArte_Power).
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MARS,
+        .icon = 39,
+        .range = ABILITY_RANGE_ALL,
+        .ppCost = 40,
+        .power = 200,
     },
-    // ?
+    // Foresight (Ashfall): Ivan's finisher, a storm called down on every
+    // foe that may stun them.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_JUPITER,
+        .effect = ABILITY_EFFECT_STUN,
+        .icon = 54,
+        .range = ABILITY_RANGE_ALL,
+        .ppCost = 40,
+        .power = 240,
     },
-    // ?
+    // Last Tide (Ashfall): Mia's finisher, her sacrifice: a tide on every
+    // foe; then (MysticArte_RunAfterAction) the living are healed, the
+    // fallen rise, and she falls.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MERCURY,
+        .icon = 18,
+        .range = ABILITY_RANGE_ALL,
+        .ppCost = 40,
+        .power = 300,
     },
-    // ?
+    // Last Tide's heal: every living ally but Mia, to full.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_HP,
+        .element = ELEMENT_MERCURY,
+        .icon = 18,
+        .range = ABILITY_RANGE_ALL,
+        .power = 2000,
     },
-    // ?
+    // Last Tide's revive: every fallen ally, at full HP.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_REVIVE,
+        .icon = 18,
+        .range = ABILITY_RANGE_ALL,
     },
-    // ?
+    // Last Tide's collapse: Mia falls, whatever her HP
+    // (PartyJoin_ClampDamage).
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_SELF,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .icon = 18,
+        .range = 1,
+        .power = 1,
     },
     // ?
     {

@@ -207,7 +207,11 @@ void PartyJoin_RunAfterAction(void);
 void PartyJoin_SayKeyLine(s32 message);
 s32 PartyJoin_TakeBrinkTurn(void);
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount);
-void FallingWind_KeepFallen(struct BattleTurn *plan);
+s32 MysticArte_CastMessage(s32 abilityId);
+void MysticArte_AdjustPlan(struct BattleTurn *plan, s32 abilityId);
+s32 MysticArte_Power(s32 abilityId, struct Unit *actor, s32 power);
+s32 MysticArte_IsCollapse(void);
+void MysticArte_RunAfterAction(void);
 s32 PartyJoin_StepGloom(s32 *repaint);
 /// Ashfall's finished Regenerate (regenerate.c).
 void Regenerate_RunRoundEnd(s32 unitId);
