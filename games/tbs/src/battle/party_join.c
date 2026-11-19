@@ -415,14 +415,12 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
   // returns when the glow is over; BattlePlayback_WaitForReady must not
   // follow it here, since it waits for a playback task only an action runs.
   battle->joinGloomTarget = gloom;
-  if (entranceAbility != 0) {
+  // Garet and Ivan (no entrance attack) just land: the gloom eases on its
+  // own, frame by frame (PartyJoin_StepGloom), without the Djinni burst,
+  // which disturbed the spot they land on.
+  (void)element;
+  if (entranceAbility != 0)
     PartyJoin_Act(unitId, COMMAND_PSYNERGY, entranceAbility, TARGET_MYSTERY);
-  } else {
-    actor = BattleObject_Get(unitId)->actor;
-    if (actor != NULL)
-      Actor_SelectAnimationFar(actor, POSE_CAST);
-    ElementGlow_Play(unitId, element, GLOW_BURST, 0);
-  }
   PartyJoin_Settle();
   BattleMotion_ReturnToSpot(unitId);
   // The raised hand comes down: ReturnToSpot keeps whatever pose is shown.
