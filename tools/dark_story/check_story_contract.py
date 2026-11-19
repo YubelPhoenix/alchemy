@@ -144,9 +144,9 @@ def check_flags_and_quest_order() -> None:
     lamakan = scene("lamakan_desert.c")
     finale = function(lamakan, "LamakanDesert_AshJennaFinale")
     check = function(lamakan, "LamakanDesert_ManticoreAftermath")
-    require("MsgDarkManticoreGaretCheck" in check and
-            "FLAG_DARK_MANTICORE_RETURN_SEEN" in check,
-            "The Manticore aftermath must be the short party check")
+    require("GameFlag_Set(FLAG_DARK_MANTICORE_RETURN_SEEN)" in check and
+            "Event_ShowMessage" not in check,
+            "The Manticore aftermath must only record the return, without discarded dialogue")
     require("MsgDarkManticoreMiaGloat" not in lamakan,
             "The discarded Mia anger subplot must not play")
     require("Event_AskYesNo" not in finale and
