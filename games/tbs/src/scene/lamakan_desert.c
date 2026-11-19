@@ -1127,11 +1127,9 @@ static void LamakanDesert_MeetManticore(void) {
   }
 }
 
-/// The short group check after the Manticore. Mia's abandoned anger subplot
-/// is removed; Ash Jenna appears immediately afterward.
+/// Record the Manticore's defeat without replaying scrapped party dialogue.
+/// Ash Jenna's confrontation follows immediately.
 static void LamakanDesert_ManticoreAftermath(void) {
-  // The discarded post-battle party check used an obsolete Mia portrait.
-  // Let Ash Jenna's confrontation carry the aftermath instead.
   GameFlag_Set(FLAG_DARK_MANTICORE_RETURN_SEEN);
 }
 
