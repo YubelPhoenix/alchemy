@@ -1697,9 +1697,15 @@ s32 Vale_Initialize(void) {
     Actor_ConfigureSpriteColor(ACTOR_MYSTERY_LEADER_AFTER_KALAY,
                                SPRITE_COLOR_BLACK);
   }
-  // Back from her battle.
+  // Only the explicit battle-return entrance may trigger the victory scene.
+  // An older save can retain PENDING after an interrupted fight; clear that
+  // stale state on ordinary Vale entrances instead of replaying the ending.
   if (GameFlag_Get(FLAG_DARK_MYSTERY_PENDING) != 0) {
-    Vale_MysteryLeaderAftermath();
+    if (gSaveBlock.entrance == VALE_FROM_MYSTERY_BATTLE) {
+      Vale_MysteryLeaderAftermath();
+    } else {
+      GameFlag_Clear(FLAG_DARK_MYSTERY_PENDING);
+    }
   }
   return 0;
 }
@@ -1819,10 +1825,11 @@ static void Vale_TalkToMysteryLeader(void) {
   GameFlag_Set(FLAG_DARK_MYSTERY_PENDING);
   gFieldWork->transition =
       SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
-  // No after-battle destination: a win returns to Vale with the party where
-  // it stood when Isaac spoke to her (FLAG_KEEP_PARTY_POSITION, the actors
-  // as Actor_Snapshot saved them). A defeat goes to the restart point (the
-  // last Sanctum).
+  // A win must return via the dedicated battle entrance; otherwise a stale
+  // pending flag can fire the victory dialogue during ordinary exploration.
+  // Defeat still goes to the last Sanctum for a normal retry.
+  Event_SetAfterBattleDestination((s32)&SceneId_Vale,
+                                  VALE_FROM_MYSTERY_BATTLE);
   Event_SetDefeatDestination(-1, -1);
   Battle_SetType(BATTLE_TYPE_SCRIPTED);
   Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 6);
@@ -3723,6 +3730,7 @@ struct SceneEntrance gVale_Entrances[] = {
     { VALE_FROM_TITLE, CONDITION_ALWAYS, 400, 0, 852, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
     { VALE_FROM_ROOF_MENDED, CONDITION_ALWAYS, 400, 0, 852, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
     { VALE_FROM_ASH_JENNA, CONDITION_ALWAYS, 400, 0, 832, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
+    { VALE_FROM_MYSTERY_BATTLE, CONDITION_ALWAYS, 400, 0, 832, FACING_NORTH, 0, -1, -1, -1, -1, 0 },
     { SCENE_TABLE_END },
 };
 
