@@ -403,6 +403,42 @@ static void LamakanDesert_MeetAshJenna(void) {
   Event_End();
 }
 
+/// Run the first Ash Jenna sighting on approach, without requiring Reveal.
+/// The normal sand-step callback keeps the desert's heat behavior intact.
+static void LamakanDesert_ApproachManticore(void) {
+  struct Actor *leader;
+  s32 dx;
+  s32 dz;
+
+  HeatGauge_CountStep();
+  if (gSaveBlock.sceneId != (s32)&SceneId_LamakanDesertManticore ||
+      GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE) == 0 ||
+      GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0 ||
+      GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0 ||
+      GameFlag_Get(FLAG_DESERT_EVENT_RUNNING) != 0) {
+    return;
+  }
+  leader = Actor_GetById(ACTOR_PARTY_LEADER);
+  dx = leader->x.fixed - PIXELS(168);
+  dz = leader->z.fixed - PIXELS(104);
+  // Approach from the south; don't interrupt exploration across the map.
+  if (dx < -PIXELS(112) || dx > PIXELS(112) ||
+      dz < PIXELS(32) || dz > PIXELS(160)) {
+    return;
+  }
+  GameFlag_Set(FLAG_DESERT_EVENT_RUNNING);
+  Event_Start();
+  Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, leader->x.fixed,
+                    leader->z.fixed - PIXELS(32));
+  Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_SOUTH, 0);
+  Actor_FaceActor(ACTOR_PARTY_LEADER, ACTOR_LAMAKAN_ASH_JENNA, 0);
+  AshWarp_In(ACTOR_LAMAKAN_ASH_JENNA);
+  Event_WaitFrames(20);
+  LamakanDesert_AshJennaWatches();
+  Event_End();
+  GameFlag_Clear(FLAG_DESERT_EVENT_RUNNING);
+}
+
 /// The desert's triggers, the same in every scene.
 const struct Trigger *LamakanDesert_GetTriggers(void) {
   return gLamakanDesertTriggers;
@@ -1512,7 +1548,7 @@ struct Trigger gLamakanDesertTriggers[] = {
     { TRIGGER_EXIT, 8, CONDITION_ALWAYS, 4 },
     { TRIGGER_STEP, 9, CONDITION_ALWAYS, EVENT(LamakanDesert_LeaveForTheWorldMap) },
     { TRIGGER_STEP, MB_LAMAKAN_DESERT_OASIS, FLAG_DESERT_EVENT_RUNNING, EVENT(LamakanDesert_BatheInOasis) },
-    { TRIGGER_STEP, MB_LAMAKAN_DESERT_SAND, CONDITION_ALWAYS, EVENT(HeatGauge_CountStep) },
+    { TRIGGER_STEP, MB_LAMAKAN_DESERT_SAND, CONDITION_ALWAYS, EVENT(LamakanDesert_ApproachManticore) },
     { TRIGGER_STEP, MB_LAMAKAN_DESERT_PIT, FLAG_DESERT_EVENT_RUNNING, EVENT(LamakanDesert_FallIntoPit) },
     { TRIGGER_STEP, MB_LAMAKAN_DESERT_SLOPE, CONDITION_ALWAYS, EVENT(LamakanDesert_SlideDownDune) },
     { TRIGGER_STEP, 40, CONDITION_ALWAYS, EVENT(LamakanDesert_MeetManticore) },
