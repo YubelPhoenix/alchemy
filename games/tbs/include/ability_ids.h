@@ -113,15 +113,27 @@ enum AbilityId {
   /// (FallingWind_RunAfterAction) and nobody learns.
   ABILITY_FALLING_WIND = 0x89,
   ABILITY_FALLING_WIND_REVIVE = 0x8b,
-  /// The heroes' finishers (Ashfall), in the style of the Tales series'
-  /// mystic artes, in empty slots 151 to 157 (mystic_artes.c).
-  ABILITY_SOL_ASCENSION = 0x97,      ///< Isaac
-  ABILITY_LAST_EMBER = 0x98,         ///< Garet: stronger as his HP falls
-  ABILITY_FORESIGHT = 0x99,          ///< Ivan: may stun
-  ABILITY_LAST_TIDE = 0x9a,          ///< Mia: her sacrifice, then the three
-  ABILITY_LAST_TIDE_HEAL = 0x9b,     ///< follow-ups nobody learns: heal the
-  ABILITY_LAST_TIDE_REVIVE = 0x9c,   ///< living, raise the fallen, and
-  ABILITY_LAST_TIDE_COLLAPSE = 0x9d, ///< her collapse
+  /// The heroes' finishers (Ashfall), each a chain of blows after one of
+  /// Tales of Destiny's Blast Calibers (mystic_artes.c). The first of each
+  /// is the one the hero learns; the rest follow at once and nobody learns
+  /// them.
+  ABILITY_SOL_ASCENSION = 0x97,      ///< Isaac (Zankuu Tenshouken): slash,
+  ABILITY_SOL_ASCENSION_SLASH = 0x9e, ///< the same slash again,
+  ABILITY_SOL_ASCENSION_RISE = 0x9f, ///< the rising leap, and
+  ABILITY_SOL_ASCENSION_FALL = 0xc5, ///< the blades crashing down
+  ABILITY_LAST_EMBER = 0x98,         ///< Garet (ZAN!): the axe smash,
+  ABILITY_LAST_EMBER_SLASH = 0xc6,   ///< the one-handed slash,
+  ABILITY_LAST_EMBER_TACKLE = 0xc7,  ///< the shoulder charge,
+  ABILITY_LAST_EMBER_UPPERCUT = 0xc8, ///< the uppercut, and
+  ABILITY_LAST_EMBER_ERUPTION = 0xc9, ///< the eruption (Gaia's Fury)
+  ABILITY_FORESIGHT = 0x99,          ///< Ivan (Rebirth Crusader): the wall
+  ABILITY_FORESIGHT_SKY = 0xca,      ///< of lightning, the bolt into the sky,
+  ABILITY_FORESIGHT_RETURN = 0xcb,   ///< and the great bolt's return
+  ABILITY_LAST_TIDE = 0x9a,          ///< Mia (Sekkazan): her charge,
+  ABILITY_LAST_TIDE_STRIKE = 0xcc,   ///< the strike, and while foes remain:
+  ABILITY_LAST_TIDE_HEAL = 0x9b,     ///< the living healed,
+  ABILITY_LAST_TIDE_REVIVE = 0x9c,   ///< the fallen raised,
+  ABILITY_LAST_TIDE_COLLAPSE = 0x9d, ///< and her collapse
   /// The last of the Mystery Leader's attacks.
   ABILITY_MYSTERY_LAST = ABILITY_P_STORM,
   /// Sarah's pike techniques (Ashfall): physical, no PP, so she can use

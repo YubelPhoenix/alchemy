@@ -1403,51 +1403,51 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 5,
         .fieldPsynergy = 16,
     },
-    // Sol Ascension (Ashfall): Isaac's finisher, after the Tales series'
-    // Zankuu Tenshouken: one foe, the heaviest Venus blow in the game.
+    // Sol Ascension (Ashfall): Isaac's finisher, after Stahn's Zankuu
+    // Tenshouken; its opening slash at the foe he picks. The rest follow
+    // (MysticArte_RunAfterAction).
     {
         .targetMode = ABILITY_TARGET_ONE,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_VENUS,
         .icon = 137,
         .range = 1,
         .ppCost = 40,
-        .power = 320,
+        .power = 12,
     },
-    // Last Ember (Ashfall): Garet's finisher, an axe combo into an eruption;
-    // up to twice as strong as his HP falls (MysticArte_Power).
+    // Last Ember (Ashfall): Garet's finisher, after Mary's "ZAN!"; its
+    // overhead axe smash. Every blow grows as his HP falls
+    // (MysticArte_Power).
     {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .targetMode = ABILITY_TARGET_ONE,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_MARS,
         .icon = 39,
-        .range = ABILITY_RANGE_ALL,
+        .range = 1,
         .ppCost = 40,
-        .power = 200,
+        .power = 12,
     },
-    // Foresight (Ashfall): Ivan's finisher, a storm called down on every
-    // foe that may stun them.
+    // Foresight (Ashfall): Ivan's finisher, after Philia's Rebirth
+    // Crusader; its wall of lightning around every foe.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
         .element = ELEMENT_JUPITER,
-        .effect = ABILITY_EFFECT_STUN,
         .icon = 54,
         .range = ABILITY_RANGE_ALL,
         .ppCost = 40,
-        .power = 240,
+        .power = 70,
     },
-    // Last Tide (Ashfall): Mia's finisher, her sacrifice: a tide on every
-    // foe; then (MysticArte_RunAfterAction) the living are healed, the
-    // fallen rise, and she falls.
+    // Last Tide (Ashfall): Mia's finisher, after Garr's Sekkazan; its
+    // charge, her power gathering. Its strike follows, then while foes
+    // remain the others rise and she falls (MysticArte_RunAfterAction).
     {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .targetMode = ABILITY_TARGET_SELF,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT_ONLY,
         .element = ELEMENT_MERCURY,
         .icon = 18,
-        .range = ABILITY_RANGE_ALL,
+        .range = 1,
         .ppCost = 40,
-        .power = 300,
     },
     // Last Tide's heal: every living ally but Mia, to full.
     {
@@ -1476,15 +1476,23 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .power = 1,
     },
-    // ?
+    // Sol Ascension's second slash, the same colour as the first.
     {
         .targetMode = ABILITY_TARGET_ONE,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_VENUS,
+        .icon = 137,
+        .range = 1,
+        .power = 12,
     },
-    // ?
+    // Sol Ascension's rising leap into the sky.
     {
         .targetMode = ABILITY_TARGET_ONE,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_VENUS,
+        .icon = 137,
+        .range = 1,
+        .power = 18,
     },
     // Dragon Cloud
     {
@@ -1861,45 +1869,80 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 7,
         .power = 36,
     },
-    // ?
+    // Sol Ascension's last blow: the blades crash down, the heaviest
+    // Venus blow in the game.
     {
         .targetMode = ABILITY_TARGET_ONE,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
         .element = ELEMENT_VENUS,
+        .icon = 137,
+        .range = 1,
+        .power = 320,
     },
-    // ?
+    // Last Ember's one-handed slash.
     {
         .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_MARS,
+        .icon = 39,
+        .range = 1,
+        .power = 12,
     },
-    // ?
+    // Last Ember's shoulder charge.
     {
         .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_MARS,
+        .icon = 39,
+        .range = 1,
+        .power = 12,
     },
-    // ?
+    // Last Ember's uppercut into the air.
     {
         .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_MARS,
+        .icon = 39,
+        .range = 1,
+        .power = 15,
     },
-    // ?
+    // Last Ember's eruption, after Mary's Gaia's Fury: every foe.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MARS,
+        .icon = 39,
+        .range = ABILITY_RANGE_ALL,
+        .power = 200,
     },
-    // ?
+    // Foresight's bolt into the sky, churning the clouds.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_JUPITER,
+        .icon = 54,
+        .range = ABILITY_RANGE_ALL,
+        .power = 70,
     },
-    // ?
+    // Foresight's great bolt returning to the ground: every foe, and it
+    // may stun.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_JUPITER,
+        .effect = ABILITY_EFFECT_STUN,
+        .icon = 54,
+        .range = ABILITY_RANGE_ALL,
+        .power = 240,
     },
-    // ?
+    // Last Tide's strike: every foe.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MERCURY,
+        .icon = 18,
+        .range = ABILITY_RANGE_ALL,
+        .power = 300,
     },
     // ?
     {
