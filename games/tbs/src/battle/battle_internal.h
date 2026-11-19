@@ -207,6 +207,7 @@ void PartyJoin_RunAfterAction(void);
 void PartyJoin_SayKeyLine(s32 message);
 s32 PartyJoin_TakeBrinkTurn(void);
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount);
+void FallingWind_KeepFallen(struct BattleTurn *plan);
 s32 PartyJoin_StepGloom(s32 *repaint);
 /// Ashfall's finished Regenerate (regenerate.c).
 void Regenerate_RunRoundEnd(s32 unitId);

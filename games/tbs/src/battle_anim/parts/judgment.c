@@ -5,6 +5,97 @@
 
 #include "../battle_anim_internal.h"
 
+// Ashfall: "???"'s Blitzkampf plays this animation from the ROM tail
+// (judgment_dark.c, which compiles this file again with JUDGMENT_DARK): her
+// figure rises in Judgment's place, and the sky and the lands the blast
+// sweeps over are sunk in darkness. The copy here, in the full battle-
+// animation bank, only hands an enemy's call over to it.
+#ifdef JUDGMENT_DARK
+#include "battle_work.h"
+#include "farcall/battle.h"
+#define JUDGMENT_FIGURE SPRITE_MYSTERY_JUDGMENT
+
+/// Sinks the backdrop just loaded into darkness: every colour of the battle
+/// background's copy (battle->palette) loses its colour and two thirds of its
+/// light, with a cold blue cast, so her purple figure and the blast's light
+/// stand out; background palettes 6 to 13 are written from it again.
+static void Judgment_Darken(void) {
+  struct BattleWork *battle = gBattleWork;
+  s32 k;
+
+  for (k = 0; k != 128; k++) {
+    s32 c = battle->palette[k];
+    s32 r = c & 31;
+    s32 g = (c >> 5) & 31;
+    s32 b = (c >> 10) & 31;
+    s32 light = (r * 77 + g * 150 + b * 29) >> 8;
+    battle->palette[k] =
+        RGB(light * 5 / 16, light * 5 / 16, light * 6 / 16);
+  }
+  Graphics_ScaleRgb555ClampedFar(battle->palette,
+                                 (u16 *)&BG_PLTT_COLOR(6, 0),
+                                 battle->brightness, 128);
+}
+#define JUDGMENT_AFTER_BACKDROP() Judgment_Darken()
+
+/// Turns the effects' colours, background colours 0 to 63 (the canvas's
+/// ramp: the gathering motes, the burst, the rings and the flares), from
+/// Judgment's blue to her violet, brightest towards a pale lilac.
+static void Judgment_Violet(void) {
+  u16 *colour = (u16 *)BG_PLTT;
+  s32 k;
+
+  for (k = 0; k < 64; k++) {
+    s32 c = colour[k];
+    s32 r = c & 31, g = (c >> 5) & 31, b = (c >> 10) & 31;
+    s32 top = r > g ? (r > b ? r : b) : (g > b ? g : b);
+    // Half the brightest channel, half the luminance: Judgment's deep blues
+    // keep their strength instead of sinking to black.
+    s32 light = (top + ((r * 77 + g * 150 + b * 29) >> 8)) / 2;
+
+    r = light * 26 / 31;
+    g = light * light / 62;
+    b = light;
+    // The brightest levels whiten, so the core still blazes.
+    if (light > 25) {
+      r += (31 - r) * (light - 25) / 6;
+      g += (31 - g) * (light - 25) / 6;
+    }
+    colour[k] = RGB(r, g, b);
+  }
+}
+#define JUDGMENT_AFTER_EFFECT_PALETTE() Judgment_Violet()
+
+/// One step of her draining the sky's light as it gathers into her: each
+/// colour of the battle background's copy moves an eighth of the way to its
+/// darkened, colourless value, and palettes 6 to 13 are written again. Fifteen
+/// steps over the gathering's first 64 frames leave about a third of the
+/// light, as Judgment_Darken does at once for the lands the blast sweeps.
+static void Judgment_DrainStep(void) {
+  struct BattleWork *battle = gBattleWork;
+  s32 k;
+
+  for (k = 0; k != 128; k++) {
+    s32 c = battle->palette[k];
+    s32 r = c & 31;
+    s32 g = (c >> 5) & 31;
+    s32 b = (c >> 10) & 31;
+    s32 light = (r * 77 + g * 150 + b * 29) >> 8;
+    battle->palette[k] = RGB((r * 7 + light * 5 / 16) / 8,
+                             (g * 7 + light * 5 / 16) / 8,
+                             (b * 7 + light * 6 / 16) / 8);
+  }
+  Graphics_ScaleRgb555ClampedFar(battle->palette,
+                                 (u16 *)&BG_PLTT_COLOR(6, 0),
+                                 battle->brightness, 128);
+}
+#else
+void BattleAnim_RunJudgmentDark(struct BattleAnimArgs *args);
+#define JUDGMENT_FIGURE SPRITE_JUDGMENT
+#define JUDGMENT_AFTER_BACKDROP() ((void)0)
+#define JUDGMENT_AFTER_EFFECT_PALETTE() ((void)0)
+#endif
+
 /// The bytes of Judgment's work block before its dimmed mote copies.
 #define JUDGMENT_SHEET_BYTES 0x2710
 
@@ -104,6 +195,13 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   DrawRectangle blit;
   volatile u16 *ime;
 
+#ifndef JUDGMENT_DARK
+  // An enemy's call is "???"'s Blitzkampf (judgment_dark.c).
+  if (args->user > 7) {
+    BattleAnim_RunJudgmentDark(args);
+    return;
+  }
+#endif
   cache = &gHeapSlots[HEAP_SLOT_BATTLE_CANVAS];
   ime = (u16 *)&REG_IME;
   canvas = cache[0];
@@ -128,7 +226,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   // back.
   BattleAnim_WipeCanvas(CANVAS_WIPE_DOWN, CANVAS_WIPE_FILL);
   BattleAnim_SelectLivingTargets(work->args);
-  BattleAnim_SpawnObjects(JUDGMENT_FORMATION_OBJECTS, SPRITE_JUDGMENT, 1);
+  BattleAnim_SpawnObjects(JUDGMENT_FORMATION_OBJECTS, JUDGMENT_FIGURE, 1);
   gProjection.centerY = 240;
   WaitFrames(1);
   BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,
@@ -169,6 +267,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   Iwram_CopyWords((void *)BG_PLTT,
                   Resource_GetTableEntry((s32)&ResourceId_BlueCrescentSheet),
                   128);
+  JUDGMENT_AFTER_EFFECT_PALETTE();
 
   for (i = 0; i != 128; i++) {
     // A mote's radius is its x, 72 to 87 pixels as a plain integer, and its
@@ -259,6 +358,13 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
         }
       }
     }
+
+#ifdef JUDGMENT_DARK
+    // She drains the sky as the light gathers into her: a step every 4
+    // frames from frame 8 to 64, finished before the stock fade below.
+    if (frame >= 8 && frame <= 64 && (frame & 3) == 0)
+      Judgment_DrainStep();
+#endif
 
     // Frame 72: the battle background starts its 24-frame fade
     // (Palette_StepFadeTransfer).
@@ -464,6 +570,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   draw[0] = (DrawRectangle)gHeapSlots[HEAP_SLOT_RAM_CODE];
   Resource_LoadAndDecompress((s32)&ResourceId_BlueCrescentSheet,
                              work->sheet + JUDGMENT_SHEET_FLARE_A, 1, 1);
+  JUDGMENT_AFTER_EFFECT_PALETTE();
 
   {
     // Darken the mote sheet for the sweep: levels above 32 lose 32 (224
@@ -485,6 +592,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   work->fadeStep = 0;
   BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,
                            (s32)&ResourceId_AerialViewBackdrop, 0);
+  JUDGMENT_AFTER_BACKDROP();
   REG_BG2PA = Q_8_8(1);
   REG_BG2X = -0x3c00;
   REG_BG2CNT = BGCNT_PRIORITY(0) | BGCNT_CHAR_BASE(1) | BGCNT_256_COLORS |
@@ -601,6 +709,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
       Dma_Set((const void *)&fill, canvas, JUDGMENT_DMA_FILL_CANVAS, REG_DMA3);
       BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,
                                (s32)&ResourceId_BeachBackdrop, 0);
+      JUDGMENT_AFTER_BACKDROP();
     }
 
     // Frame 214, the forest: 16 debris pieces start rising from the forest
@@ -613,6 +722,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
       Dma_Set((const void *)&fill, canvas, JUDGMENT_DMA_FILL_CANVAS, REG_DMA3);
       BattleBackground_LoadFar(BATTLE_BACKGROUND_FIXED,
                                (s32)&ResourceId_ForestBackdrop, 0);
+      JUDGMENT_AFTER_BACKDROP();
       for (i = 0; i != JUDGMENT_DEBRIS_OBJECTS; i++) {
         particle = &work->particles[i];
         particle->x = ((Random16() & 63) + 32) << 16;

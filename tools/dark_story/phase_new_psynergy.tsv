@@ -16,7 +16,16 @@
 01472	message	Stars daze all foes.
 01473	message	Confuse every foe.
 01474	message	Curse a foe with doom.
-# Fading Wind (ability 137): Mia's party revive, after the leaf-and-wind move
-# she uses in a pre-release screenshot.
-00956	message	Fading Wind
-01475	message	Revives all fallen allies.
+# Falling Wind (ability 137): Mia's two-part move, a storm on the enemies and
+# a revive of every fallen ally, after the leaf-and-wind ability she uses in a
+# pre-release screenshot.
+00956	message	Falling Wind
+01475	message	Never forget who you were.
+# "???"'s summon (ability 138, ABILITY_P_STORM_SUMMON), her finisher.
+00957	message	Kaiserdammerung
+# Falling Wind's cast line (battle/battle/turn.c): Mia remembers it, as the move
+# remembers the leaf-and-wind ability of a pre-release screenshot.
+N418	MsgFallingWindRemembered	{argument_actor_name:1} remembers\nthe past... Falling Wind!
+# Its revive, which follows the storm when an ally is down.
+N419	MsgFallingWindSettles	The leaves settle\non the fallen...
+00958	message	Falling Wind

@@ -1258,11 +1258,33 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .ppCost = 10,
     },
-    // ?
-    // Fading Wind (Ashfall): revives every fallen ally at half HP. A nod
-    // to the leaf-and-wind move Mia uses in a pre-release screenshot, which
-    // never made the final game. Revive effects take downed allies as
-    // targets (BattleTurn_SetTargets) and pass over standing ones.
+    // Falling Wind (Ashfall): Mia's two-part move, after the leaf-and-wind
+    // ability she uses in a pre-release screenshot. This is its storm, on
+    // every enemy, slowing them; its revive (139) follows at once.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_AGILITY_DOWN,
+        .icon = 72,
+        .range = 4,
+        .ppCost = 34,
+        .power = 130,
+    },
+    // P-Storm (Ashfall): "???"'s finisher as she casts it, in an empty slot
+    // so it can be staged as a summon (gAbilityStaging stops at Severe
+    // Blow): Judgment's sequence with her as its figure. The numbers are
+    // P-Storm's (ABILITY_P_STORM), which this replaces in her list.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 160,
+    },
+    // Falling Wind's revive (Ashfall): the leaves settle on every fallen ally,
+    // who rises at half HP. Played after the storm (137) by
+    // FallingWind_RunAfterAction; nobody learns it, and it costs nothing.
     {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
@@ -1270,17 +1292,6 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .effect = ABILITY_EFFECT_REVIVE_HALF,
         .icon = 72,
         .range = ABILITY_RANGE_ALL,
-        .ppCost = 24,
-    },
-    // ?
-    {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
-    },
-    // ?
-    {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
     },
     // Move
     {

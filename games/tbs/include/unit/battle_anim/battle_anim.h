@@ -111,6 +111,8 @@ enum BattleAnimId {
   BATTLE_ANIM_SWIRLING_STARS = 70, ///< Ashfall: Starfall
   BATTLE_ANIM_ORBITING_SKULLS = 71, ///< Ashfall: Death Knell
   BATTLE_ANIM_TARGET_BURSTS = 72,  ///< Ashfall: Ember Burst
+  BATTLE_ANIM_FALLING_WIND = 73,   ///< Ashfall: Falling Wind's storm
+  BATTLE_ANIM_FALLING_WIND_REVIVE = 74, ///< Ashfall: Falling Wind's revive
   BATTLE_ANIM_GRANITE = 200,
   BATTLE_ANIM_QUARTZ = 201,
   BATTLE_ANIM_VINE = 202,
@@ -373,6 +375,8 @@ void BattleAnim_RunMirroredWall(struct BattleAnimArgs *args, s32 mode);
 void BattleAnim_RunRevive(struct BattleAnimArgs *args);
 void BattleAnim_RunDew(struct BattleAnimArgs *args);
 void BattleAnim_RunDjinnBeams(struct BattleAnimArgs *args, s32 element);
+void BattleAnim_RunFallingWind(struct BattleAnimArgs *args);
+void BattleAnim_RunFallingWindRevive(struct BattleAnimArgs *args);
 
 // lobbed_shells.c
 void BattleAnim_RunMadSpatter(struct BattleAnimArgs *args);
