@@ -321,7 +321,8 @@ def check_mystery_rescue_encounter() -> None:
             "Mystery's four-person rescue battle HP/turn balance regressed")
     # She opens against Isaac alone, then faces Mia, Garet, and Ivan.
     # Her own attacks remain non-lethal/non-sealing in the scripted opener.
-    require(".abilities = {ABILITY_GOTTERKANONE, ABILITY_P_STORM, ABILITY_P_VORTEX, "
+    # P-Storm uses the new summon presentation, with its original balance.
+    require(".abilities = {ABILITY_GOTTERKANONE, ABILITY_P_STORM_SUMMON, ABILITY_P_VORTEX, "
             "ABILITY_PERFECTI_EXPLOSION, ABILITY_GLEPNIR, ABILITY_EX_GOTTERKANONE, "
             "ABILITY_STERNBRECHER, ABILITY_RANSNETZ}," in boss,
             "Solo duel must keep the Mystery Leader's own non-lethal, non-sealing moveset")
