@@ -10,7 +10,8 @@
 ///   (Mary's Gaia's Fury).
 /// - Ivan's Foresight (Philia's Rebirth Crusader): a wall of lightning, a
 ///   bolt into the sky that churns the clouds, and the great bolt's return.
-/// - Mia's Last Tide (Garr's Sekkazan): she gathers her power, strikes, and
+/// - Mia's Last Tide (Garr's Sekkazan): she gathers her power, strikes with
+///   frost and a blizzard, then one great blow, and
 ///   while foes remain she gives everything: the others rise and she falls.
 ///
 /// Everything here runs from the spare ROM area (rom_tail_02); the battle
@@ -56,6 +57,10 @@ s32 MysticArte_CastMessage(s32 abilityId) {
     return MsgForesightName;
   case ABILITY_LAST_TIDE:
     return MsgLastTideCry;
+  case ABILITY_LAST_TIDE_FROST:
+    return MsgLastTideFrost;
+  case ABILITY_LAST_TIDE_BLIZZARD:
+    return MsgLastTideBlizzard;
   case ABILITY_LAST_TIDE_STRIKE:
     return MsgLastTideName;
   case ABILITY_LAST_TIDE_HEAL:
@@ -152,7 +157,8 @@ static const s16 sMysticArte_Chains[MYSTIC_ARTE_CHAIN_COUNT]
     {ABILITY_LAST_EMBER, ABILITY_LAST_EMBER_SLASH, ABILITY_LAST_EMBER_TACKLE,
      ABILITY_LAST_EMBER_UPPERCUT, ABILITY_LAST_EMBER_ERUPTION},
     {ABILITY_FORESIGHT, ABILITY_FORESIGHT_SKY, ABILITY_FORESIGHT_RETURN},
-    {ABILITY_LAST_TIDE, ABILITY_LAST_TIDE_STRIKE},
+    {ABILITY_LAST_TIDE, ABILITY_LAST_TIDE_FROST, ABILITY_LAST_TIDE_BLIZZARD,
+     ABILITY_LAST_TIDE_STRIKE},
 };
 
 /// Plays `abilityId` at once as `unitId`'s follow-up, aimed at `target`.

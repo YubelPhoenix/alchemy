@@ -130,6 +130,8 @@ enum AbilityId {
   ABILITY_FORESIGHT_SKY = 0xca,      ///< of lightning, the bolt into the sky,
   ABILITY_FORESIGHT_RETURN = 0xcb,   ///< and the great bolt's return
   ABILITY_LAST_TIDE = 0x9a,          ///< Mia (Sekkazan): her charge,
+  ABILITY_LAST_TIDE_FROST = 0xcd,    ///< two blows of frost and blizzard,
+  ABILITY_LAST_TIDE_BLIZZARD = 0xce,
   ABILITY_LAST_TIDE_STRIKE = 0xcc,   ///< the strike, and while foes remain:
   ABILITY_LAST_TIDE_HEAL = 0x9b,     ///< the living healed,
   ABILITY_LAST_TIDE_REVIVE = 0x9c,   ///< the fallen raised,

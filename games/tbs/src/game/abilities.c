@@ -1944,15 +1944,23 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = ABILITY_RANGE_ALL,
         .power = 300,
     },
-    // ?
+    // Last Tide's first blow, frost on every foe.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MERCURY,
+        .icon = 18,
+        .range = ABILITY_RANGE_ALL,
+        .power = 70,
     },
-    // ?
+    // Last Tide's blizzard on every foe.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MERCURY,
+        .icon = 18,
+        .range = ABILITY_RANGE_ALL,
+        .power = 80,
     },
     // ?
     {
