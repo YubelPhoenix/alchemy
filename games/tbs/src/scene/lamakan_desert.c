@@ -1130,23 +1130,9 @@ static void LamakanDesert_MeetManticore(void) {
 /// The short group check after the Manticore. Mia's abandoned anger subplot
 /// is removed; Ash Jenna appears immediately afterward.
 static void LamakanDesert_ManticoreAftermath(void) {
-  Event_Start();
-  MapGrid_CenterOnFollowedPoint();
-  WaitFrames(1);
-  Event_StartScreenTransition();
-  Event_WaitTransitionFrames();
-  Event_SetMessageId(MsgDarkManticoreGaretCheck);
-  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-  Event_SetMessageId(MsgDarkManticoreMiaReady);
-  LamakanDesert_SayMia();
-  Event_SetMessageId(MsgDarkManticoreIvanReady);
-  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-  Event_SetMessageId(MsgDarkManticoreIsaacMove);
-  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-  Event_SetMessageId(MsgDarkManticoreGaretSees);
-  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  // The discarded post-battle party check used an obsolete Mia portrait.
+  // Let Ash Jenna's confrontation carry the aftermath instead.
   GameFlag_Set(FLAG_DARK_MANTICORE_RETURN_SEEN);
-  Event_End();
 }
 
 /// Entering Lamakan Desert: the heat gauge (600 steps) starts on all but
@@ -1202,8 +1188,14 @@ s32 LamakanDesert_Initialize(void) {
       GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0) {
     if (GameFlag_Get(FLAG_DARK_MANTICORE_RETURN_SEEN) == 0)
       LamakanDesert_ManticoreAftermath();
-    Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(167), PIXELS(184));
-    Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_NORTH, 0);
+    // Put Ash Jenna ahead of Isaac, facing him, not behind his return spot.
+    {
+      struct Actor *leader = Actor_GetById(ACTOR_PARTY_LEADER);
+      Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, leader->x.fixed,
+                        leader->z.fixed - PIXELS(48));
+      Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_SOUTH, 0);
+      Actor_FaceActor(ACTOR_PARTY_LEADER, ACTOR_LAMAKAN_ASH_JENNA, 0);
+    }
     LamakanDesert_AshJennaFinale();
   }
   return 0;
