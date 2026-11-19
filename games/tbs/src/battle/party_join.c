@@ -407,6 +407,9 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
     WaitFrames(ARRIVAL_RUN_FRAMES);
   }
   BattleMotion_ReturnToSpot(unitId);
+  actor = BattleObject_Get(unitId)->actor;
+  if (actor != NULL)
+    Actor_SelectAnimationFar(actor, POSE_STANDING);
 
   // Their light breaks through, and the gloom eases with it: an entrance
   // attack on "???" (a cast's own glow is its light), or else a hand raised
@@ -416,14 +419,10 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
   // returns when the glow is over; BattlePlayback_WaitForReady must not
   // follow it here, since it waits for a playback task only an action runs.
   battle->joinGloomTarget = gloom;
-  if (entranceAbility != 0) {
+  // Garet and Ivan land without the burst; the gloom eases naturally.
+  (void)element;
+  if (entranceAbility != 0)
     PartyJoin_Act(unitId, COMMAND_PSYNERGY, entranceAbility, TARGET_MYSTERY);
-  } else {
-    actor = BattleObject_Get(unitId)->actor;
-    if (actor != NULL)
-      Actor_SelectAnimationFar(actor, POSE_CAST);
-    ElementGlow_Play(unitId, element, GLOW_BURST, 0);
-  }
   PartyJoin_Settle();
   BattleMotion_ReturnToSpot(unitId);
 
@@ -519,6 +518,9 @@ static void PartyJoin_RunUnison(void) {
   PartyJoin_Settle();
   for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++)
     BattleMotion_ReturnToSpot(battle->partyUnits[place]);
+    actor = BattleObject_Get(battle->partyUnits[place])->actor;
+    if (actor != NULL)
+      Actor_SelectAnimationFar(actor, POSE_STANDING);
   WaitFrames(30);
 }
 
@@ -583,6 +585,61 @@ void PartyJoin_RunRoundEnd(void) {
 
 /// Ends her P-Storm turn once it has played, so only that blow leaves
 /// Isaac at exactly 1 HP. Called by Battle_Run after every action.
+/// Falling Wind's second part (Ashfall): after its storm, if the caster still
+/// stands, an enemy remains and an ally is down, the leaves settle on the
+/// fallen and every one rises at half HP (ABILITY_FALLING_WIND_REVIVE),
+/// played at once as its own action. With nobody down it passes quietly.
+/// Falling Wind's revive aims at every ally but lands only on the fallen:
+/// the plan keeps the downed targets alone, each sure to rise, so the
+/// living get no "no effect" line and no 60% roll by distance holds the
+/// fallen down. Called by BattleTurn_Build for ABILITY_FALLING_WIND_REVIVE.
+void FallingWind_KeepFallen(struct BattleTurn *plan) {
+  s32 from, to = 0;
+
+  for (from = 0; from < plan->targetCount; from++) {
+    if (Unit_GetFar(plan->targetIds[from])->hp != 0)
+      continue;
+    plan->targetIds[to] = plan->targetIds[from];
+    plan->targetOffset[to] = plan->targetOffset[from];
+    plan->targetMultiplier[to] = plan->targetMultiplier[from];
+    plan->targetCritical[to] = plan->targetCritical[from];
+    plan->targetHit[to] = 1;
+    to++;
+  }
+  plan->targetCount = to;
+}
+
+static void FallingWind_RunAfterAction(void) {
+  struct BattleWork *battle = gBattleWork;
+  struct BattleTurn *turn = &battle->turn;
+  struct BattleAction request;
+  s32 place, downed;
+
+  if (turn->command != COMMAND_PSYNERGY ||
+      turn->abilityId != ABILITY_FALLING_WIND ||
+      turn->failure != TURN_FAILURE_NONE)
+    return;
+  if (Unit_GetFar(turn->unitId)->hp == 0 ||
+      BattleUnit_ListLiving(BATTLE_SIDE_MASK_ENEMIES, 0) == 0)
+    return;
+  downed = -1;
+  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++) {
+    if (Unit_GetFar(battle->partyUnits[place])->hp == 0) {
+      downed = place;
+      break;
+    }
+  }
+  if (downed < 0)
+    return;
+  Iwram_ClearWords(&request, sizeof(request));
+  request.unitId = turn->unitId;
+  request.command = COMMAND_PSYNERGY;
+  request.parameter = ABILITY_FALLING_WIND_REVIVE;
+  request.target = downed;
+  request.range = Ability_Get(ABILITY_FALLING_WIND_REVIVE)->range;
+  BattleStaging_DispatchAction(&request, 10);
+}
+
 void PartyJoin_RunAfterAction(void) {
 #if PARTY_JOIN_ENABLED
   struct BattleWork *battle = gBattleWork;
@@ -595,6 +652,7 @@ void PartyJoin_RunAfterAction(void) {
   if (battle->joinEdge != 0 && battle->joinStage == JOIN_ALONE)
     battle->joinGloomTarget = GLOOM_ALONE;
 #endif
+  FallingWind_RunAfterAction();
 }
 
 /// Eases the gloom one frame toward where the story has it and returns it,
