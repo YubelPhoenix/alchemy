@@ -762,6 +762,9 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
             Battle_RollEffectSuccessFar(request->unitId, plan->targetIds[index],
                                         ability->element, ability->effect, 100);
     }
+    // Ashfall: Falling Wind's revive lands only on the fallen.
+    if (abilityId == ABILITY_FALLING_WIND_REVIVE)
+      FallingWind_KeepFallen(plan);
     // How it is staged: the ability's row of gAbilityAnimations, its variant
     // raised to the first target's multiplier less one (a double or triple
     // blow); then the staging, from gAbilityStaging where it gives one. The
