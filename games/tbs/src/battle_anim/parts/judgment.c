@@ -47,9 +47,21 @@ static void Judgment_Violet(void) {
 
   for (k = 0; k < 64; k++) {
     s32 c = colour[k];
-    s32 light = ((c & 31) * 77 + ((c >> 5) & 31) * 150 +
-                 ((c >> 10) & 31) * 29) >> 8;
-    colour[k] = RGB(light * 26 / 31, light * light / 62, light);
+    s32 r = c & 31, g = (c >> 5) & 31, b = (c >> 10) & 31;
+    s32 top = r > g ? (r > b ? r : b) : (g > b ? g : b);
+    // Half the brightest channel, half the luminance: Judgment's deep blues
+    // keep their strength instead of sinking to black.
+    s32 light = (top + ((r * 77 + g * 150 + b * 29) >> 8)) / 2;
+
+    r = light * 26 / 31;
+    g = light * light / 62;
+    b = light;
+    // The brightest levels whiten, so the core still blazes.
+    if (light > 25) {
+      r += (31 - r) * (light - 25) / 6;
+      g += (31 - g) * (light - 25) / 6;
+    }
+    colour[k] = RGB(r, g, b);
   }
 }
 #define JUDGMENT_AFTER_EFFECT_PALETTE() Judgment_Violet()
