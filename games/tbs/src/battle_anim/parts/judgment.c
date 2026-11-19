@@ -38,6 +38,22 @@ static void Judgment_Darken(void) {
 }
 #define JUDGMENT_AFTER_BACKDROP() Judgment_Darken()
 
+/// Turns the effects' colours, background colours 0 to 63 (the canvas's
+/// ramp: the gathering motes, the burst, the rings and the flares), from
+/// Judgment's blue to her violet, brightest towards a pale lilac.
+static void Judgment_Violet(void) {
+  u16 *colour = (u16 *)BG_PLTT;
+  s32 k;
+
+  for (k = 0; k < 64; k++) {
+    s32 c = colour[k];
+    s32 light = ((c & 31) * 77 + ((c >> 5) & 31) * 150 +
+                 ((c >> 10) & 31) * 29) >> 8;
+    colour[k] = RGB(light * 26 / 31, light * light / 62, light);
+  }
+}
+#define JUDGMENT_AFTER_EFFECT_PALETTE() Judgment_Violet()
+
 /// One step of her draining the sky's light as it gathers into her: each
 /// colour of the battle background's copy moves an eighth of the way to its
 /// darkened, colourless value, and palettes 6 to 13 are written again. Fifteen
@@ -65,6 +81,7 @@ static void Judgment_DrainStep(void) {
 void BattleAnim_RunJudgmentDark(struct BattleAnimArgs *args);
 #define JUDGMENT_FIGURE SPRITE_JUDGMENT
 #define JUDGMENT_AFTER_BACKDROP() ((void)0)
+#define JUDGMENT_AFTER_EFFECT_PALETTE() ((void)0)
 #endif
 
 /// The bytes of Judgment's work block before its dimmed mote copies.
@@ -238,6 +255,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   Iwram_CopyWords((void *)BG_PLTT,
                   Resource_GetTableEntry((s32)&ResourceId_BlueCrescentSheet),
                   128);
+  JUDGMENT_AFTER_EFFECT_PALETTE();
 
   for (i = 0; i != 128; i++) {
     // A mote's radius is its x, 72 to 87 pixels as a plain integer, and its
@@ -540,6 +558,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   draw[0] = (DrawRectangle)gHeapSlots[HEAP_SLOT_RAM_CODE];
   Resource_LoadAndDecompress((s32)&ResourceId_BlueCrescentSheet,
                              work->sheet + JUDGMENT_SHEET_FLARE_A, 1, 1);
+  JUDGMENT_AFTER_EFFECT_PALETTE();
 
   {
     // Darken the mote sheet for the sweep: levels above 32 lose 32 (224
