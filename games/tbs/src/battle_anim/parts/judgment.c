@@ -5,7 +5,7 @@
 
 #include "../battle_anim_internal.h"
 
-// Ashfall: "???"'s Blitzkampf plays this animation from the ROM tail
+// Ashfall: "???"'s Kaiserdammerung plays this animation from the ROM tail
 // (judgment_dark.c, which compiles this file again with JUDGMENT_DARK): her
 // figure rises in Judgment's place, and the sky and the lands the blast
 // sweeps over are sunk in darkness. The copy here, in the full battle-
@@ -196,7 +196,7 @@ void BattleAnim_RunJudgment(struct BattleAnimArgs *args) {
   volatile u16 *ime;
 
 #ifndef JUDGMENT_DARK
-  // An enemy's call is "???"'s Blitzkampf (judgment_dark.c).
+  // An enemy's call is "???"'s Kaiserdammerung (judgment_dark.c).
   if (args->user > 7) {
     BattleAnim_RunJudgmentDark(args);
     return;
