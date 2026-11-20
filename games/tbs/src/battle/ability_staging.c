@@ -147,7 +147,7 @@ const u8 gAbilityStaging[] = {
     0, // Vertigo (Ashfall)
     0, // Death Knell (Ashfall)
     0, // Falling Wind (Ashfall)
-    STAGING_SUMMON, // P-Storm, "???"'s summon (Ashfall)
+    STAGING_SUMMON, // Kaiserdammerung, "???"'s summon (Ashfall)
     0, // Falling Wind's revive (Ashfall)
     0, // Move
     0, // Mind Read
@@ -669,7 +669,7 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_UNUSED_ORBITING_SPIRALS, // Vertigo (Ashfall)
     BATTLE_ANIM_ORBITING_SKULLS, // Death Knell (Ashfall)
     BATTLE_ANIM_FALLING_WIND, // Falling Wind's storm (Ashfall)
-    BATTLE_ANIM_DOUSE | ANIM_SUMMON, // P-Storm (Ashfall): Judgment's summon with "???" as its figure (judgment.c)
+    BATTLE_ANIM_DOUSE | ANIM_SUMMON, // Kaiserdammerung (Ashfall): Judgment's summon with "???" as its figure (judgment.c)
     BATTLE_ANIM_FALLING_WIND_REVIVE, // Falling Wind's revive (Ashfall)
     0, // Move
     0, // Mind Read
@@ -1057,7 +1057,7 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_P_VORTEX, // P-Vortex
     BATTLE_ANIM_GLEPNIR, // Glepnir
     BATTLE_ANIM_STERNBRECHER, // EX Sternbrecher
-    BATTLE_ANIM_P_STORM, // P-Storm
+    BATTLE_ANIM_P_STORM, // Kaiserdammerung
     BATTLE_ANIM_QUICK_STRIKE,   // Piercing Thrust
     BATTLE_ANIM_RAPID_SMASH,    // Haft Strike
     BATTLE_ANIM_HELM_SPLITTER,  // Disarm
