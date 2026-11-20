@@ -1271,7 +1271,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 34,
         .power = 130,
     },
-    // The commander's custom Judgment-style finishing move (P-Storm slot).
+    // The commander's custom Judgment-style finishing move (Kaiserdammerung slot).
     // This is the ANIMATED attack, ABILITY_P_STORM_SUMMON, staged through
     // the summon sequence with her figure. Do not balance only the unused
     // ABILITY_P_STORM row at the end of the ability table.
@@ -4254,7 +4254,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 3,
         .power = 410,
     },
-    // P-Storm, her finisher below half HP, in Demon Night's slot: strong
+    // Kaiserdammerung, her finisher below half HP, in Demon Night's slot: strong
     // spread damage, but no lingering status or arbitrary instant defeat.
     {
         .targetMode = ABILITY_TARGET_FOES,
