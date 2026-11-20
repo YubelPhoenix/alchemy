@@ -3862,7 +3862,7 @@ msgstr "?"
 
 msgctxt "message"
 msgid "00957"
-msgstr "?"
+msgstr "Kaiserdammerung"
 
 msgctxt "message"
 msgid "00958"
@@ -64983,7 +64983,7 @@ msgstr "EX Sternbrecher"
 
 msgctxt "message"
 msgid "10730"
-msgstr "P-Storm"
+msgstr "Kaiserdammerung"
 
 msgctxt "MsgMysteryUnleashesAbility"
 msgid "10731"
