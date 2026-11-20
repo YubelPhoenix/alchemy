@@ -1416,8 +1416,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .power = 12,
     },
     // Last Ember (Ashfall): Garet's finisher, after Mary's "ZAN!"; its
-    // overhead axe smash. Every blow grows as his HP falls
-    // (MysticArte_Power).
+    // overhead axe smash.
     {
         .targetMode = ABILITY_TARGET_ONE,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
@@ -1440,7 +1439,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
     },
     // Last Tide (Ashfall): Mia's finisher, after Garr's Sekkazan; its
     // charge, her power gathering. Its strike follows, then while foes
-    // remain the others rise and she falls (MysticArte_RunAfterAction).
+    // remain the fallen rise and she falls (MysticArte_RunAfterAction).
     {
         .targetMode = ABILITY_TARGET_SELF,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT_ONLY,
@@ -1449,14 +1448,10 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .ppCost = 40,
     },
-    // Last Tide's heal: every living ally but Mia, to full.
+    // ?
     {
-        .targetMode = ABILITY_TARGET_ALLIES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_HP,
-        .element = ELEMENT_MERCURY,
-        .icon = 18,
-        .range = ABILITY_RANGE_ALL,
-        .power = 2000,
+        .targetMode = ABILITY_TARGET_ONE,
+        .element = ELEMENT_VENUS,
     },
     // Last Tide's revive: every fallen ally, at full HP.
     {
@@ -1485,14 +1480,15 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .power = 12,
     },
-    // Sol Ascension's rising leap into the sky.
+    // Sol Ascension's last blow: the rising leap into the sky, the
+    // heaviest Venus blow in the game.
     {
         .targetMode = ABILITY_TARGET_ONE,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
         .element = ELEMENT_VENUS,
         .icon = 137,
         .range = 1,
-        .power = 18,
+        .power = 320,
     },
     // Dragon Cloud
     {
@@ -1869,15 +1865,10 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 7,
         .power = 36,
     },
-    // Sol Ascension's last blow: the blades crash down, the heaviest
-    // Venus blow in the game.
+    // ?
     {
         .targetMode = ABILITY_TARGET_ONE,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
         .element = ELEMENT_VENUS,
-        .icon = 137,
-        .range = 1,
-        .power = 320,
     },
     // Last Ember's one-handed slash.
     {
@@ -1897,23 +1888,20 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .power = 12,
     },
-    // Last Ember's uppercut into the air.
+    // Last Ember's last blow: the uppercut into the air. It grows as
+    // Garet's HP falls (MysticArte_Power).
     {
         .targetMode = ABILITY_TARGET_ONE,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
-        .element = ELEMENT_MARS,
-        .icon = 39,
-        .range = 1,
-        .power = 15,
-    },
-    // Last Ember's eruption, after Mary's Gaia's Fury: every foe.
-    {
-        .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
         .element = ELEMENT_MARS,
         .icon = 39,
-        .range = ABILITY_RANGE_ALL,
-        .power = 200,
+        .range = 1,
+        .power = 240,
+    },
+    // ?
+    {
+        .targetMode = ABILITY_TARGET_ONE,
+        .element = ELEMENT_VENUS,
     },
     // Foresight's bolt into the sky, churning the clouds.
     {
@@ -1924,8 +1912,8 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = ABILITY_RANGE_ALL,
         .power = 70,
     },
-    // Foresight's great bolt returning to the ground: every foe, and it
-    // may stun.
+    // Foresight's last blow: the great bolt returning to the ground on
+    // every foe; it may stun.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
@@ -1944,23 +1932,15 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = ABILITY_RANGE_ALL,
         .power = 300,
     },
-    // Last Tide's first blow, frost on every foe.
+    // ?
     {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
-        .element = ELEMENT_MERCURY,
-        .icon = 18,
-        .range = ABILITY_RANGE_ALL,
-        .power = 70,
+        .targetMode = ABILITY_TARGET_ONE,
+        .element = ELEMENT_VENUS,
     },
-    // Last Tide's blizzard on every foe.
+    // ?
     {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
-        .element = ELEMENT_MERCURY,
-        .icon = 18,
-        .range = ABILITY_RANGE_ALL,
-        .power = 80,
+        .targetMode = ABILITY_TARGET_ONE,
+        .element = ELEMENT_VENUS,
     },
     // ?
     {

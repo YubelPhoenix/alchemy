@@ -331,6 +331,7 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
   case COMMAND_PSYNERGY: {
     struct AbilityDefinition *ability;
     s32 canCast = 1;
+    s32 message;
 
     abilityId = request->parameter;
     ability = Ability_Get(abilityId);
@@ -339,8 +340,10 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
     MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
     MessageArgument_PushFar(abilityId, MESSAGE_ARGUMENT_ABILITY);
     // Ashfall: Falling Wind and the heroes' finishers have lines of their
-    // own (MysticArte_CastMessage).
-    BattleMessage_ShowAndWaitFar(MysticArte_CastMessage(abilityId));
+    // own, and a finisher's middle blows none (MysticArte_CastMessage).
+    message = MysticArte_CastMessage(abilityId);
+    if (message != MYSTIC_ARTE_SILENT)
+      BattleMessage_ShowAndWaitFar(message);
     // Fail if PP is insufficient or Psynergy is sealed (the seal wins); the
     // failure is shown by the staging (plan->failure). Only a cast that goes
     // ahead pays its PP.

@@ -207,6 +207,8 @@ void PartyJoin_RunAfterAction(void);
 void PartyJoin_SayKeyLine(s32 message);
 s32 PartyJoin_TakeBrinkTurn(void);
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount);
+/// MysticArte_CastMessage's answer for a blow that shows no line.
+#define MYSTIC_ARTE_SILENT (-1)
 s32 MysticArte_CastMessage(s32 abilityId);
 void MysticArte_AdjustPlan(struct BattleTurn *plan, s32 abilityId);
 s32 MysticArte_Power(s32 abilityId, struct Unit *actor, s32 power);

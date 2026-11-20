@@ -2,17 +2,17 @@
 /// Ashfall: the heroes' finishers and the special handling of Falling Wind.
 /// Each finisher follows one of Tales of Destiny's Blast Calibers step by
 /// step, a step to a blow, each drawn with the nearest animation the game
-/// has:
+/// has, and nothing the Blast Caliber does not do:
 /// - Isaac's Sol Ascension (Stahn's Zankuu Tenshouken): two slashes of one
-///   colour, a rising leap into the sky, and the blades crashing down.
+///   colour and the rising leap.
 /// - Garet's Last Ember (Mary's "ZAN!"): the overhead axe smash, the
-///   one-handed slash, the shoulder charge, the uppercut, and an eruption
-///   (Mary's Gaia's Fury).
+///   one-handed slash, the shoulder charge and the uppercut.
 /// - Ivan's Foresight (Philia's Rebirth Crusader): a wall of lightning, a
-///   bolt into the sky that churns the clouds, and the great bolt's return.
-/// - Mia's Last Tide (Garr's Sekkazan): she gathers her power, strikes with
-///   frost and a blizzard, then one great blow, and
-///   while foes remain she gives everything: the others rise and she falls.
+///   bolt into the sky and the great bolt's return.
+/// - Mia's Last Tide (Garr's Sekkazan): she gathers her power and strikes,
+///   and while foes remain the fallen rise and she falls.
+/// The opening blow has its cry and the last calls out the name; the blows
+/// between are silent.
 ///
 /// Everything here runs from the spare ROM area (rom_tail_02); the battle
 /// bank only calls in:
@@ -24,7 +24,9 @@
 
 #include "battle_internal.h"
 
-/// The line shown as `abilityId` is used, in place of "<unit> casts ...!".
+/// The line shown as `abilityId` is used, in place of "<unit> casts ...!";
+/// MYSTIC_ARTE_SILENT for a blow in the middle of a finisher, which shows
+/// none.
 s32 MysticArte_CastMessage(s32 abilityId) {
   switch (abilityId) {
   case ABILITY_FALLING_WIND:
@@ -33,42 +35,29 @@ s32 MysticArte_CastMessage(s32 abilityId) {
     return MsgFallingWindSettles;
   case ABILITY_SOL_ASCENSION:
     return MsgSolAscensionCry;
-  case ABILITY_SOL_ASCENSION_SLASH:
-    return MsgSolAscensionSol;
   case ABILITY_SOL_ASCENSION_RISE:
-    return MsgSolAscensionRise;
-  case ABILITY_SOL_ASCENSION_FALL:
     return MsgSolAscensionName;
   case ABILITY_LAST_EMBER:
     return MsgLastEmberCry;
-  case ABILITY_LAST_EMBER_SLASH:
-    return MsgLastEmberSlash;
-  case ABILITY_LAST_EMBER_TACKLE:
-    return MsgLastEmberTackle;
   case ABILITY_LAST_EMBER_UPPERCUT:
-    return MsgLastEmberUppercut;
-  case ABILITY_LAST_EMBER_ERUPTION:
     return MsgLastEmberName;
   case ABILITY_FORESIGHT:
     return MsgForesightCry;
-  case ABILITY_FORESIGHT_SKY:
-    return MsgForesightSky;
   case ABILITY_FORESIGHT_RETURN:
     return MsgForesightName;
   case ABILITY_LAST_TIDE:
     return MsgLastTideCry;
-  case ABILITY_LAST_TIDE_FROST:
-    return MsgLastTideFrost;
-  case ABILITY_LAST_TIDE_BLIZZARD:
-    return MsgLastTideBlizzard;
   case ABILITY_LAST_TIDE_STRIKE:
     return MsgLastTideName;
-  case ABILITY_LAST_TIDE_HEAL:
-    return MsgLastTideHeal;
   case ABILITY_LAST_TIDE_REVIVE:
     return MsgLastTideRevive;
   case ABILITY_LAST_TIDE_COLLAPSE:
     return MsgLastTideCollapse;
+  case ABILITY_SOL_ASCENSION_SLASH:
+  case ABILITY_LAST_EMBER_SLASH:
+  case ABILITY_LAST_EMBER_TACKLE:
+  case ABILITY_FORESIGHT_SKY:
+    return MYSTIC_ARTE_SILENT;
   }
   return MsgActorCasts;
 }
@@ -98,30 +87,24 @@ static void MysticArte_FilterTargets(struct BattleTurn *plan, s32 fallen,
   plan->targetCount = to;
 }
 
-/// Trims the targets of the follow-ups: Falling Wind's revive and Last
-/// Tide's raise only the fallen, each certain to rise (no 60% roll by
-/// distance, no "no effect" line for the living); Last Tide's heal reaches
-/// only the living. None of them touches the caster. Called by
-/// BattleTurn_Build for every Psynergy.
+/// Trims the targets of the revives: Falling Wind's and Last Tide's raise
+/// only the fallen, each certain to rise (no 60% roll by distance, no "no
+/// effect" line for the living). Called by BattleTurn_Build for every
+/// Psynergy.
 void MysticArte_AdjustPlan(struct BattleTurn *plan, s32 abilityId) {
   switch (abilityId) {
   case ABILITY_FALLING_WIND_REVIVE:
   case ABILITY_LAST_TIDE_REVIVE:
     MysticArte_FilterTargets(plan, 1, 1);
     break;
-  case ABILITY_LAST_TIDE_HEAL:
-    MysticArte_FilterTargets(plan, 0, 0);
-    break;
   }
 }
 
-/// The power of `abilityId` as `actor` uses it. Last Ember's eruption grows
+/// The power of `abilityId` as `actor` uses it. Last Ember's uppercut grows
 /// as Garet's HP falls: its power, plus as much again times the share of HP
-/// he has lost (twice as strong at the brink). Its melee blows are attacks,
-/// whose power is a multiplier (ABILITY_FORMULA_ATTACK_MULTIPLIED), and they
-/// go through the attack's own code, not this.
+/// he has lost (twice as strong at the brink).
 s32 MysticArte_Power(s32 abilityId, struct Unit *actor, s32 power) {
-  if (abilityId == ABILITY_LAST_EMBER_ERUPTION && actor->hpMax != 0)
+  if (abilityId == ABILITY_LAST_EMBER_UPPERCUT && actor->hpMax != 0)
     power += power * (actor->hpMax - actor->hp) / actor->hpMax;
   return power;
 }
@@ -149,16 +132,15 @@ static s32 MysticArte_AnyAlly(s32 unitId, s32 fallen) {
 
 /// The finishers' chains: the ability each hero learns, then the blows
 /// that follow it, ended by 0.
-enum { MYSTIC_ARTE_CHAIN_COUNT = 4, MYSTIC_ARTE_CHAIN_LENGTH = 6 };
+enum { MYSTIC_ARTE_CHAIN_COUNT = 4, MYSTIC_ARTE_CHAIN_LENGTH = 4 };
 static const s16 sMysticArte_Chains[MYSTIC_ARTE_CHAIN_COUNT]
                                    [MYSTIC_ARTE_CHAIN_LENGTH] = {
     {ABILITY_SOL_ASCENSION, ABILITY_SOL_ASCENSION_SLASH,
-     ABILITY_SOL_ASCENSION_RISE, ABILITY_SOL_ASCENSION_FALL},
+     ABILITY_SOL_ASCENSION_RISE},
     {ABILITY_LAST_EMBER, ABILITY_LAST_EMBER_SLASH, ABILITY_LAST_EMBER_TACKLE,
-     ABILITY_LAST_EMBER_UPPERCUT, ABILITY_LAST_EMBER_ERUPTION},
+     ABILITY_LAST_EMBER_UPPERCUT},
     {ABILITY_FORESIGHT, ABILITY_FORESIGHT_SKY, ABILITY_FORESIGHT_RETURN},
-    {ABILITY_LAST_TIDE, ABILITY_LAST_TIDE_FROST, ABILITY_LAST_TIDE_BLIZZARD,
-     ABILITY_LAST_TIDE_STRIKE},
+    {ABILITY_LAST_TIDE, ABILITY_LAST_TIDE_STRIKE},
 };
 
 /// Plays `abilityId` at once as `unitId`'s follow-up, aimed at `target`.
@@ -189,8 +171,8 @@ static s32 MysticArte_NextFoe(s32 first) {
 /// After a finisher's first blow, plays the rest of its chain, each blow
 /// straight after the last, until the chain ends, its user falls or no foe
 /// stands. Then, after Last Tide's strike while foes remain, Mia gives
-/// everything: her light heals the living, raises the fallen, and she falls;
-/// if her strike ends the battle, she is spared. Called after every action,
+/// everything: the fallen rise and she falls; if her strike ends the battle,
+/// she is spared. Called after every action,
 /// by PartyJoin_RunAfterAction.
 void MysticArte_RunAfterAction(void) {
   struct BattleTurn *turn = &gBattleWork->turn;
@@ -219,8 +201,6 @@ void MysticArte_RunAfterAction(void) {
       Unit_GetFar(unitId)->hp == 0 ||
       BattleUnit_ListLiving(BATTLE_SIDE_MASK_ENEMIES, 0) == 0)
     return;
-  if (MysticArte_AnyAlly(unitId, 0))
-    MysticArte_Follow(unitId, ABILITY_LAST_TIDE_HEAL, unitId);
   if (MysticArte_AnyAlly(unitId, 1))
     MysticArte_Follow(unitId, ABILITY_LAST_TIDE_REVIVE, unitId);
   MysticArte_Follow(unitId, ABILITY_LAST_TIDE_COLLAPSE, unitId);

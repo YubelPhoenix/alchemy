@@ -164,11 +164,11 @@ const u8 gAbilityStaging[] = {
     0, // Last Ember (Ashfall)
     0, // Foresight (Ashfall)
     0, // Last Tide (Ashfall)
-    0, // Last Tide's heal (Ashfall)
+    0, // ?
     0, // Last Tide's revive (Ashfall)
     0, // Last Tide's collapse (Ashfall)
     0, // Sol Ascension's second slash (Ashfall)
-    0, // Sol Ascension's rising leap (Ashfall)
+    0, // Sol Ascension's last blow (Ashfall)
     0, // Dragon Cloud
     0, // Demon Night
     0, // Helm Splitter
@@ -206,16 +206,16 @@ const u8 gAbilityStaging[] = {
     0, // Heat Wave
     0, // Astral Blast
     0, // Planet Diver
-    0, // Sol Ascension's last blow (Ashfall)
+    0, // ?
     0, // Last Ember's slash (Ashfall)
     0, // Last Ember's shoulder charge (Ashfall)
-    0, // Last Ember's uppercut (Ashfall)
-    0, // Last Ember's eruption (Ashfall)
+    0, // Last Ember's last blow (Ashfall)
+    0, // ?
     0, // Foresight's bolt into the sky (Ashfall)
-    STAGING_SUMMON, // Foresight's great bolt (Ashfall)
-    STAGING_SUMMON, // Last Tide's strike (Ashfall)
-    0, // Last Tide's frost (Ashfall)
-    0, // Last Tide's blizzard (Ashfall)
+    0, // Foresight's last blow (Ashfall)
+    0, // Last Tide's strike (Ashfall)
+    0, // ?
+    0, // ?
     0, // ?
     0, // ?
     0, // ?
@@ -686,11 +686,11 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_HELM_SPLITTER, // Last Ember (Ashfall): its axe smash
     BATTLE_ANIM_PLASMA | (2 << ANIM_VARIANT_SHIFT), // Foresight (Ashfall): its wall of lightning, Spark Plasma's
     BATTLE_ANIM_PLY, // Last Tide (Ashfall): its charge
-    BATTLE_ANIM_DJINN_HEAL, // Last Tide's heal (Ashfall)
+    0, // ?
     BATTLE_ANIM_FALLING_WIND_REVIVE, // Last Tide's revive (Ashfall)
     BATTLE_ANIM_DRAIN, // Last Tide's collapse (Ashfall)
     BATTLE_ANIM_CUTTING_EDGE, // Sol Ascension's second slash (Ashfall)
-    BATTLE_ANIM_PLANET_DIVER, // Sol Ascension's rising leap (Ashfall)
+    BATTLE_ANIM_PLANET_DIVER, // Sol Ascension's last blow, the rising leap (Ashfall)
     BATTLE_ANIM_DRAGON_CLOUD, // Dragon Cloud
     BATTLE_ANIM_DEMON_NIGHT, // Demon Night
     BATTLE_ANIM_HELM_SPLITTER, // Helm Splitter
@@ -728,16 +728,16 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_HEAT_WAVE, // Heat Wave
     BATTLE_ANIM_ASTRAL_BLAST | (1 << ANIM_VARIANT_SHIFT) | ANIM_VIEW_REVERSED, // Astral Blast
     BATTLE_ANIM_PLANET_DIVER, // Planet Diver
-    BATTLE_ANIM_BLADE_RAIN, // Sol Ascension's last blow (Ashfall)
+    0, // ?
     BATTLE_ANIM_HEAT_WAVE, // Last Ember's slash (Ashfall)
     BATTLE_ANIM_QUICK_STRIKE, // Last Ember's shoulder charge (Ashfall)
-    BATTLE_ANIM_UNUSED_SEVERE_BLOW_LEAP, // Last Ember's uppercut (Ashfall)
-    BATTLE_ANIM_VOLCANO | (2 << ANIM_VARIANT_SHIFT), // Last Ember's eruption (Ashfall): Pyroclasm's
+    BATTLE_ANIM_UNUSED_SEVERE_BLOW_LEAP, // Last Ember's last blow, the uppercut (Ashfall)
+    0, // ?
     BATTLE_ANIM_WHIRLWIND | (2 << ANIM_VARIANT_SHIFT), // Foresight's bolt into the sky (Ashfall): Tempest's
-    BATTLE_ANIM_FIRE | ANIM_SUMMON, // Foresight's great bolt (Ashfall): Thor's sequence for now
-    BATTLE_ANIM_FROST | ANIM_SUMMON, // Last Tide's strike (Ashfall): Neptune's sequence for now
-    BATTLE_ANIM_FROST | (2 << ANIM_VARIANT_SHIFT), // Last Tide's frost (Ashfall): Glacier's
-    BATTLE_ANIM_BLIZZARD, // Last Tide's blizzard (Ashfall)
+    BATTLE_ANIM_RAY | (2 << ANIM_VARIANT_SHIFT), // Foresight's great bolt (Ashfall): Destruct Ray's
+    BATTLE_ANIM_DOUSE | (2 << ANIM_VARIANT_SHIFT), // Last Tide's strike (Ashfall): Deluge's
+    0, // ?
+    0, // ?
     0, // ?
     0, // ?
     0, // ?
