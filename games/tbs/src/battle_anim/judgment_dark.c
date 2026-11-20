@@ -1,5 +1,5 @@
 /// @file
-/// "???"'s Blitzkampf (Ashfall): Judgment's summon as she casts it, compiled
+/// "???"'s Kaiserdammerung (Ashfall): Judgment's summon as she casts it, compiled
 /// from parts/judgment.c again with JUDGMENT_DARK. Her figure
 /// (SPRITE_MYSTERY_JUDGMENT) rises in Judgment's place, and every backdrop it
 /// loads, the violet sky and the lands the blast sweeps over, is sunk in
