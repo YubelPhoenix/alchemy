@@ -207,15 +207,7 @@ void PartyJoin_RunAfterAction(void);
 void PartyJoin_SayKeyLine(s32 message);
 s32 PartyJoin_TakeBrinkTurn(void);
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount);
-/// MysticArte_CastMessage's answer for a blow that shows no line.
-#define MYSTIC_ARTE_SILENT (-1)
-s32 MysticArte_CastMessage(s32 abilityId, s32 unitId);
-void MysticArte_AdjustPlan(struct BattleTurn *plan, s32 abilityId);
-s32 MysticArte_Power(s32 abilityId, struct Unit *actor, s32 power);
-s32 MysticArte_IsCollapse(void);
-void MysticArte_RunAfterAction(void);
-void MysticArte_OnHit(void);
-s32 MysticArte_StaysIn(void);
+void FallingWind_KeepFallen(struct BattleTurn *plan);
 s32 PartyJoin_StepGloom(s32 *repaint);
 /// Ashfall's finished Regenerate (regenerate.c).
 void Regenerate_RunRoundEnd(s32 unitId);

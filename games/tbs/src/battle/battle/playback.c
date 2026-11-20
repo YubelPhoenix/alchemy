@@ -33,8 +33,6 @@ void BattlePlayback_Start(s32 cue) {
   events = &gBattleWork->playback;
   if (events->phase == BATTLE_PLAYBACK_PHASE_IDLE) {
     events->phase = BATTLE_PLAYBACK_PHASE_RESOLVE_TARGET;
-    // Ashfall: a finisher's last blow lands with an impact.
-    MysticArte_OnHit();
     if (cue != 0) {
       events->pendingSong = cue;
     }

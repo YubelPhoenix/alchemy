@@ -602,6 +602,26 @@ void PartyJoin_RunRoundEnd(void) {
 /// stands, an enemy remains and an ally is down, the leaves settle on the
 /// fallen and every one rises at half HP (ABILITY_FALLING_WIND_REVIVE),
 /// played at once as its own action. With nobody down it passes quietly.
+/// Falling Wind's revive aims at every ally but lands only on the fallen:
+/// the plan keeps the downed targets alone, each sure to rise, so the
+/// living get no "no effect" line and no 60% roll by distance holds the
+/// fallen down. Called by BattleTurn_Build for ABILITY_FALLING_WIND_REVIVE.
+void FallingWind_KeepFallen(struct BattleTurn *plan) {
+  s32 from, to = 0;
+
+  for (from = 0; from < plan->targetCount; from++) {
+    if (Unit_GetFar(plan->targetIds[from])->hp != 0)
+      continue;
+    plan->targetIds[to] = plan->targetIds[from];
+    plan->targetOffset[to] = plan->targetOffset[from];
+    plan->targetMultiplier[to] = plan->targetMultiplier[from];
+    plan->targetCritical[to] = plan->targetCritical[from];
+    plan->targetHit[to] = 1;
+    to++;
+  }
+  plan->targetCount = to;
+}
+
 static void FallingWind_RunAfterAction(void) {
   struct BattleWork *battle = gBattleWork;
   struct BattleTurn *turn = &battle->turn;
@@ -646,7 +666,6 @@ void PartyJoin_RunAfterAction(void) {
     battle->joinGloomTarget = GLOOM_ALONE;
 #endif
   FallingWind_RunAfterAction();
-  MysticArte_RunAfterAction();
 }
 
 /// Eases the gloom one frame toward where the story has it and returns it,
@@ -688,9 +707,6 @@ s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount) {
 #if PARTY_JOIN_ENABLED
   struct BattleWork *battle = gBattleWork;
 
-  // Last Tide's collapse takes exactly the HP Mia has left.
-  if (MysticArte_IsCollapse())
-    return hp;
   if (targetId < 0 || targetId > ALLY_MAX || battle->isLink != 0)
     return amount;
   if (battle->joinBrink == BRINK_STRIKING) {

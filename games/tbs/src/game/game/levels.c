@@ -67,19 +67,19 @@ static const struct ClassAbility sSignatureMoves[4][10] = {
     // Isaac: earth and steel
     {{179, 5, {180}}, {164, 10, {165}}, {180, 22, {181}}, {165, 26, {166}},
      {181, 40}, {166, 50},
-     {133, 1}, {151, 1}}, // TEST ONLY: Rune Strike, Sol Ascension
+     {133, 1}}, // TEST ONLY: Rune Strike
     // Garet: fire and bombs
     {{182, 6, {183}}, {167, 12, {168}}, {160, 16}, {183, 20, {184}},
      {168, 28, {169}}, {184, 44}, {169, 50},
-     {131, 1}, {132, 1}, {152, 1}}, // TEST ONLY: Ember Burst, Sky Breaker, Last Ember
+     {131, 1}, {132, 1}}, // TEST ONLY: Ember Burst, Sky Breaker
     // Ivan: wind and lightning
     {{185, 4, {186}}, {191, 8}, {188, 10, {189}}, {177, 14}, {186, 22, {187}},
      {189, 30, {190}}, {187, 46}, {190, 52},
-     {134, 1}, {153, 1}}, // TEST ONLY: Starfall, Foresight
+     {134, 1}, {135, 1}}, // TEST ONLY: Starfall, Vertigo
     // Mia: water, frost and ward
     {{36, 6, {37}}, {128, 8}, {30, 10, {31}}, {37, 22, {38}}, {129, 26},
      {31, 28, {32}}, {38, 42}, {32, 48},
-     {154, 1}, {137, 1}}, // TEST ONLY: Last Tide, Falling Wind
+     {130, 1}, {137, 1}}, // TEST ONLY: Djinn's Grace, Falling Wind
 };
 
 /// The field Psynergy every story gate needs, split by hero so each keeps it

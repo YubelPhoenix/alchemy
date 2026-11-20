@@ -756,51 +756,7 @@ enum SpriteId {
   /// "???" filling the sky in Judgment's place when she casts P-Storm: three
   /// 128x128 frames, Judgment's layout (spr_509.png): crouched in her cloak
   /// as she rises, arms thrown open, then the cloak spread at the climax.
-  SPRITE_MYSTERY_JUDGMENT = 0x1fd,
-  /// The heroes' finisher poses (mystic_artes.c), each drawn by the author:
-  /// a 64x64 battle sprite, the hero's own size and scale, with the sword
-  /// drawn in and every pose the same picture, shown in the hero's place for
-  /// one blow of a finisher.
-  /// Isaac crouched low, sword back: Sol Ascension's charge (spr_492.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_ISAAC_LOW_PROFILE = 0x1ec,
-  /// Isaac lunging in: Sol Ascension's first slash (spr_493.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_ISAAC_DASH = 0x1ed,
-  /// Isaac after a slash, cloak flying: its second slash (spr_494.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_ISAAC_ATTACK_END = 0x1ee,
-  /// Isaac leaping, sword thrust up: its rising leap (spr_495.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_ISAAC_SWORD_ATTACK = 0x1ef,
-  /// Garet winding up: Last Ember's smash and uppercut (spr_496.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_GARET_WINDUP = 0x1f0,
-  /// Garet low after a swing: its one-handed slash (spr_497.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_GARET_ATTACK_END = 0x1f1,
-  /// Garet charging, blade low: its shoulder charge (spr_498.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_GARET_DASH = 0x1f2,
-  /// Ivan with his sword lowered: Foresight's wall of lightning (spr_499.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_IVAN_ATTACK_END = 0x1f3,
-  /// Ivan with his sword raised to the sky: its bolt up and its return (spr_505.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_IVAN_KARIS = 0x1f9,
-  /// Mia ready, blade drawn back: Last Tide's charge (spr_506.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_MIA_WINDUP = 0x1fa,
-  /// Mia lunging with her blade: its strike (spr_507.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_MIA_YUGIZAN = 0x1fb,
-  /// Mia fallen on her face: her collapse (spr_508.png), drawn by the author; a
-  /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_MIA_FACEPLANT = 0x1fc,
-  /// Ivan dashing in, sword low: Foresight's run-up blow (spr_491.png).
-  SPRITE_POSE_IVAN_DASH = 0x1eb,
-  /// Mia dashing in, blade out: Last Tide's run-up blow (spr_452.png).
-  SPRITE_POSE_MIA_DASH = 0x1c4
+  SPRITE_MYSTERY_JUDGMENT = 0x1fd
 };
 
 /// SPRITE_STUMP's animations beyond its standing frame (spr_212.tsv).
