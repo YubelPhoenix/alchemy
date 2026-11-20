@@ -7,7 +7,7 @@
 /// The fight:
 ///  1. Isaac fights her alone. While he is alone he cannot fall: a blow that
 ///     would fell him leaves him at 1 HP instead (PartyJoin_ClampDamage).
-///  2. Her turn in RESCUE_ROUND is P-Storm: she speaks, and the blow leaves him at exactly 1 HP; the number shown is the
+///  2. Her turn in RESCUE_ROUND is Kaiserdammerung: she speaks, and the blow leaves him at exactly 1 HP; the number shown is the
 ///     HP he lost (BossAI_MysteryChooseSlot asks PartyJoin_TakeBrinkTurn).
 ///  3. At the end of that round, or of any round that left Isaac alone at
 ///     1 HP, she speaks; Mia breaks free and runs in and casts Pure Ply on
@@ -27,7 +27,7 @@
 ///  Each of 4 and 5 also happens after a few rounds regardless (the _LATEST_
 ///  counts), so every player sees all three arrive; one arrival a round.
 ///
-/// How it looks: from the moment P-Storm lands the battlefield sinks
+/// How it looks: from the moment Kaiserdammerung lands the battlefield sinks
 /// into darkness, and Isaac, slumped in the pose of a downed party member,
 /// stands almost alone in it; each friend brings part of the light back, and
 /// with all four the battlefield is lit again (the gloom: her backdrop,
@@ -57,7 +57,7 @@
 #define RESCUE_ROUND 3
 /// The song from Garet's arrival on. Until then the battle plays the song
 /// Vale_TalkToMysteryLeader chooses for it, with no break: through Isaac
-/// alone, her P-Storm and Mia's rescue. While that is this same song,
+/// alone, her Kaiserdammerung and Mia's rescue. While that is this same song,
 /// it plays on without starting again.
 #define FULL_PARTY_SONG MUS_FUSION_DRAGON_BATTLE
 /// Garet arrives once "???" is below this percent of her HP, or this many
@@ -92,7 +92,7 @@
 #define joinRound unusedAfterEscapes
 /// How far the story has gone (enum JoinStage).
 #define joinStage unusedAfterChannels[0]
-/// Her P-Storm turn (enum JoinBrink): it leaves Isaac 1 HP.
+/// Her Kaiserdammerung turn (enum JoinBrink): it leaves Isaac 1 HP.
 #define joinBrink unusedAfterChannels[1]
 /// The round the last arrival came in.
 #define joinLastArrival unusedAfterPlacement[0]
@@ -138,8 +138,8 @@ enum JoinBreak {
 
 enum JoinBrink {
   BRINK_NONE = 0,    ///< not this round
-  BRINK_PENDING = 1, ///< her next turn is P-Storm
-  BRINK_STRIKING = 2 ///< her P-Storm is being played
+  BRINK_PENDING = 1, ///< her next turn is Kaiserdammerung
+  BRINK_STRIKING = 2 ///< her Kaiserdammerung is being played
 };
 
 enum JoinStage {
@@ -500,7 +500,7 @@ static void PartyJoin_RunRescue(void) {
 }
 
 /// Her turn in RESCUE_ROUND: says her line and fades the music, and returns
-/// 1 while the turn should be P-Storm. Called by
+/// 1 while the turn should be Kaiserdammerung. Called by
 /// BossAI_MysteryChooseSlot at each of her picks; the line plays once.
 s32 PartyJoin_TakeBrinkTurn(void) {
 #if PARTY_JOIN_ENABLED
@@ -574,7 +574,7 @@ void PartyJoin_RunRoundEnd(void) {
 
   switch (battle->joinStage) {
   case JOIN_ALONE:
-    // P-Storm lands in the third solo round. An earlier close call can
+    // Kaiserdammerung lands in the third solo round. An earlier close call can
     // darken the field, but never brings Mia in before that round ends.
     if (battle->joinRound >= RESCUE_ROUND)
       PartyJoin_RunRescue();
@@ -616,7 +616,7 @@ void PartyJoin_RunRoundEnd(void) {
 #endif
 }
 
-/// Ends her P-Storm turn once it has played, so only that blow leaves
+/// Ends her Kaiserdammerung turn once it has played, so only that blow leaves
 /// Isaac at exactly 1 HP. Called by Battle_Run after every action.
 /// Falling Wind's second part (Ashfall): after its storm, if the caster still
 /// stands, an enemy remains and an ally is down, the leaves settle on the
@@ -719,7 +719,7 @@ s32 PartyJoin_StepGloom(s32 *repaint) {
 
 /// The HP damage a blow or an ability does to a unit at hp, as
 /// BattleAbility_ApplyToTarget has worked it out, so the number shown is the
-/// HP really lost. In the "???" battle: during her scripted P-Storm,
+/// HP really lost. In the "???" battle: during her scripted Kaiserdammerung,
 /// exactly enough to leave Isaac 1 HP; and while he is alone, never enough to
 /// fell him (a close call sets joinEdge for the darkened backdrop; it does
 /// not bring Mia in before the third round).
