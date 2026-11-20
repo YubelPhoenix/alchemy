@@ -557,11 +557,11 @@ static s32 BossAI_HeartChooseTarget(struct Unit *user,
 }
 
 /// Heart's leader tests Isaac alone. The slots must match enemies.c row 164:
-/// Gotterkanone, P-Storm, P-Vortex, Explosion, Glepnir, EX Gotterkanone,
+/// Gotterkanone, Kaiserdammerung, P-Vortex, Explosion, Glepnir, EX Gotterkanone,
 /// EX Sternbrecher, Ransnetz. None is Psynergy, so nothing about her fighting
-/// gives her away. All but P-Storm keep the numbers of the move they
+/// gives her away. All but Kaiserdammerung keep the numbers of the move they
 /// replaced (Break, Grand Gaia, Psy Drain, Quick Strike, Avalanche,
-/// Rockslide); P-Storm, in Demon Night's slot, is her late finisher.
+/// Rockslide); Kaiserdammerung, in Demon Night's slot, is her late finisher.
 /// No instant death or Psynergy seal in this solo fight.
 enum MysterySlot {
   MYSTERY_GOTTERKANONE = 0,
@@ -672,14 +672,14 @@ static void BossAI_MysteryAwaken(struct Unit *unit) {
 
 /// Solo combat: spend most turns dealing damage, not draining an empty PP pool.
 /// Below half HP the commander increases pressure rather than gaining a
-/// chance to kill Isaac instantly: P-Storm, her finisher, comes only then. A rejected choice always becomes damage.
+/// chance to kill Isaac instantly: Kaiserdammerung, her finisher, comes only then. A rejected choice always becomes damage.
 static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
  u32 memory=unit->aiActionIndex;
  s32 roll=Battle_RandomFar() & 0xff;
  s32 late=unit->hp*2<=unit->hpMax;
  struct BossPartyView view;
  BossAI_ViewParty(&view);
- // Ashfall's "You're not alone" (party_join.c): her P-Storm turn,
+ // Ashfall's "You're not alone" (party_join.c): her Kaiserdammerung turn,
  // which leaves Isaac at 1 HP before Mia breaks free.
  if (PartyJoin_TakeBrinkTurn()) return MYSTERY_P_STORM;
  // The first time she falls below half HP she stops holding back, and says
