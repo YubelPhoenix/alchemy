@@ -360,7 +360,7 @@ jobs:
             ${{ runner.temp }}/ashfall-build.txt
             ${{ runner.temp }}/ashfall-live-dialogue.json
           if-no-files-found: error
-          retention-days: 2
+          retention-days: 14
 
   prune-old-build-artifacts:
     # Run only after a successful, newly published IPS. Isolate the
@@ -372,7 +372,7 @@ jobs:
       actions: write
       contents: read
     steps:
-      - name: Keep only two recent Ashfall IPS artifacts and latest memory report
+      - name: Preserve downloadable Ashfall IPS and latest memory report
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -408,10 +408,15 @@ jobs:
                            key=lambda a: (a["created_at"], a["id"]), reverse=True)
           if not ips:
               raise RuntimeError("No current Ashfall IPS found: no deletions allowed")
-          keep = {a["id"] for a in ips[:2] + reports[:1]}
+          current_name = "Golden-Sun-Ashfall-" + os.environ["GITHUB_SHA"]
+          current = [a for a in ips if a["name"] == current_name and
+                     a.get("workflow_run", {}).get("id") == int(os.environ["GITHUB_RUN_ID"])]
+          if len(current) != 1:
+              raise RuntimeError("Current build IPS not published: " + current_name)
+          keep = {a["id"] for a in ips[:3] + reports[:1] + current}
           # Preserve Aster's latest preview and unrelated artifacts.
-          stale = [a for a in ips[2:] + reports[1:] if a["id"] not in keep]
-          print(f"Preserving IPS: {[a['id'] for a in ips[:2]]}")
+          stale = [a for a in ips[3:] + reports[1:] if a["id"] not in keep]
+          print(f"Preserving IPS: {sorted(keep)}")
           print(f"Deleting {len(stale)} redundant Ashfall reports/patches")
           removed = 0
           for a in stale:
@@ -423,4 +428,9 @@ jobs:
               removed += int(a["size_in_bytes"])
               time.sleep(0.65)
           print(f"Removed {len(stale)} artifacts; approx {removed/1_000_000:.2f} MB")
+          # Fail the workflow if its current download was lost during cleanup.
+          published = api(f"{root}/{current[0]['id']}")
+          if published.get("expired") or published.get("name") != current_name:
+              raise RuntimeError("Current Ashfall IPS is no longer downloadable")
+          print(f"VERIFIED DOWNLOAD: https://github.com/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}/artifacts/{current[0]['id']}")
           PY
