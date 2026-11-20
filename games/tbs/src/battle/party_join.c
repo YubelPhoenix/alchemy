@@ -685,12 +685,12 @@ s32 PartyJoin_StepGloom(s32 *repaint) {
 /// fell him (a blow that would sets joinEdge, and the rescue follows it).
 /// Every other battle and unit keeps its damage.
 s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount) {
-  // Last Tide's collapse takes exactly the HP Mia has left.
-  if (MysticArte_IsCollapse())
-    return hp;
 #if PARTY_JOIN_ENABLED
   struct BattleWork *battle = gBattleWork;
 
+  // Last Tide's collapse takes exactly the HP Mia has left.
+  if (MysticArte_IsCollapse())
+    return hp;
   if (targetId < 0 || targetId > ALLY_MAX || battle->isLink != 0)
     return amount;
   if (battle->joinBrink == BRINK_STRIKING) {
