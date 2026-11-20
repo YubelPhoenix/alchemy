@@ -8,11 +8,12 @@
 /// - Garet's Last Ember (Mary's "ZAN!"): the overhead axe smash, the
 ///   one-handed slash, the shoulder charge and the uppercut.
 /// - Ivan's Foresight (Philia's Rebirth Crusader): a wall of lightning, a
-///   bolt into the sky and the great bolt's return.
-/// - Mia's Last Tide (Garr's Sekkazan): she gathers her power and strikes,
+///   run-up blow, a bolt into the sky and the great bolt's return.
+/// - Mia's Last Tide (Garr's Sekkazan): she gathers her power, dashes in,
+///   and strikes every foe,
 ///   and while foes remain the fallen rise and she falls.
 /// The opening blow has its cry and the last calls out the name; the blows
-/// between are silent. Isaac's and Garet's blows run up to the foe and strike,
+/// between are silent. The melee blows run up to the foe and strike,
 /// as an attack does (STAGING_ATTACK). For each blow the hero is drawn in a
 /// pose the author drew (the SPRITE_POSE_ sprites, the sword drawn in),
 /// shown in place of their battle sprite and weapon until the finisher ends.
@@ -65,9 +66,11 @@ static const u16 sMysticArte_Poses[][POSE_COLUMNS] = {
     {ABILITY_LAST_EMBER_UPPERCUT, 0, SPRITE_POSE_GARET_WINDUP},
     {ABILITY_FORESIGHT, SPRITE_POSE_IVAN_ATTACK_END,
      SPRITE_POSE_IVAN_ATTACK_END},
+    {ABILITY_FORESIGHT_DASH, 0, SPRITE_POSE_IVAN_DASH},
     {ABILITY_FORESIGHT_SKY, 0, SPRITE_POSE_IVAN_KARIS},
     {ABILITY_FORESIGHT_RETURN, 0, SPRITE_POSE_IVAN_KARIS},
     {ABILITY_LAST_TIDE, SPRITE_POSE_MIA_WINDUP, SPRITE_POSE_MIA_WINDUP},
+    {ABILITY_LAST_TIDE_DASH, 0, SPRITE_POSE_MIA_DASH},
     {ABILITY_LAST_TIDE_STRIKE, 0, SPRITE_POSE_MIA_YUGIZAN},
     {ABILITY_LAST_TIDE_REVIVE, 0, SPRITE_POSE_MIA_YUGIZAN},
     {ABILITY_LAST_TIDE_COLLAPSE, 0, SPRITE_POSE_MIA_FACEPLANT},
@@ -244,6 +247,8 @@ s32 MysticArte_CastMessage(s32 abilityId, s32 unitId) {
   case ABILITY_LAST_EMBER_SLASH:
   case ABILITY_LAST_EMBER_TACKLE:
   case ABILITY_FORESIGHT_SKY:
+  case ABILITY_FORESIGHT_DASH:
+  case ABILITY_LAST_TIDE_DASH:
     return MYSTIC_ARTE_SILENT;
   }
   return MsgActorCasts;
@@ -328,8 +333,9 @@ static const s16
          ABILITY_SOL_ASCENSION_RISE},
         {ABILITY_LAST_EMBER, ABILITY_LAST_EMBER_SLASH,
          ABILITY_LAST_EMBER_TACKLE, ABILITY_LAST_EMBER_UPPERCUT},
-        {ABILITY_FORESIGHT, ABILITY_FORESIGHT_SKY, ABILITY_FORESIGHT_RETURN},
-        {ABILITY_LAST_TIDE, ABILITY_LAST_TIDE_STRIKE},
+        {ABILITY_FORESIGHT, ABILITY_FORESIGHT_DASH, ABILITY_FORESIGHT_SKY,
+         ABILITY_FORESIGHT_RETURN},
+        {ABILITY_LAST_TIDE, ABILITY_LAST_TIDE_DASH, ABILITY_LAST_TIDE_STRIKE},
 };
 
 static s32 MysticArte_Place(s32 abilityId) {

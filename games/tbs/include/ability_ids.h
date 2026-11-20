@@ -125,9 +125,11 @@ enum AbilityId {
   ABILITY_LAST_EMBER_TACKLE = 0xc7,   ///< the shoulder charge, and
   ABILITY_LAST_EMBER_UPPERCUT = 0xc8, ///< the uppercut
   ABILITY_FORESIGHT = 0x99,           ///< Ivan (Rebirth Crusader): the wall
-  ABILITY_FORESIGHT_SKY = 0xca,       ///< of lightning, the bolt into the sky,
+  ABILITY_FORESIGHT_DASH = 0xc9,      ///< of lightning, his run-up blow,
+  ABILITY_FORESIGHT_SKY = 0xca,       ///< the bolt into the sky,
   ABILITY_FORESIGHT_RETURN = 0xcb,    ///< and the great bolt's return
   ABILITY_LAST_TIDE = 0x9a,           ///< Mia (Sekkazan): her charge,
+  ABILITY_LAST_TIDE_DASH = 0xcd,      ///< her run-up blow,
   ABILITY_LAST_TIDE_STRIKE = 0xcc,    ///< the strike, and while foes remain:
   ABILITY_LAST_TIDE_REVIVE = 0x9c,    ///< the fallen raised,
   ABILITY_LAST_TIDE_COLLAPSE = 0x9d,  ///< and her collapse

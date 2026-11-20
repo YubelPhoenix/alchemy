@@ -796,7 +796,11 @@ enum SpriteId {
   SPRITE_POSE_MIA_YUGIZAN = 0x1fb,
   /// Mia fallen on her face: her collapse (spr_508.png), drawn by the author; a
   /// battle sprite with the sword drawn in, all its poses one picture.
-  SPRITE_POSE_MIA_FACEPLANT = 0x1fc
+  SPRITE_POSE_MIA_FACEPLANT = 0x1fc,
+  /// Ivan dashing in, sword low: Foresight's run-up blow (spr_491.png).
+  SPRITE_POSE_IVAN_DASH = 0x1eb,
+  /// Mia dashing in, blade out: Last Tide's run-up blow (spr_452.png).
+  SPRITE_POSE_MIA_DASH = 0x1c4
 };
 
 /// SPRITE_STUMP's animations beyond its standing frame (spr_212.tsv).

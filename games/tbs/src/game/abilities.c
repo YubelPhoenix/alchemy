@@ -1901,10 +1901,14 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .power = 240,
     },
-    // ?
+    // Foresight's run-up blow: Ivan dashes in and lightning strikes.
     {
         .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_JUPITER,
+        .icon = 54,
+        .range = 1,
+        .power = 12,
     },
     // Foresight's bolt into the sky, churning the clouds.
     {
@@ -1935,10 +1939,14 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = ABILITY_RANGE_ALL,
         .power = 300,
     },
-    // ?
+    // Last Tide's run-up blow: Mia dashes in and strikes.
     {
         .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_MERCURY,
+        .icon = 18,
+        .range = 1,
+        .power = 15,
     },
     // ?
     {

@@ -210,11 +210,11 @@ const u8 gAbilityStaging[] = {
     STAGING_ATTACK, // Last Ember's slash (Ashfall)
     STAGING_ATTACK, // Last Ember's shoulder charge (Ashfall)
     STAGING_ATTACK, // Last Ember's last blow (Ashfall)
-    0, // ?
+    STAGING_ATTACK, // Foresight's run-up blow (Ashfall)
     0, // Foresight's bolt into the sky (Ashfall)
     0, // Foresight's last blow (Ashfall)
     0, // Last Tide's strike (Ashfall)
-    0, // ?
+    STAGING_ATTACK, // Last Tide's run-up blow (Ashfall)
     0, // ?
     0, // ?
     0, // ?
@@ -732,11 +732,11 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_HEAT_WAVE, // Last Ember's slash (Ashfall)
     BATTLE_ANIM_QUICK_STRIKE, // Last Ember's shoulder charge (Ashfall)
     BATTLE_ANIM_UNUSED_SEVERE_BLOW_LEAP, // Last Ember's last blow, the uppercut (Ashfall)
-    0, // ?
+    BATTLE_ANIM_BOLT, // Foresight's run-up blow (Ashfall): Bolt's
     BATTLE_ANIM_WHIRLWIND | (2 << ANIM_VARIANT_SHIFT), // Foresight's bolt into the sky (Ashfall): Tempest's
     BATTLE_ANIM_RAY | (2 << ANIM_VARIANT_SHIFT), // Foresight's great bolt (Ashfall): Destruct Ray's
     BATTLE_ANIM_DOUSE | (2 << ANIM_VARIANT_SHIFT), // Last Tide's strike (Ashfall): Deluge's
-    0, // ?
+    BATTLE_ANIM_BLIZZARD, // Last Tide's run-up blow (Ashfall): Blizzard's
     0, // ?
     0, // ?
     0, // ?

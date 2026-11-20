@@ -34,7 +34,7 @@ N419	MsgFallingWindSettles	The leaves settle\non the fallen...
 # Tenshouken, Garet's after Mary's "ZAN!", Ivan's after Philia's Rebirth
 # Crusader, and Mia's after Garr's Sekkazan, where she gives everything and
 # falls. The learned abilities are 151 to 154; their follow-ups (156 to 159
-# and 198 to 204) take their finisher's name.
+# and 198 to 205) take their finisher's name.
 00970	message	Sol Ascension
 00971	message	Last Ember
 00972	message	Foresight
@@ -46,9 +46,11 @@ N419	MsgFallingWindSettles	The leaves settle\non the fallen...
 01017	message	Last Ember
 01018	message	Last Ember
 01019	message	Last Ember
+01020	message	Foresight
 01021	message	Foresight
 01022	message	Foresight
 01023	message	Last Tide
+01024	message	Last Tide
 01489	message	A blade for all tomorrows.
 01490	message	Burns hotter near death.
 01491	message	Storm all foes; may stun.
