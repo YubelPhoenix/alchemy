@@ -1271,16 +1271,16 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 34,
         .power = 130,
     },
-    // P-Storm (Ashfall): "???"'s finisher as she casts it, in an empty slot
-    // so it can be staged as a summon (gAbilityStaging stops at Severe
-    // Blow): Judgment's sequence with her as its figure. The numbers are
-    // P-Storm's (ABILITY_P_STORM), which this replaces in her list.
+    // The commander's custom Judgment-style finishing move (P-Storm slot).
+    // This is the ANIMATED attack, ABILITY_P_STORM_SUMMON, staged through
+    // the summon sequence with her figure. Do not balance only the unused
+    // ABILITY_P_STORM row at the end of the ability table.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
         .range = 3,
-        .power = 160,
+        .power = 640,
     },
     // Falling Wind's revive (Ashfall): the leaves settle on every fallen ally,
     // who rises at half HP. Played after the storm (137) by
@@ -4199,7 +4199,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_JUPITER,
         .range = 1,
-        .power = 220,
+        .power = 370,
     },
     // The Mystery Leader's other attacks (abilities 520 to 526). Their
     // fixed damage is tuned for an endgame party instead of the weaker
@@ -4211,7 +4211,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_JUPITER,
         .range = 1,
-        .power = 20,
+        .power = 25,
     },
     // Ransnetz, for Rockslide: serious spread damage against endgame gear.
     {
@@ -4219,7 +4219,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
         .range = 3,
-        .power = 240,
+        .power = 380,
     },
     // Explosion, for Grand Gaia.
     {
@@ -4227,7 +4227,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
         .range = 3,
-        .power = 290,
+        .power = 450,
     },
     // P-Vortex, for Break: undoes raised stats.
     {
@@ -4252,7 +4252,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
         .range = 3,
-        .power = 245,
+        .power = 410,
     },
     // P-Storm, her finisher below half HP, in Demon Night's slot: strong
     // spread damage, but no lingering status or arbitrary instant defeat.
@@ -4261,7 +4261,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
         .range = 3,
-        .power = 255,
+        .power = 440,
     },
     // Sarah's pike techniques (abilities 527 to 531): a human's weapon work,
     // with no element and no PP, each a blow times power / 10.
