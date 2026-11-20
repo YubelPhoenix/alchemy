@@ -66,6 +66,10 @@
 #define GARET_LATEST_ROUNDS 4
 /// Ivan arrives when she awakens, or this many rounds after Garet.
 #define IVAN_LATEST_ROUNDS 5
+/// Give the returning full party more room than the stock 32-pixel gaps.
+/// Keep the four slots centered, so the scene stays within battle bounds.
+#define MYSTERY_PARTY_SPACING 44
+#define MYSTERY_PARTY_FRONT_Z 66
 /// Frames an arrival takes to run in, and frames of the camera's turn first.
 #define ARRIVAL_RUN_FRAMES 40
 #define ARRIVAL_CAMERA_FRAMES 20
@@ -367,6 +371,20 @@ static s32 PartyJoin_Arrive(s32 unitId, s32 element, s32 gloom, s32 style,
   BattleObject_Make(battleObject, unitId,
                     gBattlePlacement_StepPairs[place * 2],
                     gBattlePlacement_StepPairs[place * 2 + 1]);
+  // The normal 32-pixel depth gaps crowd the 4-player battle sprites.
+  // Expand the anchors only in this encounter, and ease existing allies
+  // to their new spots as the next companion arrives.
+  {
+    s32 allyPlace;
+    for (allyPlace = 0; allyPlace <= place; allyPlace++) {
+      s32 allyId = battle->partyUnits[allyPlace];
+      struct BattleObject *allyObject = BattleObject_Get(allyId);
+      allyObject->anchorZ =
+          (MYSTERY_PARTY_FRONT_Z - allyPlace * MYSTERY_PARTY_SPACING) * 65536;
+      if (allyPlace != place)
+        BattleMotion_ReturnToSpot(allyId);
+    }
+  }
 
   // Their Djinn on standby count toward summons, as at the battle's start,
   // and the party status window takes its width from the party size: both
@@ -518,12 +536,20 @@ static void PartyJoin_RunUnison(void) {
   WaitFrames(20);
   ElementGlow_Play(battle->partyUnits[0], ELEMENT_VENUS, GLOW_BURST, 0);
   PartyJoin_Settle();
-  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++)
+  for (place = 0; battle->partyUnits[place] != BATTLE_UNIT_LIST_END; place++) {
     BattleMotion_ReturnToSpot(battle->partyUnits[place]);
     actor = BattleObject_Get(battle->partyUnits[place])->actor;
     if (actor != NULL)
       Actor_SelectAnimationFar(actor, POSE_STANDING);
+  }
   WaitFrames(30);
+  // The restraint ends here. From the next round onward the commander
+  // gets two turns, so the final phase challenges a fully reunited party.
+  {
+    s32 mysteryId = PartyJoin_FindMystery();
+    if (mysteryId >= 0)
+      Unit_GetFar(mysteryId)->actionsPerRound = 2;
+  }
 }
 
 /// Counts the round that just ended and plays whatever the story has next.
