@@ -133,7 +133,7 @@ jobs:
           # The Mystery Leader's other attacks are named in order after Gotterkanone.
           names = re.findall(r'msgstr "([^"]*)"', text.split('msgstr "Gotterkanone"\n', 1)[1])[:7]
           if names != ["EX Gotterkanone", "Ransnetz", "Explosion", "P-Vortex", "Glepnir",
-                       "EX Sternbrecher", "P-Storm"]:
+                       "EX Sternbrecher", "Kaiserdammerung"]:
               raise SystemExit("Mystery Leader attack names out of order: " + repr(names))
           print("Gotterkanone message IDs contiguous and unique:", len(ids))
           PY
