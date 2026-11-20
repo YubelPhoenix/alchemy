@@ -756,12 +756,7 @@ enum SpriteId {
   /// "???" filling the sky in Judgment's place when she casts P-Storm: three
   /// 128x128 frames, Judgment's layout (spr_509.png): crouched in her cloak
   /// as she rises, arms thrown open, then the cloak spread at the climax.
-  SPRITE_MYSTERY_JUDGMENT = 0x1fd,
-  /// Nothing: nine blank 32x32 frames (spr_508.png) that take the summon's
-  /// place when a hero's finisher plays Thor's or Neptune's sequence as
-  /// variant 1, without its creature, so the lightning and the tide come
-  /// from the hero alone.
-  SPRITE_NO_FIGURE = 0x1fc
+  SPRITE_MYSTERY_JUDGMENT = 0x1fd
 };
 
 /// SPRITE_STUMP's animations beyond its standing frame (spr_212.tsv).

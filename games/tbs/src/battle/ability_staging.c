@@ -734,8 +734,8 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_UNUSED_SEVERE_BLOW_LEAP, // Last Ember's uppercut (Ashfall)
     BATTLE_ANIM_VOLCANO | (2 << ANIM_VARIANT_SHIFT), // Last Ember's eruption (Ashfall): Pyroclasm's
     BATTLE_ANIM_WHIRLWIND | (2 << ANIM_VARIANT_SHIFT), // Foresight's bolt into the sky (Ashfall): Tempest's
-    BATTLE_ANIM_FIRE | ANIM_SUMMON | (1 << ANIM_VARIANT_SHIFT), // Foresight's great bolt (Ashfall): Thor's storm without Thor
-    BATTLE_ANIM_FROST | ANIM_SUMMON | (1 << ANIM_VARIANT_SHIFT), // Last Tide's strike (Ashfall): Neptune's tide without Neptune
+    BATTLE_ANIM_FIRE | ANIM_SUMMON, // Foresight's great bolt (Ashfall): Thor's sequence for now
+    BATTLE_ANIM_FROST | ANIM_SUMMON, // Last Tide's strike (Ashfall): Neptune's sequence for now
     BATTLE_ANIM_FROST | (2 << ANIM_VARIANT_SHIFT), // Last Tide's frost (Ashfall): Glacier's
     BATTLE_ANIM_BLIZZARD, // Last Tide's blizzard (Ashfall)
     0, // ?

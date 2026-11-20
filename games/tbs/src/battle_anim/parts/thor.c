@@ -377,10 +377,8 @@ void BattleAnim_RunThor(struct BattleAnimArgs *args) {
   BattleAnim_SetupBlendedDisplay();
   BattleAnim_SelectLivingTargets(work->args);
   // Nine sprites of SPRITE_THOR, the formation (SUMMON_FORMATION_THOR),
-  // released at the end. Ashfall: Ivan's Foresight, variant 1, plays the
-  // storm without Thor (SPRITE_NO_FIGURE).
-  BattleAnim_SpawnObjects(9, work->args->variant ? SPRITE_NO_FIGURE : SPRITE_THOR,
-                          1);
+  // released at the end.
+  BattleAnim_SpawnObjects(9, SPRITE_THOR, 1);
   Resource_LoadAndDecompress((s32)&ResourceId_TornadoSheet,
                              Ram_MapGridCellBuffer, 1, 0);
   Resource_LoadAndDecompress((s32)&ResourceId_LightningPillarSheet, work->sheet,
