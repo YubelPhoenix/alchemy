@@ -27,6 +27,8 @@
 ///   PartyJoin_RunAfterAction).
 
 #include "battle_internal.h"
+#include "farcall/window.h"
+#include "window.h"
 
 // While a finisher plays, its hero's own sprite and weapon, kept in the
 // battle's spare bytes (zeroed with the rest of the battle's work) to be put
@@ -43,6 +45,15 @@
 #define impactFrames unusedAfterActions[8] ///< 0 when none plays
 #define impactYaw unusedAfterActions[9]    ///< two bytes: the yaw before
 #define impactBlend unusedAfterActions[11] ///< two bytes: REG_BLDCNT before
+// The hero whose face is shown as their finisher starts, plus 1; 0 none.
+#define cutInHero unusedAfterActions[13]
+
+/// Where the face is shown as a finisher starts, in tiles: the game's own
+/// portrait in a window at the left of the screen, above the battle's
+/// message, while the battlefield is dimmed, as the Tales series cuts to the
+/// character's face.
+#define ARTE_CUT_IN_X 2
+#define ARTE_CUT_IN_Y 7
 
 /// How dim the battlefield goes as a finisher starts (REG_BLDY, of 16), and
 /// the frames it takes to dim and to lift: the hero, a sprite, stays bright
@@ -159,8 +170,8 @@ static void MysticArte_Pose(s32 abilityId, s32 unitId, s32 column) {
 }
 
 /// Dims the battlefield (BG2 and the backdrop) as a finisher starts, with a
-/// rising sound; MysticArte_Lift brightens it again.
-static void MysticArte_Dim(void) {
+/// rising sound, and shows unitId's face; MysticArte_Lift takes both away.
+static void MysticArte_Dim(s32 unitId) {
   struct BattleWork *battle = gBattleWork;
   u16 blend = REG_BLDCNT;
   s32 frame;
@@ -176,6 +187,17 @@ static void MysticArte_Dim(void) {
     REG_BLDY = ARTE_DIM_LEVEL * frame / ARTE_DIM_FRAMES;
     WaitFrames(1);
   }
+  // The battle leaves both portrait slots taken (WindowSystem_InitBattle
+  // clears them to 0, not PORTRAIT_SLOT_EMPTY), so they are freed first, as
+  // Portrait_ClearSlots frees them on the field.
+  if (unitId >= 0 && unitId <= ALLY_MAX) {
+    ((struct WindowWork *)gWindowWork[0])->portraitPictures[0] =
+        PORTRAIT_SLOT_EMPTY;
+    ((struct WindowWork *)gWindowWork[0])->portraitPictures[1] =
+        PORTRAIT_SLOT_EMPTY;
+    if (Portrait_OpenWindowFar(unitId, 0, ARTE_CUT_IN_X, ARTE_CUT_IN_Y) != 0)
+      battle->cutInHero = unitId + 1;
+  }
 }
 
 /// Brightens the battlefield MysticArte_Dim dimmed and puts its blend back.
@@ -183,6 +205,10 @@ static void MysticArte_Lift(void) {
   struct BattleWork *battle = gBattleWork;
   s32 frame;
 
+  if (battle->cutInHero != 0) {
+    Portrait_CloseWindowFar(battle->cutInHero - 1);
+    battle->cutInHero = 0;
+  }
   if (!battle->arteDimmed)
     return;
   battle->arteDimmed = 0;
@@ -282,7 +308,7 @@ s32 MysticArte_CastMessage(s32 abilityId, s32 unitId) {
 
   MysticArte_Pose(abilityId, unitId, POSE_FOR_LINE);
   if (place == MYSTIC_ARTE_FIRST)
-    MysticArte_Dim();
+    MysticArte_Dim(unitId);
 
   switch (abilityId) {
   case ABILITY_FALLING_WIND:
