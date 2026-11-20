@@ -160,15 +160,15 @@ const u8 gAbilityStaging[] = {
     0, // Catch
     0, // Retreat
     0, // Avoid
-    0, // Sol Ascension (Ashfall)
-    0, // Last Ember (Ashfall)
+    STAGING_ATTACK, // Sol Ascension (Ashfall): he runs up for each blow
+    STAGING_ATTACK, // Last Ember (Ashfall): he runs up for each blow
     0, // Foresight (Ashfall)
     0, // Last Tide (Ashfall)
     0, // ?
     0, // Last Tide's revive (Ashfall)
     0, // Last Tide's collapse (Ashfall)
-    0, // Sol Ascension's second slash (Ashfall)
-    0, // Sol Ascension's last blow (Ashfall)
+    STAGING_ATTACK, // Sol Ascension's second slash (Ashfall)
+    STAGING_ATTACK, // Sol Ascension's last blow (Ashfall)
     0, // Dragon Cloud
     0, // Demon Night
     0, // Helm Splitter
@@ -207,9 +207,9 @@ const u8 gAbilityStaging[] = {
     0, // Astral Blast
     0, // Planet Diver
     0, // ?
-    0, // Last Ember's slash (Ashfall)
-    0, // Last Ember's shoulder charge (Ashfall)
-    0, // Last Ember's last blow (Ashfall)
+    STAGING_ATTACK, // Last Ember's slash (Ashfall)
+    STAGING_ATTACK, // Last Ember's shoulder charge (Ashfall)
+    STAGING_ATTACK, // Last Ember's last blow (Ashfall)
     0, // ?
     0, // Foresight's bolt into the sky (Ashfall)
     0, // Foresight's last blow (Ashfall)

@@ -12,7 +12,10 @@
 /// - Mia's Last Tide (Garr's Sekkazan): she gathers her power and strikes,
 ///   and while foes remain the fallen rise and she falls.
 /// The opening blow has its cry and the last calls out the name; the blows
-/// between are silent.
+/// between are silent. Isaac's and Garet's blows run up to the foe and strike,
+/// as an attack does (STAGING_ATTACK). For each blow the hero is drawn in a
+/// pose the author drew (the SPRITE_POSE_ sprites, the sword drawn in),
+/// shown in place of their battle sprite and weapon until the finisher ends.
 ///
 /// Everything here runs from the spare ROM area (rom_tail_02); the battle
 /// bank only calls in:
@@ -24,10 +27,102 @@
 
 #include "battle_internal.h"
 
-/// The line shown as `abilityId` is used, in place of "<unit> casts ...!";
-/// MYSTIC_ARTE_SILENT for a blow in the middle of a finisher, which shows
-/// none.
-s32 MysticArte_CastMessage(s32 abilityId) {
+// While a finisher plays, its hero's own sprite and weapon, kept in the
+// battle's spare bytes (zeroed with the rest of the battle's work) to be put
+// back when it ends.
+#define poseHero unusedAfterActions[0]   ///< the hero's unit id plus 1; 0 none
+#define poseSprite unusedAfterActions[1] ///< two bytes: their sprite
+#define poseWeapon unusedAfterActions[3] ///< two bytes: their weapon sprite
+
+/// Each finisher blow's pose: the ability, the pose its hero is drawn in
+/// while its line shows (0 for none) and while it strikes.
+enum { POSE_ABILITY, POSE_FOR_LINE, POSE_FOR_BLOW, POSE_COLUMNS };
+static const u16 sMysticArte_Poses[][POSE_COLUMNS] = {
+    {ABILITY_SOL_ASCENSION, SPRITE_POSE_ISAAC_LOW_PROFILE,
+     SPRITE_POSE_ISAAC_DASH},
+    {ABILITY_SOL_ASCENSION_SLASH, 0, SPRITE_POSE_ISAAC_ATTACK_END},
+    {ABILITY_SOL_ASCENSION_RISE, 0, SPRITE_POSE_ISAAC_SWORD_ATTACK},
+    {ABILITY_LAST_EMBER, SPRITE_POSE_GARET_WINDUP, SPRITE_POSE_GARET_WINDUP},
+    {ABILITY_LAST_EMBER_SLASH, 0, SPRITE_POSE_GARET_ATTACK_END},
+    {ABILITY_LAST_EMBER_TACKLE, 0, SPRITE_POSE_GARET_DASH},
+    {ABILITY_LAST_EMBER_UPPERCUT, 0, SPRITE_POSE_GARET_WINDUP},
+    {ABILITY_FORESIGHT, SPRITE_POSE_IVAN_ATTACK_END,
+     SPRITE_POSE_IVAN_ATTACK_END},
+    {ABILITY_FORESIGHT_SKY, 0, SPRITE_POSE_IVAN_KARIS},
+    {ABILITY_FORESIGHT_RETURN, 0, SPRITE_POSE_IVAN_KARIS},
+    {ABILITY_LAST_TIDE, SPRITE_POSE_MIA_WINDUP, SPRITE_POSE_MIA_WINDUP},
+    {ABILITY_LAST_TIDE_STRIKE, 0, SPRITE_POSE_MIA_YUGIZAN},
+    {ABILITY_LAST_TIDE_REVIVE, 0, SPRITE_POSE_MIA_YUGIZAN},
+    {ABILITY_LAST_TIDE_COLLAPSE, 0, SPRITE_POSE_MIA_FACEPLANT},
+};
+#define MYSTIC_ARTE_POSE_COUNT                                                 \
+  (s32)(sizeof(sMysticArte_Poses) / sizeof(sMysticArte_Poses[0]))
+
+/// Draws party member unitId as `sprite`, with no weapon, keeping their own
+/// sprite and weapon the first time to put back (MysticArte_EndPose).
+static void MysticArte_ShowPose(s32 unitId, s32 sprite) {
+  struct BattleWork *battle = gBattleWork;
+  struct BattleObject *battleObject;
+
+  if (unitId < 0 || unitId > ALLY_MAX)
+    return;
+  battleObject = BattleObject_Get(unitId);
+  if (battleObject == NULL || battleObject->actor == NULL)
+    return;
+  if (battle->poseHero == 0) {
+    battle->poseHero = unitId + 1;
+    (&battle->poseSprite)[0] = battleObject->resource;
+    (&battle->poseSprite)[1] = battleObject->resource >> 8;
+    (&battle->poseWeapon)[0] = battleObject->overlay;
+    (&battle->poseWeapon)[1] = battleObject->overlay >> 8;
+  }
+  battleObject->resource = sprite;
+  battleObject->overlay = 0;
+  ReleaseBattleObjectRecords(unitId);
+  BattleObject_Put();
+}
+
+/// Puts back the sprite and weapon of the hero a finisher drew in its poses.
+static void MysticArte_EndPose(void) {
+  struct BattleWork *battle = gBattleWork;
+  struct BattleObject *battleObject;
+  s32 unitId;
+
+  if (battle->poseHero == 0)
+    return;
+  unitId = battle->poseHero - 1;
+  battle->poseHero = 0;
+  battleObject = BattleObject_Get(unitId);
+  if (battleObject == NULL)
+    return;
+  battleObject->resource =
+      (&battle->poseSprite)[0] | ((&battle->poseSprite)[1] << 8);
+  battleObject->overlay =
+      (&battle->poseWeapon)[0] | ((&battle->poseWeapon)[1] << 8);
+  ReleaseBattleObjectRecords(unitId);
+  BattleObject_Put();
+}
+
+/// Draws unitId in finisher blow abilityId's pose, `column` saying which:
+/// POSE_FOR_LINE or POSE_FOR_BLOW. Nothing for any other ability.
+static void MysticArte_Pose(s32 abilityId, s32 unitId, s32 column) {
+  s32 i;
+
+  for (i = 0; i < MYSTIC_ARTE_POSE_COUNT; i++) {
+    if (sMysticArte_Poses[i][POSE_ABILITY] == abilityId) {
+      if (sMysticArte_Poses[i][column] != 0)
+        MysticArte_ShowPose(unitId, sMysticArte_Poses[i][column]);
+      return;
+    }
+  }
+}
+
+/// The line shown as `abilityId` is used by unitId, in place of "<unit>
+/// casts ...!"; MYSTIC_ARTE_SILENT for a blow in the middle of a finisher,
+/// which shows none. A finisher's opening blow first draws its hero in the
+/// pose for its cry.
+s32 MysticArte_CastMessage(s32 abilityId, s32 unitId) {
+  MysticArte_Pose(abilityId, unitId, POSE_FOR_LINE);
   switch (abilityId) {
   case ABILITY_FALLING_WIND:
     return MsgFallingWindRemembered;
@@ -89,9 +184,10 @@ static void MysticArte_FilterTargets(struct BattleTurn *plan, s32 fallen,
 
 /// Trims the targets of the revives: Falling Wind's and Last Tide's raise
 /// only the fallen, each certain to rise (no 60% roll by distance, no "no
-/// effect" line for the living). Called by BattleTurn_Build for every
-/// Psynergy.
+/// effect" line for the living). A finisher's blow draws its hero in the
+/// blow's pose. Called by BattleTurn_Build for every Psynergy.
 void MysticArte_AdjustPlan(struct BattleTurn *plan, s32 abilityId) {
+  MysticArte_Pose(abilityId, plan->unitId, POSE_FOR_BLOW);
   switch (abilityId) {
   case ABILITY_FALLING_WIND_REVIVE:
   case ABILITY_LAST_TIDE_REVIVE:
@@ -133,14 +229,14 @@ static s32 MysticArte_AnyAlly(s32 unitId, s32 fallen) {
 /// The finishers' chains: the ability each hero learns, then the blows
 /// that follow it, ended by 0.
 enum { MYSTIC_ARTE_CHAIN_COUNT = 4, MYSTIC_ARTE_CHAIN_LENGTH = 4 };
-static const s16 sMysticArte_Chains[MYSTIC_ARTE_CHAIN_COUNT]
-                                   [MYSTIC_ARTE_CHAIN_LENGTH] = {
-    {ABILITY_SOL_ASCENSION, ABILITY_SOL_ASCENSION_SLASH,
-     ABILITY_SOL_ASCENSION_RISE},
-    {ABILITY_LAST_EMBER, ABILITY_LAST_EMBER_SLASH, ABILITY_LAST_EMBER_TACKLE,
-     ABILITY_LAST_EMBER_UPPERCUT},
-    {ABILITY_FORESIGHT, ABILITY_FORESIGHT_SKY, ABILITY_FORESIGHT_RETURN},
-    {ABILITY_LAST_TIDE, ABILITY_LAST_TIDE_STRIKE},
+static const s16
+    sMysticArte_Chains[MYSTIC_ARTE_CHAIN_COUNT][MYSTIC_ARTE_CHAIN_LENGTH] = {
+        {ABILITY_SOL_ASCENSION, ABILITY_SOL_ASCENSION_SLASH,
+         ABILITY_SOL_ASCENSION_RISE},
+        {ABILITY_LAST_EMBER, ABILITY_LAST_EMBER_SLASH,
+         ABILITY_LAST_EMBER_TACKLE, ABILITY_LAST_EMBER_UPPERCUT},
+        {ABILITY_FORESIGHT, ABILITY_FORESIGHT_SKY, ABILITY_FORESIGHT_RETURN},
+        {ABILITY_LAST_TIDE, ABILITY_LAST_TIDE_STRIKE},
 };
 
 /// Plays `abilityId` at once as `unitId`'s follow-up, aimed at `target`.
@@ -174,12 +270,11 @@ static s32 MysticArte_NextFoe(s32 first) {
 /// everything: the fallen rise and she falls; if her strike ends the battle,
 /// she is spared. Called after every action,
 /// by PartyJoin_RunAfterAction.
-void MysticArte_RunAfterAction(void) {
+static void MysticArte_RunChain(void) {
   struct BattleTurn *turn = &gBattleWork->turn;
   s32 chain, step, unitId, first, foe;
 
-  if (turn->command != COMMAND_PSYNERGY ||
-      turn->failure != TURN_FAILURE_NONE)
+  if (turn->command != COMMAND_PSYNERGY || turn->failure != TURN_FAILURE_NONE)
     return;
   for (chain = 0; chain < MYSTIC_ARTE_CHAIN_COUNT; chain++) {
     if (sMysticArte_Chains[chain][0] == turn->abilityId)
@@ -191,7 +286,9 @@ void MysticArte_RunAfterAction(void) {
   first = turn->targetCount != 0 && turn->targetIds[0] > ALLY_MAX
               ? turn->targetIds[0]
               : -1;
-  for (step = 1; step < MYSTIC_ARTE_CHAIN_LENGTH && sMysticArte_Chains[chain][step] != 0; step++) {
+  for (step = 1;
+       step < MYSTIC_ARTE_CHAIN_LENGTH && sMysticArte_Chains[chain][step] != 0;
+       step++) {
     foe = MysticArte_NextFoe(first);
     if (foe < 0 || Unit_GetFar(unitId)->hp == 0)
       return;
@@ -204,4 +301,11 @@ void MysticArte_RunAfterAction(void) {
   if (MysticArte_AnyAlly(unitId, 1))
     MysticArte_Follow(unitId, ABILITY_LAST_TIDE_REVIVE, unitId);
   MysticArte_Follow(unitId, ABILITY_LAST_TIDE_COLLAPSE, unitId);
+}
+
+/// After a finisher's first blow, plays the rest of it, then puts back its
+/// hero's sprite. Called after every action, by PartyJoin_RunAfterAction.
+void MysticArte_RunAfterAction(void) {
+  MysticArte_RunChain();
+  MysticArte_EndPose();
 }

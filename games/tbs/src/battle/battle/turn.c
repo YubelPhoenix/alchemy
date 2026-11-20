@@ -341,7 +341,7 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
     MessageArgument_PushFar(abilityId, MESSAGE_ARGUMENT_ABILITY);
     // Ashfall: Falling Wind and the heroes' finishers have lines of their
     // own, and a finisher's middle blows none (MysticArte_CastMessage).
-    message = MysticArte_CastMessage(abilityId);
+    message = MysticArte_CastMessage(abilityId, request->unitId);
     if (message != MYSTIC_ARTE_SILENT)
       BattleMessage_ShowAndWaitFar(message);
     // Fail if PP is insufficient or Psynergy is sealed (the seal wins); the

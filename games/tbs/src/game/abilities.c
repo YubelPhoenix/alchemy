@@ -1404,19 +1404,20 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .fieldPsynergy = 16,
     },
     // Sol Ascension (Ashfall): Isaac's finisher, after Stahn's Zankuu
-    // Tenshouken; its opening slash at the foe he picks. The rest follow
-    // (MysticArte_RunAfterAction).
+    // Tenshouken; its first slash, run up to the foe he picks, often twice.
+    // The rest follow (MysticArte_RunAfterAction).
     {
         .targetMode = ABILITY_TARGET_ONE,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_VENUS,
+        .effect = ABILITY_EFFECT_DOUBLE_BLOW_60,
         .icon = 137,
         .range = 1,
         .ppCost = 40,
         .power = 12,
     },
     // Last Ember (Ashfall): Garet's finisher, after Mary's "ZAN!"; its
-    // overhead axe smash.
+    // overhead smash.
     {
         .targetMode = ABILITY_TARGET_ONE,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
@@ -1476,6 +1477,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .targetMode = ABILITY_TARGET_ONE,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_VENUS,
+        .effect = ABILITY_EFFECT_DOUBLE_BLOW_60,
         .icon = 137,
         .range = 1,
         .power = 12,
@@ -1870,11 +1872,12 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .targetMode = ABILITY_TARGET_ONE,
         .element = ELEMENT_VENUS,
     },
-    // Last Ember's one-handed slash.
+    // Last Ember's one-handed slash, often twice.
     {
         .targetMode = ABILITY_TARGET_ONE,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_MARS,
+        .effect = ABILITY_EFFECT_DOUBLE_BLOW_60,
         .icon = 39,
         .range = 1,
         .power = 12,
