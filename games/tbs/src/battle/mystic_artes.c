@@ -281,7 +281,7 @@ void MysticArte_OnHit(void) {
   (&battle->impactBlend)[1] = blend >> 8;
   Sound_PlaySongFar(SE_HEAVY_IMPACT);
   REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
-  Task_AddFrame(MysticArte_RunImpact, TASK_PASS_FRAME);
+  Task_Add(MysticArte_RunImpact, TASK_PASS_FRAME);
 }
 
 /// Whether the blow being staged leaves its hero at the foe, to strike again
