@@ -4199,27 +4199,27 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_JUPITER,
         .range = 1,
-        .power = 100,
+        .power = 220,
     },
-    // The Mystery Leader's other attacks (abilities 520 to 526). All but
-    // P-Storm keep the numbers of the move they replaced in her solo test,
-    // and none hits harder than Explosion; each costs no PP: nothing marks it as Psynergy
-    // (Ability_IsPsynergy), so it can't be sealed.
+    // The Mystery Leader's other attacks (abilities 520 to 526). Their
+    // fixed damage is tuned for an endgame party instead of the weaker
+    // borrowed monster moves. None is an instant-KO or sealing move.
+    // They cost no PP and cannot be sealed by Psynergy Seal.
     // EX Gotterkanone, for Quick Strike: a blow times 1.8.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_JUPITER,
         .range = 1,
-        .power = 18,
+        .power = 20,
     },
-    // Ransnetz, for Rockslide.
+    // Ransnetz, for Rockslide: serious spread damage against endgame gear.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
         .range = 3,
-        .power = 90,
+        .power = 240,
     },
     // Explosion, for Grand Gaia.
     {
@@ -4227,7 +4227,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
         .range = 3,
-        .power = 200,
+        .power = 290,
     },
     // P-Vortex, for Break: undoes raised stats.
     {
@@ -4252,16 +4252,16 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
         .range = 3,
-        .power = 160,
+        .power = 245,
     },
-    // P-Storm, her finisher below half HP, in Demon Night's slot: as strong
-    // as EX Sternbrecher, so no hit outdoes Explosion's, and nothing lingers.
+    // P-Storm, her finisher below half HP, in Demon Night's slot: strong
+    // spread damage, but no lingering status or arbitrary instant defeat.
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
         .range = 3,
-        .power = 160,
+        .power = 255,
     },
     // Sarah's pike techniques (abilities 527 to 531): a human's weapon work,
     // with no element and no PP, each a blow times power / 10.
