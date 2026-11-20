@@ -214,6 +214,8 @@ void MysticArte_AdjustPlan(struct BattleTurn *plan, s32 abilityId);
 s32 MysticArte_Power(s32 abilityId, struct Unit *actor, s32 power);
 s32 MysticArte_IsCollapse(void);
 void MysticArte_RunAfterAction(void);
+void MysticArte_OnHit(void);
+s32 MysticArte_StaysIn(void);
 s32 PartyJoin_StepGloom(s32 *repaint);
 /// Ashfall's finished Regenerate (regenerate.c).
 void Regenerate_RunRoundEnd(s32 unitId);

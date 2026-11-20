@@ -38,6 +38,11 @@
 // blend setting to put back.
 #define arteDimmed unusedAfterActions[5] ///< 1 while dimmed
 #define arteBlend unusedAfterActions[6]  ///< two bytes: REG_BLDCNT before
+// While the impact of a finisher's last blow plays: its frames left, and the
+// camera's yaw and the blend setting to put back.
+#define impactFrames unusedAfterActions[8] ///< 0 when none plays
+#define impactYaw unusedAfterActions[9]    ///< two bytes: the yaw before
+#define impactBlend unusedAfterActions[11] ///< two bytes: REG_BLDCNT before
 
 /// How dim the battlefield goes as a finisher starts (REG_BLDY, of 16), and
 /// the frames it takes to dim and to lift: the hero, a sprite, stays bright
@@ -45,12 +50,28 @@
 #define ARTE_DIM_LEVEL 11
 #define ARTE_DIM_FRAMES 8
 #define ARTE_LIFT_FRAMES 6
-/// The flash and shake before a finisher's last blow: frames the screen
-/// stays white, frames it fades back, and the shake in 1/65536 turns of
-/// yaw, as the friends' arrivals flash (PartyJoin_BreakFlash).
-#define ARTE_FLASH_HOLD 3
-#define ARTE_FLASH_FADE 12
-#define ARTE_FLASH_SHAKE 0x200
+/// The impact as a finisher's last blow lands: frames the screen stays
+/// white, frames it fades back, and the shake in 1/65536 turns of yaw, as the
+/// friends' arrivals flash (PartyJoin_BreakFlash), and the frames the shake
+/// lasts.
+#define ARTE_FLASH_HOLD 2
+#define ARTE_FLASH_FADE 6
+#define ARTE_FLASH_SHAKE 0x240
+#define ARTE_SHAKE_FRAMES 18
+/// Frames a hero takes to run back to their spot after the last blow.
+#define ARTE_RETURN_FRAMES 20
+
+/// How many times each finisher blow lands on each target (its multiplier,
+/// at most 3, the variants an animation has), so a combo hits hard and
+/// often, as the Tales series' do; blows not listed land once.
+static const u16 sMysticArte_Hits[][2] = {
+    {ABILITY_SOL_ASCENSION, 3},     {ABILITY_SOL_ASCENSION_SLASH, 3},
+    {ABILITY_LAST_EMBER, 2},        {ABILITY_LAST_EMBER_SLASH, 3},
+    {ABILITY_LAST_EMBER_TACKLE, 2}, {ABILITY_FORESIGHT_DASH, 3},
+    {ABILITY_LAST_TIDE_DASH, 3},
+};
+#define MYSTIC_ARTE_HITS_COUNT                                                 \
+  (s32)(sizeof(sMysticArte_Hits) / sizeof(sMysticArte_Hits[0]))
 
 /// Each finisher blow's pose: the ability, the pose its hero is drawn in
 /// while its line shows (0 for none) and while it strikes.
@@ -172,39 +193,85 @@ static void MysticArte_Lift(void) {
   REG_BLDCNT = (&battle->arteBlend)[0] | ((&battle->arteBlend)[1] << 8);
 }
 
-/// The moment before a finisher's last blow: a heavy blow's sound, the whole
-/// screen white, and the white fading while the camera shakes and settles.
-/// The yaw and the blend register are put back after.
-static void MysticArte_Flash(void) {
+/// Where abilityId falls in a finisher: MYSTIC_ARTE_FIRST for the blow a
+/// hero learns, MYSTIC_ARTE_LAST for its last blow, MYSTIC_ARTE_MIDDLE for
+/// one between, else 0.
+enum { MYSTIC_ARTE_FIRST = 1, MYSTIC_ARTE_LAST = 2, MYSTIC_ARTE_MIDDLE = 3 };
+
+/// One frame of the impact MysticArte_OnHit starts: the white fading over
+/// the first frames, the camera shaking less and less, then the yaw and the
+/// blend put back and the task removed. A task, as the blow lands while its
+/// animation runs.
+static void MysticArte_RunImpact(void) {
+  struct BattleWork *battle = gBattleWork;
   struct BattleCamera *camera = HEAP_SLOT_BLOCK(HEAP_SLOT_CAMERA);
-  u16 savedBlend = REG_BLDCNT;
-  u16 baseYaw = camera->yaw;
-  s32 frame;
+  s32 left = battle->impactFrames;
+  s32 frame = ARTE_SHAKE_FRAMES - left;
+  u16 baseYaw = (&battle->impactYaw)[0] | ((&battle->impactYaw)[1] << 8);
   s32 shake;
 
-  Sound_PlaySongFar(SE_HEAVY_IMPACT);
-  REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
-  for (frame = 0; frame < ARTE_FLASH_HOLD + ARTE_FLASH_FADE; frame++) {
-    if (frame < ARTE_FLASH_HOLD)
-      REG_BLDY = 16;
-    else
-      REG_BLDY = 16 - (frame - ARTE_FLASH_HOLD + 1) * 16 / ARTE_FLASH_FADE;
-    shake = ARTE_FLASH_SHAKE * (ARTE_FLASH_HOLD + ARTE_FLASH_FADE - frame) /
-            (ARTE_FLASH_HOLD + ARTE_FLASH_FADE);
-    if (frame & 1)
-      shake = -shake;
-    camera->yaw = baseYaw + shake;
-    WaitFrames(1);
+  if (left == 0) {
+    Task_Remove(MysticArte_RunImpact);
+    return;
   }
-  camera->yaw = baseYaw;
-  REG_BLDY = 0;
-  REG_BLDCNT = savedBlend;
+  if (frame < ARTE_FLASH_HOLD) {
+    REG_BLDY = 16;
+  } else if (frame < ARTE_FLASH_HOLD + ARTE_FLASH_FADE) {
+    REG_BLDY = 16 - (frame - ARTE_FLASH_HOLD + 1) * 16 / ARTE_FLASH_FADE;
+  } else if (frame == ARTE_FLASH_HOLD + ARTE_FLASH_FADE) {
+    REG_BLDY = 0;
+    REG_BLDCNT = (&battle->impactBlend)[0] | ((&battle->impactBlend)[1] << 8);
+  }
+  shake = ARTE_FLASH_SHAKE * left / ARTE_SHAKE_FRAMES;
+  if (frame & 1)
+    shake = -shake;
+  camera->yaw = baseYaw + shake;
+  left--;
+  battle->impactFrames = left;
+  if (left == 0) {
+    camera->yaw = baseYaw;
+    Task_Remove(MysticArte_RunImpact);
+  }
 }
 
-/// Where abilityId falls in a finisher: MYSTIC_ARTE_FIRST for the blow a
-/// hero learns, MYSTIC_ARTE_LAST for its last blow, else 0.
-enum { MYSTIC_ARTE_FIRST = 1, MYSTIC_ARTE_LAST = 2 };
 static s32 MysticArte_Place(s32 abilityId);
+
+/// The moment a finisher's last blow lands: a heavy blow's sound, the whole
+/// screen white for a moment, and the camera shaking and settling, played as
+/// a task (MysticArte_RunImpact). Called by BattlePlayback_Start as any blow
+/// lands; nothing for any other blow.
+void MysticArte_OnHit(void) {
+  struct BattleWork *battle = gBattleWork;
+  struct BattleCamera *camera = HEAP_SLOT_BLOCK(HEAP_SLOT_CAMERA);
+  u16 blend = REG_BLDCNT;
+
+  if (battle->impactFrames != 0 || battle->turn.command != COMMAND_PSYNERGY ||
+      MysticArte_Place(battle->turn.abilityId) != MYSTIC_ARTE_LAST)
+    return;
+  battle->impactFrames = ARTE_SHAKE_FRAMES;
+  (&battle->impactYaw)[0] = camera->yaw;
+  (&battle->impactYaw)[1] = camera->yaw >> 8;
+  (&battle->impactBlend)[0] = blend;
+  (&battle->impactBlend)[1] = blend >> 8;
+  Sound_PlaySongFar(SE_HEAVY_IMPACT);
+  REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
+  Task_AddFrame(MysticArte_RunImpact, TASK_PASS_FRAME);
+}
+
+/// Whether the blow being staged leaves its hero at the foe, to strike again
+/// from there: every finisher blow but the last. BattleStaging_RunAttack
+/// sends the attacker back otherwise.
+s32 MysticArte_StaysIn(void) {
+  struct BattleTurn *turn = &gBattleWork->turn;
+  s32 place;
+
+  if (turn->command != COMMAND_PSYNERGY)
+    return 0;
+  place = MysticArte_Place(turn->abilityId);
+  if (place == MYSTIC_ARTE_LAST)
+    return 0;
+  return place == MYSTIC_ARTE_FIRST || place == MYSTIC_ARTE_MIDDLE;
+}
 
 /// The line shown as `abilityId` is used by unitId, in place of "<unit>
 /// casts ...!"; MYSTIC_ARTE_SILENT for a blow in the middle of a finisher,
@@ -216,8 +283,7 @@ s32 MysticArte_CastMessage(s32 abilityId, s32 unitId) {
   MysticArte_Pose(abilityId, unitId, POSE_FOR_LINE);
   if (place == MYSTIC_ARTE_FIRST)
     MysticArte_Dim();
-  else if (place == MYSTIC_ARTE_LAST)
-    MysticArte_Flash();
+
   switch (abilityId) {
   case ABILITY_FALLING_WIND:
     return MsgFallingWindRemembered;
@@ -284,8 +350,16 @@ static void MysticArte_FilterTargets(struct BattleTurn *plan, s32 fallen,
 /// effect" line for the living). A finisher's blow draws its hero in the
 /// blow's pose. Called by BattleTurn_Build for every Psynergy.
 void MysticArte_AdjustPlan(struct BattleTurn *plan, s32 abilityId) {
+  s32 i, j;
+
   MysticArte_Lift();
   MysticArte_Pose(abilityId, plan->unitId, POSE_FOR_BLOW);
+  for (i = 0; i < MYSTIC_ARTE_HITS_COUNT; i++) {
+    if (sMysticArte_Hits[i][0] != abilityId)
+      continue;
+    for (j = 0; j < plan->targetCount; j++)
+      plan->targetMultiplier[j] = sMysticArte_Hits[i][1];
+  }
   switch (abilityId) {
   case ABILITY_FALLING_WIND_REVIVE:
   case ABILITY_LAST_TIDE_REVIVE:
@@ -352,7 +426,7 @@ static s32 MysticArte_Place(s32 abilityId) {
       if (step + 1 == MYSTIC_ARTE_CHAIN_LENGTH ||
           sMysticArte_Chains[chain][step + 1] == 0)
         return MYSTIC_ARTE_LAST;
-      return 0;
+      return MYSTIC_ARTE_MIDDLE;
     }
   }
   return 0;
@@ -413,6 +487,9 @@ static void MysticArte_RunChain(void) {
       return;
     MysticArte_Follow(unitId, sMysticArte_Chains[chain][step], foe);
   }
+  // Back to their spot after the last blow, before Mia's sacrifice.
+  BattleMotion_ReturnToSpot(unitId);
+  WaitFrames(ARTE_RETURN_FRAMES);
   if (sMysticArte_Chains[chain][0] != ABILITY_LAST_TIDE ||
       Unit_GetFar(unitId)->hp == 0 ||
       BattleUnit_ListLiving(BATTLE_SIDE_MASK_ENEMIES, 0) == 0)

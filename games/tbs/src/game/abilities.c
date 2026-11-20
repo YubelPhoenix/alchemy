@@ -1404,17 +1404,16 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .fieldPsynergy = 16,
     },
     // Sol Ascension (Ashfall): Isaac's finisher, after Stahn's Zankuu
-    // Tenshouken; its first slash, run up to the foe he picks, often twice.
+    // Tenshouken; its first slash, run up to the foe he picks.
     // The rest follow (MysticArte_RunAfterAction).
     {
         .targetMode = ABILITY_TARGET_ONE,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_VENUS,
-        .effect = ABILITY_EFFECT_DOUBLE_BLOW_60,
         .icon = 137,
         .range = 1,
         .ppCost = 40,
-        .power = 12,
+        .power = 8,
     },
     // Last Ember (Ashfall): Garet's finisher, after Mary's "ZAN!"; its
     // overhead smash.
@@ -1425,7 +1424,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .icon = 39,
         .range = 1,
         .ppCost = 40,
-        .power = 12,
+        .power = 10,
     },
     // Foresight (Ashfall): Ivan's finisher, after Philia's Rebirth
     // Crusader; its wall of lightning around every foe.
@@ -1477,10 +1476,9 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .targetMode = ABILITY_TARGET_ONE,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_VENUS,
-        .effect = ABILITY_EFFECT_DOUBLE_BLOW_60,
         .icon = 137,
         .range = 1,
-        .power = 12,
+        .power = 8,
     },
     // Sol Ascension's last blow: the rising leap into the sky, the
     // heaviest Venus blow in the game.
@@ -1872,15 +1870,14 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .targetMode = ABILITY_TARGET_ONE,
         .element = ELEMENT_VENUS,
     },
-    // Last Ember's one-handed slash, often twice.
+    // Last Ember's one-handed slash.
     {
         .targetMode = ABILITY_TARGET_ONE,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_MARS,
-        .effect = ABILITY_EFFECT_DOUBLE_BLOW_60,
         .icon = 39,
         .range = 1,
-        .power = 12,
+        .power = 8,
     },
     // Last Ember's shoulder charge.
     {
@@ -1889,7 +1886,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_MARS,
         .icon = 39,
         .range = 1,
-        .power = 12,
+        .power = 10,
     },
     // Last Ember's last blow: the uppercut into the air. It grows as
     // Garet's HP falls (MysticArte_Power).
@@ -1908,7 +1905,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_JUPITER,
         .icon = 54,
         .range = 1,
-        .power = 12,
+        .power = 8,
     },
     // Foresight's bolt into the sky, churning the clouds.
     {
@@ -1946,7 +1943,7 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .element = ELEMENT_MERCURY,
         .icon = 18,
         .range = 1,
-        .power = 15,
+        .power = 10,
     },
     // ?
     {

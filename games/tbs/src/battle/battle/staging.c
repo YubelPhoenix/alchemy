@@ -619,7 +619,9 @@ s32 BattleStaging_RunAttack(struct BattleTurn *plan, s32 mode) {
     }
     BattleMotion_ReturnToSpot(work.effect.targets[0]);
   }
-  BattleMotion_ReturnToSpot(work.effect.user);
+  // Ashfall: a finisher's blows but its last keep the hero at the foe.
+  if (!MysticArte_StaysIn())
+    BattleMotion_ReturnToSpot(work.effect.user);
   return 0;
 }
 
