@@ -342,6 +342,13 @@ void BattlePlacement_LayoutEnemies(u16 *actorIds, s32 count, s32 *xPositions,
     }
     z -= spacing / 2;
   }
+  // Umbral Rift: ??? and Heart are both large figures, so the usual 38-unit
+  // gap leaves them shoulder to shoulder. Spread the pair apart.
+  if (count == 2 && !IS_PLACEHOLDER_ID(actorIds[0]) && !IS_PLACEHOLDER_ID(actorIds[1]) &&
+      Unit_GetFar(actorIds[0])->id == 160 && Unit_GetFar(actorIds[1])->id == 173) {
+    zPositions[0] += 14;
+    zPositions[1] -= 14;
+  }
 }
 
 /// Returns the id of the first free enemy unit, or -1 when all six are taken.
