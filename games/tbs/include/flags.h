@@ -2835,5 +2835,12 @@
 /// Golden Sun: Ashfall: the Memory Room has been reached through the Twin Maze,
 /// which opens the Fountain Hall's right arch as a shortcut to it.
 #define FLAG_DARK_RIFT_SHORTCUT_OPEN 0x8ef
+/// The black crystal's anchor has been shut down after ??? and Heart lose.
+/// The route-unlocking Memory Room orb remains lit separately.
+#define FLAG_DARK_RIFT_ANCHOR_SEALED 0x8f2
+/// First entrance to the Rift Causeway has shown the warning dialogue.
+#define FLAG_DARK_RIFT_CAUSEWAY_SEEN 0x8f3
+/// The activated fountain gate has been examined after the Memory Room orb.
+#define FLAG_DARK_RIFT_GATE_SEEN 0x8f4
 
 #endif
