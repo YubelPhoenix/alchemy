@@ -130,7 +130,12 @@ static void UmbralRift_Say(s32 message, s32 actor) {
   Event_ShowMessageThenWait(actor, 0, 20);
 }
 
-static void UmbralRift_FountainDialogue(void) {
+static void UmbralRift_FountainDialogue(s32 afterEcho) {
+  if (afterEcho) {
+  UmbralRift_Say(MsgDarkRiftFountain008, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftFountain009, ACTOR_MIA);
+  UmbralRift_Say(MsgDarkRiftFountain010, ACTOR_PARTY_LEADER);
+  } else {
   UmbralRift_Say(MsgDarkRiftFountain001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftFountain002, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftFountain003, ACTOR_MIA);
@@ -138,12 +143,14 @@ static void UmbralRift_FountainDialogue(void) {
   UmbralRift_Say(MsgDarkRiftFountain005, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftFountain006, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftFountain007, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftFountain008, ACTOR_GARET);
-  UmbralRift_Say(MsgDarkRiftFountain009, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftFountain010, ACTOR_PARTY_LEADER);
+  }
 }
 
-static void UmbralRift_MazeDialogue(void) {
+static void UmbralRift_MazeDialogue(s32 afterEcho) {
+  if (afterEcho) {
+  UmbralRift_Say(MsgDarkRiftMaze008, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftMaze009, ACTOR_PARTY_LEADER);
+  } else {
   UmbralRift_Say(MsgDarkRiftMaze001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftMaze002, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftMaze003, ACTOR_IVAN);
@@ -151,8 +158,7 @@ static void UmbralRift_MazeDialogue(void) {
   UmbralRift_Say(MsgDarkRiftMaze005, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftMaze006, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftMaze007, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftMaze008, ACTOR_GARET);
-  UmbralRift_Say(MsgDarkRiftMaze009, ACTOR_PARTY_LEADER);
+  }
 }
 
 static void UmbralRift_MemoryDialogue(void) {
@@ -305,9 +311,9 @@ static void UmbralRift_PairVanish(s32 mystery, s32 heart, s32 flag) {
   // The silhouettes are echoes of where they walked earlier.
   Sound_PlaySong(SE_WARP);
   if (flag == FLAG_DARK_RIFT_PAIR_FOUNTAIN)
-    UmbralRift_FountainDialogue();
+    UmbralRift_FountainDialogue(0);
   else if (flag == FLAG_DARK_RIFT_PAIR_MAZE)
-    UmbralRift_MazeDialogue();
+    UmbralRift_MazeDialogue(0);
   else if (flag == FLAG_DARK_RIFT_PAIR_MEMORY)
     UmbralRift_MemoryDialogue();
   UmbralRift_FlickerOut(mystery, heart);
@@ -315,6 +321,11 @@ static void UmbralRift_PairVanish(s32 mystery, s32 heart, s32 flag) {
   Actor_ConfigureSpriteColor(heart, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(mystery, PIXELS(-9), PIXELS(488));
   Actor_SetPosition(heart, PIXELS(-9), PIXELS(488));
+  // Let the witnesses react once the images have disappeared.
+  if (flag == FLAG_DARK_RIFT_PAIR_FOUNTAIN)
+    UmbralRift_FountainDialogue(1);
+  else if (flag == FLAG_DARK_RIFT_PAIR_MAZE)
+    UmbralRift_MazeDialogue(1);
   GameFlag_Set(flag);
   Event_End();
 }
