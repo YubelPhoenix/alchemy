@@ -920,7 +920,7 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         // Enemy id 160: Umbral Rift "???" (row 152), her own art.
         .animation = 489,
         .attackAnim = 1,
-        .defeatSound = 1,
+        .defeatSound = 0, // the human foes' fall (Saturos, Menardi), not a beast's cry
         .effectHeight = 42,
     },
     {
@@ -991,7 +991,7 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
     {
         .animation = 484,
         .attackAnim = 1,
-        .defeatSound = 1,
+        .defeatSound = 0, // the human foes' fall, not a beast's cry
         .effectHeight = 42,
     },
 };

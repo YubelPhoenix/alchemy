@@ -254,11 +254,11 @@ static u32 sUmbralThroneExits[] = {
 };
 
 static struct ActorTemplate sUmbralThroneActorTemplates[] = {
-    // "???" on the dais and Heart below her, until they are beaten.
+    // "???" and Heart side by side on the dais, until they are beaten.
     {SPRITE_MYSTERY_LEADER, FLAG_DARK_RIFT_BEATEN, MOVEMENT_TYPE_STAND,
-     PIXELS(328), 0, PIXELS(104), FACING_SOUTH, TALK_FACING_PARTY, 0},
+     PIXELS(320), 0, PIXELS(104), FACING_SOUTH, TALK_FACING_PARTY, 0},
     {SPRITE_WOMAN_WITH_PURPLE_HAIR, FLAG_DARK_RIFT_BEATEN, MOVEMENT_TYPE_STAND,
-     PIXELS(296), 0, PIXELS(168), FACING_SOUTH, TALK_FACING_PARTY, 0},
+     PIXELS(336), 0, PIXELS(104), FACING_SOUTH, TALK_FACING_PARTY, 0},
     {SCENE_TABLE_END},
 };
 
