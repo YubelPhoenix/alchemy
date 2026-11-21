@@ -1696,3 +1696,8 @@ Resource_Overlay3CE:
 	.byte 0x2a, 0x7d	@ PACKER: left in the buffer by Resource_Overlay3CB+0x7ca
 	.endif
 	.balign 4, 0
+
+	.global Resource_Overlay3D5
+Resource_Overlay3D5:
+	.incbin "overlays/resource_3d5.lz"
+	.balign 4, 0
