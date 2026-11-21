@@ -47,6 +47,8 @@
 
 enum {
   UMBRAL_THRONE_FROM_RIFT_BATTLE = 1,
+  /// Exit 1: the cells at the hall's south end, back to the monolith.
+  UMBRAL_THRONE_TO_WORLD_MAP = 1,
 };
 
 enum {
@@ -110,6 +112,7 @@ static struct SceneEntrance sUmbralThroneEntrances[] = {
 
 static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralThrone),
+    SCENE_EXIT(UMBRAL_THRONE_TO_WORLD_MAP, WorldMap, WORLD_MAP_FROM_UMBRAL_RIFT),
     SCENE_EXITS_END,
 };
 
@@ -127,6 +130,8 @@ static struct Trigger sUmbralThroneTriggers[] = {
      EVENT(UmbralRift_TalkToMystery)},
     {TRIGGER_TALK, ACTOR_RIFT_HEART, FLAG_DARK_RIFT_BEATEN,
      EVENT(UmbralRift_TalkToMystery)},
+    {TRIGGER_EXIT, UMBRAL_THRONE_TO_WORLD_MAP, CONDITION_ALWAYS,
+     UMBRAL_THRONE_TO_WORLD_MAP},
     {TRIGGERS_END},
 };
 

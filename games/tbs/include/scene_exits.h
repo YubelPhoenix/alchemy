@@ -133,6 +133,8 @@ enum {
           ///< the aerie
   /// The world map's debug entrance, which sets FLAG_NO_ENCOUNTERS,
   /// FLAG_NO_ENCOUNTERS_IN_AREA and FLAG_DEBUG_STEPS_OFF.
+  /// Beside the black monolith near Vale, out of the Umbral Rift.
+  WORLD_MAP_FROM_UMBRAL_RIFT = 98,
   WORLD_MAP_FROM_DEBUG = 99,
 };
 /// SceneId_WorldMap's exits.
@@ -218,6 +220,8 @@ enum {
   WORLD_MAP_TO_VAULT_AFTER_MIA_THIEVES = 113,
   /// Mia's second interlude, with the party whole again at its end.
   WORLD_MAP_TO_MIA_REUNITES = 114,
+  /// Into the black monolith near Vale: the Umbral Rift's throne hall.
+  WORLD_MAP_TO_UMBRAL_RIFT = 115,
 };
 
 /// SceneId_ValeStormyNight's entrances.

@@ -311,8 +311,15 @@ enum WorldMapActorId {
   ACTOR_STORM,
   /// Placed by the coast once he has handed over the Black Orb.
   /// ★ Named from the game: "Iodem, Iodem!" (MsgTolbiIodemIodem)
-  ACTOR_IODEM
+  ACTOR_IODEM,
+  /// Golden Sun: Ashfall: the black monolith near Vale, the way into the
+  /// Umbral Rift. It stands only after Colosso (FLAG_COLOSSO_OVER).
+  ACTOR_RIFT_MONOLITH
 };
+
+/// Where the Umbral Rift's monolith stands: open meadow east of Vale.
+#define RIFT_MONOLITH_X 5704
+#define RIFT_MONOLITH_Z 1264
 
 /// The metatile behavior raised by touching an area's actor.
 #define STEP_TRIGGER_AREA(actorId) (STEP_TRIGGER_AREA_BASE + (actorId))
@@ -916,6 +923,11 @@ s32 WorldMap_Initialize(void) {
     FieldCamera_SetSpeedParameters(PIXELS(8), PIXELS(1));
     GameFlag_Clear(FLAG_SHOW_AREA_NAME);
     Task_AddFrame(WorldMap_UpdateAreaContacts, TASK_PASS_FRAME);
+    // The Umbral Rift's monolith: Venus Lighthouse's picture, drawn in black.
+    if (GameFlag_Get(FLAG_WORLD_MAP_ORDINARY_ACTORS) != 0 &&
+        GameFlag_Get(FLAG_COLOSSO_OVER) != 0) {
+      Actor_ConfigureSpriteColor(ACTOR_RIFT_MONOLITH, SPRITE_COLOR_BLACK);
+    }
     if (GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) == 0) {
       Field_SetWorldMapWindowCellTile(128, 256, 176, 56);
     }
@@ -3648,8 +3660,9 @@ struct SceneEntrance gWorldSceneEntrances[] = {
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     // Unused.
     {97, CONDITION_ALWAYS, 6248, 0, 872, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
-    // Unused.
-    {98, CONDITION_ALWAYS, 4248, 0, 2424, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
+    // Out of the Umbral Rift, just south of the monolith.
+    {WORLD_MAP_FROM_UMBRAL_RIFT, CONDITION_ALWAYS, RIFT_MONOLITH_X, 0,
+     RIFT_MONOLITH_Z + 24, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     {WORLD_MAP_FROM_DEBUG, CONDITION_ALWAYS, 5576, 0, 2088, FACING_SOUTH, 0, -1,
      -1, -1, -1, 0},
     {SCENE_TABLE_END},
@@ -3658,6 +3671,7 @@ struct SceneEntrance gWorldSceneEntrances[] = {
 u32 gWorldMapExits[] = {
     SCENE_EXITS(WorldMap),
     SCENE_EXIT(WORLD_MAP_TO_VALE_PLAZA, ValePlaza, VALE_PLAZA_FROM_WORLD_MAP),
+    SCENE_EXIT(WORLD_MAP_TO_UMBRAL_RIFT, UmbralThrone, ENTRANCE_DEFAULT),
     SCENE_EXIT(WORLD_MAP_TO_VAULT_AFTER_MIA_THIEVES, WorldMap, WORLD_MAP_FROM_VAULT_SOUTH),
     SCENE_EXIT(WORLD_MAP_TO_MIA_REUNITES, WorldMap, WORLD_MAP_MIA_REUNITES),
     SCENE_EXIT(WORLD_MAP_TO_WORLD_MAP_FROM_TITLE, WorldMap,
@@ -3910,6 +3924,8 @@ struct ActorTemplate gWorldMapActorTemplates[] = {
         PIXELS(4392), 0, PIXELS(296), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_IODEM, CONDITION_ALWAYS, (s32)gWorldMapIodemScript,
         0, 0, 0, FACING_SOUTH, TALK_FACING_PARTY_AND_BACK, 0 },
+    { SPRITE_WORLD_MAP_VENUS_LIGHTHOUSE, IF_FLAG_SET(FLAG_COLOSSO_OVER), (s32)gWorldMapAlignToMapScript,
+        PIXELS(RIFT_MONOLITH_X), 0, PIXELS(RIFT_MONOLITH_Z), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SCENE_TABLE_END },
     { ACTOR_GARET, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
         0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
@@ -4063,6 +4079,7 @@ struct Trigger gWorldTriggers[] = {
     { TRIGGER_EXIT, WORLD_MAP_TO_VENUS_LIGHTHOUSE_ENTRY_EAST, CONDITION_ALWAYS, WORLD_MAP_TO_VENUS_LIGHTHOUSE_ENTRY_EAST },
     { TRIGGER_EXIT, WORLD_MAP_TO_BILIBIN_BARRICADE_EAST, CONDITION_ALWAYS, WORLD_MAP_TO_BILIBIN_BARRICADE_EAST },
     { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_TO_VALE_PLAZA), CONDITION_ALWAYS, WORLD_MAP_TO_VALE_PLAZA },
+    { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_RIFT_MONOLITH), IF_FLAG_SET(FLAG_COLOSSO_OVER), WORLD_MAP_TO_UMBRAL_RIFT },
     { TRIGGER_STEP, STEP_TRIGGER_AREA(ACTOR_TO_VAULT), CONDITION_ALWAYS, EVENT(WorldMap_EnterVault) },
     { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_TO_GOMA_CAVE_ENTRANCE), CONDITION_ALWAYS, WORLD_MAP_TO_GOMA_CAVE_ENTRANCE },
     { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_TO_GOMA_CAVE_BRIDGE), CONDITION_ALWAYS, WORLD_MAP_TO_GOMA_CAVE_BRIDGE },
