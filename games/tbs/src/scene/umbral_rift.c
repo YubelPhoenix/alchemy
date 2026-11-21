@@ -328,7 +328,7 @@ static struct ActorTemplate sUmbralMemoryActorTemplates[] = {
 
 static struct ActorTemplate sUmbralCausewayActorTemplates[] = {
     // The rift light at the foot of the causeway, beside the walk.
-    {SPRITE_FLOATING_LIGHT, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(72),
+    {SPRITE_FLOATING_LIGHT, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(104),
      0, PIXELS(232), FACING_SOUTH, TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
@@ -409,9 +409,9 @@ static struct Trigger sUmbralMemoryTriggers[] = {
 };
 
 static struct SceneEntrance sUmbralCausewayEntrances[] = {
-    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 88, 0, 264, FACING_NORTH, 0, -1, -1,
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 120, 0, 264, FACING_NORTH, 0, -1, -1,
      -1, -1, 0},
-    {UMBRAL_CAUSEWAY_FROM_THRONE, CONDITION_ALWAYS, 88, 0, 88, FACING_SOUTH, 0,
+    {UMBRAL_CAUSEWAY_FROM_THRONE, CONDITION_ALWAYS, 120, 0, 88, FACING_SOUTH, 0,
      -1, -1, -1, -1, 0},
     {SCENE_TABLE_END},
 };

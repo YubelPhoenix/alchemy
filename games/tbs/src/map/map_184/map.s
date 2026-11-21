@@ -2,9 +2,9 @@
 	.section .rodata
 	.global Field_Map184
 Field_Map184:
-	map_header 0, 0, 24, 36, 3, 1, 1, 0, 2, 2, 0, 0
+	map_header 0, 0, 32, 36, 3, 1, 1, 0, 2, 2, 0, 0
 	map_layer 0, 0, 16, 16, 0, 0, 0xff, 0xff
-	map_layer 24, 0, 16, 16, 0, 0, 0xff, 0xff
+	map_layer 32, 0, 16, 16, 0, 0, 0xff, 0xff
 	map_layer 0, 36, 16, 16, 0, 0, 0xff, 0xff
 	map_offset Field_Map184, .LField_Map184_METATILES
 	map_offset Field_Map184, .LField_Map184_SHAPES
