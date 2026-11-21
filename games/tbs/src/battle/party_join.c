@@ -66,10 +66,11 @@
 #define GARET_LATEST_ROUNDS 4
 /// Ivan arrives when she awakens, or this many rounds after Garet.
 #define IVAN_LATEST_ROUNDS 5
-/// Give the returning full party more room than the stock 32-pixel gaps.
-/// Keep the four slots centered, so the scene stays within battle bounds.
-#define MYSTERY_PARTY_SPACING 44
-#define MYSTERY_PARTY_FRONT_Z 66
+/// Keep the four returning allies slightly wider than the stock 32-pixel
+/// gaps, without pushing Ivan off the right edge of the battle camera.
+/// Center four 36-pixel gaps at +54, +18, -18, -54 depth units.
+#define MYSTERY_PARTY_SPACING 36
+#define MYSTERY_PARTY_FRONT_Z 54
 /// Frames an arrival takes to run in, and frames of the camera's turn first.
 #define ARRIVAL_RUN_FRAMES 40
 #define ARRIVAL_CAMERA_FRAMES 20
