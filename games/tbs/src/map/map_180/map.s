@@ -30,3 +30,8 @@ Field_Map180:
 .LField_Map180_MARKERS:
 	treasure_spots_end
 	.balign 4, 0
+	.balign 4, 0
+	.global Tileset_PaletteUmbral
+Tileset_PaletteUmbral:
+	.incbin "games/tbs/src/graphics/tileset/palettes/pal_umbral.gbapal.lz"
+	.balign 4, 0

@@ -323,7 +323,8 @@ Resource_DirectoryTable:
 	resource MysteryBackdrop, Battle_MysteryBackdrop
 	resource UmbralThroneMap, Field_Map180
 	overlays 3D5
-	unused 18
+	resource UmbralThronePalette, Tileset_PaletteUmbral
+	unused 17
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp
