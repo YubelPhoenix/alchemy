@@ -558,5 +558,6 @@ extern char SceneId_IncreaseItemAndLevel;
 extern char SceneId_MenuTest;
 extern char SceneId_UmbralThrone;
 extern char SceneId_UmbralFountain;
+extern char SceneId_UmbralMaze;
 
 #endif
