@@ -321,7 +321,9 @@ Resource_DirectoryTable:
 	resource HeartBackdrop, Battle_HeartBackdrop
 	resource MysterySprites, Monster_MysterySprites
 	resource MysteryBackdrop, Battle_MysteryBackdrop
-	unused 20
+	resource UmbralThroneMap, Field_Map180
+	overlays 3D5
+	unused 18
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp

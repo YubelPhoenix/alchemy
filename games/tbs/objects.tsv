@@ -636,6 +636,7 @@ main	rom_tail_02	games/tbs/src/map/map_176/map
 main	rom_tail_02	games/tbs/src/map/map_177/map
 main	rom_tail_02	games/tbs/src/map/map_178/map
 main	rom_tail_02	games/tbs/src/map/map_179/map
+main	rom_tail_02	games/tbs/src/map/map_180/map
 main	rom_tail_02	games/tbs/src/system/overlay/overlays
 main	rom_tail_03	games/tbs/src/graphics/sprite/sprites	.rodata.c
 36f	text	games/tbs/src/menu/entry/title
@@ -1013,3 +1014,6 @@ main	rom_tail_03	games/tbs/src/graphics/sprite/sprites	.rodata.c
 3ce	text	games/tbs/src/debug/entry/test
 3ce	text	games/tbs/src/debug/test
 3ce	text	games/tbs/src/debug/import/test
+3d5	text	games/tbs/src/scene/entry/umbral_rift
+3d5	text	games/tbs/src/scene/umbral_rift
+3d5	text	games/tbs/src/scene/import/umbral_rift

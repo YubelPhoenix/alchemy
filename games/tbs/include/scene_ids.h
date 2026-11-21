@@ -556,5 +556,6 @@ extern char SceneId_TestRoom7;
 extern char SceneId_IncreaseItemAndLevel;
 /// ★ Named from its area name: Menu test
 extern char SceneId_MenuTest;
+extern char SceneId_UmbralThrone;
 
 #endif
