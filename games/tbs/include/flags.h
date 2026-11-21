@@ -2827,5 +2827,10 @@
 /// Golden Sun: Ashfall: the dark orb in the Umbral Rift's Memory Room has been
 /// lit, opening the way from the Fountain Hall to the causeway and throne.
 #define FLAG_DARK_RIFT_SEAL_LIT 0x8dd
+/// Golden Sun: Ashfall: ??? and Heart have been glimpsed, then vanished, in the
+/// Umbral Rift's Fountain Hall, Twin Maze and Memory Room.
+#define FLAG_DARK_RIFT_PAIR_FOUNTAIN 0x8de
+#define FLAG_DARK_RIFT_PAIR_MAZE 0x8df
+#define FLAG_DARK_RIFT_PAIR_MEMORY 0x8f1
 
 #endif

@@ -107,6 +107,10 @@ enum {
 /// opens on the seal), the Memory Room (the dark orb) and the Causeway (the
 /// light that restores the party).
 enum { ACTOR_RIFT_FEATURE = ACTOR_FIRST_PLACED };
+/// ??? and Heart where they are glimpsed: after the feature in the Fountain
+/// Hall and Memory Room, the only actors in the Twin Maze.
+enum { ACTOR_PAIR_MYSTERY = ACTOR_FIRST_PLACED + 1, ACTOR_PAIR_HEART };
+enum { ACTOR_MAZE_MYSTERY = ACTOR_FIRST_PLACED, ACTOR_MAZE_HEART };
 
 enum {
   ACTOR_RIFT_MYSTERY = ACTOR_FIRST_PLACED,
@@ -116,8 +120,29 @@ enum {
 /// A won fight returns here (UMBRAL_THRONE_FROM_RIFT_BATTLE); a lost one goes
 /// to the last Sanctum and leaves the pair waiting for a rematch.
 static void UmbralRift_Aftermath(void);
+static void UmbralRift_PairVanish(s32 mystery, s32 heart, s32 flag);
+static void UmbralRift_PairDark(void);
+
+#define UMBRAL_SCENE_IS(name) ((s16)gSaveBlock.sceneId == (s32)&SceneId_##name)
 
 s32 UmbralRift_Initialize(void) {
+  // ??? and Heart, drawn in black, glimpsed once in each room on the way.
+  if (UMBRAL_SCENE_IS(UmbralFountain) &&
+      GameFlag_Get(FLAG_DARK_RIFT_PAIR_FOUNTAIN) == 0)
+    UmbralRift_PairVanish(ACTOR_PAIR_MYSTERY, ACTOR_PAIR_HEART,
+                          FLAG_DARK_RIFT_PAIR_FOUNTAIN);
+  if (UMBRAL_SCENE_IS(UmbralMaze) && GameFlag_Get(FLAG_DARK_RIFT_PAIR_MAZE) == 0)
+    UmbralRift_PairVanish(ACTOR_MAZE_MYSTERY, ACTOR_MAZE_HEART,
+                          FLAG_DARK_RIFT_PAIR_MAZE);
+  if (UMBRAL_SCENE_IS(UmbralMemory) &&
+      GameFlag_Get(FLAG_DARK_RIFT_PAIR_MEMORY) == 0)
+    UmbralRift_PairVanish(ACTOR_PAIR_MYSTERY, ACTOR_PAIR_HEART,
+                          FLAG_DARK_RIFT_PAIR_MEMORY);
+  // On the dais they are black too, until the fight.
+  if (UMBRAL_SCENE_IS(UmbralThrone) && GameFlag_Get(FLAG_DARK_RIFT_BEATEN) == 0 &&
+      !(gSaveBlock.entrance == UMBRAL_THRONE_FROM_RIFT_BATTLE &&
+        GameFlag_Get(FLAG_DARK_RIFT_FOUGHT) != 0))
+    UmbralRift_PairDark();
   // Back from the fight on the dais. A loss is handled by the restart point
   // (the fight flag is cleared there), so only a win returns here.
   if ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralThrone &&
@@ -129,6 +154,48 @@ s32 UmbralRift_Initialize(void) {
   return 0;
 }
 
+/// Flickers two actors between black and gone, staying black (a blink would
+/// show their colours).
+static void UmbralRift_FlickerOut(s32 a, s32 b) {
+  s32 i;
+  for (i = 0; i < 6; i++) {
+    Actor_ConfigureSpriteColor(a, SPRITE_COLOR_HIDDEN);
+    Actor_ConfigureSpriteColor(b, SPRITE_COLOR_HIDDEN);
+    Event_WaitFrames(3 + i);
+    Actor_ConfigureSpriteColor(a, SPRITE_COLOR_BLACK);
+    Actor_ConfigureSpriteColor(b, SPRITE_COLOR_BLACK);
+    Event_WaitFrames(6 - i);
+  }
+}
+
+/// ??? and Heart stand in black as the room fades in, a moment, then flicker
+/// and are gone; `flag` keeps them gone.
+static void UmbralRift_PairVanish(s32 mystery, s32 heart, s32 flag) {
+  Event_Start();
+  Actor_ConfigureSpriteColor(mystery, SPRITE_COLOR_BLACK);
+  Actor_ConfigureSpriteColor(heart, SPRITE_COLOR_BLACK);
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_WaitFrames(50);
+  UmbralRift_FlickerOut(mystery, heart);
+  Actor_ConfigureSpriteColor(mystery, SPRITE_COLOR_HIDDEN);
+  Actor_ConfigureSpriteColor(heart, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(mystery, PIXELS(-9), PIXELS(488));
+  Actor_SetPosition(heart, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(flag);
+  Event_End();
+}
+
+/// ??? and Heart on the dais, drawn in black.
+static void UmbralRift_PairDark(void) {
+  Event_Start();
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_BLACK);
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK);
+  Event_End();
+}
+
 /// After the win, ??? and Heart flicker black and are gone into the rift.
 static void UmbralRift_Aftermath(void) {
   Event_Start();
@@ -137,9 +204,7 @@ static void UmbralRift_Aftermath(void) {
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
   Event_WaitFrames(20);
-  Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
-  Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
-  Event_WaitFrames(40);
+  UmbralRift_FlickerOut(ACTOR_RIFT_MYSTERY, ACTOR_RIFT_HEART);
   Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_HIDDEN);
   Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_RIFT_MYSTERY, PIXELS(-9), PIXELS(488));
@@ -225,10 +290,22 @@ static struct ActorTemplate sUmbralFountainActorTemplates[] = {
     {SPRITE_FLOATING_LIGHT, IF_FLAG_SET(FLAG_DARK_RIFT_SEAL_LIT),
      MOVEMENT_TYPE_STAND, PIXELS(136), 0, PIXELS(200), FACING_SOUTH,
      TALK_FACING_KEEP, 0},
+    // ??? and Heart on the ledge toward the left arch, the first time.
+    {SPRITE_MYSTERY_LEADER, FLAG_DARK_RIFT_PAIR_FOUNTAIN, MOVEMENT_TYPE_STAND,
+     PIXELS(56), 0, PIXELS(184), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    {SPRITE_WOMAN_WITH_PURPLE_HAIR, FLAG_DARK_RIFT_PAIR_FOUNTAIN,
+     MOVEMENT_TYPE_STAND, PIXELS(80), 0, PIXELS(192), FACING_SOUTH,
+     TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
 
-static struct ActorTemplate sUmbralEmptyActorTemplates[] = {
+static struct ActorTemplate sUmbralMazeActorTemplates[] = {
+    // ??? and Heart down the first corridor, watching, the first time.
+    {SPRITE_MYSTERY_LEADER, FLAG_DARK_RIFT_PAIR_MAZE, MOVEMENT_TYPE_STAND,
+     PIXELS(360), 0, PIXELS(500), FACING_EAST, TALK_FACING_KEEP, 0},
+    {SPRITE_WOMAN_WITH_PURPLE_HAIR, FLAG_DARK_RIFT_PAIR_MAZE,
+     MOVEMENT_TYPE_STAND, PIXELS(340), 0, PIXELS(512), FACING_EAST,
+     TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
 
@@ -236,6 +313,12 @@ static struct ActorTemplate sUmbralMemoryActorTemplates[] = {
     // The dark orb, in the middle of the room.
     {SPRITE_FLOATING_LIGHT, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(136), 0,
      PIXELS(168), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    // ??? and Heart either side of the orb in Isaac's home, the first time.
+    {SPRITE_MYSTERY_LEADER, FLAG_DARK_RIFT_PAIR_MEMORY, MOVEMENT_TYPE_STAND,
+     PIXELS(104), 0, PIXELS(166), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    {SPRITE_WOMAN_WITH_PURPLE_HAIR, FLAG_DARK_RIFT_PAIR_MEMORY,
+     MOVEMENT_TYPE_STAND, PIXELS(168), 0, PIXELS(166), FACING_SOUTH,
+     TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
 
@@ -359,7 +442,7 @@ const struct ActorTemplate *Scene_GetActorTemplates(void) {
   return UMBRAL_IN_CAUSEWAY()   ? sUmbralCausewayActorTemplates
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryActorTemplates
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainActorTemplates
-         : UMBRAL_IN_MAZE()     ? sUmbralEmptyActorTemplates
+         : UMBRAL_IN_MAZE()     ? sUmbralMazeActorTemplates
                                 : sUmbralThroneActorTemplates;
 }
 const struct Trigger *Scene_GetTriggers(void) {
