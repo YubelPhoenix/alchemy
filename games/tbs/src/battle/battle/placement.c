@@ -91,6 +91,12 @@ void BattleObject_Make(struct BattleObject *actor, s32 unitId, s32 x, s32 y) {
   // Bandit and Orc Captain are set to 1.0 again.
   actor->scale = Q16_ONE;
   switch (unit->id) {
+  // "???" is drawn shorter than Heart; stand him at her height in both the
+  // Vale fight (row 164) and the Umbral Rift.
+  case ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER:
+  case ENEMY_RIFT_MYSTERY_LEADER:
+    actor->scale = 0x12666;
+    break;
   case ENEMY_KILLER_APE:
     actor->scale = 0x19999;
     break;
@@ -314,7 +320,7 @@ void BattlePlacement_LayoutEnemies(u16 *actorIds, s32 count, s32 *xPositions,
     // is not small and far off beside it.
     if (!IS_PLACEHOLDER_ID(actorIds[index]) &&
         (Unit_GetFar(actorIds[index])->id == 109 ||
-         Unit_GetFar(actorIds[index])->id == 160 ||  // Umbral Rift "???"
+         Unit_GetFar(actorIds[index])->id == ENEMY_RIFT_MYSTERY_LEADER ||
          Unit_GetFar(actorIds[index])->id == 100 ||
          Unit_GetFar(actorIds[index])->id == 8)) {
       xPositions[index] = -62;
