@@ -318,8 +318,8 @@ enum WorldMapActorId {
 };
 
 /// Where the Umbral Rift's monolith stands: open meadow east of Vale.
-#define RIFT_MONOLITH_X 5704
-#define RIFT_MONOLITH_Z 1264
+#define RIFT_MONOLITH_X 5624
+#define RIFT_MONOLITH_Z 1270
 
 /// The metatile behavior raised by touching an area's actor.
 #define STEP_TRIGGER_AREA(actorId) (STEP_TRIGGER_AREA_BASE + (actorId))
