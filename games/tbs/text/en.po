@@ -10456,7 +10456,7 @@ msgstr "WORLD"
 
 msgctxt "message"
 msgid "02570"
-msgstr "PLOGV00"
+msgstr "Umbral Rift"
 
 msgctxt "message"
 msgid "02571"

@@ -638,6 +638,7 @@ main	rom_tail_02	games/tbs/src/map/map_179/map
 main	rom_tail_02	games/tbs/src/map/map_180/map
 main	rom_tail_02	games/tbs/src/map/map_181/map
 main	rom_tail_02	games/tbs/src/map/map_182/map
+main	rom_tail_02	games/tbs/src/map/map_183/map
 main	rom_tail_02	games/tbs/src/battle/battle_sprites
 main	rom_tail_02	games/tbs/src/system/overlay/overlays
 main	rom_tail_03	games/tbs/src/graphics/sprite/sprites	.rodata.c

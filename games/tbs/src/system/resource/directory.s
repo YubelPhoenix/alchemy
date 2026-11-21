@@ -327,7 +327,9 @@ Resource_DirectoryTable:
 	resource UmbralFountainMap, Field_Map181
 	resource UmbralFountainPalette, Tileset_PaletteUmbralMerc
 	resource UmbralMazeMap, Field_Map182
-	unused 14
+	resource UmbralMemoryMap, Field_Map183
+	resource UmbralMemoryPalette, Tileset_PaletteUmbralHome
+	unused 12
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp

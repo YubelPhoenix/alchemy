@@ -559,5 +559,6 @@ extern char SceneId_MenuTest;
 extern char SceneId_UmbralThrone;
 extern char SceneId_UmbralFountain;
 extern char SceneId_UmbralMaze;
+extern char SceneId_UmbralMemory;
 
 #endif

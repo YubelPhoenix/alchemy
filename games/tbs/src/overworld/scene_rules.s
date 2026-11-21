@@ -164,6 +164,8 @@ gScene_MusicRules:
 	area_music 58, -1, -1, 22
 	area_music 59, -1, -1, 9
 	area_music 60, -1, -1, 9
+	@ Golden Sun: Ashfall: the Umbral Rift (area 0x47) keeps Sol Sanctum's song for now.
+	area_music 0x47, -1, -1, 20
 	.2byte -1, -1, -1, 0	@ end
 
 	.global gArea_NameRules
@@ -296,6 +298,8 @@ gArea_NameRules:
 	area_name 68, -1, 105
 	area_name 69, -1, 106
 	area_name 70, -1, 107
+	@ Golden Sun: Ashfall: "Umbral Rift", in the spare debug entry PLOGV00.
+	area_name 0x47, -1, 111
 	.2byte -1, -1	@ end
 	.4byte -1
 	.2byte 0, 0	@ a row of zeros after the end

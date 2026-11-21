@@ -66,13 +66,24 @@ enum {
 
 /// The Twin Maze (map row 0xbc): Sol Sanctum's maze pieces rebuilt as
 /// long parallel corridors in obsidian. In at the south-east door, out at the
-/// north-east door (for now to the throne; later the Memory Room).
+/// north-east door into the Memory Room.
 enum {
   UMBRAL_MAZE_FROM_TOP_DOOR = 1,
 };
 enum {
   UMBRAL_MAZE_TO_FOUNTAIN = 1,
   UMBRAL_MAZE_TO_TOP_DOOR = 2,
+};
+
+/// The Memory Room (map row 0xbd): Isaac's house in Vale, rebuilt in obsidian
+/// inside the rift. In at the front door from the maze; the stair at the top
+/// left leads on (for now to the throne; later the causeway).
+enum {
+  UMBRAL_MEMORY_FROM_STAIR = 1,
+};
+enum {
+  UMBRAL_MEMORY_TO_MAZE = 1,
+  UMBRAL_MEMORY_TO_STAIR = 2,
 };
 
 enum {
@@ -137,13 +148,16 @@ static struct SceneEntrance sUmbralThroneEntrances[] = {
 
 static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralThrone),
-    SCENE_EXIT(UMBRAL_THRONE_TO_FOUNTAIN, UmbralMaze, UMBRAL_MAZE_FROM_TOP_DOOR),
+    SCENE_EXIT(UMBRAL_THRONE_TO_FOUNTAIN, UmbralMemory, UMBRAL_MEMORY_FROM_STAIR),
     SCENE_EXITS(UmbralFountain),
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_WORLD_MAP, WorldMap, WORLD_MAP_FROM_UMBRAL_RIFT),
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_LEFT_ARCH, UmbralMaze, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralMaze),
     SCENE_EXIT(UMBRAL_MAZE_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_LEFT_ARCH),
-    SCENE_EXIT(UMBRAL_MAZE_TO_TOP_DOOR, UmbralThrone, ENTRANCE_DEFAULT),
+    SCENE_EXIT(UMBRAL_MAZE_TO_TOP_DOOR, UmbralMemory, ENTRANCE_DEFAULT),
+    SCENE_EXITS(UmbralMemory),
+    SCENE_EXIT(UMBRAL_MEMORY_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_TOP_DOOR),
+    SCENE_EXIT(UMBRAL_MEMORY_TO_STAIR, UmbralThrone, ENTRANCE_DEFAULT),
     SCENE_EXITS_END,
 };
 
@@ -202,24 +216,44 @@ static struct Trigger sUmbralMazeTriggers[] = {
     {TRIGGERS_END},
 };
 
+static struct SceneEntrance sUmbralMemoryEntrances[] = {
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 80, 0, 256, FACING_NORTH, 0, -1, -1,
+     -1, -1, 0},
+    {UMBRAL_MEMORY_FROM_STAIR, CONDITION_ALWAYS, 72, 0, 104, FACING_SOUTH, 0,
+     -1, -1, -1, -1, 0},
+    {SCENE_TABLE_END},
+};
+
+static struct Trigger sUmbralMemoryTriggers[] = {
+    {TRIGGER_EXIT, UMBRAL_MEMORY_TO_MAZE, CONDITION_ALWAYS,
+     UMBRAL_MEMORY_TO_MAZE},
+    {TRIGGER_EXIT, UMBRAL_MEMORY_TO_STAIR, CONDITION_ALWAYS,
+     UMBRAL_MEMORY_TO_STAIR},
+    {TRIGGERS_END},
+};
+
+#define UMBRAL_IN_MEMORY() \
+  ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralMemory)
 #define UMBRAL_IN_MAZE() \
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralMaze)
 #define UMBRAL_IN_FOUNTAIN() \
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralFountain)
 
 const struct SceneEntrance *Scene_GetEntrances(void) {
-  return UMBRAL_IN_MAZE()       ? sUmbralMazeEntrances
+  return UMBRAL_IN_MEMORY()     ? sUmbralMemoryEntrances
+         : UMBRAL_IN_MAZE()     ? sUmbralMazeEntrances
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainEntrances
                                 : sUmbralThroneEntrances;
 }
 const struct SceneExitRegion *Scene_GetExitRegions(void) { return NULL; }
 const u32 *Scene_GetExits(void) { return sUmbralThroneExits; }
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
-  return UMBRAL_IN_MAZE() || UMBRAL_IN_FOUNTAIN() ? sUmbralFountainActorTemplates
+  return UMBRAL_IN_MEMORY() || UMBRAL_IN_MAZE() || UMBRAL_IN_FOUNTAIN() ? sUmbralFountainActorTemplates
                                                  : sUmbralThroneActorTemplates;
 }
 const struct Trigger *Scene_GetTriggers(void) {
-  return UMBRAL_IN_MAZE()       ? sUmbralMazeTriggers
+  return UMBRAL_IN_MEMORY()     ? sUmbralMemoryTriggers
+         : UMBRAL_IN_MAZE()     ? sUmbralMazeTriggers
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainTriggers
                                 : sUmbralThroneTriggers;
 }
