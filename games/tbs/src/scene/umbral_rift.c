@@ -56,11 +56,36 @@ enum {
 
 /// A won fight returns here (UMBRAL_THRONE_FROM_RIFT_BATTLE); a lost one goes
 /// to the last Sanctum and leaves the pair waiting for a rematch.
+static void UmbralRift_Aftermath(void);
+
 s32 UmbralRift_Initialize(void) {
+  // Back from the fight on the dais. A loss is handled by the restart point
+  // (the fight flag is cleared there), so only a win returns here.
   if (gSaveBlock.entrance == UMBRAL_THRONE_FROM_RIFT_BATTLE &&
-      GameFlag_Get(FLAG_DARK_RIFT_FOUGHT) != 0)
-    GameFlag_Set(FLAG_DARK_RIFT_BEATEN);
+      GameFlag_Get(FLAG_DARK_RIFT_FOUGHT) != 0 &&
+      GameFlag_Get(FLAG_DARK_RIFT_BEATEN) == 0 &&
+      gSaveBlock.sequenceResult != -1)
+    UmbralRift_Aftermath();
   return 0;
+}
+
+/// After the win, ??? and Heart flicker black and are gone into the rift.
+static void UmbralRift_Aftermath(void) {
+  Event_Start();
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_WaitFrames(20);
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_HIDDEN);
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_RIFT_MYSTERY, PIXELS(-9), PIXELS(488));
+  Actor_SetPosition(ACTOR_RIFT_HEART, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_RIFT_BEATEN);
+  Event_End();
 }
 
 /// "???" and Heart, together on the dais. Dialogue comes in a later pass.

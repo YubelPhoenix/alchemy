@@ -139,6 +139,9 @@ void Scene_ReturnFromSequence(s32 result) {
     GameFlag_ClearFar(FLAG_DARK_ASH_GATE_PENDING);
     if (GameFlag_GetFar(FLAG_DARK_HEART_BEATEN) == 0)
       GameFlag_ClearFar(FLAG_DARK_HEART_FOUGHT);
+    // Umbral Rift: a loss leaves ??? and Heart on the dais for another try.
+    if (GameFlag_GetFar(FLAG_DARK_RIFT_BEATEN) == 0)
+      GameFlag_ClearFar(FLAG_DARK_RIFT_FOUGHT);
     if (GameFlag_GetFar(FLAG_DARK_KEGARE_BEATEN) == 0) {
       GameFlag_ClearFar(FLAG_DARK_KEGARE_FOUGHT);
       GameFlag_ClearFar(FLAG_DARK_KEGARE_PENDING);
