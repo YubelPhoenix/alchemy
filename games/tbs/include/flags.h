@@ -2832,5 +2832,8 @@
 #define FLAG_DARK_RIFT_PAIR_FOUNTAIN 0x8de
 #define FLAG_DARK_RIFT_PAIR_MAZE 0x8df
 #define FLAG_DARK_RIFT_PAIR_MEMORY 0x8f1
+/// Golden Sun: Ashfall: the Memory Room has been reached through the Twin Maze,
+/// which opens the Fountain Hall's right arch as a shortcut to it.
+#define FLAG_DARK_RIFT_SHORTCUT_OPEN 0x8ef
 
 #endif

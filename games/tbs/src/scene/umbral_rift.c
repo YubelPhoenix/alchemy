@@ -126,6 +126,10 @@ static void UmbralRift_PairDark(void);
 #define UMBRAL_SCENE_IS(name) ((s16)gSaveBlock.sceneId == (s32)&SceneId_##name)
 
 s32 UmbralRift_Initialize(void) {
+  // Reaching the Memory Room by its front door (from the maze) opens the
+  // Fountain Hall's right arch as the way back to it.
+  if (UMBRAL_SCENE_IS(UmbralMemory) && gSaveBlock.entrance == ENTRANCE_DEFAULT)
+    GameFlag_Set(FLAG_DARK_RIFT_SHORTCUT_OPEN);
   // ??? and Heart, drawn in black, glimpsed once in each room on the way.
   if (UMBRAL_SCENE_IS(UmbralFountain) &&
       GameFlag_Get(FLAG_DARK_RIFT_PAIR_FOUNTAIN) == 0)
@@ -361,8 +365,10 @@ static struct Trigger sUmbralFountainTriggers[] = {
      UMBRAL_FOUNTAIN_TO_WORLD_MAP},
     {TRIGGER_EXIT, UMBRAL_FOUNTAIN_TO_LEFT_ARCH, CONDITION_ALWAYS,
      UMBRAL_FOUNTAIN_TO_LEFT_ARCH},
-    {TRIGGER_EXIT, UMBRAL_FOUNTAIN_TO_RIGHT_ARCH, CONDITION_ALWAYS,
-     UMBRAL_FOUNTAIN_TO_RIGHT_ARCH},
+    // The right arch is a shortcut only once the Memory Room has been reached
+    // through the maze; before that it leads nowhere.
+    {TRIGGER_EXIT, UMBRAL_FOUNTAIN_TO_RIGHT_ARCH,
+     IF_FLAG_SET(FLAG_DARK_RIFT_SHORTCUT_OPEN), UMBRAL_FOUNTAIN_TO_RIGHT_ARCH},
     {TRIGGER_TALK, ACTOR_RIFT_FEATURE, IF_FLAG_SET(FLAG_DARK_RIFT_SEAL_LIT),
      EVENT(UmbralRift_EnterRiftLight)},
     {TRIGGERS_END},
