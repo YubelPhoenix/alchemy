@@ -321,6 +321,7 @@ void BattlePlacement_LayoutEnemies(u16 *actorIds, s32 count, s32 *xPositions,
     if (!IS_PLACEHOLDER_ID(actorIds[index]) &&
         (Unit_GetFar(actorIds[index])->id == 109 ||
          Unit_GetFar(actorIds[index])->id == ENEMY_RIFT_MYSTERY_LEADER ||
+         Unit_GetFar(actorIds[index])->id == ENEMY_ID_FIRST + 165 ||  // Rift Heart
          Unit_GetFar(actorIds[index])->id == 100 ||
          Unit_GetFar(actorIds[index])->id == 8)) {
       xPositions[index] = -62;
@@ -351,9 +352,10 @@ void BattlePlacement_LayoutEnemies(u16 *actorIds, s32 count, s32 *xPositions,
   // Umbral Rift: ??? and Heart are both large figures, so the usual 38-unit
   // gap leaves them shoulder to shoulder. Spread the pair apart.
   if (count == 2 && !IS_PLACEHOLDER_ID(actorIds[0]) && !IS_PLACEHOLDER_ID(actorIds[1]) &&
-      Unit_GetFar(actorIds[0])->id == 160 && Unit_GetFar(actorIds[1])->id == 173) {
-    zPositions[0] += 14;
-    zPositions[1] -= 14;
+      Unit_GetFar(actorIds[0])->id + Unit_GetFar(actorIds[1])->id == 160 + 173 &&
+      (Unit_GetFar(actorIds[0])->id == 160 || Unit_GetFar(actorIds[0])->id == 173)) {
+    zPositions[0] += 10;
+    zPositions[1] -= 10;
   }
 }
 
