@@ -120,14 +120,26 @@ enum {
 /// A won fight returns here (UMBRAL_THRONE_FROM_RIFT_BATTLE); a lost one goes
 /// to the last Sanctum and leaves the pair waiting for a rematch.
 static void UmbralRift_Aftermath(void);
-static void UmbralRift_PairVanish(s32 mystery, s32 heart, s32 flag);
+static void UmbralRift_PairEcho(s32 mystery, s32 heart, s32 flag, s32 facing);
+static void UmbralRift_PairShow(s32 mystery, s32 heart);
 static void UmbralRift_PairDark(void);
+
+/// The floor cells before each echo of ??? and Heart.
+enum { UMBRAL_ECHO_STEP = 0x20 };
 
 #define UMBRAL_SCENE_IS(name) ((s16)gSaveBlock.sceneId == (s32)&SceneId_##name)
 
+/// One line of dialogue. Each line closes the party's portraits after it, as
+/// Kolima_HeartSays does: left up, a portrait outlives its event (it stayed
+/// on screen into the field and the menu), and the next line by the same
+/// speaker opened an empty frame beside it.
 static void UmbralRift_Say(s32 message, s32 actor) {
   Event_SetMessageId(message);
   Event_ShowMessageThenWait(actor, 0, 20);
+  Portrait_CloseWindow(ACTOR_PARTY_LEADER);
+  Portrait_CloseWindow(ACTOR_GARET);
+  Portrait_CloseWindow(ACTOR_IVAN);
+  Portrait_CloseWindow(ACTOR_MIA);
 }
 
 static void UmbralRift_FountainDialogue(s32 afterEcho) {
@@ -181,6 +193,12 @@ static void UmbralRift_OrbDialogue(void) {
 
 static void UmbralRift_GateEvent(void) {
   Event_Start();
+  // Run from the scene's start-up: bring the picture in before anyone speaks,
+  // or the lines would play over a black screen.
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   UmbralRift_Say(MsgDarkRiftGate001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftGate002, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftGate003, ACTOR_GARET);
@@ -191,6 +209,12 @@ static void UmbralRift_GateEvent(void) {
 
 static void UmbralRift_CausewayEvent(void) {
   Event_Start();
+  // Run from the scene's start-up: bring the picture in before anyone speaks,
+  // or the lines would play over a black screen.
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
   Sound_PlaySong(SE_WARP);
   MapGrid_SetShake(PIXELS(1), PIXELS(1), Q16_ONE);
   Event_WaitFrames(12);
@@ -242,18 +266,17 @@ s32 UmbralRift_Initialize(void) {
   // Fountain Hall's right arch as the way back to it.
   if (UMBRAL_SCENE_IS(UmbralMemory) && gSaveBlock.entrance == ENTRANCE_DEFAULT)
     GameFlag_Set(FLAG_DARK_RIFT_SHORTCUT_OPEN);
-  // ??? and Heart, drawn in black, glimpsed once in each room on the way.
+  // ??? and Heart, drawn in black, stand in each room on the way until the
+  // party walks up to them (the step triggers below); then they speak of
+  // nothing, flicker out, and are gone for good.
   if (UMBRAL_SCENE_IS(UmbralFountain) &&
       GameFlag_Get(FLAG_DARK_RIFT_PAIR_FOUNTAIN) == 0)
-    UmbralRift_PairVanish(ACTOR_PAIR_MYSTERY, ACTOR_PAIR_HEART,
-                          FLAG_DARK_RIFT_PAIR_FOUNTAIN);
+    UmbralRift_PairShow(ACTOR_PAIR_MYSTERY, ACTOR_PAIR_HEART);
   if (UMBRAL_SCENE_IS(UmbralMaze) && GameFlag_Get(FLAG_DARK_RIFT_PAIR_MAZE) == 0)
-    UmbralRift_PairVanish(ACTOR_MAZE_MYSTERY, ACTOR_MAZE_HEART,
-                          FLAG_DARK_RIFT_PAIR_MAZE);
+    UmbralRift_PairShow(ACTOR_MAZE_MYSTERY, ACTOR_MAZE_HEART);
   if (UMBRAL_SCENE_IS(UmbralMemory) &&
       GameFlag_Get(FLAG_DARK_RIFT_PAIR_MEMORY) == 0)
-    UmbralRift_PairVanish(ACTOR_PAIR_MYSTERY, ACTOR_PAIR_HEART,
-                          FLAG_DARK_RIFT_PAIR_MEMORY);
+    UmbralRift_PairShow(ACTOR_PAIR_MYSTERY, ACTOR_PAIR_HEART);
   // Show each scene once and keep the closed anchor dark on later visits.
   if (UMBRAL_SCENE_IS(UmbralFountain) &&
       gSaveBlock.entrance == UMBRAL_FOUNTAIN_FROM_RIGHT_ARCH &&
@@ -299,15 +322,22 @@ static void UmbralRift_FlickerOut(s32 a, s32 b) {
 
 /// ??? and Heart stand in black as the room fades in, a moment, then flicker
 /// and are gone; `flag` keeps them gone.
-static void UmbralRift_PairVanish(s32 mystery, s32 heart, s32 flag) {
+/// ??? and Heart, drawn in black, waiting where the party will find them.
+/// Nothing is said here: the start-up must not open message windows while
+/// the area's name is still on screen.
+static void UmbralRift_PairShow(s32 mystery, s32 heart) {
   Event_Start();
   Actor_ConfigureSpriteColor(mystery, SPRITE_COLOR_BLACK);
   Actor_ConfigureSpriteColor(heart, SPRITE_COLOR_BLACK);
-  MapGrid_CenterOnFollowedPoint();
-  WaitFrames(1);
-  Event_StartScreenTransition();
-  Event_WaitTransitionFrames();
-  Event_WaitFrames(50);
+  Event_End();
+}
+
+/// The party walks up to the echo: the leader turns to face it, the party
+/// reacts, it flickers out, and `flag` keeps it gone.
+static void UmbralRift_PairEcho(s32 mystery, s32 heart, s32 flag, s32 facing) {
+  Event_Start();
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, facing, 0);
+  Event_WaitFrames(30);
   // The silhouettes are echoes of where they walked earlier.
   Sound_PlaySong(SE_WARP);
   if (flag == FLAG_DARK_RIFT_PAIR_FOUNTAIN)
@@ -328,6 +358,21 @@ static void UmbralRift_PairVanish(s32 mystery, s32 heart, s32 flag) {
     UmbralRift_MazeDialogue(1);
   GameFlag_Set(flag);
   Event_End();
+}
+
+/// Step triggers on the floor before each echo (metatile behavior
+/// UMBRAL_ECHO_STEP): the leader turns toward them as the scene plays.
+static void UmbralRift_ApproachFountainEcho(void) {
+  UmbralRift_PairEcho(ACTOR_PAIR_MYSTERY, ACTOR_PAIR_HEART,
+                      FLAG_DARK_RIFT_PAIR_FOUNTAIN, FACING_WEST);
+}
+static void UmbralRift_ApproachMazeEcho(void) {
+  UmbralRift_PairEcho(ACTOR_MAZE_MYSTERY, ACTOR_MAZE_HEART,
+                      FLAG_DARK_RIFT_PAIR_MAZE, FACING_WEST);
+}
+static void UmbralRift_ApproachMemoryEcho(void) {
+  UmbralRift_PairEcho(ACTOR_PAIR_MYSTERY, ACTOR_PAIR_HEART,
+                      FLAG_DARK_RIFT_PAIR_MEMORY, FACING_NORTH);
 }
 
 /// ??? and Heart on the dais, drawn in black.
@@ -658,6 +703,8 @@ static struct Trigger sUmbralFountainTriggers[] = {
      IF_FLAG_SET(FLAG_DARK_RIFT_SHORTCUT_OPEN), UMBRAL_FOUNTAIN_TO_RIGHT_ARCH},
     {TRIGGER_TALK, ACTOR_RIFT_FEATURE, IF_FLAG_SET(FLAG_DARK_RIFT_SEAL_LIT),
      EVENT(UmbralRift_EnterRiftLight)},
+    {TRIGGER_STEP, UMBRAL_ECHO_STEP, FLAG_DARK_RIFT_PAIR_FOUNTAIN,
+     EVENT(UmbralRift_ApproachFountainEcho)},
     {TRIGGERS_END},
 };
 
@@ -674,6 +721,8 @@ static struct Trigger sUmbralMazeTriggers[] = {
      UMBRAL_MAZE_TO_FOUNTAIN},
     {TRIGGER_EXIT, UMBRAL_MAZE_TO_TOP_DOOR, CONDITION_ALWAYS,
      UMBRAL_MAZE_TO_TOP_DOOR},
+    {TRIGGER_STEP, UMBRAL_ECHO_STEP, FLAG_DARK_RIFT_PAIR_MAZE,
+     EVENT(UmbralRift_ApproachMazeEcho)},
     {TRIGGERS_END},
 };
 
@@ -692,6 +741,8 @@ static struct Trigger sUmbralMemoryTriggers[] = {
      UMBRAL_MEMORY_TO_STAIR},
     {TRIGGER_TALK, ACTOR_RIFT_FEATURE, FLAG_DARK_RIFT_SEAL_LIT,
      EVENT(UmbralRift_LightOrb)},
+    {TRIGGER_STEP, UMBRAL_ECHO_STEP, FLAG_DARK_RIFT_PAIR_MEMORY,
+     EVENT(UmbralRift_ApproachMemoryEcho)},
     {TRIGGERS_END},
 };
 

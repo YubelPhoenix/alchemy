@@ -15,4 +15,14 @@
 .set import.Import_ActorSetPosition, 1
 .set import.Import_EventSetExitRequest, 1
 .set import.Party_RestoreHpPp, 1
+.set import.Event_SetMessageId, 1
+.set import.Event_ShowMessageThenWait, 1
+.set import.Sound_PlaySong, 1
+.set import.PaletteFade_SetTarget, 1
+.set import.PaletteFade_StartInterpolation, 1
+.set import.MapGrid_SetScreenShake, 1
+.set import.MapGrid_WaitForShakeToSettle, 1
+.set import.ArcTan2, 1
+.set import.Actor_ArmCallback, 1
+.set import.Portrait_CloseWindow, 1
 .include "games/tbs/src/system/overlay.inc"
