@@ -324,7 +324,9 @@ Resource_DirectoryTable:
 	resource UmbralThroneMap, Field_Map180
 	overlays 3D5
 	resource UmbralThronePalette, Tileset_PaletteUmbral
-	unused 17
+	resource UmbralFountainMap, Field_Map181
+	resource UmbralFountainPalette, Tileset_PaletteUmbralMerc
+	unused 15
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp
