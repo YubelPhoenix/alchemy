@@ -135,7 +135,7 @@ enum EnemyId {
   /// Unused: level 23, the battle of Bane's slot, but Bane joins on Crossbone
   /// Isle without a fight (Djinn_JoinParty), so no battle reaches this row.
   /// ★ Named from the game: "Bane" (MsgDjinnName)
-  ENEMY_VENUS_DJINNI_UNUSED_BANE = 160,
+  ENEMY_RIFT_MYSTERY_LEADER = 160,
   /// Level 10, in Mercury Lighthouse.
   /// ★ Named from the game: "Sleet" (MsgDjinnName)
   ENEMY_MERCURY_DJINNI_SLEET = 161,

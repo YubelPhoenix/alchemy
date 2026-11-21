@@ -91,7 +91,7 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
     return 0;
   unit = Unit_Get(unitId);
   Iwram_ClearWords(unit, BATTLE_UNIT_SIZE);
-  if (index > 164)
+  if (index > 165)
     index = 0;
   enemy = &gEnemy_Definitions[index];
   unit->level = enemy->level;
@@ -129,9 +129,12 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   unit->baseHpRegen = enemy->hpRegen;
   unit->basePpRegen = enemy->ppRegen;
   // The "???" commander's name is its own message: row 0's is Ash Jenna's.
-  Message_DecodeRawFar(index == ENEMY_ROW_MYSTERY_LEADER
+  // Umbral Rift: "???" (row 152) shares that name; Heart (row 165) takes
+  // her own row 101's name.
+  Message_DecodeRawFar(index == ENEMY_ROW_MYSTERY_LEADER || index == 152
                            ? MsgDarkMystery25
-                           : index + MsgEnemyName,
+                           : index == 165 ? 101 + MsgEnemyName
+                                          : index + MsgEnemyName,
                        name, 15);
   for (i = 0; i < 14 && name[i] != 0; i++)
     unit->name[i] = name[i];
@@ -175,7 +178,6 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   switch (unit->id) {
   case ENEMY_VENUS_DJINNI_QUARTZ:
   case ENEMY_VENUS_DJINNI_VINE:
-  case ENEMY_VENUS_DJINNI_UNUSED_BANE:
   case ENEMY_MERCURY_DJINNI_SLEET:
   case ENEMY_MERCURY_DJINNI_SPRITZ:
   case ENEMY_MERCURY_DJINNI_HAIL:

@@ -1584,6 +1584,12 @@ const struct Formation gFormations[] = {
         .minimumCounts = {1},
         .maximumCounts = {1},
     },
+    // Umbral Rift: "???" at full strength with Heart at her side.
+    {
+        .memberIds = {152, 165},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {1, 1},
+    },
 };
 
 /// The 20 enemies whose defeated flags a monster battle clears before it

@@ -42,6 +42,9 @@ static struct Unit *BossAI_FindRow(s32 row) {
     unit = Unit_GetFar(unitId);
     if (unit->id == ENEMY_ID_FIRST + row)
       return unit;
+    // Umbral Rift: Heart's second row (165) uses her AI too.
+    if (row == ENEMY_ROW_HEART && unit->id == ENEMY_ID_FIRST + 165)
+      return unit;
   }
   return 0;
 }
@@ -733,7 +736,7 @@ void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
   unit = Unit_GetFar(request->unitId);
   if (unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
     BossAI_AshNoteTurn(unit, request);
-  else if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART)
+  else if ((unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART || unit->id == ENEMY_ID_FIRST + 165))
     BossAI_HeartNoteTurn(unit, request);
   else if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)
     BossAI_MysteryNoteTurn(unit, request);
@@ -748,7 +751,7 @@ s32 BossAI_ChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
     return BossAI_KegareChooseSlot(unit, slot, firstPick);
   if (unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE)
     return BossAI_AshChooseSlot(unit, slot, firstPick);
-  if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART)
+  if ((unit->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART || unit->id == ENEMY_ID_FIRST + 165))
     return BossAI_HeartChooseSlot(unit, slot, firstPick);
   if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)
     return BossAI_MysteryChooseSlot(unit, slot, firstPick);
@@ -785,7 +788,7 @@ s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
                             action->effect == ABILITY_EFFECT_SEAL);
     return BossAI_AimAwayFromLast(user, targetPositions, count);
   }
-  if (user->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART && userId > ALLY_MAX)
+  if ((user->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART || user->id == ENEMY_ID_FIRST + 165) && userId > ALLY_MAX)
     return BossAI_HeartChooseTarget(user, action, unitIds, targetPositions,
                                     count);
   return BOSS_AIM_STOCK;

@@ -917,10 +917,11 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 32,
     },
     {
-        .animation = 433,
-        .attackAnim = 4,
-        .attackHop = 2,
-        .effectHeight = 32,
+        // Enemy id 160: Umbral Rift "???" (row 152), her own art.
+        .animation = 489,
+        .attackAnim = 1,
+        .defeatSound = 1,
+        .effectHeight = 42,
     },
     {
         .animation = 436,
@@ -982,6 +983,13 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
     // build_mystery_art.py).  She dashes at her target in a swirl of dark.
     {
         .animation = 489,
+        .attackAnim = 1,
+        .defeatSound = 1,
+        .effectHeight = 42,
+    },
+    // Enemy id 173: Umbral Rift Heart (row 165), her own art.
+    {
+        .animation = 484,
         .attackAnim = 1,
         .defeatSound = 1,
         .effectHeight = 42,

@@ -28,7 +28,7 @@ void Field_RequestBattleFromEncounterTable(s32 zoneNo, s32 slotNo) {
       gSaveBlock.special = (u16)(s32)&ResourceId_HeartBackdrop;
     // The "???" commander above her: a violet void over a steel deck, its
     // beacons pulsing and its stars twinkling.
-    if (slot == 6)
+    if (slot == 6 || slot == 7)  // 7: "???" and Heart in the Umbral Rift
       gSaveBlock.special = (u16)(s32)&ResourceId_MysteryBackdrop;
     // Sarah, in all four of her fights: on the grasslands.
     if (slot == 1)

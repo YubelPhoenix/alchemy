@@ -717,7 +717,7 @@ const struct EncounterZone gEncounterZones[] = {
     // alone against Mia, slot 2 Ondra in Tolbi, slot 3 Heart in Kolima, slot 4
     // Ash Jenna in Vale, slot 5 Ash Jenna at Suhalla Gate, slot 6 "???" in Vale
     {
-        .enemies = {382, 383, 384, 385, 386, 387, 388, 382},
+        .enemies = {382, 383, 384, 385, 386, 387, 388, 389},
         .weights = {10, 10, 10, 10, 10, 10, 10, 10},
     },
 };

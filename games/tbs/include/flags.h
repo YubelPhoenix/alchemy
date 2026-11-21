@@ -2821,5 +2821,8 @@
 #define FLAG_DARK_MYSTERY_PENDING 0x8da
 /// She has been beaten and has gone.
 #define FLAG_DARK_MYSTERY_DONE 0x8db
+// Umbral Rift (optional dungeon): the "???" and Heart battle was started / won.
+#define FLAG_DARK_RIFT_FOUGHT 0x8d9
+#define FLAG_DARK_RIFT_BEATEN 0x8dc
 
 #endif
