@@ -59,6 +59,8 @@
 /// sound/songs/mus_fight_together.mid, a copy of MUS_BOSS_BATTLE until it is
 /// written; until then the battle plays MUS_FUSION_DRAGON_BATTLE. It takes slot 11, empty in the original.
 #define MUS_FIGHT_TOGETHER 11
+/// Umbral Rift test: auto-transcribed Opera House Massacre, pending quality review.
+#define MUS_UMBRAL_RIFT 12
 /// a song with no tracks: silence
 #define MUS_SILENCE 19
 /// Field music of Sol Sanctum until the eruption (FLAG_SOL_SANCTUM_ERUPTED).
