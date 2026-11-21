@@ -224,6 +224,12 @@ $(GOTTERKANONE_RLE): games/tbs/src/battle_anim/parts/gotterkanone.rle.bz2.b64 to
 	python3 tools/dark_story/build_gotterkanone_asset.py
 $(BUILD)/obj/games/tbs/src/graphics/battle_anims/battle_anims.o: $(GOTTERKANONE_RLE)
 $(BUILD)/deps.mk: $(GOTTERKANONE_RLE)
+# The trial Umbral Rift sequence is packed as checked base64. Make it a real
+# prerequisite before dependency scanning discovers its MIDI object.
+UMBRAL_MIDI := games/tbs/sound/songs/mus_umbral_rift.mid
+$(UMBRAL_MIDI): $(UMBRAL_MIDI).zlib.b64 tools/music/install_umbral_rift_music.py
+	python3 tools/music/install_umbral_rift_music.py
+$(BUILD)/deps.mk: $(UMBRAL_MIDI)
 endif
 
 $(BUILD)/deps.mk: $(BUILD)/objects.mk $(SCANINC) $(SRCS)
