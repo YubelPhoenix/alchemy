@@ -91,7 +91,7 @@ void BattleObject_Make(struct BattleObject *actor, s32 unitId, s32 x, s32 y) {
   // Bandit and Orc Captain are set to 1.0 again.
   actor->scale = Q16_ONE;
   switch (unit->id) {
-  // "???" is drawn shorter than Heart; stand him at her height in both the
+  // "???" is drawn shorter than Heart; stand her at Heart's height in both the
   // Vale fight (row 164) and the Umbral Rift.
   case ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER:
   case ENEMY_RIFT_MYSTERY_LEADER:
