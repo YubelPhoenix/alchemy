@@ -3,11 +3,15 @@ name: Validate Golden Sun dialogue build
 on:
   workflow_dispatch:
   push:
-    branches: [dark-story-rewrite, ash-vale-aftermath, fight-together, integration-fight-together-review, umbral-rift, umbral-rift-narrative-2026-11-21]
+    branches: [dark-story-rewrite, ash-vale-aftermath, fight-together, integration-fight-together-review, umbral-rift, umbral-rift-narrative-2026-11-21, umbral-rift-opera-house-music-test]
     paths:
       - 'games/tbs/text/en.po'
       - 'games/tbs/src/**'
       - 'games/tbs/include/**'
+      - 'games/tbs/sound/**'
+      - 'games/tbs/objects.tsv'
+      - 'Makefile'
+      - 'tools/music/**'
       - 'games/tbs/src/scene/vale_stormy_night.c'
       - 'games/tbs/include/sprite_ids.h'
       - 'games/tbs/src/graphics/sprite/spr_407.png'
