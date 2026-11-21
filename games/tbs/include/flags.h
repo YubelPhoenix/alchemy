@@ -2824,5 +2824,8 @@
 // Umbral Rift (optional dungeon): the "???" and Heart battle was started / won.
 #define FLAG_DARK_RIFT_FOUGHT 0x8d9
 #define FLAG_DARK_RIFT_BEATEN 0x8dc
+/// Golden Sun: Ashfall: the dark orb in the Umbral Rift's Memory Room has been
+/// lit, opening the way from the Fountain Hall to the causeway and throne.
+#define FLAG_DARK_RIFT_SEAL_LIT 0x8dd
 
 #endif

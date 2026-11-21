@@ -56,12 +56,18 @@ enum {
 /// crystal, the seal on the way to the throne.
 enum {
   UMBRAL_FOUNTAIN_FROM_LEFT_ARCH = 1,
+  UMBRAL_FOUNTAIN_FROM_RIGHT_ARCH = 2,
+  UMBRAL_FOUNTAIN_FROM_CAUSEWAY = 3,
 };
 enum {
   /// Exit 1: the stair at the south end, out to the monolith.
   UMBRAL_FOUNTAIN_TO_WORLD_MAP = 1,
   /// Exit 2: the left arch, into the Twin Maze.
   UMBRAL_FOUNTAIN_TO_LEFT_ARCH = 2,
+  /// Exit 3: the right arch, the shortcut back from the Memory Room's stair.
+  UMBRAL_FOUNTAIN_TO_RIGHT_ARCH = 3,
+  /// Exit 4: through the rift light at the pool, once the seal is lit.
+  UMBRAL_FOUNTAIN_TO_CAUSEWAY = 4,
 };
 
 /// The Twin Maze (map row 0xbc): Sol Sanctum's maze pieces rebuilt as
@@ -77,7 +83,7 @@ enum {
 
 /// The Memory Room (map row 0xbd): Isaac's house in Vale, rebuilt in obsidian
 /// inside the rift. In at the front door from the maze; the stair at the top
-/// left leads on (for now to the throne; later the causeway).
+/// left comes out at the Fountain Hall's right arch: the shortcut back.
 enum {
   UMBRAL_MEMORY_FROM_STAIR = 1,
 };
@@ -85,6 +91,22 @@ enum {
   UMBRAL_MEMORY_TO_MAZE = 1,
   UMBRAL_MEMORY_TO_STAIR = 2,
 };
+
+/// The Causeway (map row 0xbe): Mercury Lighthouse's long hall in obsidian, a
+/// walk between void pools up to the throne. A rift light at its foot restores
+/// the party.
+enum {
+  UMBRAL_CAUSEWAY_FROM_THRONE = 1,
+};
+enum {
+  UMBRAL_CAUSEWAY_TO_FOUNTAIN = 1,
+  UMBRAL_CAUSEWAY_TO_THRONE = 2,
+};
+
+/// The one placed actor in each of the Fountain Hall (the rift light that
+/// opens on the seal), the Memory Room (the dark orb) and the Causeway (the
+/// light that restores the party).
+enum { ACTOR_RIFT_FEATURE = ACTOR_FIRST_PLACED };
 
 enum {
   ACTOR_RIFT_MYSTERY = ACTOR_FIRST_PLACED,
@@ -148,16 +170,21 @@ static struct SceneEntrance sUmbralThroneEntrances[] = {
 
 static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralThrone),
-    SCENE_EXIT(UMBRAL_THRONE_TO_FOUNTAIN, UmbralMemory, UMBRAL_MEMORY_FROM_STAIR),
+    SCENE_EXIT(UMBRAL_THRONE_TO_FOUNTAIN, UmbralCauseway, UMBRAL_CAUSEWAY_FROM_THRONE),
     SCENE_EXITS(UmbralFountain),
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_WORLD_MAP, WorldMap, WORLD_MAP_FROM_UMBRAL_RIFT),
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_LEFT_ARCH, UmbralMaze, ENTRANCE_DEFAULT),
+    SCENE_EXIT(UMBRAL_FOUNTAIN_TO_RIGHT_ARCH, UmbralMemory, UMBRAL_MEMORY_FROM_STAIR),
+    SCENE_EXIT(UMBRAL_FOUNTAIN_TO_CAUSEWAY, UmbralCauseway, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralMaze),
     SCENE_EXIT(UMBRAL_MAZE_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_LEFT_ARCH),
     SCENE_EXIT(UMBRAL_MAZE_TO_TOP_DOOR, UmbralMemory, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralMemory),
     SCENE_EXIT(UMBRAL_MEMORY_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_TOP_DOOR),
-    SCENE_EXIT(UMBRAL_MEMORY_TO_STAIR, UmbralThrone, ENTRANCE_DEFAULT),
+    SCENE_EXIT(UMBRAL_MEMORY_TO_STAIR, UmbralFountain, UMBRAL_FOUNTAIN_FROM_RIGHT_ARCH),
+    SCENE_EXITS(UmbralCauseway),
+    SCENE_EXIT(UMBRAL_CAUSEWAY_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_CAUSEWAY),
+    SCENE_EXIT(UMBRAL_CAUSEWAY_TO_THRONE, UmbralThrone, ENTRANCE_DEFAULT),
     SCENE_EXITS_END,
 };
 
@@ -185,18 +212,76 @@ static struct SceneEntrance sUmbralFountainEntrances[] = {
      -1, -1, 0},
     {UMBRAL_FOUNTAIN_FROM_LEFT_ARCH, CONDITION_ALWAYS, 56, 0, 88, FACING_SOUTH,
      0, -1, -1, -1, -1, 0},
+    {UMBRAL_FOUNTAIN_FROM_RIGHT_ARCH, CONDITION_ALWAYS, 216, 0, 88,
+     FACING_SOUTH, 0, -1, -1, -1, -1, 0},
+    {UMBRAL_FOUNTAIN_FROM_CAUSEWAY, CONDITION_ALWAYS, 136, 0, 232,
+     FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     {SCENE_TABLE_END},
 };
 
 static struct ActorTemplate sUmbralFountainActorTemplates[] = {
+    // The rift light at the pool's edge, before the statue: there once the
+    // Memory Room's orb is lit.
+    {SPRITE_FLOATING_LIGHT, IF_FLAG_SET(FLAG_DARK_RIFT_SEAL_LIT),
+     MOVEMENT_TYPE_STAND, PIXELS(136), 0, PIXELS(200), FACING_SOUTH,
+     TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
+
+static struct ActorTemplate sUmbralEmptyActorTemplates[] = {
+    {SCENE_TABLE_END},
+};
+
+static struct ActorTemplate sUmbralMemoryActorTemplates[] = {
+    // The dark orb, in the middle of the room.
+    {SPRITE_FLOATING_LIGHT, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(136), 0,
+     PIXELS(168), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    {SCENE_TABLE_END},
+};
+
+static struct ActorTemplate sUmbralCausewayActorTemplates[] = {
+    // The rift light at the foot of the causeway, beside the walk.
+    {SPRITE_FLOATING_LIGHT, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(72),
+     0, PIXELS(232), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    {SCENE_TABLE_END},
+};
+
+/// Through the rift light: on to the causeway.
+static void UmbralRift_EnterRiftLight(void) {
+  Event_Start();
+  Import_EventSetExitRequest(UMBRAL_FOUNTAIN_TO_CAUSEWAY);
+  Event_End();
+}
+
+/// The dark orb lights, and the seal in the Fountain Hall opens.
+static void UmbralRift_LightOrb(void) {
+  Event_Start();
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_FEATURE, SPRITE_COLOR_WHITE);
+  Event_WaitFrames(20);
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_FEATURE, SPRITE_COLOR_NORMAL);
+  GameFlag_Set(FLAG_DARK_RIFT_SEAL_LIT);
+  Event_End();
+}
+
+/// The rest point: the party is restored.
+static void UmbralRift_Rest(void) {
+  Event_Start();
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_FEATURE, SPRITE_COLOR_WHITE);
+  Party_RestoreHpPp(1);
+  Event_WaitFrames(20);
+  Actor_ConfigureSpriteColor(ACTOR_RIFT_FEATURE, SPRITE_COLOR_NORMAL);
+  Event_End();
+}
 
 static struct Trigger sUmbralFountainTriggers[] = {
     {TRIGGER_EXIT, UMBRAL_FOUNTAIN_TO_WORLD_MAP, CONDITION_ALWAYS,
      UMBRAL_FOUNTAIN_TO_WORLD_MAP},
     {TRIGGER_EXIT, UMBRAL_FOUNTAIN_TO_LEFT_ARCH, CONDITION_ALWAYS,
      UMBRAL_FOUNTAIN_TO_LEFT_ARCH},
+    {TRIGGER_EXIT, UMBRAL_FOUNTAIN_TO_RIGHT_ARCH, CONDITION_ALWAYS,
+     UMBRAL_FOUNTAIN_TO_RIGHT_ARCH},
+    {TRIGGER_TALK, ACTOR_RIFT_FEATURE, IF_FLAG_SET(FLAG_DARK_RIFT_SEAL_LIT),
+     EVENT(UmbralRift_EnterRiftLight)},
     {TRIGGERS_END},
 };
 
@@ -229,8 +314,30 @@ static struct Trigger sUmbralMemoryTriggers[] = {
      UMBRAL_MEMORY_TO_MAZE},
     {TRIGGER_EXIT, UMBRAL_MEMORY_TO_STAIR, CONDITION_ALWAYS,
      UMBRAL_MEMORY_TO_STAIR},
+    {TRIGGER_TALK, ACTOR_RIFT_FEATURE, FLAG_DARK_RIFT_SEAL_LIT,
+     EVENT(UmbralRift_LightOrb)},
     {TRIGGERS_END},
 };
+
+static struct SceneEntrance sUmbralCausewayEntrances[] = {
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 88, 0, 264, FACING_NORTH, 0, -1, -1,
+     -1, -1, 0},
+    {UMBRAL_CAUSEWAY_FROM_THRONE, CONDITION_ALWAYS, 88, 0, 88, FACING_SOUTH, 0,
+     -1, -1, -1, -1, 0},
+    {SCENE_TABLE_END},
+};
+
+static struct Trigger sUmbralCausewayTriggers[] = {
+    {TRIGGER_EXIT, UMBRAL_CAUSEWAY_TO_FOUNTAIN, CONDITION_ALWAYS,
+     UMBRAL_CAUSEWAY_TO_FOUNTAIN},
+    {TRIGGER_EXIT, UMBRAL_CAUSEWAY_TO_THRONE, CONDITION_ALWAYS,
+     UMBRAL_CAUSEWAY_TO_THRONE},
+    {TRIGGER_TALK, ACTOR_RIFT_FEATURE, CONDITION_ALWAYS, EVENT(UmbralRift_Rest)},
+    {TRIGGERS_END},
+};
+
+#define UMBRAL_IN_CAUSEWAY() \
+  ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralCauseway)
 
 #define UMBRAL_IN_MEMORY() \
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralMemory)
@@ -240,7 +347,8 @@ static struct Trigger sUmbralMemoryTriggers[] = {
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralFountain)
 
 const struct SceneEntrance *Scene_GetEntrances(void) {
-  return UMBRAL_IN_MEMORY()     ? sUmbralMemoryEntrances
+  return UMBRAL_IN_CAUSEWAY()   ? sUmbralCausewayEntrances
+         : UMBRAL_IN_MEMORY()   ? sUmbralMemoryEntrances
          : UMBRAL_IN_MAZE()     ? sUmbralMazeEntrances
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainEntrances
                                 : sUmbralThroneEntrances;
@@ -248,11 +356,15 @@ const struct SceneEntrance *Scene_GetEntrances(void) {
 const struct SceneExitRegion *Scene_GetExitRegions(void) { return NULL; }
 const u32 *Scene_GetExits(void) { return sUmbralThroneExits; }
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
-  return UMBRAL_IN_MEMORY() || UMBRAL_IN_MAZE() || UMBRAL_IN_FOUNTAIN() ? sUmbralFountainActorTemplates
-                                                 : sUmbralThroneActorTemplates;
+  return UMBRAL_IN_CAUSEWAY()   ? sUmbralCausewayActorTemplates
+         : UMBRAL_IN_MEMORY()   ? sUmbralMemoryActorTemplates
+         : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainActorTemplates
+         : UMBRAL_IN_MAZE()     ? sUmbralEmptyActorTemplates
+                                : sUmbralThroneActorTemplates;
 }
 const struct Trigger *Scene_GetTriggers(void) {
-  return UMBRAL_IN_MEMORY()     ? sUmbralMemoryTriggers
+  return UMBRAL_IN_CAUSEWAY()   ? sUmbralCausewayTriggers
+         : UMBRAL_IN_MEMORY()   ? sUmbralMemoryTriggers
          : UMBRAL_IN_MAZE()     ? sUmbralMazeTriggers
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainTriggers
                                 : sUmbralThroneTriggers;

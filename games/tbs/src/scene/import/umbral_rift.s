@@ -13,4 +13,6 @@
 .set import.Event_WaitTransitionFrames, 1
 .set import.Actor_ConfigureSpriteColor, 1
 .set import.Import_ActorSetPosition, 1
+.set import.Import_EventSetExitRequest, 1
+.set import.Party_RestoreHpPp, 1
 .include "games/tbs/src/system/overlay.inc"
