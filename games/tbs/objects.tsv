@@ -122,7 +122,6 @@ main	rom_main_07	games/tbs/src/battle/battle_data_tail
 main	rom_main_07	games/tbs/src/battle/debug_presets
 main	rom_main_07	games/tbs/src/battle/battle_vars
 main	rom_main_07	games/tbs/src/battle/formations
-main	rom_main_07	games/tbs/src/battle/battle_sprites
 main	rom_main_08	games/tbs/src/system/far_call/BATTLE_ANIM
 main	rom_main_08	games/tbs/src/battle_anim/battle_anim	.text .data
 main	rom_main_08	games/tbs/src/battle_anim/battle_anim_composite
@@ -637,6 +636,7 @@ main	rom_tail_02	games/tbs/src/map/map_177/map
 main	rom_tail_02	games/tbs/src/map/map_178/map
 main	rom_tail_02	games/tbs/src/map/map_179/map
 main	rom_tail_02	games/tbs/src/map/map_180/map
+main	rom_tail_02	games/tbs/src/battle/battle_sprites
 main	rom_tail_02	games/tbs/src/system/overlay/overlays
 main	rom_tail_03	games/tbs/src/graphics/sprite/sprites	.rodata.c
 36f	text	games/tbs/src/menu/entry/title
