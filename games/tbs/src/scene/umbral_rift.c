@@ -177,8 +177,8 @@ static void UmbralRift_MemoryDialogue(void) {
   UmbralRift_Say(MsgDarkRiftMemory001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftMemory002, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftMemory003, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftMemory004, ACTOR_GARET);
-  UmbralRift_Say(MsgDarkRiftMemory005, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftMemory004, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftMemory005, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftMemory006, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftMemory007, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftMemory008, ACTOR_PARTY_LEADER);
@@ -513,11 +513,8 @@ static void UmbralRift_TalkToMystery(void) {
   UmbralRift_Say(MsgDarkRiftPre060, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre061, ACTOR_RIFT_MYSTERY);
   Event_WaitFrames(20);
-  UmbralRift_Say(MsgDarkRiftPre062, ACTOR_RIFT_HEART);
-  UmbralRift_Say(MsgDarkRiftPre063, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre064, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre065, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre066, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre067, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre068, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre069, ACTOR_RIFT_MYSTERY);
@@ -538,9 +535,6 @@ static void UmbralRift_TalkToMystery(void) {
   UmbralRift_Say(MsgDarkRiftPre081, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre082, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftPre083, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre084, ACTOR_RIFT_HEART);
-  UmbralRift_Say(MsgDarkRiftPre085, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre086, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre087, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre088, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre089, ACTOR_RIFT_MYSTERY);

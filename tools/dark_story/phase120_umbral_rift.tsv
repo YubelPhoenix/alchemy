@@ -4,12 +4,12 @@
 N500	MsgDarkRiftFountain001	That monolith...\nIt wasn't here before.{end_wait}
 N501	MsgDarkRiftFountain002	And it's right by Vale.\nWhat is this place?{end_wait}
 N502	MsgDarkRiftFountain003	The fountain...\nMercury Lighthouse?{end_wait}
-N503	MsgDarkRiftFountain004	We didn't travel to Imil.{end_wait}
+N503	MsgDarkRiftFountain004	We're nowhere near Imil.{end_wait}
 N504	MsgDarkRiftFountain005	I know. But the shape\nis exactly the same.{end_wait}
-N505	MsgDarkRiftFountain006	The stone is different.\nIt's almost black.{end_wait}
+N505	MsgDarkRiftFountain006	The stone is different.\nDarker. Almost violet.{end_wait}
 N506	MsgDarkRiftFountain007	Two people.\nBy the arch.{end_wait}
 N507	MsgDarkRiftFountain008	Did you see that?\nThey were right there!{end_wait}
-N508	MsgDarkRiftFountain009	And that crystal...\nIts Psynergy feels wrong.{end_wait}
+N508	MsgDarkRiftFountain009	And that statue...\nIts Psynergy feels wrong.{end_wait}
 N509	MsgDarkRiftFountain010	Let's see where\nthe arch leads.{end_wait}
 N510	MsgDarkRiftMaze001	These passages...{end_wait}
 N511	MsgDarkRiftMaze002	Sol Sanctum.\nI know that turn.{end_wait}
@@ -18,14 +18,14 @@ N513	MsgDarkRiftMaze004	There should be a hall\nto our right.{end_wait}
 N514	MsgDarkRiftMaze005	There's only a wall.{end_wait}
 N515	MsgDarkRiftMaze006	It's the same pattern,\nbut these rooms don't fit.{end_wait}
 N516	MsgDarkRiftMaze007	There they are again.{end_wait}
-N517	MsgDarkRiftMaze008	They vanished!\nWithout moving!{end_wait}
+N517	MsgDarkRiftMaze008	Gone again! How do\nthey keep doing that?{end_wait}
 N518	MsgDarkRiftMaze009	Stay close.\nWe don't know what\nthis place is doing.{end_wait}
 N519	MsgDarkRiftMemory001	Wait.\nThis is my house.{end_wait}
 N520	MsgDarkRiftMemory002	Even the front room...\nIt looks like home.{end_wait}
 N521	MsgDarkRiftMemory003	How could it be here?{end_wait}
-N522	MsgDarkRiftMemory004	I almost called for Dora.{end_wait}
+N522	MsgDarkRiftMemory004	I almost called\nfor Mom.{end_wait}
 N523	MsgDarkRiftMemory005	So did I.{end_wait}
-N524	MsgDarkRiftMemory006	That orb is pulsing.\nLike the fountain crystal.{end_wait}
+N524	MsgDarkRiftMemory006	That orb is pulsing.\nLike the fountain statue.{end_wait}
 N525	MsgDarkRiftMemory007	Perhaps it's connected.{end_wait}
 N526	MsgDarkRiftMemory008	Then we should\ntake a closer look.{end_wait}
 N527	MsgDarkRiftOrb001	The orb is changing.{end_wait}
@@ -34,10 +34,10 @@ N529	MsgDarkRiftOrb003	Something opened.\nDid you feel that?{end_wait}
 N530	MsgDarkRiftOrb004	Back to the fountain.\nLet's see what changed.{end_wait}
 N531	MsgDarkRiftGate001	That light wasn't here.{end_wait}
 N532	MsgDarkRiftGate002	The orb opened the seal.\nThere's a path ahead.{end_wait}
-N533	MsgDarkRiftGate003	Those two went this way.{end_wait}
+N533	MsgDarkRiftGate003	Those two went this way.\nOf course they did.{end_wait}
 N534	MsgDarkRiftGate004	Then we follow.{end_wait}
-N535	MsgDarkRiftCauseway001	The air is shaking.\nLook at the floor.{end_wait}
-N536	MsgDarkRiftCauseway002	It just changed!\nWhat was that?{end_wait}
+N535	MsgDarkRiftCauseway001	The ground's shaking!\nHold on!{end_wait}
+N536	MsgDarkRiftCauseway002	It stopped...\nWhat was that?{end_wait}
 N537	MsgDarkRiftCauseway003	The passage is unstable.\nWe shouldn't stay long.{end_wait}
 N538	MsgDarkRiftCauseway004	Those two are ahead.\nLet's find out why\nthey came here.{end_wait}
 N539	MsgDarkRiftPre001	We followed you here.\nWhy are you in this place?{end_wait}
@@ -50,7 +50,7 @@ N545	MsgDarkRiftPre007	Where did they come from?{end_wait}
 N546	MsgDarkRiftPre008	Another world.\nFragments of places\nit once held.{end_wait}
 N547	MsgDarkRiftPre009	What brought them here?{end_wait}
 N548	MsgDarkRiftPre010	A passage between worlds\nwas opened.\nIt didn't close cleanly.{end_wait}
-N549	MsgDarkRiftPre011	And that black crystal?{end_wait}
+N549	MsgDarkRiftPre011	And the light\nby the fountain?{end_wait}
 N550	MsgDarkRiftPre012	It holds the breach\nin one place.\nFor now.{end_wait}
 N551	MsgDarkRiftPre013	What if it fails?{end_wait}
 N552	MsgDarkRiftPre014	The Rift may spread.\nVale could be next.{end_wait}
@@ -114,7 +114,7 @@ N609	MsgDarkRiftPre071	Enough.\nYou said Alex and Kraden.{end_wait}
 N610	MsgDarkRiftPre072	Alex abandoned our clan.\nHe helped light\nMercury Lighthouse.{end_wait}
 N611	MsgDarkRiftPre073	Now you speak of him\nbetraying you, too.\nAnd Kraden was there?{end_wait}
 N612	MsgDarkRiftPre074	We know nothing\nabout this Apollo Lens.{end_wait}
-N613	MsgDarkRiftPre075	You warned me\nabout thirty years.{end_wait}
+N613	MsgDarkRiftPre075	At Vale, you warned me\nabout thirty years.{end_wait}
 N614	MsgDarkRiftPre076	Is this about\nour future?{end_wait}
 N615	MsgDarkRiftPre077	Not every world\nfollows the same road.{end_wait}
 N616	MsgDarkRiftPre078	Then what happened\nto Alex?{end_wait}
@@ -145,7 +145,7 @@ N640	MsgDarkRiftPost006	You obeyed this time.\nThat does not erase\nthe Apollo L
 N641	MsgDarkRiftPost007	I know, my lady.\nPlease...{end_wait}
 N642	MsgDarkRiftPost008	Stand up.\nDo not make me ask twice.{end_wait}
 N643	MsgDarkRiftPost009	Yes! Right away!{end_wait}
-N644	MsgDarkRiftPost010	If we close the crystal,\nwhat happens to the rooms?{end_wait}
+N644	MsgDarkRiftPost010	If we seal that light,\nwhat happens to the rooms?{end_wait}
 N645	MsgDarkRiftPost011	They may remain.\nBut nothing new\nwill be drawn in.{end_wait}
 N646	MsgDarkRiftPost012	And Vale?{end_wait}
 N647	MsgDarkRiftPost013	Safe from this opening.\nNot from every Rift.{end_wait}
@@ -162,7 +162,7 @@ N657	MsgDarkRiftPost023	I won't have this\nconversation again.{end_wait}
 N658	MsgDarkRiftPost024	You won't.\nI swear it.{end_wait}
 N659	MsgDarkRiftPost025	You still haven't\ntold me who you are.{end_wait}
 N660	MsgDarkRiftPost026	No.\nThirty years, Isaac.{end_wait}
-N661	MsgDarkRiftSeal001	The crystal's still active.\nWe have to stop it.{end_wait}
+N661	MsgDarkRiftSeal001	The light's still active.\nWe have to stop it.{end_wait}
 N662	MsgDarkRiftSeal002	The orb opened its seal.\nThat same path\nis still connected.{end_wait}
 N663	MsgDarkRiftSeal003	The power's moving\ntoward the walls.{end_wait}
 N664	MsgDarkRiftSeal004	Can we turn it back?{end_wait}
