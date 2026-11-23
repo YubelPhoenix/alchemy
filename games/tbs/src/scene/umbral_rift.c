@@ -645,10 +645,12 @@ static struct ActorTemplate sUmbralMazeActorTemplates[] = {
 };
 
 static struct ActorTemplate sUmbralMemoryActorTemplates[] = {
-    // The dark orb, in the middle of the room.
-    {SPRITE_FLOATING_LIGHT, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(136), 0,
-     PIXELS(168), FACING_SOUTH, TALK_FACING_KEEP, 0},
-    // ??? and Heart either side of the orb in Isaac's home, the first time.
+    // The dark orb, against the back wall: out of the walkway (row 10) that
+    // joins the two halves of the room, so it no longer blocks the stair.
+    {SPRITE_FLOATING_LIGHT, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(168), 0,
+     PIXELS(98), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    // ??? and Heart in the middle of Isaac's home, the first time (gone after
+    // the echo, so they never block the walkway).
     {SPRITE_MYSTERY_LEADER, FLAG_DARK_RIFT_PAIR_MEMORY, MOVEMENT_TYPE_STAND,
      PIXELS(104), 0, PIXELS(166), FACING_SOUTH, TALK_FACING_KEEP, 0},
     {SPRITE_WOMAN_WITH_PURPLE_HAIR, FLAG_DARK_RIFT_PAIR_MEMORY,
