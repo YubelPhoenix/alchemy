@@ -25,4 +25,5 @@
 .set import.ArcTan2, 1
 .set import.Actor_ArmCallback, 1
 .set import.Portrait_CloseWindow, 1
+.set import.MapGrid_CopyMetatileCellsRect, 1
 .include "games/tbs/src/system/overlay.inc"

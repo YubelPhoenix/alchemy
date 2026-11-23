@@ -266,6 +266,12 @@ s32 UmbralRift_Initialize(void) {
   // Fountain Hall's right arch as the way back to it.
   if (UMBRAL_SCENE_IS(UmbralMemory) && gSaveBlock.entrance == ENTRANCE_DEFAULT)
     GameFlag_Set(FLAG_DARK_RIFT_SHORTCUT_OPEN);
+  // The Fountain Hall's right arch is drawn bricked up (and solid) in the map;
+  // once the shortcut is open, copy the open doorway (stored off-screen at
+  // cells 20,20 and 20,21) back into the arch.
+  if (UMBRAL_SCENE_IS(UmbralFountain) &&
+      GameFlag_Get(FLAG_DARK_RIFT_SHORTCUT_OPEN) != 0)
+    MapGrid_CopyMetatileCellsRect(20, 20, 1, 2, 13, 3);
   // ??? and Heart, drawn in black, stand in each room on the way until the
   // party walks up to them (the step triggers below); then they speak of
   // nothing, flicker out, and are gone for good.
