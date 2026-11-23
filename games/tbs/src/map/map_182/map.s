@@ -2,7 +2,8 @@
 	.section .rodata
 	.global Field_Map182
 Field_Map182:
-	map_header 0, 0, 104, 80, 3, 2, 1, 0, 2, 2, 0, 0
+	@ Camera bounds fit the maze itself (40 x 35 cells).
+	map_header 0, 0, 80, 70, 3, 2, 1, 0, 2, 2, 0, 0
 	map_layer 0, 0, 16, 16, 0, 0, 0xff, 0xff
 	map_layer 0, 80, 16, 16, 0, 0, 0xff, 0xff
 	map_layer 104, 0, 16, 16, 0, 0, 0xff, 0xff
