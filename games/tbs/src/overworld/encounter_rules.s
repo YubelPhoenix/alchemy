@@ -208,4 +208,11 @@ gScene_EncounterRules:
 	encounter_rule VenusLighthouseSecondFloor, -1, -1, 1, 95
 	encounter_rule VenusLighthouseThirdFloor, -1, -1, 0, 96
 	encounter_rule VenusLighthouseFourthFloor, -1, -1, 0, 97
+	@ Golden Sun: Ashfall: the Umbral Rift's monsters, from Altin Peak's deeper
+	@ halls (zone 49), on every floor of the Fountain Hall, the maze and the
+	@ Beacon Chamber. Isaac's house, the Causeway (the rest) and the Throne Hall
+	@ have none.
+	encounter_rule UmbralFountain, -1, -1, 1, 49
+	encounter_rule UmbralMaze, -1, -1, 1, 49
+	encounter_rule UmbralBeacon, -1, -1, 1, 49
 	.2byte -1, -1, 0, 0	@ end
