@@ -267,6 +267,10 @@ static void UmbralRift_CloseAnchor(void) {
   Actor_ConfigureSpriteColor(ACTOR_RIFT_FEATURE, SPRITE_COLOR_BLACK);
   UmbralRift_Say(MsgDarkRiftSeal007, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftSeal011, ACTOR_MIA);
+  UmbralRift_Say(MsgDarkRiftSeal013, ACTOR_MIA);
+  UmbralRift_Say(MsgDarkRiftSeal014, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftSeal015, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftSeal017, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftSeal018, ACTOR_PARTY_LEADER);
   GameFlag_Set(FLAG_DARK_RIFT_ANCHOR_SEALED);
 }
@@ -408,8 +412,13 @@ static void UmbralRift_Aftermath(void) {
   UmbralRift_Say(MsgDarkRiftPost004, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPost010, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPost011, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPost018, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftPost019, ACTOR_RIFT_MYSTERY);
+  if (GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0) {
+    UmbralRift_Say(MsgDarkRiftKnownWarning, ACTOR_PARTY_LEADER);
+    UmbralRift_Say(MsgDarkRiftKnownAnswer, ACTOR_RIFT_MYSTERY);
+  } else {
+    UmbralRift_Say(MsgDarkRiftPost018, ACTOR_PARTY_LEADER);
+    UmbralRift_Say(MsgDarkRiftPost019, ACTOR_RIFT_MYSTERY);
+  }
   UmbralRift_Say(MsgDarkRiftPost020, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPost021, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPost025, ACTOR_PARTY_LEADER);
@@ -429,16 +438,28 @@ static void UmbralRift_TalkToMystery(void) {
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_BLACK);
   Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK);
-  UmbralRift_Say(MsgDarkRiftPre001, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0
+                    ? MsgDarkRiftValeKnown : MsgDarkRiftPre001,
+                ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre002, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre007, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre008, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre011, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre012, ACTOR_RIFT_MYSTERY);
+  if (GameFlag_Get(FLAG_DARK_RIFT_PAIR_FOUNTAIN) != 0 ||
+      GameFlag_Get(FLAG_DARK_RIFT_PAIR_MAZE) != 0 ||
+      GameFlag_Get(FLAG_DARK_RIFT_PAIR_MEMORY) != 0) {
+    UmbralRift_Say(MsgDarkRiftPre021, ACTOR_IVAN);
+    UmbralRift_Say(MsgDarkRiftPre022, ACTOR_RIFT_MYSTERY);
+  }
   UmbralRift_Say(MsgDarkRiftPre015, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre016, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre020, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre023, ACTOR_RIFT_HEART);
-  UmbralRift_Say(MsgDarkRiftPre024, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0 ||
+                    GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0
+                    ? MsgDarkRiftHeartKnown : MsgDarkRiftPre024,
+                ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre025, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre026, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre028, ACTOR_RIFT_MYSTERY);
@@ -461,6 +482,7 @@ static void UmbralRift_TalkToMystery(void) {
   UmbralRift_Say(MsgDarkRiftPre042, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre043, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftPre047, ACTOR_MIA);
+  UmbralRift_Say(MsgDarkRiftPre045, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre048, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre050, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre051, ACTOR_RIFT_HEART);
@@ -477,7 +499,8 @@ static void UmbralRift_TalkToMystery(void) {
   UmbralRift_Say(MsgDarkRiftPre080, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftPre081, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre087, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftPre088, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftPre088, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftPre089, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre090, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre091, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre093, ACTOR_RIFT_MYSTERY);

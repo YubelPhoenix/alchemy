@@ -13,15 +13,15 @@
 09815	message	Strangers came without\npapers. We ordered\nthem to turn back.{page_break}They struck before\nwe could raise\nthe alarm.{end_wait}
 09816	message	We never had\na chance...{end_wait}
 09817	message	They moved through us\nas if we weren't\neven there.{end_wait}
-09818	message	Fire... and a power\nI couldn't name.\nThen everything went dark.{end_wait}
+09818	message	Fire... and a power\nI couldn't name.{page_break}Then a girl came by.\nShe burned what little\nmedicine we had left.{end_wait}
 09819	message	Could {actor_name:5} have\nbeen among them?{end_now}
 09820	message	Then he may already\nbe near the lighthouse.{end_wait}
 09821	message	We cannot know yet.\nBut someone forced\nthis passage.{end_wait}
 09822	message	And {actor_name:7} is still\nmissing. We cannot\nforget her.{end_wait}
 09823	message	The lighthouse may be\nin danger. We must\nmove quickly.{end_wait}
 09824	message	Not while these men\nlie here wounded.{end_wait}
-09825	message	We can hold on.\nYou have to go...\nbefore it's too late.{end_wait}
-09826	message	But leaving you\nlike this...{end_wait}
+09825	message	We're out of medicine.\nSend help from the tower.\nYou have to go.{end_wait}
+09826	message	I'll send help.\nYou have my word.{end_wait}
 09827	message	We've survived worse\nthan this. Please...\nkeep going.{end_wait}
 09828	message	If the lighthouse\nfalls, Lalivero\nwill pay the price.{end_wait}
 09829	message	Then we cannot\nwaste another moment.{end_wait}

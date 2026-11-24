@@ -2295,6 +2295,24 @@ static void WorldMap_MiaSay(s32 actorId, s32 frames) {
   FieldEvent_ShowMessageThenWait(actorId, 0, frames);
 }
 
+/// The party chooses to investigate the new monolith before entering the Rift.
+static void WorldMap_EnterUmbralRift(void) {
+  Event_Start();
+  if (GameFlag_Get(FLAG_DARK_RIFT_APPROACH_SEEN) == 0 &&
+      GameFlag_Get(FLAG_DARK_RIFT_PAIR_FOUNTAIN) == 0) {
+    Event_SetMessageId(MsgDarkRiftApproachGaret);
+    FieldEvent_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+    Event_SetMessageId(MsgDarkRiftApproachIvan);
+    FieldEvent_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+    Event_SetMessageId(MsgDarkRiftApproachIsaac);
+    FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    GameFlag_Set(FLAG_DARK_RIFT_APPROACH_SEEN);
+  }
+  Sound_PlaySong(SE_MAP_EXIT);
+  Import_EventSetExitRequest(WORLD_MAP_TO_UMBRAL_RIFT);
+  Event_End();
+}
+
 /// Mia's first interlude, part one, on the road south of Imil. The party is
 /// Mia alone (the Vault's gate swapped it). Three hired thieves close in
 /// on her and the first battle begins; winning brings her back at
@@ -4079,7 +4097,7 @@ struct Trigger gWorldTriggers[] = {
     { TRIGGER_EXIT, WORLD_MAP_TO_VENUS_LIGHTHOUSE_ENTRY_EAST, CONDITION_ALWAYS, WORLD_MAP_TO_VENUS_LIGHTHOUSE_ENTRY_EAST },
     { TRIGGER_EXIT, WORLD_MAP_TO_BILIBIN_BARRICADE_EAST, CONDITION_ALWAYS, WORLD_MAP_TO_BILIBIN_BARRICADE_EAST },
     { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_TO_VALE_PLAZA), CONDITION_ALWAYS, WORLD_MAP_TO_VALE_PLAZA },
-    { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_RIFT_MONOLITH), IF_FLAG_SET(FLAG_COLOSSO_OVER), WORLD_MAP_TO_UMBRAL_RIFT },
+    { TRIGGER_STEP, STEP_TRIGGER_AREA(ACTOR_RIFT_MONOLITH), IF_FLAG_SET(FLAG_COLOSSO_OVER), EVENT(WorldMap_EnterUmbralRift) },
     { TRIGGER_STEP, STEP_TRIGGER_AREA(ACTOR_TO_VAULT), CONDITION_ALWAYS, EVENT(WorldMap_EnterVault) },
     { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_TO_GOMA_CAVE_ENTRANCE), CONDITION_ALWAYS, WORLD_MAP_TO_GOMA_CAVE_ENTRANCE },
     { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_TO_GOMA_CAVE_BRIDGE), CONDITION_ALWAYS, WORLD_MAP_TO_GOMA_CAVE_BRIDGE },
