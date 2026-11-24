@@ -91,7 +91,7 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
     return 0;
   unit = Unit_Get(unitId);
   Iwram_ClearWords(unit, BATTLE_UNIT_SIZE);
-  if (index > 165)
+  if (index > 166)
     index = 0;
   enemy = &gEnemy_Definitions[index];
   unit->level = enemy->level;
@@ -134,6 +134,7 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   Message_DecodeRawFar(index == ENEMY_ROW_MYSTERY_LEADER || index == 152
                            ? MsgDarkMystery25
                            : index == 165 ? 101 + MsgEnemyName
+                           : index == 166 ? MsgEnemyKaris
                                           : index + MsgEnemyName,
                        name, 15);
   for (i = 0; i < 14 && name[i] != 0; i++)

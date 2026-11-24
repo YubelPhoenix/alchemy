@@ -727,8 +727,9 @@ const struct EncounterZone gEncounterZones[] = {
     {
         .rate = 55,
         .level = 28,
-        .enemies = {334, 333, 339, 331, 342, 343, 337, 323},
-        .weights = {3, 3, 4, 4, 3, 3, 2, 2},
+        // Karis (formation 390), a phantom out of Dark Dawn, is the rare one.
+        .enemies = {334, 333, 339, 331, 342, 343, 337, 390},
+        .weights = {3, 3, 4, 4, 3, 3, 3, 1},
     },
 };
 // clang-format on

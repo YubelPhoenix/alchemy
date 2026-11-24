@@ -3220,6 +3220,27 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .itemChance = 1,
         .experience = 6000,
     },
+    // Row 166: Karis, a phantom out of Golden Sun: Dark Dawn, thirty years
+    // on, met rarely in the Umbral Rift (formation 390). A Jupiter Adept with
+    // a sword: her name is its own message (BattleUnit_Set).
+    {
+        .name = "              ",
+        .level = 30,
+        .hp = 1500,
+        .pp = 300,
+        .atk = 330,
+        .def = 115,
+        .agi = 215,
+        .luck = 25,
+        .turns = 1,
+        .elementPreset = 44,
+        .targetStrategy = TARGET_STRATEGY_RANDOM,
+        .actionStrategy = ACTION_STRATEGY_FALLING,
+        .abilities = {ABILITY_ATTACK, 77, 74, 79, ABILITY_ATTACK, 76, 71, 80},
+        .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN, ABILITY_EFFECT_DRAIN_PP},
+        .coins = 900,
+        .experience = 1400,
+    },
     {
         .name = "\xff",
     },
