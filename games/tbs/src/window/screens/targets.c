@@ -3,6 +3,7 @@
 // Part of screens.c.
 
 #include "../screens_internal.h"
+#include "enemy_ids.h"
 
 #if LANGUAGE == LANGUAGE_JAPANESE
 #define TARGET_MYSTERY_NAME_COPY Message_DecodeRaw
@@ -51,7 +52,7 @@ s32 BattleTarget_RunSelection(s32 selection, s32 mode, u32 spread, u32 kind) {
   u16 spreadActorIds[14];
   u8 spreadTrackIndices[8];
   struct ScreenPoint selectedPosition;
-  u16 targetName[15];
+  u16 targetName[16]; // Ashfall: 15 letters and the end, for the Vengeful Wraith
   struct ScreenPoint namePosition;
   struct ScreenPoint markerPosition;
   struct AffineTransform effect;
@@ -647,7 +648,10 @@ s32 BattleTarget_RunSelection(s32 selection, s32 mode, u32 spread, u32 kind) {
         BattleMotion_ProjectConditionalPositionFar(
             candidateIds[targetIndex], ScreenPoint_Coordinates(&namePosition));
         namePosition.y += Trig_Sin(gFrameCount << 12) / 32768;
-        if (target->id == 125 || target->id == 122) {
+        if (target->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH) {
+          // Ashfall: her name is longer than a unit's 14 characters.
+          Message_DecodeRaw(MsgEnemyVengefulWraith, targetName, 16);
+        } else if (target->id == 125 || target->id == 122) {
           width = MsgMysteryPersonName;
           if (target->id == 125)
             width++;

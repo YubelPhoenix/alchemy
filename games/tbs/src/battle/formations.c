@@ -1590,7 +1590,7 @@ const struct Formation gFormations[] = {
         .minimumCounts = {1, 1},
         .maximumCounts = {1, 1},
     },
-    // 390, Umbral Rift: Karis, a phantom out of Dark Dawn, alone.
+    // 390, Umbral Rift: the Vengeful Wraith (Dark Dawn's Karis), alone.
     {
         .memberIds = {166},
         .minimumCounts = {1},

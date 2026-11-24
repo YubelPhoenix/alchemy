@@ -3220,10 +3220,10 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .itemChance = 1,
         .experience = 6000,
     },
-    // Row 166: Karis, a phantom out of Golden Sun: Dark Dawn, thirty years
-    // on, standing in the Umbral Rift's pentagram (formation 390, fought
-    // once). A Jupiter Adept with a sword, acting twice a turn: her name is
-    // its own message (BattleUnit_Set).
+    // Row 166 (ENEMY_ROW_VENGEFUL_WRAITH): the Vengeful Wraith, Golden Sun:
+    // Dark Dawn's Karis thirty years on, standing in the Umbral Rift's
+    // pentagram (formation 390, fought once). A Jupiter Adept with a sword,
+    // acting twice a turn: her name is its own message (BattleUnit_Set).
     {
         .name = "              ",
         .level = 36,

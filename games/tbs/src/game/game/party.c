@@ -134,7 +134,7 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   Message_DecodeRawFar(index == ENEMY_ROW_MYSTERY_LEADER || index == 152
                            ? MsgDarkMystery25
                            : index == 165 ? 101 + MsgEnemyName
-                           : index == 166 ? MsgEnemyKaris
+                           : index == 166 ? MsgEnemyVengefulWraith
                                           : index + MsgEnemyName,
                        name, 15);
   for (i = 0; i < 14 && name[i] != 0; i++)

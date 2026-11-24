@@ -96,8 +96,8 @@ enum {
 enum { UMBRAL_RITUAL_FROM_KARIS_BATTLE = 1 };
 /// The first row of the pentagram, just inside the arch.
 enum { UMBRAL_RITUAL_STEP = 0x20 };
-/// Karis, a phantom out of Dark Dawn, standing black at the pentagram's
-/// heart until she is beaten.
+/// The Vengeful Wraith (Dark Dawn's Karis), standing black at the
+/// pentagram's heart until she is beaten.
 enum { ACTOR_RITUAL_KARIS = ACTOR_FIRST_PLACED };
 
 /// The Memory Room (map row 0xbd): Isaac's house in Vale, rebuilt in obsidian
@@ -325,8 +325,11 @@ s32 UmbralRift_Initialize(void) {
         GameFlag_Get(FLAG_DARK_RIFT_KARIS_FOUGHT) != 0 &&
         gSaveBlock.sequenceResult != -1)
       UmbralRift_KarisAftermath();
-    else
+    else {
       UmbralRift_PairShow(ACTOR_RITUAL_KARIS, ACTOR_RITUAL_KARIS);
+      // She stands on the pentagram, drawn above the floor's markings.
+      Actor_SetSpritePriority(ACTOR_RITUAL_KARIS, 1);
+    }
   }
   // Back from the fight on the dais. A loss is handled by the restart point
   // (the fight flag is cleared there), so only a win returns here.
@@ -767,15 +770,17 @@ static void UmbralRift_KarisSay(s32 message, s32 actor) {
   Actor_ConfigureSpriteColor(ACTOR_RITUAL_KARIS, SPRITE_COLOR_BLACK);
 }
 
-/// The first look at the pentagram in the Ritual Room: Karis, a phantom out
-/// of Dark Dawn thirty years on, stands at its heart. She takes Ivan for her
-/// father, then for one more of the Rift's tricks, and attacks.
+/// The first look at the pentagram in the Ritual Room: the Vengeful Wraith
+/// (Dark Dawn's Karis, thirty years on) stands at its heart. She holds the
+/// party in contempt and is cold to Ivan above all, speaking in riddles of
+/// the one he could not save; then she attacks.
 static void UmbralRift_SeeRitual(void) {
   Event_Start();
   UmbralRift_KarisSay(MsgDarkRiftRitual001, ACTOR_IVAN);
   UmbralRift_KarisSay(MsgDarkRiftKaris001, ACTOR_RITUAL_KARIS);
   UmbralRift_KarisSay(MsgDarkRiftKaris002, ACTOR_IVAN);
   UmbralRift_KarisSay(MsgDarkRiftKaris003, ACTOR_RITUAL_KARIS);
+  UmbralRift_KarisSay(MsgDarkRiftKaris006, ACTOR_RITUAL_KARIS);
   GameFlag_Set(FLAG_DARK_RIFT_KARIS_FOUGHT);
   Event_SetAfterBattleDestination((s32)&SceneId_UmbralRitual,
                                   UMBRAL_RITUAL_FROM_KARIS_BATTLE);
@@ -785,7 +790,8 @@ static void UmbralRift_SeeRitual(void) {
   Event_End();
 }
 
-/// Back from the fight: Karis fades, and the party looks at the floor.
+/// Back from the fight: the Wraith softens, tells Ivan it was good to see him
+/// one last time, and fades; the party looks at the floor.
 static void UmbralRift_KarisAftermath(void) {
   Event_Start();
   // The scene is still dark here: bring it in first, as the dais does.

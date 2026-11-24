@@ -3,6 +3,7 @@
 // Part of window.c.
 
 #include "../window_internal.h"
+#include "enemy_ids.h"
 
 #if (LANGUAGE != LANGUAGE_JAPANESE)
 #if (LANGUAGE == LANGUAGE_ITALIAN)
@@ -655,17 +656,25 @@ s32 Message_Decode(s32 script, s32 clear) {
             break;
           case MESSAGE_ARGUMENT_ACTOR_NAME:
             no = decode(&reader) - 1;
-            nameBytes = Unit_GetFar(MessageArgument_Lookup(
-                                        MESSAGE_ARGUMENT_ACTOR, clear))
-                            ->name;
-            nameOutput = name;
-            j = 0;
-            do {
-              *nameOutput = *nameBytes;
-              j++;
-              nameBytes++;
-              nameOutput++;
-            } while (j <= 14);
+            {
+              struct Unit *speaker = Unit_GetFar(
+                  MessageArgument_Lookup(MESSAGE_ARGUMENT_ACTOR, clear));
+
+              nameBytes = speaker->name;
+              nameOutput = name;
+              j = 0;
+              do {
+                *nameOutput = *nameBytes;
+                j++;
+                nameBytes++;
+                nameOutput++;
+              } while (j <= 14);
+              // Ashfall: the Vengeful Wraith's name is longer than a unit's
+              // 14 characters; in battle it comes from its message.
+              if (work->battleMode != WINDOW_FIELD &&
+                  speaker->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH)
+                Message_DecodeRaw(MsgEnemyVengefulWraith, name, MESSAGE_NAME_HALFWORDS);
+            }
             writePosition = Message_AppendArticleName(
                 0, name, writePosition, entry, no, plural, &suffix);
             break;
@@ -1117,6 +1126,13 @@ s32 Message_Decode(s32 script, s32 clear) {
             // In battle a unit of class 122 is called Mystery Man and one of
             // class 125 Mystery Woman (MsgMysteryPersonName and the next).
             if (work->battleMode != WINDOW_FIELD &&
+                unit->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH) {
+              // Ashfall: the Vengeful Wraith's name is longer than a unit's
+              // 14 characters, so it comes from its message.
+              Message_DecodeRaw(MsgEnemyVengefulWraith, name, MESSAGE_NAME_HALFWORDS);
+              writePosition = Message_AppendArticleName(
+                  mode, name, writePosition, entry, 0, 0, 0);
+            } else if (work->battleMode != WINDOW_FIELD &&
                 (unit->id == 122 || unit->id == 125)) {
               message = MsgMysteryPersonName;
               if (unit->id == 125)
