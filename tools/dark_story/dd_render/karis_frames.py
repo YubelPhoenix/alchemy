@@ -54,8 +54,9 @@ for n,v in POSES.items():
     # Golden Sun's battle sprites are pre-rendered too, and were reduced to
     # this palette with error diffusion: soft light from the upper left,
     # cool shadows, the same many-hued grain, a dark outline.
-    big,_=render(v,YAW,12,64*k,ambient=0.45,fit=(cx,cy,span),light=(-0.5,0.75,0.45))
-    img=grade(downscale_sharp(big,k),1.0,(0.9,0.88,1.0),1.1)
+    # Bright and saturated, like the party's own sprites.
+    big,_=render(v,YAW,12,64*k,ambient=0.55,fit=(cx,cy,span),light=(-0.5,0.75,0.45))
+    img=punch(grade(downscale_sharp(big,k),1.1,(1.0,0.95,1.0),1.6),1.0,1.15)
     img=darken_rim(outline(img,(24,16,24)),0.7)
     idx=quantize_fs(img,0.35)
     from scipy import ndimage

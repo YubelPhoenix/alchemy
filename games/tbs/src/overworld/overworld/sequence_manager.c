@@ -142,6 +142,9 @@ void Scene_ReturnFromSequence(s32 result) {
     // Umbral Rift: a loss leaves ??? and Heart on the dais for another try.
     if (GameFlag_GetFar(FLAG_DARK_RIFT_BEATEN) == 0)
       GameFlag_ClearFar(FLAG_DARK_RIFT_FOUGHT);
+    // ... and Karis in her pentagram.
+    if (GameFlag_GetFar(FLAG_DARK_RIFT_KARIS_BEATEN) == 0)
+      GameFlag_ClearFar(FLAG_DARK_RIFT_KARIS_FOUGHT);
     if (GameFlag_GetFar(FLAG_DARK_KEGARE_BEATEN) == 0) {
       GameFlag_ClearFar(FLAG_DARK_KEGARE_FOUGHT);
       GameFlag_ClearFar(FLAG_DARK_KEGARE_PENDING);

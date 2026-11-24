@@ -1,3 +1,11 @@
 # Karis, a phantom out of Golden Sun: Dark Dawn met in the Umbral Rift (enemy
 # row 166, BattleUnit_Set in game/game/party.c).
 N701	MsgEnemyKaris	Karis
+# Karis in the Ritual Room's pentagram (UmbralRift_SeeRitual and
+# UmbralRift_KarisAftermath in scene/umbral_rift.c). Ivan's daughter, thirty
+# years on in Dark Dawn: she takes Ivan for her father.
+N702	MsgDarkRiftKaris001	Dad...? Is that you?{end_wait}
+N703	MsgDarkRiftKaris002	Dad? Who are you?\nHow do you know me?{end_wait}
+N704	MsgDarkRiftKaris003	No. You're just another\ntrick of this place.{page_break}I won't fall for it\nagain!{end_wait}
+N705	MsgDarkRiftKaris004	I only wanted...\nto go home...{end_wait}
+N706	MsgDarkRiftKaris005	She called me Dad...\nWhat did she see?{end_wait}
