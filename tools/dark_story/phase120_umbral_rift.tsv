@@ -190,3 +190,6 @@ N685	MsgDarkRiftCross003	Then that's where\nthey went.{end_wait}
 N686	MsgDarkRiftCross004	Stay together.\nWe go through now.{end_wait}
 N687	MsgDarkRiftCrossbone001	Spikes, pillars of ice...\nI don't know this place\neither.{end_wait}
 N688	MsgDarkRiftCrossbone002	Then watch your step.{end_wait}
+N689	MsgDarkRiftRitual001	Someone was here before\nus. Recently.{end_wait}
+N690	MsgDarkRiftRitual002	This mark is burned into\nthe stone. It's still warm.{end_wait}
+N691	MsgDarkRiftRitual003	Whoever made this...\nthey knew about the Rift.{end_wait}

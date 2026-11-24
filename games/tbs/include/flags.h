@@ -2851,5 +2851,10 @@
 /// Golden Sun: Ashfall: the party has walked into the Crossbone room (a piece of
 /// Crossbone Isle) between the Umbral Rift's Fountain Hall and maze.
 #define FLAG_DARK_RIFT_CROSSBONE_SEEN 0x8f7
+/// Golden Sun: Ashfall: the party has stepped past the pentagram in the Umbral
+/// Rift's Ritual Room (behind the maze's east door).
+#define FLAG_DARK_RIFT_RITUAL_SEEN 0x8f8
+/// Golden Sun: Ashfall: the Ritual Room's chest has been opened.
+#define FLAG_CHEST_UMBRAL_RITUAL 0x8f9
 
 #endif

@@ -75,11 +75,25 @@ enum {
 /// north-east door into the Memory Room.
 enum {
   UMBRAL_MAZE_FROM_TOP_DOOR = 1,
+  UMBRAL_MAZE_FROM_RITUAL = 2,
 };
 enum {
   UMBRAL_MAZE_TO_FOUNTAIN = 1,
   UMBRAL_MAZE_TO_TOP_DOOR = 2,
+  /// The east door at the end of the middle corridor, into the Ritual Room.
+  UMBRAL_MAZE_TO_RITUAL = 3,
 };
+
+/// The Ritual Room (map row 0xc1): a small chamber of Mercury Lighthouse in
+/// obsidian, off the maze's east door, with a pentagram burned into its floor
+/// (new tiles in graphics/tileset/umbral_ritual) and a chest in its left
+/// alcove: the first trace of whoever else has been using the Rift.
+enum {
+  /// Exit 1: the arch back to the maze.
+  UMBRAL_RITUAL_TO_MAZE = 1,
+};
+/// The first row of the pentagram, just inside the arch.
+enum { UMBRAL_RITUAL_STEP = 0x20 };
 
 /// The Memory Room (map row 0xbd): Isaac's house in Vale, rebuilt in obsidian
 /// inside the rift. In at the front door from the maze; the stair at the top
@@ -497,12 +511,15 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralMaze),
     SCENE_EXIT(UMBRAL_MAZE_TO_FOUNTAIN, UmbralCrossbone, UMBRAL_CROSSBONE_FROM_MAZE),
     SCENE_EXIT(UMBRAL_MAZE_TO_TOP_DOOR, UmbralMemory, ENTRANCE_DEFAULT),
+    SCENE_EXIT(UMBRAL_MAZE_TO_RITUAL, UmbralRitual, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralMemory),
     SCENE_EXIT(UMBRAL_MEMORY_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_TOP_DOOR),
     SCENE_EXIT(UMBRAL_MEMORY_TO_STAIR, UmbralFountain, UMBRAL_FOUNTAIN_FROM_RIGHT_ARCH),
     SCENE_EXITS(UmbralCauseway),
     SCENE_EXIT(UMBRAL_CAUSEWAY_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_CAUSEWAY),
     SCENE_EXIT(UMBRAL_CAUSEWAY_TO_THRONE, UmbralBeacon, ENTRANCE_DEFAULT),
+    SCENE_EXITS(UmbralRitual),
+    SCENE_EXIT(UMBRAL_RITUAL_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_RITUAL),
     SCENE_EXITS(UmbralCrossbone),
     SCENE_EXIT(UMBRAL_CROSSBONE_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_LEFT_ARCH),
     SCENE_EXIT(UMBRAL_CROSSBONE_TO_MAZE, UmbralMaze, ENTRANCE_DEFAULT),
@@ -648,6 +665,9 @@ static struct SceneEntrance sUmbralMazeEntrances[] = {
      -1, -1, 0},
     {UMBRAL_MAZE_FROM_TOP_DOOR, CONDITION_ALWAYS, 552, 0, 56, FACING_SOUTH, 0,
      -1, -1, -1, -1, 0},
+    // Back out of the Ritual Room, below the east door.
+    {UMBRAL_MAZE_FROM_RITUAL, CONDITION_ALWAYS, 424, 0, 280, FACING_SOUTH, 0,
+     -1, -1, -1, -1, 0},
     {SCENE_TABLE_END},
 };
 
@@ -656,6 +676,8 @@ static struct Trigger sUmbralMazeTriggers[] = {
      UMBRAL_MAZE_TO_FOUNTAIN},
     {TRIGGER_EXIT, UMBRAL_MAZE_TO_TOP_DOOR, CONDITION_ALWAYS,
      UMBRAL_MAZE_TO_TOP_DOOR},
+    {TRIGGER_EXIT, UMBRAL_MAZE_TO_RITUAL, CONDITION_ALWAYS,
+     UMBRAL_MAZE_TO_RITUAL},
     {TRIGGER_STEP, UMBRAL_ECHO_STEP, FLAG_DARK_RIFT_PAIR_MAZE,
      EVENT(UmbralRift_ApproachMazeEcho)},
     {TRIGGERS_END},
@@ -697,6 +719,41 @@ static struct Trigger sUmbralCausewayTriggers[] = {
     {TRIGGER_TALK, ACTOR_RIFT_FEATURE, CONDITION_ALWAYS, EVENT(UmbralRift_Rest)},
     {TRIGGERS_END},
 };
+
+/// The first look at the pentagram in the Ritual Room.
+static void UmbralRift_SeeRitual(void) {
+  Event_Start();
+  UmbralRift_Say(MsgDarkRiftRitual001, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftRitual002, ACTOR_MIA);
+  UmbralRift_Say(MsgDarkRiftRitual003, ACTOR_PARTY_LEADER);
+  GameFlag_Set(FLAG_DARK_RIFT_RITUAL_SEEN);
+  Event_End();
+}
+
+static struct SceneEntrance sUmbralRitualEntrances[] = {
+    // Through the maze's east door, under the arch.
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 136, 0, 72, FACING_SOUTH, 0, -1, -1,
+     -1, -1, 0},
+    {SCENE_TABLE_END},
+};
+
+static struct ActorTemplate sUmbralRitualActorTemplates[] = {
+    {SCENE_TABLE_END},
+};
+
+static struct Trigger sUmbralRitualTriggers[] = {
+    {TRIGGER_EXIT, UMBRAL_RITUAL_TO_MAZE, CONDITION_ALWAYS,
+     UMBRAL_RITUAL_TO_MAZE},
+    {TRIGGER_STEP, UMBRAL_RITUAL_STEP, FLAG_DARK_RIFT_RITUAL_SEEN,
+     EVENT(UmbralRift_SeeRitual)},
+    // The chest in the left alcove (the map's treasure spot, subject 100).
+    {EXAMINE_TRIGGER(EXAMINE_CHEST), 100, FLAG_CHEST_UMBRAL_RITUAL,
+     FIND_ITEM(ITEM_MYSTERY_BLADE)},
+    {TRIGGERS_END},
+};
+
+#define UMBRAL_IN_RITUAL() \
+  ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralRitual)
 
 /// The first steps into the Crossbone room.
 static void UmbralRift_SeeCrossbone(void) {
@@ -799,7 +856,8 @@ static struct Trigger sUmbralBeaconTriggers[] = {
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralFountain)
 
 const struct SceneEntrance *Scene_GetEntrances(void) {
-  return UMBRAL_IN_CROSSBONE()   ? sUmbralCrossboneEntrances
+  return UMBRAL_IN_RITUAL()      ? sUmbralRitualEntrances
+         : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneEntrances
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconEntrances
          : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayEntrances
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryEntrances
@@ -810,7 +868,8 @@ const struct SceneEntrance *Scene_GetEntrances(void) {
 const struct SceneExitRegion *Scene_GetExitRegions(void) { return NULL; }
 const u32 *Scene_GetExits(void) { return sUmbralThroneExits; }
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
-  return UMBRAL_IN_CROSSBONE()   ? sUmbralCrossboneActorTemplates
+  return UMBRAL_IN_RITUAL()      ? sUmbralRitualActorTemplates
+         : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneActorTemplates
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconActorTemplates
          : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayActorTemplates
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryActorTemplates
@@ -819,7 +878,8 @@ const struct ActorTemplate *Scene_GetActorTemplates(void) {
                                 : sUmbralThroneActorTemplates;
 }
 const struct Trigger *Scene_GetTriggers(void) {
-  return UMBRAL_IN_CROSSBONE()   ? sUmbralCrossboneTriggers
+  return UMBRAL_IN_RITUAL()      ? sUmbralRitualTriggers
+         : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneTriggers
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconTriggers
          : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayTriggers
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryTriggers
