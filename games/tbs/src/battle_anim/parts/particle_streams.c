@@ -447,6 +447,10 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
       position.height = 0xff0000;
       if (mode == PARTICLE_STREAMS_OUTER_SPACE) {
         size = angle + 0xa000;
+        // Heart stays near the party's size, not the dragon's: 0.7 growing
+        // to about 0.85.
+        if (heartDive)
+          size = 0xb333 + frame * 0x34;
         scale.x = size;
         scale.y = size;
         position.x = (x << 16) + 0x500000;
@@ -466,11 +470,11 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
       }
       // A new mote rises from a random point on the lower half of a circle
       // of radius 30 * size beneath the formation.
-      // Heart's trail has a mote every fourth frame, so she is not lost in it.
+      // Heart's trail has a mote every eighth frame, so she is not lost in it.
       for (i = 0, y = 32 - y; i != 32; i++) {
         struct Particle *mote = &work->particles[i];
 
-        if (heartDive && (frame & 3) != 0)
+        if (heartDive && (frame & 7) != 0)
           break;
         if (mote->variant == -1) {
           s32 angle = (Random16() & 0x7fff) + 0x4000;
@@ -721,7 +725,7 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
       // on across, and down four pixels a frame (96 - y from 160).
       x = 16 + (PARTICLE_STREAMS_RISE_FRAMES - 1) / 2 - 16 + frame;
       y = -64 - frame * 4;
-      size = ((PARTICLE_STREAMS_RISE_FRAMES - 1) << 8) + 0xa000 + (frame << 10);
+      size = 0xb333 + (PARTICLE_STREAMS_RISE_FRAMES - 1) * 0x34 + frame * 0x40;
     }
     if (mode == PARTICLE_STREAMS_OUTER_SPACE) {
       scale.x = size;
