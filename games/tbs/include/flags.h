@@ -2842,5 +2842,11 @@
 #define FLAG_DARK_RIFT_CAUSEWAY_SEEN 0x8f3
 /// The activated fountain gate has been examined after the Memory Room orb.
 #define FLAG_DARK_RIFT_GATE_SEEN 0x8f4
+/// Golden Sun: Ashfall: the party has first seen the beacon chamber (a piece of
+/// Venus Lighthouse) between the Umbral Rift's Causeway and Throne Hall.
+#define FLAG_DARK_RIFT_BEACON_SEEN 0x8f5
+/// Golden Sun: Ashfall: the party has talked it over at the beacon and gone
+/// through it to the Throne Hall once.
+#define FLAG_DARK_RIFT_BEACON_CROSSED 0x8f6
 
 #endif

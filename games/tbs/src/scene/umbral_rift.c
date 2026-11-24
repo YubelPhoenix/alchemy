@@ -103,6 +103,24 @@ enum {
   UMBRAL_CAUSEWAY_TO_THRONE = 2,
 };
 
+/// The Beacon Chamber (map row 0xbf): Venus Lighthouse's beacon chamber in
+/// obsidian, a place the party has never seen, between the Causeway and the
+/// Throne Hall. The Causeway's door comes out at the arch in the lower room; a
+/// bridge over the drop leads up to the beacon, whose violet flame opens on
+/// the Throne Hall.
+enum {
+  UMBRAL_BEACON_FROM_THRONE = 1,
+};
+enum {
+  /// Exit 1: the arch in the lower room, back to the Causeway.
+  UMBRAL_BEACON_TO_CAUSEWAY = 1,
+  /// Exit 2: through the beacon (requested by UmbralRift_EnterBeacon).
+  UMBRAL_BEACON_TO_THRONE = 2,
+};
+/// The chamber floor halfway up (first sight of the beacon) and the cells
+/// before the beacon.
+enum { UMBRAL_BEACON_SIGHT_STEP = 0x20, UMBRAL_BEACON_STEP = 0x21 };
+
 /// The one placed actor in each of the Fountain Hall (the rift light that
 /// opens on the seal), the Memory Room (the dark orb) and the Causeway (the
 /// light that restores the party).
@@ -543,7 +561,7 @@ static struct SceneEntrance sUmbralThroneEntrances[] = {
 
 static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralThrone),
-    SCENE_EXIT(UMBRAL_THRONE_TO_FOUNTAIN, UmbralCauseway, UMBRAL_CAUSEWAY_FROM_THRONE),
+    SCENE_EXIT(UMBRAL_THRONE_TO_FOUNTAIN, UmbralBeacon, UMBRAL_BEACON_FROM_THRONE),
     SCENE_EXITS(UmbralFountain),
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_WORLD_MAP, WorldMap, WORLD_MAP_FROM_UMBRAL_RIFT),
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_LEFT_ARCH, UmbralMaze, ENTRANCE_DEFAULT),
@@ -557,7 +575,10 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXIT(UMBRAL_MEMORY_TO_STAIR, UmbralFountain, UMBRAL_FOUNTAIN_FROM_RIGHT_ARCH),
     SCENE_EXITS(UmbralCauseway),
     SCENE_EXIT(UMBRAL_CAUSEWAY_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_CAUSEWAY),
-    SCENE_EXIT(UMBRAL_CAUSEWAY_TO_THRONE, UmbralThrone, ENTRANCE_DEFAULT),
+    SCENE_EXIT(UMBRAL_CAUSEWAY_TO_THRONE, UmbralBeacon, ENTRANCE_DEFAULT),
+    SCENE_EXITS(UmbralBeacon),
+    SCENE_EXIT(UMBRAL_BEACON_TO_CAUSEWAY, UmbralCauseway, UMBRAL_CAUSEWAY_FROM_THRONE),
+    SCENE_EXIT(UMBRAL_BEACON_TO_THRONE, UmbralThrone, ENTRANCE_DEFAULT),
     SCENE_EXITS_END,
 };
 
@@ -747,6 +768,63 @@ static struct Trigger sUmbralCausewayTriggers[] = {
     {TRIGGERS_END},
 };
 
+/// The first look at the beacon, halfway up the chamber.
+static void UmbralRift_SeeBeacon(void) {
+  Event_Start();
+  Sound_PlaySong(SE_WARP);
+  Event_WaitFrames(20);
+  UmbralRift_Say(MsgDarkRiftBeacon001, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftBeacon002, ACTOR_MIA);
+  UmbralRift_Say(MsgDarkRiftBeacon003, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftBeacon004, ACTOR_IVAN);
+  GameFlag_Set(FLAG_DARK_RIFT_BEACON_SEEN);
+  Event_End();
+}
+
+/// Through the beacon and out in the Throne Hall; the party talks it over the
+/// first time.
+static void UmbralRift_EnterBeacon(void) {
+  Event_Start();
+  if (GameFlag_Get(FLAG_DARK_RIFT_BEACON_CROSSED) == 0) {
+    UmbralRift_Say(MsgDarkRiftCross001, ACTOR_GARET);
+    UmbralRift_Say(MsgDarkRiftCross002, ACTOR_IVAN);
+    UmbralRift_Say(MsgDarkRiftCross003, ACTOR_MIA);
+    UmbralRift_Say(MsgDarkRiftCross004, ACTOR_PARTY_LEADER);
+    GameFlag_Set(FLAG_DARK_RIFT_BEACON_CROSSED);
+  }
+  Sound_PlaySong(SE_WARP);
+  MapGrid_SetShake(PIXELS(2), PIXELS(2), Q16_ONE);
+  Event_WaitFrames(16);
+  Import_EventSetExitRequest(UMBRAL_BEACON_TO_THRONE);
+  Event_End();
+}
+
+static struct SceneEntrance sUmbralBeaconEntrances[] = {
+    // Through the Causeway's door, out of the arch in the lower room.
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 200, 0, 360, FACING_SOUTH, 0, -1, -1,
+     -1, -1, 0},
+    // Back out of the Throne Hall, below the beacon.
+    {UMBRAL_BEACON_FROM_THRONE, CONDITION_ALWAYS, 168, 0, 152, FACING_SOUTH, 0,
+     -1, -1, -1, -1, 0},
+    {SCENE_TABLE_END},
+};
+
+static struct ActorTemplate sUmbralBeaconActorTemplates[] = {
+    {SCENE_TABLE_END},
+};
+
+static struct Trigger sUmbralBeaconTriggers[] = {
+    {TRIGGER_EXIT, UMBRAL_BEACON_TO_CAUSEWAY, CONDITION_ALWAYS,
+     UMBRAL_BEACON_TO_CAUSEWAY},
+    {TRIGGER_STEP, UMBRAL_BEACON_SIGHT_STEP, FLAG_DARK_RIFT_BEACON_SEEN,
+     EVENT(UmbralRift_SeeBeacon)},
+    {TRIGGER_STEP, UMBRAL_BEACON_STEP, CONDITION_ALWAYS,
+     EVENT(UmbralRift_EnterBeacon)},
+    {TRIGGERS_END},
+};
+
+#define UMBRAL_IN_BEACON() ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralBeacon)
+
 #define UMBRAL_IN_CAUSEWAY() \
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralCauseway)
 
@@ -758,7 +836,8 @@ static struct Trigger sUmbralCausewayTriggers[] = {
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralFountain)
 
 const struct SceneEntrance *Scene_GetEntrances(void) {
-  return UMBRAL_IN_CAUSEWAY()   ? sUmbralCausewayEntrances
+  return UMBRAL_IN_BEACON()      ? sUmbralBeaconEntrances
+         : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayEntrances
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryEntrances
          : UMBRAL_IN_MAZE()     ? sUmbralMazeEntrances
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainEntrances
@@ -767,14 +846,16 @@ const struct SceneEntrance *Scene_GetEntrances(void) {
 const struct SceneExitRegion *Scene_GetExitRegions(void) { return NULL; }
 const u32 *Scene_GetExits(void) { return sUmbralThroneExits; }
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
-  return UMBRAL_IN_CAUSEWAY()   ? sUmbralCausewayActorTemplates
+  return UMBRAL_IN_BEACON()      ? sUmbralBeaconActorTemplates
+         : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayActorTemplates
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryActorTemplates
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainActorTemplates
          : UMBRAL_IN_MAZE()     ? sUmbralMazeActorTemplates
                                 : sUmbralThroneActorTemplates;
 }
 const struct Trigger *Scene_GetTriggers(void) {
-  return UMBRAL_IN_CAUSEWAY()   ? sUmbralCausewayTriggers
+  return UMBRAL_IN_BEACON()      ? sUmbralBeaconTriggers
+         : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayTriggers
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryTriggers
          : UMBRAL_IN_MAZE()     ? sUmbralMazeTriggers
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainTriggers

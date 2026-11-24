@@ -180,3 +180,11 @@ N675	MsgDarkRiftSeal015	But not in ours.{end_wait}
 N676	MsgDarkRiftSeal016	We should tell the elders\nwhat we've learned.{end_wait}
 N677	MsgDarkRiftSeal017	I need to find Alex.{end_wait}
 N678	MsgDarkRiftSeal018	We'll look for him.\nLet's get out of here.{end_wait}
+N679	MsgDarkRiftBeacon001	Whoa... Who is that\nstatue supposed to be?{end_wait}
+N680	MsgDarkRiftBeacon002	This is a lighthouse.\nI'd know one\nanywhere.{end_wait}
+N681	MsgDarkRiftBeacon003	But not Mercury's.\nThis Psynergy feels\nlike Venus.{end_wait}
+N682	MsgDarkRiftBeacon004	We've never seen this\nplace. Why is it here?{end_wait}
+N683	MsgDarkRiftCross001	The light on the statue...\nIt's moving.{end_wait}
+N684	MsgDarkRiftCross002	There are two people\non the other side.\nI can sense them.{end_wait}
+N685	MsgDarkRiftCross003	Then that's where\nthey went.{end_wait}
+N686	MsgDarkRiftCross004	Stay together.\nWe go through now.{end_wait}
