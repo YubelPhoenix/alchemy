@@ -15,7 +15,8 @@ Frame layout (games/tbs/src/graphics/sprite/spr_484.tsv steps by two, each
 frame is stored twice):
   0-1   idle            2-3   dash / leap (rise)     4-5  lunge (landing)
   6-7   cast            8-9   damage       10-11 idle, breathing in
-  12-13 dive kick, for Outer Space (kick.png: her dash pose, feet first)
+  12-13 dive kick, for Vendetta Dive (kick.png: her dash pose turned feet
+        first, with her cast pose's head looking down at the kick)
 """
 from pathlib import Path
 
