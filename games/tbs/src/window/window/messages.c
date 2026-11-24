@@ -526,6 +526,20 @@ s32 Portrait_GetForSpeaker(u32 value) {
   s32 result = -1;
   s32 portraitIndex = 0;
 
+  // Mia's other self has a portrait of her own, the last of the icon table's
+  // portraits (icon 65, numbered 128 + 49 here).
+  if (value == MIA && GameFlag_GetFar(FLAG_DARK_MIA_SPEAKING) != 0)
+    return 128 + 49;
+  // Heart's dark mugshot is the next icon (66, numbered 128 + 50 here).
+  if (GameFlag_GetFar(FLAG_DARK_HEART_SPEAKING) != 0)
+    return 128 + 50;
+  // Ash Jenna's mugshot is icon 67, numbered 128 + 51 here.
+  if (GameFlag_GetFar(FLAG_DARK_ASH_JENNA_SPEAKING) != 0)
+    return 128 + 51;
+  // Sarah's mugshot is icon 68, numbered 128 + 52 here.
+  if (GameFlag_GetFar(FLAG_DARK_SARAH_SPEAKING) != 0)
+    return 128 + 52;
+
   // Both maps are {speaker, portrait} pairs ending in -1 (window/scales.c).
   if (value < 20) {
     for (;;) {
@@ -558,6 +572,8 @@ s32 Portrait_GetForSpeaker(u32 value) {
   return result;
 }
 
+static void Portrait_CloseResource(s32 resourceId);
+
 /// Opens a portrait window at tile (x, y) showing the speaker's portrait.
 /// portraitOption is passed on through Portrait_Create to
 /// Icon_LoadWithPalette, which ignores it.
@@ -579,6 +595,25 @@ struct Window *Portrait_OpenWindow(s32 speaker, s32 portraitOption, s32 x,
   if (Portrait_GetForSpeaker(speaker) == -1) {
     return 0;
   }
+  // Heart speaks alone: a portrait left up by an earlier speaker (Garet's)
+  // would otherwise stay beside hers.
+  if (GameFlag_GetFar(FLAG_DARK_HEART_SPEAKING) != 0 ||
+      GameFlag_GetFar(FLAG_DARK_ASH_JENNA_SPEAKING) != 0 ||
+      GameFlag_GetFar(FLAG_DARK_SARAH_SPEAKING) != 0) {
+    s32 own = GameFlag_GetFar(FLAG_DARK_HEART_SPEAKING) != 0
+                  ? 128 + 50
+                  : (GameFlag_GetFar(FLAG_DARK_ASH_JENNA_SPEAKING) != 0
+                         ? 128 + 51
+                         : 128 + 52);
+    s32 slot;
+
+    for (slot = 0; slot < 2; slot++) {
+      s32 shown = ((struct WindowWork *)work)->portraitPictures[slot];
+
+      if (shown != PORTRAIT_SLOT_EMPTY && shown != own)
+        Portrait_CloseResource(shown);
+    }
+  }
   negativeFour = -4;
   offset = negativeFour;
   if (((struct WindowWork *)work)->mindRead != 0) {
@@ -593,22 +628,16 @@ struct Window *Portrait_OpenWindow(s32 speaker, s32 portraitOption, s32 x,
   return window;
 }
 
-/// Closes the portrait window showing speaker entry, if one is open, at once.
-/// portraitPictures selects the portrait slot, then portraitSprites identifies
-/// its window sprite, found as the first sprite of some window.
-void Portrait_CloseWindow(u32 speaker) {
+/// Closes the portrait window showing the portrait resourceId, if one is open.
+static void Portrait_CloseResource(s32 resourceId) {
   struct WindowWork *state;
   struct Window *window;
-  s32 resourceId;
   s32 portraitSlot;
   s32 windowIndex;
   struct WindowSprite *portraitSprite;
 
   state = WINDOW_WORK;
   window = state->windows;
-  resourceId = Portrait_GetForSpeaker(speaker);
-  if (resourceId == -1)
-    return;
 
   if (state->portraitPictures[1] == resourceId) {
     portraitSlot = 1;
@@ -635,4 +664,13 @@ void Portrait_CloseWindow(u32 speaker) {
       return;
     }
   }
+}
+
+/// Closes the portrait window showing speaker entry, if one is open, at once.
+void Portrait_CloseWindow(u32 speaker) {
+  s32 resourceId = Portrait_GetForSpeaker(speaker);
+
+  if (resourceId == -1)
+    return;
+  Portrait_CloseResource(resourceId);
 }

@@ -1,5 +1,6 @@
 	.set overlay_imports, 1
 	.set import.WaitFrames, 1
+	.set import.Weather_StartRain, 1
 	.set import.ArcTan2, 1
 	.set import.Actor_SelectAnimation, 1
 	.set import.MapGrid_PlayMetatileCopySequence, 1
@@ -46,3 +47,10 @@
 	.set import.Djinn_JoinParty, 1
 	.set import.Sound_PlaySong, 1
 	.include "games/tbs/src/system/overlay.inc"
+	.set import.Event_SetAfterBattleDestination, 1
+	.set import.Event_SetDefeatDestination, 1
+	.set import.Field_RequestBattleFromEncounterTable, 1
+	.set import.GameFlag_Clear, 1
+	.set import.PartyInventory_Add, 1
+	.set import.Unit_Get, 1
+	.set import.Unit_Calculate, 1

@@ -103,6 +103,10 @@ s32 BattleStaging_DispatchAction(struct BattleAction *request, s32 delay) {
     BattleHighlight_SetModes(0, HIGHLIGHT_OFF);
   }
 
+  // The optional bosses note what they really did (boss_ai.c): a turn that
+  // failed leaves their tactics as they were.
+  BossAI_NoteTurn(request, result);
+
   // The turn's end, then every unit back to its spot. A party that fled
   // skips this and the action's mark.
   BattleObject_DestroyAll();

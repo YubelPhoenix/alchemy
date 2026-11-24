@@ -72,12 +72,14 @@ Title_GoldenSunLogo:
 	.byte 0xd1, 0x27, 0x47	@ PACKER: left in the buffer by Title_IntroGraphicsC+0x190d
 	.endif
 	.endif
+	.balign 4, 0	@ Ashfall: re-align after art whose size differs from the original
 	.global Field_WorldMapPicture
 Field_WorldMapPicture:
 	.incbin "games/tbs/src/graphics/world_map/picture.gbapal"
 	.incbin "games/tbs/src/graphics/world_map/picture.8bpp.lz"
 	.byte 0x02, 0x31, 0x01	@ PACKER: left in the buffer by Title_IntroGraphicsC+0x3b01
 @ "To be continued" lettering
+	.balign 4, 0	@ Ashfall: re-align after art whose size differs from the original
 	.global Title_IntroTilesB
 Title_IntroTilesB:
 	.ifdef TBS_EDITION_DE

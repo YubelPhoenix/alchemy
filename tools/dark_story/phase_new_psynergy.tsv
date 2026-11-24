@@ -1,0 +1,31 @@
+# Ashfall's new Psynergy, in empty ability slots 130 to 136 (abilities.c),
+# each drawn with an animation the original game never showed. Names are
+# MsgAbilityName + id (819 + id), descriptions MsgAbilityDescription + id
+# (1338 + id).
+00949	message	Djinn's Grace
+00950	message	Ember Burst
+00951	message	Sky Breaker
+00952	message	Rune Strike
+00953	message	Starfall
+00954	message	Vertigo
+00955	message	Death Knell
+01468	message	Heal and renew all allies.
+01469	message	Burn foes, lower Resist.
+01470	message	A blow that pierces armor.
+01471	message	Strike and seal Psynergy.
+01472	message	Stars daze all foes.
+01473	message	Confuse every foe.
+01474	message	Curse a foe with doom.
+# Falling Wind (ability 137): Mia's two-part move, a storm on the enemies and
+# a revive of every fallen ally, after the leaf-and-wind ability she uses in a
+# pre-release screenshot.
+00956	message	Falling Wind
+01475	message	Never forget who you were.
+# "???"'s summon (ability 138, ABILITY_P_STORM_SUMMON), her finisher.
+00957	message	Kaiserdammerung
+# Falling Wind's cast line (battle/battle/turn.c): Mia remembers it, as the move
+# remembers the leaf-and-wind ability of a pre-release screenshot.
+N418	MsgFallingWindRemembered	{argument_actor_name:1} remembers\nthe past... Falling Wind!
+# Its revive, which follows the storm when an ally is down.
+N419	MsgFallingWindSettles	The leaves settle\non the fallen...
+00958	message	Falling Wind

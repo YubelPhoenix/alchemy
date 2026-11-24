@@ -60,6 +60,7 @@
 #include "unit/scene/kolima.h"
 #include "unit/scene/common/kolima_forest_bridge_falling_effect.h"
 #include "unit/overworld/overworld.h"
+#include "unit/window/window.h"
 #include "unit/overworld/event_commands.h"
 #include "unit/field/field.h"
 #include "unit/runtime/runtime.h"
@@ -75,6 +76,7 @@
 #include "types.h"
 #include "event_layer.h"
 #include "event_inline.h"
+#include "world_state.h"
 #include "scene_tables.h"
 #include "kolima.h"
 #include "actor.h"
@@ -170,6 +172,9 @@ enum KolimaActorId {
   /// Granite, a Venus Djinni, placed until it has joined.
   /// ★ Named from the game: "Granite" (MsgDjinnName)
   ACTOR_GRANITE = ACTOR_FIRST_SPARKLE + 4,
+  /// Heart (Chalice), the secret boss, drawn with Mia's sprite for now
+  /// (Kolima_TalkToHeart).
+  ACTOR_HEART = ACTOR_GRANITE + 1,
   /// ★ Named from the game: "I need to help evacuate the other villagers."
   /// (MsgValeKyleAbleStop)
   ACTOR_FIRST_VILLAGER = ACTOR_YOUNG_MAN_VILLAGE_OF_LUMBERJACKS,
@@ -495,6 +500,10 @@ static void Kolima_LowerBridge(void) {
   Event_End();
 }
 
+// Return beside Heart after battle, rather than Kolima's unrelated entrance 0.
+enum { KOLIMA_FROM_HEART_BATTLE = 13 };
+static void Kolima_HeartAftermath(void);
+
 /// Sets up whichever scene is entered: Kolima Bridge as the curse and the
 /// bridge leave it (Kolima_RestoreBridgeState), Kolima Tunnel with a window
 /// transition, and Kolima itself. There the four sparkles twinkle, the
@@ -521,10 +530,22 @@ s32 Kolima_Initialize(void) {
     return 0;
   }
 
+  WorldState_Apply();
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_FIRST_SPARKLE), 0);
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_FIRST_SPARKLE + 1), 0);
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_FIRST_SPARKLE + 2), 0);
   Actor_SetSpriteFlags(Actor_GetById(ACTOR_FIRST_SPARKLE + 3), 0);
+
+  // Heart only appears once the curse is lifted, and stays a black silhouette
+  // until she is beaten. Until then she is hidden and parked off the map, so
+  // she is not in the cursed village or in Tret's tree curse scene.
+  if (GameFlag_Get(FLAG_KOLIMA_CURSE_LIFTED) == 0 ||
+      GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0) {
+    Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_HIDDEN);
+    Actor_SetPosition(ACTOR_HEART, PIXELS(-9), PIXELS(488));
+  } else {
+    Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLACK);
+  }
 
   table = gKolima_EntryActions;
   Actor_SetScript(ACTOR_FIRST_SPARKLE, table);
@@ -559,6 +580,17 @@ s32 Kolima_Initialize(void) {
     Actor_ReleaseById(ACTOR_MIA_PSYNERGY_FIELD);
     Actor_ReleaseById(ACTOR_GARET_PSYNERGY_FIELD);
     Event_CallWithLastActiveActorId(gKolima_EntryScript);
+  }
+
+  // Back from Heart's battle: she speaks her last words and goes.
+  if (GameFlag_Get(FLAG_DARK_HEART_FOUGHT) != 0 &&
+      GameFlag_Get(FLAG_DARK_HEART_BEATEN) == 0) {
+    if (gSaveBlock.sequenceResult == -1) {
+      // The party lost: she is still waiting, and the fight can be tried again.
+      GameFlag_Clear(FLAG_DARK_HEART_FOUGHT);
+    } else {
+      Kolima_HeartAftermath();
+    }
   }
 
   return 0;
@@ -1760,8 +1792,9 @@ u16 gKolima_DoorCells[] = {
     MAPGRID_ANIMATION_STEPS_END,
 };
 
-/// Kolima's entrances. No exit leads to entrances 2, 10 and 12;
+/// Kolima's entrances. No exit leads to entrances 2, 10, 12 or 13;
 /// entrance 10 puts the party where KOLIMA_FROM_WORLD_MAP does.
+/// Entrance 13 is a post-battle return point facing Heart.
 struct SceneEntrance gKolimaEntrances[] = {
     {0, CONDITION_ALWAYS, 232, 0, 120, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     {KOLIMA_FROM_WORLD_MAP, CONDITION_ALWAYS, 44, 0, 267, FACING_EAST, 0, -1,
@@ -1781,6 +1814,8 @@ struct SceneEntrance gKolimaEntrances[] = {
      -1, -1, -1, -1, 0},
     {10, CONDITION_ALWAYS, 44, 0, 267, FACING_EAST, 0, -1, -1, -1, -1, 0},
     {12, CONDITION_ALWAYS, 232, 0, 176, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
+    {KOLIMA_FROM_HEART_BATTLE, CONDITION_ALWAYS, 84, 0, 268, FACING_EAST,
+     0, -1, -1, -1, -1, 0},
     {SCENE_TABLE_END},
 };
 
@@ -1883,6 +1918,9 @@ struct ActorTemplate gKolimaActorTemplates[] = {
         PIXELS(40), 0, PIXELS(328), FACING_SOUTH, TALK_FACING_PARTY, ACTOR_TEMPLATE_SHARE_PREVIOUS_SPRITE },
     { VENUS_DJINNI, 0x31, MOVEMENT_TYPE_STAND,
         PIXELS(328), 0, PIXELS(360), FACING_EAST, TALK_FACING_PARTY, 0 },
+    // Heart, a black silhouette just inside the entrance, until she is beaten.
+    { SPRITE_WOMAN_WITH_PURPLE_HAIR, FLAG_DARK_HEART_BEATEN, MOVEMENT_TYPE_STAND,
+        PIXELS(116), 0, PIXELS(268), FACING_WEST, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1920,8 +1958,66 @@ struct ActorTemplate gKolimaBridgeActorTemplates[] = {
 /// doors: KOLIMA_TO_WORLD_MAP and KOLIMA_TO_WORLD_MAP_EAST in Kolima,
 /// KOLIMA_TUNNEL_TO_LOG_ROOMS_C and KOLIMA_TUNNEL_TO_KOLIMA in Kolima
 /// Tunnel.
+/// Heart's next message, shown with her own mugshot.
+static void Kolima_HeartSays(void) {
+  GameFlag_Set(FLAG_DARK_HEART_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_HEART, 0, 20);
+  Portrait_CloseWindow(0);
+  GameFlag_Clear(FLAG_DARK_HEART_SPEAKING);
+  // Whoever spoke before her must not leave a mugshot up.
+  Portrait_CloseWindow(0);
+  Portrait_CloseWindow(1);
+}
+
+/// Heart recognizes Matthew in Isaac's face. Her defeat by Matthew taught her
+/// not to hold back her Dark Adept abilities; this encounter tests that resolve.
+static void Kolima_TalkToHeart(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkHeartShock);
+  Kolima_HeartSays();
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
+  Kolima_HeartSays();
+  // Heart continues her accusation; only Isaac responds.
+  Kolima_HeartSays();
+  Kolima_HeartSays();
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
+  GameFlag_Set(FLAG_DARK_HEART_FOUGHT);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  Event_SetAfterBattleDestination((s32)&SceneId_Kolima,
+                                  KOLIMA_FROM_HEART_BATTLE);
+  // A defeat goes to the restart point (the last Sanctum).
+  Event_SetDefeatDestination(-1, -1);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 3);
+  Event_End();
+}
+
+/// After Heart's defeat, she rejects Isaac's explanation, vows revenge,
+/// then withdraws; the encounter completion flag prevents a repeat.
+static void Kolima_HeartAftermath(void) {
+  Event_Start();
+  // Run from the scene's start-up: bring the picture in before anyone speaks.
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_SetMessageId(MsgDarkHeartBeaten);
+  Kolima_HeartSays();
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
+  Kolima_HeartSays();
+  Kolima_HeartSays();
+  Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_HEART, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_HEART, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_HEART_BEATEN);
+  Event_End();
+}
+
 struct Trigger gKolimaTriggers[] = {
     { TRIGGER_EXIT, 99, CONDITION_ALWAYS, 1 },
+    { TRIGGER_TALK, ACTOR_HEART, FLAG_DARK_HEART_BEATEN, EVENT(Kolima_TalkToHeart) },
     { TRIGGER_EXIT, 1, CONDITION_ALWAYS, 1 },
     { TRIGGER_EXIT, 2, CONDITION_ALWAYS, 2 },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 5, CONDITION_ALWAYS, EVENT(Kolima_EnterDoor) },

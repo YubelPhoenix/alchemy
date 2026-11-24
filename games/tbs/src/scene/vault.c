@@ -79,6 +79,7 @@
 #include "djinn_ids.h"
 #include "character_ids.h"
 #include "songs.h"
+#include "sarah_fight.h"
 
 enum { VAULT_DRIFT_RATE = PIXELS(1) / 10 };
 
@@ -145,7 +146,13 @@ enum {
   ACTOR_WOMAN_WANTING_THE_ROOF_FIXED = 21,
   /// Sap, a Venus Djinni, hiding until the bell calls it.
   /// ★ Named from the game: "Sap" (MsgDjinnName)
-  ACTOR_SAP = 23
+  ACTOR_SAP = 23,
+  /// The silent, cloaked watcher, placed off the map until her glimpse
+  /// (Vault_WatcherAppears).
+  ACTOR_VAULT_WATCHER = 24,
+  /// Sarah, her first fight (stage 0, level 7), until she is beaten
+  /// (FLAG_DARK_SARAH_VAULT_FOUGHT). The last row of both template tables.
+  ACTOR_VAULT_SARAH = 25
 };
 
 static void Vault_ShowStandingActorMessage(s32 actorId);
@@ -225,6 +232,25 @@ static void Vault_IvanStaysBehind(void) {
   struct FieldWork *work;
 
   work = gFieldWork;
+  // With the thieves jailed, the first time the party leaves Vault the story
+  // follows Mia alone near Imil (Imil_MiaThievesBegin) before it goes on.
+  if (GameFlag_Get(FLAG_VAULT_THIEVES_JAILED) != 0 &&
+      GameFlag_Get(FLAG_DARK_MIA_THIEVES_DONE) == 0 &&
+      GameFlag_Get(FLAG_DARK_MIA_SOLO) == 0) {
+    // Mia becomes the only party member and the leader before the village
+    // is built, so her actor exists there (as the Colosseum's solo matches do).
+    Party_RemoveMember(ISAAC);
+    Party_RemoveMember(GARET);
+    Party_RemoveMember(IVAN);
+    Party_RemoveMember(MIA);
+    Party_RemoveMember(JENNA);
+    Party_AddMember(MIA);
+    gSaveBlock.leaderActorId = MIA;
+    GameFlag_Set(FLAG_DARK_MIA_SOLO);
+    GameFlag_Set(FLAG_DARK_MIA_THIEVES_ACTIVE);
+    Import_EventSetExitRequest(VAULT_TO_IMIL_MIA_THIEVES);
+    return;
+  }
   if (GameFlag_Get(FLAG_VAULT_THIEVES_JAILED) != 0 ||
       GameFlag_Get(FLAG_VAULT_IVAN_JOINED_ROD_SEARCH) == 0) {
     Import_EventSetExitRequest(
@@ -981,7 +1007,23 @@ s32 Scene_Initialize(void) {
       }
     }
   }
+  // Back from Sarah's battle. Isaac stands just south of her, so she steps
+  // a cell east and walks south across the open square, off the screen.
+  if (SARAH_PENDING_AT(0)) {
+    SARAH_AFTERMATH_BY(ACTOR_VAULT_SARAH, 392, 400, MsgDarkSarahVaultBeaten,
+                       FLAG_DARK_SARAH_VAULT_FOUGHT,
+                       SARAH_WALK_SOUTH(ACTOR_VAULT_SARAH, 16, 144));
+  }
   return 0;
+}
+
+/// Sarah in Vault, her first fight (stage 0, level 7): a battle Isaac can
+/// pick or leave. A defeat comes back here and she waits.
+static void Vault_TalkToSarah(void) {
+  Event_Start();
+  SARAH_SAYS(ACTOR_VAULT_SARAH, MsgDarkSarahVaultGreet);
+  SARAH_START_BATTLE(0, SceneId_Vault);
+  Event_End();
 }
 
 #include "common/actor_distance.h"
@@ -1259,6 +1301,21 @@ s32 gVault_GirlRoundTheWellRoute[] = {
     SC_END,
 };
 
+/// Stepping onto the road just inside the south gate: for a moment a cloaked
+/// figure stands in the road a few steps north, at the edge of the screen,
+/// watching the party. She says nothing and is gone. It plays once
+/// (FLAG_DARK_WATCHER_VAULT).
+static void Vault_WatcherAppears(void) {
+  Event_Start();
+  GameFlag_Set(FLAG_DARK_WATCHER_VAULT);
+  Actor_SetPosition(ACTOR_VAULT_WATCHER, PIXELS(392), PIXELS(376));
+  Actor_FaceDirection(ACTOR_VAULT_WATCHER, FACING_SOUTH, 0);
+  Import_ActorSetAnimation(ACTOR_VAULT_WATCHER, ANIM_STAND);
+  Event_WaitFrames(100);
+  Actor_SetPosition(ACTOR_VAULT_WATCHER, 0, 0);
+  Event_End();
+}
+
 struct SceneEntrance gVault_Entrances[] = {
     {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 223, 0, 135, FACING_SOUTH, 0, -1, -1,
      -1, -1, 0},
@@ -1291,6 +1348,7 @@ u32 gVault_Exits[] = {
     SCENE_EXITS(Vault),
     SCENE_EXIT(VAULT_TO_WORLD_MAP_SOUTH, WorldMap, WORLD_MAP_FROM_VAULT_SOUTH),
     SCENE_EXIT(VAULT_TO_WORLD_MAP_NORTH, WorldMap, WORLD_MAP_FROM_VAULT_NORTH),
+    SCENE_EXIT(VAULT_TO_IMIL_MIA_THIEVES, WorldMap, WORLD_MAP_MIA_THIEVES),
     SCENE_EXIT(VAULT_TO_LOG_ROOMS_A_EAST_SOUTHEAST, LogRoomsA,
                LOG_ROOMS_A_FROM_VAULT_EAST_SOUTHEAST),
     SCENE_EXIT(VAULT_TO_LOG_ROOMS_A_SOUTHEAST, LogRoomsA,
@@ -1350,6 +1408,11 @@ struct ActorTemplate gVault_ActorTemplates[] = {
         0, 0, 0, FACING_NORTH, TALK_FACING_PARTY, 0 },
     { VENUS_DJINNI, FLAG_DJINNI(DJINNI_SAP), MOVEMENT_TYPE_STAND,
         PIXELS(344), 0, PIXELS(96), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    { SPRITE_GAROH_HOODED_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    // Sarah, waiting in the village until she is beaten.
+    { SPRITE_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(392), 0, PIXELS(376), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1386,10 +1449,16 @@ struct ActorTemplate gVault_ActorTemplatesAfterThieves[] = {
         0, 0, 0, FACING_NORTH, TALK_FACING_PARTY, 0 },
     { VENUS_DJINNI, FLAG_DJINNI(DJINNI_SAP), MOVEMENT_TYPE_STAND,
         PIXELS(344), 0, PIXELS(96), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    { SPRITE_GAROH_HOODED_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    // Sarah, waiting in the village until she is beaten.
+    { SPRITE_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(392), 0, PIXELS(376), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
 struct Trigger gVault_Triggers[] = {
+    { TRIGGER_TALK, ACTOR_VAULT_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, EVENT(Vault_TalkToSarah) },
     { TRIGGER_STEP, MB_VAULT_SOUTH_GATE, CONDITION_ALWAYS, EVENT(Vault_IvanStaysBehind) },
     { TRIGGER_STEP, MB_VAULT_NORTH_GATE, CONDITION_ALWAYS, EVENT(Vault_IvanStaysBehind) },
     { TRIGGER_STEP, MB_VAULT_BRIDGE_END, CONDITION_ALWAYS, EVENT(Vault_RaisePathToBridge) },
@@ -1434,10 +1503,12 @@ struct Trigger gVault_Triggers[] = {
     { EXAMINE_TRIGGER(EXAMINE_SILENT), MB_VAULT_BELL, CONDITION_ALWAYS, EVENT(Vault_RingBell) },
     { EXAMINE_TRIGGER(EXAMINE_SILENT), MB_VAULT_WELL, CONDITION_ALWAYS, EVENT(Vault_PeerIntoWell) },
     { EXAMINE_TRIGGER(EXAMINE_WOODEN_BOX), MB_VAULT_WOODEN_BOX, FLAG_VAULT_BOX_NUT, FIND_ITEM(ITEM_NUT) },
+    { TRIGGER_STEP, 3, FLAG_DARK_WATCHER_VAULT, EVENT(Vault_WatcherAppears) },
     { TRIGGERS_END },
 };
 
 struct Trigger gVault_TriggersAfterThieves[] = {
+    { TRIGGER_TALK, ACTOR_VAULT_SARAH, FLAG_DARK_SARAH_VAULT_FOUGHT, EVENT(Vault_TalkToSarah) },
     { TRIGGER_STEP, MB_VAULT_SOUTH_GATE, CONDITION_ALWAYS, EVENT(Vault_IvanStaysBehind) },
     { TRIGGER_STEP, MB_VAULT_NORTH_GATE, CONDITION_ALWAYS, EVENT(Vault_IvanStaysBehind) },
     { TRIGGER_STEP, MB_VAULT_BRIDGE_END, CONDITION_ALWAYS, EVENT(Vault_RaisePathToBridge) },
@@ -1479,6 +1550,7 @@ struct Trigger gVault_TriggersAfterThieves[] = {
     { EXAMINE_TRIGGER(EXAMINE_SILENT), MB_VAULT_WELL, CONDITION_ALWAYS, EVENT(Vault_PeerIntoWell) },
     { USE_ITEM_ON_ACTOR(ITEM_BONE), ACTOR_VAULT_DOG, FLAG_VAULT_DOG_SHOWN_PASSAGE, EVENT(Vault_GiveBoneToDog) },
     { EXAMINE_TRIGGER(EXAMINE_WOODEN_BOX), MB_VAULT_WOODEN_BOX, FLAG_VAULT_BOX_NUT, FIND_ITEM(ITEM_NUT) },
+    { TRIGGER_STEP, 3, FLAG_DARK_WATCHER_VAULT, EVENT(Vault_WatcherAppears) },
     { TRIGGERS_END },
 };
 // clang-format on

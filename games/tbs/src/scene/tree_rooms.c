@@ -682,8 +682,9 @@ static void TreeRooms_PlayPostBattleConversation(void) {
   Actor_FaceDirection(ACTOR_GARET, FACING_NORTH, 0);
   Actor_FaceDirection(ACTOR_IVAN, FACING_NORTH, 40);
   TreeRooms_PlayGesture(TRET_GESTURE_BLINK);
-  // "Do you need something?" Answering no: "What are you doing, Isaac! Now's
-  // not the time to fool around!"
+  // Tret's Yes/No prompt is message 05340. Select it explicitly so edits to
+  // surrounding dialogue cannot shift the question to another message.
+  Event_SetMessageId(5340);
   Event_OpenMessage(SPEAKER(ACTOR_SECOND_TRET), 0);
   Actor_FaceDirection(ACTOR_GARET, FACING_NORTHEAST, 0);
   Actor_FaceDirection(ACTOR_IVAN, FACING_NORTHWEST, 0);

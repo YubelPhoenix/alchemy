@@ -21,6 +21,26 @@ void Field_RequestBattleFromEncounterTable(s32 zoneNo, s32 slotNo) {
   work->encounter = Encounter_GetFormationAtSlot(zone, slot);
   if (zone == ENCOUNTER_ZONE_SCRIPTED && slot == 0)
     gSaveBlock.special = (s32)&ResourceId_VenusLighthouseAerieStormBackdrop;
+  // Bosses fight on backgrounds from the game that suit them.
+  if (zone == ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI) {
+    // Heart: under dusk clouds, on a dark glassy floor.
+    if (slot == 3)
+      gSaveBlock.special = (u16)(s32)&ResourceId_HeartBackdrop;
+    // The "???" commander above her: a violet void over a steel deck, its
+    // beacons pulsing and its stars twinkling.
+    if (slot == 6 || slot == 7)  // 7: "???" and Heart in the Umbral Rift
+      gSaveBlock.special = (u16)(s32)&ResourceId_MysteryBackdrop;
+    // Sarah, in all four of her fights: on the grasslands.
+    if (slot == 1)
+      gSaveBlock.special = (u16)(s32)&ResourceId_GrasslandBackdrop;
+    // Kegare: in the Sol Sanctum.
+    if (slot == 2)
+      gSaveBlock.special = (u16)(s32)&ResourceId_SolSanctumBackdrop;
+    // Ash Jenna's Vale super boss fight: under the Vale storm. Her Suhalla
+    // Gate fight (slot 5) keeps the gate's.
+    if (slot == 4)
+      gSaveBlock.special = (u16)(s32)&ResourceId_ValeStormBackdrop;
+  }
   if (work->mode == ACTOR_SYSTEM_WORLD_MAP) {
     struct Actor *leader = Actor_Lookup(gSaveBlock.leaderActorId);
 

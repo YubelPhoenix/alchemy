@@ -137,7 +137,7 @@ struct EnemyDefinition {
   u8 reservedAfterRewards[4];  ///< 0 in every entry
   u16 items[4];                ///< items the enemy carries, 0 for none
   u8 counts[4];                ///< how many of each item it carries
-  u8 elementPreset;            ///< row of gEnemy_ElementPresetTable, 0 to 43
+  u8 elementPreset;            ///< row of gEnemy_ElementPresetTable, 0 to 44
   /// Whom a single-target attack favours: an enum EnemyTargetStrategy.
   s8 targetStrategy;
   /// How the action is chosen from `actions` (BattleAI_ChooseAction):

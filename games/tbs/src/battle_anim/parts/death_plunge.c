@@ -185,10 +185,11 @@ void BattleAnim_RunDeathPlunge(struct BattleAnimArgs *args) {
 /// frames from 24 to 84 the target flashes white in its damage pose for 2
 /// frames and the screen shakes; every 8 frames the hit sound plays.
 ///
-/// Nothing reaches it: no handler table entry or call names it. Places 64
+/// The original game never reached it; Ashfall gives it kind
+/// BATTLE_ANIM_BLADE_RAIN, for the Sealed Sol Blade's Dawnbreak. Places 64
 /// swords in work->particles but draws only the first 16, and moves BG2X to
 /// centre the canvas on the target.
-UNUSED void BattleAnim_RunBladeRain(struct BattleAnimArgs *args) {
+void BattleAnim_RunBladeRain(struct BattleAnimArgs *args) {
   struct ScreenPoint screenPosition;
   BlitterPair draw;
   void **slots;

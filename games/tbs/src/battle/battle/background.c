@@ -157,9 +157,121 @@ void BattleBackground_Init(void) {
   state->mode = BATTLE_BACKGROUND_NONE;
 }
 
+/// Heart's backdrop (tools/dark_story/build_heart_floor.py): palette entries
+/// 120 to 123 are the floor's glowing tile seams; the sky and floor are 0 to 119.
+#define HEART_SEAM_FIRST 120
+#define HEART_SKY_ENTRIES 120
+/// Lightning: every HEART_LIGHTNING_PERIOD frames (12 seconds) the sky
+/// flickers, at a scrambled moment inside the period; every fourth is a bigger
+/// flash. It reads gVBlankCount, so it needs no state of its own (IWRAM is full).
+#define HEART_LIGHTNING_PERIOD 720
+/// Set to 1 to bring the sky lightning back; it is off because it pulled the
+/// eye away from the battle.
+#define HEART_LIGHTNING 0
+/// The seams do not flash or pulse. They glow at a steady brightness and their
+/// colour drifts very slowly between violet and ember red, one full round trip
+/// every HEART_SEAM_PERIOD frames (20 seconds), all four together. Only the hue
+/// moves, never the brightness, so the idle floor stays easy on the eyes.
+#define HEART_SEAM_PERIOD 1200
+
+/// A seam colour: wave 0 is violet, wave 31 is ember red, brightness fixed.
+static u16 Heart_SeamColor(s32 wave, s32 scale) {
+  s32 red = (22 * (31 - wave) + 31 * wave) / 31;
+  s32 green = (9 * (31 - wave) + 6 * wave) / 31;
+  s32 blue = (31 * (31 - wave) + 13 * wave) / 31;
+
+  // a steady 85 percent of full brightness
+  red = (red * 27 / 32) * scale >> 16;
+  green = (green * 27 / 32) * scale >> 16;
+  blue = (blue * 27 / 32) * scale >> 16;
+  return (blue << 10) | (green << 5) | red;
+}
+
+/// Heart's backdrop only: slowly drifts the glowing tile seams' colour (and,
+/// if HEART_LIGHTNING is on, flickers the sky and floor like distant lightning).
+/// Runs every VBlank while her battle lasts. It writes only while the
+/// background is zoomed and undimmed, so the battle animations that take the
+/// palette over are left alone. Added by BattleBackground_Load, removed by
+/// BattleBackground_Free.
+void Heart_StepBackdropGlow(void) {
+  struct BattleWork *battle = gBattleWork;
+  struct BattleBackgroundWork *view =
+      HEAP_SLOT_BLOCK(HEAP_SLOT_BATTLE_BACKGROUND);
+  s32 scale;
+  s32 k;
+
+  if (battle == NULL || view == NULL || view->mode != BATTLE_BACKGROUND_ZOOMED)
+    return;
+  scale = battle->brightness;
+  if (scale > Q16_ONE)
+    scale = Q16_ONE;
+  {
+    s32 t = (s32)(gVBlankCount % HEART_SEAM_PERIOD);
+    s32 half = HEART_SEAM_PERIOD / 2;
+    s32 wave = (t < half ? t : HEART_SEAM_PERIOD - 1 - t) * 31 / (half - 1);
+
+    for (k = 0; k < 4; k++)
+      BATTLE_BG_PALETTE[HEART_SEAM_FIRST + k] = Heart_SeamColor(wave, scale);
+  }
+#if !HEART_LIGHTNING
+  return;
+#endif
+  if (scale != Q16_ONE)
+    return;
+  {
+    // two flickering flashes: up fast, down slow, a pause, then a smaller one
+    static const u8 strike[] = {6, 14, 18, 12, 8, 4, 0, 0, 0, 8, 12, 6, 2};
+    u32 epoch = gVBlankCount / HEART_LIGHTNING_PERIOD;
+    s32 index = (s32)(gVBlankCount % HEART_LIGHTNING_PERIOD) -
+                (s32)(10 + (epoch * 2654435761u >> 20) % (HEART_LIGHTNING_PERIOD - 40));
+    u16 *source = battle->palette;
+    u16 *destination = BATTLE_BG_PALETTE;
+    s32 gain;
+    s32 skyShare = (epoch & 3) == 3 ? 3 : 8;
+    s32 i;
+
+    if (index < 0 || index > (s32)sizeof strike)
+      return;
+    if (index == (s32)sizeof strike) {
+      // put the sky and floor back exactly
+      for (i = 0; i < HEART_SKY_ENTRIES; i++)
+        destination[i] = source[i];
+      return;
+    }
+    gain = strike[index];
+    // the sky and floor brighten by a share of the strike: a third for the
+    // bigger flash, an eighth for a distant flicker. Divided once, not per
+    // entry: Thumb has no divide instruction, and this runs in VBlank.
+    {
+      s32 share = gain / skyShare;
+      s32 blueShare = share + gain / (skyShare * 2);
+
+    for (i = 0; i < HEART_SKY_ENTRIES; i++) {
+      u32 pixel = source[i];
+      s32 red = (pixel & 31) + share;
+      s32 green = ((pixel >> 5) & 31) + share;
+      s32 blue = ((pixel >> 10) & 31) + blueShare;
+
+      if (red > 31)
+        red = 31;
+      if (green > 31)
+        green = 31;
+      if (blue > 31)
+        blue = 31;
+      destination[i] = (blue << 10) | (green << 5) | red;
+    }
+    }
+  }
+}
+
 /// Frees the zoomed background's scanline work; called by
 /// Battle_Run as the battle ends.
-void BattleBackground_Free(void) { FreeHeapSlot(HEAP_SLOT_BATTLE_SCANLINES); }
+void BattleBackground_Free(void) {
+  Task_Remove(Heart_StepBackdropGlow);
+  Task_Remove(Mystery_StepBackdropGlow);
+  Task_Remove(Mystery_StepIdleGhosts);
+  FreeHeapSlot(HEAP_SLOT_BATTLE_SCANLINES);
+}
 
 /// The bit decoder BattleBackground_Load copies to RAM and runs.
 typedef void (*BitDecoder)(const u8 *source, void *destination);
@@ -215,6 +327,20 @@ void BattleBackground_Load(s32 mode, s32 resourceId, s32 level) {
   Iwram_ClearWords((BG_SCREEN_BLOCK(31) + 0x7c0), 64);
   if (view->mode == BATTLE_BACKGROUND_NONE)
     Task_Add(BattleBackground_ShowZoomedPage, TASK_PASS_VBLANK + 127);
+  // Heart's floor glows and the sky flashes, but only while her own backdrop
+  // is loaded: a summon that loads another sky (Thor's dusk clouds, say) stops
+  // it, and the reload of her backdrop afterwards starts it again.
+  Task_Remove(Heart_StepBackdropGlow);
+  if ((u16)resourceId == (u16)(s32)&ResourceId_HeartBackdrop)
+    Task_Add(Heart_StepBackdropGlow, TASK_PASS_VBLANK);
+  // The Mystery Leader's beacons and stars (battle/mystery_backdrop.c).
+  Task_Remove(Mystery_StepBackdropGlow);
+  Task_Remove(Mystery_StepIdleGhosts);
+  if ((u16)resourceId == (u16)(s32)&ResourceId_MysteryBackdrop) {
+    Task_Add(Mystery_StepBackdropGlow, TASK_PASS_VBLANK);
+    // After the sprites are projected (TASK_PASS_FRAME), in the same frame.
+    Task_Add(Mystery_StepIdleGhosts, TASK_PASS_FRAME - 2);
+  }
   view->mode = mode;
   if (mode == BATTLE_BACKGROUND_FIXED)
     REG_BG1CNT = BATTLE_BG1CNT;

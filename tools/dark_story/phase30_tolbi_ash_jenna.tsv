@@ -1,0 +1,14 @@
+# Ash Jenna confronts the party after Colosso; one linear scene.
+N74	MsgDarkTolbiJennaFound	I heard them cheering.\nIsaac, the hero\nof Colosso.{page_break}What a pity they don't\nknow how much you've\nalready lost.{end_wait}
+N75	MsgDarkTolbiIsaacGrey	Why are you here?\nAre you following us?{end_wait}
+N76	MsgDarkTolbiJennaAsh	I wanted to see\nwhether your friends\nwere still beside you.{end_wait}
+N77	MsgDarkTolbiGaretFire	We're here because\nwe chose to be.\nWhat's it to you?{end_wait}
+N78	MsgDarkTolbiJennaPlease	Nothing stops a friend\nfrom deciding to leave.{page_break}And when one runs,\nthe others start to\nwonder who's next.{end_wait}
+N79	MsgDarkTolbiMiaSneer	We trust each other.\nYou can't turn that\nagainst us.{end_wait}
+N80	MsgDarkTolbiJennaMia	Trust won't stop\na blade, Mia.{page_break}Would you still stay\nif Isaac led you\ninto another defeat?{end_wait}
+N81	MsgDarkTolbiMiaPlace	I know the risks.\nI'm still here.{end_wait}
+N82	MsgDarkTolbiJennaGoing	For now.{page_break}If you stand in my way,\nI won't care which one\nof you I have to hurt.{end_wait}
+N83	MsgDarkTolbiIsaacWait	Then stay away from them.\nWe've heard enough.{end_wait}
+
+N240	MsgDarkTolbiJennaProtest	Don't turn your back\non me, Isaac.{page_break}Not when I'm still\ntalking to you.{end_wait}
+N241	MsgDarkTolbiGaretMove	Let's go, Isaac.\nWe still have a long\nway to go.{end_wait}

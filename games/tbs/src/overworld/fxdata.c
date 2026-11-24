@@ -173,9 +173,9 @@ const u16 gColorBuffer_ChannelCurveContrast[32] = {
 /// Speaker definitions: {sprite, voice (0xff for none), idle line flags}.
 /// The voice is the first of four blip sounds less 256: a message plays
 /// sound 256 + voice as it types (Speaker_GetVoice), so the values
-/// step by 4. Speaker_FindDefinition compares the first 130 and returns
+/// step by 4. Speaker_FindDefinition compares the first 131 and returns
 /// the last, never compared, as the default.
-const struct SpeakerDefinition gSpeakerDefinitions[131] = {
+const struct SpeakerDefinition gSpeakerDefinitions[132] = {
     {0, 16, 0x00},
     {1, 16, 0x00},
     {2, 16, 0x00},
@@ -225,7 +225,7 @@ const struct SpeakerDefinition gSpeakerDefinitions[131] = {
     {66, 16, 0x00},
     {67, 28, 0x00},
     {68, 24, 0x00},
-    {69, 28, 0x00},
+    {69, 12, 0x00}, // Ashfall: a young woman's voice (Mia's)
     {93, 16, 0x00},
     {90, 16, 0x00},
     {92, 16, 0x00},
@@ -245,14 +245,14 @@ const struct SpeakerDefinition gSpeakerDefinitions[131] = {
     {117, 24, 0x00},
     {118, 12, 0x00},
     {119, 28, 0x00},
-    {120, 20, 0x00},
+    {120, 12, 0x00}, // Ashfall: a young woman's voice (Mia's)
     {121, 24, 0x00},
     {122, 28, 0x00},
     {123, 28, 0x00},
     {124, 28, 0x00},
     {125, 28, 0x00},
     {128, 20, 0x00},
-    {129, 16, 0x00},
+    {129, 12, 0x00},
     {130, 16, 0x00},
     {131, 12, 0x00},
     {132, 28, 0x00},
@@ -274,7 +274,7 @@ const struct SpeakerDefinition gSpeakerDefinitions[131] = {
     {156, 16, 0x00},
     {157, 28, 0x00},
     {158, 28, 0x00},
-    {159, 16, 0x00},
+    {159, 12, 0x00}, // Ashfall: a young woman's voice (Mia's)
     {160, 28, 0x00},
     {162, 20, 0x00},
     {163, 28, 0x00},
@@ -306,6 +306,7 @@ const struct SpeakerDefinition gSpeakerDefinitions[131] = {
     {231, 255, 0xff},
     {293, 255, 0xff},
     {22, 255, 0xff},
+    {94, 12, 0x00}, // Ashfall: Ash Jenna, with Jenna's voice
     {0, 16, 0x00},
 };
 

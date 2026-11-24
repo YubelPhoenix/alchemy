@@ -34,6 +34,7 @@
 /// after).
 
 #include "save_block.h"
+#include "world_state.h"
 #include "djinn_ids.h"
 #include "window.h"
 #include "unit/scene/vault_revisit.h"
@@ -121,7 +122,9 @@ enum VaultRevisitActorId {
   /// Sap, a Venus Djinni, hiding until the bell calls it. The row before it,
   /// sprite 0xf8 placed at 0, 0, is never referred to.
   /// ★ Named from the game: "Sap" (MsgDjinnName)
-  ACTOR_SAP = ACTOR_FIRST_PLACED + 13
+  ACTOR_SAP = ACTOR_FIRST_PLACED + 13,
+  /// Kegare, wearing Mia's face; an optional fight after Colosso.
+  ACTOR_VAULT_KEGARE = ACTOR_FIRST_PLACED + 14
 };
 
 enum { VAULT_PROXIMITY_REACTION_PAUSED = 2 };
@@ -637,6 +640,25 @@ static inline s32 VaultRevisit_ShouldKeepBellDjinniPosition(void) {
 #endif
 }
 
+/// Back from Kegare's battle with her beaten: she says her last words in the
+/// spot where the party faced her, Mia answers, and she is gone.
+static void VaultRevisit_KegareAftermath(void) {
+  Event_Start();
+  Actor_SetPosition(ACTOR_VAULT_KEGARE, PIXELS(300), PIXELS(336));
+  Actor_FaceDirection(ACTOR_VAULT_KEGARE, FACING_SOUTH, 0);
+  Actor_ConfigureSpriteColor(ACTOR_VAULT_KEGARE, SPRITE_COLOR_GREY);
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  Event_SetMessageId(MsgDarkKegareBeaten);
+  Event_ShowMessageThenWait(ACTOR_VAULT_KEGARE, 0, 20);
+  Event_SetMessageId(MsgDarkKegareMiaAfter);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Actor_SetPosition(ACTOR_VAULT_KEGARE, PIXELS(0), PIXELS(0));
+  Event_End();
+}
+
 /// Sets up Vault as the party finds it after reaching Kalay.
 /// On arrival it restores the passage's metatile behaviors
 /// (common/vault_toggle.h), creates the still actor of sprite 223 on the well
@@ -652,9 +674,12 @@ static inline s32 VaultRevisit_ShouldKeepBellDjinniPosition(void) {
 /// FLAG_ARRIVAL_STAIRS_UP, so the leader's arrival animation does not
 /// play.
 s32 Scene_Initialize(void) {
-
   struct Actor *actor;
   s32 mode;
+
+  // Ash greys the town after the Sol Sanctum erupts; rain follows once
+  // Mercury Lighthouse is lit.
+  WorldState_Apply();
 
   // Keep the bridge deck after a battle, and mend the inn's roof.
   if (GameFlag_Get(FLAG_VAULT_ON_BRIDGE))
@@ -699,7 +724,71 @@ s32 Scene_Initialize(void) {
     GameFlag_Clear(FLAG_SHOW_AREA_NAME);
   if (gSaveBlock.entrance == VAULT_REVISIT_FROM_VAULT_CAVE_PASSAGE)
     GameFlag_Clear(FLAG_ARRIVAL_STAIRS_UP);
+  // Kegare appears only after Colosso, until her optional battle is won.
+  // A BEATEN flag without WON was never earned (the fight did not run), so she
+  // comes back.
+  if (GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) != 0 &&
+      GameFlag_Get(FLAG_DARK_KEGARE_WON) == 0) {
+    GameFlag_Clear(FLAG_DARK_KEGARE_BEATEN);
+  }
+  if (GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) != 0) {
+    if (GameFlag_Get(FLAG_DARK_KEGARE_PENDING) != 0 &&
+        !(gSaveBlock.sequenceResult > 0 && gSaveBlock.sequenceResult != 999)) {
+      // The party lost or fled (sequenceResult is -1, or 999 for a flight):
+      // she is still waiting, and the fight can be tried again.
+      GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
+      GameFlag_Clear(FLAG_DARK_KEGARE_PENDING);
+    } else if (GameFlag_Get(FLAG_DARK_KEGARE_PENDING) != 0) {
+      // Back from a battle with enemies defeated: she is beaten.
+      GameFlag_Set(FLAG_DARK_KEGARE_BEATEN);
+      GameFlag_Set(FLAG_DARK_KEGARE_WON);
+      GameFlag_Clear(FLAG_DARK_KEGARE_PENDING);
+      VaultRevisit_KegareAftermath();
+    } else if (GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) == 0) {
+      // The battle never ran: she is still waiting.
+      GameFlag_Clear(FLAG_DARK_KEGARE_FOUGHT);
+    }
+  }
+  if (GameFlag_Get(FLAG_COLOSSO_OVER) != 0 &&
+      GameFlag_Get(FLAG_DARK_KEGARE_BEATEN) == 0 &&
+      GameFlag_Get(FLAG_DARK_KEGARE_FOUGHT) == 0) {
+    Actor_SetPosition(ACTOR_VAULT_KEGARE, PIXELS(300), PIXELS(336));
+    Actor_FaceDirection(ACTOR_VAULT_KEGARE, FACING_SOUTH, 0);
+    Actor_ConfigureSpriteColor(ACTOR_VAULT_KEGARE, SPRITE_COLOR_GREY);
+  }
   return 0;
+}
+
+/// Kegare, a demon from another age wearing Mia's face, challenges the party.
+/// Her battle is slot 2 of ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI; a win returns
+/// to Vault with FLAG_DARK_KEGARE_FOUGHT set, and she is gone.
+static void VaultRevisit_TalkToKegare(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkKegareRise);
+  Event_ShowMessageThenWait(ACTOR_VAULT_KEGARE, 0, 20);
+  Event_SetMessageId(MsgDarkKegareIsaac);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkKegareName);
+  Event_ShowMessageThenWait(ACTOR_VAULT_KEGARE, 0, 20);
+  Event_SetMessageId(MsgDarkKegareMiaRefutes);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_SetMessageId(MsgDarkKegareThreatens);
+  Event_ShowMessageThenWait(ACTOR_VAULT_KEGARE, 0, 20);
+  Event_SetMessageId(MsgDarkKegareMiaResolves);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_SetMessageId(MsgDarkKegareIsaacReady);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_KEGARE_FOUGHT);
+  GameFlag_Set(FLAG_DARK_KEGARE_PENDING);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  Event_SetAfterBattleDestination((s32)&SceneId_VaultRevisit,
+                                  VAULT_REVISIT_FROM_KEGARE);
+  // A defeat goes to the restart point (the last Sanctum).
+  Event_SetDefeatDestination(-1, -1);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 2);
+  Event_End();
 }
 
 // The three scripts of gFieldEffect_DurationScripts, as in vault.c.
@@ -780,6 +869,8 @@ struct SceneEntrance gVaultRevisit_Entrances[] = {
     {VAULT_REVISIT_FROM_VAULT, CONDITION_ALWAYS, 400, 0, 472, FACING_NORTH, 0,
      -1, -1, -1, -1, 0},
     {VAULT_REVISIT_NORTH_UNUSED, CONDITION_ALWAYS, 224, 0, 138, FACING_SOUTH, 0,
+     -1, -1, -1, -1, 0},
+    {VAULT_REVISIT_FROM_KEGARE, CONDITION_ALWAYS, 300, 0, 368, FACING_NORTH, 0,
      -1, -1, -1, -1, 0},
     {VAULT_REVISIT_FROM_LOG_ROOMS_B_SOUTHEAST, CONDITION_ALWAYS, 408, 0, 344,
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},
@@ -862,6 +953,11 @@ struct ActorTemplate gVaultRevisit_ActorTemplates[] = {
         0, 0, 0, FACING_NORTH, TALK_FACING_PARTY, 0 },
     { 0x5a, 0x34, MOVEMENT_TYPE_STAND,
         PIXELS(344), 0, PIXELS(96), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    // Kegare impersonates Mia; a woman in blue, drawn grey, parked until
+    // VaultRevisit's Scene_Initialize brings her out. Not ACTOR_MIA's own identity: Mia
+    // is in the party here, and a second actor with her identity never shows.
+    { SPRITE_WOMAN_IN_BLUE_DRESS, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -908,6 +1004,7 @@ struct Trigger gVaultRevisit_Triggers[] = {
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), MB_VAULT_MAYORS_HOUSE_DOOR, CONDITION_ALWAYS, EVENT(VaultRevisit_EnterMayorsHouse) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), MB_VAULT_SANCTUM_DOORWAY, CONDITION_ALWAYS, EVENT(Vault_OpenDoorwayAndEnter) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), MB_VAULT_DOOR_TO_JAIL, CONDITION_ALWAYS, EVENT(VaultRevisit_EnterJail) },
+    { TRIGGER_TALK, ACTOR_VAULT_KEGARE, CONDITION_ALWAYS, EVENT(VaultRevisit_TalkToKegare) },
     { TRIGGER_TALK, ACTOR_WELCOMING_YOUNG_MAN, CONDITION_ALWAYS, EVENT(VaultRevisit_RecognizeThiefCatchers) },
     { TRIGGER_TALK, ACTOR_WOMAN_ON_THE_FIXED_BRIDGE, CONDITION_ALWAYS, MSGNO(MsgVaultYouveProbablyAlreadyHeardButThe) },
     { TRIGGER_TALK, ACTOR_VILLAGER_WONDERING_ABOUT_HAMMET, CONDITION_ALWAYS, MSGNO(MsgVaultIWonderWhatHappenedToHammet) },

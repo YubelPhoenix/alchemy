@@ -14,6 +14,8 @@ enum ItemId {
   ITEM_ARCTIC_BLADE = 0x08,
   ITEM_GAIA_BLADE = 0x09,
   ITEM_MURAMASA = 0x0b,
+  /// Mia's own sword, which only she can equip; an unused row in the original.
+  ITEM_TIDEGLASS_BLADE = 0x0c,
   ITEM_MACHETE = 0x0f,
   ITEM_SHORT_SWORD = 0x10,
   ITEM_HUNTERS_SWORD = 0x11,

@@ -1,0 +1,6 @@
+anim	frame 0 6, hold
+anim	frame 0 6, frame 1 6, frame 2 6, frame 3 6, frame 4 6, frame 5 6, frame 6 6, frame 7 6, loop
+anim	frame 8 2, frame 9 2, frame 10 2, frame 11 2, frame 12 2, blank 2, frame 13 2, frame 14 1, frame 15 6, hold
+anim	frame 16 46, hold
+anim	frame 0 8, hold
+anim	frame 17 4, hold

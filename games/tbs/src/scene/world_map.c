@@ -110,6 +110,7 @@
 #include "event_inline.h"
 #include "iwram_call.h"
 #include "scene_ids.h"
+#include "resource_ids.h"
 #include "call.h"
 #include "text/msg_ids.h"
 #include "edition.h"
@@ -183,6 +184,12 @@ static void WorldMap_SailTolbiShipToIsland(void);
 static s32 WorldMap_GetRowingBalance(void);
 static s32 WorldMap_GetSeatRowValue(u32 seat);
 static void WorldMap_ShowIslandDrifting(void);
+static void WorldMap_MiaThievesBegin(void);
+static void WorldMap_MiaThievesSecondFight(void);
+static void WorldMap_MiaThievesInterrogation(void);
+static void WorldMap_MiaFacesMenardi(void);
+static void WorldMap_MiaBeatsMenardi(void);
+static void WorldMap_MiaRejoinsParty(void);
 static void WorldMap_UpdateStormTimer(void);
 static void
 WorldMap_PlayLighthouseTransition(enum WorldMapLighthouse lighthouse);
@@ -304,8 +311,15 @@ enum WorldMapActorId {
   ACTOR_STORM,
   /// Placed by the coast once he has handed over the Black Orb.
   /// ★ Named from the game: "Iodem, Iodem!" (MsgTolbiIodemIodem)
-  ACTOR_IODEM
+  ACTOR_IODEM,
+  /// Golden Sun: Ashfall: the black monolith near Vale, the way into the
+  /// Umbral Rift. It stands only after Colosso (FLAG_COLOSSO_OVER).
+  ACTOR_RIFT_MONOLITH
 };
+
+/// Where the Umbral Rift's monolith stands: open meadow east of Vale.
+#define RIFT_MONOLITH_X 5624
+#define RIFT_MONOLITH_Z 1270
 
 /// The metatile behavior raised by touching an area's actor.
 #define STEP_TRIGGER_AREA(actorId) (STEP_TRIGGER_AREA_BASE + (actorId))
@@ -680,6 +694,16 @@ const struct ActorTemplate *WorldMap_GetActorTemplates(void) {
     return gWorldMapActorTemplatesCrossing;
   case WORLD_MAP_JENNA_AND_KRADEN_ADRIFT:
     return gWorldMapActorTemplatesJennaAndKradenAdrift;
+  case WORLD_MAP_MIA_THIEVES:
+  case WORLD_MAP_MIA_THIEVES_AFTER_FIRST:
+  case WORLD_MAP_MIA_THIEVES_AFTER_SECOND:
+    return gWorldMapActorTemplatesMiaThieves;
+  case WORLD_MAP_MIA_MENARDI:
+  case WORLD_MAP_MIA_MENARDI_WON:
+    return gWorldMapActorTemplatesMiaMenardi;
+  // WORLD_MAP_MIA_REUNITES takes the ordinary actors: the party plays on from
+  // here, and the towns and lighthouses must be on the map (and stay after a
+  // battle reloads this entrance).
   default:
     break;
   }
@@ -899,6 +923,11 @@ s32 WorldMap_Initialize(void) {
     FieldCamera_SetSpeedParameters(PIXELS(8), PIXELS(1));
     GameFlag_Clear(FLAG_SHOW_AREA_NAME);
     Task_AddFrame(WorldMap_UpdateAreaContacts, TASK_PASS_FRAME);
+    // The Umbral Rift's monolith: Venus Lighthouse's picture, drawn in black.
+    if (GameFlag_Get(FLAG_WORLD_MAP_ORDINARY_ACTORS) != 0 &&
+        GameFlag_Get(FLAG_COLOSSO_OVER) != 0) {
+      Actor_ConfigureSpriteColor(ACTOR_RIFT_MONOLITH, SPRITE_COLOR_BLACK);
+    }
     if (GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) == 0) {
       Field_SetWorldMapWindowCellTile(128, 256, 176, 56);
     }
@@ -979,6 +1008,26 @@ s32 WorldMap_Initialize(void) {
       break;
     case WORLD_MAP_JENNA_AND_KRADEN_ADRIFT:
       WorldMap_ShowEndingEvent();
+      break;
+    case WORLD_MAP_MIA_THIEVES:
+      WorldMap_MiaThievesBegin();
+      break;
+    case WORLD_MAP_MIA_THIEVES_AFTER_FIRST:
+      WorldMap_MiaThievesSecondFight();
+      break;
+    case WORLD_MAP_MIA_THIEVES_AFTER_SECOND:
+      WorldMap_MiaThievesInterrogation();
+      break;
+    case WORLD_MAP_MIA_MENARDI:
+      WorldMap_MiaFacesMenardi();
+      break;
+    case WORLD_MAP_MIA_MENARDI_WON:
+      WorldMap_MiaBeatsMenardi();
+      break;
+    case WORLD_MAP_MIA_REUNITES:
+      if (GameFlag_Get(FLAG_DARK_MIA_REUNITED) == 0) {
+        WorldMap_MiaRejoinsParty();
+      }
       break;
     default:
       Actor_GetById(ACTOR_TOLBI_SHIP)->scaleX = 5 * Q16_ONE / 4;
@@ -2216,6 +2265,276 @@ u16 gWorldMapBlend;
   IO_WRITE_QUEUE_PUSH((u32)BG_SCREEN_BLOCK(4), (u32)((buffer) + (offset)),     \
                       (DMA_ENABLE | DMA_32BIT) << 16 | 0x140)
 
+/// The five hired thieves of Mia's first interlude
+/// (gWorldMapActorTemplatesMiaThieves), numbered from ACTOR_FIRST_PLACED and
+/// parked out of sight until the events place them.
+enum WorldMapMiaThievesActorId {
+  ACTOR_MIA_THIEF_WEST = ACTOR_FIRST_PLACED,
+  ACTOR_MIA_THIEF_EAST,
+  ACTOR_MIA_THIEF_MIDDLE,
+  ACTOR_MIA_THIEF_CHIEF,
+  ACTOR_MIA_THIEF_FOURTH
+};
+
+/// Zooms in on the road where Mia is stopped, as the world map's events do,
+/// and fades the scene in. Every part of the interlude opens with it.
+static void WorldMap_MiaThievesOpen(void) {
+  WindowColor_Apply(gSaveBlock.windowColor[0], gSaveBlock.windowColor[1]);
+  Event_Start();
+  Actor_FaceDirection(ACTOR_MIA, FACING_NORTH, 0);
+  FieldEffect_ScheduleRatioTransition(3 * Q16_ONE / 2, 16);
+  gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
+  gFieldWork->transitionFrames = 16;
+  Event_StartScreenTransition();
+  Event_WaitForZoomTransition();
+  WorldMap_Freeze();
+}
+
+/// Mia says the line already set, then waits.
+static void WorldMap_MiaSay(s32 actorId, s32 frames) {
+  FieldEvent_ShowMessageThenWait(actorId, 0, frames);
+}
+
+/// Mia's first interlude, part one, on the road south of Imil. The party is
+/// Mia alone (the Vault's gate swapped it). Three hired thieves close in
+/// on her and the first battle begins; winning brings her back at
+/// WORLD_MAP_MIA_THIEVES_AFTER_FIRST, losing replays this.
+static void WorldMap_MiaThievesBegin(void) {
+  WorldMap_MiaThievesOpen();
+  Event_WaitFrames(60);
+  Event_SetMessageId(MsgDarkMiaThievesQuiet);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
+  Event_SetMessageId(MsgDarkMiaThievesAir);
+  WorldMap_MiaSay(ACTOR_MIA, 40);
+  // The thieves step out of the snow around her.
+  Actor_SetPosition(ACTOR_MIA_THIEF_WEST, PIXELS(5916), PIXELS(284));
+  Actor_FaceDirection(ACTOR_MIA_THIEF_WEST, FACING_SOUTHEAST, 0);
+  Actor_SetPosition(ACTOR_MIA_THIEF_EAST, PIXELS(5940), PIXELS(284));
+  Actor_FaceDirection(ACTOR_MIA_THIEF_EAST, FACING_SOUTHWEST, 0);
+  Actor_SetPosition(ACTOR_MIA_THIEF_MIDDLE, PIXELS(5928), PIXELS(272));
+  Actor_FaceDirection(ACTOR_MIA_THIEF_MIDDLE, FACING_SOUTH, 0);
+  Actor_ShowEmote(ACTOR_MIA, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 0);
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkMiaThievesThiefA);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_MIDDLE, 10);
+  Event_SetMessageId(MsgDarkMiaThievesSoftHello);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
+  Event_SetMessageId(MsgDarkMiaThievesThiefB);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_WEST, 20);
+  Event_SetMessageId(MsgDarkMiaThievesSerious);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Event_SetAfterBattleDestination((s32)&SceneId_WorldMap,
+                                  WORLD_MAP_MIA_THIEVES_AFTER_FIRST);
+  Event_SetDefeatDestination((s32)&SceneId_WorldMap, WORLD_MAP_MIA_THIEVES);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_THIEVES, 0);
+  // The road by Imil is snow, whatever the map under the party says.
+  gSaveBlock.special = (u16)(u32)&ResourceId_SnowfieldBackdrop;
+  Event_End();
+}
+
+/// Part two: the first three thieves are down. Their chief and one more come
+/// in, and Mia fights them; winning brings her back at
+/// WORLD_MAP_MIA_THIEVES_AFTER_SECOND.
+static void WorldMap_MiaThievesSecondFight(void) {
+  Actor_SetPosition(ACTOR_MIA_THIEF_CHIEF, PIXELS(5940), PIXELS(284));
+  Actor_FaceDirection(ACTOR_MIA_THIEF_CHIEF, FACING_SOUTHWEST, 0);
+  Actor_SetPosition(ACTOR_MIA_THIEF_FOURTH, PIXELS(5916), PIXELS(284));
+  Actor_FaceDirection(ACTOR_MIA_THIEF_FOURTH, FACING_SOUTHEAST, 0);
+  WorldMap_MiaThievesOpen();
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkMiaThievesChiefArrives);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesChiefWarning);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesWalkAway);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
+  Event_SetMessageId(MsgDarkMiaThievesChiefRefuses);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 20);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Event_SetAfterBattleDestination((s32)&SceneId_WorldMap,
+                                  WORLD_MAP_MIA_THIEVES_AFTER_SECOND);
+  Event_SetDefeatDestination((s32)&SceneId_WorldMap, WORLD_MAP_MIA_THIEVES);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_THIEVES, 1);
+  // The road by Imil is snow, whatever the map under the party says.
+  gSaveBlock.special = (u16)(u32)&ResourceId_SnowfieldBackdrop;
+  Event_End();
+}
+
+/// Part three: both fights are won. Mia questions the chief and the thief left
+/// with him; they let slip that a girl hired them and describe her. Mia sends
+/// them off, the party is put back together (Isaac and Garet) and the story
+/// goes back to the Vault's road.
+static void WorldMap_MiaThievesInterrogation(void) {
+  Actor_SetPosition(ACTOR_MIA_THIEF_CHIEF, PIXELS(5940), PIXELS(284));
+  Actor_FaceDirection(ACTOR_MIA_THIEF_CHIEF, FACING_SOUTHWEST, 0);
+  Actor_SetPosition(ACTOR_MIA_THIEF_FOURTH, PIXELS(5928), PIXELS(272));
+  Actor_FaceDirection(ACTOR_MIA_THIEF_FOURTH, FACING_SOUTH, 0);
+  WorldMap_MiaThievesOpen();
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkMiaThievesWhoSent);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
+  Event_SetMessageId(MsgDarkMiaThievesChiefLies);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesNotBuying);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
+  Event_SetMessageId(MsgDarkMiaThievesChiefSlips);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesGold);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 10);
+  Event_SetMessageId(MsgDarkMiaThievesWhatLook);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
+  Event_SetMessageId(MsgDarkMiaThievesRedHair);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_FOURTH, 10);
+  Event_SetMessageId(MsgDarkMiaThievesColdEyes);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_FOURTH, 30);
+  Event_SetMessageId(MsgDarkMiaThievesNotFromImil);
+  WorldMap_MiaSay(ACTOR_MIA, 30);
+  Event_SetMessageId(MsgDarkMiaThievesLeave);
+  WorldMap_MiaSay(ACTOR_MIA, 10);
+  Event_SetMessageId(MsgDarkMiaThievesChiefAgrees);
+  WorldMap_MiaSay(ACTOR_MIA_THIEF_CHIEF, 30);
+  Actor_SetPosition(ACTOR_MIA_THIEF_CHIEF, PIXELS(8), PIXELS(8));
+  Actor_SetPosition(ACTOR_MIA_THIEF_FOURTH, PIXELS(8), PIXELS(8));
+  Event_WaitFrames(30);
+  Event_SetMessageId(MsgDarkMiaThievesNotAWord);
+  WorldMap_MiaSay(ACTOR_MIA, 40);
+  // Back to Isaac's party behind a fade: Mia leaves it, Isaac and Garet
+  // return and Isaac leads again.
+  Event_FinishScreenTransition();
+  Event_WaitTransitionFrames();
+  Party_RemoveMember(MIA);
+  Party_AddMember(ISAAC);
+  Party_AddMember(GARET);
+  gSaveBlock.leaderActorId = ISAAC;
+  GameFlag_Clear(FLAG_DARK_MIA_SOLO);
+  GameFlag_Clear(FLAG_DARK_MIA_THIEVES_ACTIVE);
+  GameFlag_Set(FLAG_DARK_MIA_THIEVES_DONE);
+  Import_EventSetExitRequest(WORLD_MAP_TO_VAULT_AFTER_MIA_THIEVES);
+  Event_End();
+}
+
+/// Menardi's group, who rode the lift down from the Lighthouse Aerie
+/// (gWorldMapActorTemplatesMiaMenardi), numbered from ACTOR_FIRST_PLACED and
+/// parked out of sight until the events place them.
+enum WorldMapMiaMenardiActorId {
+  ACTOR_WM_MENARDI = ACTOR_FIRST_PLACED,
+  ACTOR_WM_JENNA,
+  ACTOR_WM_KRADEN,
+  ACTOR_WM_FELIX
+};
+
+/// Puts Menardi, Jenna, Kraden and Felix on the road south of Imil, a little
+/// way north of Mia.
+static void WorldMap_PlaceMenardisGroup(void) {
+  Actor_SetPosition(ACTOR_WM_MENARDI, PIXELS(5928), PIXELS(272));
+  Actor_FaceDirection(ACTOR_WM_MENARDI, FACING_SOUTH, 0);
+  Actor_SetPosition(ACTOR_WM_JENNA, PIXELS(5916), PIXELS(284));
+  Actor_FaceDirection(ACTOR_WM_JENNA, FACING_SOUTH, 0);
+  Actor_SetPosition(ACTOR_WM_KRADEN, PIXELS(5940), PIXELS(284));
+  Actor_FaceDirection(ACTOR_WM_KRADEN, FACING_SOUTH, 0);
+  Actor_SetPosition(ACTOR_WM_FELIX, PIXELS(5928), PIXELS(260));
+  Actor_FaceDirection(ACTOR_WM_FELIX, FACING_SOUTH, 0);
+}
+
+/// Mia's second interlude, part one, on the road south of Imil. Mia has
+/// caught up with Menardi's group, who rode the lift down. She finds Jenna,
+/// Kraden and Felix held captive, confronts Menardi, and demands their return.
+/// Menardi refuses, and the two fight; winning brings Mia back at
+/// WORLD_MAP_MIA_MENARDI_WON, while losing replays this.
+static void WorldMap_MiaFacesMenardi(void) {
+  WorldMap_MiaThievesOpen();
+  WorldMap_PlaceMenardisGroup();
+  Event_WaitFrames(40);
+  Actor_ShowEmote(ACTOR_MIA, EMOTE_IN_FRONT | EMOTE_EXCLAMATION, 60);
+  Event_SetMessageId(MsgDarkAerieMiaJenna);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
+  WorldMap_MiaSay(ACTOR_WM_MENARDI, 20);
+  WorldMap_MiaSay(ACTOR_WM_JENNA, 30);
+  Actor_SetAnimationAndWait(ACTOR_MIA, ANIM_NOD);
+  Event_WaitFrames(20);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
+  WorldMap_MiaSay(ACTOR_WM_MENARDI, 20);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Event_SetAfterBattleDestination((s32)&SceneId_WorldMap,
+                                  WORLD_MAP_MIA_MENARDI_WON);
+  Event_SetDefeatDestination((s32)&SceneId_WorldMap, WORLD_MAP_MIA_MENARDI);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 0);
+  // The snow below the lighthouse, whatever the map under the party says.
+  gSaveBlock.special = (u16)(u32)&ResourceId_SnowfieldBackdrop;
+  Event_End();
+}
+
+/// Part two: Menardi, beaten, takes the Stars and the captives and leaves in a
+/// flash. The party is put back together and the world map loads again at
+/// WORLD_MAP_MIA_REUNITES.
+static void WorldMap_MiaBeatsMenardi(void) {
+  WorldMap_MiaThievesOpen();
+  WorldMap_PlaceMenardisGroup();
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkAerieMenardiRetreat);
+  WorldMap_MiaSay(ACTOR_WM_MENARDI, 20);
+  WorldMap_MiaSay(ACTOR_WM_MENARDI, 30);
+  Sound_PlaySong(SE_WARP);
+  Actor_SetSpriteColorById(ACTOR_WM_MENARDI, SPRITE_COLOR_BLINK);
+  Actor_SetSpriteColorById(ACTOR_WM_JENNA, SPRITE_COLOR_BLINK);
+  Actor_SetSpriteColorById(ACTOR_WM_KRADEN, SPRITE_COLOR_BLINK);
+  Actor_SetSpriteColorById(ACTOR_WM_FELIX, SPRITE_COLOR_BLINK);
+  Event_WaitFrames(50);
+  Actor_SetSpriteColorById(ACTOR_WM_MENARDI, SPRITE_COLOR_HIDDEN);
+  Actor_SetSpriteColorById(ACTOR_WM_JENNA, SPRITE_COLOR_HIDDEN);
+  Actor_SetSpriteColorById(ACTOR_WM_KRADEN, SPRITE_COLOR_HIDDEN);
+  Actor_SetSpriteColorById(ACTOR_WM_FELIX, SPRITE_COLOR_HIDDEN);
+  Event_WaitFrames(40);
+  // The party is put back together; the world map loads again with Isaac
+  // leading, since the leader's actor keeps the sprite it was loaded with.
+  Event_FinishScreenTransition();
+  Event_WaitTransitionFrames();
+  Party_RemoveMember(MIA);
+  Party_AddMember(ISAAC);
+  Party_AddMember(GARET);
+  Party_AddMember(IVAN);
+  Party_AddMember(MIA);
+  gSaveBlock.leaderActorId = ISAAC;
+  Party_RestoreHpPp(1);
+  Import_EventSetExitRequest(WORLD_MAP_TO_MIA_REUNITES);
+  Event_End();
+}
+
+/// Part three, at WORLD_MAP_MIA_REUNITES: Garet, Ivan and Isaac catch up with
+/// Mia. She tells them Menardi took the captives and the Stars, and the party
+/// agrees to follow together. Sets FLAG_MERCURY_LIGHTHOUSE_AERIE_ALEX_APPEARED
+/// and FLAG_SATUROS_BEATEN_AT_MERCURY, as the Aerie's old ending did.
+static void WorldMap_MiaRejoinsParty(void) {
+  WorldMap_MiaThievesOpen();
+  // The leader stays where the entrance put him: that spot is known to be
+  // walkable. The others stand around it, on the road Mia's thieves used.
+  Actor_SetPosition(ACTOR_MIA, PIXELS(5928), PIXELS(272));
+  Actor_SetPosition(ACTOR_GARET, PIXELS(5916), PIXELS(284));
+  Actor_SetPosition(ACTOR_IVAN, PIXELS(5940), PIXELS(284));
+  Actor_FaceDirection(ACTOR_MIA, FACING_SOUTH, 0);
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_GARET, FACING_NORTH, 0);
+  Actor_FaceDirection(ACTOR_IVAN, FACING_NORTH, 0);
+  Event_WaitFrames(40);
+  Event_SetMessageId(MsgDarkAerieGaretHurt);
+  WorldMap_MiaSay(ACTOR_GARET, 20);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
+  WorldMap_MiaSay(ACTOR_IVAN, 20);
+  WorldMap_MiaSay(ACTOR_MIA, 20);
+  GameFlag_Set(FLAG_MERCURY_LIGHTHOUSE_AERIE_ALEX_APPEARED);
+  GameFlag_Set(FLAG_SATUROS_BEATEN_AT_MERCURY);
+  // Hand the world map back: it was frozen and zoomed in for the scene.
+  WorldMap_Unfreeze();
+  FieldEffect_ScheduleRatioTransition(Q16_ONE, 10);
+  Event_WaitFrames(20);
+  // Played once: a battle on the road reloads this entrance.
+  GameFlag_Set(FLAG_DARK_MIA_REUNITED);
+  Event_End();
+}
+
 /// The ending, on the island Jenna and Kraden are adrift on: they talk of the
 /// lit Venus beacon and of Felix and Isaac until Alex comes and leads them to
 /// Felix and Sheba, and the Title returns (TITLE_FROM_WORLD_MAP).
@@ -3323,14 +3642,27 @@ struct SceneEntrance gWorldSceneEntrances[] = {
      0, -1, -1, -1, -1, 0},
     {WORLD_MAP_JENNA_AND_KRADEN_ADRIFT, CONDITION_ALWAYS, 7552, 0, 3504,
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},
+    {WORLD_MAP_MIA_THIEVES, CONDITION_ALWAYS, 5928, 0, 296, FACING_NORTH, 0,
+     -1, -1, -1, -1, 0},
+    {WORLD_MAP_MIA_THIEVES_AFTER_FIRST, CONDITION_ALWAYS, 5928, 0, 296,
+     FACING_NORTH, 0, -1, -1, -1, -1, 0},
+    {WORLD_MAP_MIA_THIEVES_AFTER_SECOND, CONDITION_ALWAYS, 5928, 0, 296,
+     FACING_NORTH, 0, -1, -1, -1, -1, 0},
+    {WORLD_MAP_MIA_MENARDI, CONDITION_ALWAYS, 5928, 0, 296, FACING_NORTH, 0,
+     -1, -1, -1, -1, 0},
+    {WORLD_MAP_MIA_MENARDI_WON, CONDITION_ALWAYS, 5928, 0, 296, FACING_NORTH,
+     0, -1, -1, -1, -1, 0},
+    {WORLD_MAP_MIA_REUNITES, CONDITION_ALWAYS, 5928, 0, 296, FACING_NORTH, 0,
+     -1, -1, -1, -1, 0},
     {WORLD_MAP_AFTER_MERCURY_LIGHTHOUSE_LIT, CONDITION_ALWAYS, 6024, 0, 160,
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     {WORLD_MAP_AFTER_VENUS_LIGHTHOUSE_LIT, CONDITION_ALWAYS, 6088, 0, 3168,
      FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     // Unused.
     {97, CONDITION_ALWAYS, 6248, 0, 872, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
-    // Unused.
-    {98, CONDITION_ALWAYS, 4248, 0, 2424, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
+    // Out of the Umbral Rift, just south of the monolith.
+    {WORLD_MAP_FROM_UMBRAL_RIFT, CONDITION_ALWAYS, RIFT_MONOLITH_X, 0,
+     RIFT_MONOLITH_Z + 24, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     {WORLD_MAP_FROM_DEBUG, CONDITION_ALWAYS, 5576, 0, 2088, FACING_SOUTH, 0, -1,
      -1, -1, -1, 0},
     {SCENE_TABLE_END},
@@ -3339,6 +3671,9 @@ struct SceneEntrance gWorldSceneEntrances[] = {
 u32 gWorldMapExits[] = {
     SCENE_EXITS(WorldMap),
     SCENE_EXIT(WORLD_MAP_TO_VALE_PLAZA, ValePlaza, VALE_PLAZA_FROM_WORLD_MAP),
+    SCENE_EXIT(WORLD_MAP_TO_UMBRAL_RIFT, UmbralFountain, ENTRANCE_DEFAULT),
+    SCENE_EXIT(WORLD_MAP_TO_VAULT_AFTER_MIA_THIEVES, WorldMap, WORLD_MAP_FROM_VAULT_SOUTH),
+    SCENE_EXIT(WORLD_MAP_TO_MIA_REUNITES, WorldMap, WORLD_MAP_MIA_REUNITES),
     SCENE_EXIT(WORLD_MAP_TO_WORLD_MAP_FROM_TITLE, WorldMap,
                WORLD_MAP_FROM_TITLE),
     SCENE_EXIT(WORLD_MAP_TO_VAULT_SOUTH, Vault, VAULT_FROM_WORLD_MAP_SOUTH),
@@ -3589,6 +3924,8 @@ struct ActorTemplate gWorldMapActorTemplates[] = {
         PIXELS(4392), 0, PIXELS(296), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_IODEM, CONDITION_ALWAYS, (s32)gWorldMapIodemScript,
         0, 0, 0, FACING_SOUTH, TALK_FACING_PARTY_AND_BACK, 0 },
+    { SPRITE_WORLD_MAP_VENUS_LIGHTHOUSE, IF_FLAG_SET(FLAG_COLOSSO_OVER), (s32)gWorldMapAlignToMapScript,
+        PIXELS(RIFT_MONOLITH_X), 0, PIXELS(RIFT_MONOLITH_Z), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SCENE_TABLE_END },
     { ACTOR_GARET, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
         0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
@@ -3677,6 +4014,32 @@ struct ActorTemplate gWorldMapActorTemplatesJennaAndKradenAdrift[] = {
     { SCENE_TABLE_END },
 };
 
+struct ActorTemplate gWorldMapActorTemplatesMiaThieves[] = {
+    { SPRITE_MAN_WITH_LONG_DARK_HAIR, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_PERSON_IN_PURPLE, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_STRONGMAN, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_BALD_MAN_IN_RED, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_BURLY_MAN_WITH_GREY_HAIR, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SCENE_TABLE_END },
+};
+
+struct ActorTemplate gWorldMapActorTemplatesMiaMenardi[] = {
+    { SPRITE_MENARDI, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { ACTOR_JENNA, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_KRADEN, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SPRITE_FELIX, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
+        PIXELS(8), 0, PIXELS(8), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    { SCENE_TABLE_END },
+};
+
 struct ActorTemplate gWorldMapActorTemplatesFromClear[] = {
     { SPRITE_WORLD_MAP_ISLAND, CONDITION_ALWAYS, (s32)gWorldMapAlignToMapScript,
         PIXELS(7464), 0, PIXELS(200), FACING_SOUTH, TALK_FACING_KEEP, 0 },
@@ -3716,6 +4079,7 @@ struct Trigger gWorldTriggers[] = {
     { TRIGGER_EXIT, WORLD_MAP_TO_VENUS_LIGHTHOUSE_ENTRY_EAST, CONDITION_ALWAYS, WORLD_MAP_TO_VENUS_LIGHTHOUSE_ENTRY_EAST },
     { TRIGGER_EXIT, WORLD_MAP_TO_BILIBIN_BARRICADE_EAST, CONDITION_ALWAYS, WORLD_MAP_TO_BILIBIN_BARRICADE_EAST },
     { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_TO_VALE_PLAZA), CONDITION_ALWAYS, WORLD_MAP_TO_VALE_PLAZA },
+    { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_RIFT_MONOLITH), IF_FLAG_SET(FLAG_COLOSSO_OVER), WORLD_MAP_TO_UMBRAL_RIFT },
     { TRIGGER_STEP, STEP_TRIGGER_AREA(ACTOR_TO_VAULT), CONDITION_ALWAYS, EVENT(WorldMap_EnterVault) },
     { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_TO_GOMA_CAVE_ENTRANCE), CONDITION_ALWAYS, WORLD_MAP_TO_GOMA_CAVE_ENTRANCE },
     { TRIGGER_EXIT, STEP_TRIGGER_AREA(ACTOR_TO_GOMA_CAVE_BRIDGE), CONDITION_ALWAYS, WORLD_MAP_TO_GOMA_CAVE_BRIDGE },

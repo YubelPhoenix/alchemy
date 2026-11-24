@@ -3,6 +3,7 @@
 // Part of battle.c.
 
 #include "../battle_internal.h"
+#include "sarah_stage.h"
 
 /// An enemy's memory of its action choice, kept in Unit.aiActionIndex (0 in
 /// every row of enemies.c, so it starts cleared). Only
@@ -56,6 +57,7 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
   s32 flags;
   u8 effect;
   u8 targetMode;
+  s32 punish;
 
   /// Picks a place in the action list from a 0-255 roll and eight weights:
   /// the first place whose running total passes the roll, else place 0.
@@ -99,6 +101,22 @@ s32 BattleAI_ChooseAction(struct BattleAction *request, s32 retry) {
   actionStrategy = &enemy->actionStrategy;
   itemActionMask = &enemy->itemActions;
 
+  // Ash Jenna, the super boss of Vale, punishes a summon rush (see
+  // BattleTurnOrder_Sort, which also lets her act first that round): she says
+  // so and answers with Annihilation (one party member falls) instead of her usual move. She does it
+  // once; after that she fights as before.
+  punish = 0;
+  if (retry != 0 && unit->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
+      (unit->aiActionIndex & AI_PUNISHED) == 0 &&
+      ((unit->aiActionIndex & AI_RUSH) != 0 ||
+       BattleDjinn_CountStandby(0, 0) >= PUNISH_RUSH_DJINN)) {
+    unit->aiActionIndex = (unit->aiActionIndex | AI_PUNISHED) & ~AI_RUSH;
+    BattleMessage_ShowAndWaitFar(MsgDarkAshValePunish);
+    BattleMessage_WaitForAdvance();
+    MessageArgument_ClearAllFar();
+    punish = 1;
+  }
+
   // A place in the action list, by the enemy's strategy.
 select_again:
   strategyKind = *actionStrategy;
@@ -137,11 +155,34 @@ select_again:
     break;
   }
 
+  // The optional super bosses think about their pick (boss_ai.c). A boss's
+  // intent applies to the first pick of a turn; its limits to every pick, so
+  // a re-pick after a refused move obeys them too. This only reads the battle:
+  // what the boss did is recorded after its turn was staged. Any other enemy
+  // gets its pick back unchanged. Ash Jenna's punish pick is never touched.
+  if (retry != 0 && punish == 0)
+    selection = BossAI_ChooseSlot(unit, selection, failedChoices == 0);
+
   // A place marked for an item: use the first item held, if any. Once an
   // item is refused, later picks take the place's ability instead.
   useItem = (*itemActionMask >> selection) & 1;
   useItem &= itemsAllowed;
   abilityId = enemy->abilities[selection];
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_SARAH) {
+    // Sarah's moves grow with her fights (gSarahStages).
+    abilityId =
+        gSarahStages[(GameFlag_GetFar(FLAG_DARK_SARAH_STAGE_BIT0) != 0) |
+                     ((GameFlag_GetFar(FLAG_DARK_SARAH_STAGE_BIT1) != 0) << 1)]
+            .abilities[selection & 7];
+    // A Potion only when badly hurt (below 40 percent), half the time;
+    // never otherwise, whatever the place.
+    useItem = itemsAllowed && unit->hp * 100 < unit->hpMax * 40 &&
+              (Battle_RandomFar() & 1);
+  }
+  if (punish != 0) {
+    abilityId = ABILITY_ANNIHILATION;
+    useItem = 0;
+  }
   request->command = COMMAND_ENEMY_ABILITY;
   if (useItem != 0 && retry != 0) {
     if (!(INVENTORY_ITEM_ID_MASK & unit->inventory[0])) {

@@ -1,0 +1,45 @@
+# Suhalla interiors: residents, merchants, Mind Read, wounded soldiers and travelers.
+09673	MsgSuhallaInteriorsWhenISeePeopleInTrouble	I cannot watch someone\nin trouble and do\nnothing.{page_break}My father says that\ninstinct is both a gift\nand a burden.{end_wait}
+09674	MsgSuhallaInteriorsIWantToHelpPeopleSo	I want to help people.\nStanding aside while\nthey suffer feels wrong.{end_wait}
+09675	MsgSuhallaInteriorsTolbiProbablyIgnoresSmallVillagesLike	Tolbi rarely thinks of\nsmall places like Suhalla.{page_break}Perhaps that is for the\nbest. We have enough\ntrouble of our own.{end_wait}
+09679	MsgSuhallaOursOnlyStore	This is Suhalla's only\nstore. One shop is\nenough for our needs.{page_break}At least, it was before\nthe storms filled the\nstreets with strangers.{end_wait}
+09682	MsgSuhallaInteriorsIWonderIfAnyCustomersCan	I wonder if anyone can\nreach us through those\nstorms.{page_break}A traveler would have\nto be desperate to cross\nthe desert now.{end_wait}
+09762	MsgSuhallaInteriorsWeWentIntoTheSuhallaTo	We entered the desert\nto help build Babi's\nlighthouse.{page_break}The storm drove us back.\nWe cannot reach the\nworksite now.{end_wait}
+09764	MsgSuhallaSupposeFolkBlown	You were blown here\nwhile heading for Babi\nLighthouse, weren't you?{end_now}
+09748	MsgSuhallaInteriorsTheseOldSoldiersMustRestUntil	The wounded soldiers\nneed quiet until their\nstrength returns.{end_wait}
+09756	MsgSuhallaArentSurprisedFind	You expected more shops\nin a village this small?{end_now}
+09760	MsgSuhallaBusyEverSince	The storms have kept us\nbusy. More travelers\nneed food and shelter.{page_break}I am glad we can help,\nbut I wish they had not\nbeen driven here.{end_wait}
+09681	MsgSuhallaSighNothinMaybe	Nothing to do today...{page_break}Perhaps business will\nreturn when the festival\nin Tolbi is over.{end_wait}
+09772	MsgSuhallaWonderWhySandstorms	Why have the storms\nbecome so fierce? No one\ncan give me an answer.{end_wait}
+09685	MsgSuhallaGetSickThinkingAboutLalivero	I feel ill thinking of\nLalivero living under\nTolbi's rule.{end_wait}
+09671	MsgSuhallaInteriorsMyFatherLovesPeopleSoMuch	My father cannot turn\naway anyone in need.{page_break}He gives too much of\nhimself, but I love him\nfor it.{end_wait}
+09672	MsgSuhallaInteriorsLetMeKnowIfYouHave	Tell me if you need\nanything. I will help\nwhere I can.{end_wait}
+09676	MsgSuhallaInteriorsIfYouHeadEastAcrossSuhalla	From the eastern ridge,\nyou can see Lalivero\nacross the Nol River.{page_break}The delta blocks the\nway. It is close enough\nto see, too far to reach.{end_wait}
+09677	MsgSuhallaInteriorsSuhallaIsADesertVillageI	Suhalla is only a small\ndesert village. We will\nnever be like Lalivero.{end_wait}
+09678	MsgSuhallaInteriorsGoodThingItsNotEasyTo	The road to Lalivero is\nnot easy to cross.{page_break}If it were, Suhalla might\nbe forgotten altogether.{end_wait}
+09680	MsgSuhallaInteriorsAVillageThisSmallCantSupport	A village this small\ncannot support many\nshops.{end_wait}
+09683	MsgSuhallaInteriorsOnceTheFestivalEndsTheTravelers	When the festival ends,\ntravelers will head south\ntoward Lalivero.{page_break}If the storms keep them\nhere, at least they will\nspend a little coin.{end_wait}
+09684	MsgSuhallaInteriorsForSomeReasonAnyoneWhoGets	Anyone caught in a storm\nseems to end up here.{page_break}They abandon the road\nand take shelter until\nthe winds have passed.{end_wait}
+09686	MsgSuhallaInteriorsTheHolyChildActorWillSave	Lalivero believes {actor_name:7}\nwill save them all.{page_break}They place all hope in\nher. I wonder what she\nthinks of that burden.{end_wait}
+10685	MsgSuhallaInteriorsItsACactusSteakIWonder	A cactus steak. The\nsmell is stronger than\nI expected.{page_break}I wonder if it tastes\nas good as it looks.{end_wait}
+10684	MsgSuhallaInteriorsHesMakingMulukhiyaSoupItTastes	A pot of mulukhiya soup.\nThe cook says it is\ngood for the body.{page_break}It smells rich and\ncomforting.{end_wait}
+09705	MsgSuhallaInteriorsTheWoundedAreSleepingSoDont	The wounded are resting.\nKeep your voices low\nand let them sleep.{end_wait}
+09706	MsgSuhallaInteriorsIAmAmazedTheseSoldiersSurvived	I cannot believe these\nsoldiers survived such\nterrible wounds.{page_break}They must have been\nstrong before the storm\nfound them.{end_wait}
+09746	MsgSuhallaInteriorsWhyWereTheyHeadedTowardEastern	Why were they sent\ntoward eastern Gondowan?{page_break}Something is wrong.\nPlease catch up with them\nbefore it is too late.{end_wait}
+09747	MsgSuhallaInteriorsWhereIsActorWhatHasHappened	Where is {actor_name:7}?\nWhat has happened\nto {actor_name:7}?{end_wait}
+09749	MsgSuhallaInteriorsWhoCouldHaveDoneThisTo	Who could have brought\nsuch powerful soldiers\nto this condition?{end_wait}
+09750	MsgSuhallaInteriorsAColumnOfWaterShotUp	A column of water rose\nwhen the storm caught\nthem.{page_break}Then the sand fell away.\nThere was water enough\nto fill the whole street.{page_break}No barrel could hold\nthat much. What power\nwas it?{end_wait}
+09751	MsgSuhallaInteriorsActorWasNotFarBehindUs	{actor_name:7} was close\nbehind us. She should\nstill be safe.{page_break}{actor_name:7} must be somewhere\nin the desert. Unless\nthe storm took her...{end_wait}
+09752	MsgSuhallaInteriorsDoNotApproachTheLargeCyclones	Stay away from the great\ncyclones in the heart\nof Suhalla.{page_break}We call them death storms.\nNothing that enters\ncomes back.{end_wait}
+09753	MsgSuhallaInteriorsDeathStormsHuhThereWasA	Death storms... There was\na warning about them.\nI used to know it.{page_break}Something about eyes...\nNo, I cannot remember.{end_wait}
+09754	MsgSuhallaInteriorsOnceYouGetSweptUpIn	Once a death storm takes\nyou, no one can follow.{page_break}The missing stay lost.\nFamilies wait for years\nfor those who won't return.{end_wait}
+09755	MsgSuhallaInteriorsYeWhoSeekSomethingAboutEyes	"Seek the truth..."\nLook through the eyes of\nwisdom. What was it?{page_break}"When you claim your prize,\na creature of darkness\nwill guard the way..."{page_break}I know there was more.\nThe rest has slipped\nfrom my memory.{end_wait}
+09759	MsgSuhallaInteriorsWeveHadMoreCustomersLatelyBecause	The storms have brought\nmore customers than\nwe usually see.{end_wait}
+09761	MsgSuhallaInteriorsItWillTakeTimeForThe	The storms may last a\nwhile. Make yourselves\nat home until they pass.{end_wait}
+09767	MsgSuhallaInteriorsTheSandstormsAreSendingCustomersOur	The storms are sending\ntravelers to our door!{page_break}I hope they keep coming.\nIt has been a poor season.{end_wait}
+09768	MsgSuhallaInteriorsPleaseGreatSandstormsSendUsMore	Great storms, send us\nmore customers!{end_wait}
+09763	MsgSuhallaInteriorsTheSandstormsAreSoBadWeve	The storms are too fierce\nto reach Babi Lighthouse.\nWe have turned back.{end_wait}
+09769	MsgSuhallaInteriorsEvenIfWeCantGoIt	Even if we cannot reach\nthe lighthouse, the work\nwill continue without us.{end_wait}
+09770	MsgSuhallaInteriorsSoShallWeGiveUpOn	Should we abandon the\nlighthouse and return\nto Tolbi?{end_wait}
+09771	MsgSuhallaInteriorsWhenThatCycloneThrewUsInto	When the cyclone lifted\nus from the ground, I\nthought we were finished.{page_break}I am grateful to be\nalive. Nothing else\nmatters right now.{end_wait}
+09773	MsgSuhallaInteriorsIShudderToThinkSandstormsWill	I dread leaving town.\nThe storms may take me\nbefore I reach the road.{end_wait}

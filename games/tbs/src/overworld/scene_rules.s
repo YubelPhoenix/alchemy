@@ -164,6 +164,9 @@ gScene_MusicRules:
 	area_music 58, -1, -1, 22
 	area_music 59, -1, -1, 9
 	area_music 60, -1, -1, 9
+	@ Golden Sun: Ashfall: Umbral Rift (area 0x47) uses the vanilla Venus Lighthouse theme
+	@ (MUS_VENUS_LIGHTHOUSE). The custom MUS_UMBRAL_RIFT (12) track is kept in the ROM, unused here.
+	area_music 0x47, -1, -1, 43
 	.2byte -1, -1, -1, 0	@ end
 
 	.global gArea_NameRules
@@ -296,6 +299,8 @@ gArea_NameRules:
 	area_name 68, -1, 105
 	area_name 69, -1, 106
 	area_name 70, -1, 107
+	@ Golden Sun: Ashfall: "Umbral Rift", in the spare debug entry PLOGV00.
+	area_name 0x47, -1, 111
 	.2byte -1, -1	@ end
 	.4byte -1
 	.2byte 0, 0	@ a row of zeros after the end
@@ -329,6 +334,7 @@ gScene_BattleBackgroundRules:
 	backdrop ValeStormBackdrop, ValeStormyNight, Vale, ValePlaza, ValeKradensCottage
 	backdrop SolSanctumBackdrop, SolSanctumCorridor, SolSanctumReliefs, SolSanctumMaze, SolSanctumLunaSolRooms, AltinPeakHydrosStatue, CrossboneIsleSteppingStones
 	backdrop InteriorBackdrop, LogRoomsA
+	backdrop SnowfieldBackdrop, Imil
 	backdrop GomaCaveBackdrop, GomaCaveEntrance
 	backdrop GomaCaveBackdrop, GomaCavePond, GomaCavePillar, GomaCaveStream, KolimaTunnel
 	backdrop KolimaForestBackdrop, KolimaForestEntrance, KolimaForestGlade, KolimaForestCliff, KolimaForestFloodgate, KolimaForestTree
@@ -353,8 +359,13 @@ gScene_BattleBackgroundRules:
 	backdrop GomaCaveBackdrop, GatewayCave
 	backdrop BabiLighthouseBackdrop, BabiLighthouseEntry, BabiLighthouseLuff, BabiLighthouseStoneDoor, CrossboneIsleBane
 	backdrop TunnelRuinsBackdrop, TunnelRuinsGreatStatue, TunnelRuinsLadyStatues
-	backdrop InteriorBackdrop, Lalivero, TimberRoomsB, TimberRoomsC
+	backdrop InteriorBackdrop, TimberRoomsB, TimberRoomsC
 	backdrop VenusLighthouseBackdrop, VenusLighthouseGroundFloor, VenusLighthouseFirstFloor, VenusLighthouseSecondFloor, VenusLighthouseThirdFloor, VenusLighthouseFourthFloor
 	backdrop VenusLighthouseAerieBackdrop, VenusLighthouseAerie
+	@ Sarah's fights in the open (Vault, Kalay, Tolbi, Lalivero): the world
+	@ map's outdoor backdrops instead of the last one listed (the cave).
+	backdrop GrasslandBackdrop, Vault
+	backdrop DesertBackdrop, Kalay
+	backdrop BeachBackdrop, Tolbi, Lalivero
 	backdrop GomaCaveBackdrop
 	.4byte 0	@ end

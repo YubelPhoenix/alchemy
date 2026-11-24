@@ -1,0 +1,11 @@
+# Mogall's route marker and the Lamakan Desert's heat and ash-thick air.
+06118	MsgMogallForestBrokenSign	The broken sign reads:{page_break}North: Fuchin Temple\nSouth: Mogall Prairie...{end_wait}
+06675	message	Even the rain is hot!\nThe sand's burning\nthrough my boots!{end_wait}
+06676	message	I thought the rain\nwould cool us off.\nIt's almost scalding.{end_wait}
+06677	message	Mercury's beacon\nbrought this rain.\nWhy is it so hot?{end_wait}
+06678	message	I'm soaked through,\nbut I'm still roasting!\nI can't stand this heat!{end_wait}
+06679	message	The heat is making\nit hard to see ahead.\nI can barely focus.{end_wait}
+06680	message	We're getting weaker.\nWe need an oasis\nbefore we collapse.{end_wait}
+06681	message	My legs are giving out.\nI can't keep going\nmuch longer!{end_wait}
+06682	message	How much farther?\nI can't see an oasis\nanywhere.{end_wait}
+06683	message	We need to cool down.\nIf we keep going,\nsomeone could collapse.{end_wait}

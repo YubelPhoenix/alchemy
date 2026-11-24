@@ -34,6 +34,24 @@
 /// and releases heap block 10. A broken link also sets flag
 /// FLAG_AREA_TEMP_E8, which the Battle Arena reads
 /// (BattleArena_RunRoundResult).
+/// The row of Ash Jenna, the optional super boss of Vale, in gEnemy_Definitions
+/// (her unit's id is ENEMY_ID_FIRST more).
+#define ENEMY_ASH_JENNA_VALE 92
+/// The row of Kegare, Tolbi's optional boss (her unit id is ENEMY_ID_FIRST more).
+#define ENEMY_ROW_KEGARE 104
+/// The row of Heart, Kolima's secret boss (her unit id is ENEMY_ID_FIRST more).
+#define ENEMY_ROW_HEART 101
+/// Standby Djinn, plus Djinn the party has chosen to unleash this round, that
+/// count as a summon rush. A chosen summon counts at once.
+#define PUNISH_RUSH_DJINN 3
+/// Unit.aiActionIndex bits, among those BattleAIState leaves unused: she has
+/// already given her answer; BattleTurnOrder_Sort saw a rush this round.
+#define AI_PUNISHED 0x80000000u
+#define AI_RUSH 0x40000000u
+/// An enemy of the battle is unit 0x80 + its place; at most six.
+#define ENEMY_UNIT_FIRST 0x80
+
+
 s32 Battle_Run(s32 enemyGroup) {
   struct BattleCamera *camera;
   s32 *focus;
@@ -265,6 +283,8 @@ s32 Battle_Run(s32 enemyGroup) {
       }
       Heap_GetRemainingIwram();
       Heap_GetRemainingEwram();
+      // Ashfall: the end of her Gotterkanone turn in the "???" battle.
+      PartyJoin_RunAfterAction();
       if (BattleUnit_ListLiving(BATTLE_SIDE_MASK_PARTY, 0) == 0)
         goto party_lost;
       if (BattleUnit_ListLiving(BATTLE_SIDE_MASK_ENEMIES, 0) == 0) {
@@ -287,6 +307,8 @@ s32 Battle_Run(s32 enemyGroup) {
         goto aborted;
     } else {
       WaitFrames(20);
+      // Ashfall: the "???" battle's story between rounds (party_join.c).
+      PartyJoin_RunRoundEnd();
     }
     if (GameFlag_GetFar(FLAG_DJINN_LESSON) == 0)
       continue;

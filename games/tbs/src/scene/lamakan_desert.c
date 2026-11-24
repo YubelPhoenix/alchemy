@@ -74,6 +74,8 @@
 #include "scene_ids.h"
 #include "iwram_call.h"
 #include "event_inline.h"
+#include "ash_warp.h"
+#include "world_state.h"
 #include "field_effect.h"
 #include "save_block.h"
 #include "task.h"
@@ -162,7 +164,12 @@ enum {
   ACTOR_LAST_PIT = ACTOR_FIRST_PIT + 3,
   /// Smog, a Jupiter Djinni.
   /// ★ Named from the game: "Smog" (MsgDjinnName)
-  ACTOR_SMOG = ACTOR_LAST_PIT + 1
+  ACTOR_SMOG = ACTOR_LAST_PIT + 1,
+  /// Ash Jenna, glimpsed in LamakanDesertManticore's pass once Saturos has
+  /// been defeated at Mercury (LamakanDesert_MeetAshJenna). Only that scene
+  /// places her, as its third actor: her own sprite (SPRITE_ASH_JENNA) is not
+  /// a party member's, so she takes a placed slot (Event_SpawnActorTemplates).
+  ACTOR_LAMAKAN_ASH_JENNA = ACTOR_FIRST_PLACED + 2
 };
 
 /// The desert's two Psynergy Stones, area temp flags: each is back once
@@ -253,6 +260,19 @@ const u32 *LamakanDesert_GetExits(void) { return gLamakanDesertExits; }
 /// way back from the Manticore's battle, marks it beaten; in the patched
 /// editions it also sets FLAG_KALAY_REACHED.
 const struct ActorTemplate *LamakanDesert_GetActorTemplates(void) {
+  // Ash Jenna's glimpse is pending in the Manticore pass only; the trigger
+  // table is shared, so the flag is cleared in the other scenes.
+  if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
+      GameFlag_Get(FLAG_SATUROS_BEATEN_AT_MERCURY) != 0 &&
+      GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0 &&
+      (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0 ||
+       GameFlag_Get(FLAG_DARK_MANTICORE_RETURN_SEEN) != 0 ||
+       GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0 ||
+       gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE)) {
+    GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
+  } else {
+    GameFlag_Clear(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
+  }
   if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore) {
     if (gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE) {
       GameFlag_Set(FLAG_LAMAKAN_MANTICORE_BEATEN);
@@ -289,6 +309,134 @@ static void LamakanDesert_LeaveForTheWorldMap(void) {
   Event_PlaySong(SE_MAP_EXIT);
   Import_EventSetExitRequest(LAMAKAN_DESERT_CAVE_TO_WORLD_MAP);
   Event_End();
+}
+
+static void LamakanDesert_SayMia(void) {
+  GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
+}
+
+/// The automatic encounter after the Manticore, whether or not the first
+/// optional sighting was seen. No recruitment choice or miner callback.
+static void LamakanDesert_AshJennaFinale(void) {
+  Event_Start();
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_NORMAL);
+  if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0) {
+    Event_SetMessageId(MsgDarkFinaleJennaMet);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    Event_SetMessageId(MsgDarkFinaleIsaacMet);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  } else {
+    Event_SetMessageId(MsgDarkFinaleJenna1);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    Event_SetMessageId(MsgDarkFinaleIsaac1);
+    Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  }
+  Event_SetMessageId(MsgDarkFinaleJenna2);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleGaret);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleJenna3);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleIvan);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleMia);
+  LamakanDesert_SayMia();
+  Event_SetMessageId(MsgDarkFinaleJennaThreat);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleIsaacDemand);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleJennaCruel);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleIvanLeave);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleJennaDismiss);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleIsaacWarning);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleJennaParting);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleGaretEnough);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_SetMessageId(MsgDarkFinaleMiaKeepMoving);
+  LamakanDesert_SayMia();
+  Event_SetMessageId(MsgDarkFinaleHook);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_EAST, 0);
+  Event_WaitFrames(20);
+  AshWarp_Out(ACTOR_LAMAKAN_ASH_JENNA);
+  Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_FINALE_DONE);
+  GameFlag_Clear(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
+  Event_End();
+}
+
+/// Ash Jenna's first sighting: her lines with the leader, then she flickers
+/// away. Played by LamakanDesert_MeetManticore as the leader stops before the
+/// Manticore, or by talking to her. Leaves FLAG_DARK_ASH_JENNA_LAMAKAN_MET set.
+static void LamakanDesert_AshJennaWatches(void) {
+  Actor_ConfigureSpriteColor(ACTOR_LAMAKAN_ASH_JENNA, SPRITE_COLOR_NORMAL);
+  Event_SetMessageId(MsgDarkLamakanJennaWatch);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_EAST, 0);
+  Event_WaitFrames(20);
+  AshWarp_Out(ACTOR_LAMAKAN_ASH_JENNA);
+  Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, PIXELS(-9), PIXELS(488));
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  GameFlag_Set(FLAG_DARK_ASH_JENNA_LAMAKAN_MET);
+  GameFlag_Clear(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE);
+}
+
+/// Ash Jenna, grey, watches the ash-streaked desert and slips away from Isaac.
+/// After the Manticore aftermath, she delivers the finale instead.
+static void LamakanDesert_MeetAshJenna(void) {
+  if (GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) {
+    LamakanDesert_AshJennaFinale();
+    return;
+  }
+  Event_Start();
+  LamakanDesert_AshJennaWatches();
+  Event_End();
+}
+
+/// Run the first Ash Jenna sighting on approach, without requiring Reveal.
+/// The normal sand-step callback keeps the desert's heat behavior intact.
+static void LamakanDesert_ApproachManticore(void) {
+  struct Actor *leader;
+  s32 dx;
+  s32 dz;
+
+  HeatGauge_CountStep();
+  if (gSaveBlock.sceneId != (s32)&SceneId_LamakanDesertManticore ||
+      GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE) == 0 ||
+      GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0 ||
+      GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0 ||
+      GameFlag_Get(FLAG_DESERT_EVENT_RUNNING) != 0) {
+    return;
+  }
+  leader = Actor_GetById(ACTOR_PARTY_LEADER);
+  dx = leader->x.fixed - PIXELS(168);
+  dz = leader->z.fixed - PIXELS(104);
+  // Approach from the south; don't interrupt exploration across the map.
+  if (dx < -PIXELS(112) || dx > PIXELS(112) ||
+      dz < PIXELS(32) || dz > PIXELS(160)) {
+    return;
+  }
+  GameFlag_Set(FLAG_DESERT_EVENT_RUNNING);
+  Event_Start();
+  Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, leader->x.fixed,
+                    leader->z.fixed - PIXELS(32));
+  Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_SOUTH, 0);
+  Actor_FaceActor(ACTOR_PARTY_LEADER, ACTOR_LAMAKAN_ASH_JENNA, 0);
+  AshWarp_In(ACTOR_LAMAKAN_ASH_JENNA);
+  Event_WaitFrames(20);
+  LamakanDesert_AshJennaWatches();
+  Event_End();
+  GameFlag_Clear(FLAG_DESERT_EVENT_RUNNING);
 }
 
 /// The desert's triggers, the same in every scene.
@@ -356,10 +504,14 @@ static s32 Reveal_HideSecrets(void) {
   }
   Import_ActorSetPosition(ACTOR_MANTICORE, 0, 0);
   Import_ActorSetPosition(ACTOR_FIRST_PIT, 0, 0);
-  Import_ActorSetPosition(ACTOR_FIRST_PIT + 1, 0, 0);
-  Import_ActorSetPosition(ACTOR_FIRST_PIT + 2, 0, 0);
-  Import_ActorSetPosition(ACTOR_LAST_PIT, 0, 0);
-  Import_ActorSetPosition(ACTOR_SMOG, 0, 0);
+  // The Manticore's pass places only those two; its third actor is Ash
+  // Jenna (ACTOR_LAMAKAN_ASH_JENNA, ACTOR_FIRST_PIT + 1), who must stay put.
+  if (gSaveBlock.sceneId != (s32)&SceneId_LamakanDesertManticore) {
+    Import_ActorSetPosition(ACTOR_FIRST_PIT + 1, 0, 0);
+    Import_ActorSetPosition(ACTOR_FIRST_PIT + 2, 0, 0);
+    Import_ActorSetPosition(ACTOR_LAST_PIT, 0, 0);
+    Import_ActorSetPosition(ACTOR_SMOG, 0, 0);
+  }
   // Hide the treasure spots independently of the actor templates.
   markerId = 100;
   do {
@@ -927,6 +1079,20 @@ static void LamakanDesert_MeetManticore(void) {
       record = Actor_Get(ACTOR_PARTY_LEADER);
       record->targetZ = ACTOR_NO_TARGET;
       Import_ActorSetAnimation(ACTOR_PARTY_LEADER, ANIM_STAND);
+      // Ash Jenna steps out of the haze just ahead of the leader, before the
+      // Manticore rises (her first sighting, once Mercury is done).
+      if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE) != 0 &&
+          GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) == 0) {
+        record = Actor_GetById(ACTOR_PARTY_LEADER);
+        Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, record->x.fixed,
+                          record->z.fixed - PIXELS(32));
+        Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_SOUTH, 0);
+        Actor_FaceActor(ACTOR_PARTY_LEADER, ACTOR_LAMAKAN_ASH_JENNA, 0);
+        AshWarp_In(ACTOR_LAMAKAN_ASH_JENNA);
+        Event_WaitFrames(20);
+        LamakanDesert_AshJennaWatches();
+        Event_WaitFrames(30);
+      }
       Actor_FaceActor(ACTOR_PARTY_LEADER, ACTOR_MANTICORE, 0);
       Event_WaitFrames(40);
       Actor_StartRepeatedMotion(ACTOR_PARTY_LEADER, 2);
@@ -961,6 +1127,12 @@ static void LamakanDesert_MeetManticore(void) {
   }
 }
 
+/// Record the Manticore's defeat without replaying scrapped party dialogue.
+/// Ash Jenna's confrontation follows immediately.
+static void LamakanDesert_ManticoreAftermath(void) {
+  GameFlag_Set(FLAG_DARK_MANTICORE_RETURN_SEEN);
+}
+
 /// Entering Lamakan Desert: the heat gauge (600 steps) starts on all but
 /// LamakanDesertCave, the patches Reveal uncovers are saved to the spare cells
 /// at 64, 126 or 64, 124, and the secrets are hidden.
@@ -972,6 +1144,7 @@ s32 LamakanDesert_Initialize(void) {
   gSaveBlock.hazardDamage = HAZARD_DAMAGE_PERCENT | 25;
   if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertCave) {
   } else {
+    WorldState_Apply();
     gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
     HeatGauge_Start();
     Task_AddFrame(HeatGauge_RaiseQuarterTriggers, TASK_PASS_FRAME);
@@ -1005,6 +1178,23 @@ s32 LamakanDesert_Initialize(void) {
       MapGrid_CopyCells(10, 21, 4, 4, 72, spareRow);
     }
     Reveal_HideSecrets();
+  }
+  if (gSaveBlock.sceneId == (s32)&SceneId_LamakanDesertManticore &&
+      (gSaveBlock.entrance == LAMAKAN_DESERT_MANTICORE_AFTER_FIGHT_MANTICORE ||
+       GameFlag_Get(FLAG_LAMAKAN_MANTICORE_BEATEN) != 0) &&
+      GameFlag_Get(FLAG_SATUROS_BEATEN_AT_MERCURY) != 0 &&
+      GameFlag_Get(FLAG_DARK_FINALE_DONE) == 0) {
+    if (GameFlag_Get(FLAG_DARK_MANTICORE_RETURN_SEEN) == 0)
+      LamakanDesert_ManticoreAftermath();
+    // Put Ash Jenna ahead of Isaac, facing him, not behind his return spot.
+    {
+      struct Actor *leader = Actor_GetById(ACTOR_PARTY_LEADER);
+      Actor_SetPosition(ACTOR_LAMAKAN_ASH_JENNA, leader->x.fixed,
+                        leader->z.fixed - PIXELS(48));
+      Actor_FaceDirection(ACTOR_LAMAKAN_ASH_JENNA, FACING_SOUTH, 0);
+      Actor_FaceActor(ACTOR_PARTY_LEADER, ACTOR_LAMAKAN_ASH_JENNA, 0);
+    }
+    LamakanDesert_AshJennaFinale();
   }
   return 0;
 }
@@ -1325,6 +1515,11 @@ struct ActorTemplate gLamakanDesertManticoreActorTemplates[] = {
         PIXELS(168), 0, PIXELS(104), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { 0xc1, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(128), 0, PIXELS(316), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    // The evil counterpart must look like Jenna, not a generic villager.
+    // Parked out of sight; she steps in before the Manticore rises
+    // (LamakanDesert_MeetManticore) and again after its battle.
+    { SPRITE_ASH_JENNA, IF_FLAG_SET(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE), MOVEMENT_TYPE_STAND,
+        PIXELS(-9), 0, PIXELS(488), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -1343,12 +1538,13 @@ struct Trigger gLamakanDesertTriggers[] = {
     { TRIGGER_EXIT, 8, CONDITION_ALWAYS, 4 },
     { TRIGGER_STEP, 9, CONDITION_ALWAYS, EVENT(LamakanDesert_LeaveForTheWorldMap) },
     { TRIGGER_STEP, MB_LAMAKAN_DESERT_OASIS, FLAG_DESERT_EVENT_RUNNING, EVENT(LamakanDesert_BatheInOasis) },
-    { TRIGGER_STEP, MB_LAMAKAN_DESERT_SAND, CONDITION_ALWAYS, EVENT(HeatGauge_CountStep) },
+    { TRIGGER_STEP, MB_LAMAKAN_DESERT_SAND, CONDITION_ALWAYS, EVENT(LamakanDesert_ApproachManticore) },
     { TRIGGER_STEP, MB_LAMAKAN_DESERT_PIT, FLAG_DESERT_EVENT_RUNNING, EVENT(LamakanDesert_FallIntoPit) },
     { TRIGGER_STEP, MB_LAMAKAN_DESERT_SLOPE, CONDITION_ALWAYS, EVENT(LamakanDesert_SlideDownDune) },
     { TRIGGER_STEP, 40, CONDITION_ALWAYS, EVENT(LamakanDesert_MeetManticore) },
     { TRIGGER_TALK, ACTOR_MANTICORE, FLAG_LAMAKAN_MANTICORE_BEATEN, EVENT(LamakanDesert_FightManticore) },
     { TRIGGER_TALK, ACTOR_SMOG, CONDITION_ALWAYS, EVENT(LamakanDesert_TalkToSmog) },
+    { TRIGGER_TALK, ACTOR_LAMAKAN_ASH_JENNA, IF_FLAG_SET(FLAG_DARK_ASH_JENNA_LAMAKAN_HERE), EVENT(LamakanDesert_MeetAshJenna) },
     { EXAMINE_TRIGGER(EXAMINE_CHEST), 100, FLAG_LAMAKAN_DESERT_VULCAN_AXE, FIND_ITEM(ITEM_VULCAN_AXE) },
     { EXAMINE_TRIGGER(EXAMINE_SILENT), 101, FLAG_LAMAKAN_DESERT_FIRST_PSYNERGY_STONE, FIND_PSYNERGY_STONE },
     { EXAMINE_TRIGGER(EXAMINE_CHEST), 102, FLAG_LAMAKAN_DESERT_LUCKY_PEPPER, FIND_ITEM(ITEM_LUCKY_PEPPER) },

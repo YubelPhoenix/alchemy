@@ -89,4 +89,7 @@
 	.set import.Scene_QueueMusic, 1
 	.set import.Scene_PlayQueuedMusic, 1
 	.set import.Sound_PlaySong, 1
+	.set import.Weather_StartRain, 1
+	.set import.PaletteFade_SetSource, 1
+	.set import.PaletteFade_SetTarget, 1
 	.include "games/tbs/src/system/overlay.inc"

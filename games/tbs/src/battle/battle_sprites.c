@@ -1,5 +1,5 @@
 /// @file
-/// The enemies' battle sprites, by enemy id 0 to 171.
+/// The enemies' battle sprites, by enemy id 0 to 172.
 
 #include "battle_summon.h"
 
@@ -40,7 +40,11 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .animation = 0,
     },
     {
-        .animation = 0,
+        // Ash Jenna at Suhalla Gate: the same art as the super boss.
+        .animation = 477,
+        .attackAnim = 1,
+        .defeatSound = 1,
+        .effectHeight = 42,
     },
     {
         .animation = 453,
@@ -574,11 +578,13 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 64,
     },
     {
-        .animation = 408,
-        .attackAnim = 5,
-        .palette = 4,
+        // Ash Jenna, drawn in the Slime's unused sprite slot (her own art in
+        // games/tbs/src/graphics/monster/slime.png), standing in the unused
+        // Wise Gryphon's class.
+        .animation = 477,
+        .attackAnim = 1,
         .defeatSound = 1,
-        .effectHeight = 64,
+        .effectHeight = 42,
     },
     {
         .animation = 403,
@@ -625,11 +631,12 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 32,
     },
     {
-        .animation = 459,
-        .isSmall = 1,
-        .attackHop = 7,
-        .palette = 4,
-        .effectHeight = 32,
+        // Heart, drawn in the Purple Beast's unused sprite slot (her own art
+        // in games/tbs/src/graphics/monster/purple_beast.png).
+        .animation = 484,
+        .attackAnim = 1,
+        .defeatSound = 1,
+        .effectHeight = 42,
     },
     {
         .animation = 411,
@@ -645,11 +652,11 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .defeatSound = 1,
     },
     {
-        .animation = 411,
-        .attackAnim = 2,
-        .attackHop = 5,
-        .palette = 3,
+        // Ondra, who has Mia's own battle sprite (BATTLE_CHARACTER(MIA)).
+        .animation = 487,
+        .attackAnim = 1,
         .defeatSound = 1,
+        .effectHeight = 42,
     },
     {
         .animation = 475,
@@ -671,13 +678,22 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .defeatSound = 1,
     },
     {
-        .animation = 0,
+        .animation = 486,
+        .attackAnim = 1,
+        .palette = 4,
+        .defeatSound = 1,
     },
     {
-        .animation = 0,
+        .animation = 486,
+        .attackAnim = 1,
+        .attackHop = 4,
+        .defeatSound = 1,
     },
     {
-        .animation = 0,
+        .animation = 486,
+        .attackAnim = 1,
+        .palette = 2,
+        .defeatSound = 1,
     },
     {
         .animation = 476,
@@ -783,11 +799,9 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 32,
     },
     {
-        .animation = 472,
+        .animation = 479,
         .attackAnim = 5,
-        .palette = 2,
-        .defeatSound = 1,
-        .effectHeight = 32,
+        .heavyImpact = 1,
     },
     {
         .animation = 474,
@@ -803,9 +817,14 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 42,
     },
     {
-        .animation = 474,
-        .attackHop = 5,
-        .palette = 5,
+        // Sarah, the optional super boss of Kalay (her own art in
+        // games/tbs/src/graphics/monster/sarah.png), in the place of Mia
+        // fighting Isaac.
+        .animation = 488,
+        .attackAnim = 1,
+        // She leaps up and comes down on her target (the hop is 27 pixels at
+        // its top, landing as her 18-frame POSE_LEAP ends).
+        .attackHop = 6,
         .defeatSound = 1,
         .effectHeight = 42,
     },
@@ -898,10 +917,11 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 32,
     },
     {
-        .animation = 433,
-        .attackAnim = 4,
-        .attackHop = 2,
-        .effectHeight = 32,
+        // Enemy id 160: Umbral Rift "???" (row 152), her own art.
+        .animation = 489,
+        .attackAnim = 1,
+        .defeatSound = 0, // the human foes' fall (Saturos, Menardi), not a beast's cry
+        .effectHeight = 42,
     },
     {
         .animation = 436,
@@ -957,6 +977,22 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .animation = 434,
         .attackAnim = 4,
         .attackHop = 5,
+    },
+    // Enemy id 172, the "???" commander (row 164 of enemies.c): her own art
+    // (games/tbs/src/graphics/monster/mystery.png, built by tools/dark_story/
+    // build_mystery_art.py).  She dashes at her target in a swirl of dark.
+    {
+        .animation = 489,
+        .attackAnim = 1,
+        .defeatSound = 1,
+        .effectHeight = 42,
+    },
+    // Enemy id 173: Umbral Rift Heart (row 165), her own art.
+    {
+        .animation = 484,
+        .attackAnim = 1,
+        .defeatSound = 0, // the human foes' fall, not a beast's cry
+        .effectHeight = 42,
     },
 };
 // clang-format on

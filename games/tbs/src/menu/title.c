@@ -125,7 +125,7 @@ s32 Title_Run(void) {
       Import_TitleShowCamelotLogo(0);
       // With no save file (or no backup memory) there is no title intro.
       if (Save_ScanRecordFlags() > 0) {
-        Sound_PlaySong(MUS_TITLE);
+        Sound_PlaySong(MUS_SATUROS_AND_MENARDI);
         // Title_ShowIntro with its prompt returns 0 when a minute passes
         // without A or Start: fade out and start again from the logos.
         if (Title_ShowIntro(1) == 0) {

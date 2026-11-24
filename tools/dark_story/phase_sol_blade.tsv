@@ -1,0 +1,7 @@
+# The Sealed Sol Blade's Unleash, Dawnbreak (ability 239, abilities.c): its
+# name and description in the empty slot's messages.
+01058	message	Dawnbreak
+01577	message	Unleash a breaking dawn.
+# The blade itself is renamed: Camelot left it unfinished, so in Ashfall it is
+# sealed, its full power not yet woken.
+00396	message	{article_class:2}Sealed Sol Blade

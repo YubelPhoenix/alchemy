@@ -45,6 +45,8 @@
 #include "event_layer.h"
 #include "scene_tables.h"
 #include "event_inline.h"
+#include "ash_warp.h"
+#include "sarah_fight.h"
 #include "field_effect.h"
 #include "item_ids.h"
 #include "text/msg_ids.h"
@@ -142,7 +144,15 @@ enum LaliveroActorId {
   ACTOR_NORTH_EXIT_SIGN,
   /// The orb Iodem holds out, drawn from its item icon.
   /// ★ Named from the game: "Black Orb" (MsgItemName)
-  ACTOR_BLACK_ORB
+  ACTOR_BLACK_ORB,
+  /// Ash Jenna's optional farewell near the wharf after Venus Lighthouse. Her
+  /// own sprite (SPRITE_ASH_JENNA) is not a party member's, so her row takes
+  /// the placed slot after the Black Orb (Event_SpawnActorTemplates).
+  ACTOR_LALIVERO_ASH_JENNA = ACTOR_BLACK_ORB + 1,
+  /// Sarah, her last fight (stage 3, level 27), waiting by the wharf until she
+  /// is beaten (FLAG_DARK_SARAH_LALIVERO_FOUGHT). Placed only in the
+  /// post-Venus template, in the slot after Ash Jenna's.
+  ACTOR_LALIVERO_SARAH = ACTOR_BLACK_ORB + 2
 };
 
 /// The door into the Lalivero Sanctum, a gate two cells wide.
@@ -165,6 +175,60 @@ static void Lalivero_TalkToTorch(void) {
   Djinn_JoinParty(ACTOR_TORCH, ELEMENT_MARS, DJINNI_INDEX(DJINNI_TORCH));
 }
 
+/// Optional post-Venus showdown with Ash Jenna, the evil alternate Jenna from
+/// the sprite-animation canon. Her claim to come from a destroyed world is
+/// unverified. She remains dangerous and unrepentant; this is NOT a redemption
+/// scene. It follows the Tolbi encounter and callbacks Isaac's Lamakan choice,
+/// without changing the original ending, lighthouse or ship state.
+static void Lalivero_TalkToAshJenna(void) {
+  Event_Start();
+  Actor_FaceActor(ACTOR_LALIVERO_ASH_JENNA, ACTOR_PARTY_LEADER, 0);
+  Event_SetMessageId(MsgDarkLaliveroAshWatch);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacFall);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshSurvival);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacSearch);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshSearch);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacResolve);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshWaiting);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacWiseOne);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshBelief);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacEvidence);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshBurden);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacInnocents);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshStrangers);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshJenna);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacOthers);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshOwnPath);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacProof);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroAshFarewell);
+  Event_ShowMessageThenWait(ACTOR_LALIVERO_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkLaliveroIsaacPromise);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Actor_FaceDirection(ACTOR_LALIVERO_ASH_JENNA, FACING_EAST, 0);
+  Event_WaitFrames(20);
+  AshWarp_Out(ACTOR_LALIVERO_ASH_JENNA);
+  Actor_SetPosition(ACTOR_LALIVERO_ASH_JENNA, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_ASH_JENNA_LALIVERO);
+  Event_End();
+}
+
 const struct SceneEntrance *Lalivero_GetEntrances(void) {
   return gLaliveroEntrances;
 }
@@ -173,10 +237,19 @@ const struct SceneExitRegion *Lalivero_GetRegions(void) { return NULL; }
 
 const u32 *Lalivero_GetExits(void) { return gLaliveroExits; }
 
-/// The townsfolk, who stand differently once the party is back from Venus
-/// Lighthouse.
+/// The actor and trigger tables are chosen BEFORE Lalivero_Initialize runs.
+/// On the first entrance back from Venus the permanent story flag may still
+/// be unset; recognize the entry itself so Ash Jenna, the north exit sign,
+/// and the Black Orb exist in the correct post-Venus roster from frame one.
+static s32 Lalivero_IsPostVenusState(void) {
+  return GameFlag_Get(FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED) != 0 ||
+         gSaveBlock.entrance == ENTRANCE_FROM_AERIE ||
+         gSaveBlock.entrance == ENTRANCE_FROM_AERIE_QUIETLY;
+}
+
+/// The townsfolk, who stand differently once the party is back from Venus.
 const struct ActorTemplate *Lalivero_GetActorTemplates(void) {
-  if (GameFlag_Get(FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED) != 0) {
+  if (Lalivero_IsPostVenusState()) {
     return gLaliveroActorTemplatesAfterLighthouse;
   }
   return gLaliveroActorTemplates;
@@ -816,10 +889,21 @@ static void Lalivero_TurnBackToTheShip(void) {
 /// What the party can talk to, touch and search, which changes once they are
 /// back from Venus Lighthouse.
 const struct Trigger *Lalivero_GetTriggers(void) {
-  if (GameFlag_Get(FLAG_VENUS_LIGHTHOUSE_PARTY_RETURNED) != 0) {
+  if (Lalivero_IsPostVenusState()) {
     return gLaliveroTriggersAfterLighthouse;
   }
   return gLaliveroTriggers;
+}
+
+/// Sarah in Lalivero, her last fight (stage 3, level 27): a battle Isaac can
+/// pick or leave. A defeat comes back here and she waits.
+static void Lalivero_TalkToSarah(void) {
+  Event_Start();
+  SARAH_SAYS(ACTOR_LALIVERO_SARAH, MsgDarkSarahLaliveroGreet);
+  SARAH_ISAAC_SAYS(MsgDarkSarahLaliveroIsaac);
+  SARAH_SAYS(ACTOR_LALIVERO_SARAH, MsgDarkSarahLaliveroChallenge);
+  SARAH_START_BATTLE(3, SceneId_Lalivero);
+  Event_End();
 }
 
 /// Sets Lalivero up as the party enters: the Black Orb Iodem will hold out,
@@ -878,6 +962,23 @@ s32 Lalivero_Initialize(void) {
     MapGrid_CopyCellAttributes(WALL_CELL_X, WALL_CELL_Y, 1, 1, 16, 4);
     if (GameFlag_Get(FLAG_LALIVERO_WHARF_OPEN)) {
       Actor_SetPosition(ACTOR_WHARF_GUARD, PIXELS(56), PIXELS(184));
+    }
+    // A reachable, optional closing conversation, not a route-blocking event.
+    // The actor is otherwise parked outside the playable map.
+    if (GameFlag_Get(FLAG_DARK_ASH_JENNA_TOLBI) != 0 &&
+        GameFlag_Get(FLAG_DARK_ASH_JENNA_LALIVERO) == 0) {
+      Actor_SetPosition(ACTOR_LALIVERO_ASH_JENNA, PIXELS(128), PIXELS(240));
+      Actor_FaceDirection(ACTOR_LALIVERO_ASH_JENNA, FACING_SOUTH, 0);
+      Actor_ConfigureSpriteColor(ACTOR_LALIVERO_ASH_JENNA,
+                                 SPRITE_COLOR_NORMAL);
+    }
+    // Back from Sarah's battle: she walks east along the open street by the
+    // wharf, off the screen.
+    if (SARAH_PENDING_AT(3)) {
+      SARAH_AFTERMATH_BY(ACTOR_LALIVERO_SARAH, 176, 264,
+                         MsgDarkSarahLaliveroBeaten,
+                         FLAG_DARK_SARAH_LALIVERO_FOUGHT,
+                         SARAH_WALK_EAST(ACTOR_LALIVERO_SARAH, 144));
     }
   } else {
     // The first visit: the two soldiers lie on the ground, drawn under the
@@ -1087,6 +1188,14 @@ struct ActorTemplate gLaliveroActorTemplatesAfterLighthouse[] = {
         PIXELS(248), 0, PIXELS(80), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_BLANK, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-64), 0, PIXELS(-64), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    // After the Black Orb: the unrepentant alternate Jenna wears Jenna's
+    // recognizable field sprite, shaded grey, not a random NPC appearance.
+    // Lalivero_Initialize reveals her only after Tolbi and before the coda.
+    { SPRITE_ASH_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        PIXELS(-64), 0, PIXELS(-64), FACING_SOUTH, TALK_FACING_PARTY, 0 },
+    // Sarah, waiting by the wharf until she is beaten.
+    { SPRITE_SARAH, FLAG_DARK_SARAH_LALIVERO_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(176), 0, PIXELS(240), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { ACTOR_GARET, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_EAST, TALK_FACING_PARTY, 0 },
     { ACTOR_IVAN, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
@@ -1158,6 +1267,11 @@ struct Trigger gLaliveroTriggers[] = {
 struct Trigger gLaliveroTriggersAfterLighthouse[] = {
     { TRIGGER_STEP, 50, FLAG_IODEM_FAREWELL_SEEN, EVENT(Lalivero_IodemGivesBlackOrb) },
     { TRIGGER_STEP, 51, CONDITION_ALWAYS, EVENT(Lalivero_TurnBackToTheShip) },
+    // A completed coda cannot retrigger; the actor is only placed after Tolbi.
+    { TRIGGER_TALK, ACTOR_LALIVERO_ASH_JENNA, FLAG_DARK_ASH_JENNA_LALIVERO,
+      EVENT(Lalivero_TalkToAshJenna) },
+    { TRIGGER_TALK, ACTOR_LALIVERO_SARAH, FLAG_DARK_SARAH_LALIVERO_FOUGHT,
+      EVENT(Lalivero_TalkToSarah) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 1, CONDITION_ALWAYS, EVENT(Lalivero_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 2, CONDITION_ALWAYS, EVENT(Lalivero_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), 3, CONDITION_ALWAYS, EVENT(Lalivero_EnterDoor) },

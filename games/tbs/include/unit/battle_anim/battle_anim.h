@@ -86,6 +86,7 @@ enum BattleAnimId {
   BATTLE_ANIM_REFLECT = 45,
   BATTLE_ANIM_UNUSED_IMPACT = 46, ///< no ability uses it
   BATTLE_ANIM_UNUSED_IMPAIR = 47, ///< no ability uses it
+  BATTLE_ANIM_BLADE_RAIN = 48, ///< Ashfall: the Sealed Sol Blade's Dawnbreak
   BATTLE_ANIM_DRAGON_CLOUD = 49,
   BATTLE_ANIM_DEMON_NIGHT = 50,
   BATTLE_ANIM_HELM_SPLITTER = 51,
@@ -106,6 +107,12 @@ enum BattleAnimId {
   BATTLE_ANIM_DROWN = 66,
   BATTLE_ANIM_UNUSED_TRIANGLE_STRIKE = 67, ///< no ability uses it
   BATTLE_ANIM_ASTRAL_BLAST = 68,
+  BATTLE_ANIM_DJINN_HEAL = 69,     ///< Ashfall: Djinn's Grace
+  BATTLE_ANIM_SWIRLING_STARS = 70, ///< Ashfall: Starfall
+  BATTLE_ANIM_ORBITING_SKULLS = 71, ///< Ashfall: Death Knell
+  BATTLE_ANIM_TARGET_BURSTS = 72,  ///< Ashfall: Ember Burst
+  BATTLE_ANIM_FALLING_WIND = 73,   ///< Ashfall: Falling Wind's storm
+  BATTLE_ANIM_FALLING_WIND_REVIVE = 74, ///< Ashfall: Falling Wind's revive
   BATTLE_ANIM_GRANITE = 200,
   BATTLE_ANIM_QUARTZ = 201,
   BATTLE_ANIM_VINE = 202,
@@ -202,7 +209,15 @@ enum BattleAnimId {
   BATTLE_ANIM_STORM_BLESSING = 405,
   BATTLE_ANIM_EVIL_BLESSING = 406,
   BATTLE_ANIM_DEADLY_GAS = 407,
-  BATTLE_ANIM_COUNT = 408 ///< one more than the last kind
+  BATTLE_ANIM_GOTTERKANONE = 408,
+  BATTLE_ANIM_EX_GOTTERKANONE = 409,
+  BATTLE_ANIM_RANSNETZ = 410,
+  BATTLE_ANIM_PERFECTI_EXPLOSION = 411,
+  BATTLE_ANIM_P_VORTEX = 412,
+  BATTLE_ANIM_GLEPNIR = 413,
+  BATTLE_ANIM_STERNBRECHER = 414,
+  BATTLE_ANIM_P_STORM = 415,
+  BATTLE_ANIM_COUNT = 416 ///< one more than the last kind
 };
 
 /// An animation's variant: the strength of the ability that plays it, from bits
@@ -360,6 +375,8 @@ void BattleAnim_RunMirroredWall(struct BattleAnimArgs *args, s32 mode);
 void BattleAnim_RunRevive(struct BattleAnimArgs *args);
 void BattleAnim_RunDew(struct BattleAnimArgs *args);
 void BattleAnim_RunDjinnBeams(struct BattleAnimArgs *args, s32 element);
+void BattleAnim_RunFallingWind(struct BattleAnimArgs *args);
+void BattleAnim_RunFallingWindRevive(struct BattleAnimArgs *args);
 
 // lobbed_shells.c
 void BattleAnim_RunMadSpatter(struct BattleAnimArgs *args);
@@ -657,6 +674,16 @@ void BattleAnim_RunFlashingStrike(struct BattleAnimArgs *args, s32 mode);
 
 // undead_sword.c
 void BattleAnim_RunUndeadSword(struct BattleAnimArgs *args);
+
+// perfecti.c
+void BattleAnim_RunGotterkanone(struct BattleAnimArgs *args);
+void BattleAnim_RunExGotterkanone(struct BattleAnimArgs *args);
+void BattleAnim_RunRansnetz(struct BattleAnimArgs *args);
+void BattleAnim_RunPerfectiExplosion(struct BattleAnimArgs *args);
+void BattleAnim_RunPVortex(struct BattleAnimArgs *args);
+void BattleAnim_RunGlepnir(struct BattleAnimArgs *args);
+void BattleAnim_RunSternbrecher(struct BattleAnimArgs *args);
+void BattleAnim_RunPStorm(struct BattleAnimArgs *args);
 
 // blitter.c
 s32 BattleAnim_BuildBlitter(s32 slot, s32 widthShift, s32 heightShift,

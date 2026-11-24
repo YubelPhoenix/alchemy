@@ -1,0 +1,416 @@
+02418	message	The Psynergy Stone...\nit's simply gone.{end_wait}
+04051	MsgSolSanctumKradenFirstTimeAtSol	Sol Sanctum. You've never\nbeen inside, have you?{end_now}
+04052	message	Look at the stonework.\nIt's older than Vale.{end_wait}
+04053	message	I doubt that. Few people\nhave ever been allowed\ninside.{end_wait}
+04054	MsgSolSanctumWrongKraden	Kraden? You've gone quiet.\nWhat is it?{end_wait}
+04055	message	Those strangers spoke of\na passage deeper inside.{end_wait}
+04056	message	I've studied this place\nfor years. Now I'm here.{end_wait}
+04057	message	I thought it would feel\ndifferent.{end_wait}
+04058	message	Different how, Kraden?{end_wait}
+04059	message	A temple to the sun,\nand hardly any light.{end_wait}
+04060	message	I've never understood\nwhy they built it so.{end_wait}
+04061	message	A hidden passage could\nanswer that question.{end_wait}
+04062	message	We came to investigate.\nLet's keep looking.{end_wait}
+04063	message	He means it. Gods help\nus. Should we, {actor_name:1}?{end_now}
+04064	MsgSolSanctumDangerousSplitStay	Splitting up is a bad\nidea in a place like this.\nStay close.{end_wait}
+04065	MsgSolSanctumCantSeriouslyWant	Turn back now? After\ncoming this far? You can't\nmean that.{end_wait}
+04066	message	We'll help. But nobody\ngoes anywhere alone.{end_wait}
+04067	MsgSolSanctumFound	This is it. We found it.{end_wait}
+04068	message	The mark of the sun.\nThis must be the place.{end_wait}
+04069	message	Then the strangers knew\nwhat they were saying.{end_wait}
+04070	message	Which means they may\nhave been inside.{end_wait}
+04071	message	They came here for\nsomething. What was it?{end_wait}
+04072	message	We should tell the elders\nwhat we've found.{end_wait}
+04073	message	Kraden? Why aren't you\nmoving?{end_wait}
+04074	message	We're close. I know it.{end_wait}
+04075	message	Close to what, exactly?{end_wait}
+04076	message	We found the hidden way.{page_break}You want to turn back\nwithout seeing it?{end_wait}
+04077	message	And that's a problem?\nSounds sensible to me.{end_wait}
+04078	message	Alchemy's origins may\nbe just ahead.{end_wait}
+04079	message	Just a little farther?\nPlease?{end_now}
+04080	MsgSolSanctumThank	Thank you. Truly.{end_wait}
+04081	MsgSolSanctumGoBackVillage	Then go back without me.\nI have to see this.{end_wait}
+04082	MsgSolSanctumPutWayDont	We're not leaving you\nhere alone.{end_wait}
+04083	message	I want to know, too.\nEven if I shouldn't.{end_wait}
+04084	message	Then we'll go together.\nNot much farther.{end_wait}
+04085	message	Then it's settled.\nStay close, all of you.{end_wait}
+04086	MsgSolSanctumWhRoom	What is this place?{end_wait}
+04087	message	That's Luna. The moon.{end_wait}
+04088	message	A chamber for night.{end_wait}
+04089	message	And another for day?\nThey must be connected.{end_now}
+04090	MsgSolSanctumLunaSolRooms	Luna and Sol.{page_break}Two rooms built to work\ntogether. But how?{end_wait}
+04091	MsgSolSanctumRoomLunaOne	Luna and Sol. Someone\nplanned this carefully.{end_wait}
+04092	MsgSolSanctumMeanLookFarther	I don't understand it.\n{actor_name:1}, look farther up\nthe passage. Please?{end_now}
+04093	MsgSolSanctumKradenLetMeKnowWhat	Tell me what you find.\nDon't move anything yet.{end_wait}
+04094	message	Wait there. Don't touch\nanything.{end_wait}
+04095	MsgSolSanctumKradenJustWaitOverThere	Stay over there. Please.{end_wait}
+04096	MsgSolSanctumWayLeadsOutSanctum	That way leads out. So\nwhatever it is, it's in\nthese rooms.{end_wait}
+04097	MsgSolSanctumWhatsHappening	{text_effect:4}Wha{pause_20_skippable}-What?\nWhat's happening?{end_wait}
+04098	message	{actor_name:1} found something.\nI can feel it.{end_wait}
+04099	message	{actor_name:1}! Stop! Don't!\nYou're about to make a\nterrible mistake!{end_wait}
+04100	MsgSolSanctumWait	{actor_name:1}, wait!{end_wait}
+04101	message	Kraden? What's it?{end_wait}
+04102	message	A remarkable mechanism,\n{actor_name:1}. Truly remarkable.{end_wait}
+04103	message	But look at the floor.\nThis may be a trap.{end_wait}
+04104	message	A trap? Here?{end_wait}
+04105	message	See the Luna room.\nThen you'll understand.{end_wait}
+04106	message	Well done. You've found\nthe right place to look.{end_wait}
+04107	message	Move the wrong statue,\nand the trap will spring.{end_wait}
+04108	message	Why would anyone trap\na place like this?{end_wait}
+04109	message	To keep intruders out.\nOr keep something in.{end_wait}
+04110	message	We need to understand\nit before we go on.{end_wait}
+04111	message	Shall I tell you more?{end_now}
+04112	MsgSolSanctumHonestlyDoubtUnderstand	I have a theory.\nTry the statues first.\nThen we'll talk.{end_wait}
+04113	MsgSolSanctumHmphWellTold	Hmm.{pause_20_skippable} Then try it\nwithout me. Watch what\nthe light does.{end_wait}
+04114	MsgSolSanctumTryFindSolution	We should solve this\nbefore moving forward.{end_wait}
+04115	message	More puzzles. Of course.{end_wait}
+04116	message	I'll stay with the Luna\nroom. You go on and\nexplore.{end_wait}
+04117	message	I think I've worked\nsomething out.{end_wait}
+04118	message	The light changes things.\nLet's test it.{end_wait}
+04119	message	{actor_name:1}{pause_20_skippable}, let's work\nthis out ourselves.{end_wait}
+04120	MsgSolSanctumWhatsHappeningAtTheTrap	{text_effect:4}Wh{pause_20_skippable}-What's going on?{end_wait}
+04121	message	{actor_name:1}{pause_20_skippable} did it!\nHe found something!{end_wait}
+04122	MsgSolSanctumKradenYouFoundIt	You found it,\n{actor_name:1}!{end_wait}
+04123	message	Kraden, look!{end_wait}
+04124	message	Excellent, {actor_name:1}.\nExcellent work.{end_wait}
+04125	message	That hole... where did\nit come from?{end_wait}
+04126	message	{actor_name:1} moved the statues\nand two beams of light\nshot out of them.{page_break}Then the floor opened.\nThat hole just...\nappeared.{end_wait}
+04127	message	Then {actor_name:1} dropped the\nstatue straight into it.{end_wait}
+04128	message	Hmm.{pause_20_skippable} Well done, all of\nyou. Truly.{end_wait}
+04129	message	The statues were part\nof the trap.{end_wait}
+04130	message	And that one must have\nbeen the way to stop it.{end_wait}
+04131	message	It seems safe now.\nFor the moment.{end_wait}
+04132	message	I'll watch from the Luna\nroom, where it's safe.\nThe rest is up to you.{end_wait}
+04133	MsgSolSanctumYouFoundIt	There. You found it,\n{actor_name:1}.{end_wait}
+04134	message	Keep at it, until light\nfills every remaining\nchamber.{end_wait}
+04135	MsgSolSanctumThePictureOfLunaChanged	Look, {actor_name:1}!{pause_20_skippable} Luna's\npicture changed. It's Sol\nnow!{end_wait}
+04136	message	But nothing else has\nchanged. Nothing I can\nsee...{end_wait}
+04137	message	Someone went to great\ntrouble to build this.{page_break}There must be more\nwe haven't seen.{end_wait}
+04138	message	Check the room again.\nSomething has changed.{end_wait}
+04139	MsgSolSanctumLookSymbolFloor	Look!{pause_20_skippable} The symbol on the\nfloor! Sol turned into\nLuna!{end_wait}
+04140	message	We must have missed\nsomething in this room.{end_wait}
+04141	message	Careful. That way leads\nout of the Sanctum.{end_wait}
+04142	MsgSolSanctumHa	Ah!{pause_20_skippable} This must be it.{end_wait}
+04143	message	Come on, {actor_name:1}!{end_wait}
+04144	message	Wait up, {actor_name:1}!\nI'm coming!{end_wait}
+04145	MsgSolSanctumMinotaurReliefOneEye	A minotaur relief.{page_break}The right eye glitters.\nThe left socket is\nempty.{end_wait}
+04146	MsgSolSanctumSetSmallGem	{protagonist_name} set the small\ngem in the empty socket.{end_wait}
+04147	message	Stone grinds against\nstone somewhere nearby.{end_wait}
+04148	MsgSolSanctumMinotaurReliefBothEyes	The minotaur relief.\nBoth eyes burn bright\nnow.{end_wait}
+04149	MsgSanctumWieldersPsynergyCalledAdeptsAdepts	People who use Psynergy\nare called Adepts.{page_break}We were supposed to help\npeople. Don't forget it.{end_wait}
+04150	MsgSanctumOurPsynergyWasGivenToUs	Mt. Aleph gave us our\nPsynergy. It's a sacred\ngift, not a weapon.{page_break}It answers the wishes\nof the chosen... and it\ncan be taken away.{end_wait}
+04151	MsgSanctumPsynergyIsAPowerThatShould	Psynergy is for helping\npeople. Never for harm.\nRemember that.{end_wait}
+04152	MsgSolSanctumSomethingClicked	A click.{pause_20_skippable} Something gave\nway!{end_wait}
+04153	message	The hidden passage.{page_break}Watch your footing.\nWe don't know what's ahead.{end_wait}
+04154	MsgSolSanctumMoreStatuesOutOfReach	More statues...{pause_20_skippable} Hmm...\nWe can't reach them\nfrom here.{end_wait}
+04155	message	Perhaps Psynergy is\nthe way...{page_break}{protagonist_name}{pause_20_skippable}, try yours.\nSee if it reaches.{end_wait}
+04156	MsgSolSanctumKradenWhereAreWe	Wh{pause_20_skippable}-Where... where are we?{end_wait}
+04157	message	Is that... the sea?{end_wait}
+04158	message	No. The sea moves.\nThis is perfectly still.{end_wait}
+04159	message	The sea?\nWhat's that?{end_wait}
+04160	message	Water stretching farther\nthan you can see.\nThat's the sea.{end_wait}
+04161	message	I'll show you someday.\nIf we get out of here.{end_wait}
+04162	message	The Elemental Stars.\nThey were here all along.{end_wait}
+04163	message	They're real...\nAll four of them.{end_wait}
+04164	message	You taught us this...\nElements are what all\nmatter is made of.{end_wait}
+04165	message	Stone, wood... even us.\nAll of it, from four\nelements.{page_break}Did I get that right,\n{actor_name:1}?{end_now}
+04166	message	Yes. Just so.{end_wait}
+04167	message	No, {protagonist_name}.\n{actor_name:2} is quite right.{end_wait}
+04168	MsgSolSanctumKradenTheElementsAreThe	As I've told you often,\nthe elements are the root\nof all matter.{end_wait}
+04169	message	Earth,{pause_20_skippable} water,{pause_20_skippable} fire,{pause_20_skippable}\nand wind{pause_20_skippable}{em_dash}these are the\nfour.{end_wait}
+04170	message	Legend says the four\nElemental Stars hold{page_break}the purest essence of\neach element.{end_wait}
+04171	message	And now we're standing\nin front of them.{end_wait}
+04172	message	The Venus Star.\nThe stone of earth...{end_wait}
+04173	message	Mercury. The star of\nwater, in all its forms.{end_wait}
+04174	message	And Mars, glowing red, with\nfire sealed inside it.{end_wait}
+04175	message	Jupiter, with the fury of\nthe wind bound in it!{end_wait}
+04176	message	Kraden, are you all right?{end_wait}
+04177	message	How can you ask that?\nLook at them!{end_wait}
+04178	message	The source of Alchemy...\nright in front of us.{end_wait}
+04179	message	...I've told you this\nbefore, haven't I?{end_now}
+04180	message	Huh? I must have dozed\noff,{page_break}because I haven't got a\nclue what he means.{end_wait}
+04181	message	There's a great deal\nwe still don't know.{end_wait}
+04182	MsgSolSanctumKradenTheWisdomStone	The Wisdom Stone...\nThe Sage's Stone.{end_wait}
+04183	message	It could change matter.{page_break}Some say it could even\nrestore the dead.{end_wait}
+04184	message	Now you understand,\ndon't you?{end_now}
+04185	message	Alchemy began as a search\nfor this very stone.{end_wait}
+04186	message	Still not clear?{page_break}Alchemy exists because\nof the Elemental Stars.{end_wait}
+04187	MsgSolSanctumTheStarsHaveEnormousPower	I don't get how it works,\nbut they're strong.\nReally strong, right?{end_wait}
+04188	message	One Star could change\nthe fate of nations.{end_wait}
+04189	message	Now, perhaps, you begin\nto see.{end_wait}
+04190	message	That's not funny, Kraden.{page_break}You can't mean that\nsomeone could rule us all.{end_wait}
+04191	message	I wish I knew what\nto believe.{end_wait}
+04192	message	I've spent my life\nlooking for the truth.{page_break}Now I can finally\nsee it for myself.{end_wait}
+04193	message	And now they're right\nthere. Before me...{end_wait}
+04194	message	{text_effect:4}Ahh!{reset_text_style}{end_wait}
+04195	message	Careful, Kraden! The\nstone's slick!{end_wait}
+04196	message	I need a closer look.\nJust one moment.{end_wait}
+04197	message	Let us get them.\nThat ledge isn't safe.{end_wait}
+04198	message	Oh, I couldn't...{pause_20_skippable}\nWould you mind?{end_wait}
+04199	message	He'll do it. Right,\n{protagonist_name}?{end_now}
+04200	MsgSolSanctumJennaWontYouPlease	Don't make me ask twice.{pause_20_skippable}\nWill you do it or not?{end_now}
+04201	MsgSolSanctumJennaThankYou	Good. Thank you.{end_wait}
+04202	message	Take this, {protagonist_name}.\nYou'll need it.{end_wait}
+04203	message	{argument_actor_name:1} took the\nMythril Bags.{end_wait}
+04204	message	Your hands are full.\nSort out your items.{end_wait}
+04205	MsgSolSanctumTheBagsAreFromKradens	Those bags came from your\ncottage, didn't they,\nKraden?{end_wait}
+04206	message	Bags? What are they for?{end_wait}
+04207	message	They're woven from Mythril\nthread. Nothing else will\nwork.{end_wait}
+04208	message	I made them in case\nI ever found the Stars.{end_wait}
+04209	message	Now fetch the Elemental\nStars and seal each one\nin a bag.{end_wait}
+04210	MsgSolSanctumNoStarsOutThere	There's nothing out there.\nNo Elemental Stars!{end_wait}
+04211	message	{actor_name:1} sealed the Venus\nStar in a Mythril Bag.{end_wait}
+04212	message	Good. Now bring back\nthe remaining Stars.{end_wait}
+04213	MsgSolSanctumVenusStarBagged	{argument_actor_name:1} sealed the\nVenus Star in a Mythril\nBag.{end_wait}
+04214	MsgSolSanctumPutMercuryStar	{argument_actor_name:1} sealed the\nMercury Star in a Mythril\nBag.{end_wait}
+04215	MsgSolSanctumJupiterStarBagged	{argument_actor_name:1} sealed the\nJupiter Star in a Mythril\nBag.{end_wait}
+04216	MsgSolSanctumMarsStarBagged	{argument_actor_name:1} sealed the\nMars Star in a Mythril\nBag.{end_wait}
+04217	MsgSolSanctumKradenBringTheStarsHere	Bag each Elemental Star\nand bring them to me.{end_wait}
+04218	MsgSolSanctumJennaBeCareful	Be careful, both of you.\nPlease.{end_wait}
+04219	MsgSolSanctumKradenFetchTheOthers	Careful. Bring the others.{end_wait}
+04220	MsgSolSanctumJennaKradenIsGiddy	Kraden, slow down.\nYou're frightening me.{end_wait}
+04221	MsgSolSanctumLooksLikeTheyveSpottedUs	They've seen us.\nAlready?{end_wait}
+04222	message	I hoped we'd have\nmore time.{end_wait}
+04223	message	You came to take\nthe Elemental Stars!{end_wait}
+04224	message	Master Kraden...{pause_20_skippable} Thieves,\nyou say? Us?{end_wait}
+04225	message	You kept this place\nfrom us, Kraden.{end_wait}
+04226	message	What happens to them\nonce we give you the Stars?{end_wait}
+04227	message	They'll kill us once\nthey have what they want!{end_wait}
+04228	message	No one has to die here.{end_wait}
+04229	message	That was our agreement.\nWasn't it?{end_wait}
+04230	message	If they cooperate,\nno one gets hurt.{end_wait}
+04231	message	Hand over the Stars,\nand they'll live.{end_wait}
+04232	message	We're asking you\nto make a choice.{end_wait}
+04233	message	You heard us. If you\nwish to save your friends,{page_break}give us the Elemental\nStars.{end_wait}
+04234	message	Will you accept our terms?{end_now}
+04235	message	No, {actor_name:1}! Don't give\nthem the Elemental Stars!{end_wait}
+04236	message	Good, {actor_name:1}.{pause_20_skippable}\nDon't hand them over!{end_wait}
+04237	MsgSolSanctumWhyDenyDont	Why refuse us? Don't you\nwant your friends safe?{end_wait}
+04238	message	And why should we\nbelieve you'll spare them?{end_wait}
+04239	message	You want a guarantee?\nThen look at him.{end_wait}
+04240	message	Remove your mask.{end_wait}
+04241	message	Y-you mean...{end_wait}
+04242	message	Ah. Of course. Fine.\nHe will be our\nguarantee.{end_wait}
+04243	message	Under the circumstances,\nwe have little choice.{page_break}{actor_name:5}. Remove your\nmask.{end_wait}
+04244	message	What? What did he say,\n{actor_name:1}?{end_wait}
+04245	message	He said {actor_name:5}.{pause_20_skippable}\nThat's what he said.\nWasn't it?{end_now}
+04246	message	You heard it too?{pause_20_skippable}\n{actor_name:5}? It can't be...{end_wait}
+04247	message	That's what I heard.\n{actor_name:5}? It can't be...{end_wait}
+04248	message	The Boulder took him.\nWe saw it happen.{end_now}
+04249	message	You remember it too,\n{actor_name:1}?{page_break}Then what kind of\nguarantee is this?{end_wait}
+04250	message	We searched the river.\nThere was no body.{end_wait}
+04251	MsgSolSanctumMenardiDontYouWantThem	What's wrong, {actor_name:5}?\nDon't you want them to\nfeel safe?{end_wait}
+04252	message	{actor_name:5}... that was your\nbrother's name. Wasn't it?{end_wait}
+04253	message	But the accident...\nMy brother, he...{end_wait}
+04254	message	All right. I'll do it.{end_wait}
+04255	message	I'll{pause_20_skippable}.{pause_20_skippable}.{pause_20_skippable}.take off the mask.{end_wait}
+04256	message	{text_effect:4}N{pause_20_skippable}-No. It can't be...{reset_text_style}{end_wait}
+04257	message	Is he really...{end_wait}
+04258	message	I know what I put you\nthrough, {actor_name:6}.{end_wait}
+04259	message	I barely survived\nthat night.{end_wait}
+04260	message	We found him in the river.\nHe was barely breathing.{end_wait}
+04261	message	We pulled him ashore.\nHe would have drowned.{end_wait}
+04262	message	I've traveled with them\never since.{end_wait}
+04263	message	Why, though?{end_wait}
+04264	message	You were alive...\nand you never came home.{end_wait}
+04265	message	{actor_name:6}, I'm sorry...{end_wait}
+04266	message	I thought you were dead.\nAll these years.{end_wait}
+04267	message	We don't have time\nfor this.{end_wait}
+04268	message	She's right. The Stars\nstill matter.{end_wait}
+04269	message	Is that acceptable?{page_break}{actor_name:5} won't let us\nhurt you, Jenna.\nHe made that clear.{end_wait}
+04270	message	{actor_name:5} is our guarantee.\nNow give us the Elemental\nStars.{end_wait}
+04271	message	Should we give them\nthe Stars to save\nJenna and Kraden?{end_now}
+04272	MsgSolSanctumGuessTakeElemental	I suppose I should carry\nthe Elemental Stars to\nthem.{end_wait}
+04273	message	{actor_name:1} handed over the\nElemental Stars.{end_wait}
+04274	MsgSolSanctumDontHandOver	If you don't hand them\nover, they won't let\n{actor_name:6} go!{end_wait}
+04275	message	{actor_name:2} took the Elemental\nStars.{end_wait}
+04276	MsgSolSanctumRightTake	Fine. I'll take them.{end_wait}
+04277	MsgSolSanctumWontLetGo	They won't release\n{actor_name:6} unless we hand\nthem over!{end_wait}
+04278	MsgSolSanctumPermitRelieveElemental	Give them to me.{pause_20_skippable}\nPlease.{end_wait}
+04279	message	Felix. Take them.{end_wait}
+04280	message	Felix will take them.\nGive him the stones.{end_wait}
+04281	message	After everything\nwe did to find them...{end_wait}
+04282	message	{actor_name:2} gave him the\nElemental Stars.{end_wait}
+04283	message	There's one more Star.{end_wait}
+04284	message	You'll collect that\none as well.{end_wait}
+04285	message	Wait. Just a second!{end_wait}
+04286	message	You want us to get\nthe last one too?{end_wait}
+04287	message	Yes. The last Star.{end_wait}
+04288	message	You said you'd free\n{actor_name:6} once we hand over\nthe Elemental Stars.{page_break}You promised.{end_wait}
+04289	message	We said all four Stars.\nNothing less.{end_wait}
+04290	message	Bring us the last one.\nNow.{end_now}
+04291	MsgSolSanctumDontWantAnything	I don't want anyone hurt.\nDo you?{end_now}
+04292	MsgSolSanctumThankCooperation	Thank you.{end_wait}
+04293	message	We'll wait here\nfor the last Star.{end_wait}
+04294	MsgSolSanctumDoubtHowFeel	Think of Jenna and\nKraden. Please.{end_now}
+04295	MsgSolSanctumMenardiBringTheFinalGem	What are you waiting for?\nBring us the final gem!{end_wait}
+04296	MsgSolSanctumFelixSilence	......{end_wait}
+04297	MsgSolSanctumJennaMyBrotherIsAlive	Felix is alive.\nWhy didn't he come home?{end_wait}
+04298	MsgSolSanctumSaturosBringTheFinalStar	If you want to save them,\nbring us the final\nElemental Star.{end_wait}
+04299	MsgSolSanctumKradenIAmResponsible	I brought us here.\nThis is my fault.{end_wait}
+04300	MsgSolSanctumAlexOnlyOneLeft	Only one remains. You're\nalmost finished.{end_wait}
+04301	MsgSolSanctumJennaWhatHappened	What's happening?{end_wait}
+04302	message	No. Not again.{end_wait}
+04303	message	The water's gone!{end_wait}
+04304	message	The chamber is failing.\nWe have to get out!{end_wait}
+04305	message	The Stars kept this\nplace in balance.\nNow it's coming apart!{end_wait}
+04306	message	It's stopped...\nWhat was that?{end_wait}
+04307	message	What is that thing?{end_wait}
+04308	message	No... stay back!{end_wait}
+04309	message	That rock... it's\nfloating... Do you know\nwhat it is, {actor_name:1}?{end_now}
+04310	MsgSolSanctumIKnowItsARock	Yeah, I can see it's a\nrock. Thanks a lot.{end_wait}
+04311	MsgSolSanctumSomeoneIsLiftingIt	Me neither. But someone's\nlifting it with Psynergy.\nThat much I can tell.{end_wait}
+04312	MsgSolSanctumKradenCouldThatBeThe	Could it be...{pause_20_skippable}.{pause_20_skippable}.\nthe Wise One?{end_wait}
+04313	message	That much power...\nHow is it possible?{end_wait}
+04314	message	?!{end_wait}
+04315	message	Gods...{end_wait}
+04316	message	It's protecting\nthe remaining Star.{end_wait}
+04317	message	We have to leave. Now.{end_wait}
+04318	message	We still need the Mars\nStar!{end_wait}
+04319	message	{actor_name:5} is right. We can't\nfight that thing.{end_wait}
+04320	message	We can't take it now.\nWe'll return.{end_wait}
+04321	message	And {actor_name:1} and {actor_name:2}?\nYou can't leave them\nhere!{end_wait}
+04322	message	The chamber is falling\napart. They won't\nmake it out alive.{end_wait}
+04323	message	They might survive.\nWe can't know yet.{end_wait}
+04324	message	Then tell me\nwhat you propose.{end_wait}
+04325	message	We take this \"{actor_name:6}\"\nwith us. If they live,\nthey'll want her back.{page_break}And if they want her back,\nthey'll bring us the Star.{end_wait}
+04326	message	Kraden comes with us.\nHe knows too much.{end_wait}
+04327	message	Saturos...{pause_20_skippable} are you\nbreaking our promise?{end_wait}
+04328	message	The situation changed.\nSo must our plans.{end_wait}
+04329	message	{actor_name:6} has no part in\nthis. I won't let you\nhurt her!{end_wait}
+04330	message	Do what you want with\nme. Just let {actor_name:6} go!{end_wait}
+04331	message	You cannot help\n{actor_name:6} now.{end_wait}
+04332	message	Leave {actor_name:6} here and she\ndies. Is that what you\nwant, {actor_name:5}?{end_wait}
+04333	message	Let's go, {actor_name:5}.\nSomething is watching us.\nI don't like it.{end_wait}
+04334	message	{actor_name:5}... please.{end_wait}
+04335	message	Good. Then we're leaving.\nNo more delays.{end_wait}
+04336	message	Move. Quickly!{end_wait}
+04337	message	Don't you push my sister!{end_wait}
+04338	message	Who do you think you're\ntalking to? You owe us\nyour life!{end_wait}
+04339	message	Menardi. Enough.{end_wait}
+04340	message	Master Kraden, you'll be\njoining us. Naturally.{end_wait}
+04341	message	{actor_name:1}, {actor_name:2}!{pause_20_skippable}\nDon't you die!{end_wait}
+04342	message	The Mars Star...\nWe have to leave it.{end_wait}
+04343	message	For now. We may yet\nrecover it.{end_wait}
+04344	MsgSolSanctumWellTurnedBadly	That went badly.\nWe're lucky to be alive.\nDon't you think?{end_now}
+04345	message	I know.\nFor a moment, I thought\nwe were finished.{end_wait}
+04346	message	Don't tell me you're\nnot scared. I know\nI am.{end_wait}
+04347	MsgSolSanctumFriendsGone	{actor_name:6}. Kraden. Both\ngone!{end_wait}
+04348	message	They wouldn't hurt\n{actor_name:6} or Kraden...\nwould they?{end_now}
+04349	MsgSolSanctumThanksALot	Thanks for that.\nBut they should be fine,\n{actor_name:6} and Kraden.{page_break}{actor_name:5} is with them...{end_wait}
+04350	MsgSolSanctumTheyllBeSafe	Yeah{pause_20_skippable}, they'll be safe.\n{actor_name:5} is with them.{end_wait}
+04351	MsgSolSanctumThisIsTerrible	They've taken them.\nWhat do we do now?{end_wait}
+04352	message	First we get out alive.{end_wait}
+04353	message	We're trapped here...{end_now}
+04354	message	We have to move.{end_wait}
+04355	MsgSolSanctumQuitActingTough	Stop pretending you're\nnot afraid. Come on!{end_wait}
+04356	MsgSolSanctumOverHere	Hey, {actor_name:1}...{pause_20_skippable}\n{actor_name:1}, I'm over here.{pause_20_skippable}\nCome on, we have to go.{end_wait}
+04357	message	Don't just stand there!{end_wait}
+04358	message	This place is collapsing.{end_wait}
+04359	message	You brought this on us!{end_wait}
+04360	message	The mountain will erupt.\nI cannot delay it long.{end_wait}
+04361	message	Leave. While you can.{end_wait}
+04362	message	The Elemental Djinn\nhave returned.{end_wait}
+04363	message	Take out{pause_20_skippable} the Elemental\nStar...{end_now}
+04364	MsgSolSanctumCannotResist	{actor_name:1} can't resist it.{end_wait}
+04365	MsgSolSanctumReturnStarToBag	Put it back in its bag.{end_wait}
+04366	message	The Stars are leaving\ntheir resting place.{end_wait}
+04367	message	Without the Stars,\nthe magma will rise.{page_break}This chamber cannot\ncontain it.{end_wait}
+04368	message	Soon there will be\nnothing left to return to.{end_wait}
+04369	message	Alchemy's power may\nsoon return to the world.{end_wait}
+04370	message	A threat? Alchemy?{end_wait}
+04371	message	Power is dangerous\nwhen wielded carelessly.{end_wait}
+04372	message	Light all four beacons,\nand Alchemy will return.{end_wait}
+04373	message	Keep the beacons dark,\nand it remains sealed.{end_wait}
+04374	message	Mt. Aleph is erupting.\nRun!{end_wait}
+04375	message	But how can we...{end_wait}
+04376	message	I will see you safely\nout of the Sanctum.{end_wait}
+04377	MsgSolSanctumFloatingEyeThing	Did that floating eye\nthing just save us?{end_now}
+04378	message	Don't wait around.\nLet's go!{end_wait}
+04379	MsgSolSanctumGotFourMythrilBags	{protagonist_name} took four\nMythril Bags.{end_wait}
+04380	MsgSolSanctumTooManyItems	Your pack is full. Will\nyou leave something\nbehind?{end_wait}
+04450	MsgSanctumIsaacWillAcceptResponsibilityFor	{actor_name:1}, will you take\nthis land's fate upon\nyourself?{end_now}
+04451	message	I won't blame you. I\ncouldn't do it either,\nin your place.{end_wait}
+04452	MsgSanctumAreYouSure	Are you certain?{end_now}
+04453	message	Do you need more time\nto think?{end_now}
+04454	message	{actor_name:1}, will you hold the\nworld's fate in your\nhands?{end_now}
+04455	MsgSanctumIDontBlameYouICouldnt	I don't blame you. In\nyour shoes, I couldn't\neither.{end_wait}
+04456	MsgSanctumItIsATerribleBurdenTo	It's a terrible weight,\nbeing answerable for the\nfate of the world.{end_wait}
+04457	MsgSanctumMotherWouldNeverDoubtYourCourage	Mother would never doubt\nyour courage just\nbecause you said no.{end_wait}
+04458	MsgSanctumWasItRightToRefuseWhen	Was it right to refuse,\nwith the world in such\ndanger?{end_wait}
+04459	MsgSanctumItsClearThatTheGreatHealer	It's plain that the Great\nHealer wants you to say\nyes.{end_wait}
+04460	MsgSanctumOnceStepOutsideVillageCannot	Once you leave the\nvillage, you can't take\nthis back.{page_break}Think on it before you\nleave the Sanctum,\n{actor_name:1}.{end_wait}
+04461	MsgSanctumWorldBeganDrifting	And so the world drifted\ntoward the ruin it was\nfated to meet...{end_wait}
+04462	MsgSanctumGreatHealer	From the Great Healer{end_wait}
+04463	message	To the File Screen{end_wait}
+04464	message	Restart the game{end_wait}
+04465	MsgSanctumAcceptIsaacCantMean	You accept? Oh,\n{actor_name:1}...{pause_20_skippable}you can't mean\nit...{end_wait}
+04466	message	You left the choice to\n{actor_name:1}.{page_break}Then there will be no\nfurther discussion.{end_wait}
+04467	message	O Wise One, these two\nhave taken up your quest.{page_break}Give us your next\ncommand.{end_wait}
+04468	message	You two are brave, taking\non this quest.{end_wait}
+04469	message	I'll be watching you.\nChoose your fate with\ncare, young ones.{end_wait}
+04470	message	So that was the Wise\nOne...{end_wait}
+04471	message	What did the Wise One\nsay to you?{end_wait}
+04472	message	{actor_name:5} must unlock the\npower. That was all.{end_wait}
+04473	message	Find the lighthouses...{page_break}The Elemental Star will\nguide you there...{end_wait}
+04474	message	Um...{pause_20_skippable} And then what?{end_wait}
+04475	message	What are they supposed to\ndo there?{end_wait}
+04476	message	Surely that isn't all the\nadvice you can give them,\nGreat Healer...{end_wait}
+04477	message	Look for the elementals.\nThe Djinn...{end_wait}
+04478	message	They will serve you well.{end_wait}
+04479	message	Is there nothing more?{end_wait}
+04480	message	That's all there is.{end_wait}
+04481	message	That's it?! Nothing\nmore you can tell them?{end_wait}
+04482	message	No more, Mayor.{end_wait}
+04483	message	It's up to you now,\n{actor_name:1}...{pause_20_skippable}{actor_name:2}.{end_wait}
+04484	message	H{pause_20_skippable}-Hey, isn't it nearly\ntime to meditate?{end_wait}
+04485	message	Oh{pause_20_skippable} right!\nMeditation! Let's go!{end_wait}
+04486	message	What good are those men?{page_break}Sending children out with\nno help, no direction...{end_wait}
+04487	message	I know. But...{end_wait}
+04488	message	They left us no other\nchoice.{end_wait}
+04489	message	Then{pause_20_skippable}{pause_20_skippable} when should they go?{end_wait}
+04490	message	We can't afford to wait,\nby the sound of it.{end_wait}
+04491	message	At dawn tomorrow?{end_wait}
+04492	message	Tomorrow?{pause_20_skippable}{pause_20_skippable} Yes. Tomorrow.{end_wait}
+04509	MsgSanctumMyControlOverPsynergyHas	My Psynergy has grown\nsince last night...{page_break}It must be because I\nmet the Wise One.{end_wait}
+04510	MsgSanctumThePowerOfMtAlephStems	Mt. Aleph's power comes\nfrom the Psynergy Stones.{page_break}If the eruption threw the\nStones across the land...{page_break}then perhaps new Adepts\nwill...{end_wait}
+04512	message	I wish the Wise One would\ncome to me and give me\npower too.{end_wait}
+04513	message	The Great Healer says my\nPsynergy grew when I met\nthe Wise One.{end_wait}
+04568	MsgSanctumThePowerOfMyPsynergyHas	My Psynergy has grown so\nmuch, and I don't know\nwhy.{page_break}I'd like to try it on\nsomething. Anything.{end_wait}
+04569	MsgSanctumTheAngaranContinentWillCertainlySee	The Angaran continent\nwill see trouble from\nthese Psynergy Stones...{page_break}Leaving Vale has become\nall the more dangerous.{end_wait}
+04570	MsgSanctumMyPsynergyHasntChangedAtAll	My Psynergy hasn't\nchanged at all.{pause_20_skippable} It isn't\nfair.{end_wait}
+04744	MsgSanctumWeWillHelpAnytimeAs	We'll help you at any\ntime, so long as your\nheart is pure.{end_wait}
+04745	MsgSanctumHealerMustWorriedAboutNever	The healer must be\nworried about...{page_break}Oh, never mind. It's not\nyour burden.{end_wait}
+04746	message	If that eases your mind,\nthen go ahead...{end_wait}
+04747	MsgSanctumWonderIfEverSeeOur	Will we ever see our\nstolen gold statue again?{end_wait}
+04982	MsgSanctumWasHandFateReturnedGold	Fate's own hand brought\nthe gold statue back to\nour Sanctum.{end_wait}
+04983	MsgSanctumWhenStrayFromYourWorldly	When you stray from your\npath, fate will guide you\nback to your course.{end_wait}
+04984	MsgSanctumGoOnIfThatEasesThe	Go on, if it calms the\nfear in your mind...{end_wait}
+04985	MsgSanctumChildHasAwakenedOurTeachings	This child has woken to\nour teachings. Guide him\nwell.{end_wait}
+05128	MsgSanctumAmStartingFeelOnlyBeginning	I'm beginning to feel this\nis only the start.{end_wait}
+05129	MsgSanctumPleaseGiveMeStrengthAtTimes	Give me strength, please,\nin times like these...{end_wait}
+05130	MsgSanctumWillITurnIntoATree	Will I turn to a tree too,\none day? How awful...{end_wait}
+05131	MsgSanctumSomeoneWillSaveUsJustKeep	Someone will save us.\nJust keep faith.{end_wait}
+05916	MsgSanctumCurseMayOverButWe	The curse may be over, but\nwe can't lower our guard.{page_break}It's still not safe\noutside the town.{end_wait}
+05917	MsgSanctumHowAboutThatOurWishesHave	Would you look at that.\nOur wishes came true.{end_wait}
+05918	MsgSanctumTheSignsOfDangerAreActually	If anything, there are\nmore signs of danger now\nthan before.{end_wait}
+05919	MsgSanctumPeaceWillBeKeptAsLong	Peace holds so long as we\nkeep up our meditations.{end_wait}
+06179	MsgSanctumCameXianFromVeryDistant	I came to Xian from far\nlands to spread good will.{end_wait}
+06180	MsgSanctumWhenYouStayInXianFor	Stay in Xian long enough\nand you start talking\nstrangely.{page_break}My head gets so\nconfused...{end_wait}
+06410	MsgSanctumWasAfterEerieNightWhen	It was after that eerie\nnight, when the gems fell\nfrom the sky.{page_break}That's when the water-\nspitting beasts showed\nup in the mine!{end_wait}
+06411	MsgSanctumPleaseSaveTheHelplessInAltin	Please help\nthe people of Altin.\nThey have nowhere to go.{end_wait}
+06481	MsgSanctumSavedAltinFromMonstersClearly	You helped save Altin.{page_break}People here will\nremember your courage.{end_wait}
+06482	MsgSanctumAlmightyFateMustHaveHeardMe	I prayed for help.\nYou were the ones\nwho answered.{end_wait}
+07164	MsgSanctumPathSolSanctumStillClosed	The path to Sol Sanctum\nis still closed.{page_break}You'll have to wait for\nthe mountain to quiet.{end_wait}
+07165	MsgSanctumIsaacYourNewFriendsAdepts	{actor_name:1}, are your new\nfriends Adepts, by any\nchance?{end_now}
+07166	message	So others besides Valeans\nhave been given Psynergy?{end_wait}
+07169	message	Your friend seems angry\nat your words,\n{actor_name:1}...{page_break}Then they...\n{text_effect:2}must{reset_text_style} be Adepts!{end_wait}
+07170	MsgSanctumWhyIsItThatDifferentAdepts	Why do different Adepts\nhave different powers?{page_break}Is it because they\nmeditate more, like the\nGreat Healer?{end_wait}
+07171	MsgSanctumItllBeDifficultToReachSol	Reaching Sol Sanctum will\nbe hard until Mt. Aleph\nsettles.{end_wait}
+07172	MsgSanctumISeeABeautifulGirlHas	I see a girl has joined\n{actor_name:1} on his journey.{page_break}I wonder what {actor_name:6} will\nthink when she sees this.{end_wait}
+07173	MsgSanctumItsNotFairIWantTo	It isn't fair! I want\nstrong Psynergy, but I\nhate working for it.{end_wait}
+07307	MsgValeTheHealersAreSupposedToGuard	The healers are meant to\nguard Sol Sanctum. How\ncan they not go in?{end_wait}
+07400	MsgSanctumMayWrongButLatelyThere	I may be wrong, but lately\nMt. Aleph keeps shaking\ntoo often, and too hard.{end_wait}
+07401	MsgSanctumPolishedGoldStatueReturnedUs	I polished the gold statue\nyou brought back.{page_break}It shines so brightly you\nwon't recognize it!{end_wait}
+07402	MsgSanctumIHopeTheEarthquakesArentA	I hope the tremors aren't\na sign of worse to come...{end_wait}
+07403	MsgSanctumDirtyGoldenStatueCleanedUp	That filthy golden statue\ncleaned up nicely. It\nmakes me feel better.{end_wait}

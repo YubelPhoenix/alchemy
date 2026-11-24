@@ -122,7 +122,6 @@ main	rom_main_07	games/tbs/src/battle/battle_data_tail
 main	rom_main_07	games/tbs/src/battle/debug_presets
 main	rom_main_07	games/tbs/src/battle/battle_vars
 main	rom_main_07	games/tbs/src/battle/formations
-main	rom_main_07	games/tbs/src/battle/battle_sprites
 main	rom_main_08	games/tbs/src/system/far_call/BATTLE_ANIM
 main	rom_main_08	games/tbs/src/battle_anim/battle_anim	.text .data
 main	rom_main_08	games/tbs/src/battle_anim/battle_anim_composite
@@ -172,6 +171,7 @@ main	rom_tail_00	games/tbs/sound/songs/mus_colosso_intro	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_colosso	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_djinn_lesson	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_tolbi	.rodata
+main	rom_tail_00	games/tbs/sound/songs/mus_umbral_rift	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_silence	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_sol_sanctum	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_forest	.rodata
@@ -434,6 +434,13 @@ main	rom_tail_01	games/tbs/src/graphics/animref1	.rodata
 main	rom_tail_01	games/tbs/src/graphics/animref2	.rodata
 main	rom_tail_01	games/tbs/src/graphics/sprite/sprites	.rodata.b
 main	rom_tail_02	games/tbs/src/system/resource/directory
+main	rom_tail_02	games/tbs/src/battle_anim/perfecti
+main	rom_tail_02	games/tbs/src/battle_anim/judgment_dark
+main	rom_tail_02	games/tbs/src/battle_anim/falling_wind
+main	rom_tail_02	games/tbs/src/battle/mystery_backdrop
+main	rom_tail_02	games/tbs/src/battle/party_join
+main	rom_tail_02	games/tbs/src/battle/regenerate
+main	rom_tail_02	games/tbs/sound/songs/mus_fight_together	.rodata
 main	rom_tail_02	games/tbs/src/graphics/ui/ui
 main	rom_tail_02	games/tbs/src/graphics/title/title
 main	rom_tail_02	games/tbs/src/graphics/battle_bg/battle_bg
@@ -629,7 +636,14 @@ main	rom_tail_02	games/tbs/src/map/map_176/map
 main	rom_tail_02	games/tbs/src/map/map_177/map
 main	rom_tail_02	games/tbs/src/map/map_178/map
 main	rom_tail_02	games/tbs/src/map/map_179/map
+main	rom_tail_02	games/tbs/src/map/map_180/map
+main	rom_tail_02	games/tbs/src/map/map_181/map
+main	rom_tail_02	games/tbs/src/map/map_182/map
+main	rom_tail_02	games/tbs/src/map/map_183/map
+main	rom_tail_02	games/tbs/src/map/map_184/map
+main	rom_tail_02	games/tbs/src/battle/battle_sprites
 main	rom_tail_02	games/tbs/src/system/overlay/overlays
+main	rom_tail_03	games/tbs/src/graphics/sprite/sprites	.rodata.c
 36f	text	games/tbs/src/menu/entry/title
 36f	text	games/tbs/src/menu/title
 36f	text	games/tbs/src/menu/import/title
@@ -1005,3 +1019,6 @@ main	rom_tail_02	games/tbs/src/system/overlay/overlays
 3ce	text	games/tbs/src/debug/entry/test
 3ce	text	games/tbs/src/debug/test
 3ce	text	games/tbs/src/debug/import/test
+3d5	text	games/tbs/src/scene/entry/umbral_rift
+3d5	text	games/tbs/src/scene/umbral_rift
+3d5	text	games/tbs/src/scene/import/umbral_rift

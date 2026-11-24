@@ -1,0 +1,26 @@
+# Venus Lighthouse: the approach, scholars, soldiers, relief inscriptions and statue.
+09837	MsgFieldVenusLighthouseWasAttackedBy	Venus Lighthouse was...{pause_20_skippable}\nstruck by{pause_20_skippable} strangers...{pause_20_skippable}{pause_20_skippable}\nwho came without warning.{end_wait}
+09838	MsgVenusLighthouseIodemBeHappyTheEntranceTo	Iodem, rejoice{pause_20_skippable}. The way\ninto Venus Lighthouse\nstands open...{page_break}After{pause_20_skippable} so many years...\nour work has{pause_20_skippable} at last\nborne fruit{pause_20_skippable}!{end_wait}
+09839	MsgVenusLighthouseOhhhHowCouldTheyAttackMere	They attacked scholars...?\nWhat kind of people strike\nthose who cannot fight?{end_wait}
+09840	MsgVenusIveWaitedLongSeeIts	I waited years to see\ninside Venus Lighthouse.\nNow I can barely stand.{end_wait}
+09841	message	I can scarcely move.\nEvery breath sends pain\nthrough my body.{end_wait}
+09842	MsgVenusLighthouseHowHowDidTheyOpenThe	How... How did they\nopen the entrance to\nVenus Lighthouse?{end_wait}
+09843	MsgVenusLighthouseTheyAreAlreadyHeadedForBabi	They have already gone\nnorth toward Babi{pause_20_skippable}\nLighthouse...{end_wait}
+09844	MsgVenusLighthouseBabisSoldiersAreAllColossoVictors	Babi's guard is made\nof Colosso champions...{page_break}Who could have defeated\nall of us? What kind\nof warriors were they?{end_wait}
+09845	MsgVenusLighthouseUhnnnIfOnlyICouldMove	Uhnnn... If only I could\nstand again...{page_break}The lighthouse is open\nat last, but{pause_20_skippable}{pause_20_skippable} at what\ncost?{end_wait}
+09846	MsgVenusLighthouseTheirPowersWereSoStrangeWho	Their powers were\nstrange beyond belief.\nWho were they?{end_wait}
+09847	MsgVenusLighthouseIMustGetInsideVenusLighthouse	I must enter{pause_20_skippable}\nVenus Lighthouse... I must\nlearn what lies within.{end_wait}
+09848	MsgVenusLighthouseTheYoungBoySeemedToGlow	The boy began to shine\nfor a moment...{page_break}Then the entrance to\nVenus Lighthouse opened.{end_wait}
+09849	MsgVenusLighthouseTheyWerentInVenusLighthouseVery	They did not remain\ninside for long.{page_break}When I last saw them,\nthey were heading north\ntoward Babi Lighthouse.{end_wait}
+09850	MsgVenusLighthouseIThoughtIRecognizedOneOf	One of them looked\nfamiliar...{page_break}A scholar who worked\nfor Babi. Could it\nhave been Kraden?{end_wait}
+09851	MsgVenusLighthouseKradenToldThemToStopBut	Kraden begged them to\nstop, but they attacked.{page_break}They turned on scholars\nwithout a second thought.{end_wait}
+09852	MsgVenusLighthouseKradenWentInsideButThenCame	Kraden entered, then\nreturned and said this\nwas not the way in.{page_break}But we searched every\ncorner. Where else\ncould an entrance be?{end_wait}
+09853	MsgVenusThoughtIdExploreAfterDoor	I planned to explore\nonce the door was open.{page_break}While I searched this\nroom, Kraden and the\nothers suddenly appeared.{end_wait}
+09854	message	They touched the statue.\nThen light spread across\nthe floor.{end_wait}
+09855	MsgVenusLighthouseIfKradenHadntBeenThereWe	Without Kraden, we would\nhave been killed.{end_wait}
+09856	MsgVenusLighthouseKradenSaidSomethingAboutThisBeing	Kraden called this place\nthe exit...{page_break}What has he discovered?\nWhat does he know?{end_wait}
+09857	MsgVenusLighthouseIWonderWhatMysteriesTheStatue	What secrets does the\nstatue conceal?{page_break}Kraden said it showed\nthe true path, but how\ncould stone reveal it?{end_wait}
+09858	MsgVenusThereWordsCarvedIntoRelief	Words have been cut\ninto the relief...{page_break}To climb Venus Lighthouse,\nfirst awaken the power\nthat lies within.{page_break}Seek it with the eyes\nthat see beyond the\nsurface of things.{page_break}Yet this is not the\nfirst step of the path.{page_break}Its true beginning lies\nalong ancient roads in\nlands far from here.{end_wait}
+09863	message	Only one with a true\nheart can recognize\nthe road ahead.{end_wait}
+09864	MsgVenusStatueSpeaksIsaacSoulYe	The statue speaks to\n{actor_name:1}'s soul...{page_break}You who seek the beacon,\nI shall answer your wish.{page_break}The sealed path does\nnot begin here.{page_break}It begins far away,\non the land of an\nancient people,{page_break}where the sunrise lies\nto your left as you\nface the lighthouse.{end_wait}
+09873	MsgVenusHmmmWeCantPushBlock	The block will not move\nany farther.{end_wait}

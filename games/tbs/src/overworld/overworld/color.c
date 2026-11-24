@@ -3,6 +3,7 @@
 // Part of overworld.c.
 
 #include "../overworld_internal.h"
+#include "world_state.h"
 
 // Palette work stores 224 BG colours and 224 OBJ colours, each as B, G, R.
 #define COLOR_MAX 448
@@ -372,6 +373,9 @@ void PaletteFade_Build(u32 mode, u16 *src, u16 *dst, s32 half) {
 void PaletteFade_Initialize(void) {
   struct PaletteFade *work;
 
+  // Ashfall's deferred tint effect is disabled; allocate only the original
+  // palette work size. The abandoned cache consumed extra EWRAM in every
+  // location, including the world map, even though nothing updated it.
   work = AllocHeapSlotEwram(HEAP_SLOT_PALETTE_FADE, sizeof(*work));
   Dma_Fill32(0, work, sizeof(*work));
   Dma_Set((void *)BG_PLTT, &work->palette[0],

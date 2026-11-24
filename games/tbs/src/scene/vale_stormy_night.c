@@ -860,13 +860,15 @@ static void ValeStormyNight_DoraSendsIsaacToThePlaza(void) {
   Actor_SetPosition(ACTOR_DORA, 0, 0);
   Actor_SetPosition(ACTOR_KYLE, 0, 0);
 
-  // Second placement experiment: move the figure well above and left of
-  // Isaac, clear of the doorway. Its automatic depth should follow this
-  // higher ground position; keep the appearance brief and entirely silent.
-  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(260), PIXELS(842));
+  // Isaac is at (302, 905) here. He turns south toward the plaza, and the
+  // figure stands on the open path 60 pixels north of him, so it is behind
+  // him as he faces away. (South of him is a cliff face; a figure there never
+  // showed.)
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_SOUTH, 0);
+  Actor_SetPosition(ACTOR_HOODED_FIGURE, PIXELS(302), PIXELS(845));
   Actor_FaceDirection(ACTOR_HOODED_FIGURE, FACING_SOUTH, 0);
   Import_ActorSetAnimation(ACTOR_HOODED_FIGURE, ANIM_STAND);
-  Event_WaitFrames(24);
+  Event_WaitFrames(110);
   Actor_SetPosition(ACTOR_HOODED_FIGURE, 0, 0);
 
   Import_ActorSetAnimation(ACTOR_KYLE, ANIM_STAND);
@@ -3427,7 +3429,7 @@ struct ActorTemplate gValeStormyNight_ActorTemplates[] = {
         0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { 0x120, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_SOUTH, TALK_FACING_PARTY, 0 },
-    { SPRITE_BEARDED_MAN_IN_LONG_ROBE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+    { SPRITE_GAROH_HOODED_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         0, 0, 0, FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SCENE_TABLE_END },
 };

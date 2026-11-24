@@ -1,0 +1,25 @@
+00765	message	Hired Thief
+00766	message	Thief Chief
+00767	message	Hired Thief
+N15	MsgDarkMiaThievesQuiet	Imil is quiet today...\nBut the lighthouse is\nstill dark.{end_wait}
+N16	MsgDarkMiaThievesAir	Megan and Justin can\nmanage for a little while.\nI needed to clear my head.{end_wait}
+N17	MsgDarkMiaThievesThiefA	There she is. Blue hair,\nhealer's robes. Don't let\nher get back to Imil.{page_break}Move in.{end_wait}
+N18	MsgDarkMiaThievesSoftHello	You're blocking the road.\nIs something wrong?{end_wait}
+N19	MsgDarkMiaThievesThiefB	Not for us. Come quietly\nand we'll keep it that way.{end_wait}
+N20	MsgDarkMiaThievesSerious	Then put your knives\naway. I'm not coming\nwith you.{end_wait}
+N21	MsgDarkMiaThievesChiefArrives	Three of you... beaten\nby a healer? Useless.{end_wait}
+N22	MsgDarkMiaThievesChiefWarning	Keep her there, boy.\nThis won't take long.{end_wait}
+N23	MsgDarkMiaThievesWalkAway	Your men are beaten.\nYou can still walk away.{end_wait}
+N24	MsgDarkMiaThievesChiefRefuses	I've come too far to\nturn back now.{end_wait}
+N25	MsgDarkMiaThievesWhoSent	Who sent you?{end_wait}
+N26	MsgDarkMiaThievesChiefLies	Nobody. We heard you\nhad medicines we could\nsell. That's all.{end_wait}
+N27	MsgDarkMiaThievesNotBuying	You didn't ask for any.\nYou came straight for me.\nWho told you where to wait?{end_wait}
+N28	MsgDarkMiaThievesChiefSlips	We watched the village.\nWe knew you'd take\nthis road.{end_wait}
+N29	MsgDarkMiaThievesGold	The girl who hired us\nsaid you'd be alone.\nThat's all I know.{end_wait}
+N30	MsgDarkMiaThievesWhatLook	What girl?{end_wait}
+N31	MsgDarkMiaThievesRedHair	Red hair. Burnt clothes.\nOne of her eyes glowed.{end_wait}
+N32	MsgDarkMiaThievesColdEyes	She looked at us like\nwe'd already failed.{end_wait}
+N33	MsgDarkMiaThievesNotFromImil	I don't know who she is.\nBut Imil's suffered enough.\nI won't allow this again.{end_wait}
+N34	MsgDarkMiaThievesLeave	If I see you again,\nyou won't walk away\nnext time. Now go.{end_wait}
+N35	MsgDarkMiaThievesChiefAgrees	All right! We're going!{end_wait}
+N36	MsgDarkMiaThievesNotAWord	A red-haired girl...\nI need to warn Megan\nand Justin.{end_wait}

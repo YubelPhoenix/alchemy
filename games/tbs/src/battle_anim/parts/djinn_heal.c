@@ -18,7 +18,7 @@
 /// 511 the healing sparkles, 64 for each target; both are offsets from the
 /// point the transform is centred on, in 16.16. work->sheet holds the
 /// Djinni, the battle sheet slot first the motes and then the sparkle dots.
-UNUSED void BattleAnim_RunDjinnHeal(struct BattleAnimArgs *args) {
+void BattleAnim_RunDjinnHeal(struct BattleAnimArgs *args) {
   void **slots;
   void **cursor;
   struct BattleAnimWork *work;

@@ -18,7 +18,11 @@ const struct ElementLevelBonus gElement_PowerResistByLevel[16] = {
     {135, 145}, {140, 150}, {145, 160}, {150, 165},
 };
 
-/// The 44 enemy element presets, by EnemyDefinition.elementPreset.
+/// The enemy element presets, by EnemyDefinition.elementPreset.
+// XXX: Ashfall's presets 44 and 45 are never read: Unit_GetElementLevels,
+// Enemy_GetAttackElement and Unit_CalculateBaseElements (classes.c) read any
+// preset past 43 as preset 0, so Heart and the Mystery Leader fight with
+// Power and Resist 100 in every element. Their fights are balanced so.
 const struct EnemyElementPreset gEnemy_ElementPresetTable[] = {
     {
         .first = ELEMENT_NONE,
@@ -458,6 +462,28 @@ const struct EnemyElementPreset gEnemy_ElementPresetTable[] = {
             PRESET_STATS(95, 110),
             PRESET_STATS(95, 72),
             PRESET_STATS(110, 48),
+        },
+    },
+    // Sarah's: Mars's high-level preset (41) with Jupiter on top instead.
+    {
+        .first = ELEMENT_JUPITER,
+        .digits = {9, 7, 9, 14},
+        .values = {
+            PRESET_STATS(100, 127),
+            PRESET_STATS(95, 72),
+            PRESET_STATS(100, 127),
+            PRESET_STATS(110, 175),
+        },
+    },
+    // Ashfall Dark Adepts: Venus strength, Mercury weakness.
+    {
+        .first = ELEMENT_VENUS,
+        .digits = {14, 7, 9, 9},
+        .values = {
+            PRESET_STATS(110, 175),
+            PRESET_STATS(95, 72),
+            PRESET_STATS(100, 127),
+            PRESET_STATS(100, 127),
         },
     },
 };

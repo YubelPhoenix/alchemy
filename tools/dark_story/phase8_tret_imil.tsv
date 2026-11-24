@@ -1,0 +1,39 @@
+05240	message	Why did this happen?\nDo you know?{end_now}
+05241	message	I see...{pause_20_skippable} So it's because\nthey hurt the holy tree?{end_wait}
+05242	message	I see...\nNo one could have known.{end_wait}
+05279	message	I don't know, Tret.\nBut they're still alive.{end_wait}
+05280	message	Your curse couldn't\nchange them into trees.\nTheir power stopped it.{end_wait}
+05281	message	What if they can help?\nThe villagers are still\ntrapped under your curse.{end_wait}
+05282	message	Even if Kolima is freed,\nwe're still dying, Tret.\nThat hasn't changed.{end_wait}
+05283	message	Kolima cut into me.\nI remember every blow.{page_break}Let them stand as trees.\nLet them learn what it\nmeans to be helpless.{end_wait}
+05284	message	Please listen, travelers.\nTret and I are dying.{end_wait}
+05285	message	If we wither away,\nthis whole forest\nwill die with us.{end_wait}
+05286	message	Then Kolima dies, too.\nThey will not outlive me,\nLaurel.{end_wait}
+05287	message	Tret once protected\nthis forest. He would\nnever have wished this.{end_wait}
+05288	message	His heart is torn.\nThe anger is all\nthat answers now.{end_wait}
+05289	message	That anger became a curse.\nIt turned Kolima's people\ninto trees.{end_wait}
+05290	message	The kind Tret is still\nsomewhere inside him.\nBut I can't reach him.{end_wait}
+05291	message	Hroom! Kindness did nothing\nwhen their axes fell.{page_break}I won't give them\nanother chance.{end_wait}
+05292	message	There is another side\nto Tret, buried beneath\nhis anger.{page_break}Help him find it.\nIt's the only way\nto break this curse.{end_wait}
+05293	message	Please don't leave him.\nIf he dies, Kolima\nwill never be free.{end_wait}
+05294	message	Go deep into the forest.\nFind Tret while you can.{end_wait}
+05295	message	Enough, Laurel.\nNo human can be trusted.{page_break}I'd sooner die\nthan put my life\nin their hands.{end_wait}
+05304	message	I expected more from you,\n{actor_name:1}...{pause_20_skippable} How can you\ngive up so easily?{end_wait}
+05318	message	You came back... Tret's\nvoice is almost gone.{page_break}When he dies,\nthese woods die with him.{end_wait}
+05319	message	Please. Leave while\nthere's still time.{end_wait}
+05323	message	The roots obey me now.\nSo does this forest.{end_wait}
+05325	message	Let Kolima wither.\nThey watched us die\nand kept on cutting.{end_wait}
+05327	message	You came looking\nfor the gentle old Tret?\nHe's gone.{end_wait}
+05328	message	You had your warning.\nNow you'll never leave.{end_wait}
+05329	message	Your power held the curse\nback out there.{page_break}Here, even the ground\nanswers to me.{end_wait}
+05330	message	You'll take root here,\njust like the others.\nThen you'll rot.{end_wait}
+05333	message	I remember the axes.\nThen nothing but anger.{end_wait}
+05335	message	Thank you. I couldn't bear\nto die as that thing.{end_wait}
+05336	message	My roots are failing.\nThere's little time left.{page_break}Go. I'll remember\nwhat you did for me.{end_wait}
+05340	message	Do you still need\nmy help?{end_now}
+05344	message	Then I must free them.\nThey won't die\nfor my anger.{end_wait}
+05345	message	I can't reach them.\nMy strength won't carry\nthat far anymore.{end_wait}
+05361	message	Your branches are moving.\nThe forest is healing!{end_wait}
+05419	message	Fair warning: there's a\nbad sickness going around.{page_break}Keep your hood up and\nyour hands clean.{end_wait}
+05420	message	I don't know you. Are\nyou sure you're not\nlying to me?{end_wait}
+05462	message	{actor_name:4} is a gifted\nhealer.{page_break}I'm one of her\napprentices. She teaches\nme everything.{page_break}She can be stern. But\nshe means well.{end_wait}

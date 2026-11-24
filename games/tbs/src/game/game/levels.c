@@ -11,13 +11,10 @@ struct AbilityDefinition *Ability_GetDirect(s32 abilityId) {
   u32 entryIndex;
 
   entryIndex = abilityId & PSYNERGY_ABILITY_MASK;
-  // BUG: the bound is one past the table's 519 rows, so id 519 reads the
-  // enemy table's first bytes as an action.
-#ifdef BUGFIX
-  if (entryIndex >= 519U) {
-#else
-  if (entryIndex >= 0x208U) {
-#endif
+  // Ashfall: the table runs to ABILITY_LAST (the Mystery Leader's attacks);
+  // an id past it reads row 0. The original bound, 0x208, was one past its
+  // 519 rows and would turn every added ability into row 0, "Nothing".
+  if (entryIndex > ABILITY_LAST) {
     entryIndex = 0;
   }
   return (struct AbilityDefinition *)&gAbilityDefinitions[entryIndex];
@@ -59,6 +56,42 @@ enum { PSYNERGY_FROM_CLASS = 0x8000, PSYNERGY_FROM_ITEM = 0x4000 };
 #define PSYNERGY_ACTION_AT(slots, index) (((u16 *)(slots))[(index) * 2])
 #endif
 
+/// Moves only one of the four heroes learns, whatever their class: a class
+/// is shared by anyone whose Djinni put them in it, and without these the four
+/// end the game with the same list. Each row is {ability, level, {next}}:
+/// every hero's own-element moves are chosen to suit their element and kept
+/// out of their class lines. next (in the struct's padding) names the
+/// stronger tier of the same line; once that is learned the weaker one drops
+/// off the list (Unit_RefreshPsynergy), as a hero has only 32 slots.
+static const struct ClassAbility sSignatureMoves[4][10] = {
+    // Isaac: earth and steel
+    {{179, 5, {180}}, {164, 10, {165}}, {180, 22, {181}}, {165, 26, {166}},
+     {181, 40}, {166, 50},
+     {133, 15}}, // Rune Strike
+    // Garet: fire and bombs
+    {{182, 6, {183}}, {167, 12, {168}}, {160, 16}, {183, 20, {184}},
+     {168, 28, {169}}, {184, 44}, {169, 50},
+     {131, 16}, {132, 24}}, // Ember Burst, Sky Breaker
+    // Ivan: wind and lightning
+    {{185, 4, {186}}, {191, 8}, {188, 10, {189}}, {177, 14}, {186, 22, {187}},
+     {189, 30, {190}}, {187, 46}, {190, 52},
+     {134, 24}, {135, 18}}, // Starfall, Vertigo
+    // Mia: water, frost and ward
+    {{36, 6, {37}}, {128, 8}, {30, 10, {31}}, {37, 22, {38}}, {129, 26},
+     {31, 28, {32}}, {38, 42}, {32, 48},
+     {130, 27}, {137, 30}}, // Djinn's Grace, Falling Wind
+};
+
+/// The field Psynergy every story gate needs, split by hero so each keeps it
+/// whatever their class: Isaac Growth and Move, Ivan Whirlwind, Mind Read and
+/// Reveal, Mia Frost and Douse. Force and Lift come from items. Rows are {ability, level}.
+static const struct ClassAbility sFieldMoves[4][8] = {
+    {{12, 1}, {140, 1}},
+    {{0, 0}},
+    {{78, 1}, {141, 1}, {144, 1}},
+    {{24, 1}, {33, 1}},
+};
+
 /// Rebuilds a character's Psynergy list: drops the actions its class and items
 /// gave, closes up the list, adds every class action learned by its level and
 /// the action of each equipped item that grants one, and closes it up again.
@@ -91,6 +124,22 @@ s32 Unit_RefreshPsynergy(s32 unitId) {
   for (sourceIndex = 0; sourceIndex < 32; sourceIndex++) {
     if (PSYNERGY_ACTION_AT(abilities, sourceIndex) & originFlag)
       PSYNERGY_ACTION_AT(abilities, sourceIndex) = 0;
+  }
+  // A hero's own moves are rebuilt below like class actions. An older save
+  // can hold them as permanent entries, which would keep a dropped tier and
+  // fill the list, so any copy of them goes too.
+  if (unitId >= 0 && unitId < 4) {
+    s32 tier;
+    for (sourceIndex = 0; sourceIndex < 32; sourceIndex++) {
+      for (tier = 0; tier < 10; tier++) {
+        if (sSignatureMoves[unitId][tier].ability != 0 &&
+            (PSYNERGY_ACTION_AT(abilities, sourceIndex) &
+             PSYNERGY_ABILITY_MASK) == sSignatureMoves[unitId][tier].ability) {
+          PSYNERGY_ACTION_AT(abilities, sourceIndex) = 0;
+          break;
+        }
+      }
+    }
   }
   // Pack permanent actions at the end to leave room for class abilities.
   for (slot = 31, sourceIndex = 31; slot >= 0;) {
@@ -129,6 +178,44 @@ s32 Unit_RefreshPsynergy(s32 unitId) {
     }
     if (slot == 32)
       break;
+  }
+
+  // Then the hero's own moves, learned at their levels.
+  if (unitId >= 0 && unitId < 4) {
+    s32 pass;
+    for (pass = 0; pass < 2; pass++)
+    for (sourceIndex = 0; sourceIndex < (pass ? 8 : 10); sourceIndex++) {
+      classAbility = (struct ClassAbility *)(pass ? &sFieldMoves[unitId][sourceIndex] : &sSignatureMoves[unitId][sourceIndex]);
+      if (classAbility->ability == 0 || unit->level < classAbility->level)
+        continue;
+      // A weaker tier drops off once its row's stronger tier is learned.
+      if (classAbility->padding[0] != 0) {
+        s32 tier;
+        for (tier = 0; tier < 10; tier++) {
+          if (sSignatureMoves[unitId][tier].ability ==
+                  classAbility->padding[0] &&
+              unit->level >= sSignatureMoves[unitId][tier].level)
+            break;
+        }
+        if (tier < 10)
+          continue;
+      }
+      slot = 0;
+      while (slot < 32 && (PSYNERGY_ACTION_AT(abilities, slot) &
+                           PSYNERGY_ABILITY_MASK) != classAbility->ability)
+        slot++;
+      if (slot != 32)
+        continue;
+      for (slot = 0; slot < 32; slot++) {
+        if (PSYNERGY_ACTION_AT(abilities, slot) == 0) {
+          PSYNERGY_ACTION_AT(abilities, slot) =
+              classAbility->ability | originFlag;
+          break;
+        }
+      }
+      if (slot == 32)
+        break;
+    }
   }
 
   for (sourceIndex = 0; sourceIndex < INVENTORY_SLOTS; sourceIndex++) {

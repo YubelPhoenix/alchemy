@@ -552,10 +552,23 @@ menu_top:;
     if (v6 == -1) {
       goto menu_top;
     }
+    // Ashfall: rebuild the four heroes' Psynergy lists, so moves a newer
+    // build added (or tiers it drops) show at once on an older save, without
+    // waiting for a Djinni, piece of equipment or level to change.
+    {
+      s32 hero;
+      for (hero = 0; hero < 4; hero++)
+        Unit_RefreshPsynergy(hero);
+    }
     Event_SetFlag(FLAG_KEEP_PARTY_POSITION);
     state = &gSaveBlock;
     WindowColor_Apply(state->windowColor[0], state->windowColor[1]);
-    if (state->buildStamp != BuildStamp_GetTime()) {
+    if (state->buildStamp != BuildStamp_GetTime() ||
+        state->sceneId == (s32)&SceneId_Title ||
+        state->sceneId == (s32)&SceneId_FileScreen) {
+      // A file whose saved destination is the title or file screen (it was
+      // saved mid-transition) would resume on a black screen, so it resumes
+      // at its restart point like a file from another build.
       state->sceneId = state->restartScene;
       state->entrance = state->restartEntrance;
       GameFlag_Clear(FLAG_KEEP_PARTY_POSITION);

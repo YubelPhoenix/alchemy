@@ -1,0 +1,4 @@
+05581	message	Do you think\nyou can stop me?{pause_20_skippable}{end_now}
+05583	message	Then why are you\nstill standing here?{end_wait}
+05584	message	I won't let you pass.\nReady yourselves.{end_wait}
+05587	message	I must finish this\nquickly... Come at me!{end_wait}

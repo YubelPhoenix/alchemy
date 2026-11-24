@@ -1,0 +1,34 @@
+# Xian post-rockslide and school NPC/Mind Read rewrite; event states retained.
+06692	MsgXianXianIsAPeacefulVillageBut	We almost lost Hsu\nunder that rockslide.{page_break}Everyone helped\nbring him back to Xian.{end_wait}
+06693	MsgXianThereWasARockslideOnSilk	The rocks came down\nall across Silk Road.{page_break}It took us days\nto clear a path.{end_wait}
+06694	MsgXianIWentToHelpMoveBoulders	I hauled stones all day.\nI can barely bend now.{end_wait}
+06695	MsgXianThePeopleWhoClearedTheRockslide	Traders say the sand\nin Lamakan is red.{page_break}I've never gone\nthat far west.{end_wait}
+06696	MsgXianHsuIsVeryGoodAtKung	Hsu can break wood\nwith his bare hands.\nStone didn't care.{end_wait}
+06697	MsgXianThePeopleOfXianLoveTheir	Everyone left their stalls\nto clear the road.{page_break}We'd do it again.\nThat's what neighbors do.{end_wait}
+06698	MsgXianAltinWasFloodedWithWaterBut	Feizhi says the flooding\nin Altin is over.{page_break}Travelers helped them\nfight off the creatures.{end_wait}
+06699	MsgXianWeClearedTheRocksFromSilk	The road is open again.\nI still have dust\nin my hair.{end_wait}
+06700	MsgXianManyStrangeThingsHappenedAllAt	One disaster after another.\nI hardly sleep now.{end_wait}
+06701	MsgXianHsuWasCaughtUnderABoulder	One broken leg.\nWe could've lost Hsu.{page_break}Don't tell him I said\nhow scared I was.{end_wait}
+06702	MsgXianTheRocksThereWereVeryHard	Those boulders came down\nwithout warning.{page_break}Who knows what else\nmight fall?{end_wait}
+06703	MsgXianSomePeopleDidNotCarryRocks	Some stood and watched\nwhile the rest worked.\nI won't forget that.{end_wait}
+06704	MsgXianSandIsTheColorOfThe	Lamakan's sand is red?\nLike rust? I've never\nseen anything like that.{end_wait}
+06705	MsgXianHsuIsStrongHeadedHeWould	He saw the rocks falling\nand wouldn't back away.\nAlways so stubborn.{end_wait}
+06706	MsgXianEveryoneStaysInXianTheyDo	We never thought much\nabout the world outside.{page_break}Now its troubles\nare reaching our road.{end_wait}
+06707	MsgXianThisWarriorSavedAltinVillageNo	You helped save Altin,\ndidn't you?{end_wait}
+06708	MsgXianItIsBadForXianIf	No caravans, no silk sales.\nA closed road can starve\na town like ours.{end_wait}
+06709	MsgXianIWasHappyToSeeGems	When those stones fell,\nI thought they were lovely.{page_break}Now I wonder\nwhat they'll bring next.{end_wait}
+06710	MsgXianWhereAreTheMerchantsNoOne	Silk is ready to sell.\nBut where are the traders?\nWe can't wait forever.{end_wait}
+06742	MsgFuchinTempleThisIsMasterFehsKungFu	Master Feh trains us\nhere at the school.{page_break}He's strict, but fair.\nWe owe him a great deal.{end_wait}
+06743	MsgFuchinTempleBouldersOvercameHsuKungFuShould	Hsu trained for years.\nA falling boulder didn't\ncare about any of that.{end_wait}
+06744	MsgXianWaterMonstersFloodedAltinDid	Those creatures flooded\nAltin, didn't they?{page_break}Were you the ones\nwho stopped them?{end_now}
+06747	MsgXianHsuDidNotPracticeJumping	I keep telling myself\nHsu could have jumped.{page_break}But it happened so fast.\nI wasn't there to help.{end_wait}
+06748	MsgFuchinTempleFeizhiPredictedHsusDangerHerProphecy	Feizhi warned us before\nthe boulder fell.{page_break}If she hadn't spoken,\nwe might have lost him.{end_wait}
+06749	MsgFuchinTempleHsuIsRestingFeizhiIsWatching	Hsu is resting indoors.\nFeizhi stays by his side.\nGo and see them.{end_wait}
+06750	MsgFuchinTemplePeaceHasReturnedToXianBut	The road is open again.\nBut the dangers haven't\ngone away.{end_wait}
+06751	MsgFuchinTempleNoMatterHowMuchYouPractice	I trained to punch through\nwood, not rock.{page_break}I think I'll leave\nboulders alone.{end_wait}
+06752	MsgFuchinTempleTheMonstersAreVeryLargeStriking	I don't think my hands\ncould hurt those beasts.\nMaybe I need a weapon.{end_wait}
+06753	MsgFuchinTempleWhenABoulderFallsJumpRepeat	If you see rocks falling,\nget out of the way.{page_break}Simple, until it happens.{end_wait}
+06754	MsgFuchinTempleWhereDidFeizhiGainThePower	Feizhi saw what was coming.\nIf I had that gift,\nwould I want to know?{end_wait}
+06755	MsgFuchinTempleMasterFehIsVeryWorriedAbout	Master Feh hasn't stopped\nchecking on those two.\nHe hides how worried he is.{end_wait}
+06144	MsgXianYouYoungWarriorsLookStrongBut	You look strong enough.\nBut have you trained\nwith Master Feh?{end_wait}
+06150	MsgXianBreakingTreesWithMyHandHurts	I've tried breaking wood\nwith my hands.{page_break}Master Feh makes it\nlook so easy. It hurts!{end_wait}

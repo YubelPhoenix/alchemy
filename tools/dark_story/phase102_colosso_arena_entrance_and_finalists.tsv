@@ -1,0 +1,68 @@
+# Colosso arena: spectators, Lucky Guess crowd, entrance staff, named contestants, finalists, post-event.
+# Shared MsgXianItIsLocked deliberately excluded; rule instructions in Colosso match stages unmodified.
+08785	MsgColosseumColosseumAlreadyFullIfReally	The arena's full. If you\nwant a seat now, you'll\nhave to pay one of those{page_break}ticket resellers.{end_wait}
+08279	MsgColosseumHopingGetInSeeColosso	Trying to get inside for\nColosso?{end_now}
+08788	MsgColosseumWantWatchFinalsFromGood	I saved enough for a\nticket, but not for a good\nseat. Those prices are{page_break}absurd.{end_wait}
+08284	MsgColosseumColossosLuckyGuessMakesBattles	Lucky Guess makes the\nmatches more exciting.\nPeople cheer for whoever{page_break}they've picked.{end_wait}
+08790	MsgColosseumHoldOnSecond	Hold it! Where do you think\nyou're going?{end_wait}
+08285	MsgColosseumWantWinBigPutOn	I backed the fighter no one\nelse wanted. If he wins, I\nwon't have to work for a{page_break}month.{end_wait}
+08798	MsgColosseumLookImSorryButWe	Sorry. We can't let the\nfinalists or their\nteammates take part in{page_break}Lucky Guess. Those are the\nrules.{end_wait}
+08794	MsgColosseumWantTryOutLuckyGuess	Want to try Lucky Guess?{end_now}
+08286	MsgColosseumDoKnowLuckyGuess	Do you know how Lucky Guess\nworks?{end_now}
+08468	MsgColosseumImRatedAsSecondBest	They ranked me second.\nSecond! I'm Azart, and I'm\ngoing to prove they got it{page_break}wrong. So you're Babi's\nchosen fighter?{end_wait}
+08470	MsgColosseumWaahDontFrightenMe	{text_effect:4}Waaah!{reset_text_style} You nearly scared me\nout of my skin!{end_wait}
+08472	MsgColosseumWhoHaveComeQuestionMe	You came to speak with me?\nThen you must be {actor_name:1}.{end_wait}
+08475	MsgColosseumDekkaMustWinFinalsDekka	Dekka will win. Dekka must\nwin. Don't forget that\nname.{end_wait}
+08479	MsgColosseumAmNavampaGondowanSixthRanked	I'm Navampa, from Gondowan.\nSixth seed. I didn't come\nthis far to lose quietly.{end_wait}
+08482	MsgColosseumImBufordSeventhSeed	Buford. Seventh seed.\nThat's all you need to\nknow.{end_wait}
+08485	MsgColosseumYouReadyForFinals	Ready for the finals?{end_now}
+08807	MsgColosseumHeyYouRe	Wait. You're {actor_name:1},\naren't you?{end_wait}
+08491	MsgColosseumDayTiredWaiting	We've been standing here\nforever. Start the finals\nalready!{end_wait}
+08303	MsgColosseumHavePerfectTechniquesLikeThose	That fighter cleared the\ntrial. It takes skill to\nget this far, but the{page_break}finals are another matter.{end_wait}
+08301	MsgColosseumSilence	What?!{end_wait}
+08302	MsgColosseumHaveMakeThroughCountlessMatches	That warrior failed the\ntrial. There's no place for\nhim in the finals now.{end_wait}
+08440	MsgColosseumIsaacOnlyOneEnteringFinals	Only {actor_name:1} is entering?\nWhat happened to everyone\nelse?{end_wait}
+08466	MsgColosseumPrepareYourselvesContestantsFinalsWill	Contestants, take your\nplaces! The finals are\nabout to begin!{end_wait}
+08500	MsgColosseumSeeYouveMadeThroughYour	So, you won your first\nmatch. Don't let it go to\nyour head.{end_wait}
+08504	MsgColosseumWonBothMatches	Two wins. One more and this\nwhole crowd will know your\nname.{end_wait}
+08297	MsgColosseumEntranceGoForItThatsItIm	That's it! Keep going! I'm\ncheering for you!{end_wait}
+08298	MsgColosseumEntranceWatchingTheTrialsMakesMeReally	The trials are better than\nI expected. Those fighters\nmake every obstacle look{page_break}dangerous.{end_wait}
+08299	MsgColosseumEntranceWatchingSuchProudSkilledWarriorsIn	I came for swordplay.\nWatching the trials has\nbeen just as good.{end_wait}
+08300	MsgColosseumEntranceIveWaitedAWholeYearTo	I've waited all year for\nColosso. I won't miss a\nsingle match.{end_wait}
+08304	MsgColosseumEntranceEvenTheSmallerWarriorsCanWin	Don't count the smaller\nfighters out. A big man can\nstill trip over his own{page_break}feet.{end_wait}
+08305	MsgColosseumEntranceTheseTrialsAreBasedOnPersonal	Those trials test more than\nmuscle. You can tell which\nfighters think before they{page_break}move.{end_wait}
+08306	MsgColosseumEntranceWhatFantasticPhysiquesWhyIfI	Look at the size of them! I\nused to be built like that.\nMore or less.{end_wait}
+08307	MsgColossoDidntThinkBattles	The trial matches were\nrough enough. The finals\nmust be something else.{end_wait}
+08308	MsgColosseumEntranceNoMatterHowGoodAWarrior	No matter how good you are,\nsomeone better might be\nwaiting in the next match.{end_wait}
+08277	MsgColosseumEntranceTheyreHoldingThePreliminaryColossoHeats	The preliminary trials are\nunderway. Only those who\nclear them can reach the{page_break}finals.{end_wait}
+08783	MsgColosseumEntranceTheFinalsAreFinallyHereI	The finals at last! I've\nbeen waiting for the best\nfighters to face each{page_break}other.{end_wait}
+09153	MsgColosseumEntranceColossoIsOverAndTheColosseum	Colosso is over. The\narena's closed until next\nyear. You can still admire{page_break}the gates, I suppose.{end_wait}
+08278	MsgColosseumEntranceSighTheColosseumIsPackedWith	Not a seat left in the\narena. I should've come\nearlier.{end_wait}
+08784	MsgColosseumEntranceIHeardBabiHasPickedSome	Babi picked a fighter for\nthe finals himself. I'd\nlike to see what makes that{page_break}one special.{end_wait}
+09160	MsgColosseumEntranceTheColosseumIsClosedUntilNext	No entry. The arena is shut\nuntil next year's Colosso.{end_wait}
+08282	MsgColosseumEntranceIfYouHitItBigIn	People win big at Lucky\nGuess, but you need to\nwatch the trials before{page_break}choosing a fighter.{end_wait}
+08786	MsgColosseumEntranceAWarriorNamedIsaacWasSelected	A warrior named {actor_name:1}\nwas picked by Babi. That\nsounds like a safe bet.{page_break}Maybe too safe.{end_wait}
+08283	MsgColosseumEntranceIveBeenBettingOnTheLucky	I've played Lucky Guess for\nyears without winning once.\nMaybe today's my day.{end_wait}
+08787	MsgColosseumEntranceHavingAWarriorWhoWasntIn	A fighter who skipped the\ntrials gets a place in the\nfinals? Tell me that's{page_break}fair.{end_wait}
+08289	MsgColosseumEntranceIWonderWhichWarriorWillBe	I wonder who'll make the\nfinals. I've got my eye on\na few of them.{end_wait}
+08799	MsgColosseumEntranceTheRealBattlesAreAboutTo	No more trials. Now we find\nout who can actually fight.{end_wait}
+09161	MsgColosseumEntranceWhenTheColosseumGatesFinallyShut	When those gates close,\nColosso really is over.\nI'll miss the noise.{end_wait}
+08290	MsgColosseumEntranceHavingToArriveSoEarlyJust	If you don't arrive before\ndawn, you end up standing\noutside. I hate it.{end_wait}
+08800	MsgColosseumEntranceTheWarriorNamedIsaacIsSure	I picked {actor_name:1} in Lucky\nGuess. Everyone says\n{actor_name:1} can fight. I hope{page_break}they're right.{end_wait}
+09163	MsgColosseumEntranceTheFightingAtThisYearsColosso	After a week of shouting\nand cheering, these gates\nlook lonely. Same thing{page_break}every year.{end_wait}
+08291	MsgColosseumEntranceThereAreSoManyPeopleWho	Look how many people came\nlate. Tomorrow they'll all\nbe here before sunrise.{end_wait}
+08801	MsgColosseumEntranceOfCourseItsTheRichWho	The rich buy the good seats\nand never have to queue.\nSome things never change.{end_wait}
+08292	MsgColosseumEntranceImGoingToPickTheBiggest	I'm picking the biggest\nfighter. Bigger means\nstronger, doesn't it?{end_wait}
+08802	MsgColosseumEntranceThereCanBeUpsetsInThe	Babi's favorite might lose.\nThat's the thing about a\nreal fight. Nobody knows{page_break}until it's over.{end_wait}
+08293	MsgColosseumEntranceImFeelingConfidentThisTimeIm	This time I've got a\nwinner. I can feel it.{end_wait}
+08803	MsgColosseumEntranceWhatKindOfWarriorIsThat	What's this {actor_name:1} like?\nBabi must see something in\nhim.{end_wait}
+08294	MsgColosseumEntranceEveryoneKeepsRiskingMoreAndMore	Everyone keeps raising the\nstakes. If an unpopular\nfighter wins, someone will{page_break}make a fortune.{end_wait}
+08804	MsgColosseumEntranceMaybeIWillBuyASeat	Maybe I should buy a seat.\nBut I could eat for a week\nwith that money.{end_wait}
+08295	MsgColosseumEntranceEveryYearIGoAfterA	Every year I say I'll quit\nguessing. Then Colosso\ncomes around and here I am.{end_wait}
+08805	MsgColosseumEntranceImGoingToBeInTrouble	If I don't sell these\nseats, I'm the one who'll\nlose money. Anyone want a{page_break}ticket?{end_wait}
+08296	MsgColosseumEntranceOnceTheTrialsAreOverIts	Once the trials end, the\ncrowd gets twice as loud.\nYou should see the gates{page_break}then.{end_wait}
+08806	MsgColosseumEntranceAllOfTheProfitsFromThe	The money from Lucky Guess\ngoes to Babi. People keep\nplaying anyway.{end_wait}
+08467	MsgColosseumEntranceIAmMorganIAmThe	I'm Morgan, the top seed.\nThe other fighters should\nremember that.{end_wait}
+08488	MsgColosseumEntranceYouCannotLeaveUntilTheFinals	You can't leave until the\nfinals are finished. Those\nare the rules.{end_wait}
+08489	MsgColosseumEntranceIFeelWeveBeenWaitingForever	We've been waiting so long\nI nearly fell asleep. It\nwas just like this at my{page_break}first Colosso.{end_wait}
+08490	MsgColosseumEntranceWhenTheGongSoundsTheFinals	Listen for the gong. That's\nwhen the finals begin.{end_wait}

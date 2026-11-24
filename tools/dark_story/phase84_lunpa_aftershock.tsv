@@ -1,0 +1,62 @@
+09423	MsgLunpaGaretRefusesToReturn	{actor_name:1}, don't go back!\nYou saw those guards.{end_wait}
+09424	MsgLunpaVillageVillagerAReopened	Some of Dodonpa's men\nran out of the fortress.\nSomething happened there.{end_wait}
+09425	MsgLunpaVillagerBShivers	Winter's nearly here.\nEven the streets\nfeel colder now.{end_wait}
+09426	MsgLunpaVillageVillagerCReopened	They say intruders\ngot inside the fortress.{page_break}Anyone brave enough\nto try that must\nhave been desperate.{end_wait}
+09427	MsgLunpaVillagerDAsksAboutCommotion	Heard what happened\nat the fortress?{end_now}
+09428	message	A group went in\nlooking for Hammet.{page_break}The guards say\nthey fled without him.\nThat's their story.{end_wait}
+09429	message	Whoever went inside\nmust have lost their mind.{page_break}Still... I hope\nthey got away.{end_wait}
+09430	MsgLunpaVillageVillagerEReopened	Dodonpa's men came back\nbruised and limping.{page_break}They're not so fearsome\nwhen someone fights back.{end_wait}
+09431	MsgLunpaVillageVillagerFReopened	Donpa himself warned\nthe guards of intruders.{page_break}I don't know what\nto believe about him\nanymore.{end_wait}
+09432	MsgLunpaVillageVillagerGReopened	Someone finally stood up\nto Dodonpa's men.{page_break}For the first time,\nI can breathe a little.{end_wait}
+09433	MsgLunpaVillageVillagerHReopened	The fortress guards\nhave been doubled.{page_break}Whoever got inside\nmust have frightened them.{end_wait}
+09434	MsgLunpaGuardsWarnPartyAway	The fortress is closed.\nDon't come any nearer.{end_wait}
+09435	MsgLunpaLeftGuardRecognizesHammet	That man with you...\nI've seen him before.{end_wait}
+09436	MsgLunpaLeftGuardDismissesThought	No. Can't be.\nI must've mistaken him\nfor someone else.{end_wait}
+09437	MsgLunpaRightGuardWondersHow	Those warriors from Kalay\ngot past all of us.{page_break}Dodonpa's men blamed\nthe guards at the gate.{end_wait}
+09438	message	That man's face...\nWhy does it look\nso familiar?{end_wait}
+09439	MsgLunpaVillageVillagerAReopenedThoughts	Those guards keep running\nback and forth.\nWhat's going on?{end_wait}
+09440	MsgLunpaVillageVillagerBReopenedThoughts	The leaves are dying.\nWinter's getting close.\nIt's hard not to notice.{end_wait}
+09441	MsgLunpaVillageVillagerCReopenedThoughts	Whoever slipped inside\nis probably trapped.\nI hope they escape.{end_wait}
+09442	MsgLunpaVillageVillagerDReopenedThoughts	All those guards,\nand someone still got in.\nHow?{end_wait}
+09443	MsgLunpaVillageVillagerEReopenedThoughts	Look at them panic.\nThey don't like feeling\npowerless, do they?{end_wait}
+09444	MsgLunpaVillageVillagerFReopenedThoughts	Donpa knows his son's\ndone terrible things.{page_break}But he's still his father.\nCan he really punish him?{end_wait}
+09445	MsgLunpaVillageVillagerGReopenedThoughts	They took my sweets.\nI haven't forgotten.\nNot one of them.{end_wait}
+09446	MsgLunpaVillageVillagerHReopenedThoughts	One gate, watched all day.\nHow did anyone\nslip past them?{end_wait}
+09447	MsgLunpaLeftGuardGlimpsedMerchant	That fellow looks like\nthe merchant we held.{page_break}I only saw him once.\nBetter keep quiet.{end_wait}
+09448	MsgLunpaRightGuardReopenedThoughts	We never left our posts.\nI swear no one\npassed through here.{end_wait}
+09449	MsgLunpaInteriorsFirstHomeAReopened	A traveling merchant\ncame to the gate.{page_break}They turned him away.\nNo outsiders allowed.{end_wait}
+09450	MsgLunpaInteriorsFirstHomeBReopened	Our winter trader\nwas here again.{page_break}The guards sent him off.\nNow we can't even\nbuy what we need.{end_wait}
+09451	MsgLunpaInteriorsFirstHomeAReopenedThoughts	That poor merchant.\nHe carried his goods\nall this way for nothing.{end_wait}
+09452	MsgLunpaInteriorsFirstHomeBReopenedThoughts	He's still nearby.\nDoesn't he know\nLunpa is closed?{end_wait}
+09453	MsgLunpaInteriorsSecondHomeAReopened	I saw something shining\nmove toward the fortress.{page_break}It didn't look human.\nWhat was it?{end_wait}
+09454	MsgLunpaInteriorsSecondHomeBReopened	A glowing creature?\nInside the fortress?{page_break}I don't believe it.\nSomeone's making it up.{end_wait}
+09455	MsgLunpaInteriorsSecondHomeAReopenedThoughts	If a creature got inside,\nmaybe that's why\nthe guards are frightened.{end_wait}
+09456	MsgLunpaInteriorsSecondHomeBReopenedThoughts	Monsters don't wander\nthrough our streets.{page_break}Not normally, anyway.\nWhat is happening?{end_wait}
+09457	MsgLunpaInteriorsThirdHomeAReopened	Monsters came from\nMt. Aleph's eruption?{page_break}Then the trouble\nisn't only here.\nThat's worse than I{page_break}thought.{end_wait}
+09458	MsgLunpaInteriorsThirdHomeBReopened	Grandfather keeps saying\nthe eruption means\nanother great flood.{page_break}He remembers the stories.\nI wish he wouldn't.{end_wait}
+09459	MsgLunpaInteriorsThirdHomeAReopenedThoughts	They say monsters appeared\nbefore the last flood.{page_break}Could it all\nbe happening again?{end_wait}
+09460	MsgLunpaInteriorsThirdHomeBReopenedThoughts	That flood was ages ago.\nIt can't happen twice.\nCan it?{end_wait}
+09461	MsgLunpaWeaponMerchantReopened	Trouble is coming.\nTake what weapons\nyou can afford.{page_break}If the roads stay closed,\nthis stock is all\nI'll ever have.{end_wait}
+09462	MsgLunpaWeaponMerchantReopenedThoughts	All those weapons,\nand Dodonpa's men\ncouldn't stop a few kids.{end_wait}
+09463	MsgLunpaArmorMerchantReopened	I've got good armor.\nMight be the last stock\nto reach Lunpa.{end_wait}
+09464	MsgLunpaArmorMerchantReopenedThoughts	When this is sold,\nI'll close the shutters.\nThere's no more coming.{end_wait}
+09465	MsgLunpaItemMerchantReopened	The armor and weapons\nshops are almost empty.{page_break}We're all running low.\nThis can't go on.{end_wait}
+09466	MsgLunpaIsntWeaponsVendors	It's not just them.\nI can't get fresh stock\nthrough the gates.{end_wait}
+09467	MsgLunpaInnkeeperOffersRoom	Would you like a room?{end_now}
+09468	message	Go ahead, then.\nI'll have a room ready.\nNo questions asked.{end_wait}
+09469	message	As you wish.\nWe'll have a room\nif you change your mind.{end_wait}
+09470	MsgLunpaInnClerkAsksAboutGuest	Are you Donpa's guest?{end_now}
+09471	message	Then we've been waiting\nfor you. Your room\nis prepared.{page_break}Donpa asked that you\nvisit him afterward.{end_wait}
+09472	message	Oh. Then who is\nDonpa expecting?{end_wait}
+09473	MsgLunpaInteriorsInnWorkerReopened	We were told to air\nthe guest room and\nput out clean sheets.{page_break}In this town?\nWho could be coming?{end_wait}
+09474	MsgLunpaInteriorsChefReopened	A letter came from\nthe fortress today.{page_break}Now the boss is cooking\nas if we're holding\na festival.{end_wait}
+09475	MsgLunpaInteriorsInnkeeperReopenedThoughts	Donpa's sending guests.\nYoung travelers,\nfrom what I was told.{page_break}I hope they get here.\nI prepared the inn.{end_wait}
+09476	MsgLunpaInteriorsInnClerkReopenedThoughts	These must be\nDonpa's guests.{page_break}If I'm wrong,\nI've made every bed\nfor nothing.{end_wait}
+09477	MsgLunpaInteriorsInnWorkerReopenedThoughts	No one gets through\nthe village gates.{page_break}How are we supposed\nto receive guests?{end_wait}
+09478	MsgLunpaInteriorsChefReopenedThoughts	Donpa looked stronger\nthan I'd expected.\nMaybe the rumors are wrong.{end_wait}
+09479	MsgLunpaTemplePriestReopened	Some of Dodonpa's men\nleft town today.{page_break}Wherever they're going,\nsomeone will suffer for it.{end_wait}
+09480	MsgLunpaInteriorsTemplePriestReopenedThoughts	I asked the heavens\nto punish those thieves.{page_break}A priest shouldn't\nwish harm on anyone.\nYet I meant every word.{end_wait}
+09481	MsgLunpaVillageWestGuardReopened	The fortress is chaos.\nDon't go near it.{page_break}They're looking\nfor someone to blame.{end_wait}
+09482	MsgLunpaVillageEastGuardReopened	No merchants enter.\nThose are Dodonpa's orders.{page_break}If you don't belong here,\nget out before he hears.{end_wait}
+09483	MsgLunpaVillageWestGuardReopenedThoughts	Are these the intruders?\nNo, they look harmless.{page_break}I don't want to be\nwrong about this.{end_wait}
+09484	MsgLunpaEastGuardThinksMerchantHarmless	That merchant wanted\nto sell his goods.\nI doubt he means trouble.{page_break}Still, I wish he'd leave.\nDodonpa's men have\nshort tempers.{end_wait}

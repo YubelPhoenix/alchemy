@@ -1,0 +1,29 @@
+	.set overlay_imports, 1
+	.set import.GameFlag_Get, 1
+	.set import.GameFlag_Set, 1
+	.set import.Event_Start, 1
+	.set import.Event_End, 1
+	.set import.Event_SetAfterBattleDestination, 1
+	.set import.Event_SetDefeatDestination, 1
+	.set import.Field_RequestBattleFromEncounterTable, 1
+	.set import.WaitFrames, 1
+.set import.MapGrid_CenterOnFollowedPoint, 1
+.set import.Event_WaitFrames, 1
+.set import.Event_StartScreenTransition, 1
+.set import.Event_WaitTransitionFrames, 1
+.set import.Actor_ConfigureSpriteColor, 1
+.set import.Import_ActorSetPosition, 1
+.set import.Import_EventSetExitRequest, 1
+.set import.Party_RestoreHpPp, 1
+.set import.Event_SetMessageId, 1
+.set import.Event_ShowMessageThenWait, 1
+.set import.Sound_PlaySong, 1
+.set import.PaletteFade_SetTarget, 1
+.set import.PaletteFade_StartInterpolation, 1
+.set import.MapGrid_SetScreenShake, 1
+.set import.MapGrid_WaitForShakeToSettle, 1
+.set import.ArcTan2, 1
+.set import.Actor_ArmCallback, 1
+.set import.Portrait_CloseWindow, 1
+.set import.MapGrid_CopyMetatileCellsRect, 1
+.include "games/tbs/src/system/overlay.inc"

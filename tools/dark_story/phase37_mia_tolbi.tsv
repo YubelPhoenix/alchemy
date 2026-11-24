@@ -1,0 +1,5 @@
+# Retired Tolbi follow-up message slots; no separate Mia subplot plays.
+N115	MsgDarkMiaTolbiConcern	We should leave.\nThere's nothing else\nto say to her.{end_wait}
+N116	MsgDarkMiaTolbiAdmit	She wants us to doubt\neach other. I won't.{end_wait}
+N117	MsgDarkMiaTolbiSupport	We have people to find.\nLet's keep going.{end_wait}
+N118	MsgDarkMiaTolbiResolve	Then we'll do it\ntogether.{end_wait}

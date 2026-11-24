@@ -1,0 +1,106 @@
+# Babi Lighthouse: workers, injured guards, Sheba's rescue, the sealed door and the ruins.
+09875	MsgBabiSeemsLocked	It seems to be locked.{end_wait}
+09911	MsgBabiLighthouseWeHaventBeenOrderedToStart	No order to resume work.\nPerhaps we have been given\na day to catch our breath.{end_wait}
+09912	MsgBabiLighthouseThereWereStrangeFolkGoingTo	Strangers entered the\nruins. Faran followed\nthem inside.{end_wait}
+09913	MsgBabiLighthouseItsOddThatBabiWouldBuild	Babi chose a strange\nplace for his lighthouse.{page_break}Perhaps the old ruins\nmade a convenient\nfoundation.{end_wait}
+09914	MsgBabiLighthouseCuttingTheseStonesAndStackingThem	Cutting and hauling\nthese stones is hard\nwork.{page_break}If Babi wants it built\nfaster, he can come\nand lift them himself.{end_wait}
+09925	MsgBabiLighthouseThereWasABigFightThat	There was a fight here.\nThe strangers forced\ntheir way into the ruins.{page_break}We could not stop them.\nNow the work has ceased,\nand no one feels safe.{end_wait}
+09926	MsgBabiLighthouseIfFaranWentAfterThemThen	If Faran followed them,\nthis is serious.{page_break}If the trouble spreads,\nwe may never finish\nthe lighthouse.{end_wait}
+09927	MsgBabiLighthouseWhyWouldTheyWantToRush	Why force the work to\nmove so quickly?{page_break}Perhaps Babi wants more\nthan a beacon. Perhaps\nhe seeks power at sea.{end_wait}
+09928	MsgBabiLighthouseNowThatIThinkOfIt	Now that I remember,\nthere was a strange cave\nin the quarry.{end_wait}
+09978	MsgBabiLighthouseTheyWereTerribleWeWereAbsolutely	They were{pause_20_skippable} terrifying.\nWe never stood a chance\nagainst them.{end_wait}
+09979	MsgBabiLighthouseOnlyTwoOfThoseSixEver	Only two of the six\nactually fought us...{page_break}but those two were\nstrong enough to drive\nall of us back.{end_wait}
+09980	MsgBabiLighthouseTheyJustKickedUsOutOf	They shoved us aside\nand continued toward\nthe lighthouse.{end_wait}
+09981	MsgBabiLighthouseTheySetFireToEverythingThats	They burned everything\nin their path. The ground\nis still blackened.{page_break}Fire used against the\nhelpless is the mark\nof a coward.{end_wait}
+09982	MsgBabiLighthouseWereTheOnesWhoAttackedBut	We started the fight,\nbut we were the ones\nleft broken.{page_break}What possessed us to\nchallenge people like\nthat?{end_wait}
+09983	MsgBabiLighthouseTheOtherFourDidntSeemTo	The other four barely\nraised a hand. They\nseemed unwilling to fight.{end_wait}
+09984	MsgBabiLighthouseWhatCouldTheyBePlanningFor	What are they planning\nto do at Babi Lighthouse?\nWhy come here at all?{end_wait}
+09985	MsgBabiLighthouseNoneOfThemHadAnyTorches	None of them carried\na torch.{page_break}The fire appeared from\nnowhere. I still cannot\nexplain it.{end_wait}
+09986	MsgBabiYoureSureTheyWentThrough	You're certain they\npassed through this door?{end_wait}
+09988	message	Well? Does the door open?{end_wait}
+09994	message	Oh! Iodem...{end_wait}
+09995	message	Faran!{end_wait}
+10001	message	Will you go for us?{end_wait}
+10021	MsgBabiLighthouseIAmCountingOnYouIsaac	I trust you,\n{actor_name:1}. Please find\na way through.{end_wait}
+10022	MsgBabiLighthouseWhenISawThemTheyHad	When I saw them, they\nwere already beyond the\ndoor.{page_break}I swear it is true.\nYou have to believe me!{end_wait}
+10023	MsgBabiLighthouseIAmSorryButNotEven	I'm sorry, but even\n{actor_name:7} has never passed\nthrough this door.{page_break}No one has ever found\na way to open it.{end_wait}
+10024	MsgBabiLighthouseThisAllStartedWhenActorWas	This began when {actor_name:7}\nwas taken away to Tolbi.{page_break}If anything happens to\n{actor_name:7}, Lalivero will\nnot let it go unanswered.{end_wait}
+10025	MsgBabiLighthouseIfYouCanOpenThisDoor	If you open this door,\nI will trust Iodem\nonce more.{end_wait}
+10026	MsgBabiLighthouseIDoNotMeanToDoubt	I do not doubt you,\n{actor_name:1}, but I fear\nwhat waits beyond.{page_break}If this door stays shut,\nwe may lose her.{end_wait}
+10027	MsgBabiLighthouseNobodyThinksTheDoorCanBe	No one believes this door\ncan be opened. I am\nstarting to doubt it too.{page_break}I never saw them pass\nthrough. I only heard\nwhat others claimed.{end_wait}
+10028	MsgBabiLighthouseIDontKnowWhatTheyreWaiting	What are they waiting for?{page_break}If they can open the door,\nthey must do it now.{end_wait}
+10029	MsgBabiLighthouseThisIsAllAHugeWaste	This waiting is useless.\nIf we do not find\n{actor_name:7} soon,{page_break}her life may be lost\nbeyond that door.{end_wait}
+10030	MsgBabiLighthouseIHopeTheyCanOpenThe	I hope the door opens.\nI will believe it when\nI see it.{end_wait}
+10031	MsgBabiTheDoor	The door!{end_wait}
+10041	message	Hey, the door's closing!{end_wait}
+10042	message	Why did it close?{end_wait}
+10050	message	This is true...{end_wait}
+10060	MsgBabiLighthouseIBegOfYouIsaacPlease	Please, {actor_name:1}. Bring\n{actor_name:7} back to us.\nWe have no one else.{end_wait}
+10061	MsgBabiLighthouseICantBelieveThisDoorActually	The door opened...\nI never thought I would\nsee this happen.{end_wait}
+10062	MsgBabiLighthouseItTakesGreatCourageToContinue	It takes courage to\nwalk into danger when\nyou know what waits.{page_break}We will remain here.\nReturn to us safely.{end_wait}
+10063	MsgBabiLighthouseImVeryInterestedInWhatLies	I want to know what\nlies beyond this door.{page_break}When this is over, I\nmay go and see it\nfor myself.{end_wait}
+10064	MsgBabiLighthouseIAmNotAfraidOfDanger	I am not afraid of\ndanger, but I would only\nstand in your way.{page_break}Bring {actor_name:7} home.\nThat is all we ask.{end_wait}
+10065	MsgBabiLighthouseIfAnythingHappensToActorTolbi	If {actor_name:7} is harmed,\nTolbi and Lalivero will\nbecome enemies.{page_break}We must not let that\nhappen. Too many lives\nwould be lost.{end_wait}
+10066	MsgBabiLighthouseIfThisDoorOpensMaybeWe	If this door opens,\nperhaps the rest of the\nruins can be reached.{end_wait}
+10067	MsgBabiLighthouseIBetTheMonstersAroundHere	The creatures here are\nnothing compared with\nwhat waits below.{page_break}I am glad the warriors\nwill face that danger\ninstead of me.{end_wait}
+10068	MsgBabiLighthouseThisIsABigWasteOf	This wait is pointless...{page_break}{actor_name:7}'s life is in\ndanger. If they do not\nfind her soon...{end_wait}
+10069	MsgBabiLighthouseIDontWantToHinderActors	I will not hinder\n{actor_name:7}'s rescue.{page_break}From here, the rest is\nfor those warriors\nto decide.{end_wait}
+10070	MsgBabiTruthDoorOpenThoseSeeing	The way opens to those\nwho can see beyond\nwhat their eyes reveal.{end_wait}
+
+
+# Sequential dialogue in Faran's first appeal and the sealed-door explanation.
+09987	message	I saw them enter. The\nstone door opened for them.{end_wait}
+09989	message	I tried to move it.\nIt will not give.{end_wait}
+09990	message	I told you. This door\nhas never opened for us.{end_wait}
+09991	message	If it could be opened,\nwe would have entered\nthe ruins long ago.{end_wait}
+09992	message	But I saw them pass\nthrough it. I know\nwhat I witnessed.{end_wait}
+09993	message	No one has ever passed\nthrough that door. What\nproof do you have?{end_wait}
+09996	message	I am{pause_20_skippable} sorry about\n{actor_name:7}...{end_wait}
+09997	message	Why did this have to\nhappen to her?{end_wait}
+09998	message	Are {actor_name:5} and the others\nbeyond this door?{end_wait}
+09999	message	If they passed through,\nthey are beyond it now...{end_wait}
+10000	message	Then we can follow them.\nWe only need a way\nthrough.{end_now}
+10002	message	There is no one else\nwho can go after them.{end_wait}
+10003	message	Iodem, who are these\npeople?{end_wait}
+10004	message	They came from the far\nnorth.{page_break}They followed the ones\nwho took {actor_name:7} all\nthe way here.{end_wait}
+10005	message	They pursued that group\nall the way from the\nnorth?{end_wait}
+10006	message	Yes. They are dangerous.\nWe have seen what they\ncan do.{end_wait}
+10007	message	Their power is terrible...\nAnd whatever they seek,\nit cannot be good.{end_wait}
+10008	message	Then we are the ones\nwho must stop them.{end_wait}
+10009	message	You believe you can\nstop them?{end_now}
+10010	message	Confidence is not enough.\nWhat can you actually\ndo against them?{end_wait}
+10011	message	Not with that attitude.\nYou will need more\nthan courage.{end_wait}
+10012	message	I have never heard you\nspeak so harshly, Faran.{end_wait}
+10013	message	What do you expect? With\n{actor_name:7}'s life at stake,\nyou expect me to entrust{page_break}her rescue to strangers?{end_wait}
+10014	message	If you want my trust,\nyou must give me a\nreason to believe you.{end_wait}
+10015	message	Then show us what\nyou can do. Prove that\nyou can follow them.{end_wait}
+10016	message	Can you cross the same\npath they took?{end_now}
+10017	message	Confidence means nothing\nuntil you show us what\nyou can do.{end_wait}
+10018	message	There is no other way.\nYou will have to try.{end_wait}
+10019	message	Iodem asks only that\nyou stand back and\nwatch.{end_wait}
+10020	message	Then show us what\nyou can do.{end_wait}
+10032	message	The door moved! It\nactually opened!{end_wait}
+10033	message	After all these years...\nIt truly opened.{end_wait}
+10034	message	How did you manage\nto open it?{end_wait}
+10035	message	I cannot explain it.\nOur Psynergy answered\nwhere strength could not.{end_wait}
+10036	message	We found the way.\nThat is what matters!{end_wait}
+10037	message	There is no time\nfor explanations now.{end_wait}
+10038	message	We can answer your\nquestions later. Sheba\nis still in danger.{end_wait}
+10039	message	Then go. Do not waste\nanother moment. Bring\n{actor_name:7} back to us.{end_wait}
+10040	message	Come, Faran. We must\nreach {actor_name:7} before\nit is too late.{end_wait}
+10043	message	Why would the door\nclose again?{end_wait}
+10044	message	The door answers to\nPsynergy. That much\nis clear.{end_wait}
+10045	message	If you cannot open it,\nyou cannot follow us.\nIt is too dangerous.{end_wait}
+10046	message	Then leave the rest\nto us. We will go on.{end_wait}
+10047	message	You expect us to remain\nhere and do nothing?{end_now}
+10048	message	We cannot open the door.\nFollowing you would only\nput you at risk.{end_wait}
+10049	message	The door will not admit\nus. We cannot follow\nyou beyond it.{end_wait}
+10051	message	But we cannot leave\n{actor_name:7} in their hands,\neven if it is dangerous.{end_wait}
+10052	message	Their strength is far\nbeyond anything you\nhave faced.{end_wait}
+10053	message	Without that power,\nwe cannot pass through?{end_now}
+10054	message	That is what the door\nhas made clear.{end_wait}
+10055	message	What you witnessed was\nonly a fraction of\ntheir true strength.{end_wait}
+10056	message	If we followed, we\nwould only become\nanother burden.{end_wait}
+10057	message	Then {actor_name:7}'s life\nrests in your hands.{end_wait}
+10058	message	Bring {actor_name:7} home safely.\nDo not fail her.{end_wait}
+10059	message	Go now, {actor_name:1}.\nWe will wait for your\nreturn.{end_wait}

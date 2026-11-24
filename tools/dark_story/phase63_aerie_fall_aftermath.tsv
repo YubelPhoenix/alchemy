@@ -1,0 +1,65 @@
+# Venus Lighthouse Aerie: the collapse, Sheba's fall, Felix's sacrifice and the party's return.
+10256	message	We fought as hard\nas we could.{end_wait}
+10257	message	But the Venus beacon\nis burning now.{end_wait}
+10258	message	Saturos and Menardi\nfell into the pit...{end_wait}
+10259	message	They won't light\nanother beacon.{end_wait}
+10260	message	But {actor_name:5} is gone.\nAnd {actor_name:7} is\nstill with him.{end_wait}
+10261	message	What is wrong with you?\n{actor_name:1}, what are you\nstaring at?{end_wait}
+10262	message	{actor_name:5}!{end_wait}
+10263	message	Did you{pause_20_skippable}{pause_20_skippable} finish them?{end_wait}
+10264	message	I know how strong\nthey were.{page_break}You beat them.\nI won't fight you now.{end_wait}
+10265	message	I can't stay here,\n{actor_name:1}.{page_break}I have to go.{end_wait}
+10266	message	Come, {actor_name:7}!{end_wait}
+10267	message	Wait, {actor_name:5}!{end_wait}
+10268	message	Why won't you\ntalk to us?{end_wait}
+10269	message	They fell. It's over!\nYou can stop now!{end_wait}
+10270	message	You still think{pause_20_skippable}\nthis ends with them?{end_wait}
+10271	message	If you intend to awaken\nthe remaining beacons,\nyou will still need...{end_wait}
+10272	message	The Elemental Stars?\nWe have them with us!{end_wait}
+10273	message	Saturos and Menardi\nare gone, {actor_name:5}.\nWhy go on?{end_wait}
+10274	message	Because I must.{pause_20_skippable}\nIf the beacons stay\ndark...{end_wait}
+10275	message	What happens then?{end_wait}
+10276	message	You wouldn't believe\nme now.{pause_20_skippable}\nYou'll see.{end_wait}
+10277	message	We promised Faran\nwe'd bring {actor_name:7}\nhome!{end_wait}
+10278	message	The lighthouse...!{end_wait}
+10279	message	{actor_name:1}!{pause_20_skippable} They are too\nfar away! We cannot reach\n{actor_name:5}!{end_wait}
+10280	message	There's light coming\nup from below!{end_wait}
+10281	MsgVenusNoooo	No!{pause_20_skippable} {actor_name:7}! Hold on!{end_wait}
+10282	message	{actor_name:7}, take my hand!\nPlease!{end_wait}
+10283	message	I can't...{end_wait}
+10284	message	Reach for me!\nDon't look down!{end_wait}
+10285	message	I can feel{pause_20_skippable}{pause_20_skippable} the\nground cracking\nbeneath me!{end_wait}
+10286	MsgVenusWhyHappeningProtectVenusLighthouse	The lighthouse is\ntearing itself apart!\nWhat's happening?{end_wait}
+10287	message	I'm{pause_20_skippable} slipping...{pause_20_skippable}{pause_20_skippable}\nI cannot{pause_20_skippable}{pause_20_skippable} hold on{pause_20_skippable}\nany longer.{end_wait}
+10288	message	No!{pause_20_skippable} Don't let go!\nYou'll fall!{end_wait}
+10289	message	{actor_name:5}...{pause_20_skippable}\n{pause_20_skippable}Thank you.{end_wait}
+10290	message	{text_effect:2}{actor_name:7}!!!{reset_text_style}{pause_20_skippable} No!\nI will not let you die!{end_wait}
+10291	message	!!!{end_wait}
+10292	message	{actor_name:7} fell when\nthe ground broke...{end_wait}
+10293	message	Did {actor_name:5} jump\nafter her?{end_wait}
+10294	message	From that height...\nHow could he survive?{end_wait}
+10295	message	{actor_name:5}...{pause_20_skippable}\nHe didn't even\nhesitate.{end_wait}
+10296	message	From this height,\nwe can't tell if\nthey survived.{end_wait}
+10297	message	I could heal {actor_name:7}\nif I could reach her.\nBut I can't.{end_wait}
+10298	message	{actor_name:1}, what now?\nWe can't stay here.{end_wait}
+10299	message	How can we{pause_20_skippable}\nhelp them? What {text_effect:2}can{reset_text_style}\nwe do from here?{end_wait}
+10300	message	{actor_name:6} is still\nout there. And the\nothers, too.{end_wait}
+10301	message	{actor_name:6}...{pause_20_skippable}\nShe still doesn't\nknow any of this.{end_wait}
+10302	message	{actor_name:1}!{pause_20_skippable} Listen.\nWe'll look for {actor_name:6}.\nWe must get down first.{end_wait}
+10303	message	{actor_name:1}...{pause_20_skippable}\nThere you are.\nCan you stand?{end_wait}
+10304	message	We have to find\n{actor_name:6}. Will you\ncome with us?{end_now}
+10305	message	Thank you.\nI didn't want to\nface this alone.{end_wait}
+10306	message	{actor_name:1}, when we find\n{actor_name:6}, we'll tell her\nwhat {actor_name:5} did. Gently.{end_wait}
+10307	message	Not what we fear.\nJust what we saw.\nShe deserves that.{end_wait}
+10308	message	{actor_name:6} may blame herself\nfor what {actor_name:5} did.\nWe must listen to her.{end_wait}
+10309	message	We don't know\nif {actor_name:5} survived.\nWe can't pretend we do.{end_wait}
+10310	message	When we find {actor_name:6},\nwe'll stay beside her.\nShe won't be alone.{end_wait}
+10311	message	What's wrong, {actor_name:2}?{end_wait}
+10312	message	I was thinking...{pause_20_skippable}{pause_20_skippable}\nHow are we meant to\nclimb down from here?{end_wait}
+10313	message	You're right.{pause_20_skippable} Getting away\nfrom this place will be\ndifficult...{end_wait}
+10314	message	It's back to normal!{end_wait}
+10315	message	The path... it's back.\nHow is that possible?{end_wait}
+10316	message	I don't know.\nNot yet.{end_wait}
+10317	message	We can search\nfor {actor_name:6} now.\nLet's go.{end_wait}
+10318	message	All right{pause_20_skippable}, let's move,\n{actor_name:1}!{pause_20_skippable} We must find\n{actor_name:6}.{end_wait}
+10319	MsgVenusDespiteLongTiring	After a long and weary\nsearch, {actor_name:6} was\nnowhere to be found.{end_wait}

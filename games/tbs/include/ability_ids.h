@@ -93,7 +93,37 @@ enum AbilityId {
   /// The last row of gAbilityStaging.
   ABILITY_SEVERE_BLOW = 0x205,
   /// The last row of abilities.c and gAbilityAnimations.
-  ABILITY_THRASH = 0x206
+  ABILITY_THRASH = 0x206,
+  ABILITY_GOTTERKANONE = 0x207,
+  /// The Mystery Leader's other attacks (Ashfall), in her eight slots'
+  /// order after Gotterkanone. Each is named by the message after
+  /// MsgGotterkanoneName at the same distance as from ABILITY_GOTTERKANONE.
+  ABILITY_EX_GOTTERKANONE = 0x208,
+  ABILITY_RANSNETZ = 0x209,
+  ABILITY_PERFECTI_EXPLOSION = 0x20a,
+  ABILITY_P_VORTEX = 0x20b,
+  ABILITY_GLEPNIR = 0x20c,
+  ABILITY_STERNBRECHER = 0x20d,
+  ABILITY_P_STORM = 0x20e,
+  /// Kaiserdammerung as "???" casts it in Ashfall: an empty Psynergy slot, so it is
+  /// staged as a summon (her figure in Judgment's sequence).
+  ABILITY_P_STORM_SUMMON = 0x8a,
+  /// Falling Wind (Ashfall), Mia's two-part move: its storm on the enemies,
+  /// then its revive (ABILITY_FALLING_WIND_REVIVE), which follows it
+  /// (FallingWind_RunAfterAction) and nobody learns.
+  ABILITY_FALLING_WIND = 0x89,
+  ABILITY_FALLING_WIND_REVIVE = 0x8b,
+  /// The last of the Mystery Leader's attacks.
+  ABILITY_MYSTERY_LAST = ABILITY_P_STORM,
+  /// Sarah's pike techniques (Ashfall): physical, no PP, so she can use
+  /// them; named by the messages from MsgSarahTechniqueName on, in order.
+  ABILITY_PIERCING_THRUST = 0x20f,
+  ABILITY_HAFT_STRIKE = 0x210,
+  ABILITY_DISARM = 0x211,
+  ABILITY_SWEEPING_ARC = 0x212,
+  ABILITY_VAULTING_STRIKE = 0x213,
+  /// The last row of abilities.c and gAbilityAnimations.
+  ABILITY_LAST = ABILITY_VAULTING_STRIKE
 };
 
 #endif

@@ -306,6 +306,9 @@ enum SpriteId {
   /// ★ Named from what the player sees: a young man with brown hair in a
   /// green cloak (spr_035.png)
   SPRITE_FELIX = 0x23,
+   /// A hooded villager from Garoh in The Lost Age, used for the silent figure
+   /// in Vale's storm-night prologue (spr_407.png).
+   SPRITE_GAROH_HOODED_FIGURE = 0x197,
   /// ★ Named from what the player sees: a small boy with spiky orange hair in
   /// a green shirt and shorts (spr_037.png)
   SPRITE_BOY_WITH_ORANGE_HAIR = 0x25,
@@ -520,9 +523,13 @@ enum SpriteId {
   /// ★ Named from what the player sees: a woman with red-brown hair in a pink
   /// dress and a white apron (spr_128.png)
   SPRITE_WOMAN_IN_PINK_APRON = 0x80,
-  /// ★ Named from what the player sees: a man with fair hair in a blue
-  /// feathered cap, holding a lute (spr_129.png)
-  SPRITE_MAN_WITH_LUTE = 0x81,
+  /// Sarah, the optional super boss of Kalay: The Lost Age's unfinished
+  /// blonde girl in a green skirt, built by tools/dark_story/
+  /// build_sarah_overworld.py in the place of the lute player of the Bilibin
+  /// cottage (spr_129.png).
+  SPRITE_SARAH = 0x81,
+  /// Custom Ash Jenna overworld art, in the unused SPR_094 slot.
+  SPRITE_ASH_JENNA = 0x5e,
   /// ★ Named from what the player sees: a young man with brown hair and a
   /// white headband in a white top and blue trousers (spr_130.png)
   SPRITE_YOUTH_WITH_HEADBAND = 0x82,
@@ -742,7 +749,14 @@ enum SpriteId {
   SPRITE_WATER_DROP = 0x1f7,
   /// ★ Named from what the player sees: an island of green hills around a
   /// mountain (spr_504.png)
-  SPRITE_WORLD_MAP_ISLAND = 0x1f8
+  SPRITE_WORLD_MAP_ISLAND = 0x1f8,
+  /// The "???" commander in her dark coat and cap, with a halberd (spr_490.png,
+  /// built by tools/dark_story/build_mystery_overworld.py)
+  SPRITE_MYSTERY_LEADER = 0x1ea,
+  /// "???" filling the sky in Judgment's place when she casts P-Storm: three
+  /// 128x128 frames, Judgment's layout (spr_509.png): crouched in her cloak
+  /// as she rises, arms thrown open, then the cloak spread at the climax.
+  SPRITE_MYSTERY_JUDGMENT = 0x1fd
 };
 
 /// SPRITE_STUMP's animations beyond its standing frame (spr_212.tsv).

@@ -1,0 +1,17 @@
+# Gondowan Cave/bridge: Colosso guards, route warnings, six travelers, Iodem and Babi Lighthouse urgency.
+09164	MsgKaragolDoYouWishCrossInto	Do you want to cross into\nGondowan?{end_now}
+09167	MsgGondowanCaveUsWereTheSoldiersWhoGuard	We're stationed at the\nGondowan bridge. Most days\nthere's nothing to do but{page_break}watch the road. I suppose\nthat's the point.{end_wait}
+09168	MsgGondowanCaveEvenIfYouHeadEastYou	You won't reach Kalay by\ngoing east through here.\nPeople have tried. We never{page_break}saw them again.{end_wait}
+09169	MsgGondowanCaveThoseWhoGoToGondowanRarely	Some travelers cross into\nGondowan without a clue\nwhat they're walking into.{page_break}I wouldn't be so eager.{end_wait}
+09170	MsgKaragolWarriorsHaveBeenFightingWhile	The best warriors are\nfighting at Colosso while\nI'm stuck guarding a{page_break}bridge. Such is a soldier's\nlife.{end_wait}
+09171	MsgGondowanCaveYoudThinkYouCouldGetThrough	That cave to the east looks\npassable, doesn't it?\nEveryone thinks so. Nobody{page_break}I've seen made it through.{end_wait}
+09173	MsgKaragolWeMissedColossoBecauseWe	I spent all of Colosso\nstanding at this post.\nDidn't hear a single cheer.{page_break}That's my luck.{end_wait}
+09174	MsgGondowanCaveWhyWouldIodemChooseToWait	Why would Iodem wait here\nfor us? I don't like being\nwatched, even by someone on{page_break}our side.{end_wait}
+09175	MsgGondowanCaveWeHaventSeenAnybodyUnusualCrossing	Nothing strange crossed\ntoday. Well, except six\ntravelers who didn't look{page_break}like they belonged\ntogether.{end_wait}
+09176	MsgGondowanCaveEvenIfYouGoEastFrom	The cave to the east won't\ntake you to Kalay. I've\nwarned others about it.{page_break}They didn't listen.{end_wait}
+09177	MsgKaragolIveBeenWaitingForIsaac	There you are, {actor_name:1}.\nIodem's waiting. We should\nget to Babi Lighthouse.{end_wait}
+09178	MsgKaragolWhyGoingBackIsaacDo	{actor_name:1}, why turn back\nnow? Did you leave\nsomething behind?{end_now}
+09181	MsgGondowanCaveIodemIsGoingToBabiLighthouse	Iodem is heading for Babi\nLighthouse? They must be\nclose to finishing it.{end_wait}
+09182	MsgGondowanCaveItsALotOfStressBut	I can handle a difficult\npost. It's Iodem standing\nnearby that makes me{page_break}nervous.{end_wait}
+09183	MsgGondowanCaveEveryoneComesDownThisWayWhen	People who can't cross the\nKaragol come down here\nlooking for another way.{page_break}They never believe me about\nthat cave.{end_wait}
+09184	MsgGondowanCaveWeHaveToHeadForThe	Babi doesn't have much\ntime. We need to reach the\nlighthouse before it's too{page_break}late.{end_wait}

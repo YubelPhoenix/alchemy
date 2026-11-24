@@ -316,7 +316,21 @@ Resource_DirectoryTable:
 	overlays 3C3, 3C4, 3C5, 3C6, 3C7, 3C8, 3C9, 3CA, 3CB, 3CC, 3CD, 3CE
 @ XXX (no evidence): whether these rows were left for later resources; they
 @ are empty and nothing reads them.
-	unused 25
+	resource KegareSprites, Monster_KegareSprites
+	resource SarahSprites, Monster_SarahSprites
+	resource HeartBackdrop, Battle_HeartBackdrop
+	resource MysterySprites, Monster_MysterySprites
+	resource MysteryBackdrop, Battle_MysteryBackdrop
+	resource UmbralThroneMap, Field_Map180
+	overlays 3D5
+	resource UmbralThronePalette, Tileset_PaletteUmbral
+	resource UmbralFountainMap, Field_Map181
+	resource UmbralFountainPalette, Tileset_PaletteUmbralMerc
+	resource UmbralMazeMap, Field_Map182
+	resource UmbralMemoryMap, Field_Map183
+	resource UmbralMemoryPalette, Tileset_PaletteUmbralHome
+	resource UmbralCausewayMap, Field_Map184
+	unused 11
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp
@@ -325,7 +339,7 @@ Resource_BuildStamp:
 	.asciz "010628184502\n"
 	.endif
 	.ifdef TBS_EDITION_EN
-	.asciz "010918151347\n"
+	.asciz "261105000000\n"
 	.endif
 	.ifdef TBS_EDITION_FR
 	.asciz "011219190202\n"

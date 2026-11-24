@@ -467,6 +467,8 @@ BattleAnimHandler gBattleAnim_Handlers[BATTLE_ANIM_COUNT - 1] = {
         BattleAnim_RunImpact, // stat_change.c: Impact
     [BATTLE_ANIM_UNUSED_IMPAIR - 1] =
         BattleAnim_RunImpair, // stat_change.c: Impair
+    [BATTLE_ANIM_BLADE_RAIN - 1] =
+        BattleAnim_RunBladeRain, // death_plunge.c: Dawnbreak (Ashfall)
     [BATTLE_ANIM_DRAGON_CLOUD - 1] =
         BattleAnim_RunDragonCloud, // dragon_cloud.c: Dragon Cloud
     [BATTLE_ANIM_DEMON_NIGHT - 1] =
@@ -504,6 +506,19 @@ BattleAnimHandler gBattleAnim_Handlers[BATTLE_ANIM_COUNT - 1] = {
         BattleAnim_RunUnusedTriangleStrike, // bind.c
     [BATTLE_ANIM_ASTRAL_BLAST - 1] =
         BattleAnim_RunAstralBlast,                     // stars.c: Astral Blast
+    [BATTLE_ANIM_DJINN_HEAL - 1] =
+        BattleAnim_RunDjinnHeal, // djinn_heal.c: Djinn's Grace (Ashfall)
+    [BATTLE_ANIM_SWIRLING_STARS - 1] =
+        BattleAnim_RunSwirlingStars, // orbiting.c: Starfall (Ashfall)
+    // Takes no arguments: it reads work->args, which the dispatcher sets.
+    [BATTLE_ANIM_ORBITING_SKULLS - 1] =
+        (BattleAnimHandler)BattleAnim_RunOrbitingSkulls, // orbiting.c: Death Knell (Ashfall)
+    [BATTLE_ANIM_TARGET_BURSTS - 1] =
+        BattleAnim_RunTargetBursts, // orbiting.c: Ember Burst (Ashfall)
+    [BATTLE_ANIM_FALLING_WIND - 1] =
+        BattleAnim_RunFallingWind, // falling_wind.c (Ashfall)
+    [BATTLE_ANIM_FALLING_WIND_REVIVE - 1] =
+        BattleAnim_RunFallingWindRevive, // falling_wind.c (Ashfall)
     [BATTLE_ANIM_GRANITE - 1] = BattleAnim_RunGranite, // stat_change.c: Granite
     [BATTLE_ANIM_QUARTZ - 1] = BattleAnim_RunRevive,   // djinn_beams.c: Revive
     [BATTLE_ANIM_VINE - 1] = BattleAnim_RunVine,       // growth.c: Vine
@@ -665,6 +680,18 @@ BattleAnimHandler gBattleAnim_Handlers[BATTLE_ANIM_COUNT - 1] = {
         BattleAnim_RunEvilBlessing, // burst_shower.c: Evil Blessing
     [BATTLE_ANIM_DEADLY_GAS - 1] =
         BattleAnim_RunDeadlyGas, // burst_shower.c: Deadly Gas
+    [BATTLE_ANIM_GOTTERKANONE - 1] =
+        BattleAnim_RunGotterkanone, // perfecti.c: Gotterkanone
+    [BATTLE_ANIM_EX_GOTTERKANONE - 1] =
+        BattleAnim_RunExGotterkanone, // perfecti.c: EX Gotterkanone
+    [BATTLE_ANIM_RANSNETZ - 1] = BattleAnim_RunRansnetz, // perfecti.c: Ransnetz
+    [BATTLE_ANIM_PERFECTI_EXPLOSION - 1] =
+        BattleAnim_RunPerfectiExplosion, // perfecti.c: Explosion
+    [BATTLE_ANIM_P_VORTEX - 1] = BattleAnim_RunPVortex, // perfecti.c: P-Vortex
+    [BATTLE_ANIM_GLEPNIR - 1] = BattleAnim_RunGlepnir,  // perfecti.c: Glepnir
+    [BATTLE_ANIM_STERNBRECHER - 1] =
+        BattleAnim_RunSternbrecher, // perfecti.c: EX Sternbrecher
+    [BATTLE_ANIM_P_STORM - 1] = BattleAnim_RunPStorm, // perfecti.c: P-Storm
 };
 
 // boreas.c, cybele.c and drain.c: Rock and ice animation geometry.

@@ -1,0 +1,8 @@
+# Isaac's voice in the main story: one brief line at each of four moments the
+# rewrite raised, in the voice his custom-scene lines already set (brief,
+# purposeful, never omniscient). Each is shown by its scene with the message
+# cursor saved and restored, so the original sequences stay aligned.
+N395	MsgDarkIsaacPromisesDora	I promise. I'll come\nhome with {actor_name:6}.{end_wait}
+N396	MsgDarkIsaacAerieJenna	We'll find her. She\nshould hear it from us,\nnot from strangers.{end_wait}
+N397	MsgDarkIsaacTellsFaran	We saw her fall.\nThat's all we know.\nWe'll keep looking.{end_wait}
+N398	MsgDarkIsaacShipJenna	Hold on, {actor_name:6}.\nWe're coming.{end_wait}

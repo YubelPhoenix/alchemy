@@ -1,0 +1,91 @@
+09225	MsgLunpaGuardsCatchParty	Halt! Who goes there?{end_wait}
+09226	message	I've stood here all day.\nHow did you get inside?{end_wait}
+09227	message	Doesn't matter.\nYou're not staying.{end_wait}
+09228	message	You heard him.\nTurn around and leave.{end_wait}
+09229	MsgLunpaWho2	Who are you?{end_wait}
+09230	message	How did you slip\npast the outer guard?{end_wait}
+09231	message	Don't care.\nYou're leaving now.{end_wait}
+09232	MsgLunpaGuardForbidsReturn	And don't come back.{end_wait}
+09233	MsgLunpaLeftGuardHearsSomeone	Did you hear that?\nSomeone's nearby.{end_wait}
+09234	MsgLunpaRightGuardFeelsCreepy	You're hearing things.\nBut this place {text_effect:2}is{reset_text_style} creepy.\nI don't like it.{end_wait}
+09235	message	No one's getting inside.\nSo why do they keep us\nstanding here all night?{end_wait}
+09236	MsgLunpaHammetGreatMerchant	Hammet brings us more\nthan any caravan.\nKeep the merchant safe.{page_break}Dodonpa wants him alive.\nAlive and paying.{end_wait}
+09237	MsgLunpaZZZ	Z-z-z...\nJust a moment.\nI'll open my eyes...{end_wait}
+09238	MsgLunpaDodonpasOrdersAbsolute	Dodonpa gave an order.\nNo one gets through.\nNot even another guard.{end_wait}
+09239	MsgLunpaSighBadCouldnt	Colosso must be over\nby now. I could've\nbeen watching it.{end_wait}
+09240	MsgLunpaStrangeSwearSomeone	Someone just passed me.\nI'm certain of it.{page_break}No... I'm exhausted.\nThat's all it is.{end_wait}
+09241	MsgLunpaTakeCareAnybody	If someone tries\nto get past, I'll\nmake them regret it.{end_wait}
+09242	MsgLunpaToldStandGuard	I never asked to stand\nguard down here.{page_break}What if an intruder comes?\nWhat am I supposed to do?{end_wait}
+09243	MsgLunpaWhoDisruptingSleep	Who's waking me?{end_wait}
+09244	message	Who's there? Let me sleep!{end_wait}
+09245	message	Stop that noise!{end_wait}
+09246	MsgLunpaIntruder	Intruder! Over here!{end_wait}
+09247	message	Thought you'd get past me?{end_wait}
+09248	message	Then fight your way\nthrough. Come on!{end_wait}
+09249	MsgLunpaGuardWhosThat	Who's there?{end_wait}
+09250	message	You walked into\na fortress of thieves.\nBold choice.{end_wait}
+09251	message	You should've turned back.\nNow it's too late.{end_wait}
+09252	MsgLunpaShiftAlready	Shift's over already?{end_wait}
+09253	message	Wait. I don't know you.{end_wait}
+09254	message	You're no guard.\nSound the alarm!{end_wait}
+09255	message	You won't get past me!{end_wait}
+09256	MsgLunpaScoundrel	You! Stop right there!{end_wait}
+09257	message	Dodonpa warned us\nsomeone might come\nlooking for Hammet.{end_wait}
+09258	message	If I catch you,\nhe'll finally notice me.{end_wait}
+09259	message	You've made my day.\nNow hold still!{end_wait}
+09260	MsgLunpaDonpaExhausted	Donpa barely leaves\nhis bed these days.{page_break}What Dodonpa has done\nis eating him alive.{end_wait}
+09261	MsgLunpaWomenWantHome	We were brought here\nagainst our will.{page_break}The others keep quiet.\nI just want to go home.\nOnce more, if I can.{end_wait}
+09262	MsgLunpaWhWhWho	Wh{pause_20_skippable}-Who goes there?{end_wait}
+09263	message	Y-You're not a guard!{end_wait}
+09264	MsgLunpaDontLookNearly	You don't look like\none of Dodonpa's men.{end_wait}
+09265	message	Did you come here\nlooking for someone?{end_now}
+09266	message	Hammet?\nI don't know where\nthey've hidden him.{end_wait}
+09267	message	Then why would you\nrisk coming here?\nNobody visits for fun.{end_wait}
+09268	MsgLunpaWontTellAnyone	I won't call the guards.\nBut get out before\nthey find you.{end_wait}
+09269	MsgLunpaMaybeMerchantReason	They sealed the caves\nafter the merchant\nwas brought here.{end_wait}
+09270	MsgLunpaFearWithoutDonpa	If Donpa dies,\nnothing will restrain\nhis son anymore.{end_wait}
+09271	MsgLunpaHopeDonpaRecovers	Donpa would set us free.\nHe always cared\nabout the people here.{end_wait}
+09272	MsgLunpaWho3	Who are you?{end_wait}
+09273	message	You think that's the one\nwho came for Hammet?{end_wait}
+09274	message	Has to be.\nLook at the others.{end_wait}
+09275	message	They've got some nerve.\nI'll give them that.{end_wait}
+09276	message	Dodonpa will have\nour heads if Hammet leaves!{end_wait}
+09277	message	Don't let them escape.\nWe'll pay for it!{end_wait}
+09278	message	You're not taking\nanother step!{end_wait}
+09279	MsgLunpaGuysTougherThought	You're stronger than\nwe thought. Fine!{page_break}We're done fighting.\nJust get out of here!{end_wait}
+09280	MsgLunpaRightRightGive	All right, we surrender!\nHammet's in the caves\nbeneath the fortress.{page_break}Go find him yourself.\nJust leave us alone!{end_wait}
+09281	MsgLunpaOwwwDontHurt	Don't hit me again!\nYou want Hammet?{page_break}He's in the caves.\nGo down there and get him.\nSee how far you make it.{end_wait}
+09282	MsgLunpaShouldNotHaveFought	That was a mistake.\nWe never should've\nfought those four.{end_wait}
+09283	MsgLunpaHammetInCave	Hammet's in the caves.\nGetting to him\nis another matter.{end_wait}
+09284	MsgLunpaHiddenDoorSwitch	They'll never find\nthe door switch.{page_break}It's hidden in the wall.\nLet them keep searching.{end_wait}
+09285	MsgLunpaDonpaResting	Donpa hasn't been well.\nHis son's driven him\nto his bed.{page_break}I wouldn't disturb him.\nNot with his temper.{end_wait}
+09286	MsgLunpaWhereIsDodonpa	Where has Dodonpa gone?\nNot to his room.\nNot outside, either.{end_wait}
+09287	MsgLunpaHammetBuysDrink	Another round!\nHammet's paying,\nwhether he knows it or not!{end_wait}
+09288	MsgLunpaHammetMoneyTree	Kalay keeps sending gold.\nWhy let Hammet go?{page_break}A prisoner worth money\nis better than a customer.{end_wait}
+09289	MsgLunpaWhoFoughtDonpa	Who could challenge\nDonpa and live?{page_break}Nobody goes near\nthe caves these days.\nI wonder why.{end_wait}
+09290	MsgLunpaWifeSeeksDodonpa	His wife is looking\nall over the fortress.\nShe can't find him.{end_wait}
+09291	MsgLunpaKalayBuysDrink	All this food came\nfrom Kalay's ransom.{page_break}I could get used\nto this life.{end_wait}
+09292	MsgLunpaHammetKeepsEarnings	Keep Hammet here.\nWe'll drain Kalay dry.\nThat's Dodonpa's plan.{end_wait}
+09293	MsgLunpaZZZZ	Z-z-z...{end_wait}
+09294	MsgLunpaFatherSorryDodonpa	Father, forgive me.\nI should've stopped\nDodonpa myself.{end_wait}
+09295	MsgLunpaShhhPleaseDont	Quiet! Don't wake Donpa.{end_wait}
+09296	message	He's been worn down\nby a terrible struggle.\nHe needs his rest.{end_wait}
+09297	message	All of this\nbecause of Dodonpa.{end_wait}
+09298	message	Are you the one\nDonpa asked to punish\nhis son?{end_now}
+09299	message	He's been waiting\nfor someone willing\nto face Dodonpa.{end_wait}
+09300	message	You're not?\nThen please, help us\nanyway.{page_break}No one else will.{end_wait}
+09301	MsgLunpaDonpaKnowsCoddled	Donpa knows he spoiled\nhis son for years.\nHe blames himself.{end_wait}
+09302	message	He can't rest\nwhile Dodonpa rules\nthe fortress this way.{end_wait}
+09303	MsgLunpaMaybeDodonpasEyes	If someone stood up\nto Dodonpa, perhaps\nLunpa could breathe again.{end_wait}
+09304	MsgLunpaSomeonePunishDodonpa	Donpa would reward\nanyone who put\nhis son in his place.{page_break}The thief has plenty\nof ill-gotten treasure.{end_wait}
+09305	MsgLunpaKnowWhereDodonpa	Have you seen Dodonpa?{end_now}
+09306	message	He's in the fortress?\nAll right. I was worried\nhe'd gone outside.{end_wait}
+09307	message	He's vanished again?\nDon't tell me\nhe's chasing women.{page_break}His wife will be furious.{end_wait}
+09308	MsgLunpaChildMustGrowUp	Papa makes Mama cry.\nI have to behave\nso she won't cry more.{end_wait}
+09309	MsgLunpaPapaWatchesLadies	Papa talks to ladies\nwhen Mama isn't looking.{page_break}She always finds out.\nHe never learns.{end_wait}
+09310	MsgLunpaChildTooResponsible	That child has learned\nto be quiet and good.\nFar too young.{page_break}He shouldn't have\nto grow up this fast.{end_wait}
+09311	MsgLunpaDonpappaSuccessor	Donpappa is next\nin line to lead Lunpa.{page_break}I hope he doesn't\ntake after his father.{end_wait}
+09312	MsgLunpaDonpappaProtectsFortress	When I grow up,\nI'll protect Lunpa.\nNo one will fear me.{end_wait}
+09313	MsgLunpaDaughterWillNotMarryPapa	When I grow up,\nI won't marry anyone\nlike my papa.{end_wait}
+09314	MsgLunpaDonpappaJudges	That boy watches\neverything his father does.\nI wonder what he thinks.{end_wait}
+09315	message	{actor_name:1} pulled\nthe switch.{end_wait}

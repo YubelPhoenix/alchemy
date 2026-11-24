@@ -338,7 +338,12 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
       return TURN_REPORTED;
     MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
     MessageArgument_PushFar(abilityId, MESSAGE_ARGUMENT_ABILITY);
-    BattleMessage_ShowAndWaitFar(MsgActorCasts);
+    // Ashfall: Falling Wind, after Mia's lost beta move, is remembered
+    // rather than cast, and its revive follows without a second casting.
+    BattleMessage_ShowAndWaitFar(
+        abilityId == ABILITY_FALLING_WIND ? MsgFallingWindRemembered
+        : abilityId == ABILITY_FALLING_WIND_REVIVE ? MsgFallingWindSettles
+                                                   : MsgActorCasts);
     // Fail if PP is insufficient or Psynergy is sealed (the seal wins); the
     // failure is shown by the staging (plan->failure). Only a cast that goes
     // ahead pays its PP.
@@ -420,6 +425,19 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
     abilityId = request->parameter;
     if (BattleTurn_SetTargets(abilityId) == TURN_REPORTED)
       return TURN_REPORTED;
+    if (abilityId == ABILITY_GOTTERKANONE) {
+      MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
+      BattleMessage_ShowAndWaitFar(MsgGotterkanoneAttack);
+      break;
+    }
+    // The Mystery Leader's other attacks share one wording, broken before
+    // the name so the longest fit the battle window.
+    if (abilityId > ABILITY_GOTTERKANONE && abilityId <= ABILITY_MYSTERY_LAST) {
+      MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
+      MessageArgument_PushFar(abilityId, MESSAGE_ARGUMENT_ABILITY);
+      BattleMessage_ShowAndWaitFar(MsgMysteryUnleashesAbility);
+      break;
+    }
     MessageArgument_PushFar(request->unitId, MESSAGE_ARGUMENT_ACTOR);
     MessageArgument_PushFar(abilityId, MESSAGE_ARGUMENT_ABILITY);
     if ((Ability_Get(abilityId)->flags & ABILITY_FORMULA_MASK) ==
@@ -744,11 +762,14 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
             Battle_RollEffectSuccessFar(request->unitId, plan->targetIds[index],
                                         ability->element, ability->effect, 100);
     }
+    // Ashfall: Falling Wind's revive lands only on the fallen.
+    if (abilityId == ABILITY_FALLING_WIND_REVIVE)
+      FallingWind_KeepFallen(plan);
     // How it is staged: the ability's row of gAbilityAnimations, its variant
     // raised to the first target's multiplier less one (a double or triple
     // blow); then the staging, from gAbilityStaging where it gives one. The
     // two tables end at ABILITY_THRASH and ABILITY_SEVERE_BLOW.
-    if (abilityId >= 0 && abilityId <= ABILITY_THRASH) {
+    if (abilityId >= 0 && abilityId <= ABILITY_LAST) {
       plan->animation = gAbilityAnimations[abilityId];
       if (plan->targetMultiplier[0] > 1)
         plan->animation = gAbilityAnimations[abilityId] +

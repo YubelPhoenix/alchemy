@@ -1,6 +1,7 @@
 	.set overlay_imports, 1
 	.set import.__divsi3, 1
 	.set import.WaitFrames, 1
+	.set import.Weather_StartRain, 1
 	.set import.Import_RandomNext, 1
 	.set import.Trig_Sin, 1
 	.set import.Trig_Cos, 1
@@ -59,3 +60,7 @@
 	.set import.Scene_PlayQueuedMusic, 1
 	.set import.Sound_PlaySong, 1
 	.include "games/tbs/src/system/overlay.inc"
+	.set import.Event_SetMessageId, 1
+	.set import.Event_ShowMessageThenWait, 1
+	.set import.GameFlag_Clear, 1
+	.set import.Event_AskYesNoAndShowResponse, 1

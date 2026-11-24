@@ -1,0 +1,47 @@
+# Kalay town, trade, Lord Hammet, Lady Layana, gates and post-rescue dialogue.
+# Automatic 27-column wrapping; original end controls preserved.
+06769	MsgKalayWelcomeInPeace	Welcome to Kalay. You may\nenter, but leave trouble at\nthe gate.{end_wait}
+06770	MsgKalaySoldiersProtectPeace	We guard the roads and the\npalace. Most days that's\nenough. Lately I'm not so{page_break}sure.{end_wait}
+06771	MsgKalayHammetGenerousMerchant	Hammet made a fortune\ntrading. He could have kept\nit all. He built a town{page_break}instead.{end_wait}
+06772	MsgKalayHammetOnJourney	Hammet should have been\nhome by now. No one at the\npalace will tell us what's{page_break}happened.{end_wait}
+06773	MsgKalayNorthernBridgeRebuilt	Lava destroyed the northern\nbridge. It's repaired now,\nbut people still hesitate{page_break}before crossing.{end_wait}
+06774	MsgKalayLamakanTrouble	Caravans coming from\nLamakan have stopped. No\none can tell us why.{end_wait}
+06775	MsgKalayElderTownNews	Kalay lives by trade. Xian\nlies east, Tolbi west.\nClose either road, and{page_break}everyone feels it.{end_wait}
+06776	MsgKalayInnFestivalTourists	The inn is full of Colosso\ntourists. Good for\nbusiness. I wish they were{page_break}quieter.{end_wait}
+07067	MsgKalayFormerInnFestivalTourists	The tour group has gone to\nTolbi. The inn hasn't been\nthis quiet in weeks.{end_wait}
+06777	MsgKalayChildWantsFestival	I want to see Colosso one\nday. Mother says I should\nlearn to sit still first.{end_wait}
+06778	MsgKalayTraderTownNews	A mountain in the north\nerupted. Mt. Aleph, they\ncalled it. Even here,{page_break}people talk about it.{end_wait}
+06779	MsgKalayHammetBusinessSkill	Hammet turned a crossroads\ninto a home. Now everyone\nworries whether he'll{page_break}return.{end_wait}
+06780	MsgKalayCameKalayBecauseDidntLike	I moved here from Tolbi.\nWant to know why I'd leave\na rich city like that?{end_now}
+06783	MsgKalayHammetCapturedRumor	Some say Hammet was taken\nby thieves. Lady Layana\nhears those rumors every{page_break}day.{end_wait}
+06784	MsgKalayHammetWentNorth	They say Hammet went north\nfrom Vault after the\neruption. No one's heard{page_break}from him since.{end_wait}
+06785	MsgKalayWarriorHonestEyes	That young warrior looks\ndecent enough. Still, I've\nmisjudged people before.{end_wait}
+06786	MsgKalayGuardsJudgeVisitors	You learn a lot from how\ntravelers approach the\ngate. It's not always{page_break}enough.{end_wait}
+06787	MsgKalayHammetPeaceAndLiberty	Hammet wanted people to\ntrade without being\nbullied. It's one reason I{page_break}serve here.{end_wait}
+06788	MsgKalayHammetCanBeRash	People call Hammet wise. He\nis. He also makes decisions\nbefore his guards can{page_break}object.{end_wait}
+06789	MsgKalaySoldiersWentToVault	Our soldiers went to Vault\nwhen the bridge reopened.\nThe palace feels empty{page_break}without them.{end_wait}
+06790	MsgKalayStrangeEvents	First the eruption, then\nthe missing lord. Every\ntrader has a new rumor by{page_break}sundown.{end_wait}
+06791	MsgKalayElderThoughts	Hammet built where three\nroads meet. It was good for\nbusiness, and then it{page_break}became home.{end_wait}
+06792	MsgKalayWishSavedForFestival	I should have saved for\nColosso. Instead, I fixed\nthe roof. That's being an{page_break}adult, I suppose.{end_wait}
+06793	MsgKalayChildFestivalDream	Someday I'll fight in\nColosso. First I have to\nbeat my brother.{end_wait}
+06794	MsgKalayTraderThoughts	I saw strange stones after\nthe eruption. People picked\nthem up like coins. It{page_break}worried me.{end_wait}
+06795	MsgKalayHammetValuesTrust	Hammet's customers return\nbecause he keeps his word.\nI wonder what happens{page_break}without him.{end_wait}
+06796	MsgKalayTrustAgainstForce	In Kalay, a promise means\nsomething. In Tolbi, money\nseems to settle every{page_break}dispute.{end_wait}
+06797	MsgKalayLunpaNorthOfVault	Lunpa is north of Vault. A\ntown of merchants so close\nto thieves. I've avoided{page_break}that road.{end_wait}
+06798	MsgKalayRumorsHideTruth	There are ten stories about\nwhat happened to Hammet. I\ndon't know which to{page_break}believe.{end_wait}
+06863	MsgKalayLordHammetSellsHisBest	Hammet sends the finest\nweapons elsewhere. These\nare still good blades, mind{page_break}you.{end_wait}
+06864	MsgKalayWishBetterWeapons	If the best blades stayed\nhere, I'd earn twice as\nmuch. Hammet has other{page_break}plans.{end_wait}
+06865	MsgKalayDidFindNeededInWeapon	Did you find what you\nneeded?{end_now}
+06868	MsgKalayWeaponsHaveSoul	Those Tolbi swords cost a\nfortune. Ours aren't\nfamous, but they do their{page_break}job.{end_wait}
+06869	MsgKalayLadyLayanaSharedInLord	Layana worked beside Hammet\nwhen they built this town.\nPeople forget how much she{page_break}gave up.{end_wait}
+06870	MsgKalayPalaceWaterSupply	The palace aqueduct brings\nus water. Without it, this\nplace would be a dusty{page_break}crossroads.{end_wait}
+06917	MsgKalayLordHammetsPalaceLordAway	Lord Hammet isn't here.\nLady Layana has ordered us\nto turn visitors away.{end_wait}
+07063	MsgKalaySoldiersHandleAffairs	Lady Layana has given us\norders. We'll handle\nHammet's rescue. You have{page_break}your own journey.{end_wait}
+07064	MsgKalaySoldiersRescueHammet	We can't ask outsiders to\nrisk their lives for our\nlord. We'll find a way to{page_break}bring him home.{end_wait}
+07065	MsgKalayPrayForHammetSafety	I keep hoping for word from\nLunpa. Lady Layana tells us\nto wait. Waiting is the{page_break}hard part.{end_wait}
+07066	MsgKalayWarriorsWillSaveHammet	We're trained to protect\nKalay. If we can't save\nHammet, what are these{page_break}uniforms for?{end_wait}
+09607	MsgKalayPassageClosedByOrders	The passage is closed by\nLord Hammet and Lady\nLayana's orders. I can't{page_break}let you through.{end_wait}
+09651	MsgKalayLayanaWasVeryHardOn	She was hard on you, wasn't\nshe? Layana sounds harsher\nwhen she's frightened.{end_now}
+09654	MsgKalayTreasureBeyondDoors	Lady Layana said what's\nbeyond these doors is\nyours. Take what you need.{end_wait}
+09604	MsgKalayDoWantGoCaveUp	There's a cave ahead. Are\nyou planning to go inside?{end_now}
+09583	MsgKalayWeveArrivedHammet	We're home, Hammet. Please,\nlet us get you somewhere\nsafe.{end_wait}

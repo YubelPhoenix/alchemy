@@ -325,7 +325,43 @@ void BattleTurnOrder_Sort(struct BattleAction *entries, s32 count) {
   s32 actionIndex;
   s32 sortIndex;
   s32 swapCount;
+  s32 ashIndex;
 
+  BossAI_BeginRound();
+
+  // Ash Jenna in Vale answers a summon rush: a summon is chosen, or enough
+  // Djinn are on standby or about to be unleashed. The round's sort puts her
+  // just behind the first action (below) and marks her; BattleAI_ChooseAction
+  // gives the answer at her turn.
+  ashIndex = -1;
+  {
+    s32 queued = BattleDjinn_CountStandby(0, 0);
+    s32 rush = 0;
+
+    for (actionIndex = 0; actionIndex < count; actionIndex++) {
+      if (entries[actionIndex].unitId <= ALLY_MAX) {
+        if (entries[actionIndex].command == COMMAND_SUMMON)
+          rush = 1;
+        else if (entries[actionIndex].command == COMMAND_DJINN)
+          queued++;
+      } else {
+        struct Unit *enemy = Unit_GetFar(entries[actionIndex].unitId);
+
+        if (enemy != 0 &&
+            enemy->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
+            (enemy->aiActionIndex & AI_PUNISHED) == 0) {
+          enemy->aiActionIndex &= ~AI_RUSH;
+          ashIndex = actionIndex;
+        }
+      }
+    }
+    if (queued >= PUNISH_RUSH_DJINN)
+      rush = 1;
+    if (rush == 0)
+      ashIndex = -1;
+    else if (ashIndex >= 0)
+      Unit_GetFar(entries[ashIndex].unitId)->aiActionIndex |= AI_RUSH;
+  }
   for (actionIndex = 0; actionIndex < count; actionIndex++) {
     struct BattleAction *entry = &entries[actionIndex];
 
@@ -363,6 +399,47 @@ void BattleTurnOrder_Sort(struct BattleAction *entries, s32 count) {
       }
     }
   } while (swapCount != 0);
+
+  // A rush: Ash Jenna moves up to just behind the first action, ahead of the
+  // rest of the party (her line cannot be the very first thing of a round).
+  // If that first action is already a summon, she goes in front of it.
+  if (ashIndex >= 0) {
+    for (actionIndex = 0; actionIndex < count; actionIndex++) {
+      struct Unit *enemy;
+
+      if (entries[actionIndex].unitId <= ALLY_MAX)
+        continue;
+      enemy = Unit_GetFar(entries[actionIndex].unitId);
+      if (enemy != 0 && (enemy->aiActionIndex & AI_RUSH) != 0) {
+        s32 target = 1;
+
+        if (count < 2 || entries[0].command == COMMAND_SUMMON)
+          target = 0;
+        while (actionIndex > target) {
+          struct BattleAction temporary;
+
+          Iwram_CopyWords(&temporary, &entries[actionIndex],
+                          sizeof(struct BattleAction));
+          Iwram_CopyWords(&entries[actionIndex], &entries[actionIndex - 1],
+                          sizeof(struct BattleAction));
+          Iwram_CopyWords(&entries[actionIndex - 1], &temporary,
+                          sizeof(struct BattleAction));
+          actionIndex--;
+        }
+        if (actionIndex < target) {
+          struct BattleAction temporary;
+
+          Iwram_CopyWords(&temporary, &entries[actionIndex],
+                          sizeof(struct BattleAction));
+          Iwram_CopyWords(&entries[actionIndex], &entries[actionIndex + 1],
+                          sizeof(struct BattleAction));
+          Iwram_CopyWords(&entries[actionIndex + 1], &temporary,
+                          sizeof(struct BattleAction));
+        }
+        break;
+      }
+    }
+  }
 }
 
 /// The header a link battle sends before its actions: how many there are,

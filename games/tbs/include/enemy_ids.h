@@ -9,6 +9,11 @@
 /// party's characters. A formation lists its members by row.
 #define ENEMY_ID_FIRST 8
 
+/// The row of enemies.c past the base game's enemies: "???", Vale's last
+/// optional super boss. Its name is row 0's (Enemy_BuildUnit), since the name
+/// message after row 163 is another text.
+#define ENEMY_ROW_MYSTERY_LEADER 164
+
 /// The enemies the code tests by id, each named by its row of
 /// enemies.c: an enemy id is the row plus ENEMY_ID_FIRST. Where several
 /// rows share a name, each takes what tells its battle apart: the one place
@@ -130,7 +135,7 @@ enum EnemyId {
   /// Unused: level 23, the battle of Bane's slot, but Bane joins on Crossbone
   /// Isle without a fight (Djinn_JoinParty), so no battle reaches this row.
   /// ★ Named from the game: "Bane" (MsgDjinnName)
-  ENEMY_VENUS_DJINNI_UNUSED_BANE = 160,
+  ENEMY_RIFT_MYSTERY_LEADER = 160,
   /// Level 10, in Mercury Lighthouse.
   /// ★ Named from the game: "Sleet" (MsgDjinnName)
   ENEMY_MERCURY_DJINNI_SLEET = 161,

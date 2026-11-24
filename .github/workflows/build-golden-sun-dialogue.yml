@@ -1,96 +1,440 @@
-name: Build Golden Sun TBS English dialogue experiment
+name: Validate Golden Sun dialogue build
 
 on:
   workflow_dispatch:
   push:
+    branches: [dark-story-rewrite, ash-vale-aftermath, fight-together, integration-fight-together-review, umbral-rift, umbral-rift-narrative-2026-11-21, umbral-rift-opera-house-music-test]
     paths:
       - 'games/tbs/text/en.po'
+      - 'games/tbs/src/**'
+      - 'games/tbs/include/**'
+      - 'games/tbs/sound/**'
+      - 'games/tbs/objects.tsv'
+      - 'Makefile'
+      - 'tools/music/**'
       - 'games/tbs/src/scene/vale_stormy_night.c'
+      - 'games/tbs/include/sprite_ids.h'
+      - 'games/tbs/src/graphics/sprite/spr_407.png'
+      - 'games/tbs/src/graphics/sprite/spr_407.tsv'
+      - 'games/tbs/src/graphics/sprite/layout.tsv'
+      - 'tools/dark_story_rewrite.py'
+      - 'tools/dark_story/*.tsv'
+      - 'tools/dark_story/audit_live_dialogue.py'
+      - 'tools/dark_story/build_heart_art.py'
+      - 'tools/dark_story/build_ash_jenna_overworld.py'
+      - 'assets/ash_jenna/**'
+      - 'tools/dark_story/check_story_contract.py'
       - '.github/workflows/build-golden-sun-dialogue.yml'
+      - 'assets/heart/**'
+
+# One primary Ashfall build at a time; newer pushes replace pending runs.
+concurrency:
+  group: ashfall-rom-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  build:
+  artifact-storage-gate:
+    # Fail closed BEFORE any compilation if this public repository's
+    # stored Actions artifacts approach the GitHub Free allowance.
+    # Billing across other repositories/Packages is separately controlled
+    # by the owner's GitHub billing budgets.
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Refuse build if artifact storage approaches 150 MB
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.request
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          if repo != "YubelPhoenix/alchemy":
+              raise SystemExit("SAFETY STOP: unexpected repository")
+          url = f"https://api.github.com/repos/{repo}/actions/artifacts"
+          headers = {
+              "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+              "Accept": "application/vnd.github+json",
+              "User-Agent": "Ashfall-free-tier-preflight",
+          }
+          bytes_used = 0
+          artifacts = 0
+          page = 1
+          while True:
+              request = urllib.request.Request(
+                  f"{url}?per_page=100&page={page}", headers=headers)
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  batch = json.load(response)["artifacts"]
+              for a in batch:
+                  if not a.get("expired"):
+                      bytes_used += int(a["size_in_bytes"])
+                      artifacts += 1
+              if len(batch) < 100:
+                  break
+              page += 1
+              if page > 100:
+                  raise SystemExit("SAFETY STOP: too many artifact pages")
+          print(f"Actions storage: {bytes_used/1_000_000:.2f} MB in {artifacts} artifacts")
+          if bytes_used >= 150_000_000:
+              raise SystemExit("SAFETY STOP: >=150 MB in repo. Clean artifacts before building.")
+          print("PASS: repo artifact usage below the conservative 150 MB build limit.")
+          PY
+
+  build-and-patch:
+    needs: artifact-storage-gate
+    if: github.event.repository.private == false
     runs-on: ubuntu-24.04
     timeout-minutes: 45
-
+    env:
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
+      CCACHE_BASEDIR: ${{ github.workspace }}
+      CCACHE_COMPILERCHECK: content
     steps:
       - name: Check out source and pinned compiler submodules
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           submodules: recursive
-          fetch-depth: 1
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Install build dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             build-essential git curl patch binutils-arm-none-eabi \
-            pkg-config libpng-dev libutf8proc-dev
+            pkg-config libpng-dev libutf8proc-dev ccache
 
-      - name: Apply the experimental Vale prologue dialogue rewrite
+      - name: Audit source-referenced town dialogue before rewrite
+        run: python3 tools/dark_story/audit_live_dialogue.py --json "$RUNNER_TEMP/ashfall-live-dialogue.json"
+
+      - name: Apply and validate the dark-story dialogue pass
+        run: python3 tools/dark_story_rewrite.py
+
+      - name: Verify Gotterkanone text IDs after dialogue rewrite
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          text = Path("games/tbs/text/en.po").read_text(encoding="utf-8")
+          ids = [int(value) for value in re.findall(r'^msgid "([0-9]{5})"$', text, re.MULTILINE)]
+          if ids != list(range(len(ids))):
+              raise SystemExit("Gotterkanone text: duplicate or skipped message ID")
+          for context in ("MsgGotterkanoneAttack", "MsgGotterkanoneName", "MsgMysteryUnleashesAbility"):
+              if text.count('msgctxt "' + context + '"') != 1:
+                  raise SystemExit("Gotterkanone text: missing or duplicate " + context)
+          if not re.search(r'#, alchemy-null\nmsgctxt "message"\nmsgid "[0-9]{5}"\nmsgstr ""\s*\Z', text):
+              raise SystemExit("Gotterkanone text: null terminator must be last")
+          # The Mystery Leader's other attacks are named in order after Gotterkanone.
+          names = re.findall(r'msgstr "([^"]*)"', text.split('msgstr "Gotterkanone"\n', 1)[1])[:7]
+          if names != ["EX Gotterkanone", "Ransnetz", "Explosion", "P-Vortex", "Glepnir",
+                       "EX Sternbrecher", "Kaiserdammerung"]:
+              raise SystemExit("Mystery Leader attack names out of order: " + repr(names))
+          print("Gotterkanone message IDs contiguous and unique:", len(ids))
+          PY
+
+      - name: Confirm town dialogue overlays reached the build input
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
-
-          path = Path('games/tbs/text/en.po')
-          text = path.read_text(encoding='utf-8')
-
-          # Keep this first pass deliberately small. Every entry below has a
-          # scene-specific context, short display lines, and its original control
-          # tokens. Do not rewrite generic message IDs in bulk.
-          replacements = {
-              "03675": r"{actor_name:1}, Dora, hurry!\nThe Boulder is close to\nbreaking loose!{end_wait}",
-              "03676": r"Kyle... Can they hold\nthe Boulder back?{end_wait}",
-              "03685": r"You're a big boy now,\n{actor_name:1}. Go on ahead.\nPlease be careful!{end_now}",
-              "03686": r"You know the way{em_dash}go\nsouth to the plaza.\nPlease, hurry!{end_wait}",
-              "03687": r"Isaac? Sorry! I didn't\nsee you there!{end_wait}",
-              "03707": r"We shouldn't go north...\nMt. Aleph is that way.\nWe need the plaza!{end_wait}",
-              "03709": r"That rock blocks the way!\nWe can't get around it!{end_wait}",
-          }
-
-          entries = re.split(r'(\n\s*\n)', text)
-          found = set()
-          for i, entry in enumerate(entries):
-              match = re.search(r'^msgid "([0-9]{5})"$', entry, re.MULTILINE)
-              if not match or match.group(1) not in replacements:
-                  continue
-              msgid = match.group(1)
-              if msgid in found:
-                  raise SystemExit(f'Duplicate dialogue ID {msgid}.')
-              found.add(msgid)
-              # Replace the whole msgstr field, not just its first line. The
-              # previous approach left old continuation lines attached, which
-              # could render as jumbled text in-game.
-              entry_lines = entry.splitlines()
-              msgstr_index = next((j for j, line in enumerate(entry_lines) if line.startswith('msgstr ')), None)
-              if msgstr_index is None:
-                  raise SystemExit(f'Missing msgstr for {msgid}.')
-              entry_lines = entry_lines[:msgstr_index] + ['msgstr "' + replacements[msgid] + '"']
-              entries[i] = '\n'.join(entry_lines)
-
-          missing = sorted(set(replacements) - found)
-          if missing:
-              raise SystemExit(f'Missing expected dialogue IDs: {", ".join(missing)}')
-
-          updated = ''.join(entries)
-          path.write_text(updated, encoding='utf-8')
-          print(f'Updated {len(found)} dialogue entries across the storm prologue, Vale villagers, Garet, and Saturos/Menardi.')
+          catalogue = Path("games/tbs/text/en.po").read_text(encoding="utf-8")
+          for line in (
+              "Hey! You're new here,",
+              "Lunpa's closed. You still",
+              "All right. We leave now.",
+          ):
+              if line not in catalogue:
+                  raise SystemExit("Missing Ashfall dialogue fingerprint: " + line)
+          print("Imil and Lunpa rewrite fingerprints confirmed in patched catalogue")
           PY
 
+      - name: Verify corrected Tret question and beacon dialogue entered the ROM text
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          catalog = Path("games/tbs/text/en.po").read_text(encoding="utf-8")
+          expected = {
+              "05340": ("Do you still need", "my help?"),
+              "05343": ("The people of Kolima...", "I turned them into trees?"),
+              "05349": ("How? He's fading right", "in front of us."),
+              "05350": ("Laurel might know.", "Let's ask her."),
+              "05532": ("The beacon's lit!", "We're too late!"),
+              "05726": ("lit! What happened?",),
+              "05553": ("Saturos, we can\u0027t", "waste time here."),
+              "05556": ("You should have stayed", "in Vale."),
+              "05562": ("And if they defeat you?",),
+              "05563": ("They won\u0027t.", "I\u0027ll catch up."),
+              "05573": ("Enough. We\u0027re leaving.",),
+              "05576": ("You want to follow them?", "Get past me first."),
+              "05580": ("Then we stay together.", "Don\u0027t give him an opening."),
+              "05586": ("The", "Mercury beacon is", "draining my strength!"),
+              "05590": ("Mercury's light hurt you.", "Why stay here to fight?"),
+          }
+          for msg_id, fragments in expected.items():
+              match = re.search(r'msgid "' + msg_id + r'"\nmsgstr ([\s\S]*?)(?=\n\n|$)', catalog)
+              if not match or not all(fragment in match.group(1) for fragment in fragments):
+                  raise SystemExit(f"Corrected Ashfall dialogue missing from build: {msg_id}")
+          # The Mia/Isaac handoff uses newly allocated dialogue IDs.
+          # Validate their named contexts, not guessed numeric IDs.
+          # The canonical dialogue now lives in the TSV inputs, not in this
+          # workflow. Read its approved first line for each 12-step scene
+          # message so an intentional wording revision cannot leave behind
+          # a stale hardcoded canary that stops the ROM build.
+          custom = {}
+          for row in Path("tools/dark_story/phase24_mia_duel.tsv").read_text(
+                  encoding="utf-8").splitlines():
+              parts = row.split("\t")
+              if len(parts) == 3 and parts[0].startswith("N") and (
+                      parts[1].startswith("MsgDarkDuel")):
+                  context, message = parts[1], parts[2]
+                  if context in custom:
+                      raise SystemExit("Duplicate Mercury dialogue: " + context)
+                  custom[context] = message.split(r"\n", 1)[0]
+          if len(custom) != 12:
+              raise SystemExit(f"Expected 12 Mercury duel messages; found {len(custom)}")
+          # Kraden's warning changed speaker and context during the audit.
+          for row in Path("tools/dark_story/phase14_aerie.tsv").read_text(
+                  encoding="utf-8").splitlines():
+              parts = row.split("\t")
+              if len(parts) == 3 and parts[0] == "N48":
+                  if parts[1] != "MsgDarkAerieKradenWarn":
+                      raise SystemExit("Unexpected Mercury Kraden warning context")
+                  custom[parts[1]] = parts[2].split(r"\n", 1)[0]
+          if len(custom) != 13:
+              raise SystemExit("Kraden's Mercury warning is missing from TSV")
+          for context, fragment in sorted(custom.items()):
+              match = re.search(r'^msgctxt "' + re.escape(context) + r'"\nmsgid "[0-9]+"\nmsgstr ([\s\S]*?)(?=\n\n|\Z)', catalog, re.MULTILINE)
+              if not match or not fragment or fragment not in match.group(1):
+                  raise SystemExit(f"Mercury Aerie exchange missing from build: {context}")
+          scene = Path("games/tbs/src/scene/mercury_lighthouse_aerie.c").read_text(encoding="utf-8")
+          for anchor in ("Event_SetMessageId(MsgMercuryLighthouseAlreadyLit)",
+                         "Event_SetMessageId(MsgDarkDuelMiaStops)",
+                         "Event_SetMessageId(MsgDarkDuelMiaLost)",
+                         "Event_SetMessageId(MsgDarkDuelSaturosResumes)"):
+              if anchor not in scene:
+                  raise SystemExit(f"Missing live Mercury Aerie scene entry point: {anchor}")
+          print("Mercury Aerie confrontation and Mia exchange validated against live message contexts")
+          PY
+
+      - name: Check Ashfall story character, choice, and optional-encounter contracts
+        run: python3 tools/dark_story/check_story_contract.py
+
+      - name: Restore Heart battle artwork without distortion
+        run: |
+          python3 -m pip install --break-system-packages Pillow numpy opencv-python-headless
+          python3 tools/dark_story/build_heart_art.py
+          python3 tools/dark_story/build_ash_jenna_art.py
+          python3 tools/dark_story/build_ash_jenna_overworld.py
+          test -s games/tbs/src/graphics/sprite/spr_094.png
+          test -s games/tbs/src/graphics/sprite/spr_094.tsv
+          python3 tools/dark_story/build_kegare_art.py
+          python3 tools/dark_story/build_sarah_art.py
+          python3 tools/dark_story/build_sarah_overworld.py
+
+      - name: Stamp this build so older saves resume at their restart point
+        run: |
+          # A save stores absolute ROM addresses (actor scripts); a build that
+          # moves data would break them. The game resumes a save from another
+          # build at its restart point, which needs a different stamp per build.
+          stamp="$(date -u +%y%m%d%H%M%S)"
+          sed -i "/TBS_EDITION_EN/{n;s/\"[0-9]\{12\}/\"$stamp/}" games/tbs/src/system/resource/directory.s
+          grep -n -A1 TBS_EDITION_EN games/tbs/src/system/resource/directory.s | tail -2
+
+      - name: Reconstruct and verify Gotterkanone battle frames
+        run: python3 tools/dark_story/build_gotterkanone_asset.py
+
       - name: Build pinned toolchain and host tools
-        run: make bootstrap
+        run: make bootstrap CARGO=false
 
-      - name: Build English edition
-        run: make tbs-en
+      - name: Check battle art is consistent before compiling
+        run: python3 tools/ci/check_battle_art.py
 
-      - name: Upload test ROM
-        uses: actions/upload-artifact@v4
+      - name: Compile the modified English edition
+        run: |
+          make -j"$(nproc)" tbs-en CARGO=false \
+            XGCC="ccache $PWD/tools/out/compilers/xgcc -B$PWD/tools/out/compilers/"
+
+      - name: Confirm the modified ROM was built
+        run: test -s out/tbs-en/tbs-en.gba
+
+      - name: Report memory use (fast memory, EWRAM, ROM)
+        continue-on-error: true
+        run: |
+          python3 tools/ci/memory_report.py out/tbs-en/tbs-en.map | tee "$RUNNER_TEMP/memory-report.txt"
+          cp out/tbs-en/tbs-en.map "$RUNNER_TEMP/tbs-en.map"
+
+      - name: Keep the linker map and memory report
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: golden-sun-tbs-en-dialogue-test
-          path: out/tbs-en/tbs-en.gba
+          name: memory-report-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/memory-report.txt
+            ${{ runner.temp }}/tbs-en.map
+          retention-days: 2
+
+      - name: Build and verify an unmodified baseline
+        run: |
+          # Use the canonical upstream source as the checksum-verified ROM base.
+          # Pinned: upstream main moved to a commit whose submodule is not published yet.
+          git fetch https://github.com/PascalPixel/alchemy.git c93e52be8410b59e1c236b8c4d7c57b4ea665779
+          git worktree add --detach "$RUNNER_TEMP/alchemy-base" FETCH_HEAD
+          git -C "$RUNNER_TEMP/alchemy-base" submodule update --init --recursive
+          make -C "$RUNNER_TEMP/alchemy-base" bootstrap CARGO=false
+          make -C "$RUNNER_TEMP/alchemy-base" compare-tbs-en CARGO=false \
+            XGCC="ccache $RUNNER_TEMP/alchemy-base/tools/out/compilers/xgcc -B$RUNNER_TEMP/alchemy-base/tools/out/compilers/"
+          test -s "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba"
+
+      - name: Check no resource lost word alignment
+        run: python3 tools/ci/check_resource_alignment.py "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba" out/tbs-en/tbs-en.gba
+
+      - name: Create an IPS patch (not a redistributable ROM)
+        run: |
+          python3 - "$RUNNER_TEMP/alchemy-base/out/tbs-en/tbs-en.gba" "out/tbs-en/tbs-en.gba" "$RUNNER_TEMP/Golden-Sun-Ashfall.ips" <<'PY'
+          import sys
+          from pathlib import Path
+
+          original = Path(sys.argv[1]).read_bytes()
+          modified = Path(sys.argv[2]).read_bytes()
+          output = Path(sys.argv[3])
+
+          # The hack's ROM may be longer than the original (more room for the new
+          # title music): treat the original as zero-padded, and let the patch
+          # grow the file.
+          if len(modified) < len(original):
+              raise SystemExit(f"modified ROM is shorter: {len(original)} vs {len(modified)}")
+          original = original + bytes(len(modified) - len(original))
+
+          patch = bytearray(b"PATCH")
+          i = 0
+          changes = 0
+          while i < len(original):
+              if original[i] == modified[i]:
+                  i += 1
+                  continue
+              start = i
+              # An offset of 0x454F46 spells "EOF" and ends every IPS reader:
+              # begin that record one byte earlier instead.
+              data = bytearray()
+              if start == 0x454F46:
+                  start -= 1
+                  data.append(modified[start])
+              while i < len(original) and original[i] != modified[i] and len(data) < 65535:
+                  data.append(modified[i])
+                  i += 1
+              if start > 0xFFFFFF:
+                  raise SystemExit("IPS offset limit exceeded")
+              patch.extend(start.to_bytes(3, "big"))
+              patch.extend(len(data).to_bytes(2, "big"))
+              patch.extend(data)
+              changes += len(data)
+          patch.extend(b"EOF")
+          output.write_bytes(patch)
+          if changes == 0:
+              raise SystemExit("No differences found; refusing to create an empty patch")
+          print(f"Created {output.name}: {changes} changed bytes across {len(patch)} patch bytes")
+          PY
+
+      - name: Record source version of this patch
+        run: |
+          {
+            echo "Golden Sun: Ashfall"
+            echo "branch=${GITHUB_REF_NAME}"
+            echo "commit=${GITHUB_SHA}"
+            echo "workflow_run=${GITHUB_RUN_ID}"
+            echo "dialogue_overlay=tools/dark_story_rewrite.py"
+          } > "$RUNNER_TEMP/ashfall-build.txt"
+
+      - name: Upload versioned Ashfall patch
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: Golden-Sun-Ashfall-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/Golden-Sun-Ashfall.ips
+            ${{ runner.temp }}/ashfall-build.txt
+            ${{ runner.temp }}/ashfall-live-dialogue.json
           if-no-files-found: error
-          retention-days: 3
+          retention-days: 14
+
+  prune-old-build-artifacts:
+    # Run only after a successful, newly published IPS. Isolate the
+    # elevated actions:write permission from the compile/publish job.
+    needs: build-and-patch
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Preserve downloadable Ashfall IPS and latest memory report
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, time, urllib.request, urllib.error
+          repo = os.environ["GITHUB_REPOSITORY"]
+          if repo != "YubelPhoenix/alchemy":
+              raise RuntimeError("Refusing unknown repository")
+          root = f"https://api.github.com/repos/{repo}/actions/artifacts"
+          headers = {"Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+                     "Accept": "application/vnd.github+json",
+                     "User-Agent": "Ashfall-minimal-artifact-retention"}
+          def api(url, method="GET"):
+              req = urllib.request.Request(url, headers=headers, method=method)
+              with urllib.request.urlopen(req, timeout=30) as res:
+                  data = res.read()
+                  return json.loads(data) if data else None
+          artifacts = []
+          page = 1
+          while True:
+              batch = api(f"{root}?per_page=100&page={page}")["artifacts"]
+              artifacts += batch
+              if len(batch) < 100:
+                  break
+              page += 1
+              if page > 100:
+                  raise RuntimeError("Too many artifacts: refusing unbounded cleanup")
+          live = [a for a in artifacts if not a.get("expired")]
+          ips = sorted((a for a in live if a["name"].lower().startswith(
+                      ("ashfall-ips-", "golden-sun-ashfall-"))),
+                      key=lambda a: (a["created_at"], a["id"]), reverse=True)
+          reports = sorted((a for a in live if a["name"].lower().startswith("memory-report-")),
+                           key=lambda a: (a["created_at"], a["id"]), reverse=True)
+          if not ips:
+              raise RuntimeError("No current Ashfall IPS found: no deletions allowed")
+          current_name = "Golden-Sun-Ashfall-" + os.environ["GITHUB_SHA"]
+          current = [a for a in ips if a["name"] == current_name and
+                     a.get("workflow_run", {}).get("id") == int(os.environ["GITHUB_RUN_ID"])]
+          if len(current) != 1:
+              raise RuntimeError("Current build IPS not published: " + current_name)
+          keep = {a["id"] for a in ips[:3] + reports[:1] + current}
+          # Preserve Aster's latest preview and unrelated artifacts.
+          stale = [a for a in ips[3:] + reports[1:] if a["id"] not in keep]
+          print(f"Preserving IPS: {sorted(keep)}")
+          print(f"Deleting {len(stale)} redundant Ashfall reports/patches")
+          removed = 0
+          for a in stale:
+              try:
+                  api(f"{root}/{a['id']}", "DELETE")
+              except urllib.error.HTTPError as error:
+                  print(f"Deletion blocked for {a['id']}: {error.code}")
+                  raise
+              removed += int(a["size_in_bytes"])
+              time.sleep(0.65)
+          print(f"Removed {len(stale)} artifacts; approx {removed/1_000_000:.2f} MB")
+          # Fail the workflow if its current download was lost during cleanup.
+          published = api(f"{root}/{current[0]['id']}")
+          if published.get("expired") or published.get("name") != current_name:
+              raise RuntimeError("Current Ashfall IPS is no longer downloadable")
+          print(f"VERIFIED DOWNLOAD: https://github.com/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}/artifacts/{current[0]['id']}")
+          PY

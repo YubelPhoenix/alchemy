@@ -1,6 +1,7 @@
 	.set overlay_imports, 1
 	.set import.__divsi3, 1
 	.set import.WaitFrames, 1
+	.set import.Weather_StartRain, 1
 	.set import.Task_Add, 1
 	.set import.Import_RandomNext, 1
 	.set import.Vector_AddPolarOffset, 1
@@ -57,3 +58,10 @@
 	.set import.Scene_QueueMusic, 1
 	.set import.Sound_PlaySong, 1
 	.include "games/tbs/src/system/overlay.inc"
+	.set import.Actor_ArmCallback, 1
+	.set import.Actor_ConfigureSpriteColor, 1
+	.set import.Event_ShowMessageThenWait, 1
+	.set import.MapGrid_CenterOnFollowedPoint, 1
+	.set import.Event_StartScreenTransition, 1
+	.set import.Event_WaitTransitionFrames, 1
+	.set import.Event_AskYesNoAndShowResponse, 1

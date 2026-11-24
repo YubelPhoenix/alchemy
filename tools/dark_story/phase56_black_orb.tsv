@@ -1,0 +1,4 @@
+# World-map Black Orb use and optional wreckage inspection.
+09794	MsgWorldMapNowUseOnShip	Go ahead. Place the Orb\nagainst the ship.{end_wait}
+09795	MsgWorldMapIsaacWhereGoingSaidUse	{actor_name:1}, where are you\ngoing? The Orb must be\nused on Babi's ship!{end_wait}
+09804	MsgWorldMapWreckageShipScuttledOffCoast	A ship's remains lie\nscattered along the coast.{end_wait}

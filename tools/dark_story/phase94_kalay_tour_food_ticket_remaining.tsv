@@ -1,0 +1,15 @@
+# Remaining Kalay tour announcements, shop/inn food examinations, ticket refund and Karagol reflection.
+10664	MsgKalayInteriorsShesToastingSomeBreadItSmells	Fresh bread is toasting.\nThe room smells wonderful.{end_wait}
+10665	MsgKalayInteriorsHesMakingCurryItsSpicyScent	A pot of curry is\nsimmering. The spices fill\nthe room.{end_wait}
+10666	MsgKalayInteriorsHesMakingRoastedEggplantWithCheese	Roasted eggplant topped\nwith cheese. Someone here\nknows how to cook.{end_wait}
+10667	MsgKalayInteriorsItsAKalaySaladWithCucumber	Cucumber and yogurt salad.\nEverything looks fresh.{end_wait}
+10668	MsgKalayInteriorsItsPicklesWithGarlicThePickle	A bowl of garlic pickles.\nThe smell reaches the\ndoorway.{end_wait}
+10719	MsgKalayVeryCleanMaintained	Someone keeps the stone rim\nof this well clean. The\nwater below is clear.{end_wait}
+06801	MsgKalayOkListeningLets	Everyone, listen! We're\nchecking the group before\nwe move on.{end_wait}
+06802	MsgKalayWhyWeStoppingAtPlace	Why stop here? We're\nalready late.{end_wait}
+06814	MsgKalayShortOnePerson	Hold on. We're missing\nsomeone. Has anyone seen\nthe old man?{end_wait}
+06818	MsgKalayDecideEnteringColosso	Colosso is close now. We\nneed to decide if we're\nentering.{end_wait}
+06834	MsgKalayThatsWeCantWaitAny	That's enough. We can't\nwait here all day. We're\nleaving!{end_wait}
+06799	MsgKalayCanLiveInPeaceIn	Kalay isn't perfect, but\npeople here look out for\neach other.{end_wait}
+09195	MsgKalayReturnedTicketCost	Here's the cost of your\nticket back. I can't say\nwhen a ship will sail{page_break}again.{end_wait}
+09194	MsgKalayTolbiDocksTheMarineBlueKaragolSeaIs	The Karagol is beautiful\nfrom here.{page_break}Almost makes me forget\nall that trouble.{page_break}{text_effect:4}Sniff...{reset_text_style}{end_wait}

@@ -60,4 +60,7 @@ gSpriteFrameCache_Sources:
 	.2byte ResourceId_PurpleBeastSprites, 484
 	.2byte ResourceId_RedWarriorSprites, 485
 	.2byte ResourceId_SwordGirlSprites, 486
+	.2byte ResourceId_KegareSprites, 487
+	.2byte ResourceId_SarahSprites, 488
+	.2byte ResourceId_MysterySprites, 489
 	.2byte 0, 0

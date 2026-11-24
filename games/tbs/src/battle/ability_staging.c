@@ -139,16 +139,16 @@ const u8 gAbilityStaging[] = {
     0, // Break
     0, // Regenerate
     0, // Reflect
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
+    0, // Djinn's Grace (Ashfall)
+    0, // Ember Burst (Ashfall)
+    0, // Sky Breaker (Ashfall)
+    0, // Rune Strike (Ashfall)
+    0, // Starfall (Ashfall)
+    0, // Vertigo (Ashfall)
+    0, // Death Knell (Ashfall)
+    0, // Falling Wind (Ashfall)
+    STAGING_SUMMON, // Kaiserdammerung, "???"'s summon (Ashfall)
+    0, // Falling Wind's revive (Ashfall)
     0, // Move
     0, // Mind Read
     0, // Force
@@ -248,7 +248,7 @@ const u8 gAbilityStaging[] = {
     STAGING_ATTACK, // Asura
     STAGING_ENEMY_CAST, // Titan Blade
     0, // Shining Star
-    0, // ?
+    0, // Dawnbreak (Ashfall)
     0, // ?
     0, // ?
     0, // ?
@@ -661,16 +661,16 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_BREAK, // Break
     BATTLE_ANIM_REGENERATE, // Regenerate
     BATTLE_ANIM_REFLECT, // Reflect
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
-    0, // ?
+    BATTLE_ANIM_DJINN_HEAL, // Djinn's Grace (Ashfall)
+    BATTLE_ANIM_TARGET_BURSTS, // Ember Burst (Ashfall)
+    BATTLE_ANIM_UNUSED_SEVERE_BLOW_LEAP, // Sky Breaker (Ashfall)
+    BATTLE_ANIM_UNUSED_TRIANGLE_STRIKE, // Rune Strike (Ashfall)
+    BATTLE_ANIM_SWIRLING_STARS, // Starfall (Ashfall)
+    BATTLE_ANIM_UNUSED_ORBITING_SPIRALS, // Vertigo (Ashfall)
+    BATTLE_ANIM_ORBITING_SKULLS, // Death Knell (Ashfall)
+    BATTLE_ANIM_FALLING_WIND, // Falling Wind's storm (Ashfall)
+    BATTLE_ANIM_DOUSE | ANIM_SUMMON, // Kaiserdammerung (Ashfall): Judgment's summon with "???" as its figure (judgment.c)
+    BATTLE_ANIM_FALLING_WIND_REVIVE, // Falling Wind's revive (Ashfall)
     0, // Move
     0, // Mind Read
     0, // Force
@@ -770,7 +770,7 @@ const u32 gAbilityAnimations[] = {
     0x84 | ANIM_BY_ID_RANGE, // Asura
     BATTLE_ANIM_TITAN_BLADE, // Titan Blade
     BATTLE_ANIM_SHINING_STAR, // Shining Star
-    0, // ?
+    BATTLE_ANIM_BLADE_RAIN, // Dawnbreak (Ashfall)
     0, // ?
     0, // ?
     0, // ?
@@ -1050,5 +1050,18 @@ const u32 gAbilityAnimations[] = {
     BATTLE_ANIM_DRAIN_FANG, // Drain Fang
     ANIM_ID_SEVERE_BLOW | ANIM_BY_ID_RANGE, // Severe Blow
     BATTLE_ANIM_THRASH, // Thrash
+    BATTLE_ANIM_GOTTERKANONE, // Gotterkanone (519)
+    BATTLE_ANIM_EX_GOTTERKANONE, // EX Gotterkanone
+    BATTLE_ANIM_RANSNETZ, // Ransnetz
+    BATTLE_ANIM_PERFECTI_EXPLOSION, // Explosion
+    BATTLE_ANIM_P_VORTEX, // P-Vortex
+    BATTLE_ANIM_GLEPNIR, // Glepnir
+    BATTLE_ANIM_STERNBRECHER, // EX Sternbrecher
+    BATTLE_ANIM_P_STORM, // Kaiserdammerung
+    BATTLE_ANIM_QUICK_STRIKE,   // Piercing Thrust
+    BATTLE_ANIM_RAPID_SMASH,    // Haft Strike
+    BATTLE_ANIM_HELM_SPLITTER,  // Disarm
+    0x82 | ANIM_BY_ID_RANGE,    // Sweeping Arc, as Cyclone Slash
+    BATTLE_ANIM_DEATH_PLUNGE,   // Vaulting Strike
 };
 // clang-format on

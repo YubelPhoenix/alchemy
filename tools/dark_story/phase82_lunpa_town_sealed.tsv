@@ -1,0 +1,71 @@
+07068	MsgLunpaWestGuardAsksAboutEntering	Lunpa's closed. You still\nwant to enter?{end_now}
+07069	message	Then turn around.\nNo one gets in.{end_wait}
+07070	message	You came all this way?\nThat's unfortunate.\nTurn back.{end_wait}
+07071	MsgLunpaEastGuardAsksIfFrom	You're not from Kalay,\nare you?{end_now}
+07072	message	The last group said that.\nDidn't make them honest.\nLeave before I call help.{end_wait}
+07073	message	Here for Hammet,\naren't you?{end_now}
+07074	message	We'll release him soon.\nThat's what Dodonpa\nordered us to say.{end_wait}
+07075	message	Don't lie to me.\nNo one comes this far\nwithout a reason.{end_wait}
+07076	MsgLunpaVillageWestGuardSealedThoughts	They might try the cave\nwest of Lunpa.\nThey won't get through.{page_break}The gate's too heavy\nto lift from outside.{end_wait}
+07077	MsgLunpaEastGuardTrustsCaveGate	Even if they reach\nthe cave, it's useless.\nThat gate opens inside.{end_wait}
+07078	MsgLunpaVillagerAAsksHowLong	Have you been here\nbefore?{end_now}
+07079	message	I don't know your face.\nNo one here does.{end_wait}
+07080	message	New to Dodonpa's gang?\nBetter learn the rules\nbefore you get hurt.{end_wait}
+07081	MsgLunpaVillageVillagerBSealed	The caravan was taken,\nand now we're prisoners\nin our own village.{page_break}No one can leave.\nNo one comes in.\nEven the roads are closed.{end_wait}
+07082	MsgLunpaVillagerCAsksAboutKidnapping	Did Dodonpa really\ntake Hammet for ransom?{end_now}
+07083	message	Then the rumors are true.\nHow could they do that?{end_wait}
+07084	message	I wanted to believe\nit was only a rumor.\nPerhaps I was wrong.{end_wait}
+07085	MsgLunpaVillageVillagerDSealed	Donpa's too old to lead.\nHis men follow Dodonpa\ninstead.{end_wait}
+07086	MsgLunpaVillageVillagerESealed	Lunpa and Donpa were\nmen this town respected.\nPeople forget that now.{end_wait}
+07087	MsgLunpaVillageVillagerFSealed	Donpa doesn't know\nwhat his son's been doing.{page_break}If he knew,\nmaybe he'd put an end\nto all of this.{end_wait}
+07088	MsgLunpaVillagerGAsksAboutDonpa	You want to see Donpa?{end_now}
+07089	message	He's in the fortress.\nYou'd have to pass\nDodonpa's guards.{end_wait}
+07090	message	Then don't go near it.\nPeople who enter\ndon't always return.{end_wait}
+07091	MsgLunpaVillageVillagerHSealed	The inn's chef takes\nmeals to the fortress.{page_break}Even he comes back\nshaking. They watch\neveryone inside.{end_wait}
+07092	message	Stay back. That's an order.{end_wait}
+07093	MsgLunpaLeftGuardResentsDodonpa	I served Donpa for years.\nHow did his son become\nthe man he is?{end_wait}
+07094	MsgLunpaRightGuardBoasts	Nothing gets past me.\nNot even a mouse.{end_wait}
+07095	MsgLunpaVillageVillagerASealedThoughts	The gates are sealed.\nEven an honest trader\nwould be turned away.{end_wait}
+07096	MsgLunpaVillageVillagerBSealedThoughts	Hammet came here himself.\nWhat could he have\nbeen thinking?{end_wait}
+07097	MsgLunpaVillageVillagerCSealedThoughts	They took the ransom.\nSo why hasn't Hammet\nbeen released?{page_break}Kalay keeps paying.\nSomeone's growing rich.{end_wait}
+07098	MsgLunpaVillageVillagerDSealedThoughts	Lunpa died when Donpa\nwas still young.\nHe never got over it.{page_break}He spoiled Dodonpa\nto spare him that pain.\nLook where it led.{end_wait}
+07099	MsgLunpaVillageVillagerESealedThoughts	Dodonpa takes what\nhe wants from everyone.{page_break}If the town gets nothing,\nwhy should his men\nhave everything?{end_wait}
+07100	MsgLunpaVillageVillagerFSealedThoughts	Dodonpa keeps his father\naway from the streets.{page_break}Donpa can't stop\nwhat he doesn't know\nis happening here.{end_wait}
+07101	MsgLunpaVillageVillagerGSealedThoughts	Guards day and night.\nThey've made the fortress\na prison for us all.{end_wait}
+07102	MsgLunpaVillageVillagerHSealedThoughts	That poor chef comes back\npale every time.\nI'd never go inside.{end_wait}
+07103	MsgLunpaLeftGuardThoughts	Keep Hammet locked up.\nKalay will keep paying.\nDodonpa thought of that.{page_break}He really is clever.\nI'll have money\nfor the rest of my life.{end_wait}
+07104	MsgLunpaYoudShadowSneak	Only a shadow\ncould get past me.{end_wait}
+07105	MsgLunpaInteriorsFirstHomeASealed	My grandfather traveled\nwith Lunpa himself.{page_break}He'd hate to see\nthe town he helped build\nturned into this.{end_wait}
+07106	MsgLunpaInteriorsFirstHomeBSealed	We live in Lunpa.\nThat doesn't mean\nwe serve Dodonpa.{end_wait}
+07107	MsgLunpaInteriorsFirstHomeASealedThoughts	There was a time\nwe could leave our homes\nwithout fear.{end_wait}
+07108	MsgLunpaInteriorsFirstHomeBSealedThoughts	They want us to join\nDodonpa's men.\nI won't do it.{end_wait}
+07109	MsgLunpaInteriorsSecondHomeASealed	Donpa built the fortress.\nHe knew how to keep\nintruders out.{page_break}Now those walls\nare keeping us in.{end_wait}
+07110	MsgLunpaInteriorsSecondHomeBSealed	Only the inn's chef\nis allowed inside.\nHe brings the meals.{end_wait}
+07111	MsgLunpaInteriorsSecondHomeASealedThoughts	Every corner is watched.\nHard to move anywhere\nwithout being seen.{end_wait}
+07112	MsgLunpaInteriorsSecondHomeBSealedThoughts	The chef started\nmaking deliveries\nafter the caravan came.{page_break}Someone inside\nhas to be eating\nthose meals.{end_wait}
+07113	MsgLunpaInteriorsThirdHomeASealed	Lunpa traveled south\nwhen the great flood came.\nHe never returned.{page_break}The waters took him.\nAt least that's\nwhat we've been told.{end_wait}
+07114	MsgLunpaInteriorsThirdHomeBSealed	Lunpa was traveling\nwith a man called Babi\nwhen the flood struck.{end_wait}
+07115	MsgLunpaInteriorsThirdHomeASealedThoughts	They say the flood\nswallowed whole towns.\nNo one knows how many.{end_wait}
+07116	MsgLunpaInteriorsThirdHomeBSealedThoughts	Babi? What sort\nof name is that?{end_wait}
+07117	MsgLunpaWeaponMerchantSealed	No road, no customers.\nThis shop can't last.{page_break}Dodonpa eats well.\nThe rest of us\ncan go hungry.{end_wait}
+07118	MsgLunpaArmorMerchantSealed	I've still got armor.\nWhen Lunpa opens again,\ncome see me.{end_wait}
+07119	MsgLunpaItemMerchantSealed	I've stocked up,\nbut nothing can reach us.{page_break}Even the traders\nare suffering now.\nTheir goods can't move.{end_wait}
+07120	MsgLunpaInnkeeperOffersOwnHome	Want to stay at my inn?{end_now}
+07121	message	You must be joking.\nGo sleep at home!{end_wait}
+07122	message	I know.\nNo one wants a room\nin a sealed town.{end_wait}
+07123	MsgLunpaInteriorsInnClerkSealed	Hammet's ransom\nmade Dodonpa wealthy.{page_break}We haven't seen\na coin of it.\nJust empty rooms.{end_wait}
+07124	MsgLunpaInteriorsInnWorkerSealed	We keep the rooms clean.\nNo one comes to stay.\nStill, we keep working.{end_wait}
+07125	MsgLunpaChefOffersStory	Want to hear about\nmy trip to the fortress?{end_now}
+07126	message	They blindfolded me.\nI walked a long way\nthrough cold air.{page_break}My steps echoed.\nWe were underground.\nI know that much.{end_wait}
+07127	message	I was relieved\nto see daylight again.{page_break}They called the prisoner\nHammet. I never saw\nhis face clearly.{end_wait}
+07128	MsgLunpaInteriorsInnkeeperSealedThoughts	I won't close this inn.\nNot while the people\nof Lunpa still need it.{end_wait}
+07129	MsgLunpaInteriorsInnClerkSealedThoughts	He took a man for ransom.\nHe'd sell the whole town\nif someone offered enough.{end_wait}
+07130	MsgLunpaInteriorsInnWorkerSealedThoughts	Empty rooms, empty tables.\nI wonder how long\nthey'll keep paying me.{end_wait}
+07131	MsgLunpaChefThinksOfPrisoner	I heard the prisoner's\nvoice when I served him.\nHe sounded so tired.{end_wait}
+07132	MsgLunpaTemplePriestSealed	Dodonpa's done\nterrible things.{page_break}But the people of Lunpa\naren't all his servants.\nThey still need us.{end_wait}
+07133	MsgLunpaInteriorsTemplePriestSealedThoughts	We can't abandon Lunpa.\nDodonpa's men are\nwatching the roads.{end_wait}
+07134	MsgLunpaWeaponMerchantSealedThoughts	Another week like this\nand I'll have to\nclose my shop.{end_wait}
+07135	MsgLunpaArmorMerchantSealedThoughts	I should have bought\nmore armor when\nthe roads were open.{end_wait}
+07136	MsgLunpaItemMerchantSealedThoughts	All this stock,\nand already I'm running\nlow.{page_break}I can't order more.{end_wait}
+07137	MsgLunpaEastGuardDemandsAuthorization	No one enters Lunpa\nwithout Dodonpa's order.\nGo back.{end_wait}
+07138	MsgLunpaEastGuardFearsBlame	If anyone slips inside,\nDodonpa will punish\nthe guards first.{end_wait}

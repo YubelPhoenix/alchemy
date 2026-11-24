@@ -52,6 +52,7 @@
 #include "scene_ids.h"
 #include "unit/scene/altin.h"
 #include "unit/overworld/overworld.h"
+#include "world_state.h"
 #include "unit/overworld/event_commands.h"
 #include "battle.h"
 #include "debug.h"
@@ -761,6 +762,11 @@ static void Altin_CheckPillarMoved(void) {
 /// the water level from the mine's drain flags first. Returns 0.
 s32 Scene_Initialize(void) {
   s16 sceneId;
+
+  // Rain in the village only: this overlay also holds its houses, shops and
+  // inn (SceneId_CottageRoomsD).
+  if (gSaveBlock.sceneId == MAP_ALTIN_VILLAGE)
+    WorldState_Apply();
 
   if (GameFlag_Get(FLAG_ALTIN_MINE_FIRST_DRAIN) != 0) {
     GameFlag_Set(FLAG_ALTIN_WATER_DROPPED_ONCE);

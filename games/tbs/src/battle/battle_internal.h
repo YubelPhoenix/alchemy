@@ -186,6 +186,32 @@ enum BattleCastKind {
   CAST_ENEMY = 2     ///< the element's streaks
 };
 
+/// The optional super bosses' tactics (boss_ai.c). BossAI_BeginRound runs once
+/// per round from BattleTurnOrder_Sort and BossAI_NoteTurn after each turn is
+/// staged; the choosers only read the battle.
+/// BossAI_ChooseTarget's results besides an index.
+#define BOSS_AIM_STOCK -1
+#define BOSS_AIM_NONE -2
+void BossAI_BeginRound(void);
+void BossAI_NoteTurn(struct BattleAction *request, s32 result);
+s32 BossAI_ChooseSlot(struct Unit *unit, s32 slot, s32 firstPick);
+s32 BossAI_ChooseTarget(s32 userId, struct AbilityDefinition *action,
+                        const s32 *unitIds, const s32 *targetPositions,
+                        s32 count);
+
+/// Ashfall's "You're not alone" in the "???" battle (party_join.c): Battle_Run
+/// calls the first two after each round and each action; the boss AI and the
+/// damage code call the others.
+void PartyJoin_RunRoundEnd(void);
+void PartyJoin_RunAfterAction(void);
+void PartyJoin_SayKeyLine(s32 message);
+s32 PartyJoin_TakeBrinkTurn(void);
+s32 PartyJoin_ClampDamage(s32 targetId, s32 hp, s32 amount);
+void FallingWind_KeepFallen(struct BattleTurn *plan);
+s32 PartyJoin_StepGloom(s32 *repaint);
+/// Ashfall's finished Regenerate (regenerate.c).
+void Regenerate_RunRoundEnd(s32 unitId);
+
 /// BattleAI_ChooseTarget's results when it picks no one: the side it
 /// may target lists no one, or no one there is worth the ability.
 #define TARGET_PICK_SIDE_EMPTY -2
@@ -212,6 +238,12 @@ enum BattleCastKind {
 /// REG_BLDCNT: blend the semi-transparent sprites (SPRITE_SEMI_TRANSPARENT)
 /// over every layer, to fade them.
 #define BLEND_SPRITES_OVER_ALL (BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL)
+
+/// The Mystery Leader's boss memory (Unit.aiActionIndex): set the first time
+/// she acts at or below half HP, when the screen flashes and her backdrop
+/// snaps to crimson (BossAI_MysteryAwaken). Her backdrop's rage waits for it
+/// (battle/mystery_backdrop.c).
+#define MYSTERY_ENRAGED (1u << 8)
 
 /// The keys that take the player on past a message: A, B, L and R.
 #define KEY_ADVANCE (KEY_A | KEY_B | KEYS_SHOULDERS)

@@ -1,0 +1,17 @@
+# Lemurian ship departure: the party leaves Gondowan and sets course for Lemuria.
+10494	MsgFieldLooksLikeFinally	We're leaving Gondowan!\nReally leaving it!\n...I think I'm ready.{end_wait}
+10495	message	No chart tells us\nwhere this ship will\nlead. We'll find out.{end_wait}
+10496	message	When I left Imil,\nI hoped to be useful.\nI never imagined this.{end_wait}
+10497	message	If we find {actor_name:6},\ndo you think we\ncan go home?{end_now}
+10498	message	I hope so.\nI've missed Vale\nmore than I thought.{end_wait}
+10499	message	Then I guess we\nhave more road ahead.\nOr sea.{end_wait}
+10500	message	And Lemuria, {actor_name:2}?\nWe gave Babi\nour word.{end_wait}
+10503	message	Babi spent a lifetime\nlooking for that place.\nI want to see it.{end_wait}
+10504	message	Should we find\n{actor_name:6} before we sail\nto Lemuria?{end_now}
+10506	message	Then we'll try both.\nWe won't abandon\n{actor_name:6} or Babi.{end_wait}
+10507	message	It's an old ship.\nThe sea may have\nchanged since it sailed.{end_wait}
+10508	message	Kraden wanted me\nto see the sea.\nHe left out the waves!{end_wait}
+10509	message	Look at those waves.\nAre we certain\nthis ship can take them?{end_now}
+10510	message	I trust you.\nStill, we'll watch\nthe weather closely.{end_wait}
+10511	message	At least you're\nthinking of the risks.\nWe'll manage together.{end_wait}
+10514	message	{actor_name:6} is out there.\nWe won't leave her\nbehind.{end_wait}

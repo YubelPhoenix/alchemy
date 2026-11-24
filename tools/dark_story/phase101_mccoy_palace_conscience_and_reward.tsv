@@ -1,0 +1,34 @@
+# Bilibin McCoy palace and grounds: pre-Kolima judgments, admissions of guilt, reward choices, and room inspections.
+10711	MsgBilibinTheresASilkNegligeeIsaacPut	A silk negligee rests\nhere.{page_break}{actor_name:1}!\nLeave that alone!{end_wait}
+10712	MsgBilibinTheresASheetOfPaperTitled	A list called Sweetie's\nGifts. Lord McCoy has\nwritten down every present{page_break}for his wife. There are\npages of them.{end_wait}
+10718	MsgBilibinUponCloserInspectionSeemsDried	The well looks dry. No\nwonder no one's using it.{end_wait}
+05140	MsgBilibinWhere	Where've you been? I sent\nword hours ago.{end_wait}
+05175	MsgBilibinMatter	Well? Have yeh made up yer\nminds?{end_wait}
+05198	MsgBilibinComeSaidYoud	Come on, {actor_name:1}. We said\nwe'd help them. We're not\nbacking out now, are we?{end_now}
+05199	MsgBilibinWellSGoing	If {actor_name:1}'s going into\nthat forest, I'm going too.{end_wait}
+05214	MsgBilibinNameSorryRejected	{actor_name:1}, was it? I'm sorry\nthe lord turned yeh away.{end_wait}
+05920	MsgBilibinOhItS	Oh... it's you.{end_wait}
+05924	MsgBilibinNotTrueWitnesses	That's not what the\nwitnesses say. You were\nseen near the forest.{end_wait}
+05926	MsgBilibinUnderArrest	That's enough. You're\ncoming with us. Lord McCoy\nwants answers.{end_wait}
+05928	MsgBilibinWeveBroughtWarriorsMilord	We've brought the young\nwarriors, milord.{end_wait}
+05943	MsgBilibinHumblyThank	You've my thanks. Truly.{end_wait}
+05944	MsgBilibinNaeYehDinnaeNeedTae	Nae need tae hide it. My\nmen told me what yeh did\nfor Kolima.{end_wait}
+05945	MsgBilibinWasButWorriedYehMight	I worried yeh would leave\nBilibin without coming\nback. I wanted tae thank{page_break}yeh myself.{end_wait}
+05958	MsgBilibinLordMccoyOrdered	Lord McCoy asked us to\nbring {actor_name:1} and the\nothers here. Milord has{page_break}prepared a reward.{end_wait}
+05959	MsgBilibinYouMaySelectASingleItem	You may choose one item\nfrom these four chests.\nOnly one, mind you.{end_wait}
+05960	MsgBilibinPleaseTakeYourRewardBefore	Don't leave before choosing\nyour reward. The lord\ninsisted.{end_wait}
+05961	MsgBilibinAlwaysWelcomeInPalaceLord	You're welcome in this\npalace whenever yeh return.{end_wait}
+05962	MsgBilibinTheseCourageousWarriorsDeserveToReceive	They went where our own men\nwouldnae go. They deserve a\nproper reward.{end_wait}
+05963	MsgBilibinMayChooseOnlyOneItem	Choose whichever chest yeh\nlike. The lord has put\nsomething in each.{end_wait}
+05964	MsgBilibinNonethelessIfYourLuckSour	Of course, yeh might get an\nitem yeh have nae use for.\nThat's the risk.{end_wait}
+05965	MsgBilibinIsaacCheckedChestButWas	{protagonist_name} opened the\nchest.{page_break}It was\nempty.{end_wait}
+05966	MsgBilibinTreasureChestLocked	The chest is locked tight.{end_wait}
+05967	MsgBilibinYehveTaughtMeThatICannae	I thought you were too\nyoung for a job like that.\nI was wrong, and I owe yeh{page_break}an apology.{end_wait}
+05968	MsgBilibinFineWarrior	Yeh did a fine job. I wish\nI could say I'd have been\nas brave.{end_wait}
+05969	MsgBilibinDoThinkCanBecomeAs	Could I ever be as brave as\nyou were?{end_now}
+05972	MsgBilibinICouldNeverHaveGoneTo	I was afraid to go near\nKolima. You went anyway.\nI'll remember that.{end_wait}
+05973	MsgBilibinButICannaeFiggerOutHow	There's one thing I dinnae\nunderstand. How did yeh get\npast the barricade without{page_break}the key?{end_wait}
+05974	MsgBilibinSometimesWeNeedChildrenRemind	Yeh shouldn't have needed\nto do our work. Sometimes\nit's the young who shame us{page_break}into acting.{end_wait}
+05975	MsgBilibinIWillBeAReliableWarrior	I'll train until I can help\nsomeone the way {actor_name:1}\ndid.{end_wait}
+05977	MsgBilibinThePeopleOfBilibinWillNever	People here will remember\nwhat yeh did for Kolima\nlong after you're gone.{end_wait}
+05988	MsgBilibinAaaah	Aaaah!{end_wait}

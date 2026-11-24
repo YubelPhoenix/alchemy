@@ -488,6 +488,16 @@ static void LaliveroInteriors_ReportToFaran(void) {
   Event_WaitFrames(10);
   Actor_ShowEmote(ACTOR_FARAN, EMOTE_IN_FRONT | EMOTE_ELLIPSIS, 50);
   Event_ShowMessageAndWait(ACTOR_FARAN, 0);
+  Event_WaitFrames(10);
+  // Isaac answers (phase119_isaac_voice.tsv); the cursor is put back
+  // so the scene's own messages stay aligned.
+  {
+    s32 resume = gFieldWork->message;
+
+    Event_SetMessageId(MsgDarkIsaacTellsFaran);
+    Event_ShowMessageAndWait(ACTOR_PARTY_LEADER, 0);
+    gFieldWork->message = resume;
+  }
   // The party tells what became of Jenna and the others; the version that saw
   // the ship at Idejima knows Idejima was swept away with it.
   if (GameFlag_Get(FLAG_SAW_SHIP_AT_IDEJIMA) == 0) {
@@ -665,16 +675,18 @@ static void LaliveroInteriors_ReportToFaran(void) {
   Event_WaitFrames(30);
   Actor_SetAnimationAndWait(ACTOR_GARET, ANIM_SHAKE_HEAD);
   Event_WaitFrames(20);
-  Event_ShowMessageAndWait(ACTOR_GARET, 0);
+  // Mia checks Garet's impatience; Garet then insists they must leave,
+  // and Iodem acknowledges it. Keep message order 10358..10360.
+  Event_ShowMessageAndWait(ACTOR_MIA, 0);
   Event_WaitFrames(10);
   Actor_FaceDirection(ACTOR_IODEM, FACING_SOUTH, 0);
   Event_WaitFrames(30);
-  Actor_ShowEmote(ACTOR_IODEM, EMOTE_IN_FRONT | EMOTE_ELLIPSIS, 60);
-  Event_ShowMessageAndWait(ACTOR_IODEM, 0);
+  Actor_ShowEmote(ACTOR_GARET, EMOTE_IN_FRONT | EMOTE_ELLIPSIS, 60);
+  Event_ShowMessageAndWait(ACTOR_GARET, 0);
   Event_WaitFrames(10);
   Actor_RunRepeatedMotion(ACTOR_GARET, 2);
   Event_WaitFrames(20);
-  Event_ShowMessageAndWait(ACTOR_GARET, 0);
+  Event_ShowMessageAndWait(ACTOR_IODEM, 0);
   Event_WaitFrames(10);
   Actor_FaceDirection(ACTOR_FARAN, FACING_SOUTH, 0);
   Event_WaitFrames(40);
@@ -713,15 +725,17 @@ static void LaliveroInteriors_ReportToFaran(void) {
   Event_WaitFrames(10);
   Actor_RunRepeatedMotion(ACTOR_FARAN, 2);
   Event_WaitFrames(20);
-  Event_ShowMessageAndWait(ACTOR_FARAN, 0);
+  // The departing party answers Faran's warning (10365); he promises
+  // to continue looking for Sheba (10366), Ivan and Mia answer (67..68).
+  Event_ShowMessageAndWait(ACTOR_GARET, 0);
   Event_WaitFrames(10);
   Actor_RunRepeatedMotion(ACTOR_GARET, 2);
   Event_WaitFrames(20);
-  Event_ShowMessageAndWait(ACTOR_GARET, 0);
-  Event_WaitFrames(10);
-  Actor_SetAnimationAndWait(ACTOR_FARAN, ANIM_NOD);
-  Event_WaitFrames(30);
   Event_ShowMessageAndWait(ACTOR_FARAN, 0);
+  Event_WaitFrames(10);
+  Actor_SetAnimationAndWait(ACTOR_IVAN, ANIM_NOD);
+  Event_WaitFrames(30);
+  Event_ShowMessageAndWait(ACTOR_IVAN, 0);
   Event_WaitFrames(20);
   Actor_SetAnimationAndWait(ACTOR_MIA, ANIM_NOD);
   Event_WaitFrames(30);

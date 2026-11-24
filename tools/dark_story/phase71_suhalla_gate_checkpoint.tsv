@@ -1,0 +1,28 @@
+# Suhalla Gate checkpoint: travel papers, Colosso guards, Iodem's arrival and the wounded soldiers.
+09805	MsgSuhallaTravelPapersRequired	Only travelers with\nproper papers may pass.\nWithout them, turn back.{page_break}Show your papers, or\nleave this passage\nat once.{end_wait}
+09806	MsgSuhallaWantGoBabi	Are you heading to\nBabi Lighthouse?{end_now}
+09810	MsgSuhallaObeyBabiOrders	I never ask why Babi\nhas ordered me to guard\nthis passage.{page_break}A soldier follows\norders. I do as I am\ntold.{end_wait}
+09811	MsgSuhallaSeeColossoNextYear	I wonder if Colosso\nhas ended for the year...{page_break}I wish I could have\nseen it. Perhaps\nnext year...{end_wait}
+09812	MsgSuhallaMeaning	What happened here?\nWho attacked this gate?{end_wait}
+09831	MsgSuhallaSendHelpFromTower	Oh...{pause_20_skippable} There's no use.\nI don't think I can\nstand.{page_break}Please, send help from\nBabi Lighthouse when\nyou reach it.{end_wait}
+09832	MsgSuhallaPityColossoVictor	It's a shame a Colosso\nvictor should end up\nlike this...{page_break}When I find them,\nI'll make them answer\nfor what they've done!{end_wait}
+09833	MsgSuhallaAshamedBeforeIodem	Damn it... I can't bear\nto let Iodem see me\nlike this...{page_break}I'd rather crawl into\na hole and hide.{end_wait}
+09834	MsgSuhallaSurvivedAttack	I thought I was dead!\nI'm lucky to be alive\nat all...{page_break}Those strange men with\nwild hair... They were\nfar too powerful.{end_wait}
+09813	message	Iodem... We tried\nto hold the passage.{end_wait}
+09814	message	Start at the beginning.\nTell me what you saw.{end_wait}
+09815	message	Strangers came without\npapers. We ordered\nthem to turn back.{page_break}They struck before\nwe could raise\nthe alarm.{end_wait}
+09816	message	We never had\na chance...{end_wait}
+09817	message	They moved through us\nas if we weren't\neven there.{end_wait}
+09818	message	Fire... and a power\nI couldn't name.\nThen everything went dark.{end_wait}
+09819	message	Could {actor_name:5} have\nbeen among them?{end_now}
+09820	message	Then he may already\nbe near the lighthouse.{end_wait}
+09821	message	We cannot know yet.\nBut someone forced\nthis passage.{end_wait}
+09822	message	And {actor_name:7} is still\nmissing. We cannot\nforget her.{end_wait}
+09823	message	The lighthouse may be\nin danger. We must\nmove quickly.{end_wait}
+09824	message	Not while these men\nlie here wounded.{end_wait}
+09825	message	We can hold on.\nYou have to go...\nbefore it's too late.{end_wait}
+09826	message	But leaving you\nlike this...{end_wait}
+09827	message	We've survived worse\nthan this. Please...\nkeep going.{end_wait}
+09828	message	If the lighthouse\nfalls, Lalivero\nwill pay the price.{end_wait}
+09829	message	Then we cannot\nwaste another moment.{end_wait}
+09830	message	{actor_name:1}, are you ready?\nWe go together.{end_wait}

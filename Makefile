@@ -216,6 +216,22 @@ SRCS := $(foreach object,$(OBJS:$(BUILD)/obj/%.o=%),$(call source,$(object)))
 STREAM := $(BUILD)/obj/games/$(GAME)/src/system/overlay/overlays.o
 LINKED := $(filter-out $(STREAM),$(MAIN_OBJS))
 
+# Restore source-controlled Gotterkanone art before dependency scanning or
+# assembling its graphics object. The checked RLE bytes are generated locally.
+ifeq ($(GAME),tbs)
+GOTTERKANONE_RLE := games/tbs/src/battle_anim/parts/gotterkanone.rle
+$(GOTTERKANONE_RLE): games/tbs/src/battle_anim/parts/gotterkanone.rle.bz2.b64 tools/dark_story/build_gotterkanone_asset.py
+	python3 tools/dark_story/build_gotterkanone_asset.py
+$(BUILD)/obj/games/tbs/src/graphics/battle_anims/battle_anims.o: $(GOTTERKANONE_RLE)
+$(BUILD)/deps.mk: $(GOTTERKANONE_RLE)
+# The trial Umbral Rift sequence is packed as checked base64. Make it a real
+# prerequisite before dependency scanning discovers its MIDI object.
+UMBRAL_MIDI := games/tbs/sound/songs/mus_umbral_rift.mid
+$(UMBRAL_MIDI): $(UMBRAL_MIDI).zlib.b64 tools/music/install_umbral_rift_music.py
+	python3 tools/music/install_umbral_rift_music.py
+$(BUILD)/deps.mk: $(UMBRAL_MIDI)
+endif
+
 $(BUILD)/deps.mk: $(BUILD)/objects.mk $(SCANINC) $(SRCS)
 	$(SCANINC) $@ $(BUILD) $(BUILD)/obj $(INCLUDES) -I$(BUILD) -G text/ -G overlays/ -G baserom.gba -- $(SRCS)
 # Read once the object list is: the scan needs its sources.

@@ -1,0 +1,27 @@
+# "You're not alone": battle lines for the "???" fight (battle/party_join.c).
+# Shown as plain battle text at the bottom of the screen, which holds two
+# lines: each message is at most two lines, with no {page_break} and no
+# {end_wait}. A longer line is several messages, the later ones named ...2, ...3.
+N399	MsgPartyJoinMysteryBrink	Now. Show me what\nyou are on your own.
+N400	MsgPartyJoinMysteryAlone	There. Look around you.\nNo one is coming.
+N407	MsgPartyJoinMysteryAlone2	Not because they won't.\nBecause they can't.
+N401	MsgPartyJoinMiaArrives	No. You're wrong.\nHe was never alone.
+N402	MsgPartyJoinMysteryReacts	That's not possible.\nMy hold was perfect.
+# She knows their future, in which others take their places; they don't care.
+N403	MsgPartyJoinMysteryProphecyMia	I've seen what comes next.\nOthers take your place.
+N408	MsgPartyJoinMiaForgotten	I may be replaced, but\nI'll never be forgotten.
+N404	MsgPartyJoinGaretArrives	Get away from him!
+N410	MsgPartyJoinGaretArrives2	I didn't let him go\nalone that night.
+N413	MsgPartyJoinGaretArrives3	I'm not starting now!
+N409	MsgPartyJoinMysteryProphecyGaret	Your story ends at home,\nwatching others go on.
+N414	MsgPartyJoinGaretCount	Then I'll make\nthis fight count!
+N405	MsgPartyJoinIvanArrives	I told you, Isaac.\nWe'd find a way.
+N411	MsgPartyJoinIvanArrives2	I could hear you\nthe whole time.
+N415	MsgPartyJoinMysteryProphecyIvan	Soon another will replace\nyou. Can't you foresee it?
+N416	MsgPartyJoinIvanForesee	I foresee it. I'll be\nproud of who it is.
+N417	MsgPartyJoinIvanNotToday	But that day isn't today.
+N406	MsgPartyJoinMysteryNotAlone	I came to see the\noriginal. Alone.
+N412	MsgPartyJoinMysteryNotAlone2	Your healer was right.\nHe was never alone.
+# Isaac's memories in the dark, his friends' own words from earlier: Garet on
+# the stormy night (phase1_vale.tsv 03796), Ivan and Mia at the aerie
+# (phase14_aerie.tsv MsgDarkAerieIvanAlone, MsgDarkAerieMiaTogether).

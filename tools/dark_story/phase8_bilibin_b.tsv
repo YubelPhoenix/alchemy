@@ -1,0 +1,45 @@
+05839	MsgBilibinTheEruptionOnTheOtherSide	Mt. Aleph is quiet now.{page_break}I hope it stays that way.{end_wait}
+05840	MsgBilibinNowThatTheCurseIsBroken	The curse is lifted.\nWill they start\nthe palace again?{end_wait}
+05841	MsgBilibinItsOverOverMilordDecidedNot	No. Lord McCoy\nhas stopped the work.\nThe forest needs time.{end_wait}
+05842	MsgBilibinHmphMyPalaceIsNotFinished	He promised me a palace.\nNow he bows to fear.{page_break}Those people have their\nhomes. Where is mine?{end_wait}
+05843	MsgBilibinINeverWantToBeTurned	I remember everything.\nEven when I was a tree.{end_wait}
+05844	MsgBilibinNotManyLumberjacksAreWillingTo	No one wants to cut\nthe trees near Kolima.\nI can't blame them.{end_wait}
+05845	MsgBilibinOneOfTheTwoPeopleThat	Two travelers passed.\nOne seemed injured.{end_wait}
+05846	MsgBilibinThatGuyMightTurnIntoA	He was a tree once.\nI still can't forget it.{end_wait}
+05847	MsgBilibinLordMccoySeemsToBeHaving	They argued again.\nShe says he let\nstrangers shame him.{end_wait}
+05848	MsgBilibinApparentlyJustAboutAnyoneCouldJust	The barricade barely\nslowed anyone down.{end_wait}
+05849	MsgBilibinTheGangOfThreeHaTheyre	The Gang of Three?\nI haven't seen them.{end_wait}
+05850	MsgBilibinImSureLordMccoyWillGive	McCoy owes you a reward.\nMake sure he pays.\nHe makes a lot of promises.{end_wait}
+05851	MsgBilibinTheyMustBeReportingYourDeeds	They're telling McCoy\nwhat happened.{end_wait}
+05852	MsgBilibinIWantToShareWithYou	I'm so relieved.\nI could cry.{end_wait}
+05853	MsgBilibinAsLongAsImOkayI	I'm just glad\nmy family is safe.{end_wait}
+05854	MsgBilibinWedStillBeWorkingIfWe	We warned them.\nThe forest was sacred.\nNo one listened.{end_wait}
+05855	MsgBilibinThatWasCloseBuildingACursed	The work has stopped.\nI have men to pay\nand no timber to sell.{end_wait}
+05856	MsgBilibinHeSaidHeStoppedConstructionSo	McCoy says the curse\nchanged his mind.{page_break}Maybe fear taught him\nwhat reason couldn't.{end_wait}
+05857	MsgBilibinDoKnowIfHolyTree	Did the holy tree\nsurvive? Do you know?{end_now}
+05860	MsgBilibinThankGoodnessTheyStoppedConstructionOf	Milady won't forgive\nhim for ending the work.\nNot anytime soon.{end_wait}
+05861	MsgBilibinItTakesManyYearsForA	It took centuries\nfor that tree to grow.\nWe nearly lost it.{end_wait}
+05862	MsgBilibinSometimesIWishICouldSee	I wonder what that\npalace would have been.{page_break}Perhaps it's best\nwe'll never know.{end_wait}
+05863	MsgBilibinIAlwaysMissAltinInThe	I miss Altin in winter.{page_break}The mines were warm\neven in the cold.{end_wait}
+05864	MsgBilibinMyFatherSaysThatItsWarm	Father says it's warmer\nsouth of the river.{end_wait}
+05865	MsgBilibinIWonderIfThereAreStill	Are there still gems\nin Altin Mine?{end_wait}
+05866	MsgBilibinMyFatherHasTraveledAllOver	My father has traveled\nfarther than I have.{end_wait}
+05867	MsgBilibinTheRoadToKolimaIsOpen	The road to Kolima\nis open again.{end_wait}
+05871	MsgBilibinTravelingMakesYoungWarriorsStronger	You seem steadier now.\nLooks like the road\nhas taught you something.{end_wait}
+05873	MsgBilibinIThoughtISawLightsIn	I saw light above Imil.{page_break}Was it the lighthouse?{end_wait}
+05874	MsgBilibinHisEyesAreRedBecauseHe	He stayed up all night.\nLook at his eyes.{end_wait}
+05875	MsgBilibinTheresNoDoubtAboutItIts	That light came\nfrom the lighthouse.{end_wait}
+05876	MsgBilibinWhatsTheBigDealWhyAre	It's only a lighthouse.\nWhy all the fuss?{end_wait}
+05879	MsgBilibinForSomeReasonOceanFills	I'd like to see\nthe ocean someday.{end_wait}
+05880	MsgBilibinIWishICouldGoOut	I'd love to sail.{page_break}I'm afraid I'd never\ncome back.{end_wait}
+05881	MsgBilibinTurnedOutWarriorsHiredBy	McCoy hired many fighters.{page_break}In the end, you were\nthe ones who helped.{end_wait}
+05882	MsgBilibinTheyCallThemselvesWarriorsButYou	They called themselves\nwarriors.{page_break}Then they ran.{end_wait}
+05883	MsgBilibinWasntCurseInKolimaHorrifying	That curse in Kolima.\nHorrifying, wasn't it?{end_now}
+05886	MsgBilibinThereWillBeFewerGuestsNow	The inn is quieter now.{page_break}Still, I'm glad\nthe curse is gone.{end_wait}
+05896	MsgBilibinTheresNoBusinessHereSoIm	There's no work here.{page_break}I'll try Xian,\nthen perhaps Tolbi.{end_wait}
+05902	MsgBilibinTheIncidentWasResolvedBeforeI	The trouble is over.{page_break}Maybe I'll look\nfor work across the river.{end_wait}
+05903	MsgBilibinIWonderWhatThatEerieHowling	I heard something\nhowling across the river.{page_break}I couldn't sleep\nafter that.{end_wait}
+05915	MsgBilibinItLooksLikeScaryThingsAre	Bad news travels\nfaster every day.{end_wait}
+05980	MsgBilibinThingsAreLookingGrimSouthOf	Storm clouds are coming\nfrom beyond Goma.{page_break}Take shelter\nif the rain starts.{end_wait}
+06001	MsgBilibinTheyCrossedTheRiverAfterPushing	They pushed us aside\nand crossed the river.{page_break}We couldn't stop them.{end_wait}
+06012	MsgBilibinItWasAwfulLuckBeingTurned	We were picking fruit\nwhen the curse struck.{page_break}I never thought\nI'd see home again.{end_wait}

@@ -91,6 +91,12 @@ void BattleObject_Make(struct BattleObject *actor, s32 unitId, s32 x, s32 y) {
   // Bandit and Orc Captain are set to 1.0 again.
   actor->scale = Q16_ONE;
   switch (unit->id) {
+  // "???" is drawn shorter than Heart; stand her at Heart's height in both the
+  // Vale fight (row 164) and the Umbral Rift.
+  case ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER:
+  case ENEMY_RIFT_MYSTERY_LEADER:
+    actor->scale = 0x12666;
+    break;
   case ENEMY_KILLER_APE:
     actor->scale = 0x19999;
     break;
@@ -310,6 +316,16 @@ void BattlePlacement_LayoutEnemies(u16 *actorIds, s32 count, s32 *xPositions,
     s32 spacing = 0;
 
     xPositions[index] = -80;
+    // Heart (enemy 109) stands closer to the party than the usual -80, so she
+    // is not small and far off beside it.
+    if (!IS_PLACEHOLDER_ID(actorIds[index]) &&
+        (Unit_GetFar(actorIds[index])->id == 109 ||
+         Unit_GetFar(actorIds[index])->id == ENEMY_RIFT_MYSTERY_LEADER ||
+         Unit_GetFar(actorIds[index])->id == ENEMY_ID_FIRST + 165 ||  // Rift Heart
+         Unit_GetFar(actorIds[index])->id == 100 ||
+         Unit_GetFar(actorIds[index])->id == 8)) {
+      xPositions[index] = -62;
+    }
     if (index != 0) {
       struct Unit *actor;
 
@@ -332,6 +348,14 @@ void BattlePlacement_LayoutEnemies(u16 *actorIds, s32 count, s32 *xPositions,
       spacing = BattleSprite_IsSmall(actor->id) ? 27 : 38;
     }
     z -= spacing / 2;
+  }
+  // Umbral Rift: ??? and Heart are both large figures, so the usual 38-unit
+  // gap leaves them shoulder to shoulder. Spread the pair apart.
+  if (count == 2 && !IS_PLACEHOLDER_ID(actorIds[0]) && !IS_PLACEHOLDER_ID(actorIds[1]) &&
+      Unit_GetFar(actorIds[0])->id + Unit_GetFar(actorIds[1])->id == 160 + 173 &&
+      (Unit_GetFar(actorIds[0])->id == 160 || Unit_GetFar(actorIds[0])->id == 173)) {
+    zPositions[0] += 10;
+    zPositions[1] -= 10;
   }
 }
 

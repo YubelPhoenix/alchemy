@@ -1147,15 +1147,17 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = ABILITY_RANGE_ALL,
         .ppCost = 5,
     },
-    // Regenerate
+    // Regenerate. Ashfall finishes it (battle/regenerate.c): the original
+    // left it out of reach with no icon, and its power of 60 hurt the ally
+    // it was cast on, so it has Wish's icon and no power.
     {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_MERCURY,
         .effect = ABILITY_EFFECT_REGENERATE,
+        .icon = 67,
         .range = 1,
-        .ppCost = 6,
-        .power = 60,
+        .ppCost = 4,
     },
     // Reflect
     {
@@ -1168,54 +1170,128 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 5,
     },
     // ?
+    // Djinn's Grace (Ashfall): a Djinni heals every ally and leaves each
+    // regenerating (regenerate.c); unused Djinn Heal animation.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_FIELD | ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_HP,
+        .element = ELEMENT_MERCURY,
+        .icon = 69,
+        .range = ABILITY_RANGE_ALL,
+        .ppCost = 16,
+        .power = 250,
+        .effect = ABILITY_EFFECT_REGENERATE,
     },
     // ?
+    // Ember Burst (Ashfall): Mars bursts on up to three foes that lower their
+    // Resistance; unused Target Bursts.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MARS,
+        .icon = 33,
+        .range = 2,
+        .ppCost = 10,
+        .power = 70,
+        .effect = ABILITY_EFFECT_RESISTANCE_DOWN,
     },
     // ?
+    // Sky Breaker (Ashfall): a leaping blow through half the foe's Defense;
+    // the unused Severe Blow leap.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .element = ELEMENT_MARS,
+        .icon = 134,
+        .range = 1,
+        .ppCost = 9,
+        .power = 45,
+        .effect = ABILITY_EFFECT_HALVE_DEFENSE,
     },
     // ?
+    // Rune Strike (Ashfall): a blow through a rune that seals the foe's
+    // Psynergy; unused Triangle Strike.
     {
-        .targetMode = ABILITY_TARGET_ONE,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
         .element = ELEMENT_VENUS,
+        .icon = 87,
+        .range = 1,
+        .ppCost = 8,
+        .power = 40,
+        .effect = ABILITY_EFFECT_SEAL,
     },
     // ?
+    // Starfall (Ashfall): stars gather, strike and daze every foe (Delusion);
+    // unused Swirling Stars.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_JUPITER,
+        .icon = 54,
+        .range = 4,
+        .ppCost = 22,
+        .power = 100,
+        .effect = ABILITY_EFFECT_DELUSION,
     },
     // ?
+    // Vertigo (Ashfall): confuses every foe, where Confuse takes three;
+    // unused Orbiting Spirals.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_JUPITER,
+        .effect = ABILITY_EFFECT_CONFUSION,
+        .icon = 85,
+        .range = ABILITY_RANGE_ALL,
+        .ppCost = 10,
     },
     // ?
+    // Death Knell (Ashfall): curses one foe; unused Orbiting Skulls. For
+    // enemies only, so it never stands beside the party's Curse.
     {
-        .targetMode = ABILITY_TARGET_ONE,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_VENUS,
+        .effect = ABILITY_EFFECT_CURSE,
+        .icon = 89,
+        .range = 1,
+        .ppCost = 10,
     },
-    // ?
+    // Falling Wind (Ashfall): Mia's two-part move, after the leaf-and-wind
+    // ability she uses in a pre-release screenshot. This is its storm, on
+    // every enemy, slowing them; its revive (139) follows at once.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_DAMAGE,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_AGILITY_DOWN,
+        .icon = 72,
+        .range = 4,
+        .ppCost = 34,
+        .power = 130,
     },
-    // ?
+    // The commander's custom Judgment-style finishing move (Kaiserdammerung slot).
+    // This is the ANIMATED attack, ABILITY_P_STORM_SUMMON, staged through
+    // the summon sequence with her figure. Do not balance only the unused
+    // ABILITY_P_STORM row at the end of the ability table.
     {
-        .targetMode = ABILITY_TARGET_ONE,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
         .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 640,
     },
-    // ?
+    // Falling Wind's revive (Ashfall): the leaves settle on every fallen ally,
+    // who rises at half HP. Played after the storm (137) by
+    // FallingWind_RunAfterAction; nobody learns it, and it costs nothing.
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_REVIVE_HALF,
+        .icon = 72,
+        .range = ABILITY_RANGE_ALL,
     },
     // Move
     {
@@ -2067,10 +2143,15 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .range = 1,
         .power = 57,
     },
-    // ?
+    // Dawnbreak (Ashfall): the Sealed Sol Blade's Unleash, in an empty slot. A
+    // sunfire blow that outdoes Titan Blade, drawn with Blade Rain, swords the
+    // original game drew but never showed (ability_staging.c).
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .element = ELEMENT_MARS,
+        .range = 1,
+        .power = 80,
     },
     // ?
     {
@@ -2432,28 +2513,38 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
     // Flint
     {
         .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_VENUS,
+        .effect = ABILITY_EFFECT_GROUND,
         .range = 1,
-        .power = 16,
     },
     // Granite
     {
-        .targetMode = ABILITY_TARGET_ALLIES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT_ONLY,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
         .element = ELEMENT_VENUS,
-        .effect = ABILITY_EFFECT_DEFEND,
-        .range = ABILITY_RANGE_ALL,
+        .effect = ABILITY_EFFECT_VENOM,
+        .range = 1,
+        .power = 75,
     },
     // Quartz
     {
-        .targetMode = ABILITY_TARGET_ALLIES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
         .element = ELEMENT_VENUS,
-        .effect = ABILITY_EFFECT_REVIVE_HALF,
+        .effect = ABILITY_EFFECT_DRAIN_HALF_HP,
         .range = 1,
+        .power = 60,
     },
     // Vine
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_VENUS,
+        .range = 1,
+        .power = 20,
+    },
+    // Sap
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
@@ -2461,31 +2552,21 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .effect = ABILITY_EFFECT_AGILITY_DOWN,
         .range = ABILITY_RANGE_ALL,
     },
-    // Sap
-    {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
-        .element = ELEMENT_VENUS,
-        .effect = ABILITY_EFFECT_DRAIN_HALF_HP,
-        .range = 1,
-        .power = 50,
-    },
     // Ground
     {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT_ONLY,
         .element = ELEMENT_VENUS,
-        .effect = ABILITY_EFFECT_GROUND,
-        .range = 1,
+        .effect = ABILITY_EFFECT_DEFEND,
+        .range = ABILITY_RANGE_ALL,
     },
     // Bane
     {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_VENUS,
-        .effect = ABILITY_EFFECT_VENOM,
+        .effect = ABILITY_EFFECT_REVIVE_HALF,
         .range = 1,
-        .power = 60,
     },
     // =
     {
@@ -2583,45 +2664,18 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_HP,
         .element = ELEMENT_MERCURY,
-        .effect = ABILITY_EFFECT_HEAL_HP_60,
-        .range = 1,
-    },
-    // Sleet
-    {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
-        .element = ELEMENT_MERCURY,
-        .effect = ABILITY_EFFECT_ATTACK_DOWN_2,
-        .range = 1,
-        .power = 30,
-    },
-    // Mist
-    {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
-        .element = ELEMENT_MERCURY,
-        .effect = ABILITY_EFFECT_SLEEP,
-        .range = 1,
-        .power = 13,
-    },
-    // Spritz
-    {
-        .targetMode = ABILITY_TARGET_ALLIES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_HP,
-        .element = ELEMENT_MERCURY,
         .effect = ABILITY_EFFECT_HEAL_HP_30,
         .range = ABILITY_RANGE_ALL,
     },
-    // Hail
+    // Sleet
     {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_MERCURY,
-        .effect = ABILITY_EFFECT_DEFENSE_DOWN_2,
+        .effect = ABILITY_EFFECT_REVIVE_80,
         .range = 1,
-        .power = 40,
     },
-    // Tonic
+    // Mist
     {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
@@ -2629,13 +2683,40 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .effect = ABILITY_EFFECT_CURE_ALL,
         .range = ABILITY_RANGE_ALL,
     },
-    // Dew
+    // Spritz
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_ATTACK_DOWN_2,
+        .range = 1,
+        .power = 40,
+    },
+    // Hail
     {
         .targetMode = ABILITY_TARGET_ALLIES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_HP,
         .element = ELEMENT_MERCURY,
-        .effect = ABILITY_EFFECT_REVIVE_80,
+        .effect = ABILITY_EFFECT_HEAL_HP_60,
         .range = 1,
+    },
+    // Tonic
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_DEFENSE_DOWN_2,
+        .range = 1,
+        .power = 50,
+    },
+    // Dew
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_SLEEP,
+        .range = 1,
+        .power = 16,
     },
     // =
     {
@@ -2733,44 +2814,10 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_MARS,
-        .effect = ABILITY_EFFECT_ATTACK_UP_2,
-        .range = ABILITY_RANGE_ALL,
-    },
-    // Fever
-    {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
-        .element = ELEMENT_MARS,
-        .effect = ABILITY_EFFECT_DELUSION,
-        .range = 1,
-        .power = 30,
-    },
-    // Corona
-    {
-        .targetMode = ABILITY_TARGET_ALLIES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
-        .element = ELEMENT_MARS,
         .effect = ABILITY_EFFECT_DEFENSE_UP_2,
         .range = ABILITY_RANGE_ALL,
     },
-    // Scorch
-    {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
-        .element = ELEMENT_MARS,
-        .effect = ABILITY_EFFECT_STUN,
-        .range = 1,
-        .power = 50,
-    },
-    // Ember
-    {
-        .targetMode = ABILITY_TARGET_ALLIES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_PP,
-        .element = ELEMENT_MARS,
-        .effect = ABILITY_EFFECT_HEAL_PP_7,
-        .range = ABILITY_RANGE_ALL,
-    },
-    // Flash
+    // Fever
     {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT_ONLY,
@@ -2778,14 +2825,48 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .effect = ABILITY_EFFECT_TOTAL_DEFENSE,
         .range = ABILITY_RANGE_ALL,
     },
-    // Torch
+    // Corona
+    {
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_HEAL_PP,
+        .element = ELEMENT_MARS,
+        .effect = ABILITY_EFFECT_HEAL_PP_7,
+        .range = ABILITY_RANGE_ALL,
+    },
+    // Scorch
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .element = ELEMENT_MARS,
+        .effect = ABILITY_EFFECT_DELUSION,
+        .range = 1,
+        .power = 40,
+    },
+    // Ember
+    {
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_MARS,
+        .effect = ABILITY_EFFECT_ATTACK_UP_2,
+        .range = ABILITY_RANGE_ALL,
+    },
+    // Flash
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
         .element = ELEMENT_MARS,
         .effect = ABILITY_EFFECT_HALVE_DEFENSE,
         .range = 1,
-        .power = 30,
+        .power = 40,
+    },
+    // Torch
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .element = ELEMENT_MARS,
+        .effect = ABILITY_EFFECT_STUN,
+        .range = 1,
+        .power = 65,
     },
     // =
     {
@@ -2880,22 +2961,13 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
     },
     // Gust
     {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
-        .element = ELEMENT_JUPITER,
-        .effect = ABILITY_EFFECT_DOUBLE_BLOW_60,
-        .range = 1,
-        .power = 10,
-    },
-    // Breeze
-    {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_JUPITER,
         .effect = ABILITY_EFFECT_RESISTANCE_UP_2,
         .range = ABILITY_RANGE_ALL,
     },
-    // Zephyr
+    // Breeze
     {
         .targetMode = ABILITY_TARGET_ALLIES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
@@ -2903,38 +2975,47 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .effect = ABILITY_EFFECT_AGILITY_UP,
         .range = ABILITY_RANGE_ALL,
     },
-    // Smog
-    {
-        .targetMode = ABILITY_TARGET_FOES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
-        .element = ELEMENT_JUPITER,
-        .effect = ABILITY_EFFECT_DELUSION,
-        .range = 1,
-        .power = 60,
-    },
-    // Kite
-    {
-        .targetMode = ABILITY_TARGET_ALLIES,
-        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT_ONLY,
-        .element = ELEMENT_JUPITER,
-        .effect = ABILITY_EFFECT_ACT_TWICE,
-        .range = 1,
-    },
-    // Squall
+    // Zephyr
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
         .element = ELEMENT_JUPITER,
         .effect = ABILITY_EFFECT_STUN,
         .range = 1,
-        .power = 14,
+        .power = 17,
     },
-    // Luff
+    // Smog
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .element = ELEMENT_JUPITER,
+        .effect = ABILITY_EFFECT_DOUBLE_BLOW_60,
+        .range = 1,
+        .power = 13,
+    },
+    // Kite
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK,
+        .element = ELEMENT_JUPITER,
+        .effect = ABILITY_EFFECT_DELUSION,
+        .range = 1,
+        .power = 75,
+    },
+    // Squall
     {
         .targetMode = ABILITY_TARGET_FOES,
         .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
         .element = ELEMENT_JUPITER,
         .effect = ABILITY_EFFECT_SEAL_2_TURNS,
+        .range = 1,
+    },
+    // Luff
+    {
+        .targetMode = ABILITY_TARGET_ALLIES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT_ONLY,
+        .element = ELEMENT_JUPITER,
+        .effect = ABILITY_EFFECT_ACT_TWICE,
         .range = 1,
     },
     // =
@@ -4111,6 +4192,122 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .effect = ABILITY_EFFECT_LEAVE_ONE_HP,
         .range = 1,
         .power = 30,
+    },
+    // Gotterkanone: Mystery Leader (ability ID 519).
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_JUPITER,
+        .range = 1,
+        .power = 370,
+    },
+    // The Mystery Leader's other attacks (abilities 520 to 526). Their
+    // fixed damage is tuned for an endgame party instead of the weaker
+    // borrowed monster moves. None is an instant-KO or sealing move.
+    // They cost no PP and cannot be sealed by Psynergy Seal.
+    // EX Gotterkanone, for Quick Strike: a blow times 1.8.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_JUPITER,
+        .range = 1,
+        .power = 25,
+    },
+    // Ransnetz, for Rockslide: serious spread damage against endgame gear.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 380,
+    },
+    // Explosion, for Grand Gaia.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 450,
+    },
+    // P-Vortex, for Break: undoes raised stats.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_MERCURY,
+        .effect = ABILITY_EFFECT_BREAK,
+        .range = ABILITY_RANGE_ALL,
+    },
+    // Glepnir, for Psy Drain: takes PP.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_EFFECT,
+        .element = ELEMENT_JUPITER,
+        .effect = ABILITY_EFFECT_DRAIN_PP,
+        .range = 1,
+        .power = 15,
+    },
+    // EX Sternbrecher, for Avalanche.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 410,
+    },
+    // Kaiserdammerung, her finisher below half HP, in Demon Night's slot: strong
+    // spread damage, but no lingering status or arbitrary instant defeat.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ENEMY_DAMAGE,
+        .element = ELEMENT_VENUS,
+        .range = 3,
+        .power = 440,
+    },
+    // Sarah's pike techniques (abilities 527 to 531): a human's weapon work,
+    // with no element and no PP, each a blow times power / 10.
+    // Piercing Thrust: drives through armour, lowering Defense.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .effect = ABILITY_EFFECT_DEFENSE_DOWN,
+        .range = 1,
+        .power = 13,
+    },
+    // Haft Strike: the butt of the pike to the head; may stun.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .effect = ABILITY_EFFECT_STUN,
+        .range = 1,
+        .power = 10,
+    },
+    // Disarm: a strike at the weapon hand, lowering Attack.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .effect = ABILITY_EFFECT_ATTACK_DOWN,
+        .range = 1,
+        .power = 11,
+    },
+    // Sweeping Arc: the pike's reach, across three foes.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .range = 3,
+        .power = 10,
+    },
+    // Vaulting Strike: she vaults on the pike and drives it down; her
+    // heaviest blow.
+    {
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_ATTACK_MULTIPLIED,
+        .element = ELEMENT_NONE,
+        .range = 1,
+        .power = 18,
     },
 };
 // clang-format on

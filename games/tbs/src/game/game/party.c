@@ -3,6 +3,7 @@
 // Part of game.c.
 
 #include "../game_internal.h"
+#include "sarah_stage.h"
 
 // The letter that tells apart enemies of one kind: digits from 1 abroad, the
 // alphabet in Japan.
@@ -28,6 +29,50 @@
 /// check, are filled from row 0. Called by the battle set-up (Battle_Run,
 /// BattleFormation_BuildEnemyList) and by BattleAbility_ApplyToTarget when an
 /// enemy calls for help.
+/// Sarah keeps up with the party she meets, from her second fight on: a
+/// party stronger than her fight was tuned for raises her Attack and HP, a
+/// weaker one leaves her stage's figures. Her Attack is set so a plain blow
+/// takes about 30 percent of the party's average max HP (26 with three
+/// actions a round; Battle_CalculateAttackDamage: half of Attack minus
+/// Defense), so her heavier techniques threaten a member, and her HP so the party's plain attacks, a quarter
+/// more for Psynergy and Djinn, need about her fight's planned rounds.
+static void Sarah_MatchParty(struct Unit *unit, const struct SarahStage *stage) {
+  s32 count = Party_CountMembers();
+  s32 i, hp = 0, def = 0, atk = 0, wanted, perHit, rounds;
+
+  if (count <= 0)
+    return;
+  for (i = 0; i < count; i++) {
+    struct Unit *member = Unit_Get(gSaveBlock.party[i]);
+
+    hp += member->hpMax;
+    def += member->def;
+    atk += member->atk;
+  }
+  hp /= count;
+  def /= count;
+  atk /= count;
+  // A plain blow: 30 percent of the average max HP with two actions a round,
+  // 26 percent with three; Vaulting Strike (power 18) near half.
+  wanted = def + hp * (stage->turns >= 3 ? 52 : 60) / 100;
+  if (wanted > 999)
+    wanted = 999;
+  if (wanted > unit->baseAttack)
+    unit->baseAttack = wanted;
+  rounds = stage->turns >= 3 ? 10 : (stage->hp >= 3000 ? 9 : 8);
+  perHit = (atk - stage->def) / 2;
+  if (perHit > 0) {
+    wanted = count * perHit * rounds * 5 / 4;
+    if (wanted > 9999)
+      wanted = 9999;
+    if (wanted > unit->baseHp) {
+      unit->baseHp = wanted;
+      unit->hp = wanted;
+      unit->hpMax = wanted;
+    }
+  }
+}
+
 s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   struct Unit *unit;
   const struct EnemyDefinition *enemy;
@@ -46,7 +91,7 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
     return 0;
   unit = Unit_Get(unitId);
   Iwram_ClearWords(unit, BATTLE_UNIT_SIZE);
-  if (index > 164)
+  if (index > 165)
     index = 0;
   enemy = &gEnemy_Definitions[index];
   unit->level = enemy->level;
@@ -63,9 +108,34 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   unit->baseAgility = enemy->agi;
   unit->baseLuck = enemy->luck;
   unit->baseActionCount = enemy->turns;
+  if (index == ENEMY_ROW_SARAH) {
+    // Sarah grows with each of her four fights; the row holds the last.
+    const struct SarahStage *stage =
+        &gSarahStages[(GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT0) != 0) |
+                      ((GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT1) != 0) << 1)];
+
+    unit->level = stage->level;
+    unit->baseHp = stage->hp;
+    unit->hp = stage->hp;
+    unit->hpMax = stage->hp;
+    unit->baseAttack = stage->atk;
+    unit->baseDefense = stage->def;
+    unit->baseAgility = stage->agi;
+    unit->baseLuck = stage->luck;
+    unit->baseActionCount = stage->turns;
+    if (stage != &gSarahStages[0])
+      Sarah_MatchParty(unit, stage);
+  }
   unit->baseHpRegen = enemy->hpRegen;
   unit->basePpRegen = enemy->ppRegen;
-  Message_DecodeRawFar(index + MsgEnemyName, name, 15);
+  // The "???" commander's name is its own message: row 0's is Ash Jenna's.
+  // Umbral Rift: "???" (row 152) shares that name; Heart (row 165) takes
+  // her own row 101's name.
+  Message_DecodeRawFar(index == ENEMY_ROW_MYSTERY_LEADER || index == 152
+                           ? MsgDarkMystery25
+                           : index == 165 ? 101 + MsgEnemyName
+                                          : index + MsgEnemyName,
+                       name, 15);
   for (i = 0; i < 14 && name[i] != 0; i++)
     unit->name[i] = name[i];
   // Enemies of one kind are told apart by a letter after the name; past the
@@ -85,6 +155,16 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
       }
     }
   }
+  if (index == ENEMY_ROW_SARAH) {
+    // Sarah carries as many Potions as her fight allows; her row holds the
+    // most.
+    const struct SarahStage *stage =
+        &gSarahStages[(GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT0) != 0) |
+                      ((GameFlag_Get(FLAG_DARK_SARAH_STAGE_BIT1) != 0) << 1)];
+
+    for (i = stage->potions; i < INVENTORY_SLOTS; i++)
+      unit->inventory[i] = 0;
+  }
   unit->aiActionIndex = enemy->aiActionIndex;
   unit->classId = 0;
   unit->id = enemyId;
@@ -98,7 +178,6 @@ s32 BattleUnit_Set(s32 unitId, s32 enemyId, s32 suffix) {
   switch (unit->id) {
   case ENEMY_VENUS_DJINNI_QUARTZ:
   case ENEMY_VENUS_DJINNI_VINE:
-  case ENEMY_VENUS_DJINNI_UNUSED_BANE:
   case ENEMY_MERCURY_DJINNI_SLEET:
   case ENEMY_MERCURY_DJINNI_SPRITZ:
   case ENEMY_MERCURY_DJINNI_HAIL:

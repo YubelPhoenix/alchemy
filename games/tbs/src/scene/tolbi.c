@@ -60,12 +60,17 @@
 #include "call.h"
 #include "event_layer.h"
 #include "event_inline.h"
+#include "ash_warp.h"
+#include "sarah_fight.h"
+#include "world_state.h"
 #include "text/msg_ids.h"
 #include "types.h"
 #include "ability_ids.h"
 #include "edition.h"
 #include "scene_tables.h"
 #include "item_ids.h"
+#include "unit/game/game.h"
+#include "game.h"
 #include "actor_script.h"
 #include "songs.h"
 #include "fixed_math.h"
@@ -451,6 +456,7 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
   void (*kidUpdate)(struct Actor *);
   s32 clearFlags;
 
+  WorldState_Apply();
   gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
 
   // The two children run their loop south-east of the fountain.
@@ -504,7 +510,67 @@ s32 Tolbi_ApplyEntryState(s32 unused) {
       Import_ActorSetAnimation(ACTOR_TOLBI_SCALPER, ANIM_STAND);
     }
   }
+  // Ash Jenna waits in the rain after Colosso and her Lamakan
+  // confrontation, until she has spoken to the party in Tolbi.
+  if (GameFlag_Get(FLAG_COLOSSO_OVER) != 0 &&
+      GameFlag_Get(FLAG_DARK_FINALE_DONE) != 0 &&
+      GameFlag_Get(FLAG_DARK_ASH_JENNA_TOLBI) == 0) {
+    Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(232), PIXELS(256));
+    Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_SOUTH, 0);
+    Actor_ConfigureSpriteColor(ACTOR_TOLBI_ASH_JENNA, SPRITE_COLOR_NORMAL);
+  }
+  // Back from Sarah's battle. She stands on the terrace above a stair two
+  // cells wide, Isaac on its west half: she steps a cell east and walks down
+  // its east half and on down the street, off the screen. East of her is wall.
+  if (SARAH_PENDING_AT(2)) {
+    SARAH_AFTERMATH_BY(ACTOR_TOLBI_SARAH, 232, 320, MsgDarkSarahTolbiBeaten,
+                       FLAG_DARK_SARAH_TOLBI_FOUGHT,
+                       SARAH_WALK_SOUTH(ACTOR_TOLBI_SARAH, 16, 144));
+  }
   return 0;
+}
+
+/// Sarah in Tolbi, her third fight (stage 2, level 21): a battle Isaac can
+/// pick or leave. A defeat comes back here and she waits.
+static void Tolbi_TalkToSarah(void) {
+  Event_Start();
+  SARAH_SAYS(ACTOR_TOLBI_SARAH, MsgDarkSarahTolbiGreet);
+  SARAH_ISAAC_SAYS(MsgDarkSarahTolbiIsaac);
+  SARAH_SAYS(ACTOR_TOLBI_SARAH, MsgDarkSarahTolbiChallenge);
+  SARAH_START_BATTLE(2, SceneId_Tolbi);
+  Event_End();
+}
+
+/// Ash Jenna's unconditional post-Colosso confrontation. Her hostility
+/// escalates when Isaac chooses to leave; no rejected story branches remain.
+static void Tolbi_MeetAshJenna(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkTolbiJennaFound);
+  Actor_FaceDirection(ACTOR_PARTY_LEADER, FACING_NORTH, 0);
+  Event_WaitFrames(30);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkTolbiJennaAsh);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  Event_SetMessageId(MsgDarkTolbiJennaProtest);
+  Event_ShowMessageThenWait(ACTOR_TOLBI_ASH_JENNA, 0, 20);
+  Event_SetMessageId(MsgDarkTolbiIvanJenna);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Actor_FaceDirection(ACTOR_TOLBI_ASH_JENNA, FACING_EAST, 0);
+  Event_WaitFrames(20);
+  AshWarp_Out(ACTOR_TOLBI_ASH_JENNA);
+  Actor_SetPosition(ACTOR_TOLBI_ASH_JENNA, PIXELS(-9), PIXELS(488));
+  GameFlag_Set(FLAG_DARK_ASH_JENNA_TOLBI);
+  Event_SetMessageId(MsgDarkTolbiGaretMove);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_End();
 }
 
 /// The visitor at the spring's gate asks whether the party wants to test its
@@ -845,11 +911,20 @@ struct ActorTemplate gTolbiActorTemplates[] = {
         PIXELS(584), 0, PIXELS(136), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SPRITE_BABI, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
+    // Ash Jenna's field sprite uses Jenna's identity with a sinister tint.
+    // Parked until Tolbi_ApplyEntryState brings her out.
+    { SPRITE_ASH_JENNA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+        PIXELS(-9), 0, PIXELS(488), FACING_SOUTH + FACING_STEP, TALK_FACING_PARTY_AND_BACK, 0 },
+    // Sarah, waiting in the street until she is beaten. She stands well clear of the Spring gate's visitor (302,296), whose
+    // talk trigger was answering when Isaac spoke to her from the east.
+    { SPRITE_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, MOVEMENT_TYPE_STAND,
+        PIXELS(232), 0, PIXELS(296), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
 /// During the festival, before the finals.
 struct Trigger gTolbiTriggersFestival[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, EVENT(Tolbi_TalkToSarah) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_NORTHWEST, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -919,6 +994,7 @@ struct Trigger gTolbiTriggersFestival[] = {
 
 /// On finals day.
 struct Trigger gTolbiTriggersFinalsDay[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, EVENT(Tolbi_TalkToSarah) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_NORTHWEST, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
@@ -990,6 +1066,8 @@ struct Trigger gTolbiTriggersFinalsDay[] = {
 
 /// After Colosso has ended.
 struct Trigger gTolbiTriggersAfterColosso[] = {
+    { TRIGGER_TALK, ACTOR_TOLBI_SARAH, FLAG_DARK_SARAH_TOLBI_FOUGHT, EVENT(Tolbi_TalkToSarah) },
+    { TRIGGER_TALK, ACTOR_TOLBI_ASH_JENNA, CONDITION_ALWAYS, EVENT(Tolbi_MeetAshJenna) },
     { PSYNERGY_ON_ACTOR(ABILITY_GROWTH), ACTOR_TOLBI_SPROUT, FLAG_TOLBI_SPROUT_GROWN, EVENT(Tolbi_GrowSprout) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_SOUTH, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },
     { STEP_TRIGGER_WALKING_INTO(FACING_NORTH), TOLBI_TO_HOUSE_NORTHWEST, CONDITION_ALWAYS, EVENT(Tolbi_EnterDoor) },

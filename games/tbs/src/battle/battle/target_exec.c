@@ -4,6 +4,7 @@
 // Part of battle.c.
 
 #include "../battle_internal.h"
+#include "sarah_stage.h"
 
 /// Returns 1 for an effect that still applies when the ability's damage has
 /// just knocked its target out: the drains, which give the damage they dealt
@@ -452,6 +453,8 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
           amount = hp - 1;
         }
       }
+      // Ashfall: the "???" battle may hold the blow back (party_join.c).
+      amount = PartyJoin_ClampDamage(targetId, hp, amount);
       // The flinch, then "<target> takes <amount> damage"; a fall queues the
       // defeat before its message, and a target still standing is redrawn.
       hp -= amount;
@@ -483,6 +486,19 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         elementBonus = elementPower - target->element[element].resistance;
       power = ability->power;
       amount = Battle_CalculatePsynergyPowerFar(power, elementBonus, FULL_RATE);
+      // Scaling Psy Drain is limited to Ashfall's four superbosses.
+      if (ability->effect == ABILITY_EFFECT_DRAIN_PP &&
+          IS_PARTY_UNIT(targetId) &&
+          (actor->id == ENEMY_ID_FIRST + ENEMY_ROW_HEART ||
+           actor->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER ||
+           actor->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE ||
+           actor->id == ENEMY_ID_FIRST + ENEMY_ROW_KEGARE)) {
+        amount = target->ppMax / 5;
+        if (amount < 30)
+          amount = 30;
+        if (amount > 120)
+          amount = 120;
+      }
       amount = amount * gRangeFalloff_PpLoss[distance] / 100;
       amount *= multiplier;
       REDUCE_BY_GUARD(amount, target);
@@ -517,6 +533,11 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
           power, element == ELEMENT_NONE ? 100 : elementPower, FULL_RATE);
       amount = amount * gRangeFalloff_HealHp[distance] / 100;
       amount *= multiplier;
+      // Sarah's own Potions are field draughts: 15 percent of her HP, as a
+      // fixed Potion would barely touch a duelist of her size.
+      if (actor->id == ENEMY_ID_FIRST + ENEMY_ROW_SARAH &&
+          plan->command == COMMAND_ITEM)
+        amount = target->hpMax * 15 / 100;
       amount += Battle_RandomFar() & 3;
       newHp += amount;
       if (newHp > target->hpMax) {
@@ -579,6 +600,11 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         if (pass == 0)
           elementBonus = 0;
         power = ability->power;
+        // Ash Jenna's Mars spells must threaten a fully developed party.
+        // This affects only her elemental damage, not any other unit.
+        if (actor->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
+            IS_PARTY_UNIT(targetId))
+          power += power / 2;
         // A summon adds 3% of the target's max HP for each Djinni it costs.
         if (plan->command == COMMAND_SUMMON) {
           s32 maxHpPercent;
@@ -616,6 +642,10 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
             break;
 #endif
           }
+          // Sarah is only human: no elemental essence for the Djinn to burn,
+          // so a summon takes half its usual share of her HP.
+          if (target->id == ENEMY_ID_FIRST + ENEMY_ROW_SARAH)
+            maxHpPercent /= 2;
           power += target->hpMax * maxHpPercent / 100;
         }
         amount =
@@ -642,6 +672,8 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
           amount = newHp;
         }
       }
+      // Ashfall: the "???" battle may hold the blow back (party_join.c).
+      amount = PartyJoin_ClampDamage(targetId, newHp, amount);
       BattlePlayback_Push(PLAYBACK_HIT, targetId);
       BattlePlayback_Push(PLAYBACK_NUMBER, amount);
       BattlePlayback_Push(PLAYBACK_UNIT_NAME, targetId);

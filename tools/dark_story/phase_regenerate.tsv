@@ -1,0 +1,5 @@
+# Regenerate, finished (battle/regenerate.c): the original's leftover
+# "Refrain" messages and its missing description.
+02159	MsgRefrain	Healing waters surround\n{argument_actor_name:1}!
+02193	MsgRefrainEnd	The healing waters around\n{argument_actor_name:1} fade.
+01466	message	Heals an ally every round.

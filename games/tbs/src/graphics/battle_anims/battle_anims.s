@@ -692,3 +692,16 @@ BattleAnim_LightningPillarSheet:
 	.incbin "games/tbs/src/graphics/battle_anims/lightning_pillar.gbapal"
 	.incbin "games/tbs/src/graphics/battle_anims/lightning_pillar.bitmap.lz"
 	.balign 4, 0xff	@ PACKER: 0xff fill, not an earlier stream's bytes
+
+	@ Gotterkanone intensity frames (RLE, rebuilt from checked source).
+	.balign 4, 0
+	.global gGotterkanoneCompressedFrames
+gGotterkanoneCompressedFrames:
+	.incbin "games/tbs/src/battle_anim/parts/gotterkanone.rle"
+	.balign 4, 0xff	@ Gotterkanone is 16249 bytes: re-align, as the assets after it assume a word-aligned start
+
+	@ The Mystery Leader's other attacks (RLE, tools/dark_story/build_perfecti_frames.py).
+	.global gPerfectiCompressedFrames
+gPerfectiCompressedFrames:
+	.incbin "games/tbs/src/battle_anim/parts/perfecti_frames.rle"
+	.balign 4, 0xff

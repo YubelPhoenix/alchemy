@@ -1,0 +1,6 @@
+# Ash Jenna's optional first sighting in Lamakan, before the Manticore.
+N106	MsgDarkLamakanJennaWatch	You looked right at me.\nFor a moment, you\nthought I was her.{end_wait}
+N107	MsgDarkLamakanIsaacWait	Jenna...? No.\nWho are you?{end_wait}
+N108	MsgDarkLamakanJennaUndo	You almost said her name.\nThat's all it takes.{page_break}I wonder how far\nyou'd follow a face\nyou wanted to trust.{end_wait}
+N109	MsgDarkLamakanJennaClimb	Go on, Isaac.\nShe's still out there.\nFor now.{end_wait}
+N110	MsgDarkLamakanIsaacSilent	She knew my name.\nAnd she wanted me\nto mistake her for Jenna.{end_wait}

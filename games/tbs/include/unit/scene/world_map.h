@@ -52,6 +52,8 @@ extern struct ActorTemplate gWorldMapActorTemplatesCrossing[];
 extern struct ActorTemplate
     gWorldMapActorTemplatesFromKalayTunnelEntranceSouth[];
 extern struct ActorTemplate gWorldMapActorTemplatesJennaAndKradenAdrift[];
+extern struct ActorTemplate gWorldMapActorTemplatesMiaThieves[];
+extern struct ActorTemplate gWorldMapActorTemplatesMiaMenardi[];
 extern struct ActorTemplate gWorldMapActorTemplatesFromClear[];
 extern struct ActorTemplate gWorldMapActorTemplatesBeforeShebasFall[];
 extern struct Trigger gWorldTriggers[];

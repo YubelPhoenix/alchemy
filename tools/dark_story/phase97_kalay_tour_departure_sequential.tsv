@@ -1,0 +1,51 @@
+# Sequential Kalay Colosso tour departure scene and adjacent shop / inn branches.
+# Character order, question branches and original end controls unchanged.
+06781	message	Babi has ruled Tolbi for\nover a century. No one\nseems to know when he'll{page_break}let someone else take his\nplace. I wanted to live\nsomewhere quieter.{end_wait}
+06782	message	Kalay suits me better. I\nhave no wish to go back to\nTolbi.{end_wait}
+06803	message	We'd better hurry, or we'll\nmiss Colosso!{end_wait}
+06804	message	Miss Colosso? Not after\ncoming all this way!{end_wait}
+06805	message	Absolutely not. We came to\nsee the tournament.{end_wait}
+06806	message	We paid for this trip. I\nexpect to get there on\ntime.{end_wait}
+06807	message	Everyone, please. We're\nkeeping to the schedule.{end_wait}
+06808	message	We're only stopping to\ncount the passengers.{end_wait}
+06809	message	Oh. Well, I suppose that's\nsensible.{end_wait}
+06810	message	But if we lose someone, the\nrest of us are the ones\nwaiting.{end_wait}
+06811	message	Then leave them! I want to\nget moving.{end_wait}
+06812	message	Oh, dear. There's no need\nto shout.{end_wait}
+06813	message	Count us, then. Let's get\non with it.{end_wait}
+06815	message	What's the delay? We should\nbe on our way to Tolbi.{end_wait}
+06816	message	Half the group is already\nwaiting by the road.{end_wait}
+06817	message	Why are the guides walking\nback and forth like that?{end_wait}
+06819	message	Silk Road had a landslide.\nNow we have to sail. I paid\nto see Colosso, not to{page_break}spend a day waiting.{end_wait}
+06820	message	What's keeping us? The ship\nwon't wait forever.{end_wait}
+06821	message	No one mentioned a boat\nwhen I bought my ticket. I\ncan't stand being on the{page_break}water.{end_wait}
+06822	message	Ouranos, you'll fight\nanyone at Colosso, but\nyou're afraid to board a{page_break}ship?{end_wait}
+06823	message	I've counted twice. We're\nstill missing one person.{end_wait}
+06824	message	He was at the inn this\nmorning. Where could he\nhave gone?{end_wait}
+06825	message	Who is missing? We've been\nstanding here long enough.{end_wait}
+06826	message	I've never seen so many\npeople make the trip to\nTolbi at once.{end_wait}
+06827	message	Are we really going to hold\neveryone up for one late\ntourist?{end_wait}
+06828	message	I'll bet some of these\npeople are entering\nColosso, not just watching.{end_wait}
+06829	message	I don't like traveling with\nall these strange things\nhappening on the roads.{end_wait}
+06830	message	We told everyone when to\nmeet. This makes us look\nlike fools.{end_wait}
+06831	message	I can't swim. There, I've\nsaid it. What happens if\nthe ship sinks?{end_wait}
+06832	message	I've offered to teach you.\nYou've always found an\nexcuse.{end_wait}
+06833	message	He might still be at the\ninn. I ought to check, but\nthe others are getting{page_break}restless.{end_wait}
+06835	message	Leave now? What about the\nman we're missing?{end_wait}
+06836	message	Everyone was warned. Anyone\nlate would be left behind.{end_wait}
+06837	message	You did tell us that when\nwe bought the tickets.{end_wait}
+06838	message	Then we have to leave. If\nwe miss the ship, nobody\ngets to Tolbi.{end_wait}
+06839	message	Miss the ship? No, no. We\nhave to go!{end_wait}
+06840	message	We've spent enough already.\nWe need to reach Tolbi\nbefore Colosso starts.{end_wait}
+06841	message	I hate leaving him, but\nthere's no time. Let's go.{end_wait}
+06842	message	Finally! Come on, everyone!{end_wait}
+06843	message	Stay together and follow\nme. We don't want to lose\nanyone else.{end_wait}
+06844	message	Where did everyone go? I\ncould've sworn they were\nhere.{end_wait}
+06845	message	They didn't leave without\nme. They wouldn't... would\nthey?{end_wait}
+06846	message	Oh, they did! I'd better\ncatch up!{end_wait}
+06866	MsgKalayLikeOurArmor	Then have a look at our\narmor. We have good pieces\nhere too.{end_wait}
+06867	MsgKalayFinestEquipment	So you want the finest\nequipment? We stock good\ngear, but Hammet sends his{page_break}best elsewhere.{end_wait}
+06872	message	You're here for the Tolbi\ntour, aren't you? Colosso\nstarts soon.{end_wait}
+06873	message	A tour to Colosso. Clever\nidea, charging people to\ntravel together. They were{page_break}meeting at the restaurant.{end_wait}
+06884	message	The guest next door looks\nas though he's traveled all\nthe way from Gondowan.{end_wait}
+06885	message	Gondowan lies south of\nAngara. I've heard it's\nenormous, with a warmer{page_break}climate than ours.{end_wait}

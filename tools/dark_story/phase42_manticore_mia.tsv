@@ -1,0 +1,6 @@
+# Brief post-Manticore group check; Mia's anger subplot has been removed.
+N149	MsgDarkManticoreGaretCheck	That was close.\nEveryone all right?{end_wait}
+N150	MsgDarkManticoreMiaReady	I'm fine, Garet.\nWhat about the others?{end_wait}
+N151	MsgDarkManticoreIvanReady	I'm all right.\nThe heat's getting worse.{end_wait}
+N152	MsgDarkManticoreIsaacMove	We should keep moving.{end_wait}
+N153	MsgDarkManticoreGaretSees	Isaac, wait.\nSomeone's up ahead.{end_wait}

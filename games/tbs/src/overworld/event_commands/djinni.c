@@ -154,14 +154,24 @@ void Djinn_JoinParty(s32 slot, s32 element, s32 djinn) {
       if (work->mode == ACTOR_SYSTEM_WORLD_MAP)
         Actor_ClearOutOfBounds();
 
-      if (element == 0) // Venus
+      // Diagnostic workaround for world-map Djinni captures: the normal
+      // elemental effect can leave the world-map menu path unusable after
+      // returning from battle. Skip only that effect on the world map, while
+      // preserving the Djinni reward and the joined-party message. Indoor
+      // captures still use their original effects.
+      if (work->mode == ACTOR_SYSTEM_WORLD_MAP) {
+        struct Actor *captured = Actor_Lookup(slot);
+        if (captured != NULL)
+          Actor_ReleaseFar(captured);
+      } else if (element == 0) { // Venus
         FieldEffect_RunVenusDjinnCapture(slot);
-      else if (element == 1) // Mercury
+      } else if (element == 1) { // Mercury
         FieldEffect_RunMercuryDjinnCapture(slot);
-      else if (element == 2) // Mars
+      } else if (element == 2) { // Mars
         Djinn_RunMarsJoinEffect(slot);
-      else if (element == 3) // Jupiter
+      } else if (element == 3) { // Jupiter
         Djinn_RunJupiterJoinEffect(slot);
+      }
 
       work->actors[slot] = 0;
       if (work->mode == ACTOR_SYSTEM_WORLD_MAP)

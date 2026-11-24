@@ -2,7 +2,7 @@ name: Build dark Vale test patch
 
 on:
   push:
-    branches: [main, dark-vale-dialogue]
+    branches: [dark-vale-dialogue]
   workflow_dispatch:
 
 # Always compile the intended dialogue branch, then compare it with a clean upstream baseline.
@@ -48,7 +48,7 @@ jobs:
 
       - name: Build and verify an unmodified upstream baseline
         run: |
-          git fetch https://github.com/PascalPixel/alchemy.git main
+          git fetch https://github.com/PascalPixel/alchemy.git c93e52be8410b59e1c236b8c4d7c57b4ea665779
           git worktree add --detach "$RUNNER_TEMP/alchemy-base" FETCH_HEAD
           mkdir -p "$RUNNER_TEMP/alchemy-base/tools/out"
           cp -a tools/out/compilers "$RUNNER_TEMP/alchemy-base/tools/out/compilers"

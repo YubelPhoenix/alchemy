@@ -3,6 +3,7 @@
 // Part of battle.c.
 
 #include "../battle_internal.h"
+#include "sarah_stage.h"
 
 /// Returns an item's rank among the spoils, higher for a better item and 0
 /// for none: an indispensable item first, then a rare item, then the higher
@@ -143,15 +144,26 @@ s32 BattleEnemy_RecordDefeat(s32 unitId, s32 djinnBonus) {
     return 0;
   GameFlag_SetFar(ENEMY_DEFEATED_FLAG(unit->id));
   enemy = (struct EnemyDefinition *)Enemy_GetDefinitionFar(unit->id);
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_SARAH) {
+    // Sarah's pay grows with her fights (gSarahStages); she leaves no item.
+    const struct SarahStage *stage =
+        &gSarahStages[(GameFlag_GetFar(FLAG_DARK_SARAH_STAGE_BIT0) != 0) |
+                      ((GameFlag_GetFar(FLAG_DARK_SARAH_STAGE_BIT1) != 0) << 1)];
+
+    spoils->coins += stage->coins;
+    spoils->experience += stage->experience * 3;
+    return 0;
+  }
   if (djinnBonus != 0) {
     if (enemy->coins != 0)
       spoils->coins += BattleEnemy_CalculateCoinReward(unit, &enemy->coins);
     if (enemy->experience != 0)
       spoils->experience +=
-          BattleEnemy_CalculateExperienceReward(unit, &enemy->experience);
+          BattleEnemy_CalculateExperienceReward(unit, &enemy->experience) * 3;
   } else {
     spoils->coins += enemy->coins;
-    spoils->experience += enemy->experience;
+    // Dark story: triple experience, so early fights are not worth 1 point.
+    spoils->experience += enemy->experience * 3;
   }
   if (enemy->item == 0 || enemy->itemChance == 0)
     return 0;

@@ -2695,4 +2695,152 @@
 #define FLAG_AREA_TEMP_FE 0x3fe
 #define FLAG_AREA_TEMP_FF 0x3ff
 
+// The dark story's silent watcher. Each flag is set once the party has seen
+// her at that place, so the glimpse plays a single time. Nothing else uses
+// these numbers.
+/// Sol Sanctum's long passage (SceneId_SolSanctumCorridor).
+#define FLAG_DARK_WATCHER_SANCTUM_CORRIDOR 0x884
+/// Vault's entrance.
+#define FLAG_DARK_WATCHER_VAULT 0x885
+/// Sol Sanctum's statue room.
+#define FLAG_DARK_WATCHER_SANCTUM_STATUE 0x886
+
+/// The Menardi duel in the Luna and Sol rooms is over.
+#define FLAG_DARK_MENARDI_DUEL_DONE 0x888
+
+/// Mia's first interlude near Imil: the party is swapped for Mia alone.
+#define FLAG_DARK_MIA_SOLO 0x889
+/// Mia's first interlude near Imil is over; the party is back together.
+#define FLAG_DARK_MIA_THIEVES_DONE 0x88a
+/// The hired thieves exist in Imil (set on the way in, cleared on the way out).
+#define FLAG_DARK_MIA_THIEVES_ACTIVE 0x88b
+/// Mia's alternate message portrait is displayed for selected dialogue.
+/// Set around the message, then cleared.
+#define FLAG_DARK_MIA_SPEAKING 0x88c
+
+/// Ash Jenna has spoken to the party in Tolbi after Colosso, and slipped away.
+#define FLAG_DARK_ASH_JENNA_TOLBI 0x88d
+
+/// Kegare's battle in Tolbi has begun (Tolbi_TalkToKegare); set before it, so a
+/// win returns to a Tolbi where she is gone.
+#define FLAG_DARK_KEGARE_FOUGHT 0x8b6
+/// Kegare has been beaten, and her spoils given: she does not return.
+#define FLAG_DARK_KEGARE_BEATEN 0x8b7
+/// Kegare's battle has just been started and not yet returned from. A file
+/// with FLAG_DARK_KEGARE_FOUGHT set but not this one never reached the battle.
+#define FLAG_DARK_KEGARE_PENDING 0x8ea
+/// Kegare was really beaten (a return from her battle that was not a defeat);
+/// a BEATEN flag without it is stale and is cleared, so she comes back.
+#define FLAG_DARK_KEGARE_WON 0x8e9
+
+/// Ash Jenna stands in the Lamakan Desert's Manticore pass (set on entry while
+/// the glimpse is pending, cleared otherwise: the trigger table is shared).
+#define FLAG_DARK_ASH_JENNA_LAMAKAN_HERE 0x8b8
+/// Isaac has called after Ash Jenna in the Lamakan Desert and she has gone.
+#define FLAG_DARK_ASH_JENNA_LAMAKAN_MET 0x8b9
+
+/// Heart's battle in Kolima has begun (Kolima_TalkToHeart); set before it, so a
+/// win returns to a Kolima where she speaks her last words (Kolima_HeartAftermath).
+#define FLAG_DARK_HEART_FOUGHT 0x8c6
+/// Heart has said her last words and gone: she does not return.
+#define FLAG_DARK_HEART_BEATEN 0x8c5
+
+/// Heart is speaking: her message portrait is the dark mugshot
+/// (Portrait_GetForSpeaker). Set around her lines, then cleared.
+#define FLAG_DARK_HEART_SPEAKING 0x8c7
+
+/// Isaac dug the trapped miners out in Altin Peak's junction room
+/// (AltinPeak_TalkToTrappedMiner).
+#define FLAG_DARK_MINERS_FREED 0x8cb
+
+/// The brief post-Manticore party check has played.
+/// Retains its previous save bit for compatibility with earlier test builds.
+#define FLAG_DARK_MANTICORE_RETURN_SEEN 0x8cc
+
+/// Mia rejoined the party on the road south of Imil after Menardi's defeat
+/// (WorldMap_MiaRejoinsParty), so a battle that reloads the entrance does not
+/// replay it.
+#define FLAG_DARK_MIA_REUNITED 0x8cd
+/// Isaac stayed with the injured miner after the Altin Peak rescue.
+#define FLAG_DARK_MINER_STAYED 0x8d3
+/// Ash Jenna's Lamakan confrontation has played.
+#define FLAG_DARK_FINALE_DONE 0x8d4
+/// Retired Lamakan choice bits, reserved only for save compatibility.
+/// No active scene reads or writes these flags.
+#define FLAG_DARK_ASH_JENNA_ACCEPTED 0x8d6
+#define FLAG_DARK_ASH_JENNA_REFUSED 0x8d7
+/// Ash Jenna's optional closing talk in Lalivero after the Venus Lighthouse
+/// collapse. Set after the scene; hides her on subsequent town entries.
+#define FLAG_DARK_ASH_JENNA_LALIVERO 0x8d8
+
+/// Ash Jenna's optional super boss in Vale has been fought and won
+/// (ValePlaza_TalkToAshJenna); a defeat clears it so she waits for a retry.
+#define FLAG_DARK_ASH_VALE_FOUGHT 0x8e1
+
+/// Ash Jenna's fight at Suhalla Gate has been fought and won
+/// (SuhallaGate_TalkToAshJenna); a defeat clears it so she waits for a retry.
+#define FLAG_DARK_ASH_GATE_FOUGHT 0x8e2
+
+/// Ash Jenna's Vale battle has been started and not yet settled
+/// (Vale_Initialize reads the result on return).
+#define FLAG_DARK_ASH_VALE_PENDING 0x8e3
+
+/// While one of Ash Jenna's messages is shown, her mugshot (icon 67) is the
+/// speaker's portrait (Portrait_GetForSpeaker).
+#define FLAG_DARK_ASH_JENNA_SPEAKING 0x8e0
+
+/// Ash Jenna's Suhalla Gate battle has been started and not yet settled
+/// (Scene_Initialize reads the result on return).
+#define FLAG_DARK_ASH_GATE_PENDING 0x8e4
+
+/// Sarah, Kalay's optional super boss, has been fought and won; a defeat
+/// clears it so she waits for a retry.
+#define FLAG_DARK_SARAH_FOUGHT 0x8e5
+
+/// Sarah's Kalay battle has been started and not yet settled (Kalay's
+/// initializer reads the result on return).
+#define FLAG_DARK_SARAH_PENDING 0x8e6
+
+/// While one of Sarah's messages is shown, her mugshot (icon 68) is the
+/// speaker's portrait (Portrait_GetForSpeaker).
+#define FLAG_DARK_SARAH_SPEAKING 0x8e7
+
+/// Sarah's stage, two bits: 0 Vault (level 7), 1 Kalay (15), 2 Tolbi (21),
+/// 3 Lalivero (27). A scene sets them just before her battle
+/// (BattleUnit_Set and BattleSpoils read them).
+#define FLAG_DARK_SARAH_STAGE_BIT0 0x8e8
+#define FLAG_DARK_SARAH_STAGE_BIT1 0x8eb
+
+/// Sarah has been fought and beaten in Vault, Tolbi and Lalivero (Kalay's is
+/// FLAG_DARK_SARAH_FOUGHT); a defeat clears it so she waits for a retry.
+#define FLAG_DARK_SARAH_VAULT_FOUGHT 0x8ec
+#define FLAG_DARK_SARAH_TOLBI_FOUGHT 0x8ed
+#define FLAG_DARK_SARAH_LALIVERO_FOUGHT 0x8ee
+
+/// Set from her greeting until Vale's start-up has seen the battle's result.
+#define FLAG_DARK_MYSTERY_PENDING 0x8da
+/// She has been beaten and has gone.
+#define FLAG_DARK_MYSTERY_DONE 0x8db
+// Umbral Rift (optional dungeon): the "???" and Heart battle was started / won.
+#define FLAG_DARK_RIFT_FOUGHT 0x8d9
+#define FLAG_DARK_RIFT_BEATEN 0x8dc
+/// Golden Sun: Ashfall: the dark orb in the Umbral Rift's Memory Room has been
+/// lit, opening the way from the Fountain Hall to the causeway and throne.
+#define FLAG_DARK_RIFT_SEAL_LIT 0x8dd
+/// Golden Sun: Ashfall: ??? and Heart have been glimpsed, then vanished, in the
+/// Umbral Rift's Fountain Hall, Twin Maze and Memory Room.
+#define FLAG_DARK_RIFT_PAIR_FOUNTAIN 0x8de
+#define FLAG_DARK_RIFT_PAIR_MAZE 0x8df
+#define FLAG_DARK_RIFT_PAIR_MEMORY 0x8f1
+/// Golden Sun: Ashfall: the Memory Room has been reached through the Twin Maze,
+/// which opens the Fountain Hall's right arch as a shortcut to it.
+#define FLAG_DARK_RIFT_SHORTCUT_OPEN 0x8ef
+/// The black crystal's anchor has been shut down after ??? and Heart lose.
+/// The route-unlocking Memory Room orb remains lit separately.
+#define FLAG_DARK_RIFT_ANCHOR_SEALED 0x8f2
+/// First entrance to the Rift Causeway has shown the warning dialogue.
+#define FLAG_DARK_RIFT_CAUSEWAY_SEEN 0x8f3
+/// The activated fountain gate has been examined after the Memory Room orb.
+#define FLAG_DARK_RIFT_GATE_SEEN 0x8f4
+
 #endif

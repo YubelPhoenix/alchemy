@@ -1,0 +1,9 @@
+# Tunnel Ruins: the statue's riddles and the four-pillar directional clues.
+09865	MsgTunnelRuinsStatueSpeaksIsaacSoulYe	The statue speaks to\n{actor_name:1}'s soul...{page_break}You who seek the beacon,\ngain the lady's leave.{page_break}At her feet she keeps\nthe place you seek,\nwaiting for your arrival.{end_wait}
+09866	MsgTunnelRuinsStatueSpeaksAfterAnswer	The statue speaks to\n{actor_name:1}'s soul...{page_break}The lady knows what\nyou seek, but this is\nnot where the way begins.{end_wait}
+09867	MsgTunnelRuinsStatueSeemsSpeakYourSoul	The statue's words seem\nto reach somewhere\ndeeper than thought.{end_wait}
+09868	MsgTunnelRuinsRedShinesNorthwestOfMe	The red light lies\nto my northwest.{end_wait}
+09869	MsgTunnelRuinsYellowShinesNortheastOfMe	The yellow light lies\nto my northeast.{end_wait}
+09870	MsgTunnelRuinsRedShinesDueWestOfMe	The red light lies\ndirectly west of me.{end_wait}
+09871	MsgTunnelRuinsVioletShinesSoutheastOfMe	The violet light lies\nto my southeast.{end_wait}
+09872	MsgTunnelRuinsVioletPointsSoutheast	The violet light points\ntoward the southeast.{end_wait}

@@ -1,0 +1,20 @@
+# Optional post-Venus Ash Jenna conversation, with no Lamakan choice.
+N300	MsgDarkLaliveroAshWatch	You made it back.\nNot everyone did,\nI take it.{end_wait}
+N301	MsgDarkLaliveroIsaacFall	{actor_name:7} fell from\nVenus Lighthouse.\n{actor_name:5} jumped after her.{end_wait}
+N302	MsgDarkLaliveroAshSurvival	And you couldn't\nsave either one.\nThat must hurt.{end_wait}
+N303	MsgDarkLaliveroIsaacSearch	We're going to look.\nWe don't know what\nhappened below.{end_wait}
+N304	MsgDarkLaliveroAshSearch	You'd search the sea\nwithout knowing\nif they're alive?{end_wait}
+N305	MsgDarkLaliveroIsaacResolve	They deserve a chance.\nWe won't leave them\nwithout trying.{end_wait}
+N306	MsgDarkLaliveroAshWaiting	You're certain you\ncan keep everyone\ntogether.{page_break}I used to be\njust as certain.{end_wait}
+N307	MsgDarkLaliveroIsaacWiseOne	What happened\nto you?{end_wait}
+N308	MsgDarkLaliveroAshBelief	In my world,\nthe beacons burned.\nThen it was all gone.{page_break}I watched it happen.\nThe Wise One did nothing.{end_wait}
+N309	MsgDarkLaliveroIsaacEvidence	You don't know\nwhat caused it.\nWhy blame him?{end_wait}
+N310	MsgDarkLaliveroAshBurden	I don't need proof\nto want him to suffer.{page_break}And I don't need\nto spare anyone\nwho stands in my way.{end_wait}
+N311	MsgDarkLaliveroIsaacInnocents	These people had\nnothing to do with\nyour world.{end_wait}
+N312	MsgDarkLaliveroAshStrangers	What difference\ndoes that make?\nThey're strangers.{end_wait}
+N313	MsgDarkLaliveroAshJenna	Your {actor_name:6} and Kraden\nare still out there.\nGo find them, then.{end_wait}
+N314	MsgDarkLaliveroIsaacOthers	And Felix and Sheba.\nWe haven't forgotten\nthem either.{end_wait}
+N315	MsgDarkLaliveroAshOwnPath	You keep counting\neveryone you might lose.{page_break}What will you do\nwhen you can't\nsave them all?{end_wait}
+N316	MsgDarkLaliveroIsaacProof	Whatever happens,\nyou won't decide\nwho matters to me.{end_wait}
+N317	MsgDarkLaliveroAshFarewell	Keep saying that,\nIsaac.{page_break}One day someone\nwill walk away.\nThen we'll see.{end_wait}
+N318	MsgDarkLaliveroIsaacPromise	You don't know us.\nAnd I won't let you\nhurt my friends.{end_wait}

@@ -1,0 +1,75 @@
+# Kalay palace sequential scene: Layana's rescue decision, Ivan's Jupiter origin, Hammet's oath, and Shaman's Rod.
+# Preserve exact runtime name markers, style, yes/no and end controls.
+06968	message	I can't order an attack.\nNot until we've thought\nabout what it could cost.{end_wait}
+06969	message	If soldiers storm Lunpa,\nwhat stops Dodonpa from\nhurting Hammet?{end_wait}
+06970	message	I won't risk his life just\nto feel as though I'm doing\nsomething.{end_wait}
+06971	message	Can't we help in some other\nway?{end_now}
+06972	message	At last, {actor_name:1}! I was\nstarting to think you'd\nnever agree with me.{end_wait}
+06973	message	What? Hammet's in danger.\nYou know that as well as I\ndo!{end_wait}
+06974	message	What are you two talking\nabout?{end_wait}
+06975	message	{actor_name:2} thinks we should\nhelp with the rescue.{end_wait}
+06976	message	I know you mean well, but\nyou could be killed if the\nplan fails.{end_wait}
+06977	message	And you have another\njourney to finish, don't\nyou?{end_now}
+06978	message	I thought as much. {actor_name:3}\nwouldn't have stayed with\nyou unless your work{page_break}mattered.{end_wait}
+06979	message	No. I don't believe\n{actor_name:3} would remain with\nyou so long without an{page_break}important reason.{end_wait}
+06980	message	Then who will help Lord\nHammet?{end_wait}
+06981	message	He's worth too much to\nDodonpa as a hostage. I\nhave to believe they'll{page_break}keep him alive.{end_wait}
+06982	message	We'll wait for another\nmessage from Lunpa. Then\nwe'll decide what we can{page_break}do.{end_wait}
+06983	message	Lady Layana, I can't just\nleave him there.{end_wait}
+06984	message	It will be all right,\n{actor_name:3}. Hammet wouldn't\nwant you to abandon your...{end_wait}
+06985	message	Forgive me. I've said more\nthan I intended.{end_wait}
+06986	message	Wait. Does Hammet know what\nour journey is about?{end_wait}
+06987	message	I suppose you deserve to\nhear the truth now.{end_wait}
+06988	message	Hammet once swore an oath\nto a Jupiter Adept. He has\nkept it all these years.{end_wait}
+06989	message	A Jupiter Adept? Then this\nhas to do with Ivan!{end_wait}
+06990	message	Have you ever heard of a\nvillage called Vale?{end_now}
+06991	message	You {text_effect:2}are{reset_text_style} from Vale? Then the\nold prophecy may have come\ntrue.{end_wait}
+06992	message	Of course we know Vale! We\ngrew up there!{end_wait}
+06993	message	You really come from Vale?\nThen the prophecy was\nright.{end_wait}
+06994	message	What prophecy? Nobody told\nus about one.{end_wait}
+06995	message	It spoke of a terrible\nstorm on Mt. Aleph and what\nwould happen three years{page_break}later.{end_wait}
+06996	message	It said {actor_name:3} would\ntravel with warriors from\nVale. That was the promise.{end_wait}
+06997	message	I've never heard of this\nprophecy before.{end_wait}
+06998	message	It was long before Hammet\nbuilt Kalay. He was still\ntraveling then.{end_wait}
+06999	message	His trade had stopped\ngrowing. He was afraid he'd\ngone as far as he could.{end_wait}
+07000	message	So he traveled to the far\nsouthwest, hoping to find\nsomething new to trade.{end_wait}
+07001	message	He nearly died out there.\nSome Adepts found him and\nsaved his life.{end_wait}
+07002	message	When he woke, he was in\ntheir village. They had\ntaken him in.{end_wait}
+07003	message	Was that where I came from?{end_wait}
+07004	message	Yes. They gave Hammet the\nShaman's Rod, some gold,\nand you.{end_wait}
+07005	message	Gold? Was it in golden\ndoubloons?{end_wait}
+07006	message	Yes... Let me remember.\nYour name was...{end_wait}
+07007	message	I'm {actor_name:4}, Lady Layana.{end_wait}
+07008	message	There was quite a lot of\ngold, {actor_name:4}. But the\nAdepts gave him advice,{page_break}too.{end_wait}
+07009	message	Business advice? To Hammet?\nI thought he knew\neverything about trade!{end_wait}
+07010	message	He learned from them,\n{actor_name:2}. He always\nadmitted it.{end_wait}
+07011	message	I had no idea Hammet owed\nhis fortune to that\njourney.{end_wait}
+07012	message	They told him to buy silk\nin Xian and sell it in\nTolbi.{end_wait}
+07013	message	Silk sold better than he\ncould have imagined. It\nchanged everything.{end_wait}
+07014	message	That's when people began\ncalling Hammet a great\nmerchant.{end_wait}
+07015	message	What did he promise the\nAdepts in return?{end_wait}
+07016	message	Something you need to find,\n{actor_name:3}. That's why he\nkept searching.{end_wait}
+07017	message	Something we need for this\njourney?{end_wait}
+07018	message	The Adepts told Hammet the\nShaman's Rod would help him\nfind it.{end_wait}
+07019	message	He searched everywhere he\ntraded. Years passed, but\nhe never found it.{end_wait}
+07020	message	Then, three years ago, the\nstorm struck Mt. Aleph.{end_wait}
+07021	message	Hammet feared he was\nrunning out of time to keep\nhis promise.{end_wait}
+07022	message	He'd finally found a clue,\nthough. He couldn't ignore\nit.{end_wait}
+07023	message	That's why he took you\nnorth with his caravan,\n{actor_name:3}.{end_wait}
+07024	message	I never knew. So that was\nwhy he trusted me with the\nrod. But then{em_dash}{end_wait}
+07025	message	Don't blame yourself,\n{actor_name:3}. You couldn't know\nwhat would happen.{end_wait}
+07026	message	I let the rod get stolen.\nHammet went north, and now\nhe's a prisoner. How can I{page_break}not blame myself?{end_wait}
+07027	message	You have to finish the\njourney you've begun.\nHammet wanted you to do{page_break}that.{end_wait}
+07028	message	But what becomes of him if\nwe leave?{end_wait}
+07029	message	I'll see to Hammet's\nsafety.{end_wait}
+07030	message	And Kalay's soldiers won't\nabandon him either.{end_wait}
+07031	message	Keep going. You have a\npromise to fulfill. We'll\ntake care of Hammet.{end_wait}
+07032	message	I wish I could tell you\nmore about the Shaman's\nRod, but that's all I know.{end_wait}
+07033	message	You've told us enough.\nThank you.{end_wait}
+07034	message	The rod should lead us to\nwhatever we need for the\njourney. Right?{end_wait}
+07035	message	Will you look for it?{end_now}
+07036	message	If {actor_name:1} says we'll find\nit, I believe him.{end_wait}
+07037	message	{actor_name:1}, we came this far\nfor a reason. We can't just\nforget it.{end_wait}
+07038	message	If that thing matters to\nour quest, we'll have to\nfind it.{end_wait}
+07039	message	Then please be careful. All\nof you.{end_wait}
+07040	message	Everyone, back to your\nposts. We still have work\nto do.{end_wait}

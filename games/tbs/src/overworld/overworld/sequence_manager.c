@@ -106,6 +106,16 @@ void Scene_ReturnFromSequence(s32 result) {
   s32 entrance;
 
   gSaveBlock.sequenceResult = result;
+  // The party must be whole BEFORE any destination scene starts creating its
+  // followers. On a loss clear the fight flag here; on a win keep it for
+  // Vale_MysteryLeaderAftermath to finish the scene.
+  if (GameFlag_GetFar(FLAG_DARK_MYSTERY_PENDING) != 0) {
+    Party_AddMember(GARET);
+    Party_AddMember(IVAN);
+    Party_AddMember(MIA);
+    if (result == -1)
+      GameFlag_ClearFar(FLAG_DARK_MYSTERY_PENDING);
+  }
   if (result == -1) {
     // Revive the leader before choosing the restart point.
     unit = Unit_GetFar(gSaveBlock.leaderActorId);
@@ -120,6 +130,21 @@ void Scene_ReturnFromSequence(s32 result) {
         unit->pp = unit->ppMax;
         Unit_UpdateGauges(unit);
       }
+    }
+    // Losing to a superboss (Ash Jenna at Suhalla Gate or Vale, Kegare, Heart)
+    // sends the party to the restart point like any defeat. Their fight flags
+    // are cleared so the loss is never mistaken for a win later, and the
+    // fight can be tried again.
+    GameFlag_ClearFar(FLAG_DARK_ASH_VALE_PENDING);
+    GameFlag_ClearFar(FLAG_DARK_ASH_GATE_PENDING);
+    if (GameFlag_GetFar(FLAG_DARK_HEART_BEATEN) == 0)
+      GameFlag_ClearFar(FLAG_DARK_HEART_FOUGHT);
+    // Umbral Rift: a loss leaves ??? and Heart on the dais for another try.
+    if (GameFlag_GetFar(FLAG_DARK_RIFT_BEATEN) == 0)
+      GameFlag_ClearFar(FLAG_DARK_RIFT_FOUGHT);
+    if (GameFlag_GetFar(FLAG_DARK_KEGARE_BEATEN) == 0) {
+      GameFlag_ClearFar(FLAG_DARK_KEGARE_FOUGHT);
+      GameFlag_ClearFar(FLAG_DARK_KEGARE_PENDING);
     }
     sceneId = gSaveBlock.defeatScene;
     entrance = gSaveBlock.defeatEntrance;
@@ -345,7 +370,8 @@ void Scene_Arrive(s32 unused, s32 keep) {
       gSaveBlock.encounterSteps = 0;
       gSaveBlock.hazardSteps = 0;
       GameFlag_ClearFar(FLAG_VENUS_LIGHTHOUSE_LIT);
-      GameFlag_ClearFar(FLAG_MERCURY_LIGHTHOUSE_LIT);
+      // Ashfall: Mercury's lit state is persistent after the actual beacon
+      // sequence; never infer it from merely entering the lighthouse area.
       GameFlag_ClearFar(FLAG_MARS_LIGHTHOUSE_LIT);
       GameFlag_ClearFar(FLAG_JUPITER_LIGHTHOUSE_LIT);
       gSaveBlock.retreatScene = gSaveBlock.sceneId;

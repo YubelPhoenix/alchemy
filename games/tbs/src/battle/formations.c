@@ -34,21 +34,25 @@ const struct Formation gFormations[] = {
         .minimumCounts = {1, 1},
         .maximumCounts = {1, 1},
     },
-    {0},
     {
-        .memberIds = {1},
-        .minimumCounts = {2},
-        .maximumCounts = {3},
-    },
-    {
-        .memberIds = {4},
-        .minimumCounts = {2},
-        .maximumCounts = {3},
-    },
-    {
-        .memberIds = {7},
+        .memberIds = {118},
         .minimumCounts = {1},
-        .maximumCounts = {3},
+        .maximumCounts = {1},
+    },
+    {
+        .memberIds = {1, 4},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
+    },
+    {
+        .memberIds = {4, 7},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
+    },
+    {
+        .memberIds = {7, 1},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
         .memberIds = {1, 7, 4},
@@ -102,19 +106,19 @@ const struct Formation gFormations[] = {
         .maximumCounts = {3},
     },
     {
-        .memberIds = {5},
-        .minimumCounts = {1},
-        .maximumCounts = {3},
+        .memberIds = {5, 18},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
-        .memberIds = {8},
-        .minimumCounts = {1},
-        .maximumCounts = {3},
+        .memberIds = {8, 11},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
-        .memberIds = {11},
-        .minimumCounts = {1},
-        .maximumCounts = {3},
+        .memberIds = {11, 5},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
         .memberIds = {106},
@@ -310,9 +314,9 @@ const struct Formation gFormations[] = {
         .maximumCounts = {1, 1, 1},
     },
     {
-        .memberIds = {107},
-        .minimumCounts = {2},
-        .maximumCounts = {3},
+        .memberIds = {107, 42},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
         .memberIds = {42, 39},
@@ -333,9 +337,9 @@ const struct Formation gFormations[] = {
     },
     {0},
     {
-        .memberIds = {12},
-        .minimumCounts = {2},
-        .maximumCounts = {2},
+        .memberIds = {12, 45},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {1, 1},
     },
     {
         .memberIds = {48},
@@ -374,14 +378,14 @@ const struct Formation gFormations[] = {
     },
     {0},
     {
-        .memberIds = {45},
-        .minimumCounts = {1},
-        .maximumCounts = {3},
+        .memberIds = {45, 51},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {2, 1},
     },
     {
-        .memberIds = {12},
-        .minimumCounts = {2},
-        .maximumCounts = {4},
+        .memberIds = {12, 48},
+        .minimumCounts = {2, 1},
+        .maximumCounts = {3, 1},
     },
     {
         .memberIds = {51, 12},
@@ -1525,6 +1529,66 @@ const struct Formation gFormations[] = {
         .memberIds = {163},
         .minimumCounts = {1},
         .maximumCounts = {1},
+    },
+    // Mia's first interlude near Imil: three hired thieves.
+    {
+        .memberIds = {110, 112},
+        .minimumCounts = {2, 1},
+        .maximumCounts = {2, 1},
+    },
+    // Mia's first interlude near Imil: the Thief Chief and a hired thief.
+    {
+        .memberIds = {111, 110},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {1, 1},
+    },
+    // Mia alone against Menardi on the Mercury Lighthouse.
+    {
+        .memberIds = {132},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
+    // Isaac alone against Mia on the Mercury Lighthouse.
+    {
+        .memberIds = {135},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
+    // Kegare, the Mia-mimicking Water Adept, in Tolbi.
+    {
+        .memberIds = {104},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
+    // Heart (Chalice), in Kolima.
+    {
+        .memberIds = {101},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
+    // Ash Jenna, the optional super boss in Vale.
+    {
+        .memberIds = {92},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
+    // Ash Jenna, at Suhalla Gate.
+    {
+        .memberIds = {0},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
+    // "???", the Jupiter commander in Vale.
+    {
+        .memberIds = {164},
+        .minimumCounts = {1},
+        .maximumCounts = {1},
+    },
+    // Umbral Rift: "???" at full strength with Heart at her side.
+    {
+        .memberIds = {152, 165},
+        .minimumCounts = {1, 1},
+        .maximumCounts = {1, 1},
     },
 };
 

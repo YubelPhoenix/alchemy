@@ -134,6 +134,7 @@
 	import Text_DrawNumberAtOffset, Text_DrawNumberAtOffsetFar
 	import Text_DrawNumberInWindow, Text_DrawNumberInWindowFar
 	import Portrait_OpenWindow, Portrait_OpenWindowFar
+	import Portrait_CloseWindow, Portrait_CloseWindowFar
 	import MessageArgument_ClearAll, MessageArgument_ClearAllFar
 	import MessageArgument_Push, MessageArgument_PushFar
 	import TextPrinter_CloseFinishedWindows, TextPrinter_CloseFinishedWindowsFar

@@ -112,6 +112,17 @@ enum {
   /// discarded and WORLD_MAP_TO_ROCK_ROOMS leads on.
   WORLD_MAP_AFTER_BLACK_ORB_DEFEAT = 78,
   WORLD_MAP_JENNA_AND_KRADEN_ADRIFT = 80,
+  /// Mia alone on the road south of Imil, where hired thieves find her
+  /// (Mia's first interlude), then back from the first and second fights.
+  WORLD_MAP_MIA_THIEVES = 81,
+  WORLD_MAP_MIA_THIEVES_AFTER_FIRST = 82,
+  WORLD_MAP_MIA_THIEVES_AFTER_SECOND = 83,
+  /// Mia alone below Mercury Lighthouse, where she catches Menardi's group
+  /// after it rode the lift down, then back from the fight and with the party
+  /// whole again (Mia's second interlude).
+  WORLD_MAP_MIA_MENARDI = 84,
+  WORLD_MAP_MIA_MENARDI_WON = 85,
+  WORLD_MAP_MIA_REUNITES = 86,
   WORLD_MAP_AFTER_MERCURY_LIGHTHOUSE_LIT =
       90, ///< WorldMap_Initialize plays WorldMap_PlayLighthouseTransition
           ///< here in Mercury Lighthouse's colours, then sends the party to the
@@ -122,6 +133,8 @@ enum {
           ///< the aerie
   /// The world map's debug entrance, which sets FLAG_NO_ENCOUNTERS,
   /// FLAG_NO_ENCOUNTERS_IN_AREA and FLAG_DEBUG_STEPS_OFF.
+  /// Beside the black monolith near Vale, out of the Umbral Rift.
+  WORLD_MAP_FROM_UMBRAL_RIFT = 98,
   WORLD_MAP_FROM_DEBUG = 99,
 };
 /// SceneId_WorldMap's exits.
@@ -203,6 +216,12 @@ enum {
       111, ///< ★ Named from what the player sees: Jenna and Kraden adrift on an
            ///< island in the ending (its render)
   WORLD_MAP_TO_ROCK_ROOMS = 112,
+  /// Out of Mia's interlude, back to the world map at Vault's south gate.
+  WORLD_MAP_TO_VAULT_AFTER_MIA_THIEVES = 113,
+  /// Mia's second interlude, with the party whole again at its end.
+  WORLD_MAP_TO_MIA_REUNITES = 114,
+  /// Into the black monolith near Vale: the Umbral Rift's throne hall.
+  WORLD_MAP_TO_UMBRAL_RIFT = 115,
 };
 
 /// SceneId_ValeStormyNight's entrances.
@@ -264,6 +283,12 @@ enum {
   VALE_FROM_COTTAGE_ROOMS_A_NORTH_SECOND_DOOR = 11,
   VALE_FROM_TITLE = 16,
   VALE_FROM_ROOF_MENDED = 17,
+  /// The square, where the party stood to face Ash Jenna; the battle brings
+  /// the party back in here (Vale_AshJennaAftermath).
+  VALE_FROM_ASH_JENNA = 18,
+  /// Return from the optional mystery commander's battle. Ordinary entrances
+  /// must never trigger the post-victory dialogue.
+  VALE_FROM_MYSTERY_BATTLE = 19,
 };
 /// SceneId_Vale's exits.
 enum {
@@ -492,6 +517,7 @@ enum {
   SOL_SANCTUM_LUNA_SOL_ROOMS_FROM_SOL_SANCTUM_STATUE_LIGHTS_SHOWN = 6,
   SOL_SANCTUM_LUNA_SOL_ROOMS_FROM_SOL_SANCTUM_STATUE_UNUSED = 7,
   SOL_SANCTUM_LUNA_SOL_ROOMS_FROM_SOL_SANCTUM_ERUPTION = 8,
+  SOL_SANCTUM_LUNA_SOL_ROOMS_AFTER_DUEL = 9, ///< back from Menardi's duel
 };
 /// SceneId_SolSanctumLunaSolRooms's exits.
 enum {
@@ -710,6 +736,7 @@ enum {
   VAULT_TO_STONE_ROOMS = 12,
   VAULT_TO_LOG_ROOMS_A_WEST = 13,
   VAULT_TO_VAULT_REVISIT = 14,
+  VAULT_TO_IMIL_MIA_THIEVES = 20,
 };
 
 /// SceneId_LogRoomsA's entrances.
@@ -792,6 +819,9 @@ enum {
   VAULT_REVISIT_FROM_STONE_ROOMS = 12,
   VAULT_REVISIT_FROM_VAULT_CAVE_PASSAGE = 13,
   VAULT_REVISIT_FROM_VAULT_CAVE_MOUTH = 14,
+  /// Where the party stood to face Kegare; her battle returns it here
+  /// (VaultRevisit_KegareAftermath).
+  VAULT_REVISIT_FROM_KEGARE = 15,
 };
 /// SceneId_VaultRevisit's exits.
 enum {
@@ -1591,6 +1621,9 @@ enum {
   IMIL_FROM_ICE_ROOMS_WEST = 7,
   IMIL_FROM_ICE_ROOMS_SOUTHWEST = 8,
   IMIL_FROM_IMIL_FALLS_CAVE = 9,
+  IMIL_MIA_THIEVES = 20,
+  IMIL_MIA_THIEVES_AFTER_FIRST = 21,
+  IMIL_MIA_THIEVES_AFTER_SECOND = 22,
 };
 /// SceneId_Imil's exits.
 enum {
@@ -1605,6 +1638,7 @@ enum {
   IMIL_TO_IMIL_FALLS_CAVE = 8,
   IMIL_TO_WORLD_MAP_SOUTH = 11,
   IMIL_TO_WORLD_MAP_NORTH = 12,
+  IMIL_MIA_THIEVES_TO_WORLD_MAP_VAULT = 20,
 };
 
 /// SceneId_IceRooms's entrances.
@@ -1973,10 +2007,41 @@ enum {
   MERCURY_LIGHTHOUSE_AERIE_AFTER_SATUROS_BATTLE =
       2, ///< MercuryLighthouseAerie_ConfrontSaturos
   MERCURY_LIGHTHOUSE_AERIE_FROM_MERCURY_LIGHTHOUSE_EXTERIOR = 5,
+  /// Mia, alone, reaches the beacon ledge where Menardi holds the captives
+  /// (MercuryLighthouseAerie_MiaFacesMenardi).
+  MERCURY_LIGHTHOUSE_AERIE_MIA_CHASE = 20,
+  /// Mia has beaten Menardi (MercuryLighthouseAerie_MiaBeatsMenardi).
+  MERCURY_LIGHTHOUSE_AERIE_AFTER_MIA_FIGHT = 21,
+  /// The party, Isaac leading again, catches up with Mia
+  /// (MercuryLighthouseAerie_MiaRejoinsParty).
+  MERCURY_LIGHTHOUSE_AERIE_MIA_REUNITES = 22,
+  /// Isaac, alone, has beaten Mia (MercuryLighthouseAerie_MiaYields).
+  MERCURY_LIGHTHOUSE_AERIE_DUEL_WON = 23,
+  /// Isaac, alone, fell to Mia (MercuryLighthouseAerie_DuelLost).
+  MERCURY_LIGHTHOUSE_AERIE_DUEL_LOST = 24,
+  /// The quarrel with Mia plays again (MercuryLighthouseAerie_DuelRetry).
+  MERCURY_LIGHTHOUSE_AERIE_DUEL_RETRY = 25,
+  /// Saturos turns on the three who are left
+  /// (MercuryLighthouseAerie_SaturosResumes).
+  MERCURY_LIGHTHOUSE_AERIE_SATUROS_RESUMES = 26,
+  /// The whole party watches Mia yield (MercuryLighthouseAerie_MiaYields).
+  MERCURY_LIGHTHOUSE_AERIE_DUEL_AFTERMATH = 27,
 };
 /// SceneId_MercuryLighthouseAerie's exits.
 enum {
   MERCURY_LIGHTHOUSE_AERIE_TO_MERCURY_LIGHTHOUSE_EXTERIOR = 1,
+  /// The aerie again, as Mia runs ahead alone.
+  MERCURY_LIGHTHOUSE_AERIE_TO_MIA_CHASE = 2,
+  /// The aerie again, with the party back together.
+  MERCURY_LIGHTHOUSE_AERIE_TO_MIA_REUNITES = 3,
+  /// The aerie again, to play the quarrel with Mia once more.
+  MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_RETRY = 4,
+  /// The aerie again, with Mia gone ahead and Saturos still to fight.
+  MERCURY_LIGHTHOUSE_AERIE_TO_SATUROS_RESUMES = 5,
+  /// The aerie again, with the party whole to see the duel's end.
+  MERCURY_LIGHTHOUSE_AERIE_TO_DUEL_AFTERMATH = 6,
+  /// Down to the world map, where Mia catches Menardi's group.
+  MERCURY_LIGHTHOUSE_AERIE_TO_WORLD_MAP_MIA_MENARDI = 7,
 };
 
 /// SceneId_FuchinTempleGrounds's entrances.

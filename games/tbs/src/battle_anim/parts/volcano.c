@@ -100,6 +100,8 @@ void BattleAnim_RunVolcano(struct BattleAnimArgs *args) {
         camera->yaw = camera->yaw + 192;
       else
         camera->yaw = (s16)camera->yaw - 192;
+      // Whoever casts it, the Ashfall bosses turn with the camera.
+      BattleCamera_FlipBossesInFrontView(camera);
     }
     if (frame == 16)
       ANIM_SHOW_DAMAGE(SE_HEAVY_IMPACT);

@@ -1,0 +1,12 @@
+# Kolima and forest first entry, restored villagers and Mind Read.
+# Generic silence/field examination messages intentionally remain unchanged.
+05236	MsgKolimaMatterIvan	{actor_name:3}, what's wrong?{end_wait}
+05243	MsgKolimaWhatIsIt	What is it, {actor_name:3}? Did\nyou see something?{end_wait}
+05755	MsgKolimaTheWaterAtMyFeetHuh	Water at my roots... Huh!\nIt tastes wonderful!{end_wait}
+05774	MsgKolimaWeRelyOnTheForestsSo	We fed our families with\nlumber for years. Then we\ncut Tret himself.{page_break}Replanting won't undo it,\nbut it's a place to start.{end_wait}
+05777	MsgKolimaDontBlameTheVillagersForBeing	McCoy offered more money\nthan most of us had seen. I\nunderstand the temptation.{page_break}That doesn't make it right.{end_wait}
+05778	MsgKolimaWhoWouldTryToUseThe	A palace made from Tret?\nDid McCoy ever think about\nwhat that would mean?{end_wait}
+05782	MsgKolimaTheForestTreesAreAliveJust	I was a tree for days. I\ncould still hear people.\nI'll never look at a tree{page_break}the same way again.{end_wait}
+05785	MsgKolimaIveBeenPoorAllMyLife	I've been poor my whole\nlife. I know why people\ntook McCoy's offer. Now I{page_break}know what it cost us.{end_wait}
+05786	MsgKolimaItsNotCalledTheHolyTree	We called Tret holy and\nstill let the axes fall.\nThat's the part I can't{page_break}forget.{end_wait}
+05814	MsgKolimaIfTheHolyTreeAloneCaused	I should have stopped them.\nI knew the tree was alive,\nand I did nothing.{end_wait}

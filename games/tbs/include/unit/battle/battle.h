@@ -331,6 +331,9 @@ void BattleHighlight_SetSpriteMode(s32 unitId, s32 mode);
 void BattleHighlight_SetOtherSpriteModes(s32 selectedUnitId);
 void BattleHighlight_ClearAllSpriteModes(void);
 void BattleBackground_StepHighlightBlend(void);
+void Heart_StepBackdropGlow(void);
+void Mystery_StepBackdropGlow(void);
+void Mystery_StepIdleGhosts(void);
 void BattleHighlight_SetModes(u16 *selectedUnits, s32 mode);
 
 #ifdef UBFIX

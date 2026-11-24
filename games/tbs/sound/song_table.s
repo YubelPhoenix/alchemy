@@ -18,8 +18,8 @@ gSongTable:
 	song sound_008, 1
 	song sound_009, 1
 	song sound_010, 1
-	song dummy_song_header, 0
-	song dummy_song_header, 0
+	song sound_011, 1
+	song sound_012, 1
 	song dummy_song_header, 0
 	song dummy_song_header, 0
 	song dummy_song_header, 0

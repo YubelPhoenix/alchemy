@@ -1,0 +1,65 @@
+05588	MsgMercuryGot	{actor_name:1}, he's down!{end_wait}
+05589	message	Mercury's light...\nIt sapped my strength.{page_break}Had I fought at full power,\nyou'd be dead already.{end_wait}
+05590	message	Mercury's light hurt you.\nWhy stay here to fight?{end_wait}
+05591	message	That is not your\nconcern...{end_wait}
+05671	message	The legend was true.\nThe beacon lit,\nthe spring returned.{page_break}Imil can heal again.\nBut what else has\nthat light changed?{end_wait}
+05672	message	I can't leave them.\nNot when they've\nneeded me so long.{page_break}But the water is back.\nAnd Imil has healers.\nI have to trust them.{end_wait}
+05673	message	They're getting away.\nWe need to follow.{end_wait}
+05674	MsgMercuryLighthouseTheLegendsSaidThatIfThe	The fountain flows!\nThe legend was true.{page_break}I thought it was just\nan old story.{end_wait}
+05675	MsgMercuryLighthouseOurFountainIsBackTheySay	Our fountain is back.\nThey say these waters\nheal all that lives.{end_wait}
+05676	MsgMercuryLighthouseIDrankTheHealingWaterAnd	I drank the healing\nwater, and I feel\nstrong again.{page_break}I'll take a bottle\nhome. Just in case.{end_wait}
+05677	MsgMercuryLighthouseWeDontHaveToFearAny	The fever is gone.\nI pray it stays gone.{end_wait}
+05678	MsgMercuryLighthouseHowDidTheFountainKnowThat	How did the fountain\nknow the beacon\nwas lit?{end_wait}
+05679	MsgMercuryLighthouseAllThatLivesThatMeansIt	All that lives... It must\nwork on plants and\nanimals, too.{end_wait}
+05680	MsgMercuryLighthouseIKnewItWouldWorkBut	I thought I'd die here.\nNow I can stand again.{page_break}I should be grateful.\nWhy am I still afraid?{end_wait}
+05681	MsgMercuryLighthouseINeverBelievedThoseStoriesBut	I used to laugh\nat those old stories.\nLook at me now!{end_wait}
+05682	MsgMercuryWhoHonorsHeart	He who honors the heart\nof the goddess shall stand\nat the center of all,{page_break}like a swan in the\ncenter of a rippling\npond.{end_wait}
+05683	MsgMercuryHonorsGoddessRainbows	He who honors the\ngoddess of rainbows shall{page_break}be guided to the heavens\nupon wings of fluid grace.{end_wait}
+05684	message	The door is shut tight.{end_wait}
+05685	MsgMercuryLighthouseFountainFlowsWithWater	The fountain is flowing\nwith water.{end_wait}
+05686	MsgMercuryLighthouseFountainSeemsDry	The fountain seems dry.{end_wait}
+05687	MsgMercuryLighthouseStrangeForcesBlockWay	Strange forces are at\nwork... It seems\nimpossible to proceed.{end_wait}
+05692	MsgImilCountingAfterDeparture	One,{pause_20_skippable} two,{pause_20_skippable} three,{pause_20_skippable} four...{end_wait}
+05693	message	I trained all winter\nto stay healthy...{page_break}And now the fountain\nis back?{end_now}
+05694	message	What did I train\nso hard for all this time?{end_wait}
+05695	message	No, it can't be! Everyone\nis in perfect health!{end_wait}
+05697	MsgImilDontWorryAboutUsMiaWell	We'll care for Imil,\n{actor_name:4}. You taught us\nwhat to do.{end_wait}
+05698	MsgImilNowThatIveLetMyGuard	Now that I've let my\nguard down, I'm getting\nchills.{page_break}Maybe I should drink\nsome fountain water.{end_wait}
+05699	MsgImilThatFountainWaterReallyMadeGrandpa	That fountain water\nmade Grandpa healthy\nagain.{end_wait}
+05700	MsgMercuryReallySayDie	Did I really say\nI was going to die\nfrom that sickness?{end_now}
+05701	message	Ha ha ha! I must have\nfelt terrible to say\nthat!{page_break}I'm good for another 30\nyears!{pause_20_skippable} ...Back to work!{end_wait}
+05702	message	That's right!\nThe strong old man of\nImil, that's me!{end_wait}
+05703	MsgImilGrandpasAllBetterNowThanksTo	Grandpa's all better\nnow, thanks to the\nfountain water.{end_wait}
+05706	MsgImilThatBlueLightFromHerHands	That blue light from her\nhands... Is she an angel,\nor something else?{end_wait}
+05707	MsgMercuryCatchUpLostOpportunity	I have to catch up\non lost time.\nBack to business.{end_wait}
+05708	MsgImilCustomersAreHardToComeBy	Customers are rare, and\nI can't afford to lose\neven one.{end_wait}
+05709	MsgMercuryShameStoreClosed	I thought I'd never\nopen this shop again.\nIt's good to be back.{end_wait}
+05710	MsgImilTheCustomersAreBackIThought	The customers are back.\nI thought I'd lost my\nbusiness for good.{end_wait}
+05711	MsgMercuryRecoveredThanksFountain	I'm fully recovered,\nthanks to the fountain.\nBack to work.{end_wait}
+05712	MsgImilImSoHappyThatMommyIs	I'm so happy Mommy\nis well again!{end_wait}
+05714	MsgImilMyDaddysStillInKolimaIll	My daddy's still in\nKolima. I'll be so happy\nif he comes home soon.{end_wait}
+05715	MsgImilItsAlmostTimeForLeave	It's almost time for you\nto leave, isn't it?{end_now}
+05716	message	The legend was right.\nThe fountain flows\nwith the beacon lit.{page_break}Winter will return.\nBut we'll have\nthe water this time.{end_wait}
+05717	message	I'll cook a feast\nfor you tonight.{end_wait}
+05722	MsgImilINeverToldMiaThatI	I never told {actor_name:4}\nthat I liked her...{page_break}Maybe it's for\nthe best.{end_wait}
+05723	MsgImilMia	{actor_name:4}! You're back!{end_wait}
+05724	message	We saw the light...\nWe thought we'd lost you.{end_wait}
+05725	message	I'm here. Are you both\nall right?{end_wait}
+05726	message	{actor_name:4}, the beacon's\nlit! What happened?{end_wait}
+05727	message	You already knew...\ndidn't you, {actor_name:4}?{end_wait}
+05728	message	Why won't you tell us\nwhat happened, {actor_name:4}?{end_wait}
+05729	message	There's something\nI need to tell you.{end_wait}
+05730	message	Please. Just tell us.{end_wait}
+05731	message	I can't stay here.{end_wait}
+05734	message	You said the world\ncould be in danger\nif the beacons were lit.{end_wait}
+05735	message	Then you're leaving\nto stop that from\nhappening?{end_wait}
+05736	message	Yes.{pause_20_skippable} Before anyone\nelse gets hurt.{end_wait}
+05737	message	Then... we'll\nhandle things here.{end_wait}
+05738	message	We're scared, too.\nBut we won't stop you.{page_break}Someone has to\nstay and help Imil.{end_wait}
+05739	message	I know.{pause_20_skippable}\nI wouldn't trust Imil\nto anyone else.{end_wait}
+05740	message	We'll keep the\nSanctum running.\nYou have my word.{end_wait}
+05741	message	I'll keep practicing\nuntil I can heal like\nyou, {actor_name:4}!{end_wait}
+05732	message	I'm going with\n{actor_name:1}. We have to\nstop the other beacons.{end_wait}
+05733	message	I know what this means\nfor Imil. I wouldn't go\nif we had another choice.{end_wait}
+05742	message	Don't rush to prove it.\nJust take care of\nwhoever comes through.{end_wait}
+05743	message	All right. We leave now.\nKeep each other safe.{end_wait}
