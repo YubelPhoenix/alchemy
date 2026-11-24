@@ -1403,10 +1403,14 @@ const struct AbilityDefinition gAbilityDefinitions[] = {
         .ppCost = 5,
         .fieldPsynergy = 16,
     },
-    // ?
+    // Vendetta Dive (Ashfall): Heart's Outer Space, her revenge on Matthew.
+    // Isaac, with Matthew's face, takes more (BattleAbility_ApplyToTarget).
     {
-        .targetMode = ABILITY_TARGET_ONE,
-        .element = ELEMENT_VENUS,
+        .targetMode = ABILITY_TARGET_FOES,
+        .flags = ABILITY_USABLE_IN_BATTLE | ABILITY_FORMULA_SUMMON,
+        .element = ELEMENT_MARS,
+        .range = 6,
+        .power = 240,
     },
     // ?
     {

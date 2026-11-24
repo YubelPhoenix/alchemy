@@ -15,6 +15,7 @@ Frame layout (games/tbs/src/graphics/sprite/spr_484.tsv steps by two, each
 frame is stored twice):
   0-1   idle            2-3   dash / leap (rise)     4-5  lunge (landing)
   6-7   cast            8-9   damage       10-11 idle, breathing in
+  12-13 dive kick, for Outer Space (kick.png: her dash pose, feet first)
 """
 from pathlib import Path
 
@@ -28,7 +29,7 @@ DEST = ROOT / "games/tbs/src/graphics/monster/purple_beast.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
-FRAMES = 12
+FRAMES = 14
 # The supplied poses are drawn at 64x64, the frame's own size, so they are not
 # resampled: the size on screen comes from SPR_484's scale column in
 # sprites.tsv (0xb8, which puts her idle pose, 56 rows, at Menardi's 40 or so).
@@ -40,6 +41,7 @@ LAYOUT = [
     ("cast", False, 0), ("cast", False, 0),
     ("damage", True, 0), ("damage", True, 0),
     ("idle2", True, 0), ("idle2", True, 0),   # breathing in: id 10
+    ("kick", False, 0), ("kick", False, 0),   # Outer Space's dive kick: id 12
 ]
 
 palette_image = Image.open(SHARED_PALETTE)

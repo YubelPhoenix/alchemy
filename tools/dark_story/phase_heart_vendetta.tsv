@@ -1,0 +1,6 @@
+# Vendetta Dive (ability 151, ABILITY_VENDETTA_DIVE): Heart's own Outer Space,
+# a dive kick through a blood-red sky, her revenge on Matthew. Name is
+# MsgAbilityName + id (819 + id), description MsgAbilityDescription + id
+# (1338 + id).
+00970	message	Vendetta Dive
+01489	message	Matthew's debt, repaid.

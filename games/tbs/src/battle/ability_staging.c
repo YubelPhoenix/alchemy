@@ -160,7 +160,7 @@ const u8 gAbilityStaging[] = {
     0, // Catch
     0, // Retreat
     0, // Avoid
-    0, // ?
+    0, // Vendetta Dive (Ashfall)
     0, // ?
     0, // ?
     0, // ?
@@ -682,7 +682,7 @@ const u32 gAbilityAnimations[] = {
     0, // Catch
     0, // Retreat
     0, // Avoid
-    0, // ?
+    BATTLE_ANIM_OUTER_SPACE | ANIM_VIEW_REVERSED, // Vendetta Dive (Ashfall)
     0, // ?
     0, // ?
     0, // ?
