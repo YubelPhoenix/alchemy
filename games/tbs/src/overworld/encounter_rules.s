@@ -215,4 +215,5 @@ gScene_EncounterRules:
 	encounter_rule UmbralFountain, -1, -1, 1, 106
 	encounter_rule UmbralMaze, -1, -1, 1, 106
 	encounter_rule UmbralBeacon, -1, -1, 1, 106
+	encounter_rule UmbralCrossbone, -1, -1, 1, 106
 	.2byte -1, -1, 0, 0	@ end

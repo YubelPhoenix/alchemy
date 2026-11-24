@@ -2848,5 +2848,8 @@
 /// Golden Sun: Ashfall: the party has talked it over at the beacon and gone
 /// through it to the Throne Hall once.
 #define FLAG_DARK_RIFT_BEACON_CROSSED 0x8f6
+/// Golden Sun: Ashfall: the party has walked into the Crossbone room (a piece of
+/// Crossbone Isle) between the Umbral Rift's Fountain Hall and maze.
+#define FLAG_DARK_RIFT_CROSSBONE_SEEN 0x8f7
 
 #endif

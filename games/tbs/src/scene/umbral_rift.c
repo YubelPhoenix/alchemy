@@ -103,6 +103,22 @@ enum {
   UMBRAL_CAUSEWAY_TO_THRONE = 2,
 };
 
+/// The Crossbone room (map row 0xc0): Crossbone Isle's room of spikes and ice
+/// pillars in obsidian, between the Fountain Hall's left arch and the maze.
+/// The party comes in at the left door and leaves by the right one, winding
+/// between the spikes.
+enum {
+  UMBRAL_CROSSBONE_FROM_MAZE = 1,
+};
+enum {
+  /// Exit 1: the left door, back to the Fountain Hall.
+  UMBRAL_CROSSBONE_TO_FOUNTAIN = 1,
+  /// Exit 2: the right door, on to the maze.
+  UMBRAL_CROSSBONE_TO_MAZE = 2,
+};
+/// The floor just inside the left door.
+enum { UMBRAL_CROSSBONE_STEP = 0x20 };
+
 /// The Beacon Chamber (map row 0xbf): Venus Lighthouse's beacon chamber in
 /// obsidian, a place the party has never seen, between the Causeway and the
 /// Throne Hall. The Causeway's door comes out at the arch in the lower room; a
@@ -475,11 +491,11 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXIT(UMBRAL_THRONE_TO_FOUNTAIN, UmbralBeacon, UMBRAL_BEACON_FROM_THRONE),
     SCENE_EXITS(UmbralFountain),
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_WORLD_MAP, WorldMap, WORLD_MAP_FROM_UMBRAL_RIFT),
-    SCENE_EXIT(UMBRAL_FOUNTAIN_TO_LEFT_ARCH, UmbralMaze, ENTRANCE_DEFAULT),
+    SCENE_EXIT(UMBRAL_FOUNTAIN_TO_LEFT_ARCH, UmbralCrossbone, ENTRANCE_DEFAULT),
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_RIGHT_ARCH, UmbralMemory, UMBRAL_MEMORY_FROM_STAIR),
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_CAUSEWAY, UmbralCauseway, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralMaze),
-    SCENE_EXIT(UMBRAL_MAZE_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_LEFT_ARCH),
+    SCENE_EXIT(UMBRAL_MAZE_TO_FOUNTAIN, UmbralCrossbone, UMBRAL_CROSSBONE_FROM_MAZE),
     SCENE_EXIT(UMBRAL_MAZE_TO_TOP_DOOR, UmbralMemory, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralMemory),
     SCENE_EXIT(UMBRAL_MEMORY_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_TOP_DOOR),
@@ -487,6 +503,9 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralCauseway),
     SCENE_EXIT(UMBRAL_CAUSEWAY_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_CAUSEWAY),
     SCENE_EXIT(UMBRAL_CAUSEWAY_TO_THRONE, UmbralBeacon, ENTRANCE_DEFAULT),
+    SCENE_EXITS(UmbralCrossbone),
+    SCENE_EXIT(UMBRAL_CROSSBONE_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_LEFT_ARCH),
+    SCENE_EXIT(UMBRAL_CROSSBONE_TO_MAZE, UmbralMaze, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralBeacon),
     SCENE_EXIT(UMBRAL_BEACON_TO_CAUSEWAY, UmbralCauseway, UMBRAL_CAUSEWAY_FROM_THRONE),
     SCENE_EXIT(UMBRAL_BEACON_TO_THRONE, UmbralThrone, ENTRANCE_DEFAULT),
@@ -679,6 +698,42 @@ static struct Trigger sUmbralCausewayTriggers[] = {
     {TRIGGERS_END},
 };
 
+/// The first steps into the Crossbone room.
+static void UmbralRift_SeeCrossbone(void) {
+  Event_Start();
+  UmbralRift_Say(MsgDarkRiftCrossbone001, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftCrossbone002, ACTOR_GARET);
+  GameFlag_Set(FLAG_DARK_RIFT_CROSSBONE_SEEN);
+  Event_End();
+}
+
+static struct SceneEntrance sUmbralCrossboneEntrances[] = {
+    // Through the Fountain Hall's left arch, at the left door.
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 72, 0, 344, FACING_NORTH, 0, -1, -1,
+     -1, -1, 0},
+    // Back from the maze, at the right door.
+    {UMBRAL_CROSSBONE_FROM_MAZE, CONDITION_ALWAYS, 184, 0, 344, FACING_NORTH, 0,
+     -1, -1, -1, -1, 0},
+    {SCENE_TABLE_END},
+};
+
+static struct ActorTemplate sUmbralCrossboneActorTemplates[] = {
+    {SCENE_TABLE_END},
+};
+
+static struct Trigger sUmbralCrossboneTriggers[] = {
+    {TRIGGER_EXIT, UMBRAL_CROSSBONE_TO_FOUNTAIN, CONDITION_ALWAYS,
+     UMBRAL_CROSSBONE_TO_FOUNTAIN},
+    {TRIGGER_EXIT, UMBRAL_CROSSBONE_TO_MAZE, CONDITION_ALWAYS,
+     UMBRAL_CROSSBONE_TO_MAZE},
+    {TRIGGER_STEP, UMBRAL_CROSSBONE_STEP, FLAG_DARK_RIFT_CROSSBONE_SEEN,
+     EVENT(UmbralRift_SeeCrossbone)},
+    {TRIGGERS_END},
+};
+
+#define UMBRAL_IN_CROSSBONE() \
+  ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralCrossbone)
+
 /// The first look at the beacon, halfway up the chamber.
 static void UmbralRift_SeeBeacon(void) {
   Event_Start();
@@ -744,7 +799,8 @@ static struct Trigger sUmbralBeaconTriggers[] = {
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralFountain)
 
 const struct SceneEntrance *Scene_GetEntrances(void) {
-  return UMBRAL_IN_BEACON()      ? sUmbralBeaconEntrances
+  return UMBRAL_IN_CROSSBONE()   ? sUmbralCrossboneEntrances
+         : UMBRAL_IN_BEACON()   ? sUmbralBeaconEntrances
          : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayEntrances
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryEntrances
          : UMBRAL_IN_MAZE()     ? sUmbralMazeEntrances
@@ -754,7 +810,8 @@ const struct SceneEntrance *Scene_GetEntrances(void) {
 const struct SceneExitRegion *Scene_GetExitRegions(void) { return NULL; }
 const u32 *Scene_GetExits(void) { return sUmbralThroneExits; }
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
-  return UMBRAL_IN_BEACON()      ? sUmbralBeaconActorTemplates
+  return UMBRAL_IN_CROSSBONE()   ? sUmbralCrossboneActorTemplates
+         : UMBRAL_IN_BEACON()   ? sUmbralBeaconActorTemplates
          : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayActorTemplates
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryActorTemplates
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainActorTemplates
@@ -762,7 +819,8 @@ const struct ActorTemplate *Scene_GetActorTemplates(void) {
                                 : sUmbralThroneActorTemplates;
 }
 const struct Trigger *Scene_GetTriggers(void) {
-  return UMBRAL_IN_BEACON()      ? sUmbralBeaconTriggers
+  return UMBRAL_IN_CROSSBONE()   ? sUmbralCrossboneTriggers
+         : UMBRAL_IN_BEACON()   ? sUmbralBeaconTriggers
          : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayTriggers
          : UMBRAL_IN_MEMORY()   ? sUmbralMemoryTriggers
          : UMBRAL_IN_MAZE()     ? sUmbralMazeTriggers

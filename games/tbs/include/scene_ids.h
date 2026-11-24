@@ -562,5 +562,6 @@ extern char SceneId_UmbralMaze;
 extern char SceneId_UmbralMemory;
 extern char SceneId_UmbralCauseway;
 extern char SceneId_UmbralBeacon;
+extern char SceneId_UmbralCrossbone;
 
 #endif

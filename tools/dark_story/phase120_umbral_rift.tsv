@@ -188,3 +188,5 @@ N683	MsgDarkRiftCross001	The light on the statue...\nIt's moving.{end_wait}
 N684	MsgDarkRiftCross002	There are two people\non the other side.\nI can sense them.{end_wait}
 N685	MsgDarkRiftCross003	Then that's where\nthey went.{end_wait}
 N686	MsgDarkRiftCross004	Stay together.\nWe go through now.{end_wait}
+N687	MsgDarkRiftCrossbone001	Spikes, pillars of ice...\nI don't know this place\neither.{end_wait}
+N688	MsgDarkRiftCrossbone002	Then watch your step.{end_wait}

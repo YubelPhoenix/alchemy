@@ -370,6 +370,6 @@ gScene_BattleBackgroundRules:
 	backdrop BeachBackdrop, Tolbi, Lalivero
 	backdrop GomaCaveBackdrop
 	@ Golden Sun: Ashfall: the Umbral Rift's own backdrops (graphics/battle_bg/umbral_rift.s).
-	backdrop UmbralRiftBackdrop, UmbralFountain, UmbralMaze, UmbralBeacon
+	backdrop UmbralRiftBackdrop, UmbralFountain, UmbralMaze, UmbralBeacon, UmbralCrossbone
 	backdrop UmbralThroneBackdrop, UmbralThrone
 	.4byte 0	@ end
