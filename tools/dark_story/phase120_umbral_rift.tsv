@@ -17,8 +17,8 @@ N512	MsgDarkRiftMaze003	First the fountain,\nand now this?{end_wait}
 N513	MsgDarkRiftMaze004	How can both be here?{end_wait}
 N514	MsgDarkRiftMaze005	Neither of them should be.{end_wait}
 N515	MsgDarkRiftMaze006	I wonder where this leads.{end_wait}
-N516	MsgDarkRiftMaze007	Look. Those two again.{end_wait}
-N517	MsgDarkRiftMaze008	They're gone again!{end_wait}
+N516	MsgDarkRiftMaze007	Look. Two figures.{end_wait}
+N517	MsgDarkRiftMaze008	They just vanished!{end_wait}
 N518	MsgDarkRiftMaze009	Stay close, everyone.{end_wait}
 N519	MsgDarkRiftMemory001	Wait...\nThis is my house.{end_wait}
 N520	MsgDarkRiftMemory002	It really does look\nlike your house, Isaac.{end_wait}
@@ -36,10 +36,10 @@ N531	MsgDarkRiftGate001	That light is new.{end_wait}
 N532	MsgDarkRiftGate002	Could the orb have\nopened a way through?{end_wait}
 N533	MsgDarkRiftGate003	Well, let's find out.{end_wait}
 N534	MsgDarkRiftGate004	Stay together.{end_wait}
-N535	MsgDarkRiftCauseway001	Another passage...{end_wait}
-N536	MsgDarkRiftCauseway002	How far does this go?{end_wait}
-N537	MsgDarkRiftCauseway003	I wonder what those two\nwere looking for.{end_wait}
-N538	MsgDarkRiftCauseway004	Let's keep going.{end_wait}
+N535	MsgDarkRiftCauseway001	This place keeps going.{end_wait}
+N536	MsgDarkRiftCauseway002	How big is this place?{end_wait}
+N537	MsgDarkRiftCauseway003	We still don't know\nhow it got here.{end_wait}
+N538	MsgDarkRiftCauseway004	Let's see what's ahead.{end_wait}
 N539	MsgDarkRiftPre001	What are you doing here?{end_wait}
 N540	MsgDarkRiftPre002	I recognized its power.\nI came to see\nwhat crossed over.{end_wait}
 N541	MsgDarkRiftPre003	This place looks like\nparts of our own world.{end_wait}
@@ -60,8 +60,8 @@ N555	MsgDarkRiftPre017	Used for what?{end_wait}
 N556	MsgDarkRiftPre018	A way across worlds.\nMy people once had one.{end_wait}
 N557	MsgDarkRiftPre019	Why bring Heart?{end_wait}
 N558	MsgDarkRiftPre020	Her Dark Psynergy\ncan sense weak points.\nI need her for that.{end_wait}
-N559	MsgDarkRiftPre021	Those figures we saw...\nWere they you?{end_wait}
-N560	MsgDarkRiftPre022	The Rift keeps echoes\nof those who pass through.{end_wait}
+N559	MsgDarkRiftPre021	We saw figures like you.\nWhat were they?{end_wait}
+N560	MsgDarkRiftPre022	Echoes of our passage.\nThe Rift left them behind.{end_wait}
 N561	MsgDarkRiftPre023	Matthew...{end_wait}
 N562	MsgDarkRiftPre024	Heart. My name is Isaac.{end_wait}
 N563	MsgDarkRiftPre025	Don't lie to me!\nI know those eyes!{end_wait}
