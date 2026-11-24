@@ -5,15 +5,18 @@ An original piece written for Golden Sun: Ashfall. Nothing here is transcribed
 from another game. It is written in code so the notes are reviewable in a
 diff and the build regenerates the same bytes every time.
 
-Mood: still and uneasy, a place where time has come apart. D minor, about
-67 beats a minute, a 16-bar loop (about a minute):
+Mood: despair in a place where time has come apart. D minor, about 54 beats a
+minute, a 16-bar loop (a little over a minute):
 
-  - low strings hold each chord; two more string voices move by step;
-  - a harp arpeggio repeats a 5-note figure over 16-step bars, so it slips
-    against the beat and never lines up the same way twice in a bar;
-  - a bell motif marks every four bars;
-  - the choir enters on bar 5, the flute sings the second half;
-  - timpani mark the phrase starts.
+  - the bass falls by half steps, D, C sharp, C, B, B flat, A (a lament
+    bass), so every chord sinks a little lower than the last;
+  - strings hold the chords low; the choir sits close above them, and on
+    the last chord holds the bare fifth with no third;
+  - an oboe sings falling pairs of notes, each one a sigh, from bar 5;
+  - a quiet harp figure of five notes against eight steps falls from the
+    top of each chord, slipping against the beat;
+  - a low bell tolls a falling half step every four bars;
+  - timpani mark the phrases and roll into the loop's return.
 
 Engine timing (as in the vanilla songs): 96 ticks are one bar of 4/4, so a
 quarter note is 24 ticks; no note may last longer than 96 ticks.
@@ -32,23 +35,24 @@ LENGTHS = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
 Q = 24
 BARS = 16
 LOOP = BAR * BARS
-# Microseconds per 96 ticks: about 67 quarter notes a minute.
-TEMPO_US = 3_600_000
+# Microseconds per 96 ticks: about 54 quarter notes a minute.
+TEMPO_US = 4_440_000
 
 # Sound_BgmVoices programs, by their use in the vanilla songs.
-STRINGS, CHOIR, HARP, BELL, FLUTE, TIMPANI = 48, 52, 46, 8, 73, 47
+STRINGS, CHOIR, HARP, BELL, OBOE, TIMPANI = 48, 52, 46, 8, 68, 47
 
-# One chord per two bars: i, VI, iv, bII (Neapolitan), i, VI, ii dim, V.
-#        low root  mid  high  choir  harp tones (root, third, fifth)
+# One chord per two bars over a falling bass: i, V6, i7/C, IV6 (G/B),
+# iv6 (Gm/Bb), i64, VI, V.
+#        bass  mid  high  choir  harp tones (low to high)
 CHORDS = [
-    (50, 65, 69, None, (62, 65, 69)),  # D minor
-    (46, 65, 70, None, (58, 62, 65)),  # B flat
-    (43, 62, 67, 74, (55, 58, 62)),    # G minor
-    (51, 63, 67, 75, (51, 55, 58)),    # E flat
-    (50, 65, 69, 74, (62, 65, 69)),    # D minor
-    (46, 65, 70, 74, (58, 62, 65)),    # B flat
-    (52, 64, 67, 70, (52, 55, 58)),    # E diminished
-    (45, 64, 69, 73, (57, 61, 64)),    # A major
+    (50, 57, 65, None, (50, 57, 62, 65, 69)),  # D minor
+    (49, 57, 64, None, (49, 57, 61, 64, 69)),  # A over C sharp
+    (48, 57, 65, 62, (48, 57, 62, 65, 69)),    # D minor over C
+    (47, 55, 62, 62, (47, 55, 59, 62, 67)),    # G over B
+    (46, 55, 62, 62, (46, 55, 58, 62, 67)),    # G minor over B flat
+    (45, 57, 62, 65, (45, 57, 62, 65, 69)),    # D minor over A
+    (46, 58, 62, 65, (46, 58, 62, 65, 70)),    # B flat
+    (45, 52, 57, 64, (45, 52, 57, 64, 69)),    # A, the bare fifth
 ]
 
 
@@ -120,81 +124,69 @@ def close(t, n):
 def compose():
     tracks = []
 
-    # 1-3: strings. The root re-strikes every bar, softer on the second.
-    for n, voice, vol, pan, vel in ((1, 0, 74, 64, 92), (2, 1, 56, 48, 80),
-                                    (3, 2, 56, 80, 80)):
+    # 1-3: strings, low. Each chord is struck once a bar, the second softer.
+    for n, voice, vol, pan, vel in ((1, 0, 82, 64, 96), (2, 1, 60, 44, 78),
+                                    (3, 2, 60, 84, 78)):
         t, ch = channel(n, STRINGS, vol, pan, tempo=(n == 1))
         for i, chord in enumerate(CHORDS):
             for b in range(2):
-                t.note(ch, (2 * i + b) * BAR, chord[voice], BAR - 4,
-                       vel - 14 * b)
+                t.note(ch, (2 * i + b) * BAR, chord[voice], BAR, vel - 16 * b)
         close(t, n)
         tracks.append(t)
 
-    # 4: choir, from bar 5 (chord 3).
-    t, ch = channel(4, CHOIR, 58, 64)
+    # 4: choir, from bar 5, close above the strings.
+    t, ch = channel(4, CHOIR, 70, 64)
     for i, chord in enumerate(CHORDS):
         if chord[3] is None:
             continue
         for b in range(2):
-            t.note(ch, (2 * i + b) * BAR, chord[3], BAR - 4, 84 - 10 * b)
+            t.note(ch, (2 * i + b) * BAR, chord[3], BAR, 88 - 12 * b)
     close(t, 4)
     tracks.append(t)
 
-    # 5: harp. Five tones over sixteen steps: the figure drifts each beat.
-    t, ch = channel(5, HARP, 70, 40)
+    # 5: harp, quiet: five tones falling from the top of the chord, against
+    # eight steps a bar, so the figure lands on a different beat each bar.
+    t, ch = channel(5, HARP, 48, 36)
     step = 0
     for i, chord in enumerate(CHORDS):
-        r, th, f = chord[4]
-        figure = (r, f, r + 12, th + 12, f + 12)
-        for s in range(32):
-            k = figure[step % 5]
-            vel = 96 if step % 5 == 0 else 68 + 6 * (s % 3)
-            t.note(ch, (2 * i) * BAR + s * 6, k, 6, vel)
+        figure = tuple(reversed(chord[4]))
+        for s in range(16):
+            vel = 76 if step % 5 == 0 else 52 + 4 * (s % 2)
+            t.note(ch, (2 * i) * BAR + s * 12, figure[step % 5], 12, vel)
             step += 1
     close(t, 5)
     tracks.append(t)
 
-    # 6: bells, every four bars.
-    t, ch = channel(6, BELL, 60, 88)
-    motifs = {0: (81, 79, 74), 4: (82, 81, 74), 8: (81, 79, 74),
-              12: (82, 79, 76)}
-    for bar, (a, b, c) in motifs.items():
-        base = bar * BAR
-        t.note(ch, base, a, Q, 90)
-        t.note(ch, base + Q, b, Q, 82)
-        t.note(ch, base + 2 * Q, c, 2 * Q, 86)
-    # The last phrase rises on the dominant and is left hanging.
-    t.note(ch, 14 * BAR, 76, Q, 84)
-    t.note(ch, 14 * BAR + Q, 81, Q, 84)
-    t.note(ch, 14 * BAR + 2 * Q, 85, 2 * Q, 90)
+    # 6: a low bell tolls a falling half step every four bars.
+    t, ch = channel(6, BELL, 46, 90)
+    for bar, (a, b) in ((0, (70, 69)), (4, (70, 69)), (8, (70, 69)),
+                        (12, (75, 74))):
+        t.note(ch, bar * BAR, a, 2 * Q, 84)
+        t.note(ch, bar * BAR + 2 * Q, b, 2 * Q, 70)
     close(t, 6)
     tracks.append(t)
 
-    # 7: flute, the second half: (bar, beat, key, quarters).
-    t, ch = channel(7, FLUTE, 62, 64)
+    # 7: oboe, from bar 5: falling pairs, each a sigh, (bar, beat, key, beats).
+    t, ch = channel(7, OBOE, 64, 70)
     line = [
-        (8, 0, 81, 3), (8, 3, 79, 1),
-        (9, 0, 77, 2), (9, 2, 76, 1), (9, 3, 77, 1),
-        (10, 0, 74, 4),
-        (11, 2, 77, 1), (11, 3, 79, 1),
-        (12, 0, 82, 3), (12, 3, 81, 1),
-        (13, 0, 79, 2), (13, 2, 76, 2),
-        (14, 0, 76, 2), (14, 2, 73, 2),
-        (15, 0, 69, 4),
+        (4, 0, 77, 2), (4, 2, 76, 2), (5, 0, 74, 3),
+        (6, 0, 74, 2), (6, 2, 71, 2), (7, 0, 67, 3),
+        (8, 0, 70, 2), (8, 2, 69, 2), (9, 0, 67, 3),
+        (10, 0, 77, 2), (10, 2, 76, 2), (11, 0, 74, 3),
+        (12, 0, 74, 2), (12, 2, 72, 2), (13, 0, 70, 3),
+        (14, 0, 69, 2), (14, 2, 68, 2), (15, 0, 69, 4),
     ]
     for bar, beat, key, q in line:
-        length = q * Q - (4 if q == 4 else 2)
-        t.note(ch, bar * BAR + beat * Q, key, length, 88)
+        t.note(ch, bar * BAR + beat * Q, key, q * Q - 2, 84 if beat else 92)
     close(t, 7)
     tracks.append(t)
 
-    # 8: timpani at the phrase starts; the last bar pulls back to the top.
-    t, ch = channel(8, TIMPANI, 76, 64)
-    for bar, key in ((0, 50), (4, 43), (8, 50), (12, 52), (14, 45)):
-        t.note(ch, bar * BAR, key, Q, 100)
-    t.note(ch, 15 * BAR + 2 * Q, 45, 12, 70)
-    t.note(ch, 15 * BAR + 3 * Q, 45, 12, 84)
+    # 8: timpani at the phrases, low and soft; a roll back into the loop.
+    t, ch = channel(8, TIMPANI, 64, 64)
+    for bar, key in ((0, 50), (4, 48), (8, 46), (12, 46), (14, 45)):
+        t.note(ch, bar * BAR, key, 2 * Q, 92)
+    for k in range(8):
+        t.note(ch, 15 * BAR + 2 * Q + k * 6, 45, 6, 44 + 8 * k)
     close(t, 8)
     tracks.append(t)
 
