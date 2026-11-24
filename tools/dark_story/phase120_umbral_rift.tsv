@@ -1,60 +1,60 @@
 # Golden Sun: Ashfall: Umbral Rift live narrative dialogue.
 # Split into speech turns; each page max three lines, each line max 27 characters.
 # ??? remains unidentified. Mia never calls Alex a cousin.
-N500	MsgDarkRiftFountain001	What is this place?{end_wait}
+N500	MsgDarkRiftFountain001	That stone brought us\nsomewhere else.{end_wait}
 N501	MsgDarkRiftFountain002	We only just left Vale.{end_wait}
 N502	MsgDarkRiftFountain003	That fountain...\nIt reminds me of\nMercury Lighthouse.{end_wait}
 N503	MsgDarkRiftFountain004	Mercury Lighthouse?{end_wait}
 N504	MsgDarkRiftFountain005	Yes. It looks so much\nlike the one there.{end_wait}
 N505	MsgDarkRiftFountain006	But the stone is different.{end_wait}
-N506	MsgDarkRiftFountain007	Look. Two people.{end_wait}
-N507	MsgDarkRiftFountain008	Where did they go?{end_wait}
-N508	MsgDarkRiftFountain009	Something's not right here.{end_wait}
-N509	MsgDarkRiftFountain010	Let's look around.{end_wait}
+N506	MsgDarkRiftFountain007	Wait. Two figures.\nCan you see them?{end_wait}
+N507	MsgDarkRiftFountain008	They vanished.\nHow did they do that?{end_wait}
+N508	MsgDarkRiftFountain009	We need to learn what\nthat stone opened.{end_wait}
+N509	MsgDarkRiftFountain010	Look for a way back.\nWe may need it.{end_wait}
 N510	MsgDarkRiftMaze001	These passages look\nfamiliar.{end_wait}
 N511	MsgDarkRiftMaze002	Wait... Sol Sanctum?{end_wait}
-N512	MsgDarkRiftMaze003	First the fountain,\nand now this?{end_wait}
+N512	MsgDarkRiftMaze003	The fountain, this hall...\nWhy do they look like\nplaces we've been?{end_wait}
 N513	MsgDarkRiftMaze004	How can both be here?{end_wait}
 N514	MsgDarkRiftMaze005	Neither of them should be.{end_wait}
 N515	MsgDarkRiftMaze006	I wonder where this leads.{end_wait}
-N516	MsgDarkRiftMaze007	Look. Two figures.{end_wait}
-N517	MsgDarkRiftMaze008	They just vanished!{end_wait}
+N516	MsgDarkRiftMaze007	There they are again.\nAre they even real?{end_wait}
+N517	MsgDarkRiftMaze008	Gone again. We can't\nfollow something like that.{end_wait}
 N518	MsgDarkRiftMaze009	Stay close, everyone.{end_wait}
-N519	MsgDarkRiftMemory001	Wait...\nThis is my house.{end_wait}
+N519	MsgDarkRiftMemory001	Wait...\nThat's my house.{end_wait}
 N520	MsgDarkRiftMemory002	It really does look\nlike your house, Isaac.{end_wait}
 N521	MsgDarkRiftMemory003	Is this where you grew up?{end_wait}
-N522	MsgDarkRiftMemory004	Yes. For a moment,\nI thought Mom was here.{end_wait}
-N523	MsgDarkRiftMemory005	I know, Isaac.\nBut we're not in Vale.{end_wait}
+N522	MsgDarkRiftMemory004	For a moment,\nI thought Mom was here.{end_wait}
+N523	MsgDarkRiftMemory005	I know, Isaac.\nBut this isn't Vale.{end_wait}
 N524	MsgDarkRiftMemory006	Isaac, look at that light.{end_wait}
 N525	MsgDarkRiftMemory007	That doesn't belong here.{end_wait}
 N526	MsgDarkRiftMemory008	Let's take a closer look.{end_wait}
 N527	MsgDarkRiftOrb001	What was that?{end_wait}
 N528	MsgDarkRiftOrb002	It reacted when you\ntouched it.{end_wait}
-N529	MsgDarkRiftOrb003	Maybe it did something\nin another room.{end_wait}
-N530	MsgDarkRiftOrb004	Let's check the fountain.{end_wait}
+N529	MsgDarkRiftOrb003	The orb gave off power.\nIt may have affected\nsomething nearby.{end_wait}
+N530	MsgDarkRiftOrb004	The fountain had a light\nlike this. Let's check it.{end_wait}
 N531	MsgDarkRiftGate001	That light is new.{end_wait}
 N532	MsgDarkRiftGate002	Could the orb have\nopened a way through?{end_wait}
-N533	MsgDarkRiftGate003	Well, let's find out.{end_wait}
+N533	MsgDarkRiftGate003	If it opens a path,\nwe should see where.{end_wait}
 N534	MsgDarkRiftGate004	Stay together.{end_wait}
-N535	MsgDarkRiftCauseway001	This place keeps going.{end_wait}
+N535	MsgDarkRiftCauseway001	These rooms have to\nfit together somehow.{end_wait}
 N536	MsgDarkRiftCauseway002	How big is this place?{end_wait}
 N537	MsgDarkRiftCauseway003	We still don't know\nhow it got here.{end_wait}
 N538	MsgDarkRiftCauseway004	Let's see what's ahead.{end_wait}
-N539	MsgDarkRiftPre001	What are you doing here?{end_wait}
-N540	MsgDarkRiftPre002	I came to find out\nwhether this passage\ncould be opened again.{end_wait}
+N539	MsgDarkRiftPre001	Who are you?\nWhat are you doing here?{end_wait}
+N540	MsgDarkRiftPre002	I came to learn how\nthis passage could be\nopened again.{end_wait}
 N541	MsgDarkRiftPre003	This place looks like\nparts of our own world.{end_wait}
 N542	MsgDarkRiftPre004	It isn't your world.{end_wait}
 N543	MsgDarkRiftPre005	Then they're not illusions?{end_wait}
 N544	MsgDarkRiftPre006	Touch the walls.\nThey are real enough.{end_wait}
-N545	MsgDarkRiftPre007	Where did they come from?{end_wait}
+N545	MsgDarkRiftPre007	Where did these rooms\ncome from?{end_wait}
 N546	MsgDarkRiftPre008	Another world.\nFragments of places\nit once held.{page_break}Others have crossed over.\nThe girl with Jenna's\nface was one of them.{end_wait}
 N547	MsgDarkRiftPre009	What brought them here?{end_wait}
 N548	MsgDarkRiftPre010	A passage between worlds\nwas opened.\nIt didn't close cleanly.{end_wait}
 N549	MsgDarkRiftPre011	And the light\nby the fountain?{end_wait}
-N550	MsgDarkRiftPre012	It holds the breach\nin one place.\nFor now.{end_wait}
+N550	MsgDarkRiftPre012	It holds the breach\nin one place. Without\nit, the Rift may spread.{end_wait}
 N551	MsgDarkRiftPre013	What if it fails?{end_wait}
 N552	MsgDarkRiftPre014	The Rift may spread.\nVale could be next.{end_wait}
-N553	MsgDarkRiftPre015	Then close it.{end_wait}
+N553	MsgDarkRiftPre015	Then Vale is in danger.\nClose it.{end_wait}
 N554	MsgDarkRiftPre016	Not yet.\nI need a way back to\na world I lost.{end_wait}
 N555	MsgDarkRiftPre017	Used for what?{end_wait}
 N556	MsgDarkRiftPre018	A way across worlds.\nMy people once had one.{end_wait}
@@ -63,9 +63,9 @@ N558	MsgDarkRiftPre020	Heart can sense weak\npoints between worlds.\nI need her 
 N559	MsgDarkRiftPre021	We saw figures like you.\nWhat were they?{end_wait}
 N560	MsgDarkRiftPre022	Echoes of our passage.\nThe Rift left them behind.{end_wait}
 N561	MsgDarkRiftPre023	Matthew...{end_wait}
-N562	MsgDarkRiftPre024	Heart. My name is Isaac.{end_wait}
-N563	MsgDarkRiftPre025	Don't lie to me!\nI know those eyes!{end_wait}
-N564	MsgDarkRiftPre026	I still bear the scars!\nYou haven't forgotten!{end_wait}
+N562	MsgDarkRiftPre024	My name is Isaac.\nI'm not Matthew.{end_wait}
+N563	MsgDarkRiftPre025	You have his eyes!{end_wait}
+N564	MsgDarkRiftPre026	The scars are still here.\nDon't pretend otherwise!{end_wait}
 N565	MsgDarkRiftPre027	I'll kill you!\nI'll make you suffer!{end_wait}
 N566	MsgDarkRiftPre028	Heart. Stay where you are.{end_wait}
 N567	MsgDarkRiftPre029	My lady, please!\nLet me kill him!{end_wait}
@@ -86,7 +86,7 @@ N581	MsgDarkRiftPre043	...Alex?{end_wait}
 N582	MsgDarkRiftPre044	Did you say Alex?{end_wait}
 N583	MsgDarkRiftPre045	Kraden spoke his name\nat the Apollo Lens.\nI knew long before.{end_wait}
 N584	MsgDarkRiftPre046	Kraden was there?{end_wait}
-N585	MsgDarkRiftPre047	How do you know them?{end_wait}
+N585	MsgDarkRiftPre047	How do you know Alex?{end_wait}
 N586	MsgDarkRiftPre048	I'm speaking to Heart.{end_wait}
 N587	MsgDarkRiftPre049	I knew Alex would turn.\nI was ready for him.{end_wait}
 N588	MsgDarkRiftPre050	Then you and Spade\ntried to seize the Lens.\nFor yourselves.{end_wait}
@@ -111,7 +111,7 @@ N606	MsgDarkRiftPre068	Forgive me!\nPlease forgive me!\nI'll never fail again!{e
 N607	MsgDarkRiftPre069	Enough, Heart.{end_wait}
 N608	MsgDarkRiftPre070	Y-yes, my lady...{end_wait}
 N609	MsgDarkRiftPre071	Enough.\nYou said Alex and Kraden.{end_wait}
-N610	MsgDarkRiftPre072	Alex abandoned our clan.\nHe helped light\nMercury Lighthouse.{end_wait}
+N610	MsgDarkRiftPre072	I know Alex. He helped\nlight Mercury Lighthouse.\nWho are Ace and Spade?{end_wait}
 N611	MsgDarkRiftPre073	What do you know about\nAlex and Kraden?{end_wait}
 N612	MsgDarkRiftPre074	We know nothing\nabout this Apollo Lens.{end_wait}
 N613	MsgDarkRiftPre075	In Vale, you warned me\nabout thirty years.{end_wait}
@@ -119,15 +119,15 @@ N614	MsgDarkRiftPre076	Is this about\nour future?{end_wait}
 N615	MsgDarkRiftPre077	Not every world\nfollows the same road.{end_wait}
 N616	MsgDarkRiftPre078	Then what happened\nto Alex?{end_wait}
 N617	MsgDarkRiftPre079	You've heard more\nthan I intended.{end_wait}
-N618	MsgDarkRiftPre080	You said he escaped.\nWhere did he go?{end_wait}
+N618	MsgDarkRiftPre080	You said Alex escaped.\nWhere did he go?{end_wait}
 N619	MsgDarkRiftPre081	I will not tell you.{end_wait}
 N620	MsgDarkRiftPre082	You can't expect me\nto forget his name!{end_wait}
 N621	MsgDarkRiftPre083	I don't expect you to.{end_wait}
 N622	MsgDarkRiftPre084	Forgive me, my lady...{end_wait}
 N623	MsgDarkRiftPre085	Quiet, Heart.\nYou've done enough.{end_wait}
 N624	MsgDarkRiftPre086	...Yes.{end_wait}
-N625	MsgDarkRiftPre087	We can ask about that\nanother time.{end_wait}
-N626	MsgDarkRiftPre088	Vale is too close\nto risk leaving this open.{end_wait}
+N625	MsgDarkRiftPre087	Mia, I want answers too.\nBut we have to deal\nwith the Rift first.{end_wait}
+N626	MsgDarkRiftPre088	If this spreads to Vale,\nour families are in danger.{end_wait}
 N627	MsgDarkRiftPre089	I need this passage\nlong enough to learn\nhow to open one safely.{end_wait}
 N628	MsgDarkRiftPre090	Not at Vale's expense.\nWe're closing it.{end_wait}
 N629	MsgDarkRiftPre091	You won't reach the anchor\nwhile I still stand here.{end_wait}
@@ -136,7 +136,7 @@ N631	MsgDarkRiftPre093	Stand beside me, Heart.\nAnd Isaac lives.{end_wait}
 N632	MsgDarkRiftPre094	Yes, my lady.\nI won't fail you.{end_wait}
 N633	MsgDarkRiftPre095	You'd better not.{end_wait}
 N634	MsgDarkRiftPre096	Everyone, together.{end_wait}
-N635	MsgDarkRiftPost001	It's over.\nLet us seal the Rift.{end_wait}
+N635	MsgDarkRiftPost001	Enough. The Rift\nhas to be sealed.{end_wait}
 N636	MsgDarkRiftPost002	I won't fight again.\nI've learned enough\nfrom this breach.{end_wait}
 N637	MsgDarkRiftPost003	Then you won't stop us?{end_wait}
 N638	MsgDarkRiftPost004	Seal it. When your power\nmet mine, I felt the\nbreach grow steady.{page_break}Now I know what I need\nto open a way home.\nYour power, Isaac.{end_wait}
@@ -153,15 +153,15 @@ N648	MsgDarkRiftPost014	You said Alex escaped.\nWhere is he now?{end_wait}
 N649	MsgDarkRiftPost015	I will not tell you.{end_wait}
 N650	MsgDarkRiftPost016	Then I'll find him myself.{end_wait}
 N651	MsgDarkRiftPost017	Be careful what you seek.{end_wait}
-N652	MsgDarkRiftPost018	And the Grave Eclipse?\nYou said thirty years.{end_wait}
-N653	MsgDarkRiftPost019	My warning stands.\nThis opening is not\nthe last of them.{end_wait}
+N652	MsgDarkRiftPost018	A way home...\nWhat happens when you\nopen another passage?{end_wait}
+N653	MsgDarkRiftPost019	This opening is not\nthe last of them.{page_break}When the Grave Eclipse\ncomes, remember this day.{end_wait}
 N654	MsgDarkRiftPost020	My lady...\nAre we leaving?{end_wait}
 N655	MsgDarkRiftPost021	Yes. Come, Heart.{end_wait}
 N656	MsgDarkRiftPost022	Yes, my lady.{end_wait}
 N657	MsgDarkRiftPost023	Remember what I told you.{end_wait}
 N658	MsgDarkRiftPost024	I won't forget.{end_wait}
 N659	MsgDarkRiftPost025	You still haven't\ntold me who you are.{end_wait}
-N660	MsgDarkRiftPost026	No.\nThirty years, Isaac.{end_wait}
+N660	MsgDarkRiftPost026	No.\nThirty years, Isaac.\nRemember that.{end_wait}
 N661	MsgDarkRiftSeal001	There's the light.{end_wait}
 N662	MsgDarkRiftSeal002	She said it holds\nthe Rift open.{end_wait}
 N663	MsgDarkRiftSeal003	Then this is the anchor.{end_wait}
@@ -179,17 +179,25 @@ N674	MsgDarkRiftSeal014	It may have happened\nin her world.{end_wait}
 N675	MsgDarkRiftSeal015	We don't know if it\nwill happen in ours.{end_wait}
 N676	MsgDarkRiftSeal016	We should tell the elders\nwhat we've learned.{end_wait}
 N677	MsgDarkRiftSeal017	I need to find Alex.{end_wait}
-N678	MsgDarkRiftSeal018	We'll look for him.\nFor now, let's get\nback to Vale.{end_wait}
+N678	MsgDarkRiftSeal018	We'll look for him.\nFirst, we tell the\nelders what we learned.{end_wait}
 N679	MsgDarkRiftBeacon001	Whoa... Who is that\nstatue supposed to be?{end_wait}
 N680	MsgDarkRiftBeacon002	This is a lighthouse.\nI'd know one\nanywhere.{end_wait}
 N681	MsgDarkRiftBeacon003	But not Mercury's.\nThis Psynergy feels\nlike Venus.{end_wait}
-N682	MsgDarkRiftBeacon004	We've never seen this\nplace. Why is it here?{end_wait}
+N682	MsgDarkRiftBeacon004	If this came from\nanother lighthouse,\nhow did it get here?{end_wait}
 N683	MsgDarkRiftCross001	The light on the statue...\nIt's moving.{end_wait}
-N684	MsgDarkRiftCross002	There are two people\non the other side.\nI can sense them.{end_wait}
+N684	MsgDarkRiftCross002	The light is giving off\nPsynergy. I can't tell\nwhat's on the other side.{end_wait}
 N685	MsgDarkRiftCross003	Then that's where\nthey went.{end_wait}
-N686	MsgDarkRiftCross004	Stay together.\nWe go through now.{end_wait}
+N686	MsgDarkRiftCross004	It may lead to the source.\nStay close, everyone.{end_wait}
 N687	MsgDarkRiftCrossbone001	Spikes, pillars of ice...\nI don't know this place\neither.{end_wait}
 N688	MsgDarkRiftCrossbone002	Then watch your step.{end_wait}
-N689	MsgDarkRiftRitual001	Someone was here before\nus. Recently.{end_wait}
-N690	MsgDarkRiftRitual002	This mark is burned into\nthe stone. It's still warm.{end_wait}
-N691	MsgDarkRiftRitual003	Someone tried to hold\na passage open here.\nWe're not the first.{end_wait}
+N689	MsgDarkRiftRitual001	Look at the floor.\nSomeone left a mark.{end_wait}
+N690	MsgDarkRiftRitual002	The stone is blackened.\nThat wasn't an accident.{end_wait}
+N691	MsgDarkRiftRitual003	Could this be how\nsomeone opened a path?\nWe should remember it.{end_wait}
+N692	MsgDarkRiftApproachGaret	That wasn't here when\nwe left Vale.{end_wait}
+N693	MsgDarkRiftApproachIvan	I can feel Psynergy\ncoming from it. Maybe\nthis is how they came.{end_wait}
+N694	MsgDarkRiftApproachIsaac	It's too close to home.\nLet's find out what it is.{end_wait}
+N695	MsgDarkRiftHeartKnown	Heart. My name is Isaac.\nI'm not Matthew.{end_wait}
+N696	MsgDarkRiftHeartNamed	Heart. Don't touch him.{end_wait}
+N697	MsgDarkRiftKnownWarning	You spoke of the Grave\nEclipse in Vale. Does\nthis have to do with it?{end_wait}
+N698	MsgDarkRiftKnownAnswer	My warning stands.\nThis opening is not\nthe last of them.{end_wait}
+N699	MsgDarkRiftValeKnown	We met you in Vale.\nWhat are you doing here?{end_wait}

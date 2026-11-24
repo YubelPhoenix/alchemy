@@ -4,18 +4,18 @@ N225	MsgDarkFinaleIsaacMet	You followed us here.\nWhat do you want?{end_wait}
 N195	MsgDarkFinaleJenna1	So you survived.\nI wanted to see\nwhat you'd do next.{end_wait}
 N196	MsgDarkFinaleIsaac1	You have Jenna's face.\nWho are you?{end_wait}
 N197	MsgDarkFinaleJenna2	I have her face.\nBut I'm not the girl\nyou remember.{page_break}Tell me, Isaac.\nHave you ever wondered\nwhy the Wise One chose you?{end_wait}
-N198	MsgDarkFinaleGaret	We chose to come.\nIsaac didn't make us.{end_wait}
+N198	MsgDarkFinaleGaret	We know what happened\nat Sol Sanctum.\nWhy do you care?{end_wait}
 N199	MsgDarkFinaleJenna3	You follow his orders\nwithout knowing why.\nWhat did he tell you?{page_break}Did he tell you what\nwould happen if you\nfailed to stop the beacons?{end_wait}
 N200	MsgDarkFinaleIvan	We're trying to stop\nwhat happened at Vale\nfrom happening again.{end_wait}
-N201	MsgDarkFinaleMia	You haven't told us\nwhat you want.\nWhy are you here?{end_wait}
+N201	MsgDarkFinaleMia	You talk about Vale\nas if you know it.\nWhere did you come from?{end_wait}
 N203	MsgDarkEchoMiner	You stayed with that\nminer when he was afraid.\nI remember that, Isaac.{end_wait}
-N208	MsgDarkFinaleJennaThreat	I wanted to see\nif you'd hesitate\nwhen you saw me.{end_wait}
+N208	MsgDarkFinaleJennaThreat	From a place where\nthe beacons burned.\nYou wouldn't believe me.{end_wait}
 N209	MsgDarkFinaleIsaacDemand	Have you seen Jenna?\nIs she safe?{end_wait}
 N210	MsgDarkFinaleJennaCruel	You still think I'd\ngive you that answer?\nHow sweet.{page_break}I could tell you\nanything, Isaac.\nYou'd want it to be true.{end_wait}
-N211	MsgDarkFinaleIvanLeave	That's enough.\nShe's playing with us.{end_wait}
-N212	MsgDarkFinaleJennaDismiss	Then walk away.\nI won't stop you.\nNot today.{end_wait}
+N211	MsgDarkFinaleIvanLeave	She won't tell us\nwhere Jenna is.{end_wait}
+N212	MsgDarkFinaleJennaDismiss	You can keep looking.\nI won't stop you.\nNot today.{end_wait}
 N213	MsgDarkFinaleIsaacWarning	Stay away from\nmy friends.{end_wait}
 N214	MsgDarkFinaleJennaParting	When you reach the\nnext beacon, Isaac,\nthink about what I said.{end_wait}
-N215	MsgDarkFinaleGaretEnough	We need to reach Kalay.\nThere's no point in\narguing with her.{end_wait}
-N216	MsgDarkFinaleMiaKeepMoving	Jenna is still out there.\nWe can find her.{end_wait}
+N215	MsgDarkFinaleGaretEnough	Kalay is still ahead.\nWe've lost enough time.{end_wait}
+N216	MsgDarkFinaleMiaKeepMoving	Jenna is out there.\nWe can still find her.{end_wait}
 N221	MsgDarkFinaleHook	Go on. Find her.{page_break}When you finally\nreach Jenna, remember\nwho let you leave.{end_wait}

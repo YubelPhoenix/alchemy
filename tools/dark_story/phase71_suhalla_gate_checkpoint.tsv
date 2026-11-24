@@ -20,8 +20,8 @@
 09822	message	And {actor_name:7} is still\nmissing. We cannot\nforget her.{end_wait}
 09823	message	The lighthouse may be\nin danger. We must\nmove quickly.{end_wait}
 09824	message	Not while these men\nlie here wounded.{end_wait}
-09825	message	We can hold on.\nYou have to go...\nbefore it's too late.{end_wait}
-09826	message	But leaving you\nlike this...{end_wait}
+09825	message	We're out of medicine.\nSend help from the tower.\nYou have to go.{end_wait}
+09826	message	I'll send help.\nYou have my word.{end_wait}
 09827	message	We've survived worse\nthan this. Please...\nkeep going.{end_wait}
 09828	message	If the lighthouse\nfalls, Lalivero\nwill pay the price.{end_wait}
 09829	message	Then we cannot\nwaste another moment.{end_wait}

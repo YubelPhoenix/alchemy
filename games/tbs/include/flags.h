@@ -2856,5 +2856,7 @@
 #define FLAG_DARK_RIFT_RITUAL_SEEN 0x8f8
 /// Golden Sun: Ashfall: the Ritual Room's chest has been opened.
 #define FLAG_CHEST_UMBRAL_RITUAL 0x8f9
+/// First approach to the Rift monolith: the party decides to investigate.
+#define FLAG_DARK_RIFT_APPROACH_SEEN 0x8fa
 
 #endif
