@@ -2,7 +2,7 @@
 	.section .rodata
 	.global Field_Map192
 Field_Map192:
-	map_header 0, 0, 32, 26, 3, 1, 1, 0, 2, 2, 0, 0
+	map_header 0, 0, 32, 26, 3, 2, 1, 0, 2, 2, 0, 0
 	map_layer 0, 0, 16, 16, 0, 0, 0xff, 0xff
 	map_layer 32, 0, 16, 16, 0, 0, 0xff, 0xff
 	map_layer 0, 26, 16, 16, 0, 0, 0xff, 0xff
