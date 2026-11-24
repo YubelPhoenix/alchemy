@@ -217,6 +217,3 @@ Monster_SarahSprites:
 	.global Monster_MysterySprites
 Monster_MysterySprites:
 	.incbin "games/tbs/src/graphics/monster/mystery.frames.lz"
-	.global Monster_KarisSprites
-Monster_KarisSprites:
-	.incbin "games/tbs/src/graphics/monster/karis.frames.lz"

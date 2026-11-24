@@ -995,12 +995,13 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .effectHeight = 42,
     },
     // Enemy id 174: the Vengeful Wraith (row 166), Dark Dawn's Karis in the
-    // Umbral Rift, rendered from that game's model (assets/karis).
+    // Umbral Rift. A placeholder until her own battle art arrives: the
+    // game's swordswoman (animation 486).
     {
-        .animation = 491,
+        .animation = 486,
         .attackAnim = 1,
+        .attackHop = 4,
         .defeatSound = 0, // the human foes' fall, not a beast's cry
-        .effectHeight = 42,
     },
 };
 // clang-format on
