@@ -20,29 +20,38 @@ OUT=HERE.parents[2]/'assets/karis'
 def lean(parts, ang_z=0, ang_x=0, piv=(0,0,0)):
     R=Rxyz(ang_x,0,ang_z); piv=np.array(piv,float)
     return [(((p.reshape(-1,3)-piv)@R.T+piv).reshape(p.shape),u,t) for p,u,t in parts]
-LEGS={-1:(8,-14),1:(10,16)}
-def frame(rs, ls, sdir, legsp=LEGS, lz=0, lx=0, yaw=-30, sword_len=3.9):
+# Her stance from Dark Dawn's battle screen, as that game shows its party:
+# her back to us, turned to the right where the Golden Sun party stands, feet
+# apart, the sword low at her right hip slanting up and ahead of her.
+YAW=130
+LEGS={-1:(9,-16),1:(9,14)}
+def frame(rs, ls, sdir, legsp=LEGS, lz=0, lx=0, sword_len=4.6, grip_back=0.2):
     p=legs(pose(base,{-1:rs,1:ls}),legsp)
-    sw=place(sword(length=sword_len,blade_w=0.5),look_rot(sdir),hand(-1,*rs))
+    h=hand(-1,*rs); d=np.array(sdir,float); d/=np.linalg.norm(d)
+    sw=place(sword(length=sword_len,blade_w=0.5),look_rot(d),h-d*grip_back)
     return lean(p+sw,lz,lx)
 POSES={
- 'idle':  frame((-60,40,30),(-68,-15,25),(-0.7,0.5,0.7)),
- 'idle2': frame((-62,38,30),(-69,-15,25),(-0.72,0.42,0.7)),
- 'dash':  frame((-25,-10,60),(-60,40,30),(0.45,0.6,-0.6),legsp={-1:(6,-20),1:(8,22)},lz=4,lx=6,sword_len=3.2),
- 'lunge': frame((-20,70,5),(-65,-30,20),(-0.95,0.1,0.5),legsp={-1:(8,-22),1:(6,18)},lz=7,lx=8,sword_len=2.5),
- 'cast':  frame((-75,10,20),(70,25,15),(-0.4,-0.7,0.5)),
- 'damage':frame((-40,-20,40),(-45,-30,40),(0.2,0.8,0.6),legsp={-1:(10,-4),1:(10,8)},lz=6,lx=-8,sword_len=3.2),
+ 'idle':  frame((-78,18,25),(-74,-10,20),(-0.2,0.55,1)),
+ 'idle2': frame((-79,16,27),(-75,-10,20),(-0.2,0.5,1)),
+ 'dash':  frame((-25,-10,60),(-60,40,30),(0.1,0.6,-0.8),legsp={-1:(6,-20),1:(8,22)},lx=-4,sword_len=3.6,grip_back=0),
+ 'lunge': frame((-20,70,5),(-65,-30,20),(-0.1,0.05,1),legsp={-1:(8,-24),1:(6,20)},lx=10,sword_len=3.6,grip_back=0),
+ 'cast':  frame((-75,10,20),(70,25,15),(-0.2,-0.7,-0.4),sword_len=3.9,grip_back=0),
+ 'damage':frame((-40,-20,40),(-45,-30,40),(-0.1,0.8,-0.5),legsp={-1:(10,-4),1:(10,8)},lx=-10,sword_len=3.6,grip_back=0),
 }
 # common framing so every frame shares one scale and baseline
 allp=np.concatenate([q.reshape(-1,3) for v in POSES.values() for q,_,_ in v])
-R=rot(-30,12); P=allp@R.T
+R=rot(YAW,12); P=allp@R.T
 idlep=np.concatenate([q.reshape(-1,3) for q,_,_ in POSES['idle']])@R.T
 lo,hi=idlep.min(0),idlep.max(0)
-span=(hi[1]-lo[1])*1.06; cx=(lo[0]+hi[0])/2+0.4; cy=lo[1]+span/2-0.12
+span=(hi[1]-lo[1])*1.06; cx=(lo[0]+hi[0])/2; cy=lo[1]+span/2-0.12
 k=8; out={}
 for n,v in POSES.items():
-    big,_=render(v,-30,12,64*k,ambient=0.6,fit=(cx,cy,span))
-    idx=quantize(darken_rim(outline(punch(downscale_sharp(big,k)),(20,16,28)),0.7))
+    # Golden Sun's battle sprites are pre-rendered too: soft light, lavender
+    # shadows on white, a fine colour grain, a dark outline.
+    big,_=render(v,YAW,12,64*k,ambient=0.5,fit=(cx,cy,span),light=(-0.6,0.6,0.55))
+    img=grade(downscale_sharp(big,k),0.95,(0.84,0.8,1.0),1.25)
+    img=darken_rim(outline(img,(16,10,20)),0.65)
+    idx=quantize_dither(img,8)
     from scipy import ndimage
     lab,nl=ndimage.label(idx>0)
     for c in range(1,nl+1):

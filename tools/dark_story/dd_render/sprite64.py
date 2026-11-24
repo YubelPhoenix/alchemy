@@ -66,3 +66,56 @@ def punch(img, sat=1.25, con=1.15):
     rgb=L+(rgb-L)*sat
     rgb=(rgb-128)*con+128
     o[...,:3]=rgb.clip(0,255); return o.astype(np.uint8)
+
+def reduce_colors(img, n=20, seed=1):
+    """Cluster the visible colours to n in Lab, so materials keep a few clean
+    shades (as hand-drawn sprites do) before the palette mapping."""
+    from scipy.cluster.vq import kmeans2
+    vis=img[...,3]>0
+    if vis.sum()<n: return img
+    lab=to_lab(img[vis][:,:3].astype(float))
+    np.random.seed(seed)
+    cent,lbl=kmeans2(lab,n,minit='++',seed=seed)
+    # each pixel takes its cluster's most common original colour
+    rgb=img[vis][:,:3]
+    out=img.copy(); new=rgb.copy()
+    for c in range(n):
+        m=lbl==c
+        if not m.any(): continue
+        u,cnt=np.unique(rgb[m],axis=0,return_counts=True)
+        new[m]=u[cnt.argmax()]
+    out[vis,:3]=new
+    return out
+def despeckle(idx):
+    """Replace a pixel unlike all four neighbours (which agree) with them."""
+    o=idx.copy(); H,W=idx.shape
+    for y in range(1,H-1):
+        for x in range(1,W-1):
+            v=idx[y,x]
+            if v==0: continue
+            nb=[idx[y-1,x],idx[y+1,x],idx[y,x-1],idx[y,x+1]]
+            if all(n!=v for n in nb) and nb.count(nb[0])>=3 and nb[0]!=0:
+                o[y,x]=nb[0]
+    return o
+
+BAYER4=np.array([[0,8,2,10],[12,4,14,6],[3,11,1,9],[15,7,13,5]])/16-0.5
+def quantize_dither(img, amount=10.0):
+    """Nearest palette colour after a small ordered (Bayer) offset in Lab
+    lightness: the fine colour grain of Golden Sun's pre-rendered sprites."""
+    vis=img[...,3]>0
+    lab=to_lab(img[...,:3].astype(float))
+    H,W=vis.shape
+    off=np.tile(BAYER4,(H//4+1,W//4+1))[:H,:W]*amount
+    lab[...,0]+=off
+    d=((lab[vis][:,None,:]-PLAB[None,1:,:])**2).sum(2)
+    idx=np.zeros((H,W),np.uint8); idx[vis]=d.argmin(1)+1
+    return idx
+def grade(img, light=0.9, shadow_tint=(0.86,0.82,1.0), sat=1.0, warm=(1.0,1.0,1.0)):
+    """Darken toward the game's mid-tones: scale, tint the darker half, adjust
+    saturation."""
+    o=img.astype(float); rgb=o[...,:3]*light
+    L=rgb.mean(-1,keepdims=True)/255
+    t=np.array(shadow_tint)[None,None,:]
+    rgb=rgb*(t+(1-t)*np.clip(L*1.4,0,1))*np.array(warm)
+    m=rgb.mean(-1,keepdims=True); rgb=m+(rgb-m)*sat
+    o[...,:3]=rgb.clip(0,255); return o.astype(np.uint8)

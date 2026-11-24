@@ -60,7 +60,10 @@ def rot(yaw,pitch):
     Rx=np.array([[1,0,0],[0,math.cos(p),-math.sin(p)],[0,math.sin(p),math.cos(p)]])
     return Rx@Ry
 
-def render(parts,yaw=0,pitch=0,size=256,light=(-0.5,0.7,0.6),ambient=0.55,fit=None):
+def render(parts,yaw=0,pitch=0,size=256,light=(-0.5,0.7,0.6),ambient=0.55,fit=None,
+           bands=None,shadow=(1.0,1.0,1.0)):
+    """bands: light levels for cel shading, e.g. (0.55, 0.8, 1.0); shadow:
+    the colour the darkest band is tinted toward."""
     R=rot(yaw,pitch)
     allp=np.concatenate([p.reshape(-1,3) for p,_,_ in parts])@R.T
     if fit is None:
@@ -75,7 +78,13 @@ def render(parts,yaw=0,pitch=0,size=256,light=(-0.5,0.7,0.6),ambient=0.55,fit=No
             v=P[t]; n=np.cross(v[1]-v[0],v[2]-v[0]); nn=np.linalg.norm(n)
             if nn==0: continue
             n/=nn
-            shade=ambient+(1-ambient)*abs(np.dot(n,L))
+            ndl=abs(np.dot(n,L))
+            if bands:
+                lvl=bands[min(len(bands)-1,int(ndl*len(bands)))]
+                k=(lvl-bands[0])/max(1e-6,bands[-1]-bands[0])
+                shade=np.array(shadow)*(1-k)*lvl+k*lvl
+            else:
+                shade=ambient+(1-ambient)*ndl
             sx=(v[:,0]-cx)/span*size+size/2; sy=size/2-(v[:,1]-cy)/span*size
             x0,x1=int(max(0,np.floor(sx.min()))),int(min(size-1,np.ceil(sx.max())))
             y0,y1=int(max(0,np.floor(sy.min()))),int(min(size-1,np.ceil(sy.max())))
