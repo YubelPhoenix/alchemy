@@ -134,7 +134,9 @@ def quantize_fs(img, strength=0.8):
             if not vis[y,x]: continue
             c=work[y,x]
             j=int(((P-c)**2).sum(1).argmin()); idx[y,x]=j+1
-            err=(c-P[j])*strength
+            r,g,b=img[y,x,:3].astype(int)
+            skin=r>g>b and r-b>40 and r>150   # faces stay clean, no grain
+            err=(c-P[j])*(0.2 if skin else strength)
             for dx,dy,w in ((1,0,7/16),(-1,1,3/16),(0,1,5/16),(1,1,1/16)):
                 xx,yy=x+dx,y+dy
                 if 0<=xx<W and yy<H and vis[yy,xx]: work[yy,xx]+=err*w
