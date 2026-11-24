@@ -17,3 +17,7 @@ Build and emulator replay, including the Suhalla guard report with and without t
 ## Second narrative pass
 
 The Rift can be entered before or after the Vale duel. The throne dialogue now checks the Vale victory flag before referring to the prior encounter or warning, and recognizes Heart by name only if she has been established by a previous completed encounter. Vale's questions work without having fought Heart. ??? is interested in isolating Isaac's power in Vale, while the Rift tests the interaction of his power with hers. The party does not claim to know Dark Dawn events or where the silhouettes are going. The Suhalla guard report makes the loss of medicine matter and Iodem promises to send help. This remains dialogue, not a new inventory or healing mechanic. Scene-level proof and ROM tests remain outstanding.
+
+## Ash Jenna's introduction
+
+The mandatory post-Manticore Lamakan scene, not the optional first sighting, now establishes her name, her claim to be another world's Jenna, her loss, her accusation against the Wise One and her reason for approaching Isaac. The party reacts with disbelief and skepticism. Her claim about the Wise One remains her testimony, not objective cosmology. Both existing opening branches converge before the introduction. No additional trigger, choice, map, or flag is required. The precise details of the destroyed world and how she crossed remain undisclosed.

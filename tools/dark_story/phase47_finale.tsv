@@ -1,21 +1,21 @@
 # Ash Jenna's automatic post-Manticore confrontation. No recruitment choice.
-N224	MsgDarkFinaleJennaMet	You made it through.\nI thought you might.{end_wait}
-N225	MsgDarkFinaleIsaacMet	You followed us here.\nWhat do you want?{end_wait}
-N195	MsgDarkFinaleJenna1	So you survived.\nI wanted to see\nwhat you'd do next.{end_wait}
-N196	MsgDarkFinaleIsaac1	You have Jenna's face.\nWho are you?{end_wait}
-N197	MsgDarkFinaleJenna2	I have her face.\nBut I'm not the girl\nyou remember.{page_break}Tell me, Isaac.\nHave you ever wondered\nwhy the Wise One chose you?{end_wait}
-N198	MsgDarkFinaleGaret	We know what happened\nat Sol Sanctum.\nWhy do you care?{end_wait}
-N199	MsgDarkFinaleJenna3	You follow his orders\nwithout knowing why.\nWhat did he tell you?{page_break}Did he tell you what\nwould happen if you\nfailed to stop the beacons?{end_wait}
-N200	MsgDarkFinaleIvan	We're trying to stop\nwhat happened at Vale\nfrom happening again.{end_wait}
-N201	MsgDarkFinaleMia	You talk about Vale\nas if you know it.\nWhere did you come from?{end_wait}
+N224	MsgDarkFinaleJennaMet	You survived.\nGood. We have something\nto talk about.{end_wait}
+N225	MsgDarkFinaleIsaacMet	You knew my name before.\nWho are you?{end_wait}
+N195	MsgDarkFinaleJenna1	Still fighting, Isaac?\nSome things never change.{end_wait}
+N196	MsgDarkFinaleIsaac1	How do you know me?\nYou look just like Jenna.{end_wait}
+N197	MsgDarkFinaleJenna2	My name is Jenna, too.\nCall me Ash Jenna.{end_wait}
+N198	MsgDarkFinaleGaret	What? That's impossible.\nWe grew up with Jenna.{end_wait}
+N199	MsgDarkFinaleJenna3	I grew up in Vale, too.\nI knew an Isaac and\na Garet.{page_break}Not you two.\nThe ones from my world.{end_wait}
+N200	MsgDarkFinaleIvan	Your world?\nYou mean there's\nanother one like ours?{end_wait}
+N201	MsgDarkFinaleMia	Then what happened\nto your Vale?{end_wait}
 N203	MsgDarkEchoMiner	You stayed with that\nminer when he was afraid.\nI remember that, Isaac.{end_wait}
-N208	MsgDarkFinaleJennaThreat	From a place where\nthe beacons burned.\nYou wouldn't believe me.{end_wait}
-N209	MsgDarkFinaleIsaacDemand	Have you seen Jenna?\nIs she safe?{end_wait}
-N210	MsgDarkFinaleJennaCruel	You still think I'd\ngive you that answer?\nHow sweet.{page_break}I could tell you\nanything, Isaac.\nYou'd want it to be true.{end_wait}
-N211	MsgDarkFinaleIvanLeave	She won't tell us\nwhere Jenna is.{end_wait}
-N212	MsgDarkFinaleJennaDismiss	You can keep looking.\nI won't stop you.\nNot today.{end_wait}
-N213	MsgDarkFinaleIsaacWarning	Stay away from\nmy friends.{end_wait}
-N214	MsgDarkFinaleJennaParting	When you reach the\nnext beacon, Isaac,\nthink about what I said.{end_wait}
-N215	MsgDarkFinaleGaretEnough	Kalay is still ahead.\nWe've lost enough time.{end_wait}
-N216	MsgDarkFinaleMiaKeepMoving	Jenna is out there.\nWe can still find her.{end_wait}
-N221	MsgDarkFinaleHook	Go on. Find her.{page_break}When you finally\nreach Jenna, remember\nwho let you leave.{end_wait}
+N208	MsgDarkFinaleJennaThreat	The beacons were lit.\nMy world was destroyed.{page_break}I watched it happen.\nThe Wise One stood by\nand did nothing.{end_wait}
+N209	MsgDarkFinaleIsaacDemand	Why come to us?\nWhat do you want?{end_wait}
+N210	MsgDarkFinaleJennaCruel	You spoke to the Wise One\nin Sol Sanctum, didn't you?{page_break}I want him to answer\nfor what happened.\nYou can lead me to him.{end_wait}
+N211	MsgDarkFinaleIvanLeave	Isaac, she knows things\nshe shouldn't. But that\ndoesn't prove her story.{end_wait}
+N212	MsgDarkFinaleJennaDismiss	Then ask him yourself.\nI'd like to hear\nwhat he tells you.{end_wait}
+N213	MsgDarkFinaleIsaacWarning	We're looking for Jenna.\nHave you seen her?{end_wait}
+N214	MsgDarkFinaleJennaParting	Perhaps I have.\nWhy would I help you\nfind her?{end_wait}
+N215	MsgDarkFinaleGaretEnough	She's not going to tell us.\nCome on, Isaac.{end_wait}
+N216	MsgDarkFinaleMiaKeepMoving	We still have to find\nJenna and Kraden.{end_wait}
+N221	MsgDarkFinaleHook	When you see the Wise One,\ntell him I survived.{end_wait}
