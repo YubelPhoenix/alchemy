@@ -9,13 +9,13 @@ N199	MsgDarkFinaleJenna3	I grew up in Vale, too.\nI knew an Isaac and\na Garet.{
 N200	MsgDarkFinaleIvan	Your world?\nYou mean there's\nanother one like ours?{end_wait}
 N201	MsgDarkFinaleMia	Then what happened\nto your Vale?{end_wait}
 N203	MsgDarkEchoMiner	You stayed with that\nminer when he was afraid.\nI remember that, Isaac.{end_wait}
-N208	MsgDarkFinaleJennaThreat	The beacons were lit.\nMy world was destroyed.{page_break}I watched it happen.\nThe Wise One stood by\nand did nothing.{end_wait}
+N208	MsgDarkFinaleJennaThreat	The beacons were lit.\nMy world was destroyed.{page_break}I watched it happen.\nI had nowhere left to go.{end_wait}
 N209	MsgDarkFinaleIsaacDemand	Why come to us?\nWhat do you want?{end_wait}
-N210	MsgDarkFinaleJennaCruel	You spoke to the Wise One\nin Sol Sanctum, didn't you?{page_break}I want him to answer\nfor what happened.\nYou can lead me to him.{end_wait}
+N210	MsgDarkFinaleJennaCruel	You still have a home.\nYou still have friends.{page_break}I wanted to see how long\nyou could keep them.{end_wait}
 N211	MsgDarkFinaleIvanLeave	Isaac, she knows things\nshe shouldn't. But that\ndoesn't prove her story.{end_wait}
-N212	MsgDarkFinaleJennaDismiss	Then ask him yourself.\nI'd like to hear\nwhat he tells you.{end_wait}
+N212	MsgDarkFinaleJennaDismiss	Believe what you like.\nI don't need you to.{end_wait}
 N213	MsgDarkFinaleIsaacWarning	We're looking for Jenna.\nHave you seen her?{end_wait}
 N214	MsgDarkFinaleJennaParting	Perhaps I have.\nWhy would I help you\nfind her?{end_wait}
 N215	MsgDarkFinaleGaretEnough	She's not going to tell us.\nCome on, Isaac.{end_wait}
 N216	MsgDarkFinaleMiaKeepMoving	We still have to find\nJenna and Kraden.{end_wait}
-N221	MsgDarkFinaleHook	When you see the Wise One,\ntell him I survived.{end_wait}
+N221	MsgDarkFinaleHook	Enjoy what you have,\nIsaac. It won't last.{end_wait}

@@ -1,7 +1,7 @@
 # Ash Jenna confronts the party after Colosso; one linear scene.
-N74	MsgDarkTolbiJennaFound	The hero of Colosso.\nTell me, Isaac, have you\nheard from the Wise One?{end_wait}
-N75	MsgDarkTolbiIsaacGrey	No. Even if I had,\nwhy would I tell you?{end_wait}
-N76	MsgDarkTolbiJennaAsh	You had time for Colosso.\nYet you still haven't\nquestioned the Wise One.{end_wait}
+N74	MsgDarkTolbiJennaFound	The hero of Colosso.\nDid you enjoy the cheers,\nIsaac?{end_wait}
+N75	MsgDarkTolbiIsaacGrey	That's not why I entered.\nWhat do you want?{end_wait}
+N76	MsgDarkTolbiJennaAsh	All that cheering, and\nyou still haven't\nfound Jenna.{end_wait}
 N77	MsgDarkTolbiGaretFire	We had a reason to enter.\nYou don't know anything\nabout us.{end_wait}
 N78	MsgDarkTolbiJennaPlease	I know how quickly\nfriends can turn on\neach other.{page_break}How long will they\nfollow you if you\nlead them to ruin?{end_wait}
 N79	MsgDarkTolbiMiaSneer	We trust Isaac.\nWe make our own choices.{end_wait}
