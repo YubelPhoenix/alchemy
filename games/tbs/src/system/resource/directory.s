@@ -330,7 +330,9 @@ Resource_DirectoryTable:
 	resource UmbralMemoryMap, Field_Map183
 	resource UmbralMemoryPalette, Tileset_PaletteUmbralHome
 	resource UmbralCausewayMap, Field_Map184
-	unused 11
+	resource UmbralBeaconMap, Field_Map190
+	resource UmbralBeaconPalette, Tileset_PaletteUmbralVenus
+	unused 9
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp
