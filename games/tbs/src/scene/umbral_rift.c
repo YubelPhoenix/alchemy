@@ -771,15 +771,20 @@ static void UmbralRift_KarisSay(s32 message, s32 actor) {
 }
 
 /// The first look at the pentagram in the Ritual Room: the Vengeful Wraith
-/// (Dark Dawn's Karis, thirty years on) stands at its heart. She holds the
-/// party in contempt and is cold to Ivan above all, speaking in riddles of
-/// the one he could not save; then she attacks.
+/// (Dark Dawn's Karis, thirty years on) stands at its heart. She has no idea
+/// why she is here; she holds the party in contempt and is cold to Ivan above
+/// all, never naming him, speaking in riddles of the one he could not save;
+/// then she attacks.
 static void UmbralRift_SeeRitual(void) {
   Event_Start();
   UmbralRift_KarisSay(MsgDarkRiftRitual001, ACTOR_IVAN);
+  UmbralRift_KarisSay(MsgDarkRiftKaris010, ACTOR_GARET);
   UmbralRift_KarisSay(MsgDarkRiftKaris001, ACTOR_RITUAL_KARIS);
   UmbralRift_KarisSay(MsgDarkRiftKaris002, ACTOR_IVAN);
   UmbralRift_KarisSay(MsgDarkRiftKaris003, ACTOR_RITUAL_KARIS);
+  UmbralRift_KarisSay(MsgDarkRiftKaris011, ACTOR_MIA);
+  UmbralRift_KarisSay(MsgDarkRiftKaris012, ACTOR_RITUAL_KARIS);
+  UmbralRift_KarisSay(MsgDarkRiftKaris013, ACTOR_PARTY_LEADER);
   UmbralRift_KarisSay(MsgDarkRiftKaris006, ACTOR_RITUAL_KARIS);
   GameFlag_Set(FLAG_DARK_RIFT_KARIS_FOUGHT);
   Event_SetAfterBattleDestination((s32)&SceneId_UmbralRitual,
@@ -805,6 +810,7 @@ static void UmbralRift_KarisAftermath(void) {
   Actor_SetPosition(ACTOR_RITUAL_KARIS, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_RIFT_KARIS_BEATEN);
   UmbralRift_Say(MsgDarkRiftKaris005, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftKaris014, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftRitual002, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftRitual003, ACTOR_PARTY_LEADER);
   GameFlag_Set(FLAG_DARK_RIFT_RITUAL_SEEN);
