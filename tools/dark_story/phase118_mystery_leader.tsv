@@ -4,23 +4,23 @@ N357	MsgDarkMystery02	Does that frighten you?{end_wait}
 N358	MsgDarkMystery03	It makes me careful.\nWhat do you want?{end_wait}
 N359	MsgDarkMystery04	Heart took you for\nsomeone else. You saw\nhow she looked at you.{end_wait}
 N360	MsgDarkMystery05	Matthew. She kept\ncalling me Matthew.{end_wait}
-N361	MsgDarkMystery06	He will be a nuisance\nto my commanders.{page_break}Heart cared about her\nbeauty more than anything\nelse.{page_break}Matthew ruined her face.\nShe can't bear to look\nat her own reflection.{page_break}She saw him in you.\nI knew she would.{end_wait}
+N361	MsgDarkMystery06	He will be a nuisance\nto my commanders.{page_break}Heart mistook you for\nthe boy who scarred her.\nI knew she would.{end_wait}
 N362	MsgDarkMystery07	That wasn't me.{end_wait}
 N363	MsgDarkMystery08	I know. He wears\nyour face. Amusing,\nisn't it.{end_wait}
 N364	MsgDarkMystery09	Where would you have\nmet someone who looks\nlike me?{end_wait}
 N365	MsgDarkMystery10	Not yet, Isaac.\nNot for a long while.\nThat is the point.{end_wait}
-N366	MsgDarkMystery11	I wanted to see the\noriginal. I'm curious,\nthat's all.{page_break}You've met a few others\nalong the way. I know them\nbetter than you think.{page_break}Ash Jenna lost everything.\nShe's cruel, but she's\nafraid of being left alone.{page_break}Sarah is searching for\na lost family member.\nShe followed one rumor{page_break}after another, hoping\none would finally lead\nher somewhere.{page_break}And Kegare. A demon\nwho used Mia's face\nto deceive people.{page_break}Yet she was lonely, too.\nShe wanted friends\nand companionship.{page_break}They all found you,\ndidn't they?{end_wait}
-N367	MsgDarkMystery12	A word at the right\ntime can change a path.\nThey chose their own.{page_break}I'll hold back in\nour fight. Consider\nit a courtesy.{page_break}I don't want to break\nyou before I know\nwhat you are.{end_wait}
+N366	MsgDarkMystery11	I wanted to see the\noriginal. Your world's\nIsaac, not mine.{page_break}I need to learn how\nyour Psynergy differs\nfrom his.{page_break}I've watched the others\nwho sought you out.\nAsh Jenna, Sarah, Kegare.{end_wait}
+N367	MsgDarkMystery12	A word at the right\ntime can change a path.\nThey chose their own.{page_break}Ash Jenna wants revenge.\nSarah seeks her family.\nKegare wants a place here.{page_break}I'll hold back. I need\nto learn what makes your\nPsynergy different.{end_wait}
 N368	MsgDarkMystery13	...You're\nunderestimating me.{end_wait}
 N369	MsgDarkMystery14	Perhaps.\nDraw your sword.{end_wait}
 N370	MsgDarkMystery15	You still haven't\nanswered me. Who are you?{end_wait}
 N371	MsgDarkMystery16	You've asked three\ntimes now. That's\nthree more than most.{page_break}Your friends are free.\nI didn't release them.{end_wait}
 N372	MsgDarkMystery17	I wanted to see\nhow you'd fight alone.{page_break}I learned more than\nI expected.{end_wait}
 N373	MsgDarkMystery18	And what did\nyou learn?{end_wait}
-N374	MsgDarkMystery19	That you're worth\nthe trouble, Isaac.{end_wait}
+N374	MsgDarkMystery19	Your power feels familiar.\nBut it belongs here.{page_break}That difference matters\nmore than I expected.{end_wait}
 N375	MsgDarkMystery20	Heart answers to me.\nThat much is true.{page_break}I'll remind her\nwhose orders she\ncarries.{end_wait}
 N376	MsgDarkMystery21	Your orders?{end_wait}
-N377	MsgDarkMystery22	Even a lens needs\nsomeone to point it.{end_wait}
+N377	MsgDarkMystery22	Heart can find a weak\npoint between worlds.\nI need her alive.{end_wait}
 N378	MsgDarkMystery23	When the Grave Eclipse\ncomes, remember\nthis day.{end_wait}
 N379	MsgDarkMystery24	Thirty years, Isaac.\nI will see you then.{end_wait}
 N380	MsgDarkMystery25	???
@@ -30,7 +30,7 @@ N383	MsgDarkMysteryMiaBound	She's been waiting for us.\nIsaac, don't believe thi
 N384	MsgDarkMysteryIsaacDefies	Let them go.\nI'm the one you want.{end_wait}
 N385	MsgDarkMysteryAnswerDefies	They're unharmed.\nBut they won't interfere.\nThis is between us, Isaac.{page_break}Show me what you can do.{end_wait}
 N386	MsgDarkMysteryMiaAfter	And thirty years?\nWhat did she mean by that?{end_wait}
-N387	MsgDarkMysteryIsaacSuspects	You knew they'd find me.{end_wait}
+N387	MsgDarkMysteryIsaacSuspects	Did you send them here?\nWhat does that have to\ndo with me?{end_wait}
 N388	MsgDarkMysteryGaretAfter	You scared the life\nout of me, Isaac.\nAre you all right?{end_wait}
 N389	MsgDarkMysteryIsaacChecksParty	I'm fine.\nAre you three okay?{end_wait}
 N390	MsgDarkMysteryIvanAfter	I'm fine. But she\nstopped my Psynergy.\nI couldn't reach it.{page_break}I felt her hold weaken.\nI still don't know how\nshe managed it.{end_wait}

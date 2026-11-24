@@ -13,7 +13,7 @@
 09815	message	Strangers came without\npapers. We ordered\nthem to turn back.{page_break}They struck before\nwe could raise\nthe alarm.{end_wait}
 09816	message	We never had\na chance...{end_wait}
 09817	message	They moved through us\nas if we weren't\neven there.{end_wait}
-09818	message	Fire... and a power\nI couldn't name.\nThen everything went dark.{end_wait}
+09818	message	Fire... and a power\nI couldn't name.{page_break}Then a grey-haired girl\ncame after them. She\nburned our medicine.{end_wait}
 09819	message	Could {actor_name:5} have\nbeen among them?{end_now}
 09820	message	Then he may already\nbe near the lighthouse.{end_wait}
 09821	message	We cannot know yet.\nBut someone forced\nthis passage.{end_wait}
