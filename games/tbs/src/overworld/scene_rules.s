@@ -164,8 +164,9 @@ gScene_MusicRules:
 	area_music 58, -1, -1, 22
 	area_music 59, -1, -1, 9
 	area_music 60, -1, -1, 9
-	@ Golden Sun: Ashfall: the Umbral Rift (area 0x47) keeps Sol Sanctum's song for now.
-	area_music 0x47, -1, -1, 20
+	@ Golden Sun: Ashfall: Umbral Rift (area 0x47) uses the vanilla Venus Lighthouse theme
+	@ (MUS_VENUS_LIGHTHOUSE). The custom MUS_UMBRAL_RIFT (12) track is kept in the ROM, unused here.
+	area_music 0x47, -1, -1, 43
 	.2byte -1, -1, -1, 0	@ end
 
 	.global gArea_NameRules

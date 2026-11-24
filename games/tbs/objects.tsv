@@ -171,6 +171,7 @@ main	rom_tail_00	games/tbs/sound/songs/mus_colosso_intro	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_colosso	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_djinn_lesson	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_tolbi	.rodata
+main	rom_tail_00	games/tbs/sound/songs/mus_umbral_rift	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_silence	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_sol_sanctum	.rodata
 main	rom_tail_00	games/tbs/sound/songs/mus_forest	.rodata
