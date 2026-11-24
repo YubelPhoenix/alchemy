@@ -119,3 +119,23 @@ def grade(img, light=0.9, shadow_tint=(0.86,0.82,1.0), sat=1.0, warm=(1.0,1.0,1.
     rgb=rgb*(t+(1-t)*np.clip(L*1.4,0,1))*np.array(warm)
     m=rgb.mean(-1,keepdims=True); rgb=m+(rgb-m)*sat
     o[...,:3]=rgb.clip(0,255); return o.astype(np.uint8)
+
+def quantize_fs(img, strength=0.8):
+    """Floyd-Steinberg error diffusion into the shared palette, in RGB: the
+    many-hued grain of Golden Sun's own pre-rendered battle sprites, which
+    were reduced to this palette the same way."""
+    vis=img[...,3]>0
+    H,W=vis.shape
+    work=img[...,:3].astype(float).copy()
+    idx=np.zeros((H,W),np.uint8)
+    P=pal[1:]
+    for y in range(H):
+        for x in range(W):
+            if not vis[y,x]: continue
+            c=work[y,x]
+            j=int(((P-c)**2).sum(1).argmin()); idx[y,x]=j+1
+            err=(c-P[j])*strength
+            for dx,dy,w in ((1,0,7/16),(-1,1,3/16),(0,1,5/16),(1,1,1/16)):
+                xx,yy=x+dx,y+dy
+                if 0<=xx<W and yy<H and vis[yy,xx]: work[yy,xx]+=err*w
+    return idx
