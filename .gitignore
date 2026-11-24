@@ -38,3 +38,4 @@ tools/out/
 /games/**/*.table
 /games/**/*.d
 __pycache__/
+games/tbs/sound/songs/mus_umbral_rift.mid
