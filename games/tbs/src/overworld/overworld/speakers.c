@@ -6,8 +6,8 @@
 
 /// Returns the speaker definition of sprite id from
 /// gSpeakerDefinitions, or its last entry, the default, when there is
-/// none. The search stops after 0x82 entries, all but the table's last of its
-/// 131.
+/// none. The search stops after 0x83 entries, all but the table's last of its
+/// 133.
 struct SpeakerDefinition *Speaker_FindDefinition(u32 id) {
   struct SpeakerDefinition *entry = gSpeakerDefinitions;
   u32 definitionIndex = 0;
@@ -16,7 +16,7 @@ struct SpeakerDefinition *Speaker_FindDefinition(u32 id) {
     do {
       definitionIndex += 1;
       entry++;
-      if (definitionIndex > 0x82) // Ashfall: one more definition
+      if (definitionIndex > 0x83) // Ashfall: two more definitions
         break;
     } while (entry->id != id);
   }
