@@ -5,16 +5,16 @@ N302	MsgDarkLaliveroAshSurvival	And you couldn't\nsave either one.\nThat must hu
 N303	MsgDarkLaliveroIsaacSearch	We're going to look.\nWe don't know what\nhappened below.{end_wait}
 N304	MsgDarkLaliveroAshSearch	You'd search the sea\nwithout knowing\nif they're alive?{end_wait}
 N305	MsgDarkLaliveroIsaacResolve	They deserve a chance.\nWe won't leave them\nwithout trying.{end_wait}
-N306	MsgDarkLaliveroAshWaiting	Those soldiers at Suhalla.\nI burned their medicine.{page_break}Did you see how quickly\ntheir duty meant nothing\nwhen they needed help?{end_wait}
-N307	MsgDarkLaliveroIsaacWiseOne	You left them to suffer.\nWhat did that prove?{end_wait}
+N306	MsgDarkLaliveroAshWaiting	Those soldiers at Suhalla.\nI burned their medicine.{page_break}I wanted them to know\nwhat it was like to wait\nfor help that never came.{end_wait}
+N307	MsgDarkLaliveroIsaacWiseOne	They were wounded.\nWhat did that prove?{end_wait}
 N308	MsgDarkLaliveroAshBelief	In my world, the beacons\nburned. Then it was gone.{page_break}I watched people die.\nThe Wise One did nothing.{end_wait}
-N309	MsgDarkLaliveroIsaacEvidence	So you did the same\nto people here?{end_wait}
-N310	MsgDarkLaliveroAshBurden	I wanted them to suffer.\nThey serve a world\nhe chose to spare.{page_break}I don't need to spare\nanyone who stands\nin my way.{end_wait}
+N309	MsgDarkLaliveroIsaacEvidence	And you think hurting\nthem will bring it back?{end_wait}
+N310	MsgDarkLaliveroAshBurden	No. Nothing will.{page_break}But why should your world\nbe spared what mine\nhad to endure?{end_wait}
 N311	MsgDarkLaliveroIsaacInnocents	These people had\nnothing to do with\nyour world.{end_wait}
 N312	MsgDarkLaliveroAshStrangers	What difference\ndoes that make?\nThey're strangers.{end_wait}
 N313	MsgDarkLaliveroAshJenna	Your {actor_name:6} and Kraden\nare still out there.\nGo find them, then.{end_wait}
 N314	MsgDarkLaliveroIsaacOthers	And Felix and Sheba.\nWe haven't forgotten\nthem either.{end_wait}
-N315	MsgDarkLaliveroAshOwnPath	The next beacon may\ntake more from you.{page_break}The Wise One won't\nanswer for any of it.{end_wait}
+N315	MsgDarkLaliveroAshOwnPath	The Venus beacon is lit.\nYou saw what happened.{page_break}Do you still believe\nthe Wise One will\nsave you?{end_wait}
 N316	MsgDarkLaliveroIsaacProof	I'll ask for answers.\nBut I won't make others\npay for what I lose.{end_wait}
 N317	MsgDarkLaliveroAshFarewell	Then go find him, Isaac.\nAsk the Wise One why\nmy world had to die.{end_wait}
 N318	MsgDarkLaliveroIsaacPromise	I'll find my friends.\nAnd I'll stop you if\nyou hurt anyone else.{end_wait}
