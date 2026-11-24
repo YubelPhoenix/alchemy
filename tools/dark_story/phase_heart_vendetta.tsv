@@ -4,3 +4,6 @@
 # (1338 + id).
 00970	message	Vendetta Dive
 01489	message	Matthew's debt, repaid.
+# Heart's scream before Vendetta Dive (battle/battle/turn.c), shown above
+# "Heart uses Vendetta Dive!".
+N700	MsgHeartScreamsMatthew	Heart: "MATTHEW!!"\n
