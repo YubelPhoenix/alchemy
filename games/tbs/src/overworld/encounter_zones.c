@@ -720,5 +720,15 @@ const struct EncounterZone gEncounterZones[] = {
         .enemies = {382, 383, 384, 385, 386, 387, 388, 389},
         .weights = {10, 10, 10, 10, 10, 10, 10, 10},
     },
+    // Golden Sun: Ashfall: the Umbral Rift (ENCOUNTER_ZONE_UMBRAL_RIFT):
+    // Venus Lighthouse's monsters, drawn through the Rift long before the
+    // party reaches the lighthouse. Its rate is high, so battles come less
+    // often than in most dungeons.
+    {
+        .rate = 55,
+        .level = 28,
+        .enemies = {334, 333, 339, 331, 342, 343, 337, 323},
+        .weights = {3, 3, 4, 4, 3, 3, 2, 2},
+    },
 };
 // clang-format on

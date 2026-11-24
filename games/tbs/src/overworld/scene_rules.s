@@ -333,7 +333,7 @@ gScene_RestartRules:
 	.global gScene_BattleBackgroundRules
 gScene_BattleBackgroundRules:
 	backdrop ValeStormBackdrop, ValeStormyNight, Vale, ValePlaza, ValeKradensCottage
-	backdrop SolSanctumBackdrop, SolSanctumCorridor, SolSanctumReliefs, SolSanctumMaze, SolSanctumLunaSolRooms, AltinPeakHydrosStatue, CrossboneIsleSteppingStones, UmbralMaze
+	backdrop SolSanctumBackdrop, SolSanctumCorridor, SolSanctumReliefs, SolSanctumMaze, SolSanctumLunaSolRooms, AltinPeakHydrosStatue, CrossboneIsleSteppingStones
 	backdrop InteriorBackdrop, LogRoomsA
 	backdrop SnowfieldBackdrop, Imil
 	backdrop GomaCaveBackdrop, GomaCaveEntrance
@@ -342,7 +342,7 @@ gScene_BattleBackgroundRules:
 	backdrop TretTreeBranchBackdrop, TretTreeBranch
 	backdrop TretTreeInteriorsBackdrop, TreeRooms
 	backdrop GomaCaveBackdrop, BilibinCaveEntrance, BilibinCaveRapier, BilibinCaveIce
-	backdrop MercuryLighthouseBackdrop, MercuryLighthouseEntrance, MercuryLighthouseLower, MercuryLighthouseMiddle, MercuryLighthouseUpper, MercuryLighthouseExterior, UmbralFountain
+	backdrop MercuryLighthouseBackdrop, MercuryLighthouseEntrance, MercuryLighthouseLower, MercuryLighthouseMiddle, MercuryLighthouseUpper, MercuryLighthouseExterior
 	backdrop MercuryLighthouseAerieBackdrop, MercuryLighthouseAerie
 	backdrop ImilFuchinFallsBackdrop, FuchinFallsCaveEntrance, FuchinFallsCaveZephyr, FuchinFallsCaveDragonsEye, FuchinFallsCaveArcticBlade, FuchinFallsCaveOrbOfForce, FuchinFallsCaveDragonStatue, CrossboneIsleFloatingLogs
 	backdrop MogallForestBackdrop, MogallForestSign, MogallForestQuartz, MogallForestKillerApe
@@ -361,7 +361,7 @@ gScene_BattleBackgroundRules:
 	backdrop BabiLighthouseBackdrop, BabiLighthouseEntry, BabiLighthouseLuff, BabiLighthouseStoneDoor, CrossboneIsleBane
 	backdrop TunnelRuinsBackdrop, TunnelRuinsGreatStatue, TunnelRuinsLadyStatues
 	backdrop InteriorBackdrop, TimberRoomsB, TimberRoomsC
-	backdrop VenusLighthouseBackdrop, VenusLighthouseGroundFloor, VenusLighthouseFirstFloor, VenusLighthouseSecondFloor, VenusLighthouseThirdFloor, VenusLighthouseFourthFloor, UmbralBeacon
+	backdrop VenusLighthouseBackdrop, VenusLighthouseGroundFloor, VenusLighthouseFirstFloor, VenusLighthouseSecondFloor, VenusLighthouseThirdFloor, VenusLighthouseFourthFloor
 	backdrop VenusLighthouseAerieBackdrop, VenusLighthouseAerie
 	@ Sarah's fights in the open (Vault, Kalay, Tolbi, Lalivero): the world
 	@ map's outdoor backdrops instead of the last one listed (the cave).
@@ -369,4 +369,7 @@ gScene_BattleBackgroundRules:
 	backdrop DesertBackdrop, Kalay
 	backdrop BeachBackdrop, Tolbi, Lalivero
 	backdrop GomaCaveBackdrop
+	@ Golden Sun: Ashfall: the Umbral Rift's own backdrops (graphics/battle_bg/umbral_rift.s).
+	backdrop UmbralRiftBackdrop, UmbralFountain, UmbralMaze, UmbralBeacon
+	backdrop UmbralThroneBackdrop, UmbralThrone
 	.4byte 0	@ end
