@@ -15,7 +15,10 @@ engine steps frames by two (as Heart's, build_heart_art.py):
 
   0-1   idle             2-3   leap (the attack's run-up)   4-5   attack end
   6-7   cast (the leap's raised sword, until a cast pose is drawn)
-  8-9   damage           10-11 idle, breathing (the idle until drawn)
+  8-9   damage           10-11 idle, breathing in
+    (assets/wraith/idle2.png when drawn; until then made from the idle:
+    everything above her waist sinks a pixel, so she rises and falls as the
+    game swaps the two)
 """
 from pathlib import Path
 
@@ -32,7 +35,8 @@ WINDOW = (36, 43)              # top left of the 64x64 window on each canvas
 # above the shared window; the attack's end is 70 pixels wide, so its window
 # moves a pixel left and the last few pixels of the cloak's tail are cut.
 SHIFT = {"leap": (0, -11), "attack_end": (-1, 0)}
-LAYOUT = ["idle", "leap", "attack_end", "leap", "damage", "idle"]
+LAYOUT = ["idle", "leap", "attack_end", "leap", "damage", "idle2"]
+WAIST = 84                     # canvas row: above it the breath moves her
 
 
 def to_lab(rgb):
@@ -52,7 +56,14 @@ lab_colors = to_lab(colors[1:])
 
 sheet = np.zeros((FRAME * 2 * len(LAYOUT), FRAME), np.uint8)
 for i, name in enumerate(LAYOUT):
-    canvas = np.asarray(Image.open(SOURCE / f"{name}.png").convert("RGBA"))
+    path = SOURCE / f"{name}.png"
+    if name == "idle2" and not path.exists():
+        canvas = np.asarray(Image.open(SOURCE / "idle.png").convert("RGBA"))
+        breath = canvas.copy()
+        breath[1:WAIST + 1] = canvas[0:WAIST]   # head and shoulders sink 1px
+        canvas = breath
+    else:
+        canvas = np.asarray(Image.open(path).convert("RGBA"))
     dx, dy = SHIFT.get(name, (0, 0))
     x0, y0 = WINDOW[0] + dx, WINDOW[1] + dy
     src = canvas[y0:y0 + FRAME, x0:x0 + FRAME]
