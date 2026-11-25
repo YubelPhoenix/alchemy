@@ -88,28 +88,31 @@ print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 # all opaque, each channel a multiple of eight (GBA 5-bit colour).
 portrait = Image.open(SOURCE / "mugshot_32.png").convert("RGB")
 assert portrait.size == (32, 32), portrait.size
-# Sixteen colours picked by k-means in Lab (seeded farthest-first), not median
-# cut, which spends them all on hair and skin and loses her purple eyes. Her
-# mouth's shade (MOUTH, two pixels) keeps a colour of its own, or it melts
-# into the skin.
-MOUTH = (200, 136, 88)
+# Sixteen colours. Her face keeps fixed shades (FACE: the light, the mid
+# tones that shape her nose and jaw, and the mouth), or the cut merges them
+# all into one flat skin colour; the other eleven are picked by k-means in Lab
+# (seeded farthest-first) for her hair, eyes and collar, not by median cut,
+# which loses her purple eyes.
+FACE = [(248, 232, 208), (248, 216, 184), (232, 192, 152), (216, 176, 128),
+        (200, 136, 88)]
+MOUTH = len(FACE) - 1
 rgb = np.asarray(portrait, dtype=float).reshape(-1, 3)
 lab = to_lab(rgb)
-mouth = to_lab(np.array([MOUTH], dtype=float))[0]
-centres = [lab[lab[:, 0].argmin()], mouth]
-for _ in range(14):
+fixed = to_lab(np.array(FACE, dtype=float))
+centres = list(fixed)
+while len(centres) < 16:
     gap = np.min([((lab - c) ** 2).sum(1) for c in centres], 0)
     centres.append(lab[gap.argmax()])
 centres = np.array(centres)
 for _ in range(40):
     label = ((lab[:, None] - centres[None]) ** 2).sum(2).argmin(1)
-    for k in range(16):
-        if k != 1 and (label == k).any():
+    for k in range(len(FACE), 16):
+        if (label == k).any():
             centres[k] = lab[label == k].mean(0)
 icon_palette = []
 for k in range(16):
-    if k == 1:
-        mean = np.array(MOUTH, dtype=float)
+    if k < len(FACE):
+        mean = np.array(FACE[k], dtype=float)
     else:
         mean = rgb[label == k].mean(0) if (label == k).any() else np.zeros(3)
     icon_palette += [int(round(v)) // 8 * 8 for v in mean]
@@ -117,11 +120,11 @@ for k in range(16):
 # it takes its next-nearest colour.
 grid = label.reshape(32, 32)
 dist = ((lab[:, None] - centres[None]) ** 2).sum(2).reshape(32, 32, 16)
-for y, x in zip(*np.nonzero(grid == 1)):
+for y, x in zip(*np.nonzero(grid == MOUTH)):
     near = grid[max(y - 1, 0):y + 2, max(x - 1, 0):x + 2]
-    if (near == 1).sum() == 1:
+    if (near == MOUTH).sum() == 1:
         d = dist[y, x].copy()
-        d[1] = np.inf
+        d[MOUTH] = np.inf
         grid[y, x] = d.argmin()
 icon = Image.fromarray(grid.astype(np.uint8), "P")
 icon.putpalette(icon_palette)
