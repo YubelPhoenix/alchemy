@@ -563,9 +563,13 @@ menu_top:;
     Event_SetFlag(FLAG_KEEP_PARTY_POSITION);
     state = &gSaveBlock;
     WindowColor_Apply(state->windowColor[0], state->windowColor[1]);
+    // Ashfall: every build carries the same build stamp, so a file always
+    // resumes where it was saved; one saved in a room this build no longer
+    // has (a row past the end of gScenes) resumes at its restart point too.
     if (state->buildStamp != BuildStamp_GetTime() ||
         state->sceneId == (s32)&SceneId_Title ||
-        state->sceneId == (s32)&SceneId_FileScreen) {
+        state->sceneId == (s32)&SceneId_FileScreen ||
+        (u16)state->sceneId >= (u32)&SceneId_Count) {
       // A file whose saved destination is the title or file screen (it was
       // saved mid-transition) would resume on a black screen, so it resumes
       // at its restart point like a file from another build.

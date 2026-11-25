@@ -564,5 +564,7 @@ extern char SceneId_UmbralCauseway;
 extern char SceneId_UmbralBeacon;
 extern char SceneId_UmbralCrossbone;
 extern char SceneId_UmbralRitual;
+/// Ashfall: one past the last row of gScenes (field/scenes.s).
+extern char SceneId_Count;
 
 #endif
