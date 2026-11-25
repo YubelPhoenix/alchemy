@@ -95,6 +95,16 @@ enum {
 /// The first row of the pentagram, just inside the arch.
 enum { UMBRAL_RITUAL_STEP = 0x20 };
 
+/// Babi's statue room pulled into the Rift. The two dedicated statue sprites
+/// use previously unused sprite slots; the original Lady Statue is untouched.
+enum {
+  UMBRAL_PALACE_FROM_MEMORY = 1,
+  UMBRAL_PALACE_TO_MAZE = 1,
+  UMBRAL_PALACE_TO_MEMORY = 6,
+  SPRITE_UMBRAL_STATUE_TWO_FACE = 505,
+  SPRITE_UMBRAL_STATUE_ELONGATED = 506,
+};
+
 /// The Memory Room (map row 0xbd): Isaac's house in Vale, rebuilt in obsidian
 /// inside the rift. In at the front door from the maze; the stair at the top
 /// left comes out at the Fountain Hall's right arch: the shortcut back.
@@ -533,10 +543,10 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXIT(UMBRAL_FOUNTAIN_TO_CAUSEWAY, UmbralCauseway, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralMaze),
     SCENE_EXIT(UMBRAL_MAZE_TO_FOUNTAIN, UmbralCrossbone, UMBRAL_CROSSBONE_FROM_MAZE),
-    SCENE_EXIT(UMBRAL_MAZE_TO_TOP_DOOR, UmbralMemory, ENTRANCE_DEFAULT),
+    SCENE_EXIT(UMBRAL_MAZE_TO_TOP_DOOR, UmbralPalace, ENTRANCE_DEFAULT),
     SCENE_EXIT(UMBRAL_MAZE_TO_RITUAL, UmbralRitual, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralMemory),
-    SCENE_EXIT(UMBRAL_MEMORY_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_TOP_DOOR),
+    SCENE_EXIT(UMBRAL_MEMORY_TO_MAZE, UmbralPalace, UMBRAL_PALACE_FROM_MEMORY),
     SCENE_EXIT(UMBRAL_MEMORY_TO_STAIR, UmbralFountain, UMBRAL_FOUNTAIN_FROM_RIGHT_ARCH),
     SCENE_EXITS(UmbralCauseway),
     SCENE_EXIT(UMBRAL_CAUSEWAY_TO_FOUNTAIN, UmbralFountain, UMBRAL_FOUNTAIN_FROM_CAUSEWAY),
@@ -549,6 +559,9 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralBeacon),
     SCENE_EXIT(UMBRAL_BEACON_TO_CAUSEWAY, UmbralCauseway, UMBRAL_CAUSEWAY_FROM_THRONE),
     SCENE_EXIT(UMBRAL_BEACON_TO_THRONE, UmbralThrone, ENTRANCE_DEFAULT),
+    SCENE_EXITS(UmbralPalace),
+    SCENE_EXIT(UMBRAL_PALACE_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_TOP_DOOR),
+    SCENE_EXIT(UMBRAL_PALACE_TO_MEMORY, UmbralMemory, ENTRANCE_DEFAULT),
     SCENE_EXITS_END,
 };
 
@@ -866,6 +879,35 @@ static struct Trigger sUmbralBeaconTriggers[] = {
     {TRIGGERS_END},
 };
 
+// Original Babi Palace camera bounds and door coordinates; no palace events.
+static struct SceneEntrance sUmbralPalaceEntrances[] = {
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 768, 0, 200, FACING_NORTH, 0,
+     512, 0, 1024, 224, 0},
+    {UMBRAL_PALACE_FROM_MEMORY, CONDITION_ALWAYS, 584, 0, 72, FACING_SOUTH, 0,
+     512, 0, 1024, 224, 0},
+    {SCENE_TABLE_END},
+};
+
+static struct ActorTemplate sUmbralPalaceActorTemplates[] = {
+    {SPRITE_UMBRAL_STATUE_ELONGATED, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+     PIXELS(680), 0, PIXELS(136), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    {SPRITE_UMBRAL_STATUE_TWO_FACE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+     PIXELS(768), 0, PIXELS(120), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    {SPRITE_UMBRAL_STATUE_ELONGATED, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+     PIXELS(856), 0, PIXELS(136), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    {SCENE_TABLE_END},
+};
+
+static struct Trigger sUmbralPalaceTriggers[] = {
+    {TRIGGER_EXIT, UMBRAL_PALACE_TO_MAZE, CONDITION_ALWAYS,
+     UMBRAL_PALACE_TO_MAZE},
+    {TRIGGER_EXIT, UMBRAL_PALACE_TO_MEMORY, CONDITION_ALWAYS,
+     UMBRAL_PALACE_TO_MEMORY},
+    {TRIGGERS_END},
+};
+
+#define UMBRAL_IN_PALACE() ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralPalace)
+
 #define UMBRAL_IN_BEACON() ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralBeacon)
 
 #define UMBRAL_IN_CAUSEWAY() \
@@ -879,7 +921,8 @@ static struct Trigger sUmbralBeaconTriggers[] = {
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralFountain)
 
 const struct SceneEntrance *Scene_GetEntrances(void) {
-  return UMBRAL_IN_RITUAL()      ? sUmbralRitualEntrances
+  return UMBRAL_IN_PALACE()      ? sUmbralPalaceEntrances
+         : UMBRAL_IN_RITUAL()    ? sUmbralRitualEntrances
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneEntrances
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconEntrances
          : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayEntrances
@@ -891,7 +934,8 @@ const struct SceneEntrance *Scene_GetEntrances(void) {
 const struct SceneExitRegion *Scene_GetExitRegions(void) { return NULL; }
 const u32 *Scene_GetExits(void) { return sUmbralThroneExits; }
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
-  return UMBRAL_IN_RITUAL()      ? sUmbralRitualActorTemplates
+  return UMBRAL_IN_PALACE()      ? sUmbralPalaceActorTemplates
+         : UMBRAL_IN_RITUAL()    ? sUmbralRitualActorTemplates
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneActorTemplates
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconActorTemplates
          : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayActorTemplates
@@ -901,7 +945,8 @@ const struct ActorTemplate *Scene_GetActorTemplates(void) {
                                 : sUmbralThroneActorTemplates;
 }
 const struct Trigger *Scene_GetTriggers(void) {
-  return UMBRAL_IN_RITUAL()      ? sUmbralRitualTriggers
+  return UMBRAL_IN_PALACE()      ? sUmbralPalaceTriggers
+         : UMBRAL_IN_RITUAL()    ? sUmbralRitualTriggers
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneTriggers
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconTriggers
          : UMBRAL_IN_CAUSEWAY() ? sUmbralCausewayTriggers
