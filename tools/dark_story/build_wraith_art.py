@@ -19,8 +19,8 @@ engine steps frames by two (as Heart's, build_heart_art.py):
   6-7   cast
   8-9   damage           10-11 idle, breathing in
     (assets/wraith/idle2.png when drawn; until then made from the idle:
-    everything above her boots, cloak and sword too, sinks a pixel, so she
-    rises and falls as the game swaps the two)
+    everything above her feet, cloak, sword and the tops of her boots too,
+    sinks a pixel, so she rises and falls as the game swaps the two)
 """
 from pathlib import Path
 
@@ -42,7 +42,8 @@ SHIFT = {"cast": (0, -26), "attack_end": (-1, 0)}
 # (her feet).
 SCALE = {"leap": (18 / 22, (72, 91))}
 LAYOUT = ["idle", "leap", "attack_end", "cast", "damage", "idle2"]
-WAIST = 97                     # canvas row: all above it (not her boots) breathes
+WAIST = 101                    # canvas row: all above it breathes, the tops of
+                               # her boots too; only her feet stay planted
 
 
 def to_lab(rgb):
@@ -66,7 +67,7 @@ for i, name in enumerate(LAYOUT):
     if name == "idle2" and not path.exists():
         canvas = np.asarray(Image.open(SOURCE / "idle.png").convert("RGBA"))
         breath = canvas.copy()
-        breath[1:WAIST + 1] = canvas[0:WAIST]   # all but her boots sink 1px
+        breath[1:WAIST + 1] = canvas[0:WAIST]   # all but her feet sink 1px
         canvas = breath
     else:
         canvas = np.asarray(Image.open(path).convert("RGBA"))
