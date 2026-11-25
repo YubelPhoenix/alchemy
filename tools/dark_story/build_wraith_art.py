@@ -5,9 +5,9 @@ SPR_491.
 
 Each pose is cut from its canvas through one shared 64x64 window, so the
 poses keep the places they were drawn in relative to each other (two are
-moved: SHIFT). The leap was drawn larger than the rest (her hood 22 pixels
-wide against 18), so it is first shrunk to their size (SCALE) about her
-feet. Colours
+moved: SHIFT). The leap and the attack's end were drawn larger than the
+rest (her hood 22 and 21 pixels wide against 18), so they are first shrunk to
+their size (SCALE) about her feet. Colours
 go to the nearest entries of the shared sprite palette
 (games/tbs/src/system/memory/basic.png); half-transparent edge pixels are
 kept if at least half opaque.
@@ -34,13 +34,12 @@ SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 FRAME = 64
 WINDOW = (36, 43)              # top left of the 64x64 window on each canvas
 # Poses whose window is moved (dx, dy): the cast was drawn 26 pixels higher
-# on its canvas than the idle, so it moves down to stand where she stands;
-# the attack's end is 70 pixels wide, so its window moves a pixel left and
-# the last few pixels of the cloak's tail are cut.
-SHIFT = {"cast": (0, -26), "attack_end": (-1, 0)}
-# Poses shrunk to the others' size: factor, and the canvas point kept still
-# (her feet).
-SCALE = {"leap": (18 / 22, (72, 91))}
+# on its canvas than the idle, so it moves down to stand where she stands.
+SHIFT = {"cast": (0, -26)}
+# Poses shrunk to the others' size (her hood 18 pixels wide): factor, and the
+# canvas point kept still (her feet). Shrunk, the attack's end fits the
+# window whole.
+SCALE = {"leap": (18 / 22, (72, 91)), "attack_end": (18 / 21, (68, 106))}
 LAYOUT = ["idle", "leap", "attack_end", "cast", "damage", "idle2"]
 WAIST = 101                    # canvas row: all above it breathes, the tops of
                                # her boots too; only her feet stay planted
