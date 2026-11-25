@@ -83,11 +83,14 @@ print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 
 # Her mugshot (assets/wraith/mugshot.png, drawn at 64x64): portrait icon
 # ICON_69 (icons.tsv; numbered 128 + 53 in Portrait_GetForSpeaker). Halved to
-# 32x32 by averaging each 2x2 block, sixteen colours, index 0 transparent,
-# each channel a multiple of eight (GBA 5-bit colour).
+# 32x32 by keeping every other pixel (row 0, column 1 of each 2x2 block), not
+# by averaging, which blurs her linework; sixteen colours, index 0
+# transparent, each channel a multiple of eight (GBA 5-bit colour).
 portrait = Image.open(SOURCE / "mugshot.png").convert("RGBA")
-if portrait.size != (32, 32):
-    portrait = portrait.resize((32, 32), Image.Resampling.BOX)
+if portrait.size == (64, 64):
+    portrait = Image.fromarray(
+        np.ascontiguousarray(np.asarray(portrait)[0::2, 1::2]), "RGBA")
+assert portrait.size == (32, 32), portrait.size
 alpha = np.asarray(portrait.getchannel("A")) >= 128
 small = portrait.convert("RGB").quantize(
     colors=15, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
