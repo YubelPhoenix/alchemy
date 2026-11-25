@@ -20,7 +20,8 @@ engine steps frames by two (as Heart's, build_heart_art.py):
   8-9   damage           10-11 idle, breathing in
     (assets/wraith/idle2.png when drawn; until then made from the idle:
     everything above her feet, cloak, sword and the tops of her boots too,
-    sinks a pixel, so she rises and falls as the game swaps the two)
+    sinks a pixel, and the trailing wisps of her cloak sway further
+    (flutter), so she rises and falls as the game swaps the two)
 """
 from pathlib import Path
 
@@ -57,6 +58,36 @@ def to_lab(rgb):
                      200 * (f[..., 1] - f[..., 2])], -1)
 
 
+# The cloak's trailing wisps right of her sword hand (canvas box, after the
+# breath): in battle she is drawn at 0xb8/0x100 scale, where a one-pixel sink
+# is lost in that thin region and the tail looked frozen while she breathed.
+# In the breathing frame its dark pixels sway on by TAIL_SWAY more, never over
+# the sword or her hand.
+TAIL_BOX = (80, 76, 100, 100)  # x0, y0, x1, y1 on the canvas
+TAIL_SWAY = (1, 2)             # dx, dy
+
+
+def flutter(canvas):
+    out = canvas.copy()
+    x0, y0, x1, y1 = TAIL_BOX
+    dx, dy = TAIL_SWAY
+    rgb = canvas[..., :3].astype(int)
+    light = 0.3 * rgb[..., 0] + 0.59 * rgb[..., 1] + 0.11 * rgb[..., 2]
+    cloak = (canvas[..., 3] > 127) & (light < 90)
+    moved = []
+    for y in range(y0, y1):
+        for x in range(x0, x1):
+            if cloak[y, x]:
+                moved.append((y, x, canvas[y, x].copy()))
+                out[y, x] = 0
+    for y, x, value in moved:
+        ty, tx = y + dy, x + dx
+        if ty < out.shape[0] and tx < out.shape[1] and (
+                out[ty, tx, 3] <= 127 or (cloak[ty, tx] and (ty, tx) != (y, x))):
+            out[ty, tx] = value
+    return out
+
+
 palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
 colors = np.array(palette, dtype=float).reshape(-1, 3)
 lab_colors = to_lab(colors[1:])
@@ -68,7 +99,7 @@ for i, name in enumerate(LAYOUT):
         canvas = np.asarray(Image.open(SOURCE / "idle.png").convert("RGBA"))
         breath = canvas.copy()
         breath[1:WAIST + 1] = canvas[0:WAIST]   # all but her feet sink 1px
-        canvas = breath
+        canvas = flutter(breath)
     else:
         canvas = np.asarray(Image.open(path).convert("RGBA"))
     if name in SCALE:
