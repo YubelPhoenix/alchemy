@@ -81,27 +81,32 @@ out.putpalette(palette + [0] * (256 - 224) * 3)
 out.save(DEST, optimize=False)
 print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 
-# Her mugshot (assets/wraith/mugshot.png, drawn at 64x64): portrait icon
-# ICON_69 (icons.tsv; numbered 128 + 53 in Portrait_GetForSpeaker). Halved to
-# 32x32 by keeping every other pixel (row 0, column 1 of each 2x2 block), not
-# by averaging, which blurs her linework; sixteen colours, index 0
-# transparent, each channel a multiple of eight (GBA 5-bit colour).
-portrait = Image.open(SOURCE / "mugshot.png").convert("RGBA")
-if portrait.size == (64, 64):
-    portrait = Image.fromarray(
-        np.ascontiguousarray(np.asarray(portrait)[0::2, 1::2]), "RGBA")
+# Her mugshot: portrait icon ICON_69 (icons.tsv; numbered 128 + 53 in
+# Portrait_GetForSpeaker). assets/wraith/mugshot_32.png is the supplied 32x32
+# portrait (mugshot_source.png, cut out of its window frame) with the pink
+# backdrop made black and the smile closed to a flat mouth. Sixteen colours,
+# all opaque, each channel a multiple of eight (GBA 5-bit colour).
+portrait = Image.open(SOURCE / "mugshot_32.png").convert("RGB")
 assert portrait.size == (32, 32), portrait.size
-alpha = np.asarray(portrait.getchannel("A")) >= 128
-small = portrait.convert("RGB").quantize(
-    colors=15, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
-small_palette = small.getpalette()[:45]
-pixels = np.asarray(small, dtype=np.uint8) + 1
-pixels[~alpha] = 0
-icon = Image.fromarray(pixels, "P")
-icon_palette = [0, 0, 0] + small_palette
-icon_palette += [0] * (48 - len(icon_palette))
-for i in range(len(icon_palette)):
-    icon_palette[i] = (icon_palette[i] // 8) * 8
+# Sixteen colours picked by k-means in Lab (seeded farthest-first), not median
+# cut, which spends them all on hair and skin and loses her purple eyes.
+rgb = np.asarray(portrait, dtype=float).reshape(-1, 3)
+lab = to_lab(rgb)
+centres = [lab[lab[:, 0].argmin()]]
+for _ in range(15):
+    gap = np.min([((lab - c) ** 2).sum(1) for c in centres], 0)
+    centres.append(lab[gap.argmax()])
+centres = np.array(centres)
+for _ in range(40):
+    label = ((lab[:, None] - centres[None]) ** 2).sum(2).argmin(1)
+    for k in range(16):
+        if (label == k).any():
+            centres[k] = lab[label == k].mean(0)
+icon_palette = []
+for k in range(16):
+    mean = rgb[label == k].mean(0) if (label == k).any() else np.zeros(3)
+    icon_palette += [int(round(v)) // 8 * 8 for v in mean]
+icon = Image.fromarray(label.reshape(32, 32).astype(np.uint8), "P")
 icon.putpalette(icon_palette)
 icon_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_69.png"
 icon.save(icon_target)
