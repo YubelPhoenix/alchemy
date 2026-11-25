@@ -552,6 +552,15 @@ menu_top:;
     if (v6 == -1) {
       goto menu_top;
     }
+    // Sarah's pending flag is transient between a scripted battle and its
+    // immediate aftermath, never a valid field-save state. Older builds
+    // could leave it set after a defeat; discard that stale state on load
+    // without altering any of the four completed-encounter flags.
+    if (GameFlag_Get(FLAG_DARK_SARAH_PENDING) != 0) {
+      GameFlag_Clear(FLAG_DARK_SARAH_PENDING);
+      GameFlag_Clear(FLAG_DARK_SARAH_STAGE_BIT0);
+      GameFlag_Clear(FLAG_DARK_SARAH_STAGE_BIT1);
+    }
     // Ashfall: rebuild the four heroes' Psynergy lists, so moves a newer
     // build added (or tiers it drops) show at once on an older save, without
     // waiting for a Djinni, piece of equipment or level to change.
