@@ -1,19 +1,23 @@
-# The Vengeful Wraith: Golden Sun: Dark Dawn's Karis, thirty years on, met in
-# the Umbral Rift's Ritual Room (enemy row 166; her name, longer than a unit's
-# 14 letters, is shown from this message in battle: BattleUnit_Set,
-# window/window/decode.c, window/screens/targets.c). She holds the party in
-# contempt and is cold to Ivan above all, speaking in riddles, as if she were
-# the one he could not save (UmbralRift_SeeRitual, UmbralRift_KarisAftermath
-# in scene/umbral_rift.c).
+# The Vengeful Wraith: Ashfall's alternate-world Karis. Her identity is
+# unrevealed by name. She directs her hatred at Ivan, holds the party in
+# contempt, and reveals their relationship only after battle. Enemy row 166
+# uses the long name below. Dialogue contexts are called by umbral_rift.c.
 N701	MsgEnemyVengefulWraith	Vengeful Wraith
-N702	MsgDarkRiftKaris001	You again. Always\narriving too late.{end_wait}
-N703	MsgDarkRiftKaris002	Too late? I've never\nseen you before.{end_wait}
-N704	MsgDarkRiftKaris003	Not yet, you haven't.{page_break}You'll reach for me,\nand close your hand\non nothing.{end_wait}
-N707	MsgDarkRiftKaris006	Come, then.\nFail me once more.{end_wait}
-N705	MsgDarkRiftKaris004	...Strange. I came here\nhating you.{page_break}It was good to see\nyou. One last time.{end_wait}
-N706	MsgDarkRiftKaris005	She looked at me like\nshe knew me...{end_wait}
-N708	MsgDarkRiftKaris010	Wait. Someone's standing\non it.{end_wait}
-N709	MsgDarkRiftKaris011	Who are you? How did\nyou get in here?{end_wait}
-N710	MsgDarkRiftKaris012	I don't know why\nI'm here. Or how.{page_break}But I know you.\nThat's enough.{end_wait}
-N711	MsgDarkRiftKaris013	We don't want to fight\nyou.{end_wait}
-N712	MsgDarkRiftKaris014	Whoever she was, she\nwasn't from here.{end_wait}
+N702	MsgDarkRiftKaris001	Of all the people I could\nhave encountered... It had\nto be you.{end_wait}
+N703	MsgDarkRiftKaris002	Me? Do I know you?{end_wait}
+N704	MsgDarkRiftKaris003	Even the sound of your\nvoice disgusts me.{end_wait}
+N707	MsgDarkRiftKaris006	Then you'll suffer\nalongside him!{end_wait}
+N705	MsgDarkRiftKaris004	Looks like it's time for me\nto go...{page_break}It's strange...{page_break}Ever since that day, I've\nhated you...{end_wait}
+N706	MsgDarkRiftKaris005	...Dad?{end_wait}
+N708	MsgDarkRiftKaris010	Hey! What's your problem?{end_wait}
+N709	MsgDarkRiftKaris011	How fitting. Still\nsurrounded by people\nwilling to defend you.{end_wait}
+N710	MsgDarkRiftKaris012	Why do you hate him so\nmuch? What has he done to\nyou?{end_wait}
+N711	MsgDarkRiftKaris013	You know nothing. None of\nyou do.{end_wait}
+N712	MsgDarkRiftKaris014	Whatever your reasons are,\nwe won't let you hurt Ivan.{end_wait}
+N689	MsgDarkRiftKaris015	But it was good seeing you\none last time...{end_wait}
+N690	MsgDarkRiftKaris016	Dad...{end_wait}
+N691	MsgDarkRiftKaris017	Ivan... Do you know her?{end_wait}
+N687	MsgDarkRiftKaris018	No... I've never seen her\nbefore.{end_wait}
+N688	MsgDarkRiftKaris019	Ivan... Are you all right?{end_wait}
+N535	MsgDarkRiftKaris020	I don't know, Mia...{end_wait}
+N679	MsgDarkRiftKaris021	We can stay here for a\nwhile.{end_wait}

@@ -192,13 +192,15 @@ enum { UMBRAL_ECHO_STEP = 0x20 };
 /// speaker opened an empty frame beside it.
 static void UmbralRift_Say(s32 message, s32 actor) {
   // Keep the throne pair silhouetted across facing and message transitions.
-  if (UMBRAL_SCENE_IS(UmbralThrone)) {
+  if (UMBRAL_SCENE_IS(UmbralThrone) &&
+      GameFlag_Get(FLAG_DARK_RIFT_BEATEN) == 0) {
     Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_BLACK);
     Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK);
   }
   Event_SetMessageId(message);
   Event_ShowMessageThenWait(actor, 0, 20);
-  if (UMBRAL_SCENE_IS(UmbralThrone)) {
+  if (UMBRAL_SCENE_IS(UmbralThrone) &&
+      GameFlag_Get(FLAG_DARK_RIFT_BEATEN) == 0) {
     Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_BLACK);
     Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK);
   }
@@ -208,42 +210,26 @@ static void UmbralRift_Say(s32 message, s32 actor) {
   Portrait_CloseWindow(ACTOR_MIA);
 }
 
-static void UmbralRift_FountainDialogue(s32 afterEcho) {
-  if (afterEcho) {
-  UmbralRift_Say(MsgDarkRiftFountain008, ACTOR_GARET);
-  } else {
-  UmbralRift_Say(MsgDarkRiftFountain001, ACTOR_PARTY_LEADER);
+static void UmbralRift_FountainDialogue(void) {
   UmbralRift_Say(MsgDarkRiftFountain003, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftFountain007, ACTOR_PARTY_LEADER);
-  }
+  UmbralRift_Say(MsgDarkRiftFountain007, ACTOR_GARET);
 }
 
-static void UmbralRift_MazeDialogue(s32 afterEcho) {
-  if (afterEcho) {
-  UmbralRift_Say(MsgDarkRiftMaze008, ACTOR_GARET);
-  } else {
+static void UmbralRift_MazeDialogue(void) {
   UmbralRift_Say(MsgDarkRiftMaze002, ACTOR_GARET);
-  UmbralRift_Say(MsgDarkRiftMaze003, ACTOR_IVAN);
-  UmbralRift_Say(MsgDarkRiftMaze007, ACTOR_PARTY_LEADER);
-  }
 }
 
 static void UmbralRift_MemoryDialogue(void) {
   UmbralRift_Say(MsgDarkRiftMemory001, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftMemory004, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftMemory005, ACTOR_GARET);
-  UmbralRift_Say(MsgDarkRiftMemory006, ACTOR_IVAN);
 }
 
 static void UmbralRift_OrbDialogue(void) {
   UmbralRift_Say(MsgDarkRiftOrb003, ACTOR_IVAN);
-  UmbralRift_Say(MsgDarkRiftOrb004, ACTOR_PARTY_LEADER);
 }
 
 // Called inside the gateway interaction, before changing rooms.
 static void UmbralRift_GateEvent(void) {
-  UmbralRift_Say(MsgDarkRiftGate001, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftGate003, ACTOR_GARET);
   GameFlag_Set(FLAG_DARK_RIFT_GATE_SEEN);
 }
 
@@ -255,15 +241,12 @@ static void UmbralRift_CausewayEvent(void) {
   WaitFrames(1);
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
-  UmbralRift_Say(MsgDarkRiftCauseway001, ACTOR_IVAN);
   GameFlag_Set(FLAG_DARK_RIFT_CAUSEWAY_SEEN);
   Event_End();
 }
 
 static void UmbralRift_CloseAnchor(void) {
-  UmbralRift_Say(MsgDarkRiftSeal001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftSeal003, ACTOR_IVAN);
-  UmbralRift_Say(MsgDarkRiftSeal005, ACTOR_MIA);
   Sound_PlaySong(SE_WARP);
   MapGrid_SetShake(PIXELS(3), PIXELS(3), Q16_ONE);
   PaletteFade_SetTarget(RGB(31, 31, 31), PALETTES_ALL);
@@ -274,13 +257,9 @@ static void UmbralRift_CloseAnchor(void) {
   MapGrid_SetShake(-1, -1, 9 * Q16_ONE / 10);
   MapGrid_WaitForShakeToSettle();
   Actor_ConfigureSpriteColor(ACTOR_RIFT_FEATURE, SPRITE_COLOR_BLACK);
-  UmbralRift_Say(MsgDarkRiftSeal007, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftSeal011, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftSeal013, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftSeal014, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftSeal015, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftSeal017, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftSeal018, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftSeal018, ACTOR_GARET);
   GameFlag_Set(FLAG_DARK_RIFT_ANCHOR_SEALED);
 }
 
@@ -382,9 +361,9 @@ static void UmbralRift_PairEcho(s32 mystery, s32 heart, s32 flag, s32 facing) {
   // The silhouettes are echoes of where they walked earlier.
   Sound_PlaySong(SE_WARP);
   if (flag == FLAG_DARK_RIFT_PAIR_FOUNTAIN)
-    UmbralRift_FountainDialogue(0);
+    UmbralRift_FountainDialogue();
   else if (flag == FLAG_DARK_RIFT_PAIR_MAZE)
-    UmbralRift_MazeDialogue(0);
+    UmbralRift_MazeDialogue();
   else if (flag == FLAG_DARK_RIFT_PAIR_MEMORY)
     UmbralRift_MemoryDialogue();
   UmbralRift_FlickerOut(mystery, heart);
@@ -392,11 +371,6 @@ static void UmbralRift_PairEcho(s32 mystery, s32 heart, s32 flag, s32 facing) {
   Actor_ConfigureSpriteColor(heart, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(mystery, PIXELS(-9), PIXELS(488));
   Actor_SetPosition(heart, PIXELS(-9), PIXELS(488));
-  // Let the witnesses react once the images have disappeared.
-  if (flag == FLAG_DARK_RIFT_PAIR_FOUNTAIN)
-    UmbralRift_FountainDialogue(1);
-  else if (flag == FLAG_DARK_RIFT_PAIR_MAZE)
-    UmbralRift_MazeDialogue(1);
   GameFlag_Set(flag);
   Event_End();
 }
@@ -434,20 +408,15 @@ static void UmbralRift_Aftermath(void) {
   Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_BLACK);
   Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK);
   UmbralRift_Say(MsgDarkRiftPost001, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftPost002, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPost003, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPost004, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPost018, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftPost019, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPost010, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPost011, ACTOR_RIFT_MYSTERY);
-  if (GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0) {
-    UmbralRift_Say(MsgDarkRiftKnownWarning, ACTOR_PARTY_LEADER);
-    UmbralRift_Say(MsgDarkRiftKnownAnswer, ACTOR_RIFT_MYSTERY);
-  } else {
-    UmbralRift_Say(MsgDarkRiftPost018, ACTOR_PARTY_LEADER);
-    UmbralRift_Say(MsgDarkRiftPost019, ACTOR_RIFT_MYSTERY);
-  }
   UmbralRift_Say(MsgDarkRiftPost020, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPost021, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPost025, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftPost026, ACTOR_RIFT_MYSTERY);
   Event_WaitFrames(20);
   UmbralRift_FlickerOut(ACTOR_RIFT_MYSTERY, ACTOR_RIFT_HEART);
   Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_HIDDEN);
@@ -455,6 +424,8 @@ static void UmbralRift_Aftermath(void) {
   Actor_SetPosition(ACTOR_RIFT_MYSTERY, PIXELS(-9), PIXELS(488));
   Actor_SetPosition(ACTOR_RIFT_HEART, PIXELS(-9), PIXELS(488));
   GameFlag_Set(FLAG_DARK_RIFT_BEATEN);
+  UmbralRift_Say(MsgDarkRiftPost025, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftPost026, ACTOR_PARTY_LEADER);
   Event_End();
 }
 
@@ -463,30 +434,23 @@ static void UmbralRift_TalkToMystery(void) {
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_BLACK);
   Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK);
-  UmbralRift_Say(GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0
-                    ? MsgDarkRiftValeKnown : MsgDarkRiftPre001,
-                ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftPre001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre002, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre007, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftPre007, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftPre008, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre011, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftPre012, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre005, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftPre006, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre009, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftPre010, ACTOR_RIFT_MYSTERY);
   if (GameFlag_Get(FLAG_DARK_RIFT_PAIR_FOUNTAIN) != 0 ||
       GameFlag_Get(FLAG_DARK_RIFT_PAIR_MAZE) != 0 ||
       GameFlag_Get(FLAG_DARK_RIFT_PAIR_MEMORY) != 0) {
     UmbralRift_Say(MsgDarkRiftPre021, ACTOR_IVAN);
     UmbralRift_Say(MsgDarkRiftPre022, ACTOR_RIFT_MYSTERY);
   }
-  UmbralRift_Say(MsgDarkRiftPre015, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftPre016, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre020, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre023, ACTOR_RIFT_HEART);
-  UmbralRift_Say(GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0 ||
-                    GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0
-                    ? MsgDarkRiftHeartKnown : MsgDarkRiftPre024,
-                ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftPre024, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre025, ACTOR_RIFT_HEART);
-  UmbralRift_Say(MsgDarkRiftPre026, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre028, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre029, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre030, ACTOR_RIFT_MYSTERY);
@@ -502,35 +466,28 @@ static void UmbralRift_TalkToMystery(void) {
   MapGrid_WaitForShakeToSettle();
   Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK);
   Actor_FaceDirection(ACTOR_RIFT_HEART, FACING_NORTH, 12);
-  UmbralRift_Say(MsgDarkRiftPre038, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre039, ACTOR_RIFT_HEART);
-  UmbralRift_Say(MsgDarkRiftPre042, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre043, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftPre047, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftPre045, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre048, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre050, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre040, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre051, ACTOR_RIFT_HEART);
-  UmbralRift_Say(MsgDarkRiftPre052, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre054, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre061, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre042, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre047, ACTOR_MIA);
+  UmbralRift_Say(MsgDarkRiftPre048, ACTOR_RIFT_MYSTERY);
   Event_WaitFrames(20);
   UmbralRift_Say(MsgDarkRiftPre067, ACTOR_RIFT_MYSTERY);
-
   Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK);
   Actor_FaceDirection(ACTOR_RIFT_HEART, FACING_NORTH, 12);
   UmbralRift_Say(MsgDarkRiftPre070, ACTOR_RIFT_HEART);
-  UmbralRift_Say(MsgDarkRiftPre072, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftPre080, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftPre081, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre087, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftPre088, ACTOR_GARET);
-  UmbralRift_Say(MsgDarkRiftPre089, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre011, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftPre012, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre013, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftPre014, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre015, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftPre016, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre090, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftPre091, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre093, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre094, ACTOR_RIFT_HEART);
-  UmbralRift_Say(MsgDarkRiftPre096, ACTOR_PARTY_LEADER);
   GameFlag_Set(FLAG_DARK_RIFT_FOUGHT);
   Event_SetAfterBattleDestination((s32)&SceneId_UmbralThrone,
                                   UMBRAL_THRONE_FROM_RIFT_BATTLE);
@@ -779,21 +736,17 @@ static void UmbralRift_KarisSay(s32 message, s32 actor) {
   Actor_ConfigureSpriteColor(ACTOR_RITUAL_KARIS, SPRITE_COLOR_BLACK);
 }
 
-/// The first look at the pentagram in the Ritual Room: the Vengeful Wraith
-/// (Dark Dawn's Karis, thirty years on) stands at its heart. She has no idea
-/// why she is here; she holds the party in contempt and is cold to Ivan above
-/// all, never naming him, speaking in riddles of the one he could not save;
-/// then she attacks.
+/// The Wraith recognizes Ivan, despises his companions, and attacks.
 static void UmbralRift_SeeRitual(void) {
   Event_Start();
-  UmbralRift_KarisSay(MsgDarkRiftRitual001, ACTOR_IVAN);
-  UmbralRift_KarisSay(MsgDarkRiftKaris010, ACTOR_GARET);
   UmbralRift_KarisSay(MsgDarkRiftKaris001, ACTOR_RITUAL_KARIS);
   UmbralRift_KarisSay(MsgDarkRiftKaris002, ACTOR_IVAN);
   UmbralRift_KarisSay(MsgDarkRiftKaris003, ACTOR_RITUAL_KARIS);
-  UmbralRift_KarisSay(MsgDarkRiftKaris011, ACTOR_MIA);
-  UmbralRift_KarisSay(MsgDarkRiftKaris012, ACTOR_RITUAL_KARIS);
-  UmbralRift_KarisSay(MsgDarkRiftKaris013, ACTOR_PARTY_LEADER);
+  UmbralRift_KarisSay(MsgDarkRiftKaris010, ACTOR_GARET);
+  UmbralRift_KarisSay(MsgDarkRiftKaris011, ACTOR_RITUAL_KARIS);
+  UmbralRift_KarisSay(MsgDarkRiftKaris012, ACTOR_MIA);
+  UmbralRift_KarisSay(MsgDarkRiftKaris013, ACTOR_RITUAL_KARIS);
+  UmbralRift_KarisSay(MsgDarkRiftKaris014, ACTOR_PARTY_LEADER);
   UmbralRift_KarisSay(MsgDarkRiftKaris006, ACTOR_RITUAL_KARIS);
   GameFlag_Set(FLAG_DARK_RIFT_KARIS_FOUGHT);
   Event_SetAfterBattleDestination((s32)&SceneId_UmbralRitual,
@@ -804,8 +757,7 @@ static void UmbralRift_SeeRitual(void) {
   Event_End();
 }
 
-/// Back from the fight: the Wraith softens, tells Ivan it was good to see him
-/// one last time, and fades; the party looks at the floor.
+/// After the fight the Wraith reveals her relationship to Ivan, then fades.
 static void UmbralRift_KarisAftermath(void) {
   Event_Start();
   // The scene is still dark here: bring it in first, as the dais does.
@@ -814,6 +766,10 @@ static void UmbralRift_KarisAftermath(void) {
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
   UmbralRift_KarisSay(MsgDarkRiftKaris004, ACTOR_RITUAL_KARIS);
+  Event_WaitFrames(40);
+  UmbralRift_KarisSay(MsgDarkRiftKaris015, ACTOR_RITUAL_KARIS);
+  UmbralRift_KarisSay(MsgDarkRiftKaris016, ACTOR_RITUAL_KARIS);
+  Event_WaitFrames(30);
   UmbralRift_FlickerOut(ACTOR_RITUAL_KARIS, ACTOR_RITUAL_KARIS);
   Actor_ConfigureSpriteColor(ACTOR_RITUAL_KARIS, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_RITUAL_KARIS, PIXELS(-9), PIXELS(488));
@@ -821,9 +777,11 @@ static void UmbralRift_KarisAftermath(void) {
   TreasureSpot_SetPosition(UMBRAL_RITUAL_CHEST, -1, -1);
   GameFlag_Set(FLAG_DARK_RIFT_KARIS_BEATEN);
   UmbralRift_Say(MsgDarkRiftKaris005, ACTOR_IVAN);
-  UmbralRift_Say(MsgDarkRiftKaris014, ACTOR_GARET);
-  UmbralRift_Say(MsgDarkRiftRitual002, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftRitual003, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftKaris017, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftKaris018, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftKaris019, ACTOR_MIA);
+  UmbralRift_Say(MsgDarkRiftKaris020, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftKaris021, ACTOR_PARTY_LEADER);
   GameFlag_Set(FLAG_DARK_RIFT_RITUAL_SEEN);
   Event_End();
 }
@@ -866,8 +824,6 @@ static struct Trigger sUmbralRitualTriggers[] = {
 /// The first steps into the Crossbone room.
 static void UmbralRift_SeeCrossbone(void) {
   Event_Start();
-  UmbralRift_Say(MsgDarkRiftCrossbone001, ACTOR_IVAN);
-  UmbralRift_Say(MsgDarkRiftCrossbone002, ACTOR_GARET);
   GameFlag_Set(FLAG_DARK_RIFT_CROSSBONE_SEEN);
   Event_End();
 }
@@ -904,9 +860,7 @@ static void UmbralRift_SeeBeacon(void) {
   Event_Start();
   Sound_PlaySong(SE_WARP);
   Event_WaitFrames(20);
-  UmbralRift_Say(MsgDarkRiftBeacon002, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftBeacon003, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftBeacon004, ACTOR_IVAN);
   GameFlag_Set(FLAG_DARK_RIFT_BEACON_SEEN);
   Event_End();
 }
@@ -916,8 +870,6 @@ static void UmbralRift_SeeBeacon(void) {
 static void UmbralRift_EnterBeacon(void) {
   Event_Start();
   if (GameFlag_Get(FLAG_DARK_RIFT_BEACON_CROSSED) == 0) {
-    UmbralRift_Say(MsgDarkRiftCross002, ACTOR_IVAN);
-    UmbralRift_Say(MsgDarkRiftCross004, ACTOR_PARTY_LEADER);
     GameFlag_Set(FLAG_DARK_RIFT_BEACON_CROSSED);
   }
   Sound_PlaySong(SE_WARP);
