@@ -120,8 +120,9 @@ enum {
 };
 
 /// The Vigil (map row 0xc3, map_194): Vale's plaza, cut from map_003, as the
-/// Rift rebuilt it from the night of the storm. Every door is shut and the
-/// pond is gone, grassed over. Five weeping statues stand round where it was.
+/// Rift rebuilt it from the night of the storm. Every door is shut, the pond
+/// is black and the Psynergy Stone in it is the Rift's black crystal. Five
+/// weeping statues stand round the pond.
 /// They never move while the leader faces them; while his back is turned
 /// they come for him (UmbralRift_WatchVigil). One that reaches him turns him
 /// to stone for a moment, and the party is back at the cave mouth with the
@@ -1111,7 +1112,7 @@ static struct SceneEntrance sUmbralVigilEntrances[] = {
   {SPRITE_UMBRAL_VIGIL_STATUE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,          \
    PIXELS(x), 0, PIXELS(z), FACING_SOUTH, TALK_FACING_KEEP, 0}
 static struct ActorTemplate sUmbralVigilActorTemplates[] = {
-    // Round where the pond was: one above, two each side.
+    // Round the pond: one above, two each side.
     VIGIL_STATUE(216, 248),
     VIGIL_STATUE(136, 304),
     VIGIL_STATUE(136, 360),
