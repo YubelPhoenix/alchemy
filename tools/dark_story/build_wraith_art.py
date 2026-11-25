@@ -84,18 +84,19 @@ print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 # Her mugshot: portrait icon ICON_69 (icons.tsv; numbered 128 + 53 in
 # Portrait_GetForSpeaker). assets/wraith/mugshot_32.png is the supplied 32x32
 # portrait (mugshot_source.png, cut out of its window frame) with the pink
-# backdrop made black and the smile closed to a flat mouth. Sixteen colours,
+# backdrop made black, brows drawn in a scowl, lids lowered and the smile
+# closed to a hard flat mouth. Sixteen colours,
 # all opaque, each channel a multiple of eight (GBA 5-bit colour).
 portrait = Image.open(SOURCE / "mugshot_32.png").convert("RGB")
 assert portrait.size == (32, 32), portrait.size
 # Fifteen colours (palette index 0 is see-through in a portrait and stays
 # unused, so every pixel is index 1 to 15). Her face keeps fixed shades (FACE: the light, the mid
 # tones that shape her nose and jaw, and the mouth), or the cut merges them
-# all into one flat skin colour; the other ten are picked by k-means in Lab
+# all into one flat skin colour; the other nine are picked by k-means in Lab
 # (seeded farthest-first) for her hair, eyes and collar, not by median cut,
 # which loses her purple eyes.
 FACE = [(248, 232, 208), (248, 216, 184), (232, 192, 152), (216, 176, 128),
-        (200, 136, 88)]
+        (200, 136, 88), (168, 96, 64)]
 MOUTH = len(FACE) - 1
 rgb = np.asarray(portrait, dtype=float).reshape(-1, 3)
 lab = to_lab(rgb)
