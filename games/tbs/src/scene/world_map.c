@@ -2295,10 +2295,27 @@ static void WorldMap_MiaSay(s32 actorId, s32 frames) {
   FieldEvent_ShowMessageThenWait(actorId, 0, frames);
 }
 
-/// Enter the Umbral Rift directly when the player approaches its entrance.
+/// The party investigates the monolith on its first approach.
 static void WorldMap_EnterUmbralRift(void) {
   Event_Start();
-  GameFlag_Set(FLAG_DARK_RIFT_APPROACH_SEEN);
+  if (GameFlag_Get(FLAG_DARK_RIFT_APPROACH_SEEN) == 0 &&
+      GameFlag_Get(FLAG_DARK_RIFT_PAIR_FOUNTAIN) == 0) {
+    WindowColor_Apply(gSaveBlock.windowColor[0], gSaveBlock.windowColor[1]);
+    FieldEffect_ScheduleRatioTransition(3 * Q16_ONE / 2, 16);
+    gFieldWork->transition = SCENE_TRANSITION(TRANSITION_BACKDROP_FADE, 0);
+    gFieldWork->transitionFrames = 16;
+    Event_StartScreenTransition();
+    Event_WaitForZoomTransition();
+    WorldMap_Freeze();
+    Event_SetMessageId(MsgDarkRiftApproachGaret);
+    FieldEvent_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+    Event_SetMessageId(MsgDarkRiftApproachIvan);
+    FieldEvent_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+    Event_SetMessageId(MsgDarkRiftApproachIsaac);
+    FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+    GameFlag_Set(FLAG_DARK_RIFT_APPROACH_SEEN);
+    WorldMap_Unfreeze();
+  }
   Sound_PlaySong(SE_MAP_EXIT);
   Import_EventSetExitRequest(WORLD_MAP_TO_UMBRAL_RIFT);
   Event_End();
