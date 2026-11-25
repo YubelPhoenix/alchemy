@@ -43,6 +43,7 @@
 #include "audio_engine_symbols.h"
 #include "item_ids.h"
 #include "common/actor_facing.h"
+#include "engine_call.h"
 
 
 enum {
@@ -76,7 +77,7 @@ enum {
 enum {
   UMBRAL_MAZE_FROM_TOP_DOOR = 1,
   UMBRAL_MAZE_FROM_RITUAL = 2,
-  /// Back out of Vale or Kolima, in the spur beside the mother.
+  /// Back out of Vale or Kolima, in the spur beside the statue.
   UMBRAL_MAZE_FROM_VIGIL = 3,
 };
 enum {
@@ -84,8 +85,8 @@ enum {
   UMBRAL_MAZE_TO_TOP_DOOR = 2,
   /// The east door at the end of the middle corridor, into the Ritual Room.
   UMBRAL_MAZE_TO_RITUAL = 3,
-  /// The end of the short spur off the west corridor, past the mother who
-  /// stands there facing the wall: on into Vale.
+  /// The end of the short spur off the west corridor, past the statue that
+  /// stands there: on into Vale.
   UMBRAL_MAZE_TO_VIGIL = 4,
 };
 
@@ -119,24 +120,36 @@ enum {
 };
 
 /// The Vigil (map row 0xc3, map_194): Vale's plaza, cut from map_003, as the
-/// Rift rebuilt it from the night of the storm. Every door is shut. Around
-/// the black pond stand nine copies of Isaac's mother with no faces, each
-/// turning to keep the leader in front of her; in the pond, sunk to her
-/// shoulders beside the Psynergy Stone, the one with a face. In at the cave
-/// mouth (from the maze), out by the arch at the south.
+/// Rift rebuilt it from the night of the storm. Every door is shut and the
+/// pond is gone, grassed over. Five weeping statues stand round where it was.
+/// They never move while the leader faces them; while his back is turned
+/// they come for him (UmbralRift_WatchVigil). One that reaches him turns him
+/// to stone for a moment, and the party is back at the cave mouth with the
+/// statues where they began, and one more of them by the cave each time, up
+/// to three. In at the cave mouth (from the maze), out by the arch at the
+/// south.
 enum {
   UMBRAL_VIGIL_FROM_GROVE = 1,
   /// Exit 1: the cave mouth under the cliff, back to the maze.
   UMBRAL_VIGIL_TO_MAZE = 1,
   /// Exit 2: the path through the arch at the south, on into Kolima.
   UMBRAL_VIGIL_TO_GROVE = 2,
-  /// Dora with her face taken away (spr_507,
+  /// Exit 3: caught by a statue; back in at the cave mouth.
+  UMBRAL_VIGIL_CAUGHT = 3,
+  /// The wreathed maiden statue as weeping stone (spr_507,
   /// tools/dark_story/build_umbral_vigil_art.py).
-  SPRITE_UMBRAL_VIGIL_MOTHER = 507,
-  /// ANIM_ of SPRITE_DORA's 9th animation: sunk to her shoulders (frame 43).
-  UMBRAL_VIGIL_SUNK = 8,
+  SPRITE_UMBRAL_VIGIL_STATUE = 507,
+  /// SPRITE_UMBRAL_VIGIL_STATUE's animation once she has moved: sockets wide,
+  /// mouth open.
+  UMBRAL_VIGIL_STATUE_MOVED = 2,
+  /// The five round the old pond, then the three by the cave for catches.
+  UMBRAL_VIGIL_STATUES = 8,
+  UMBRAL_VIGIL_EXTRA_FIRST = 5,
+  /// A statue this close (in pixels) while unseen has caught the leader.
+  UMBRAL_VIGIL_CATCH_DISTANCE = 16,
+  /// Frames the leader stands as stone before the party is sent back.
+  UMBRAL_VIGIL_STONE_FRAMES = 60,
 };
-enum { ACTOR_VIGIL_DORA = ACTOR_FIRST_PLACED };
 
 /// The Grove (map row 0xc4, map_195): Kolima, cut whole from map_037, where
 /// wood and skin are one thing. Its great stumps are flesh; among their roots,
@@ -336,6 +349,102 @@ static void UmbralRift_CloseAnchor(void) {
 }
 
 
+/// The Vigil's watch, kept for the frame task.
+struct UmbralVigilWatch {
+  u8 caught; ///< 1 once a statue has reached the leader
+  u8 timer;  ///< frames he has stood as stone since
+  u8 moved;  ///< bits: the statues that have moved
+};
+struct UmbralVigilWatch gUmbralRift_VigilWatch;
+
+/// The leader's eight facings as steps along x and z (east first, clockwise).
+static const s8 sUmbralVigilFacingX[8] = {2, 1, 0, -1, -2, -1, 0, 1};
+static const s8 sUmbralVigilFacingZ[8] = {0, 1, 2, 1, 0, -1, -2, -1};
+
+/// Counts the Vigil's catches, up to three, in two flags.
+static s32 UmbralRift_VigilCatches(void) {
+  return GameFlag_Get(FLAG_DARK_RIFT_VIGIL_CAUGHT_1) +
+         2 * GameFlag_Get(FLAG_DARK_RIFT_VIGIL_CAUGHT_2);
+}
+
+/// Runs every frame in the Vigil. A statue in front of the leader (within 60
+/// degrees of the way he faces) never moves; any other comes a pixel a frame
+/// toward him, wearing her moved face from then on. One that reaches him
+/// unseen turns him to stone, holds the field, and after
+/// UMBRAL_VIGIL_STONE_FRAMES sends the party back in at the cave mouth.
+static void UmbralRift_WatchVigil(void) {
+  struct UmbralVigilWatch *watch = &gUmbralRift_VigilWatch;
+  struct Actor *leader;
+  s32 i;
+  s32 fx;
+  s32 fz;
+  s32 lx;
+  s32 lz;
+
+  if (watch->caught) {
+    if (++watch->timer == UMBRAL_VIGIL_STONE_FRAMES)
+      Import_EventSetExitRequest(UMBRAL_VIGIL_CAUGHT);
+    return;
+  }
+  leader = Actor_GetById(gSaveBlock.leaderActorId);
+  lx = leader->x.fixed >> 16;
+  lz = leader->z.fixed >> 16;
+  fx = sUmbralVigilFacingX[((leader->facing + 0x1000) >> 13) & 7];
+  fz = sUmbralVigilFacingZ[((leader->facing + 0x1000) >> 13) & 7];
+  for (i = 0; i < UMBRAL_VIGIL_STATUES; i++) {
+    struct Actor *statue = Actor_Get(ACTOR_FIRST_PLACED + i);
+    s32 dx;
+    s32 dz;
+    s32 far;
+    s32 toward;
+
+    if (statue == NULL || (statue->x.fixed == 0 && statue->z.fixed == 0))
+      continue;
+    dx = (statue->x.fixed >> 16) - lx;
+    dz = (statue->z.fixed >> 16) - lz;
+    far = dx * dx + dz * dz;
+    toward = dx * fx + dz * fz;
+    // Seen: in front of him, within 60 degrees (cos 60 = 1/2).
+    if (toward > 0 && 4 * toward * toward > far * (fx * fx + fz * fz))
+      continue;
+    if (far < UMBRAL_VIGIL_CATCH_DISTANCE * UMBRAL_VIGIL_CATCH_DISTANCE) {
+      watch->caught = 1;
+      Event_Start();
+      Actor_ConfigureSpriteColor(ACTOR_PARTY_LEADER, SPRITE_COLOR_GREY);
+      if (GameFlag_Get(FLAG_DARK_RIFT_VIGIL_CAUGHT_1) == 0)
+        GameFlag_Set(FLAG_DARK_RIFT_VIGIL_CAUGHT_1);
+      else if (GameFlag_Get(FLAG_DARK_RIFT_VIGIL_CAUGHT_2) == 0) {
+        GameFlag_Clear(FLAG_DARK_RIFT_VIGIL_CAUGHT_1);
+        GameFlag_Set(FLAG_DARK_RIFT_VIGIL_CAUGHT_2);
+      } else
+        GameFlag_Set(FLAG_DARK_RIFT_VIGIL_CAUGHT_1);
+      return;
+    }
+    if (!(watch->moved & (1 << i))) {
+      watch->moved |= 1 << i;
+      Actor_SetAnimation(ACTOR_FIRST_PLACED + i, UMBRAL_VIGIL_STATUE_MOVED);
+    }
+    if ((dx < 0 ? -dx : dx) > (dz < 0 ? -dz : dz))
+      statue->x.fixed += dx > 0 ? -0x10000 : 0x10000;
+    else
+      statue->z.fixed += dz > 0 ? -0x10000 : 0x10000;
+  }
+}
+
+/// Sets up the Vigil: hides the statues by the cave beyond the number of
+/// catches, clears the watch and starts it.
+static void UmbralRift_StartVigil(void) {
+  s32 i;
+
+  for (i = UMBRAL_VIGIL_EXTRA_FIRST + UmbralRift_VigilCatches();
+       i < UMBRAL_VIGIL_STATUES; i++)
+    Import_ActorSetPosition(ACTOR_FIRST_PLACED + i, 0, 0);
+  gUmbralRift_VigilWatch.caught = 0;
+  gUmbralRift_VigilWatch.timer = 0;
+  gUmbralRift_VigilWatch.moved = 0;
+  Task_AddFrame(UmbralRift_WatchVigil, TASK_PASS_FRAME);
+}
+
 s32 UmbralRift_Initialize(void) {
   // Reaching the Memory Room by its front door (from the maze) opens the
   // Fountain Hall's right arch as the way back to it.
@@ -387,9 +496,10 @@ s32 UmbralRift_Initialize(void) {
       Actor_SetSpritePriority(ACTOR_RITUAL_KARIS, 1);
     }
   }
-  // Vale: Dora sunk in the pond.
+  // Vale: the statues by the cave stand only for the times the party has been
+  // caught; then the watch starts.
   if (UMBRAL_SCENE_IS(UmbralVigil))
-    Actor_SetAnimation(ACTOR_VIGIL_DORA, UMBRAL_VIGIL_SUNK);
+    UmbralRift_StartVigil();
   // Back from the fight on the dais. A loss is handled by the restart point
   // (the fight flag is cleared there), so only a win returns here.
   if ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralThrone &&
@@ -635,6 +745,7 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralVigil),
     SCENE_EXIT(UMBRAL_VIGIL_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_VIGIL),
     SCENE_EXIT(UMBRAL_VIGIL_TO_GROVE, UmbralGrove, ENTRANCE_DEFAULT),
+    SCENE_EXIT(UMBRAL_VIGIL_CAUGHT, UmbralVigil, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralGrove),
     SCENE_EXIT(UMBRAL_GROVE_TO_VIGIL, UmbralVigil, UMBRAL_VIGIL_FROM_GROVE),
     SCENE_EXIT(UMBRAL_GROVE_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_VIGIL),
@@ -694,9 +805,9 @@ static struct ActorTemplate sUmbralMazeActorTemplates[] = {
     {SPRITE_WOMAN_WITH_PURPLE_HAIR, FLAG_DARK_RIFT_PAIR_MAZE,
      MOVEMENT_TYPE_STAND, PIXELS(340), 0, PIXELS(512), FACING_EAST,
      TALK_FACING_KEEP, 0},
-    // A mother at the end of the spur, her back to the corridor, facing the
-    // wall the way into Vale goes through.
-    {SPRITE_UMBRAL_VIGIL_MOTHER, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+    // A weeping statue at the end of the spur, where the way into Vale goes
+    // through the wall.
+    {SPRITE_UMBRAL_VIGIL_STATUE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
      PIXELS(296), 0, PIXELS(168), FACING_EAST, TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
@@ -1034,29 +1145,24 @@ static struct SceneEntrance sUmbralVigilEntrances[] = {
     {SCENE_TABLE_END},
 };
 
-#define VIGIL_MOTHER(x, z)                                                     \
-  {SPRITE_UMBRAL_VIGIL_MOTHER, CONDITION_ALWAYS, MOVEMENT_TYPE_FACE_LEADER,    \
+#define VIGIL_STATUE(x, z)                                                     \
+  {SPRITE_UMBRAL_VIGIL_STATUE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,          \
    PIXELS(x), 0, PIXELS(z), FACING_SOUTH, TALK_FACING_KEEP, 0}
 static struct ActorTemplate sUmbralVigilActorTemplates[] = {
-    // Dora, sunk to her shoulders in the black pond beside the Psynergy
-    // Stone (UMBRAL_VIGIL_SUNK, set at start-up).
-    {SPRITE_DORA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(248), 0,
-     PIXELS(328), FACING_SOUTH, TALK_FACING_KEEP, 0},
-    // The faceless ring around the pond, where Vale stood on the stormy
-    // night: three above, two each side, two below with a gap between them
-    // on the way to the arch.
-    VIGIL_MOTHER(168, 248),
-    VIGIL_MOTHER(216, 248),
-    VIGIL_MOTHER(264, 248),
-    VIGIL_MOTHER(136, 296),
-    VIGIL_MOTHER(136, 344),
-    VIGIL_MOTHER(296, 296),
-    VIGIL_MOTHER(296, 344),
-    VIGIL_MOTHER(168, 392),
-    VIGIL_MOTHER(264, 392),
+    // Round where the pond was: one above, two each side.
+    VIGIL_STATUE(216, 248),
+    VIGIL_STATUE(136, 304),
+    VIGIL_STATUE(136, 360),
+    VIGIL_STATUE(296, 304),
+    VIGIL_STATUE(296, 360),
+    // By the cave mouth, one for each time the party has been caught
+    // (hidden at start-up until then).
+    VIGIL_STATUE(136, 136),
+    VIGIL_STATUE(248, 120),
+    VIGIL_STATUE(104, 200),
     {SCENE_TABLE_END},
 };
-#undef VIGIL_MOTHER
+#undef VIGIL_STATUE
 
 static struct Trigger sUmbralVigilTriggers[] = {
     {TRIGGER_EXIT, UMBRAL_VIGIL_TO_MAZE, CONDITION_ALWAYS, UMBRAL_VIGIL_TO_MAZE},

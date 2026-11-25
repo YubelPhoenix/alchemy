@@ -2865,5 +2865,9 @@
 #define FLAG_DARK_RIFT_KARIS_BEATEN 0x919
 /// The Vengeful Wraith is speaking: her lines show her own mugshot.
 #define FLAG_DARK_WRAITH_SPEAKING 0x91a
+/// The Vigil (Umbral Rift): how many times a statue has caught the party, in
+/// two bits (1 and 2), up to three.
+#define FLAG_DARK_RIFT_VIGIL_CAUGHT_1 0x91b
+#define FLAG_DARK_RIFT_VIGIL_CAUGHT_2 0x91c
 
 #endif
