@@ -150,12 +150,16 @@ enum {
   UMBRAL_VIGIL_CATCH_DISTANCE = 16,
   /// Frames the leader stands as stone before the party is sent back.
   UMBRAL_VIGIL_STONE_FRAMES = 60,
+  /// Frames between grinds while any statue is moving.
+  UMBRAL_VIGIL_GRIND_FRAMES = 96,
 };
 
 /// The Grove (map row 0xc4, map_195): Kolima, cut whole from map_037, where
 /// wood and skin are one thing. Its great stumps are flesh; among their roots,
 /// in the clearing and penned in the fold stand Kolima's people half become
-/// trees, mouths open, breathing. They are silent, as is Vale. In from Vale
+/// trees, mouths open. They breathe only while the leader walks, all together,
+/// and stop dead when he stops (UmbralRift_BreatheWithGrove). The fold holds
+/// three, and a fourth place stands empty. Silent, as is Vale. In from Vale
 /// at the west edge, out at the east edge into the maze's spur again.
 enum {
   UMBRAL_GROVE_FROM_VIGIL = 1,
@@ -167,6 +171,14 @@ enum {
   /// raised arms gone to dead wood, trunk and roots below (spr_508,
   /// tools/dark_story/build_umbral_grove_art.py).
   SPRITE_UMBRAL_GROVE_FIGURE = 508,
+  /// SPRITE_UMBRAL_GROVE_FIGURE's animations: held mid-breath, and breathing.
+  UMBRAL_GROVE_HELD = 0,
+  UMBRAL_GROVE_BREATHING = 1,
+  /// The figures, all placed actors from ACTOR_FIRST_PLACED.
+  UMBRAL_GROVE_FIGURES = 14,
+  /// Frames the leader must stand before the grove stops with him (steps
+  /// pause between cells).
+  UMBRAL_GROVE_STILL_FRAMES = 4,
 };
 
 /// The Memory Room (map row 0xbd): Isaac's house in Vale, rebuilt in obsidian
@@ -336,6 +348,7 @@ struct UmbralVigilWatch {
   u8 timer;  ///< frames he has stood as stone since
   u8 moved;  ///< bits: the statues that have moved
   u8 tick;   ///< counts frames; they step on every other one
+  u8 grind;  ///< frames until a moving statue may grind again
 };
 struct UmbralVigilWatch gUmbralRift_VigilWatch;
 
@@ -352,7 +365,9 @@ static s32 UmbralRift_VigilCatches(void) {
 /// Runs every frame in the Vigil. A statue anywhere in front of the leader
 /// (the half of the plaza he faces) never moves; any other comes a pixel
 /// every other frame toward him, half his walking pace, wearing her moved
-/// face from then on. One that reaches him
+/// face from then on. While any of them moves, stone grinds (SE_STONE_GRIND)
+/// at most every UMBRAL_VIGIL_GRIND_FRAMES, so the player hears what they do
+/// not see. One that reaches him
 /// unseen turns him to stone, holds the field, and after
 /// UMBRAL_VIGIL_STONE_FRAMES sends the party back in at the cave mouth.
 static void UmbralRift_WatchVigil(void) {
@@ -373,6 +388,8 @@ static void UmbralRift_WatchVigil(void) {
   lx = leader->x.fixed >> 16;
   lz = leader->z.fixed >> 16;
   watch->tick++;
+  if (watch->grind != 0)
+    watch->grind--;
   fx = sUmbralVigilFacingX[((leader->facing + 0x1000) >> 13) & 7];
   fz = sUmbralVigilFacingZ[((leader->facing + 0x1000) >> 13) & 7];
   for (i = 0; i < UMBRAL_VIGIL_STATUES; i++) {
@@ -410,11 +427,66 @@ static void UmbralRift_WatchVigil(void) {
       watch->moved |= 1 << i;
       Actor_SetAnimation(ACTOR_FIRST_PLACED + i, UMBRAL_VIGIL_STATUE_MOVED);
     }
+    if (watch->grind == 0) {
+      Sound_PlaySong(SE_STONE_GRIND);
+      watch->grind = UMBRAL_VIGIL_GRIND_FRAMES;
+    }
     if ((dx < 0 ? -dx : dx) > (dz < 0 ? -dz : dz))
       statue->x.fixed += dx > 0 ? -0x10000 : 0x10000;
     else
       statue->z.fixed += dz > 0 ? -0x10000 : 0x10000;
   }
+}
+
+/// The Grove's breath, kept for the frame task.
+struct UmbralGroveBreath {
+  s32 x;        ///< the leader's position last frame, 16.16 pixels
+  s32 z;
+  u8 breathing; ///< 1 while the figures breathe
+  u8 still;     ///< frames the leader has not moved
+};
+struct UmbralGroveBreath gUmbralRift_GroveBreath;
+
+/// Sets every figure in the Grove to one animation.
+static void UmbralRift_SetGroveAnimation(s32 animation) {
+  s32 i;
+
+  for (i = 0; i < UMBRAL_GROVE_FIGURES; i++)
+    Actor_SetAnimation(ACTOR_FIRST_PLACED + i, animation);
+}
+
+/// Runs every frame in the Grove: the figures breathe, all together, only
+/// while the leader walks, and all stop mid-breath once he has stood still
+/// for UMBRAL_GROVE_STILL_FRAMES.
+static void UmbralRift_BreatheWithGrove(void) {
+  struct UmbralGroveBreath *breath = &gUmbralRift_GroveBreath;
+  struct Actor *leader = Actor_GetById(gSaveBlock.leaderActorId);
+
+  if (leader->x.fixed != breath->x || leader->z.fixed != breath->z) {
+    breath->x = leader->x.fixed;
+    breath->z = leader->z.fixed;
+    breath->still = 0;
+    if (!breath->breathing) {
+      breath->breathing = 1;
+      UmbralRift_SetGroveAnimation(UMBRAL_GROVE_BREATHING);
+    }
+  } else if (breath->breathing &&
+             ++breath->still >= UMBRAL_GROVE_STILL_FRAMES) {
+    breath->breathing = 0;
+    UmbralRift_SetGroveAnimation(UMBRAL_GROVE_HELD);
+  }
+}
+
+/// Sets up the Grove: every figure held still until the leader moves.
+static void UmbralRift_StartGrove(void) {
+  struct Actor *leader = Actor_GetById(gSaveBlock.leaderActorId);
+
+  gUmbralRift_GroveBreath.x = leader->x.fixed;
+  gUmbralRift_GroveBreath.z = leader->z.fixed;
+  gUmbralRift_GroveBreath.breathing = 0;
+  gUmbralRift_GroveBreath.still = 0;
+  UmbralRift_SetGroveAnimation(UMBRAL_GROVE_HELD);
+  Task_AddFrame(UmbralRift_BreatheWithGrove, TASK_PASS_FRAME);
 }
 
 /// Sets up the Vigil: hides the statues by the cave beyond the number of
@@ -429,6 +501,7 @@ static void UmbralRift_StartVigil(void) {
   gUmbralRift_VigilWatch.timer = 0;
   gUmbralRift_VigilWatch.moved = 0;
   gUmbralRift_VigilWatch.tick = 0;
+  gUmbralRift_VigilWatch.grind = 0;
   Task_AddFrame(UmbralRift_WatchVigil, TASK_PASS_FRAME);
 }
 
@@ -490,6 +563,8 @@ s32 UmbralRift_Initialize(void) {
   // caught; then the watch starts.
   if (UMBRAL_SCENE_IS(UmbralVigil))
     UmbralRift_StartVigil();
+  if (UMBRAL_SCENE_IS(UmbralGrove))
+    UmbralRift_StartGrove();
   // Back from the fight on the dais. A loss is handled by the restart point
   // (the fight flag is cleared there), so only a win returns here.
   if ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralThrone &&
@@ -1164,9 +1239,11 @@ static struct ActorTemplate sUmbralGroveActorTemplates[] = {
     GROVE_FIGURE(184, 200, YOUNG_MAN),
     GROVE_FIGURE(232, 192, WOMAN),
     GROVE_FIGURE(264, 216, MAN),
-    // Two penned in the fold like livestock.
-    GROVE_FIGURE(344, 328, WOMAN),
-    GROVE_FIGURE(360, 344, YOUNG_MAN),
+    // Three penned in the fold like livestock, in two rows of two: the
+    // fourth place, front right, is empty.
+    GROVE_FIGURE(336, 320, WOMAN),
+    GROVE_FIGURE(360, 320, YOUNG_MAN),
+    GROVE_FIGURE(336, 344, MAN),
     {SCENE_TABLE_END},
 };
 #undef WOMAN
