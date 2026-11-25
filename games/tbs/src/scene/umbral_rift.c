@@ -76,12 +76,17 @@ enum {
 enum {
   UMBRAL_MAZE_FROM_TOP_DOOR = 1,
   UMBRAL_MAZE_FROM_RITUAL = 2,
+  /// Back out of Vale or Kolima, in the spur beside the mother.
+  UMBRAL_MAZE_FROM_VIGIL = 3,
 };
 enum {
   UMBRAL_MAZE_TO_FOUNTAIN = 1,
   UMBRAL_MAZE_TO_TOP_DOOR = 2,
   /// The east door at the end of the middle corridor, into the Ritual Room.
   UMBRAL_MAZE_TO_RITUAL = 3,
+  /// The end of the short spur off the west corridor, past the mother who
+  /// stands there facing the wall: on into Vale.
+  UMBRAL_MAZE_TO_VIGIL = 4,
 };
 
 /// The Ritual Room (map row 0xc1): a small chamber of Mercury Lighthouse in
@@ -111,6 +116,42 @@ enum {
   UMBRAL_PALACE_TO_MEMORY = 6,
   SPRITE_UMBRAL_STATUE_TWO_FACE = 505,
   SPRITE_UMBRAL_STATUE_ELONGATED = 506,
+};
+
+/// The Vigil (map row 0xc3, map_194): Vale's plaza, cut from map_003, as the
+/// Rift rebuilt it from the night of the storm. Every door is shut. Around
+/// the black pond stand nine copies of Isaac's mother with no faces, each
+/// turning to keep the leader in front of her; in the pond, sunk to her
+/// shoulders beside the Psynergy Stone, the one with a face. In at the cave
+/// mouth (from the maze), out by the arch at the south.
+enum {
+  UMBRAL_VIGIL_FROM_GROVE = 1,
+  /// Exit 1: the cave mouth under the cliff, back to the maze.
+  UMBRAL_VIGIL_TO_MAZE = 1,
+  /// Exit 2: the path through the arch at the south, on into Kolima.
+  UMBRAL_VIGIL_TO_GROVE = 2,
+  /// Dora with her face taken away (spr_507,
+  /// tools/dark_story/build_umbral_vigil_art.py).
+  SPRITE_UMBRAL_VIGIL_MOTHER = 507,
+  /// ANIM_ of SPRITE_DORA's 9th animation: sunk to her shoulders (frame 43).
+  UMBRAL_VIGIL_SUNK = 8,
+};
+enum { ACTOR_VIGIL_DORA = ACTOR_FIRST_PLACED };
+
+/// The Grove (map row 0xc4, map_195): Kolima, cut whole from map_037, where
+/// wood and skin are one thing. Its great stumps are flesh; among their roots,
+/// in the clearing and penned in the fold stand Kolima's cursed trees drawn
+/// as skin, each with a face pressed into the bark, breathing. In from Vale
+/// at the west edge, out at the east edge into the maze's spur again.
+enum {
+  UMBRAL_GROVE_FROM_VIGIL = 1,
+  /// Exit 1: the west edge, back to Vale.
+  UMBRAL_GROVE_TO_VIGIL = 1,
+  /// Exit 2: the east edge, which comes out in the maze's spur.
+  UMBRAL_GROVE_TO_MAZE = 2,
+  /// Kolima's cursed tree as skin with a face (spr_508,
+  /// tools/dark_story/build_umbral_grove_art.py).
+  SPRITE_UMBRAL_GROVE_FIGURE = 508,
 };
 
 /// The Memory Room (map row 0xbd): Isaac's house in Vale, rebuilt in obsidian
@@ -346,6 +387,9 @@ s32 UmbralRift_Initialize(void) {
       Actor_SetSpritePriority(ACTOR_RITUAL_KARIS, 1);
     }
   }
+  // Vale: Dora sunk in the pond.
+  if (UMBRAL_SCENE_IS(UmbralVigil))
+    Actor_SetAnimation(ACTOR_VIGIL_DORA, UMBRAL_VIGIL_SUNK);
   // Back from the fight on the dais. A loss is handled by the restart point
   // (the fight flag is cleared there), so only a win returns here.
   if ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralThrone &&
@@ -570,6 +614,7 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXIT(UMBRAL_MAZE_TO_FOUNTAIN, UmbralCrossbone, UMBRAL_CROSSBONE_FROM_MAZE),
     SCENE_EXIT(UMBRAL_MAZE_TO_TOP_DOOR, UmbralPalace, ENTRANCE_DEFAULT),
     SCENE_EXIT(UMBRAL_MAZE_TO_RITUAL, UmbralRitual, ENTRANCE_DEFAULT),
+    SCENE_EXIT(UMBRAL_MAZE_TO_VIGIL, UmbralVigil, ENTRANCE_DEFAULT),
     SCENE_EXITS(UmbralMemory),
     SCENE_EXIT(UMBRAL_MEMORY_TO_MAZE, UmbralPalace, UMBRAL_PALACE_FROM_MEMORY),
     SCENE_EXIT(UMBRAL_MEMORY_TO_STAIR, UmbralFountain, UMBRAL_FOUNTAIN_FROM_RIGHT_ARCH),
@@ -587,6 +632,12 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralPalace),
     SCENE_EXIT(UMBRAL_PALACE_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_TOP_DOOR),
     SCENE_EXIT(UMBRAL_PALACE_TO_MEMORY, UmbralMemory, ENTRANCE_DEFAULT),
+    SCENE_EXITS(UmbralVigil),
+    SCENE_EXIT(UMBRAL_VIGIL_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_VIGIL),
+    SCENE_EXIT(UMBRAL_VIGIL_TO_GROVE, UmbralGrove, ENTRANCE_DEFAULT),
+    SCENE_EXITS(UmbralGrove),
+    SCENE_EXIT(UMBRAL_GROVE_TO_VIGIL, UmbralVigil, UMBRAL_VIGIL_FROM_GROVE),
+    SCENE_EXIT(UMBRAL_GROVE_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_VIGIL),
     SCENE_EXITS_END,
 };
 
@@ -643,6 +694,10 @@ static struct ActorTemplate sUmbralMazeActorTemplates[] = {
     {SPRITE_WOMAN_WITH_PURPLE_HAIR, FLAG_DARK_RIFT_PAIR_MAZE,
      MOVEMENT_TYPE_STAND, PIXELS(340), 0, PIXELS(512), FACING_EAST,
      TALK_FACING_KEEP, 0},
+    // A mother at the end of the spur, her back to the corridor, facing the
+    // wall the way into Vale goes through.
+    {SPRITE_UMBRAL_VIGIL_MOTHER, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
+     PIXELS(296), 0, PIXELS(168), FACING_EAST, TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
 
@@ -729,6 +784,9 @@ static struct SceneEntrance sUmbralMazeEntrances[] = {
     // Back out of the Ritual Room, below the east door.
     {UMBRAL_MAZE_FROM_RITUAL, CONDITION_ALWAYS, 424, 0, 280, FACING_SOUTH, 0,
      -1, -1, -1, -1, 0},
+    // In the spur, beside the mother, walking away from her.
+    {UMBRAL_MAZE_FROM_VIGIL, CONDITION_ALWAYS, 264, 0, 184, FACING_WEST, 0,
+     -1, -1, -1, -1, 0},
     {SCENE_TABLE_END},
 };
 
@@ -739,6 +797,8 @@ static struct Trigger sUmbralMazeTriggers[] = {
      UMBRAL_MAZE_TO_TOP_DOOR},
     {TRIGGER_EXIT, UMBRAL_MAZE_TO_RITUAL, CONDITION_ALWAYS,
      UMBRAL_MAZE_TO_RITUAL},
+    {TRIGGER_EXIT, UMBRAL_MAZE_TO_VIGIL, CONDITION_ALWAYS,
+     UMBRAL_MAZE_TO_VIGIL},
     {TRIGGER_STEP, UMBRAL_ECHO_STEP, FLAG_DARK_RIFT_PAIR_MAZE,
      EVENT(UmbralRift_ApproachMazeEcho)},
     {TRIGGERS_END},
@@ -964,6 +1024,85 @@ static struct Trigger sUmbralBeaconTriggers[] = {
     {TRIGGERS_END},
 };
 
+static struct SceneEntrance sUmbralVigilEntrances[] = {
+    // Out of the cave mouth under the cliff, from the maze.
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 184, 0, 120, FACING_SOUTH, 0, -1, -1,
+     -1, -1, 0},
+    // Back through the arch from Kolima.
+    {UMBRAL_VIGIL_FROM_GROVE, CONDITION_ALWAYS, 216, 0, 488, FACING_NORTH, 0,
+     -1, -1, -1, -1, 0},
+    {SCENE_TABLE_END},
+};
+
+#define VIGIL_MOTHER(x, z)                                                     \
+  {SPRITE_UMBRAL_VIGIL_MOTHER, CONDITION_ALWAYS, MOVEMENT_TYPE_FACE_LEADER,    \
+   PIXELS(x), 0, PIXELS(z), FACING_SOUTH, TALK_FACING_KEEP, 0}
+static struct ActorTemplate sUmbralVigilActorTemplates[] = {
+    // Dora, sunk to her shoulders in the black pond beside the Psynergy
+    // Stone (UMBRAL_VIGIL_SUNK, set at start-up).
+    {SPRITE_DORA, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(248), 0,
+     PIXELS(328), FACING_SOUTH, TALK_FACING_KEEP, 0},
+    // The faceless ring around the pond, where Vale stood on the stormy
+    // night: three above, two each side, two below with a gap between them
+    // on the way to the arch.
+    VIGIL_MOTHER(168, 248),
+    VIGIL_MOTHER(216, 248),
+    VIGIL_MOTHER(264, 248),
+    VIGIL_MOTHER(136, 296),
+    VIGIL_MOTHER(136, 344),
+    VIGIL_MOTHER(296, 296),
+    VIGIL_MOTHER(296, 344),
+    VIGIL_MOTHER(168, 392),
+    VIGIL_MOTHER(264, 392),
+    {SCENE_TABLE_END},
+};
+#undef VIGIL_MOTHER
+
+static struct Trigger sUmbralVigilTriggers[] = {
+    {TRIGGER_EXIT, UMBRAL_VIGIL_TO_MAZE, CONDITION_ALWAYS, UMBRAL_VIGIL_TO_MAZE},
+    {TRIGGER_EXIT, UMBRAL_VIGIL_TO_GROVE, CONDITION_ALWAYS,
+     UMBRAL_VIGIL_TO_GROVE},
+    {TRIGGERS_END},
+};
+
+static struct SceneEntrance sUmbralGroveEntrances[] = {
+    // In at Kolima's west edge, from Vale.
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 44, 0, 267, FACING_EAST, 0, -1, -1,
+     -1, -1, 0},
+    {SCENE_TABLE_END},
+};
+
+#define GROVE_FIGURE(x, z)                                                     \
+  {SPRITE_UMBRAL_GROVE_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,          \
+   PIXELS(x), 0, PIXELS(z), FACING_SOUTH, TALK_FACING_KEEP, 0}
+static struct ActorTemplate sUmbralGroveActorTemplates[] = {
+    // Two grown out of the roots of each stump, either side of its door.
+    GROVE_FIGURE(88, 184),
+    GROVE_FIGURE(168, 184),
+    GROVE_FIGURE(280, 232),
+    GROVE_FIGURE(376, 232),
+    GROVE_FIGURE(120, 312),
+    GROVE_FIGURE(200, 312),
+    GROVE_FIGURE(232, 376),
+    GROVE_FIGURE(312, 376),
+    // A few in the clearing, where the villagers would stand to talk.
+    GROVE_FIGURE(200, 232),
+    GROVE_FIGURE(248, 232),
+    GROVE_FIGURE(216, 264),
+    // Two penned in the fold like livestock.
+    GROVE_FIGURE(344, 328),
+    GROVE_FIGURE(360, 344),
+    {SCENE_TABLE_END},
+};
+#undef GROVE_FIGURE
+
+static struct Trigger sUmbralGroveTriggers[] = {
+    {TRIGGER_EXIT, UMBRAL_GROVE_TO_VIGIL, CONDITION_ALWAYS,
+     UMBRAL_GROVE_TO_VIGIL},
+    {TRIGGER_EXIT, UMBRAL_GROVE_TO_MAZE, CONDITION_ALWAYS, UMBRAL_GROVE_TO_MAZE},
+    {TRIGGERS_END},
+};
+
 // Original Babi Palace camera bounds and door coordinates; no palace events.
 static struct SceneEntrance sUmbralPalaceEntrances[] = {
     {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 768, 0, 200, FACING_NORTH, 0,
@@ -992,6 +1131,8 @@ static struct Trigger sUmbralPalaceTriggers[] = {
 };
 
 #define UMBRAL_IN_PALACE() ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralPalace)
+#define UMBRAL_IN_VIGIL() ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralVigil)
+#define UMBRAL_IN_GROVE() ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralGrove)
 
 #define UMBRAL_IN_BEACON() ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralBeacon)
 
@@ -1006,7 +1147,9 @@ static struct Trigger sUmbralPalaceTriggers[] = {
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralFountain)
 
 const struct SceneEntrance *Scene_GetEntrances(void) {
-  return UMBRAL_IN_PALACE()      ? sUmbralPalaceEntrances
+  return UMBRAL_IN_VIGIL()       ? sUmbralVigilEntrances
+         : UMBRAL_IN_GROVE()       ? sUmbralGroveEntrances
+         : UMBRAL_IN_PALACE()      ? sUmbralPalaceEntrances
          : UMBRAL_IN_RITUAL()    ? sUmbralRitualEntrances
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneEntrances
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconEntrances
@@ -1019,7 +1162,9 @@ const struct SceneEntrance *Scene_GetEntrances(void) {
 const struct SceneExitRegion *Scene_GetExitRegions(void) { return NULL; }
 const u32 *Scene_GetExits(void) { return sUmbralThroneExits; }
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
-  return UMBRAL_IN_PALACE()      ? sUmbralPalaceActorTemplates
+  return UMBRAL_IN_VIGIL()       ? sUmbralVigilActorTemplates
+         : UMBRAL_IN_GROVE()       ? sUmbralGroveActorTemplates
+         : UMBRAL_IN_PALACE()      ? sUmbralPalaceActorTemplates
          : UMBRAL_IN_RITUAL()    ? sUmbralRitualActorTemplates
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneActorTemplates
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconActorTemplates
@@ -1030,7 +1175,9 @@ const struct ActorTemplate *Scene_GetActorTemplates(void) {
                                 : sUmbralThroneActorTemplates;
 }
 const struct Trigger *Scene_GetTriggers(void) {
-  return UMBRAL_IN_PALACE()      ? sUmbralPalaceTriggers
+  return UMBRAL_IN_VIGIL()       ? sUmbralVigilTriggers
+         : UMBRAL_IN_GROVE()       ? sUmbralGroveTriggers
+         : UMBRAL_IN_PALACE()      ? sUmbralPalaceTriggers
          : UMBRAL_IN_RITUAL()    ? sUmbralRitualTriggers
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneTriggers
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconTriggers

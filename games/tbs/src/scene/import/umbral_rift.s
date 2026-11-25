@@ -27,4 +27,5 @@
 .set import.Portrait_CloseWindow, 1
 .set import.MapGrid_CopyMetatileCellsRect, 1
 .set import.TreasureSpot_SetActorPosition, 1
+.set import.Import_ActorSetAnimation, 1
 .include "games/tbs/src/system/overlay.inc"
