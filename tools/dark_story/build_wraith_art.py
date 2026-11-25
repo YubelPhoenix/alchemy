@@ -88,9 +88,10 @@ print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 # all opaque, each channel a multiple of eight (GBA 5-bit colour).
 portrait = Image.open(SOURCE / "mugshot_32.png").convert("RGB")
 assert portrait.size == (32, 32), portrait.size
-# Sixteen colours. Her face keeps fixed shades (FACE: the light, the mid
+# Fifteen colours (palette index 0 is see-through in a portrait and stays
+# unused, so every pixel is index 1 to 15). Her face keeps fixed shades (FACE: the light, the mid
 # tones that shape her nose and jaw, and the mouth), or the cut merges them
-# all into one flat skin colour; the other eleven are picked by k-means in Lab
+# all into one flat skin colour; the other ten are picked by k-means in Lab
 # (seeded farthest-first) for her hair, eyes and collar, not by median cut,
 # which loses her purple eyes.
 FACE = [(248, 232, 208), (248, 216, 184), (232, 192, 152), (216, 176, 128),
@@ -100,17 +101,17 @@ rgb = np.asarray(portrait, dtype=float).reshape(-1, 3)
 lab = to_lab(rgb)
 fixed = to_lab(np.array(FACE, dtype=float))
 centres = list(fixed)
-while len(centres) < 16:
+while len(centres) < 15:
     gap = np.min([((lab - c) ** 2).sum(1) for c in centres], 0)
     centres.append(lab[gap.argmax()])
 centres = np.array(centres)
 for _ in range(40):
     label = ((lab[:, None] - centres[None]) ** 2).sum(2).argmin(1)
-    for k in range(len(FACE), 16):
+    for k in range(len(FACE), 15):
         if (label == k).any():
             centres[k] = lab[label == k].mean(0)
 icon_palette = []
-for k in range(16):
+for k in range(15):
     if k < len(FACE):
         mean = np.array(FACE[k], dtype=float)
     else:
@@ -119,15 +120,15 @@ for k in range(16):
 # A lone pixel of the mouth's shade elsewhere reads as a mark on her face:
 # it takes its next-nearest colour.
 grid = label.reshape(32, 32)
-dist = ((lab[:, None] - centres[None]) ** 2).sum(2).reshape(32, 32, 16)
+dist = ((lab[:, None] - centres[None]) ** 2).sum(2).reshape(32, 32, 15)
 for y, x in zip(*np.nonzero(grid == MOUTH)):
     near = grid[max(y - 1, 0):y + 2, max(x - 1, 0):x + 2]
     if (near == MOUTH).sum() == 1:
         d = dist[y, x].copy()
         d[MOUTH] = np.inf
         grid[y, x] = d.argmin()
-icon = Image.fromarray(grid.astype(np.uint8), "P")
-icon.putpalette(icon_palette)
+icon = Image.fromarray(grid.astype(np.uint8) + 1, "P")
+icon.putpalette([0, 0, 0] + icon_palette)
 icon_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_69.png"
 icon.save(icon_target)
 print(f"Rebuilt {icon_target.relative_to(ROOT)} from her mugshot")
