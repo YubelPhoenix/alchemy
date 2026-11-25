@@ -338,9 +338,8 @@ Resource_DirectoryTable:
 	resource UmbralCrossbonePalette, Tileset_PaletteUmbralCross
 	resource UmbralRitualMap, Field_Map192
 	resource UmbralRitualTilesC, Tileset_UmbralRitualTilesC
-	resource UmbralPalaceMap, Field_Map193
-	resource UmbralPalacePalette, Tileset_PaletteUmbralPalace
 	resource WraithSprites, Monster_WraithSprites
+	unused 2
 
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp
