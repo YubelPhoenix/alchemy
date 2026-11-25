@@ -94,6 +94,9 @@ enum {
 };
 /// Entrance 1: back under the arch after the fight with Karis.
 enum { UMBRAL_RITUAL_FROM_KARIS_BATTLE = 1 };
+/// The chest at the pentagram's heart, where the Wraith stood (treasure spot
+/// and trigger subject 100).
+enum { UMBRAL_RITUAL_CHEST = 100 };
 /// The first row of the pentagram, just inside the arch.
 enum { UMBRAL_RITUAL_STEP = 0x20 };
 /// The Vengeful Wraith (Dark Dawn's Karis), standing black at the
@@ -326,6 +329,8 @@ s32 UmbralRift_Initialize(void) {
         gSaveBlock.sequenceResult != -1)
       UmbralRift_KarisAftermath();
     else {
+      // The chest at her feet is not there until she fades.
+      TreasureSpot_SetPosition(UMBRAL_RITUAL_CHEST, 0, 0);
       UmbralRift_PairShow(ACTOR_RITUAL_KARIS, ACTOR_RITUAL_KARIS);
       // She stands on the pentagram, drawn above the floor's markings.
       Actor_SetSpritePriority(ACTOR_RITUAL_KARIS, 1);
@@ -808,6 +813,8 @@ static void UmbralRift_KarisAftermath(void) {
   UmbralRift_FlickerOut(ACTOR_RITUAL_KARIS, ACTOR_RITUAL_KARIS);
   Actor_ConfigureSpriteColor(ACTOR_RITUAL_KARIS, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_RITUAL_KARIS, PIXELS(-9), PIXELS(488));
+  // Where she stood, the chest she leaves behind.
+  TreasureSpot_SetPosition(UMBRAL_RITUAL_CHEST, -1, -1);
   GameFlag_Set(FLAG_DARK_RIFT_KARIS_BEATEN);
   UmbralRift_Say(MsgDarkRiftKaris005, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftKaris014, ACTOR_GARET);
