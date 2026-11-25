@@ -89,24 +89,41 @@ print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 portrait = Image.open(SOURCE / "mugshot_32.png").convert("RGB")
 assert portrait.size == (32, 32), portrait.size
 # Sixteen colours picked by k-means in Lab (seeded farthest-first), not median
-# cut, which spends them all on hair and skin and loses her purple eyes.
+# cut, which spends them all on hair and skin and loses her purple eyes. Her
+# mouth's shade (MOUTH, two pixels) keeps a colour of its own, or it melts
+# into the skin.
+MOUTH = (200, 136, 88)
 rgb = np.asarray(portrait, dtype=float).reshape(-1, 3)
 lab = to_lab(rgb)
-centres = [lab[lab[:, 0].argmin()]]
-for _ in range(15):
+mouth = to_lab(np.array([MOUTH], dtype=float))[0]
+centres = [lab[lab[:, 0].argmin()], mouth]
+for _ in range(14):
     gap = np.min([((lab - c) ** 2).sum(1) for c in centres], 0)
     centres.append(lab[gap.argmax()])
 centres = np.array(centres)
 for _ in range(40):
     label = ((lab[:, None] - centres[None]) ** 2).sum(2).argmin(1)
     for k in range(16):
-        if (label == k).any():
+        if k != 1 and (label == k).any():
             centres[k] = lab[label == k].mean(0)
 icon_palette = []
 for k in range(16):
-    mean = rgb[label == k].mean(0) if (label == k).any() else np.zeros(3)
+    if k == 1:
+        mean = np.array(MOUTH, dtype=float)
+    else:
+        mean = rgb[label == k].mean(0) if (label == k).any() else np.zeros(3)
     icon_palette += [int(round(v)) // 8 * 8 for v in mean]
-icon = Image.fromarray(label.reshape(32, 32).astype(np.uint8), "P")
+# A lone pixel of the mouth's shade elsewhere reads as a mark on her face:
+# it takes its next-nearest colour.
+grid = label.reshape(32, 32)
+dist = ((lab[:, None] - centres[None]) ** 2).sum(2).reshape(32, 32, 16)
+for y, x in zip(*np.nonzero(grid == 1)):
+    near = grid[max(y - 1, 0):y + 2, max(x - 1, 0):x + 2]
+    if (near == 1).sum() == 1:
+        d = dist[y, x].copy()
+        d[1] = np.inf
+        grid[y, x] = d.argmin()
+icon = Image.fromarray(grid.astype(np.uint8), "P")
 icon.putpalette(icon_palette)
 icon_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_69.png"
 icon.save(icon_target)
