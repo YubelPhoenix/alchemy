@@ -839,8 +839,8 @@ static struct SceneEntrance sUmbralRitualEntrances[] = {
 
 static struct ActorTemplate sUmbralRitualActorTemplates[] = {
     // Karis at the pentagram's heart, drawn black, facing the arch: a young
-    // woman's sprite with no portrait of its own, and Mia's young woman's
-    // voice.
+    // woman's sprite with no portrait of its own (her lines show her mugshot,
+    // FLAG_DARK_WRAITH_SPEAKING), and Mia's young woman's voice.
     {SPRITE_YOUNG_WOMAN_IN_GREEN, FLAG_DARK_RIFT_KARIS_BEATEN,
      MOVEMENT_TYPE_STAND, PIXELS(136), 0, PIXELS(120), FACING_NORTH,
      TALK_FACING_KEEP, 0},

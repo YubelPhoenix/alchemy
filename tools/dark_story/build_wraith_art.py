@@ -96,7 +96,7 @@ print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 
 # Her mugshot: portrait icon ICON_69 (icons.tsv; numbered 128 + 53 in
 # Portrait_GetForSpeaker). assets/wraith/mugshot_32.png is the supplied 32x32
-# portrait (mugshot_source.png, cut out of its window frame) with the pink
+# portrait (cut out of a screenshot's window frame) with the pink
 # backdrop made black and the smile closed to a flat mouth. Sixteen colours,
 # all opaque, each channel a multiple of eight (GBA 5-bit colour).
 portrait = Image.open(SOURCE / "mugshot_32.png").convert("RGB")
