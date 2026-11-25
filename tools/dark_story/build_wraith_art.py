@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+"""Pack the Vengeful Wraith's battle art (assets/wraith, drawn by the
+author on 128x128 canvases at the game's scale) into her monster sheet,
+SPR_491.
+
+Each pose is cut from its canvas through one shared 64x64 window, so the
+poses keep the places they were drawn in relative to each other (two are
+moved a little: SHIFT). Colours
+go to the nearest entries of the shared sprite palette
+(games/tbs/src/system/memory/basic.png); half-transparent edge pixels are
+kept if at least half opaque.
+
+The sheet is 64x768, twelve frames, each pose stored twice as the sprite
+engine steps frames by two (as Heart's, build_heart_art.py):
+
+  0-1   idle             2-3   leap (the attack's run-up)   4-5   attack end
+  6-7   cast (the leap's raised sword, until a cast pose is drawn)
+  8-9   damage           10-11 idle, breathing (the idle until drawn)
+"""
+from pathlib import Path
+
+import numpy as np
+from PIL import Image
+
+ROOT = Path(__file__).resolve().parents[2]
+SOURCE = ROOT / "assets/wraith"
+DEST = ROOT / "games/tbs/src/graphics/monster/wraith.png"
+SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
+FRAME = 64
+WINDOW = (36, 43)              # top left of the 64x64 window on each canvas
+# Poses whose window is moved (dx, dy): the leap's raised sword reaches
+# above the shared window; the attack's end is 70 pixels wide, so its window
+# moves a pixel left and the last few pixels of the cloak's tail are cut.
+SHIFT = {"leap": (0, -11), "attack_end": (-1, 0)}
+LAYOUT = ["idle", "leap", "attack_end", "leap", "damage", "idle"]
+
+
+def to_lab(rgb):
+    rgb = rgb / 255.0
+    rgb = np.where(rgb > 0.04045, ((rgb + 0.055) / 1.055) ** 2.4, rgb / 12.92)
+    m = np.array([[0.4124, 0.3576, 0.1805], [0.2126, 0.7152, 0.0722],
+                  [0.0193, 0.1192, 0.9505]])
+    xyz = rgb @ m.T / np.array([0.95047, 1.0, 1.08883])
+    f = np.where(xyz > 0.008856, np.cbrt(xyz), 7.787 * xyz + 16 / 116)
+    return np.stack([116 * f[..., 1] - 16, 500 * (f[..., 0] - f[..., 1]),
+                     200 * (f[..., 1] - f[..., 2])], -1)
+
+
+palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
+colors = np.array(palette, dtype=float).reshape(-1, 3)
+lab_colors = to_lab(colors[1:])
+
+sheet = np.zeros((FRAME * 2 * len(LAYOUT), FRAME), np.uint8)
+for i, name in enumerate(LAYOUT):
+    canvas = np.asarray(Image.open(SOURCE / f"{name}.png").convert("RGBA"))
+    dx, dy = SHIFT.get(name, (0, 0))
+    x0, y0 = WINDOW[0] + dx, WINDOW[1] + dy
+    src = canvas[y0:y0 + FRAME, x0:x0 + FRAME]
+    assert src.shape[:2] == (FRAME, FRAME), name
+    vis = src[..., 3] >= 128
+    d = ((to_lab(src[vis][:, :3].astype(float))[:, None, :]
+          - lab_colors[None]) ** 2).sum(2)
+    frame = np.zeros((FRAME, FRAME), np.uint8)
+    frame[vis] = d.argmin(1) + 1
+    for k in range(2):
+        sheet[(2 * i + k) * FRAME:(2 * i + k + 1) * FRAME] = frame
+
+out = Image.fromarray(sheet, "P")
+out.putpalette(palette + [0] * (256 - 224) * 3)
+out.save(DEST, optimize=False)
+print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")

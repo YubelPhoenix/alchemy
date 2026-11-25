@@ -63,4 +63,5 @@ gSpriteFrameCache_Sources:
 	.2byte ResourceId_KegareSprites, 487
 	.2byte ResourceId_SarahSprites, 488
 	.2byte ResourceId_MysterySprites, 489
+	.2byte ResourceId_WraithSprites, 491
 	.2byte 0, 0
