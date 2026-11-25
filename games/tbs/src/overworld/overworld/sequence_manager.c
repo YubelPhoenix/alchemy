@@ -137,6 +137,14 @@ void Scene_ReturnFromSequence(s32 result) {
     // fight can be tried again.
     GameFlag_ClearFar(FLAG_DARK_ASH_VALE_PENDING);
     GameFlag_ClearFar(FLAG_DARK_ASH_GATE_PENDING);
+    // Sarah's four encounters return to a Sanctum on defeat. Do not leave
+    // a pending aftermath that can consume a later, unrelated battle result.
+    // Each new challenge sets its own stage; completed fights stay intact.
+    if (GameFlag_GetFar(FLAG_DARK_SARAH_PENDING) != 0) {
+      GameFlag_ClearFar(FLAG_DARK_SARAH_PENDING);
+      GameFlag_ClearFar(FLAG_DARK_SARAH_STAGE_BIT0);
+      GameFlag_ClearFar(FLAG_DARK_SARAH_STAGE_BIT1);
+    }
     if (GameFlag_GetFar(FLAG_DARK_HEART_BEATEN) == 0)
       GameFlag_ClearFar(FLAG_DARK_HEART_FOUGHT);
     // Umbral Rift: a loss leaves ??? and Heart on the dais for another try.
