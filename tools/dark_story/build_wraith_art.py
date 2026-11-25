@@ -33,9 +33,10 @@ DEST = ROOT / "games/tbs/src/graphics/monster/wraith.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 FRAME = 64
 WINDOW = (36, 43)              # top left of the 64x64 window on each canvas
-# Poses whose window is moved (dx, dy): the cast was drawn 26 pixels higher
-# on its canvas than the idle, so it moves down to stand where she stands.
-SHIFT = {"cast": (0, -26)}
+# Poses whose window is moved (dx, dy): the cast and the damage were drawn
+# 26 and 10 pixels higher on their canvases than the idle, so they move down
+# to stand where she stands (the damage floated above her shadow).
+SHIFT = {"cast": (0, -26), "damage": (0, -10)}
 # Poses shrunk to the others' size (her hood 18 pixels wide): factor, and the
 # canvas point kept still (her feet). Shrunk, the attack's end fits the
 # window whole.
