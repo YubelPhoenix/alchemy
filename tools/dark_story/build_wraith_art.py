@@ -80,3 +80,26 @@ out = Image.fromarray(sheet, "P")
 out.putpalette(palette + [0] * (256 - 224) * 3)
 out.save(DEST, optimize=False)
 print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
+
+# Her mugshot (assets/wraith/mugshot.png, drawn at 64x64): portrait icon
+# ICON_69 (icons.tsv; numbered 128 + 53 in Portrait_GetForSpeaker). Halved to
+# 32x32 by averaging each 2x2 block, sixteen colours, index 0 transparent,
+# each channel a multiple of eight (GBA 5-bit colour).
+portrait = Image.open(SOURCE / "mugshot.png").convert("RGBA")
+if portrait.size != (32, 32):
+    portrait = portrait.resize((32, 32), Image.Resampling.BOX)
+alpha = np.asarray(portrait.getchannel("A")) >= 128
+small = portrait.convert("RGB").quantize(
+    colors=15, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
+small_palette = small.getpalette()[:45]
+pixels = np.asarray(small, dtype=np.uint8) + 1
+pixels[~alpha] = 0
+icon = Image.fromarray(pixels, "P")
+icon_palette = [0, 0, 0] + small_palette
+icon_palette += [0] * (48 - len(icon_palette))
+for i in range(len(icon_palette)):
+    icon_palette[i] = (icon_palette[i] // 8) * 8
+icon.putpalette(icon_palette)
+icon_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_69.png"
+icon.save(icon_target)
+print(f"Rebuilt {icon_target.relative_to(ROOT)} from her mugshot")

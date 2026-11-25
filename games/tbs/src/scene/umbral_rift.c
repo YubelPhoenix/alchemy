@@ -771,7 +771,11 @@ static struct Trigger sUmbralCausewayTriggers[] = {
 /// Karis speaks, kept black (a message window would redraw her in colour).
 static void UmbralRift_KarisSay(s32 message, s32 actor) {
   Actor_ConfigureSpriteColor(ACTOR_RITUAL_KARIS, SPRITE_COLOR_BLACK);
+  // Her own lines show her mugshot; the party's keep theirs.
+  if (actor == ACTOR_RITUAL_KARIS)
+    GameFlag_Set(FLAG_DARK_WRAITH_SPEAKING);
   UmbralRift_Say(message, actor);
+  GameFlag_Clear(FLAG_DARK_WRAITH_SPEAKING);
   Actor_ConfigureSpriteColor(ACTOR_RITUAL_KARIS, SPRITE_COLOR_BLACK);
 }
 

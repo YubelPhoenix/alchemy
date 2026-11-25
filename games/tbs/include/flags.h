@@ -2863,5 +2863,7 @@
 #define FLAG_DARK_RIFT_KARIS_FOUGHT 0x918
 /// Karis has been beaten and has faded from the pentagram.
 #define FLAG_DARK_RIFT_KARIS_BEATEN 0x919
+/// The Vengeful Wraith is speaking: her lines show her own mugshot.
+#define FLAG_DARK_WRAITH_SPEAKING 0x91a
 
 #endif

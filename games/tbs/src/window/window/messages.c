@@ -539,6 +539,9 @@ s32 Portrait_GetForSpeaker(u32 value) {
   // Sarah's mugshot is icon 68, numbered 128 + 52 here.
   if (GameFlag_GetFar(FLAG_DARK_SARAH_SPEAKING) != 0)
     return 128 + 52;
+  // The Vengeful Wraith's mugshot is icon 69, numbered 128 + 53 here.
+  if (GameFlag_GetFar(FLAG_DARK_WRAITH_SPEAKING) != 0)
+    return 128 + 53;
 
   // Both maps are {speaker, portrait} pairs ending in -1 (window/scales.c).
   if (value < 20) {
@@ -599,12 +602,15 @@ struct Window *Portrait_OpenWindow(s32 speaker, s32 portraitOption, s32 x,
   // would otherwise stay beside hers.
   if (GameFlag_GetFar(FLAG_DARK_HEART_SPEAKING) != 0 ||
       GameFlag_GetFar(FLAG_DARK_ASH_JENNA_SPEAKING) != 0 ||
-      GameFlag_GetFar(FLAG_DARK_SARAH_SPEAKING) != 0) {
+      GameFlag_GetFar(FLAG_DARK_SARAH_SPEAKING) != 0 ||
+      GameFlag_GetFar(FLAG_DARK_WRAITH_SPEAKING) != 0) {
     s32 own = GameFlag_GetFar(FLAG_DARK_HEART_SPEAKING) != 0
                   ? 128 + 50
                   : (GameFlag_GetFar(FLAG_DARK_ASH_JENNA_SPEAKING) != 0
                          ? 128 + 51
-                         : 128 + 52);
+                         : (GameFlag_GetFar(FLAG_DARK_SARAH_SPEAKING) != 0
+                                ? 128 + 52
+                                : 128 + 53));
     s32 slot;
 
     for (slot = 0; slot < 2; slot++) {
