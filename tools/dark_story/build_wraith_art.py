@@ -5,7 +5,9 @@ SPR_491.
 
 Each pose is cut from its canvas through one shared 64x64 window, so the
 poses keep the places they were drawn in relative to each other (two are
-moved a little: SHIFT). Colours
+moved: SHIFT). The leap was drawn larger than the rest (her hood 22 pixels
+wide against 18), so it is first shrunk to their size (SCALE) about her
+feet. Colours
 go to the nearest entries of the shared sprite palette
 (games/tbs/src/system/memory/basic.png); half-transparent edge pixels are
 kept if at least half opaque.
@@ -14,7 +16,7 @@ The sheet is 64x768, twelve frames, each pose stored twice as the sprite
 engine steps frames by two (as Heart's, build_heart_art.py):
 
   0-1   idle             2-3   leap (the attack's run-up)   4-5   attack end
-  6-7   cast (the leap's raised sword, until a cast pose is drawn)
+  6-7   cast
   8-9   damage           10-11 idle, breathing in
     (assets/wraith/idle2.png when drawn; until then made from the idle:
     everything above her boots, cloak and sword too, sinks a pixel, so she
@@ -31,11 +33,15 @@ DEST = ROOT / "games/tbs/src/graphics/monster/wraith.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 FRAME = 64
 WINDOW = (36, 43)              # top left of the 64x64 window on each canvas
-# Poses whose window is moved (dx, dy): the leap's raised sword reaches
-# above the shared window; the attack's end is 70 pixels wide, so its window
-# moves a pixel left and the last few pixels of the cloak's tail are cut.
-SHIFT = {"leap": (0, -11), "attack_end": (-1, 0)}
-LAYOUT = ["idle", "leap", "attack_end", "leap", "damage", "idle2"]
+# Poses whose window is moved (dx, dy): the cast was drawn 26 pixels higher
+# on its canvas than the idle, so it moves down to stand where she stands;
+# the attack's end is 70 pixels wide, so its window moves a pixel left and
+# the last few pixels of the cloak's tail are cut.
+SHIFT = {"cast": (0, -26), "attack_end": (-1, 0)}
+# Poses shrunk to the others' size: factor, and the canvas point kept still
+# (her feet).
+SCALE = {"leap": (18 / 22, (72, 91))}
+LAYOUT = ["idle", "leap", "attack_end", "cast", "damage", "idle2"]
 WAIST = 97                     # canvas row: all above it (not her boots) breathes
 
 
@@ -64,6 +70,13 @@ for i, name in enumerate(LAYOUT):
         canvas = breath
     else:
         canvas = np.asarray(Image.open(path).convert("RGBA"))
+    if name in SCALE:
+        factor, (ax, ay) = SCALE[name]
+        size = round(canvas.shape[1] * factor), round(canvas.shape[0] * factor)
+        small = Image.fromarray(canvas).resize(size, Image.Resampling.BOX)
+        scaled = Image.new("RGBA", (canvas.shape[1], canvas.shape[0]))
+        scaled.paste(small, (round(ax - ax * factor), round(ay - ay * factor)))
+        canvas = np.asarray(scaled)
     dx, dy = SHIFT.get(name, (0, 0))
     x0, y0 = WINDOW[0] + dx, WINDOW[1] + dy
     src = canvas[y0:y0 + FRAME, x0:x0 + FRAME]
