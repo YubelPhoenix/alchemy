@@ -95,54 +95,35 @@ out.putpalette(palette + [0] * (256 - 224) * 3)
 out.save(DEST, optimize=False)
 print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 
-# Her mugshot: portrait icon ICON_69 (icons.tsv; numbered 128 + 53 in
-# Portrait_GetForSpeaker). assets/wraith/mugshot_32.png is the supplied 32x32
-# portrait (cut out of a screenshot's window frame) with the pink
-# backdrop made black and the smile closed to a flat mouth. Sixteen colours,
-# all opaque, each channel a multiple of eight (GBA 5-bit colour).
+# Her hooded mugshot: portrait icon ICON_69. Index 0 is reserved for
+# transparency; the supplied 32x32 image is opaque, with a flat pink backdrop.
 portrait = Image.open(SOURCE / "mugshot_32.png").convert("RGB")
 assert portrait.size == (32, 32), portrait.size
-# Fifteen colours (palette index 0 is see-through in a portrait and stays
-# unused, so every pixel is index 1 to 15). Her face keeps fixed shades (FACE: the light, the mid
-# tones that shape her nose and jaw, and the mouth), or the cut merges them
-# all into one flat skin colour; the other ten are picked by k-means in Lab
-# (seeded farthest-first) for her hair, eyes and collar, not by median cut,
-# which loses her purple eyes.
-FACE = [(248, 232, 208), (248, 216, 184), (232, 192, 152), (216, 176, 128),
-        (200, 136, 88)]
-MOUTH = len(FACE) - 1
-rgb = np.asarray(portrait, dtype=float).reshape(-1, 3)
-lab = to_lab(rgb)
-fixed = to_lab(np.array(FACE, dtype=float))
-centres = list(fixed)
+rgb = np.asarray(portrait, dtype=np.uint8).copy().reshape(-1, 3)
+# Replace only the flat pink backdrop, not the purple/red details.
+rgb[np.all(rgb == (205, 115, 169), axis=1)] = (0, 0, 0)
+# Keep four dark cloak shades exact; use the remaining slots for accents.
+fixed = np.array([(0,0,0), (8,8,8), (16,16,16), (24,24,24)], dtype=float)
+lab = to_lab(rgb.astype(float))
+centres = list(to_lab(fixed))
 while len(centres) < 15:
-    gap = np.min([((lab - c) ** 2).sum(1) for c in centres], 0)
+    gap = np.min([((lab - c)**2).sum(1) for c in centres], axis=0)
     centres.append(lab[gap.argmax()])
 centres = np.array(centres)
 for _ in range(40):
-    label = ((lab[:, None] - centres[None]) ** 2).sum(2).argmin(1)
-    for k in range(len(FACE), 15):
+    label = ((lab[:,None] - centres[None])**2).sum(2).argmin(1)
+    for k in range(len(fixed), 15):
         if (label == k).any():
             centres[k] = lab[label == k].mean(0)
-icon_palette = []
-for k in range(15):
-    if k < len(FACE):
-        mean = np.array(FACE[k], dtype=float)
-    else:
-        mean = rgb[label == k].mean(0) if (label == k).any() else np.zeros(3)
-    icon_palette += [int(round(v)) // 8 * 8 for v in mean]
-# A lone pixel of the mouth's shade elsewhere reads as a mark on her face:
-# it takes its next-nearest colour.
-grid = label.reshape(32, 32)
-dist = ((lab[:, None] - centres[None]) ** 2).sum(2).reshape(32, 32, 15)
-for y, x in zip(*np.nonzero(grid == MOUTH)):
-    near = grid[max(y - 1, 0):y + 2, max(x - 1, 0):x + 2]
-    if (near == MOUTH).sum() == 1:
-        d = dist[y, x].copy()
-        d[MOUTH] = np.inf
-        grid[y, x] = d.argmin()
-icon = Image.fromarray(grid.astype(np.uint8) + 1, "P")
-icon.putpalette([0, 0, 0] + icon_palette)
+colors = np.zeros((15,3), dtype=np.uint8)
+colors[:len(fixed)] = fixed
+for k in range(len(fixed),15):
+    if (label == k).any():
+        colors[k] = np.clip(np.rint(rgb[label == k].mean(0)/8)*8,0,248).astype(np.uint8)
+# Map against the rounded GBA palette, not the unrounded cluster centres.
+label = ((lab[:,None]-to_lab(colors.astype(float))[None])**2).sum(2).argmin(1)
+icon = Image.fromarray((label.reshape(32,32)+1).astype(np.uint8), "P")
+icon.putpalette([0,0,0]+colors.flatten().tolist())
 icon_target = ROOT / "games/tbs/src/graphics/ui/icons/icon_69.png"
-icon.save(icon_target)
+icon.save(icon_target, bits=4)
 print(f"Rebuilt {icon_target.relative_to(ROOT)} from her mugshot")
