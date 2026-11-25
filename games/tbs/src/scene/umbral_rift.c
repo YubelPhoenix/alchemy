@@ -354,6 +354,7 @@ struct UmbralVigilWatch {
   u8 caught; ///< 1 once a statue has reached the leader
   u8 timer;  ///< frames he has stood as stone since
   u8 moved;  ///< bits: the statues that have moved
+  u8 tick;   ///< counts frames; they step on every other one
 };
 struct UmbralVigilWatch gUmbralRift_VigilWatch;
 
@@ -367,9 +368,10 @@ static s32 UmbralRift_VigilCatches(void) {
          2 * GameFlag_Get(FLAG_DARK_RIFT_VIGIL_CAUGHT_2);
 }
 
-/// Runs every frame in the Vigil. A statue in front of the leader (within 60
-/// degrees of the way he faces) never moves; any other comes a pixel a frame
-/// toward him, wearing her moved face from then on. One that reaches him
+/// Runs every frame in the Vigil. A statue anywhere in front of the leader
+/// (the half of the plaza he faces) never moves; any other comes a pixel
+/// every other frame toward him, half his walking pace, wearing her moved
+/// face from then on. One that reaches him
 /// unseen turns him to stone, holds the field, and after
 /// UMBRAL_VIGIL_STONE_FRAMES sends the party back in at the cave mouth.
 static void UmbralRift_WatchVigil(void) {
@@ -389,6 +391,7 @@ static void UmbralRift_WatchVigil(void) {
   leader = Actor_GetById(gSaveBlock.leaderActorId);
   lx = leader->x.fixed >> 16;
   lz = leader->z.fixed >> 16;
+  watch->tick++;
   fx = sUmbralVigilFacingX[((leader->facing + 0x1000) >> 13) & 7];
   fz = sUmbralVigilFacingZ[((leader->facing + 0x1000) >> 13) & 7];
   for (i = 0; i < UMBRAL_VIGIL_STATUES; i++) {
@@ -404,8 +407,8 @@ static void UmbralRift_WatchVigil(void) {
     dz = (statue->z.fixed >> 16) - lz;
     far = dx * dx + dz * dz;
     toward = dx * fx + dz * fz;
-    // Seen: in front of him, within 60 degrees (cos 60 = 1/2).
-    if (toward > 0 && 4 * toward * toward > far * (fx * fx + fz * fz))
+    // Seen: anywhere in the half he faces.
+    if (toward > 0)
       continue;
     if (far < UMBRAL_VIGIL_CATCH_DISTANCE * UMBRAL_VIGIL_CATCH_DISTANCE) {
       watch->caught = 1;
@@ -420,6 +423,8 @@ static void UmbralRift_WatchVigil(void) {
         GameFlag_Set(FLAG_DARK_RIFT_VIGIL_CAUGHT_1);
       return;
     }
+    if (watch->tick & 1)
+      continue;
     if (!(watch->moved & (1 << i))) {
       watch->moved |= 1 << i;
       Actor_SetAnimation(ACTOR_FIRST_PLACED + i, UMBRAL_VIGIL_STATUE_MOVED);
@@ -442,6 +447,7 @@ static void UmbralRift_StartVigil(void) {
   gUmbralRift_VigilWatch.caught = 0;
   gUmbralRift_VigilWatch.timer = 0;
   gUmbralRift_VigilWatch.moved = 0;
+  gUmbralRift_VigilWatch.tick = 0;
   Task_AddFrame(UmbralRift_WatchVigil, TASK_PASS_FRAME);
 }
 
@@ -1191,10 +1197,11 @@ static struct ActorTemplate sUmbralGroveActorTemplates[] = {
     GROVE_FIGURE(200, 312),
     GROVE_FIGURE(232, 376),
     GROVE_FIGURE(312, 376),
-    // A few in the clearing, where the villagers would stand to talk.
-    GROVE_FIGURE(200, 232),
-    GROVE_FIGURE(248, 232),
-    GROVE_FIGURE(216, 264),
+    // Three in the clearing, where the villagers would stand to talk, clear
+    // of the one way between the roots (row 16).
+    GROVE_FIGURE(184, 200),
+    GROVE_FIGURE(232, 192),
+    GROVE_FIGURE(264, 216),
     // Two penned in the fold like livestock.
     GROVE_FIGURE(344, 328),
     GROVE_FIGURE(360, 344),
