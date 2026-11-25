@@ -117,6 +117,7 @@ enum AbilityId {
   /// (an empty Psynergy slot). It hits harder than Outer Space and hardest on
   /// Isaac, who has Matthew's face (target_exec.c).
   ABILITY_VENDETTA_DIVE = 0x97,
+  ABILITY_ASURA = 0xec, ///< the Kikuichimonji's unleash
   /// The last of the Mystery Leader's attacks.
   ABILITY_MYSTERY_LAST = ABILITY_P_STORM,
   /// Sarah's pike techniques (Ashfall): physical, no PP, so she can use

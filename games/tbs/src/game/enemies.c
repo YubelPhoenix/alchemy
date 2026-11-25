@@ -3224,6 +3224,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     // Row 166 (ENEMY_ROW_VENGEFUL_WRAITH): the Vengeful Wraith, Golden Sun:
     // Dark Dawn's Karis thirty years on, standing in the Umbral Rift's
     // pentagram (formation 390, fought once). A Jupiter Adept with a sword,
+    // the Kikuichimonji, whose unleash (Asura) she uses as a move of her own,
     // acting twice a turn: her name is its own message (BattleUnit_Set).
     {
         .name = "              ",
@@ -3238,7 +3239,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .elementPreset = 44,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
-        .abilities = {ABILITY_ATTACK, 77, 74, 80, 71, ABILITY_ATTACK, 79, 73},
+        .abilities = {ABILITY_ATTACK, 77, ABILITY_ASURA, 80, 71, 74, 79, 73},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN, ABILITY_EFFECT_DRAIN_PP},
         .coins = 5000,
         .item = ITEM_ELIXIR,
