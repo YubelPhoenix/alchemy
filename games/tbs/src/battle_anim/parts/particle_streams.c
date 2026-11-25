@@ -3,6 +3,7 @@
 // Part of battle_anim.c.
 
 #include "../battle_anim_internal.h"
+#include "enemy_ids.h"
 
 /// The particle streams' modes (BattleAnim_RunParticleStreams).
 enum ParticleStreamsMode {
@@ -75,6 +76,12 @@ void BattleAnim_RunOuterSpace(struct BattleAnimArgs *args) {
 
 /// The burst's embers, 512 in PARTICLES after its 128 flashes.
 #define PARTICLE_STREAMS_EMBERS (&PARTICLES[128])
+
+/// Heart's rows in gEnemy_Definitions (ENEMY_ROW_HEART in encounter.c, and
+/// the Umbral Rift's), and her dive kick, SPR_484's animation 6.
+#define OUTER_SPACE_HEART_ROW 101
+#define OUTER_SPACE_HEART_RIFT_ROW 165
+#define OUTER_SPACE_HEART_KICK 6
 
 #define PARTICLE_STREAMS_RISE_FRAMES 192 ///< frames, at most, of the rise
 #define PARTICLE_STREAMS_BURST_FRAMES 54 ///< frames of the burst
@@ -159,6 +166,11 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
   struct SpriteScale scale;
   s32 frame;
   s32 i;
+  // Golden Sun: Ashfall: set when Heart uses Vendetta Dive, her Outer Space.
+  // The Fusion Dragon's formation (SPR_483 and SPR_484) never showed in her
+  // battle, and SPR_484 is now her own sheet: she dives through a red sky in
+  // its place, feet first, and keeps falling into the blast.
+  s32 heartDive = 0;
 
   cache = &gBattleAnimWork[1];
   canvas = cache[0];
@@ -197,13 +209,19 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
   // The rising formation: two animated sprites in Outer Space, otherwise one
   // spawned sprite.
   if (mode == PARTICLE_STREAMS_OUTER_SPACE) {
+    struct Unit *user = Unit_GetFar(work->args->user);
+
+    heartDive = user->id == ENEMY_ID_FIRST + OUTER_SPACE_HEART_ROW ||
+                user->id == ENEMY_ID_FIRST + OUTER_SPACE_HEART_RIFT_ROW;
     for (i = 0; i != 2; i++) {
-      struct Sprite *animation = Sprite_CreateFar(483 + i * SPRITE_SECOND_PART);
+      // Heart: both sprites are her dive kick (SPR_484's animation 6).
+      struct Sprite *animation =
+          Sprite_CreateFar(heartDive ? 484 : 483 + i * SPRITE_SECOND_PART);
 
       work->animations[i] = animation;
       if (animation != 0) {
         animation->flags = 0;
-        Sprite_StartAnimFar(animation, 2);
+        Sprite_StartAnimFar(animation, heartDive ? OUTER_SPACE_HEART_KICK : 2);
         work->animations[i]->image.priority = 3;
       }
     }
@@ -218,6 +236,20 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
     Iwram_CopyWords(colors,
                     Resource_GetTableEntry((s32)&ResourceId_LightningBoltSheet),
                     128);
+  if (heartDive) {
+    // Vendetta Dive: Heart's sky runs blood red. Each of the bolt's colours
+    // keeps its brightness, its stronger of red and blue going to red.
+    u16 *entry = (u16 *)colors;
+
+    for (i = 2; i != 128; i++) {
+      s32 red = entry[i] & 31;
+      s32 green = (entry[i] >> 5) & 31;
+      s32 blue = (entry[i] >> 10) & 31;
+
+      entry[i] = RGB(red > blue ? red : blue, green / 2,
+                     (red < blue ? red : blue) / 3);
+    }
+  }
   // The map picture, 32x16 tiles of 8x8 pixels (256x128, 0x2000 words), all
   // colour 1; its first BATTLE_BACKGROUND_BYTES are what BG1 shows.
   fill = CANVAS_FILL_WORD(1);
@@ -392,7 +424,10 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
 
         CLAMP(blue, 0, 31);
         CLAMP(green, 0, 31);
-        *line++ = RGB(green >> 1, green, blue);
+        if (heartDive)
+          *line++ = RGB(blue, green >> 2, green >> 1); // crimson, for Heart
+        else
+          *line++ = RGB(green >> 1, green, blue);
       }
       for (; i != 160; i++)
         *line++ = 0;
@@ -401,6 +436,10 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
       else
         x = 64 - frame / 4;
       y = 96 - frame;
+      // Heart comes down the formation's path from the top left, drifting
+      // twice as far across, the way her kick points.
+      if (heartDive)
+        x = 16 + frame / 2;
       // Place the formation (both sprites in Outer Space), drifting with the
       // stream and growing each frame: its 16.16 scale starts at 0.625 in
       // Outer Space and 1 otherwise, and gains 1/256 a frame.
@@ -408,6 +447,10 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
       position.height = 0xff0000;
       if (mode == PARTICLE_STREAMS_OUTER_SPACE) {
         size = angle + 0xa000;
+        // Heart stays near the party's size, not the dragon's: 0.7 growing
+        // to about 0.85.
+        if (heartDive)
+          size = 0xb333 + frame * 0x34;
         scale.x = size;
         scale.y = size;
         position.x = (x << 16) + 0x500000;
@@ -427,9 +470,12 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
       }
       // A new mote rises from a random point on the lower half of a circle
       // of radius 30 * size beneath the formation.
+      // Heart's trail has a mote every eighth frame, so she is not lost in it.
       for (i = 0, y = 32 - y; i != 32; i++) {
         struct Particle *mote = &work->particles[i];
 
+        if (heartDive && (frame & 7) != 0)
+          break;
         if (mote->variant == -1) {
           s32 angle = (Random16() & 0x7fff) + 0x4000;
 
@@ -566,7 +612,7 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
     s32 grow;
 
     if (elapsed > 19)
-      Palette_BrightenBgEntries(2, 2, 2);
+      Palette_BrightenBgEntries(heartDive ? 0 : 2, heartDive ? 1 : 2, 2);
     if (frame == 0)
       Sound_PlaySongFar(SE_SWITCH_MECHANISM);
     if (frame == 40)
@@ -674,6 +720,13 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
     grow = (frame << 8) + 0x20000;
     position.groundHeight = 0;
     position.height = 0xff0000;
+    if (heartDive) {
+      // Heart keeps falling into the blast where the rise left her, growing:
+      // on across, and down four pixels a frame (96 - y from 160).
+      x = 16 + (PARTICLE_STREAMS_RISE_FRAMES - 1) / 2 - 16 + frame;
+      y = -64 - frame * 4;
+      size = 0xb333 + (PARTICLE_STREAMS_RISE_FRAMES - 1) * 0x34 + frame * 0x40;
+    }
     if (mode == PARTICLE_STREAMS_OUTER_SPACE) {
       scale.x = size;
       scale.y = size;
@@ -702,6 +755,9 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
   BattleAnim_EndCanvasLayer();
 }
 
+#undef OUTER_SPACE_HEART_ROW
+#undef OUTER_SPACE_HEART_RIFT_ROW
+#undef OUTER_SPACE_HEART_KICK
 #undef PARTICLE_STREAMS_EMBERS
 #undef PARTICLE_STREAMS_RISE_FRAMES
 #undef PARTICLE_STREAMS_BURST_FRAMES

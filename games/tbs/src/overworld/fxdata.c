@@ -173,9 +173,9 @@ const u16 gColorBuffer_ChannelCurveContrast[32] = {
 /// Speaker definitions: {sprite, voice (0xff for none), idle line flags}.
 /// The voice is the first of four blip sounds less 256: a message plays
 /// sound 256 + voice as it types (Speaker_GetVoice), so the values
-/// step by 4. Speaker_FindDefinition compares the first 131 and returns
+/// step by 4. Speaker_FindDefinition compares the first 132 and returns
 /// the last, never compared, as the default.
-const struct SpeakerDefinition gSpeakerDefinitions[132] = {
+const struct SpeakerDefinition gSpeakerDefinitions[133] = {
     {0, 16, 0x00},
     {1, 16, 0x00},
     {2, 16, 0x00},
@@ -307,6 +307,7 @@ const struct SpeakerDefinition gSpeakerDefinitions[132] = {
     {293, 255, 0xff},
     {22, 255, 0xff},
     {94, 12, 0x00}, // Ashfall: Ash Jenna, with Jenna's voice
+    {490, 20, 0x00}, // Ashfall: ???, with a woman's voice (Menardi's)
     {0, 16, 0x00},
 };
 

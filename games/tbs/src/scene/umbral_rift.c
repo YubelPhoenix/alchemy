@@ -92,8 +92,16 @@ enum {
   /// Exit 1: the arch back to the maze.
   UMBRAL_RITUAL_TO_MAZE = 1,
 };
+/// Entrance 1: back under the arch after the fight with Karis.
+enum { UMBRAL_RITUAL_FROM_KARIS_BATTLE = 1 };
+/// The chest at the pentagram's heart, where the Wraith stood (treasure spot
+/// and trigger subject 100).
+enum { UMBRAL_RITUAL_CHEST = 100 };
 /// The first row of the pentagram, just inside the arch.
 enum { UMBRAL_RITUAL_STEP = 0x20 };
+/// The Vengeful Wraith (Dark Dawn's Karis), standing black at the
+/// pentagram's heart until she is beaten.
+enum { ACTOR_RITUAL_KARIS = ACTOR_FIRST_PLACED };
 
 /// Babi's statue room pulled into the Rift. The two dedicated statue sprites
 /// use previously unused sprite slots; the original Lady Statue is untouched.
@@ -180,6 +188,7 @@ enum {
 static void UmbralRift_Aftermath(void);
 static void UmbralRift_PairEcho(s32 mystery, s32 heart, s32 flag, s32 facing);
 static void UmbralRift_PairShow(s32 mystery, s32 heart);
+static void UmbralRift_KarisAftermath(void);
 static void UmbralRift_PairDark(void);
 
 /// The floor cells before each echo of ??? and Heart.
@@ -321,6 +330,22 @@ s32 UmbralRift_Initialize(void) {
       !(gSaveBlock.entrance == UMBRAL_THRONE_FROM_RIFT_BATTLE &&
         GameFlag_Get(FLAG_DARK_RIFT_FOUGHT) != 0))
     UmbralRift_PairDark();
+  // Karis stands black in the Ritual Room's pentagram until beaten; back from
+  // her fight (a win: a loss goes to the restart point), she fades.
+  if (UMBRAL_SCENE_IS(UmbralRitual) &&
+      GameFlag_Get(FLAG_DARK_RIFT_KARIS_BEATEN) == 0) {
+    if (gSaveBlock.entrance == UMBRAL_RITUAL_FROM_KARIS_BATTLE &&
+        GameFlag_Get(FLAG_DARK_RIFT_KARIS_FOUGHT) != 0 &&
+        gSaveBlock.sequenceResult != -1)
+      UmbralRift_KarisAftermath();
+    else {
+      // The chest at her feet is not there until she fades.
+      TreasureSpot_SetPosition(UMBRAL_RITUAL_CHEST, 0, 0);
+      UmbralRift_PairShow(ACTOR_RITUAL_KARIS, ACTOR_RITUAL_KARIS);
+      // She stands on the pentagram, drawn above the floor's markings.
+      Actor_SetSpritePriority(ACTOR_RITUAL_KARIS, 1);
+    }
+  }
   // Back from the fight on the dais. A loss is handled by the restart point
   // (the fight flag is cleared there), so only a win returns here.
   if ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralThrone &&
@@ -756,10 +781,60 @@ static struct Trigger sUmbralCausewayTriggers[] = {
     {TRIGGERS_END},
 };
 
-/// The first look at the pentagram in the Ritual Room.
+/// Karis speaks, kept black (a message window would redraw her in colour).
+static void UmbralRift_KarisSay(s32 message, s32 actor) {
+  Actor_ConfigureSpriteColor(ACTOR_RITUAL_KARIS, SPRITE_COLOR_BLACK);
+  // Her own lines show her mugshot; the party's keep theirs.
+  if (actor == ACTOR_RITUAL_KARIS)
+    GameFlag_Set(FLAG_DARK_WRAITH_SPEAKING);
+  UmbralRift_Say(message, actor);
+  GameFlag_Clear(FLAG_DARK_WRAITH_SPEAKING);
+  Actor_ConfigureSpriteColor(ACTOR_RITUAL_KARIS, SPRITE_COLOR_BLACK);
+}
+
+/// The first look at the pentagram in the Ritual Room: the Vengeful Wraith
+/// (Dark Dawn's Karis, thirty years on) stands at its heart. She has no idea
+/// why she is here; she holds the party in contempt and is cold to Ivan above
+/// all, never naming him, speaking in riddles of the one he could not save;
+/// then she attacks.
 static void UmbralRift_SeeRitual(void) {
   Event_Start();
-  UmbralRift_Say(MsgDarkRiftRitual001, ACTOR_IVAN);
+  UmbralRift_KarisSay(MsgDarkRiftRitual001, ACTOR_IVAN);
+  UmbralRift_KarisSay(MsgDarkRiftKaris010, ACTOR_GARET);
+  UmbralRift_KarisSay(MsgDarkRiftKaris001, ACTOR_RITUAL_KARIS);
+  UmbralRift_KarisSay(MsgDarkRiftKaris002, ACTOR_IVAN);
+  UmbralRift_KarisSay(MsgDarkRiftKaris003, ACTOR_RITUAL_KARIS);
+  UmbralRift_KarisSay(MsgDarkRiftKaris011, ACTOR_MIA);
+  UmbralRift_KarisSay(MsgDarkRiftKaris012, ACTOR_RITUAL_KARIS);
+  UmbralRift_KarisSay(MsgDarkRiftKaris013, ACTOR_PARTY_LEADER);
+  UmbralRift_KarisSay(MsgDarkRiftKaris006, ACTOR_RITUAL_KARIS);
+  GameFlag_Set(FLAG_DARK_RIFT_KARIS_FOUGHT);
+  Event_SetAfterBattleDestination((s32)&SceneId_UmbralRitual,
+                                  UMBRAL_RITUAL_FROM_KARIS_BATTLE);
+  Event_SetDefeatDestination(-1, -1);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_UMBRAL_KARIS, 0);
+  Event_End();
+}
+
+/// Back from the fight: the Wraith softens, tells Ivan it was good to see him
+/// one last time, and fades; the party looks at the floor.
+static void UmbralRift_KarisAftermath(void) {
+  Event_Start();
+  // The scene is still dark here: bring it in first, as the dais does.
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  UmbralRift_KarisSay(MsgDarkRiftKaris004, ACTOR_RITUAL_KARIS);
+  UmbralRift_FlickerOut(ACTOR_RITUAL_KARIS, ACTOR_RITUAL_KARIS);
+  Actor_ConfigureSpriteColor(ACTOR_RITUAL_KARIS, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_RITUAL_KARIS, PIXELS(-9), PIXELS(488));
+  // Where she stood, the chest she leaves behind.
+  TreasureSpot_SetPosition(UMBRAL_RITUAL_CHEST, -1, -1);
+  GameFlag_Set(FLAG_DARK_RIFT_KARIS_BEATEN);
+  UmbralRift_Say(MsgDarkRiftKaris005, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftKaris014, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftRitual002, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftRitual003, ACTOR_PARTY_LEADER);
   GameFlag_Set(FLAG_DARK_RIFT_RITUAL_SEEN);
@@ -770,10 +845,18 @@ static struct SceneEntrance sUmbralRitualEntrances[] = {
     // Through the maze's east door, under the arch.
     {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 136, 0, 72, FACING_SOUTH, 0, -1, -1,
      -1, -1, 0},
+    {UMBRAL_RITUAL_FROM_KARIS_BATTLE, CONDITION_ALWAYS, 136, 0, 72,
+     FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     {SCENE_TABLE_END},
 };
 
 static struct ActorTemplate sUmbralRitualActorTemplates[] = {
+    // Karis at the pentagram's heart, drawn black, facing the arch: a young
+    // woman's sprite with no portrait of its own (her lines show her mugshot,
+    // FLAG_DARK_WRAITH_SPEAKING), and Mia's young woman's voice.
+    {SPRITE_YOUNG_WOMAN_IN_GREEN, FLAG_DARK_RIFT_KARIS_BEATEN,
+     MOVEMENT_TYPE_STAND, PIXELS(136), 0, PIXELS(120), FACING_NORTH,
+     TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
 
@@ -781,6 +864,8 @@ static struct Trigger sUmbralRitualTriggers[] = {
     {TRIGGER_EXIT, UMBRAL_RITUAL_TO_MAZE, CONDITION_ALWAYS,
      UMBRAL_RITUAL_TO_MAZE},
     {TRIGGER_STEP, UMBRAL_RITUAL_STEP, FLAG_DARK_RIFT_RITUAL_SEEN,
+     EVENT(UmbralRift_SeeRitual)},
+    {TRIGGER_TALK, ACTOR_RITUAL_KARIS, FLAG_DARK_RIFT_KARIS_BEATEN,
      EVENT(UmbralRift_SeeRitual)},
     // The chest in the left alcove (the map's treasure spot, subject 100).
     {EXAMINE_TRIGGER(EXAMINE_CHEST), 100, FLAG_CHEST_UMBRAL_RITUAL,

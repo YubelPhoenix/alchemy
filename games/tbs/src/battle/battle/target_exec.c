@@ -605,6 +605,14 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         if (actor->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
             IS_PARTY_UNIT(targetId))
           power += power / 2;
+        // Vendetta Dive, Heart's revenge on Matthew, must hurt a fully grown
+        // party: a fifth of the target's max HP on top, and Isaac, who has
+        // Matthew's face, takes a further quarter of the whole.
+        if (abilityId == ABILITY_VENDETTA_DIVE && IS_PARTY_UNIT(targetId)) {
+          power += target->hpMax / 5;
+          if (target->id == ISAAC)
+            power += power / 4;
+        }
         // A summon adds 3% of the target's max HP for each Djinni it costs.
         if (plan->command == COMMAND_SUMMON) {
           s32 maxHpPercent;

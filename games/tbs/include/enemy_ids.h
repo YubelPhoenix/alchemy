@@ -171,4 +171,8 @@ enum EnemyId {
   ENEMY_JUPITER_DJINNI_LUFF = 171
 };
 
+/// Golden Sun: Ashfall: the Vengeful Wraith (Dark Dawn's Karis) in the Umbral
+/// Rift's pentagram, row 166 of gEnemy_Definitions.
+#define ENEMY_ROW_VENGEFUL_WRAITH 166
+
 #endif

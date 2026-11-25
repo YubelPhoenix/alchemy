@@ -2,7 +2,7 @@
 	.section .rodata
 	.global Field_Map192
 Field_Map192:
-	map_header 0, 0, 32, 26, 3, 1, 1, 0, 2, 2, 0, 0
+	map_header 0, 0, 32, 26, 3, 2, 1, 0, 2, 2, 0, 0
 	map_layer 0, 0, 16, 16, 0, 0, 0xff, 0xff
 	map_layer 32, 0, 16, 16, 0, 0, 0xff, 0xff
 	map_layer 0, 26, 16, 16, 0, 0, 0xff, 0xff
@@ -28,8 +28,9 @@ Field_Map192:
 	.incbin "games/tbs/src/map/map_054/blend.script.lz"
 	.balign 4, 0
 .LField_Map192_MARKERS:
-	@ The chest in the left alcove (subject 100, the Ritual Room's chest trigger).
-	treasure_spot 3, 3, 100
+	@ The chest where the Vengeful Wraith stood, at the pentagram's heart
+	@ (subject 100, the Ritual Room's chest trigger); hidden until she fades.
+	treasure_spot 8, 7, 100
 	treasure_spots_end
 	.balign 4, 0
 @ Golden Sun: Ashfall: the lighthouse tileset's third sheet with the Ritual

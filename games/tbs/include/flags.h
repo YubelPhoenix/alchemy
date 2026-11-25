@@ -2858,5 +2858,12 @@
 #define FLAG_CHEST_UMBRAL_RITUAL 0x8f9
 /// First approach to the Rift monolith: the party decides to investigate.
 #define FLAG_DARK_RIFT_APPROACH_SEEN 0x8fa
+/// Golden Sun: Ashfall: the party has fought Karis in the Ritual Room's
+/// pentagram (set as the battle starts; a loss leaves the room unseen).
+#define FLAG_DARK_RIFT_KARIS_FOUGHT 0x918
+/// Karis has been beaten and has faded from the pentagram.
+#define FLAG_DARK_RIFT_KARIS_BEATEN 0x919
+/// The Vengeful Wraith is speaking: her lines show her own mugshot.
+#define FLAG_DARK_WRAITH_SPEAKING 0x91a
 
 #endif

@@ -1,0 +1,19 @@
+# The Vengeful Wraith: Golden Sun: Dark Dawn's Karis, thirty years on, met in
+# the Umbral Rift's Ritual Room (enemy row 166; her name, longer than a unit's
+# 14 letters, is shown from this message in battle: BattleUnit_Set,
+# window/window/decode.c, window/screens/targets.c). She holds the party in
+# contempt and is cold to Ivan above all, speaking in riddles, as if she were
+# the one he could not save (UmbralRift_SeeRitual, UmbralRift_KarisAftermath
+# in scene/umbral_rift.c).
+N701	MsgEnemyVengefulWraith	Vengeful Wraith
+N702	MsgDarkRiftKaris001	You again. Always\narriving too late.{end_wait}
+N703	MsgDarkRiftKaris002	Too late? I've never\nseen you before.{end_wait}
+N704	MsgDarkRiftKaris003	Not yet, you haven't.{page_break}You'll reach for me,\nand close your hand\non nothing.{end_wait}
+N707	MsgDarkRiftKaris006	Come, then.\nFail me once more.{end_wait}
+N705	MsgDarkRiftKaris004	...Strange. I came here\nhating you.{page_break}It was good to see\nyou. One last time.{end_wait}
+N706	MsgDarkRiftKaris005	She looked at me like\nshe knew me...{end_wait}
+N708	MsgDarkRiftKaris010	Wait. Someone's standing\non it.{end_wait}
+N709	MsgDarkRiftKaris011	Who are you? How did\nyou get in here?{end_wait}
+N710	MsgDarkRiftKaris012	I don't know why\nI'm here. Or how.{page_break}But I know you.\nThat's enough.{end_wait}
+N711	MsgDarkRiftKaris013	We don't want to fight\nyou.{end_wait}
+N712	MsgDarkRiftKaris014	Whoever she was, she\nwasn't from here.{end_wait}

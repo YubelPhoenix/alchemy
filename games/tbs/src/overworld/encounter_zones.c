@@ -730,5 +730,11 @@ const struct EncounterZone gEncounterZones[] = {
         .enemies = {334, 333, 339, 331, 342, 343, 337, 323},
         .weights = {3, 3, 4, 4, 3, 3, 2, 2},
     },
+    // Golden Sun: Ashfall: the Umbral Rift's pentagram
+    // (ENCOUNTER_ZONE_UMBRAL_KARIS): slot 0 Karis, a phantom out of Dark Dawn.
+    {
+        .enemies = {390, 390, 390, 390, 390, 390, 390, 390},
+        .weights = {10, 10, 10, 10, 10, 10, 10, 10},
+    },
 };
 // clang-format on

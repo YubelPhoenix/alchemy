@@ -994,5 +994,13 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .defeatSound = 0, // the human foes' fall, not a beast's cry
         .effectHeight = 42,
     },
+    // Enemy id 174: the Vengeful Wraith (row 166), Dark Dawn's Karis in the
+    // Umbral Rift, in the author's own art (assets/wraith, SPR_491).
+    {
+        .animation = 491,
+        .attackAnim = 1,
+        .defeatSound = 0, // the human foes' fall, not a beast's cry
+        .effectHeight = 42,
+    },
 };
 // clang-format on
