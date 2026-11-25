@@ -153,8 +153,8 @@ enum {
 
 /// The Grove (map row 0xc4, map_195): Kolima, cut whole from map_037, where
 /// wood and skin are one thing. Its great stumps are flesh; among their roots,
-/// in the clearing and penned in the fold stand Kolima's cursed trees drawn
-/// as skin, each with a face pressed into the bark, breathing. In from Vale
+/// in the clearing and penned in the fold stand Kolima's people half become
+/// trees, mouths open, breathing. They are silent, as is Vale. In from Vale
 /// at the west edge, out at the east edge into the maze's spur again.
 enum {
   UMBRAL_GROVE_FROM_VIGIL = 1,
@@ -162,7 +162,8 @@ enum {
   UMBRAL_GROVE_TO_VIGIL = 1,
   /// Exit 2: the east edge, which comes out in the maze's spur.
   UMBRAL_GROVE_TO_MAZE = 2,
-  /// Kolima's cursed tree as skin with a face (spr_508,
+  /// Kolima's people half become trees: waist up a villager, crown and
+  /// raised arms gone to dead wood, trunk and roots below (spr_508,
   /// tools/dark_story/build_umbral_grove_art.py).
   SPRITE_UMBRAL_GROVE_FIGURE = 508,
 };
@@ -502,6 +503,9 @@ s32 UmbralRift_Initialize(void) {
       Actor_SetSpritePriority(ACTOR_RITUAL_KARIS, 1);
     }
   }
+  // Vale and Kolima are silent: no music, only the field's own sounds.
+  if (UMBRAL_SCENE_IS(UmbralVigil) || UMBRAL_SCENE_IS(UmbralGrove))
+    Sound_PlaySong(MUS_SILENCE);
   // Vale: the statues by the cave stand only for the times the party has been
   // caught; then the watch starts.
   if (UMBRAL_SCENE_IS(UmbralVigil))
@@ -1184,29 +1188,37 @@ static struct SceneEntrance sUmbralGroveEntrances[] = {
     {SCENE_TABLE_END},
 };
 
-#define GROVE_FIGURE(x, z)                                                     \
+#define GROVE_FIGURE(x, z, facing)                                             \
   {SPRITE_UMBRAL_GROVE_FIGURE, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,          \
-   PIXELS(x), 0, PIXELS(z), FACING_SOUTH, TALK_FACING_KEEP, 0}
+   PIXELS(x), 0, PIXELS(z), facing, TALK_FACING_KEEP, 0}
+// Each figure's facing picks which of Kolima's people it is (spr_508): south
+// the woman in the apron, east the young man, north the man in orange.
+#define WOMAN FACING_SOUTH
+#define YOUNG_MAN FACING_EAST
+#define MAN FACING_NORTH
 static struct ActorTemplate sUmbralGroveActorTemplates[] = {
     // Two grown out of the roots of each stump, either side of its door.
-    GROVE_FIGURE(88, 184),
-    GROVE_FIGURE(168, 184),
-    GROVE_FIGURE(280, 232),
-    GROVE_FIGURE(376, 232),
-    GROVE_FIGURE(120, 312),
-    GROVE_FIGURE(200, 312),
-    GROVE_FIGURE(232, 376),
-    GROVE_FIGURE(312, 376),
+    GROVE_FIGURE(88, 184, WOMAN),
+    GROVE_FIGURE(168, 184, MAN),
+    GROVE_FIGURE(280, 232, YOUNG_MAN),
+    GROVE_FIGURE(376, 232, WOMAN),
+    GROVE_FIGURE(120, 312, MAN),
+    GROVE_FIGURE(200, 312, YOUNG_MAN),
+    GROVE_FIGURE(232, 376, WOMAN),
+    GROVE_FIGURE(312, 376, MAN),
     // Three in the clearing, where the villagers would stand to talk, clear
     // of the one way between the roots (row 16).
-    GROVE_FIGURE(184, 200),
-    GROVE_FIGURE(232, 192),
-    GROVE_FIGURE(264, 216),
+    GROVE_FIGURE(184, 200, YOUNG_MAN),
+    GROVE_FIGURE(232, 192, WOMAN),
+    GROVE_FIGURE(264, 216, MAN),
     // Two penned in the fold like livestock.
-    GROVE_FIGURE(344, 328),
-    GROVE_FIGURE(360, 344),
+    GROVE_FIGURE(344, 328, WOMAN),
+    GROVE_FIGURE(360, 344, YOUNG_MAN),
     {SCENE_TABLE_END},
 };
+#undef WOMAN
+#undef YOUNG_MAN
+#undef MAN
 #undef GROVE_FIGURE
 
 static struct Trigger sUmbralGroveTriggers[] = {

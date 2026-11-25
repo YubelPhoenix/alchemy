@@ -2,7 +2,7 @@
 """Build the Vigil's weeping statue (SPR_507) from the wreathed maiden statue
 (SPR_258).
 
-The statue is turned to plain grey stone (her wreath and flowers too, dead),
+The statue is turned to dark, damp grey stone (her wreath and flowers too, dead),
 her eyes become dark sockets and two dark streaks run from them down her
 cheeks, as if the stone has been weeping. Frame 0 is her at rest; frame 1,
 the pose she is found in once she has moved, has the sockets wider and her
@@ -16,8 +16,8 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 SPR = ROOT / "games/tbs/src/graphics/sprite"
-STONE = [(56, 13), (96, 220), (128, 222), (152, 14), (200, 223), (248, 15)]
-SOCKET, STREAK = 13, 220
+STONE = [(40, 218), (56, 13), (80, 219), (96, 220), (128, 222), (152, 14)]
+SOCKET, STREAK = 1, 218
 
 base = Image.open(SPR / "spr_258.png")
 pal = base.getpalette()
@@ -32,7 +32,8 @@ def stone(frame):
             v = int(frame[y, x])
             if v:
                 r, g, b = pal[3 * v:3 * v + 3]
-                light = 0.3 * r + 0.59 * g + 0.11 * b
+                # Damp, dark stone: her lights at two thirds.
+                light = (0.3 * r + 0.59 * g + 0.11 * b) * 0.62
                 out[y, x] = min(STONE, key=lambda s: abs(s[0] - light))[1]
     return out
 
