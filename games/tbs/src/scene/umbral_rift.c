@@ -97,6 +97,8 @@ enum {
 enum {
   /// Exit 1: the arch back to the maze.
   UMBRAL_RITUAL_TO_MAZE = 1,
+  /// Floor just below the arch: north-facing return, even if the threshold is blocked.
+  UMBRAL_RITUAL_RETURN_FLOOR = 2,
 };
 /// Entrance 1: back under the arch after the fight with Karis.
 enum { UMBRAL_RITUAL_FROM_KARIS_BATTLE = 1 };
@@ -1210,6 +1212,8 @@ static struct ActorTemplate sUmbralRitualActorTemplates[] = {
 static struct Trigger sUmbralRitualTriggers[] = {
     {TRIGGER_EXIT, UMBRAL_RITUAL_TO_MAZE, CONDITION_ALWAYS,
      UMBRAL_RITUAL_TO_MAZE},
+    {TRIGGER_EXIT | TRIGGER_FLAG_FACING | FACING_NORTH,
+     UMBRAL_RITUAL_RETURN_FLOOR, CONDITION_ALWAYS, UMBRAL_RITUAL_TO_MAZE},
     {TRIGGER_STEP, UMBRAL_RITUAL_STEP, FLAG_DARK_RIFT_RITUAL_SEEN,
      EVENT(UmbralRift_SeeRitual)},
     {TRIGGER_TALK, ACTOR_RITUAL_KARIS, FLAG_DARK_RIFT_KARIS_BEATEN,
