@@ -2,6 +2,8 @@
 
 # GOLDEN SUN: ASHFALL
 
+<img src="./ashfall_heart_lighting_refined.png" alt="Golden Sun: Ashfall — the Wraith, the mysterious cloaked figure and Heart beneath an eclipse" width="100%" />
+
 *The world you remember. A journey that no longer feels the same.*
 
 **A darker, story-driven reimagining of Golden Sun for the Game Boy Advance.**
