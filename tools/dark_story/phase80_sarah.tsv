@@ -9,7 +9,7 @@ N346	MsgDarkSarahTolbiGreet	I followed another lead\nhere to Tolbi.{page_break}A
 N347	MsgDarkSarahTolbiIsaac	And if you find her?\nWhat happens then?{end_wait}
 N348	MsgDarkSarahTolbiChallenge	I don't know.\nI've tried to answer\nthat for myself.{page_break}What if she doesn't\nwant to see me?{page_break}One more match, Isaac.\nIt's easier to face\na sword than that.{end_wait}
 N349	MsgDarkSarahTolbiBeaten	You're still ahead of me.\nI won't deny it.{page_break}If you meet her,\ndon't tell her my name.\nNot until I can explain.{end_wait}
-N350	MsgDarkSarahLaliveroGreet	The people here told me\nabout a girl named Sheba.\nI know that name, Isaac.{page_break}After all this time...\nShe really was here.\nBut now she's missing.{end_wait}
-N351	MsgDarkSarahLaliveroIsaac	Sheba?\nHow do you know her?{end_wait}
-N352	MsgDarkSarahLaliveroChallenge	She's my family.\nI thought I'd never\nhear her name again.{page_break}If I must cross the sea,\nI need to be ready.\nWill you spar once more?{end_wait}
-N353	MsgDarkSarahLaliveroBeaten	Well fought, Isaac.\nThank you.{page_break}I'll speak to the people\nwho raised Sheba.\nThey may know more.{page_break}If I find her, I hope\nshe'll let me explain.{end_wait}
+N350	MsgDarkSarahLaliveroGreet	The people here told me\nabout a girl named Sheba.\nThe description fits.{page_break}But now she's missing.\nI haven't seen her myself.{end_wait}
+N351	MsgDarkSarahLaliveroIsaac	Do you think she's\nthe one you're looking\nfor?{end_wait}
+N352	MsgDarkSarahLaliveroChallenge	I can't be sure.\nBut I can't ignore it.{page_break}If I have to cross the sea,\nI need to be ready.\nOne last match, Isaac.{end_wait}
+N353	MsgDarkSarahLaliveroBeaten	Well fought, Isaac.\nThank you.{page_break}I'll speak to the people\nwho raised Sheba.\nThey may know more.{page_break}I have to find out\nfor myself.{end_wait}
