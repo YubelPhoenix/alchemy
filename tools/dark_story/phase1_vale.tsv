@@ -145,7 +145,7 @@
 03824	message	Good. It's time, and I was\nabout to leave without you.{end_wait}
 03825	message	Say... what happened to\nyou two, back then?{end_wait}
 03826	message	The night of the storm...\nIs that why you two study\nPsynergy so hard?{end_wait}
-03827	message	Thanks for asking. But...\nMy family isn't coming\nback.{page_break}Neither is {actor_name:1}{possessive_suffix}\nfather...{end_wait}
+03827	message	Yes. But my family\nisn't coming back.{page_break}Neither is {actor_name:1}{possessive_suffix}\nfather...{end_wait}
 03828	message	I don't want to forget.\nI just want one day when\nit doesn't hurt.{end_wait}
 03829	message	That night... we went for\nhelp. They found us\nunconscious in the mud.{end_now}
 03830	message	Well... let's get {actor_name:1}\nand go to Kraden's.{end_now}
@@ -244,7 +244,7 @@
 03973	MsgValeTheyKnowLittleOfThe	They know nothing of what\nthe Sanctum holds.{end_wait}
 03974	message	The elders will let no one\ninside. Not even Kraden.{end_wait}
 03975	message	Kraden...{pause_20_skippable} He may know\nhow to get us inside.{end_wait}
-03976	message	He knows the mountain.\nWe should speak to him.{end_wait}
+03976	message	He knows the mountain.\nHe must know a way in.{end_wait}
 03977	message	He refused to help us.{end_wait}
 03978	message	And he asks too many\nquestions.{end_wait}
 03979	message	Then we'll find another\nway inside.{end_wait}
