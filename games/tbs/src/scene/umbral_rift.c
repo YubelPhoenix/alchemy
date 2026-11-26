@@ -211,25 +211,32 @@ static void UmbralRift_Say(s32 message, s32 actor) {
 }
 
 static void UmbralRift_FountainDialogue(void) {
+  UmbralRift_Say(MsgDarkRiftFountain001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftFountain003, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftFountain007, ACTOR_GARET);
 }
 
 static void UmbralRift_MazeDialogue(void) {
   UmbralRift_Say(MsgDarkRiftMaze002, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftMaze003, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftMaze007, ACTOR_PARTY_LEADER);
 }
 
 static void UmbralRift_MemoryDialogue(void) {
   UmbralRift_Say(MsgDarkRiftMemory001, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftMemory004, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftMemory005, ACTOR_GARET);
 }
 
 static void UmbralRift_OrbDialogue(void) {
   UmbralRift_Say(MsgDarkRiftOrb003, ACTOR_IVAN);
+  UmbralRift_Say(MsgDarkRiftOrb004, ACTOR_PARTY_LEADER);
 }
 
 // Called inside the gateway interaction, before changing rooms.
 static void UmbralRift_GateEvent(void) {
+  UmbralRift_Say(MsgDarkRiftGate001, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftGate003, ACTOR_GARET);
   GameFlag_Set(FLAG_DARK_RIFT_GATE_SEEN);
 }
 
@@ -241,6 +248,8 @@ static void UmbralRift_CausewayEvent(void) {
   WaitFrames(1);
   Event_StartScreenTransition();
   Event_WaitTransitionFrames();
+  UmbralRift_Say(MsgDarkRiftCauseway002, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftCauseway004, ACTOR_PARTY_LEADER);
   GameFlag_Set(FLAG_DARK_RIFT_CAUSEWAY_SEEN);
   Event_End();
 }
@@ -258,6 +267,7 @@ static void UmbralRift_CloseAnchor(void) {
   MapGrid_WaitForShakeToSettle();
   Actor_ConfigureSpriteColor(ACTOR_RIFT_FEATURE, SPRITE_COLOR_BLACK);
   UmbralRift_Say(MsgDarkRiftSeal011, ACTOR_MIA);
+  UmbralRift_Say(MsgDarkRiftSeal014, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftSeal015, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftSeal018, ACTOR_GARET);
   GameFlag_Set(FLAG_DARK_RIFT_ANCHOR_SEALED);
@@ -371,6 +381,10 @@ static void UmbralRift_PairEcho(s32 mystery, s32 heart, s32 flag, s32 facing) {
   Actor_ConfigureSpriteColor(heart, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(mystery, PIXELS(-9), PIXELS(488));
   Actor_SetPosition(heart, PIXELS(-9), PIXELS(488));
+  if (flag == FLAG_DARK_RIFT_PAIR_FOUNTAIN)
+    UmbralRift_Say(MsgDarkRiftFountain008, ACTOR_GARET);
+  else if (flag == FLAG_DARK_RIFT_PAIR_MAZE)
+    UmbralRift_Say(MsgDarkRiftMaze008, ACTOR_GARET);
   GameFlag_Set(flag);
   Event_End();
 }
@@ -860,7 +874,9 @@ static void UmbralRift_SeeBeacon(void) {
   Event_Start();
   Sound_PlaySong(SE_WARP);
   Event_WaitFrames(20);
+  UmbralRift_Say(MsgDarkRiftBeacon002, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftBeacon003, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftBeacon004, ACTOR_IVAN);
   GameFlag_Set(FLAG_DARK_RIFT_BEACON_SEEN);
   Event_End();
 }
@@ -870,6 +886,8 @@ static void UmbralRift_SeeBeacon(void) {
 static void UmbralRift_EnterBeacon(void) {
   Event_Start();
   if (GameFlag_Get(FLAG_DARK_RIFT_BEACON_CROSSED) == 0) {
+    UmbralRift_Say(MsgDarkRiftCross002, ACTOR_IVAN);
+    UmbralRift_Say(MsgDarkRiftCross004, ACTOR_PARTY_LEADER);
     GameFlag_Set(FLAG_DARK_RIFT_BEACON_CROSSED);
   }
   Sound_PlaySong(SE_WARP);
