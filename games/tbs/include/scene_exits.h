@@ -286,8 +286,7 @@ enum {
   /// The square, where the party stood to face Ash Jenna; the battle brings
   /// the party back in here (Vale_AshJennaAftermath).
   VALE_FROM_ASH_JENNA = 18,
-  /// Return from the optional mystery commander's battle. Ordinary entrances
-  /// must never trigger the post-victory dialogue.
+  /// Reserved old testing entrance for compatibility with existing saves.
   VALE_FROM_MYSTERY_BATTLE = 19,
 };
 /// SceneId_Vale's exits.
@@ -5643,6 +5642,7 @@ enum {
   VENUS_LIGHTHOUSE_ENTRY_FROM_WORLD_MAP_WEST = 1,
   VENUS_LIGHTHOUSE_ENTRY_FROM_VENUS_LIGHTHOUSE_GROUND_FLOOR = 2,
   VENUS_LIGHTHOUSE_ENTRY_FROM_WORLD_MAP_EAST = 3,
+  VENUS_LIGHTHOUSE_ENTRY_FROM_MYSTERY_BATTLE = 4,
 };
 /// SceneId_VenusLighthouseEntry's exits.
 enum {

@@ -188,21 +188,17 @@ def check_flags_and_quest_order() -> None:
 
     vale = scene("vale.c")
     gate = scene("suhalla_gate.c")
-    # Vale_Initialize contains #if/#else branches. The lightweight function()
-    # extractor counts braces from both mutually exclusive C branches, so it
-    # cannot reliably parse that function. Validate the exact gating block
-    # instead, including both optional bosses being hidden before Colosso.
+    # Vale_Initialize contains mutually exclusive preprocessor branches.
+    # Validate Ash Jenna's original post-Colosso gating directly.
     require(
         re.search(
             r"if\s*\(\s*GameFlag_Get\(FLAG_KALAY_REACHED\)\s*!=\s*0\s*&&\s*"
             r"GameFlag_Get\(FLAG_COLOSSO_OVER\)\s*==\s*0\s*\)\s*\{\s*"
             r"Actor_SetPosition\(ACTOR_ASH_JENNA_AFTER_KALAY,\s*"
-            r"PIXELS\(0\),\s*PIXELS\(0\)\);\s*"
-            r"Actor_SetPosition\(ACTOR_MYSTERY_LEADER_AFTER_KALAY,\s*"
             r"PIXELS\(0\),\s*PIXELS\(0\)\);",
             vale, re.S,
         ) is not None,
-        "Vale optional bosses must remain hidden until after Colosso",
+        "Vale Ash Jenna must remain hidden until after Colosso",
     )
     require("SuhallaGate_AshJennaBlocksPassage" not in gate,
             "Suhalla's Ash Jenna boss must not trigger just by crossing")
@@ -244,8 +240,19 @@ def check_optional_battles() -> None:
 def check_mystery_rescue_encounter() -> None:
     """Guard Isaac's solo opening, three companion rescues, and dialogue."""
     vale = scene("vale.c")
-    approach = function(vale, "Vale_TalkToMysteryLeader")
-    aftermath = function(vale, "Vale_MysteryLeaderAftermath")
+    venus = scene("venus_lighthouse.c")
+    approach = function(venus, "VenusLighthouse_TalkToMysteryLeader")
+    aftermath = function(venus, "VenusLighthouse_MysteryLeaderAftermath")
+    require("Vale_TalkToMysteryLeader" not in vale and
+            "ACTOR_MYSTERY_LEADER_AFTER_KALAY" not in vale,
+            "Mystery must no longer appear in Vale")
+    require("TRIGGER_TALK, ACTOR_VENUS_MYSTERY_LEADER, FLAG_DARK_MYSTERY_DONE" in venus and
+            "FLAG_COLOSSO_OVER" in venus and
+            "VENUS_LIGHTHOUSE_ENTRY_FROM_MYSTERY_BATTLE" in approach and
+            "SceneId_VenusLighthouseEntry" in approach,
+            "Mystery must remain an optional post-Colosso Venus exterior encounter")
+    require("gSaveBlock.entrance == VENUS_LIGHTHOUSE_ENTRY_FROM_MYSTERY_BATTLE" in venus,
+            "Only the dedicated Venus battle return may play the aftermath")
     for name in ("GARET", "IVAN", "MIA"):
         require(f"Party_RemoveMember({name});" in approach,
                 f"Mystery duel must bench {name}")
@@ -281,7 +288,7 @@ def check_mystery_rescue_encounter() -> None:
             < defeat.index("if (result == -1) {"),
             "Restore all companions before loading either destination scene")
 
-    # Author-locked Vale exchange: pin both original Git blobs from a88d3ad.
+    # Author-locked Mystery exchange: pin both original Git blobs from a88d3ad.
     # Editing the reference and the live table together must not bypass this guard.
     # A new approved revision requires explicit authorization and updated pins.
     for filename, approved_blob in (
@@ -291,7 +298,7 @@ def check_mystery_rescue_encounter() -> None:
         content = read("tools/dark_story/" + filename).encode("utf-8")
         header = f"blob {len(content)}\0".encode("ascii")
         require(hashlib.sha1(header + content).hexdigest() == approved_blob,
-                f"Author-locked Vale dialogue changed without approval: {filename}")
+                f"Author-locked Mystery dialogue changed without approval: {filename}")
 
     lines = messages("phase118_mystery_leader.tsv")
     require({f"N{i}" for i in range(356, 395)} == set(lines),

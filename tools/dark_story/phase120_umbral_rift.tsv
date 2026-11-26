@@ -113,7 +113,7 @@ N609	MsgDarkRiftPre071	Enough.\nYou said Alex and Kraden.{end_wait}
 N610	MsgDarkRiftPre072	Alex helped light\nMercury Lighthouse.\nWhat is this Apollo Lens?{end_wait}
 N611	MsgDarkRiftPre073	What do you know about\nAlex and Kraden?{end_wait}
 N612	MsgDarkRiftPre074	We know nothing\nabout this Apollo Lens.{end_wait}
-N613	MsgDarkRiftPre075	In Vale, you warned me\nabout thirty years.{end_wait}
+N613	MsgDarkRiftPre075	You warned me\nabout thirty years.{end_wait}
 N614	MsgDarkRiftPre076	That woman called me Dad.\nDid she know another me?{end_wait}
 N615	MsgDarkRiftPre077	Not every world follows\nthe same road.{end_wait}
 N616	MsgDarkRiftPre078	Then what happened\nto Alex?{end_wait}
@@ -190,6 +190,6 @@ N692	MsgDarkRiftApproachGaret	What is that structure?{end_wait}
 N693	MsgDarkRiftApproachIvan	I can feel Psynergy\ncoming from it.{end_wait}
 N694	MsgDarkRiftApproachIsaac	It's too close to Vale.\nWe should investigate.{end_wait}
 N695	MsgDarkRiftHeartKnown	We've been through this,\nHeart. I'm not Matthew.{end_wait}
-N697	MsgDarkRiftKnownWarning	You spoke of the Grave\nEclipse in Vale. Does\nthis have to do with it?{end_wait}
+N697	MsgDarkRiftKnownWarning	You spoke of the Grave\nEclipse. Does this have\nto do with it?{end_wait}
 N698	MsgDarkRiftKnownAnswer	My warning stands.\nThis opening is not\nthe last of them.{end_wait}
-N699	MsgDarkRiftValeKnown	We met you in Vale.\nWhat are you doing here?{end_wait}
+N699	MsgDarkRiftValeKnown	We've met before.\nWhat are you doing here?{end_wait}

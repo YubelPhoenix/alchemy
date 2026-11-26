@@ -118,6 +118,7 @@
 #include "songs.h"
 #include "audio_engine_symbols.h"
 #include "item_ids.h"
+#include "fixed_math.h"
 
 // Area flags: Scene_Arrive clears 0x300 to 0x3ff when the
 // party enters another area, and other areas use the numbers for
@@ -298,7 +299,8 @@ enum VenusLighthouseEntryActorId {
   /// us?" His thoughts: "Was it Kraden?"
   /// ★ Named from the game: "Babi's soldiers are all Colosso victors..."
   /// (MsgVenusLighthouseBabisSoldiersAreAllColossoVictors)
-  ACTOR_SOLDIER_COLOSSO_VICTORS
+  ACTOR_SOLDIER_COLOSSO_VICTORS,
+  ACTOR_VENUS_MYSTERY_LEADER
 };
 
 /// VenusLighthouseGroundFloor's actors, numbering the rows of
@@ -2745,6 +2747,143 @@ static void VenusLighthouse_VisitPillarActors(void) {
   } while (actorId <= ACTOR_FIRST_SOCKET_PILLAR + 3);
 }
 
+/// The "???" commander's next message (no mugshot: she has none).
+static void VenusLighthouse_MysterySays(void) {
+  Event_ShowMessageThenWait(ACTOR_VENUS_MYSTERY_LEADER, 0, 20);
+}
+
+/// Isaac's next message.
+static void VenusLighthouse_IsaacAnswers(void) {
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
+}
+
+/// "???" beside the west approach to Venus Lighthouse after Colosso.
+/// Talking starts her optional duel; defeat returns to the last Sanctum.
+static void VenusLighthouse_TalkToMysteryLeader(void) {
+  Event_Start();
+  Event_SetMessageId(MsgDarkMystery01);
+  VenusLighthouse_IsaacAnswers();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_IsaacAnswers();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_IsaacAnswers();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_IsaacAnswers();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_IsaacAnswers();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_MysterySays();
+  // Isaac asks about possible future encounters, not battles already won.
+  Event_SetMessageId(MsgDarkMysteryIsaacSuspects);
+  VenusLighthouse_IsaacAnswers();
+  Event_SetMessageId(MsgDarkMystery12);
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_IsaacAnswers();
+  VenusLighthouse_MysterySays();
+  // Her bind: a thunderclap, the whole screen white and a jolt, then the
+  // white fades and the shake settles. Garet, Ivan and Mia are not on the
+  // map (only the leader walks the field); their lines say what she did, and
+  // the solo roster drives the actual duel.
+  Sound_PlaySong(SE_THUNDER_LOUD);
+  PaletteFade_SetTarget(RGB(31, 31, 31), PALETTES_ALL);
+  PaletteFade_StartInterpolation(1);
+  MapGrid_SetShake(PIXELS(4), PIXELS(4), Q16_ONE);
+  WaitFrames(6);
+  PaletteFade_SetTarget(PALETTE_TINT_NONE, PALETTES_ALL);
+  PaletteFade_StartInterpolation(16);
+  MapGrid_SetShake(-1, -1, 9 * Q16_ONE / 10);
+  MapGrid_WaitForShakeToSettle();
+  Event_WaitFrames(20);
+  Event_SetMessageId(MsgDarkMysteryGaretBound);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  VenusLighthouse_MysterySays();
+  // The mystery commander challenges Isaac alone. Keep the companions
+  // out of the battle, then restore them in the post-battle Venus exterior event.
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
+  GameFlag_Set(FLAG_DARK_MYSTERY_PENDING);
+  gFieldWork->transition =
+      SCENE_TRANSITION(TRANSITION_WINDOW, WINDOW_TRANSITION_BARS);
+  // A win must return via the dedicated battle entrance; otherwise a stale
+  // pending flag can fire the victory dialogue during ordinary exploration.
+  // Defeat still goes to the last Sanctum for a normal retry.
+  Event_SetAfterBattleDestination((s32)&SceneId_VenusLighthouseEntry,
+                                  VENUS_LIGHTHOUSE_ENTRY_FROM_MYSTERY_BATTLE);
+  Event_SetDefeatDestination(-1, -1);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_SCRIPTED_MIA_MENARDI, 6);
+  // Her battle's song, in place of the boss battle music the request has
+  // just chosen. It plays until Garet breaks free (battle/party_join.c). The
+  // Fusion Dragon's song until MUS_FIGHT_TOGETHER's is written; then this
+  // becomes MUS_FIGHT_TOGETHER.
+  gSaveBlock.battleMusic = MUS_FUSION_DRAGON_BATTLE;
+  Event_End();
+}
+
+/// Back from the "???" battle: after a win she answers Isaac's questions and
+/// is gone; after a defeat she waits.
+static void VenusLighthouse_MysteryLeaderAftermath(void) {
+  GameFlag_Clear(FLAG_DARK_MYSTERY_PENDING);
+  // Restore the full party before the victory scene or any return to control.
+  // Its friends joined the battle in the order they broke free (Mia first,
+  // battle/party_join.c), so all three are taken out and put back in the
+  // party's usual order.
+  Party_RemoveMember(GARET);
+  Party_RemoveMember(IVAN);
+  Party_RemoveMember(MIA);
+  Party_AddMember(GARET);
+  Party_AddMember(IVAN);
+  Party_AddMember(MIA);
+  Event_Start();
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  if (gSaveBlock.sequenceResult == -1) {
+    // Release the fixed camera before player control returns.
+    FieldCamera_MoveTo(-1, -1, -1, 0);
+    Event_End();
+    return;
+  }
+  Event_SetMessageId(MsgDarkMystery15);
+  VenusLighthouse_IsaacAnswers();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_IsaacAnswers();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_IsaacAnswers();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_MysterySays();
+  VenusLighthouse_MysterySays();
+  Actor_ConfigureSpriteColor(ACTOR_VENUS_MYSTERY_LEADER,
+                             SPRITE_COLOR_BLACK | SPRITE_COLOR_BLINK);
+  Event_WaitFrames(40);
+  Actor_ConfigureSpriteColor(ACTOR_VENUS_MYSTERY_LEADER,
+                             SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_VENUS_MYSTERY_LEADER, PIXELS(0), PIXELS(0));
+  // The party responds once the commander has gone.
+  Event_SetMessageId(MsgDarkMysteryGaretAfter);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  VenusLighthouse_IsaacAnswers();
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
+  Event_SetMessageId(MsgDarkMysteryMiaAfter);
+  Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
+  Event_SetMessageId(MsgDarkMysteryIsaacAfter);
+  VenusLighthouse_IsaacAnswers();
+  GameFlag_Set(FLAG_DARK_MYSTERY_DONE);
+  // Release the fixed camera before player control returns.
+  FieldCamera_MoveTo(-1, -1, -1, 0);
+  Event_End();
+}
+
 /// Restores puzzle progress, actors and entrance effects for all
 /// six scenes, by scene and entrance; on every arrival it sets
 /// FLAG_VENUS_LIGHTHOUSE_LIT and, after a battle, restores the scripted
@@ -2783,6 +2922,22 @@ s32 VenusLighthouse_Initialize(void) {
     Actor_SetSpritePriority(ACTOR_SOLDIER_OPENED_DOOR, 2);
     VenusLighthouse_LayDownHurtActor(ACTOR_SOLDIER_HEADED_FOR_BABI);
     VenusLighthouse_LayDownHurtActor(ACTOR_SOLDIER_COLOSSO_VICTORS);
+    // Optional encounter: visible on the west approach after Colosso.
+    if (GameFlag_Get(FLAG_DARK_MYSTERY_DONE) == 0) {
+      if (GameFlag_Get(FLAG_COLOSSO_OVER) != 0)
+        Actor_ConfigureSpriteColor(ACTOR_VENUS_MYSTERY_LEADER, SPRITE_COLOR_BLACK);
+      else
+        Actor_SetPosition(ACTOR_VENUS_MYSTERY_LEADER, PIXELS(0), PIXELS(0));
+    }
+    // Only the dedicated victory entrance can play the aftermath.
+    if (GameFlag_Get(FLAG_DARK_MYSTERY_PENDING) != 0) {
+      if (gSaveBlock.entrance == VENUS_LIGHTHOUSE_ENTRY_FROM_MYSTERY_BATTLE &&
+          GameFlag_Get(FLAG_DARK_MYSTERY_DONE) == 0 &&
+          GameFlag_Get(FLAG_COLOSSO_OVER) != 0)
+        VenusLighthouse_MysteryLeaderAftermath();
+      else
+        GameFlag_Clear(FLAG_DARK_MYSTERY_PENDING);
+    }
   } else if (sceneId == (s32)&SceneId_VenusLighthouseGroundFloor) {
     switch (gSaveBlock.entrance) {
     case VENUS_LIGHTHOUSE_GROUND_FLOOR_FROM_VENUS_LIGHTHOUSE_ENTRY:
@@ -4368,6 +4523,7 @@ struct SceneEntrance gVenusLighthouseEntryEntrances[] = {
     { VENUS_LIGHTHOUSE_ENTRY_FROM_WORLD_MAP_WEST, CONDITION_ALWAYS, 40, 0, 264, FACING_EAST, 0, 0, 0, 512, 544, 0 },
     { VENUS_LIGHTHOUSE_ENTRY_FROM_VENUS_LIGHTHOUSE_GROUND_FLOOR, CONDITION_ALWAYS, 376, 0, 88, FACING_SOUTH, 0, 0, 0, 512, 544, 0 },
     { VENUS_LIGHTHOUSE_ENTRY_FROM_WORLD_MAP_EAST, CONDITION_ALWAYS, 488, 0, 424, FACING_WEST, 0, 0, 0, 512, 544, 0 },
+    { VENUS_LIGHTHOUSE_ENTRY_FROM_MYSTERY_BATTLE, CONDITION_ALWAYS, 88, 0, 264, FACING_NORTH, 0, 0, 0, 512, 544, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -4616,6 +4772,9 @@ struct ActorTemplate gVenusLighthouseEntryActorTemplates[] = {
         PIXELS(416), 0, PIXELS(412), FACING_SOUTH, TALK_FACING_KEEP, 0 },
     { SPRITE_SOLDIER, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND,
         PIXELS(192), 0, PIXELS(364), FACING_SOUTH, TALK_FACING_KEEP, 0 },
+    // West approach, just off the walkway; never blocks normal progression.
+    { SPRITE_WOMAN_WITH_BLACK_HAIR, FLAG_DARK_MYSTERY_DONE, MOVEMENT_TYPE_STAND,
+        PIXELS(88), 0, PIXELS(248), FACING_SOUTH, TALK_FACING_PARTY, 0 },
     { SCENE_TABLE_END },
 };
 
@@ -4726,6 +4885,7 @@ struct ActorTemplate gVenusLighthouseFourthFloorActorTemplates[] = {
 };
 
 struct Trigger gVenusLighthouseEntryTriggers[] = {
+    { TRIGGER_TALK, ACTOR_VENUS_MYSTERY_LEADER, FLAG_DARK_MYSTERY_DONE, EVENT(VenusLighthouse_TalkToMysteryLeader) },
     { TRIGGER_EXIT, VENUS_LIGHTHOUSE_ENTRY_TO_WORLD_MAP_EAST, CONDITION_ALWAYS, VENUS_LIGHTHOUSE_ENTRY_TO_WORLD_MAP_EAST },
     { TRIGGER_EXIT, VENUS_LIGHTHOUSE_ENTRY_TO_VENUS_LIGHTHOUSE_GROUND_FLOOR, CONDITION_ALWAYS, VENUS_LIGHTHOUSE_ENTRY_TO_VENUS_LIGHTHOUSE_GROUND_FLOOR },
     { TRIGGER_EXIT, VENUS_LIGHTHOUSE_ENTRY_TO_WORLD_MAP_WEST, CONDITION_ALWAYS, VENUS_LIGHTHOUSE_ENTRY_TO_WORLD_MAP_WEST },
