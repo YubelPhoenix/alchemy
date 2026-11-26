@@ -83,6 +83,9 @@
 #include "unit/overworld/event_commands.h"
 #include "unit/field/field.h"
 #include "unit/runtime/runtime.h"
+#include "unit/game/game.h"
+#include "unit/window/window.h"
+#include "unit/window/screens.h"
 #include "iowrite.h"
 #include "actor_effect.h"
 #include "macros.h"
@@ -2749,7 +2752,9 @@ static void VenusLighthouse_VisitPillarActors(void) {
 
 /// The "???" commander's next message (no mugshot: she has none).
 static void VenusLighthouse_MysterySays(void) {
+  Actor_ConfigureSpriteColor(ACTOR_VENUS_MYSTERY_LEADER, SPRITE_COLOR_BLACK);
   Event_ShowMessageThenWait(ACTOR_VENUS_MYSTERY_LEADER, 0, 20);
+  Actor_ConfigureSpriteColor(ACTOR_VENUS_MYSTERY_LEADER, SPRITE_COLOR_BLACK);
 }
 
 /// Isaac's next message.
@@ -2760,6 +2765,9 @@ static void VenusLighthouse_IsaacAnswers(void) {
 /// "???" beside the west approach to Venus Lighthouse after Colosso.
 /// Talking starts her optional duel; defeat returns to the last Sanctum.
 static void VenusLighthouse_TalkToMysteryLeader(void) {
+  if (GameFlag_Get(FLAG_COLOSSO_OVER) == 0 ||
+      GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0)
+    return;
   Event_Start();
   Event_SetMessageId(MsgDarkMystery01);
   VenusLighthouse_IsaacAnswers();

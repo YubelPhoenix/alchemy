@@ -253,6 +253,19 @@ def check_mystery_rescue_encounter() -> None:
             "Mystery must remain an optional post-Colosso Venus exterior encounter")
     require("gSaveBlock.entrance == VENUS_LIGHTHOUSE_ENTRY_FROM_MYSTERY_BATTLE" in venus,
             "Only the dedicated Venus battle return may play the aftermath")
+    require("GameFlag_Get(FLAG_COLOSSO_OVER) == 0" in approach and
+            "GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0" in approach,
+            "Mystery cannot be challenged before Colosso or after victory")
+    require("TRIGGER_STEP, ACTOR_VENUS_MYSTERY_LEADER" not in venus,
+            "Mystery must not block the campaign route")
+    require("SPRITE_WOMAN_WITH_BLACK_HAIR, FLAG_DARK_MYSTERY_DONE" in
+            template(venus, "gVenusLighthouseEntryActorTemplates"),
+            "Mystery must appear in the exterior actor table until victory")
+    legacy = read("tools/dark_story/phase26_early_leftovers.tsv")
+    tret = read("tools/dark_story/phase87_kolima_tret_live_gaps.tsv")
+    require(not re.search(r"^049(?:07|08|09|10)\t", legacy, re.M)
+            and not re.search(r"^05332\t", tret, re.M),
+            "Restore the original Vault Djinn and Tret awakening dialogue")
     for name in ("GARET", "IVAN", "MIA"):
         require(f"Party_RemoveMember({name});" in approach,
                 f"Mystery duel must bench {name}")
