@@ -717,7 +717,7 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
 /// The Wraith fights the full party alone. Slots match enemy row 166.
 enum WraithSlot {
   WRAITH_SPARK_PLASMA = 0, WRAITH_ASURA = 1, WRAITH_THUNDERSTORM = 2,
-  WRAITH_TEMPEST = 3, WRAITH_SONIC_SLASH = 4, WRAITH_STUN_VOLTAGE = 5,
+  WRAITH_TEMPEST = 3, WRAITH_ANNIHILATION = 4, WRAITH_STUN_VOLTAGE = 5,
   WRAITH_IMPACT = 6, WRAITH_BREAK = 7
 };
 #define WRAITH_WIDE_USED_BIT (1u << 4)
@@ -735,7 +735,7 @@ static void BossAI_WraithNoteTurn(struct Unit *unit,
                                  struct BattleAction *request) {
   s32 slot = BossAI_RequestSlot(unit, request);
   if (slot == WRAITH_SPARK_PLASMA || slot == WRAITH_THUNDERSTORM ||
-      slot == WRAITH_TEMPEST || slot == WRAITH_SONIC_SLASH)
+      slot == WRAITH_TEMPEST)
     unit->aiActionIndex |= WRAITH_WIDE_USED_BIT;
   if (slot == WRAITH_IMPACT || slot == WRAITH_BREAK ||
       slot == WRAITH_STUN_VOLTAGE)
@@ -769,9 +769,10 @@ static s32 BossAI_WraithChooseSlot(struct Unit *unit, s32 firstPick) {
         roll >= 88 && roll < 112)
       return WRAITH_STUN_VOLTAGE;
   }
-  if (view.alive == 1 || roll < 200)
-    return WRAITH_ASURA;
-  return WRAITH_SONIC_SLASH;
+  // Annihilation can instantly kill; reserve it for a multi-member party.
+  if (view.alive > 1 && roll >= (late ? 192 : 224))
+    return WRAITH_ANNIHILATION;
+  return WRAITH_ASURA;
 }
 
 /// Starts a round for the bosses: their per-round memory is cleared and their
