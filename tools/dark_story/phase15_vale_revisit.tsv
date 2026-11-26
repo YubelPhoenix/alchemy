@@ -5,7 +5,6 @@
 07178	MsgValeWhenDidYouComeBack	{actor_name:1}! When did you\ncome back? After the\nway you left,{page_break}I thought I'd never\nsee you again.{page_break}I'm glad. Truly.{end_wait}
 07179	MsgValeOwItsGonnaBeYearsBefore	Ow!{pause_20_skippable} It'll be years\nbefore I'm grown up!\n{actor_name:1}'s back already!{page_break}Oh... only visiting?\nI thought the bad\nthings were over.{end_wait}
 07180	MsgValeWelcomeHomeIsaacOhWhatHappened	Welcome home, {actor_name:1}.\nOh...{pause_20_skippable} ...\nWhat happened?{page_break}Why are you walking\nwith a girl who isn't\n{actor_name:6}?{end_wait}
-07181	MsgValeWeveSeenManyMonstersLatelyAnd	Monsters have crowded\nthe roads since the\nmountain burned.{page_break}The ash drives them\nclose to the village.\nWeapons sell well.{page_break}If only our smiths\ncould make them\nbetter...{end_wait}
 07182	MsgValeIWishICouldLearnThe	I wish I knew the secret\nof good weapons. Then\nI might be of use.{end_wait}
 07183	MsgValeIGaveHimAFarewellGift	I gave him a farewell\ngift, thinking I'd\nnever see him again.{page_break}But here he is...{page_break}Where is {actor_name:6}? Wasn't\nhe to bring her back\nwith him?{end_wait}
 07184	MsgValeIPromisedIdBecomeAGreat	I promised I'd be a\ngreat blacksmith before\n{actor_name:1} came back.{page_break}It's a man's promise.\nI'm still working on\nit.{end_wait}

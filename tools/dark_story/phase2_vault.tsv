@@ -1,6 +1,5 @@
 02387	MsgFieldDoorTightlyLocked	Locked tight. Nobody's\nanswering from inside.{end_wait}
 02388	message	The branches are bent\nlike they're praying.{end_wait}
-04642	MsgVaultWelcomeToVaultTheTownAt	Welcome to Vault. Don't\nmind the ash. It gets\neverywhere.{end_wait}
 04643	MsgVaultWasntEruptionMtAlephIncredible	Wasn't that eruption\nsomething to see?{end_now}
 04644	message	I haven't slept since.\nEvery night, I smell\nthe smoke.{end_wait}
 04645	message	Not even scared? Then\nyou're braver than me.\nOr you hide it well.{end_wait}

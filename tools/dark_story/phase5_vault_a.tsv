@@ -45,7 +45,6 @@
 04730	MsgVaultYoureHelpingIvanYouDontLook	You'll help {actor_name:3}?{page_break}Good. He needs friends.{end_wait}
 04731	MsgVaultSinceYoureHelpingIvanIllTell	{actor_name:3} understands\nanimals.{page_break}They trust {actor_name:3}\nmore than people do.{end_wait}
 04732	MsgVaultTicklesBeingTickledByBoy	Something touched\nmy thoughts. Stop it.{end_wait}
-04733	MsgVaultMaybeTheyllFindOurStolenFamily	Maybe they'll find\nour family's urn.{page_break}My mother's ashes\nwere inside.{end_wait}
 04734	MsgVaultTheseGuysLookReliableIGuess	They seem capable.\n{actor_name:3} is in good hands.{end_wait}
 04735	MsgVaultIWonderWhatSortOfThing	I wonder what the\nanimals have seen.{end_wait}
 04736	MsgVaultMasterHammetIsntOnlyOne	Hammet wasn't\nthe only victim.{page_break}We lost what little\nwe could sell.{end_wait}

@@ -1,5 +1,7 @@
 # Ashfall Story Rewrite — Continuity Ledger
 
+> **Historical working record.** For the current author decisions, protected dialogue, retired material and unresolved design questions, consult [Ashfall current canon](../../docs/ashfall-current-canon.md) first. Earlier entries below document development history and must not be used to resurrect abandoned storylines or override later author decisions.
+
 Status: working audit document  
 Branch: `dark-story-rewrite`  
 Scope: narrative chronology, story-state dependencies, and rewrite coverage  
