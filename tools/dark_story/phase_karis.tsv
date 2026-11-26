@@ -3,21 +3,21 @@
 # contempt, and reveals their relationship only after battle. Enemy row 166
 # uses the long name below. Dialogue contexts are called by umbral_rift.c.
 N701	MsgEnemyVengefulWraith	Vengeful Wraith
-N702	MsgDarkRiftKaris001	Of all the people I could\nhave encountered... It had\nto be you.{end_wait}
-N703	MsgDarkRiftKaris002	Me? Do I know you?{end_wait}
+N702	MsgDarkRiftKaris001	You... Of all the people\nI could have met here,\nit had to be you.{end_wait}
+N703	MsgDarkRiftKaris002	Are you talking to me?{end_wait}
 N704	MsgDarkRiftKaris003	Even the sound of your\nvoice disgusts me.{end_wait}
 N707	MsgDarkRiftKaris006	Then you'll suffer\nalongside him!{end_wait}
 N705	MsgDarkRiftKaris004	Looks like it's time for me\nto go...{page_break}It's strange...{page_break}Ever since that day, I've\nhated you...{end_wait}
 N706	MsgDarkRiftKaris005	She called me... Dad?{end_wait}
-N708	MsgDarkRiftKaris010	Hey! What's your problem?{end_wait}
+N708	MsgDarkRiftKaris010	Ivan hasn't done anything\nto you!{end_wait}
 N709	MsgDarkRiftKaris011	How fitting. Still\nsurrounded by people\nwilling to defend you.{end_wait}
-N710	MsgDarkRiftKaris012	Why do you hate him so\nmuch? What has he done to\nyou?{end_wait}
+N710	MsgDarkRiftKaris012	What has Ivan done to\nmake you hate him?{end_wait}
 N711	MsgDarkRiftKaris013	You know nothing. None of\nyou do.{end_wait}
-N712	MsgDarkRiftKaris014	Whatever your reasons are,\nwe won't let you hurt Ivan.{end_wait}
+N712	MsgDarkRiftKaris014	Whatever happened,\nwe won't let you hurt Ivan.{end_wait}
 N689	MsgDarkRiftKaris015	But it was good seeing you\none last time...{end_wait}
 N690	MsgDarkRiftKaris016	Dad...{end_wait}
 N691	MsgDarkRiftKaris017	Ivan... Do you know her?{end_wait}
-N687	MsgDarkRiftKaris018	No... I've never seen her\nbefore.{end_wait}
+N687	MsgDarkRiftKaris018	No. I've never seen her\nbefore. But the way she\nlooked at me...{end_wait}
 N688	MsgDarkRiftKaris019	Ivan... Are you all right?{end_wait}
-N535	MsgDarkRiftKaris020	I don't know, Mia...{end_wait}
-N679	MsgDarkRiftKaris021	We can stay here for a\nwhile.{end_wait}
+N535	MsgDarkRiftKaris020	I don't know, Mia.\nI don't understand.{end_wait}
+N679	MsgDarkRiftKaris021	Take your time, Ivan.\nWe'll wait.{end_wait}
