@@ -1,36 +1,100 @@
-# 🌋 Alchemy
+<div align="center">
 
-Alchemy is a [decompilation](https://en.wikipedia.org/wiki/Decompiler) of the Game Boy Advance games ☀️ **[Golden Sun: The Broken Seal](https://alchemy.pascalpixel.com/tbs)** and ⚓️ **Golden Sun: The Lost Age**.
+# GOLDEN SUN: ASHFALL
 
-## Progress
+*The world you remember. A journey that no longer feels the same.*
 
-The Broken Seal is fully rebuilt from this repository, in Japanese, English, German, French, Spanish, and Italian. The Lost Age is in progress, but the parts not yet rewritten still come from your own cartridge dump.
+**A darker, story-driven reimagining of Golden Sun for the Game Boy Advance.**
 
-<img src="https://alchemy.pascalpixel.com/PROGRESS_CHART.png" width="838" alt="How much of each game's code and data is rebuilt, day by day since 16 July 2026" />
+[![Release status](https://img.shields.io/badge/status-release%20candidate-c58a43)](https://github.com/YubelPhoenix/alchemy/releases)
+[![Platform](https://img.shields.io/badge/platform-Game%20Boy%20Advance-555555)](#installation)
+[![Distribution](https://img.shields.io/badge/distribution-IPS%20patch-555555)](#download)
 
-## Documentation
+**[Releases](https://github.com/YubelPhoenix/alchemy/releases) · [Features](#features) · [Installation](#installation) · [Credits](#credits)**
 
-<a href="https://alchemy.pascalpixel.com"><img src="https://alchemy.pascalpixel.com/guides/docs/introduction.png" width="838" alt="The front page of Alchemy's documentation, with its World and Battle sections" /></a>
+</div>
 
-[alchemy.pascalpixel.com](https://alchemy.pascalpixel.com) explains how The Broken Seal works, written from its rebuilt source, with recordings from the game itself.
+---
 
-## Build
+## Return to Weyard
 
-[INSTALL.md](INSTALL.md) has the commands for Linux, macOS and Windows. Every build is checked against the original cartridges’ hashes in [rom.sha1](rom.sha1).
+The storm over Vale sets Isaac and his friends on a journey they were never prepared to undertake. The Elemental Stars are stolen, the lighthouses threaten to restore the power of Alchemy, and familiar places begin to feel increasingly uncertain.
 
-## Why
+As their journey unfolds, new encounters test the bonds between the Adepts. Strangers carry grievances the party cannot understand, and a breach known as the Umbral Rift offers glimpses of a world that should not exist.
 
-Hi, I’m Pascal Pixel, an engineer recovering from a burnout. Golden Sun is my favorite game and I wanted to know how it works, so I’m decompiling it with [AI agents](AGENTS.md).
+Ashfall preserves the foundations of the original adventure while exploring the consequences of its events through a darker, more personal narrative. The familiar world of Golden Sun remains at its heart.
 
-## Acknowledgements
+## Features
 
-_Golden Sun_, its characters, music, art and original code were made by Camelot Software Planning and published by Nintendo. Alchemy is an unofficial fan project, and neither company is involved with it or endorses it.
+- **A reimagined campaign:** rewritten dialogue, expanded character interactions and new story events woven into the original adventure.
+- **New encounters:** optional superbosses with distinct attack patterns, custom battle artwork and animations.
+- **The Umbral Rift:** an unsettling additional area built around familiar places made unfamiliar.
+- **Expanded combat:** new abilities, battle mechanics and tactical challenges.
+- **Custom presentation:** new sprites, portraits and other visual additions alongside the original game's art style.
 
-Thank you to:
+## Gameplay screenshots
 
-- Everyone on [r/GoldenSun](https://www.reddit.com/r/GoldenSun/), for cheering Alchemy on and keeping the love for these games alive.
-- Tarpman and Karathan, who worked out the compiler and flags Camelot used.
-- Coaltergeist, for [camelot-gcc](https://github.com/Coaltergeist/camelot-gcc), the compiler Alchemy first built with.
-- [pret](https://github.com/pret), whose decompilations set the standard Alchemy measures itself against, and whose [agbcc](https://github.com/pret/agbcc) builds the games’ sound and save code.
-- [Simon Lindholm](https://github.com/simonlindholm/decomp-permuter), for decomp-permuter, which Alchemy Devtools reimplements in Rust.
-- [mGBA](https://mgba.io), whose libmgba plays the builds for every picture and recording in the documentation.
+A spoiler-free gallery of exploration, story scenes and battles will be added using captures from the tested release candidate.
+
+<!-- Add verified in-game captures here using relative repository image paths. -->
+
+## Download
+
+> [!IMPORTANT]
+> Ashfall is undergoing final gameplay testing. Its first public release has not yet been published.
+
+### [Official releases page →](https://github.com/YubelPhoenix/alchemy/releases)
+
+Published versions will be available here as IPS patch packages with release notes. Development builds are available through [GitHub Actions](https://github.com/YubelPhoenix/alchemy/actions); these are temporary and are not a substitute for a tested public release.
+
+## Installation
+
+Ashfall is intended for the original **English Golden Sun (The Broken Seal)** on Game Boy Advance, not Golden Sun: The Lost Age.
+
+1. Obtain a clean, lawfully sourced dump of your original game cartridge.
+2. Verify that its SHA-1 matches the supported base ROM below.
+3. Download the IPS patch from the Releases page once a release is available.
+4. Apply the patch to a copy of your clean ROM using an IPS-compatible patcher, such as Floating IPS.
+5. Open the patched ROM in a compatible GBA emulator or on compatible hardware.
+
+**Supported base ROM SHA-1**
+
+```text
+5c4695205413df7db52b9a184815a07783999971
+```
+
+Reference: [rom.sha1](rom.sha1).
+
+Keep a backup of your original ROM and save files. A fresh save is recommended for final testing; compatibility across development builds is not guaranteed. The intended release download is a patch, not a complete playable ROM.
+
+## Development status
+
+Ashfall is in its release-candidate phase. Current work focuses on stability, narrative continuity, gameplay testing and release presentation. A successful automated build does not guarantee that every gameplay sequence has been tested.
+
+For technical information, see the [build instructions](INSTALL.md), the [official Ashfall workflow](.github/workflows/build-ashfall.yml), and the original [Alchemy documentation](https://alchemy.pascalpixel.com).
+
+## Credits
+
+**Golden Sun: Ashfall** — YubelPhoenix
+
+**Technical foundation:** [The Alchemy Project](https://github.com/PascalPixel/alchemy), by Pascal Pixel and its contributors. Alchemy reconstructs the original Golden Sun games for video game preservation. Its documentation and upstream development remain separate from Ashfall.
+
+With thanks to the contributors acknowledged by Alchemy:
+
+- Tarpman and Karathan, for compiler and build research.
+- Coaltergeist, for [camelot-gcc](https://github.com/Coaltergeist/camelot-gcc).
+- [pret](https://github.com/pret), including the [agbcc](https://github.com/pret/agbcc) compiler project.
+- [Simon Lindholm](https://github.com/simonlindholm/decomp-permuter), for decomp-permuter.
+- [mGBA](https://mgba.io) and the [Golden Sun community](https://www.reddit.com/r/GoldenSun/).
+
+Golden Sun, its original code, characters, artwork and music belong to their respective rights holders. The original game was developed by Camelot Software Planning and published by Nintendo.
+
+Ashfall is an unofficial, non-commercial fan project. It is not affiliated with or endorsed by Nintendo, Camelot or the upstream Alchemy project. No ownership of the original game's intellectual property is claimed.
+
+---
+
+<div align="center">
+
+[Releases](https://github.com/YubelPhoenix/alchemy/releases) · [Development builds](https://github.com/YubelPhoenix/alchemy/actions) · [Report an issue](https://github.com/YubelPhoenix/alchemy/issues)
+
+</div>
