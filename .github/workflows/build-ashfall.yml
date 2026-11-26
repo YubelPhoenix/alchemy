@@ -1,4 +1,4 @@
-name: Validate Golden Sun dialogue build
+name: "Golden Sun: Ashfall — Official Build"
 
 on:
   workflow_dispatch:
@@ -28,7 +28,7 @@ on:
       - 'tools/dark_story/build_ash_jenna_overworld.py'
       - 'assets/ash_jenna/**'
       - 'tools/dark_story/check_story_contract.py'
-      - '.github/workflows/build-golden-sun-dialogue.yml'
+      - '.github/workflows/build-ashfall.yml'
       - 'assets/heart/**'
 
 # Stabilization candidate 2: Rift dialogue and Wraith combat validation.
