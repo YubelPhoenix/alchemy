@@ -1,5 +1,5 @@
 02418	message	The Psynergy Stone...\nit's simply gone.{end_wait}
-04051	MsgSolSanctumKradenFirstTimeAtSol	Sol Sanctum. You've never\nbeen inside, have you?{end_now}
+04051	MsgSolSanctumKradenFirstTimeAtSol	This is the entrance to\nSol Sanctum. This is your\nfirst time here, right?{end_now}
 04052	message	Look at the stonework.\nIt's older than Vale.{end_wait}
 04053	message	I doubt that. Few people\nhave ever been allowed\ninside.{end_wait}
 04054	MsgSolSanctumWrongKraden	Kraden? You've gone quiet.\nWhat is it?{end_wait}

@@ -3,14 +3,14 @@
 06486	MsgMountainHeWhoHasPowerSee	Those who see\nwhat eyes conceal\nmay find the truth.{page_break}So the inscription\nreads.{end_wait}
 06487	MsgAlpineCrossingLamaTempleThisIsLamaTempleWelcomeTravelers	Welcome to Lama Temple.\nRest while you can.{page_break}Beyond us lies Lamakan\nDesert. Its heat is\nnot to be taken lightly.{end_wait}
 06488	MsgMountainYoungWarriorsDoComeFrom	Have you come here\nfrom the east?{end_now}
-06489	message	Then you've traveled\na long way along\nSilk Road.{end_wait}
+06489	message	Then you must have come\nacross Lamakan Desert...{end_wait}
 06490	message	Did you stop at Xian\non your way here?{end_now}
 06491	message	Master Feh in Xian\nis an old friend of\nour Master Hama.{page_break}His students often\ncome here to continue\ntheir training.{end_wait}
 06492	message	Then you came to the\nright place.{page_break}Master Feh teaches\nstrength. Here, we\nteach how to guide it.{end_wait}
 06493	MsgMountainDoKnowMeditation	Do you know what\nmeditation is?{end_now}
 06494	message	Then you know how\nhard it can be to\nquiet your thoughts.{page_break}Some spend years\nlearning to do just\nthat.{end_wait}
 06495	message	To meditate is to\nset aside the noise\nof the world.{page_break}It sounds simple.\nTry it, and you will\nfind otherwise.{end_wait}
-06496	MsgAlpineCrossingLamaTempleYouWhoSpeakToMeI	Their minds are restless.\nAnd one of them carries\nworries he will not name.{end_wait}
+06496	MsgAlpineCrossingLamaTempleYouWhoSpeakToMeI	You who speak to me...\nI sense great insecurity\nand anxiety within you.{end_wait}
 06497	MsgMountainDidKnowMasterHamaGreatest	Have you heard of\nMaster Hama's skill\nwith Chi?{end_now}
 06498	message	Then perhaps you met\nMaster Feh in Xian.{page_break}Even he admits that\nHama's gifts go far\nbeyond martial arts.{end_wait}
 06499	message	Then you may be\nsurprised by what\nyou see here.{end_wait}
@@ -61,7 +61,7 @@
 06559	message	Heat bends the light.\nWhat seems like water\nmay be only sand.{page_break}Reveal can help you\nfind real oases\nthrough the haze.{end_wait}
 06561	message	Good. I'd rather not\ndie of thirst in\nthe middle of nowhere.{end_wait}
 06565	message	I can try. But I\ncannot promise that\nthe power will take.{end_wait}
-06566	message	I once tried to awaken\na different gift in\na young student.{end_wait}
+06566	message	In preparation for\nthis day, I tried to\npass a power on{page_break}to a young girl,\nalthough that power\nwas not Reveal.{end_wait}
 06567	message	She was not an Adept.\nI feared I had\nasked too much.{end_wait}
 06568	message	Still, I believed\nthe power might\nbe within her.{end_wait}
 06569	message	For a long time,\nthere was no sign\nof change.{end_wait}
@@ -76,7 +76,7 @@
 06584	message	Then perhaps the gift\nwas there all along.\nIt needed a spark.{end_wait}
 06586	message	Yes. We must find\nhim at once.{end_wait}
 06587	message	Wait! What about\nReveal?{end_wait}
-06589	message	Feizhi's gift has\nawakened. I believe\nyours can, too.{end_wait}
+06589	message	It seems I succeeded in\npassing my power to\nFeizhi. You will be fine.{end_wait}
 06590	message	There. Reveal is yours.\nUse it to cross\nthe desert.{end_wait}
 06591	message	But it will take\npractice. You may not\nsee every oasis yet.{end_wait}
 06595	message	No... But somehow,\nshe doesn't feel\nlike a stranger.{end_wait}

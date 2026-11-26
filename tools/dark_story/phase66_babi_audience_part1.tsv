@@ -17,7 +17,7 @@
 08917	message	What did you say\nyour name was?{end_wait}
 08918	message	He is speaking to\nyou, {actor_name:2}.{end_wait}
 08919	message	Yes, {actor_name:2}. We will\nexplain the matter.{end_wait}
-08920	message	We owe you and your\ncompanions for bringing\nme back, {actor_name:1}.{end_wait}
+08920	message	We intended to thank you\nand your companions for\nsaving Babi, {actor_name:1}.{end_wait}
 08921	message	But a simple expression\nof gratitude will not\nsettle everything...{end_wait}
 08922	message	I have already told\nIodem the whole story.{end_wait}
 08923	message	What do you mean by\nthe whole story?{end_wait}

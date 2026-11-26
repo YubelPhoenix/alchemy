@@ -111,3 +111,4 @@
 06187	MsgFuchinTempleEveryoneInXianCanDoMartial	Many people in Xian\npractice martial arts.{page_break}Master Feh trains\nthe most dedicated.{end_wait}
 06188	MsgFuchinTempleJustListeningDoesNotMakeOne	Watching is useful.\nPractice is what\nmakes it yours.{end_wait}
 06189	MsgXianMasterFehVeryBusyDo	Master Feh is busy.\nDo you still wish\nto speak with him?{end_now}
+06081	message	You seem{pause_20_skippable} confused,\n{actor_name:1}.{end_now}

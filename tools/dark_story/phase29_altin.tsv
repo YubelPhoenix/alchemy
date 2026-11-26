@@ -1,7 +1,7 @@
 # Altin: the water beasts and the rain that does not stop.
 06333	MsgAltinYourFirstTimeVisitAltin	First time in Altin?{end_now}
 06334	message	Look at what's left of\nAltin.{page_break}The lower streets are\nunderwater. We carried\nout what we could.{end_wait}
-06335	message	We used to be a\nmining town.{page_break}Now look at us.\nThe streets are rivers.{end_now}
+06335	message	We must look a\nlot like a coastal\ntown, huh?{end_now}
 06336	message	We never had enough\nwater in the old days.{page_break}Now the beasts have\nflooded our homes.\nNothing seems fair.{end_wait}
 06337	message	The guardian statues\nstarted moving.{page_break}Then the water rose.\nI saw it myself.{end_wait}
 06338	MsgAltinHowCanThoseCreaturesSpitUp	How can those beasts\nproduce so much water?{end_wait}

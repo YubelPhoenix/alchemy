@@ -1,8 +1,8 @@
 # Karagol ship cabins 078xx: replacement rower selection, injured crew, worsening attacks, Kaja and Kraken danger. Preserves text effects and names.
-07800	MsgTolbiShipNoooooNotGoing	{text_effect:4}No! Don't pick me! I can\nbarely lift a bucket, let\nalone pull an oar!{reset_text_style}{end_now}
+07800	MsgTolbiShipNoooooNotGoing	{text_effect:4}Nooooo!{pause_20_skippable}{reset_text_style} You're not going\nto make me row, are you?{end_now}
 07803	MsgTolbiShipJokingWantRow	You want me to row? That\ncan't be serious. I paid\nfor passage.{end_now}
 07806	MsgTolbiShipDontTellGoing	Are you really going to ask\nme to row? There are\ntrained sailors right{page_break}there!{end_now}
-07809	MsgTolbiShipOhhhhNooooGoingMakeMe	{text_effect:4}Oh, no. Please tell me\nyou're choosing somebody\nelse!{reset_text_style}{end_now}
+07809	MsgTolbiShipOhhhhNooooGoingMakeMe	What? {text_effect:4}Ohhhh, noooo...{pause_20_skippable}\n{reset_text_style}Are you going to\nmake me row?{end_now}
 07812	MsgTolbiShipHaHaHaRowingFeel	Ha! Looking for another\nrower? You've got a whole\nhold full of volunteers.{page_break}Probably.{end_wait}
 07816	MsgTolbiShipNotThinkingMaking	You're not thinking of\nputting me at an oar, are\nyou? I have a bad back.{end_now}
 07819	MsgTolbiShipOarsmanGiveBreak	Me? Rowing? You've got the\nwrong person. Surely you\ncan see that!{end_now}

@@ -29,7 +29,7 @@
 09734	message	Who were those people?\nWhat did you see?{end_wait}
 09735	message	When the storms stopped,\nthey moved ahead,{pause_20_skippable}\nbut another storm rose...{end_wait}
 09736	message	They had strange powers.\nWe carried barrels of\nwater...{pause_20_skippable}{end_wait}
-09737	message	The water ran out...\nThen the creature came.\nWe could not stop it.{end_wait}
+09737	message	But carrying the barrels\nexhausted us...and then{pause_20_skippable}\nthe beast...{end_wait}
 09738	message	Enough. Get some rest.\nWe will take it from here.{end_wait}
 09739	message	They are dangerous.\nSlay the beast, then\nfollow their trail...{end_wait}
 09740	message	You survived. That is\nenough for now. Rest.{end_wait}

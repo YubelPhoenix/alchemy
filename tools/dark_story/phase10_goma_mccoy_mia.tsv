@@ -18,8 +18,8 @@
 05524	message	You've got your reasons.\nI have mine.{end_wait}
 05525	message	Are you going on, or not?{end_now}
 05526	message	Someone's inside.\nI'm not turning back.\nAre you coming?{end_now}
-05528	message	Someone got inside.\nI'm going to find out why.{end_wait}
-05529	message	My family guarded this\nlighthouse for generations.\nI won't abandon it.{end_wait}
-05530	message	I'm going with you.\nI know this place.\nYou'll need my help.{end_wait}
+05528	message	I am sure there will\nbe more places ahead that\nI cannot pass alone.{end_wait}
+05529	message	Only those of the Mercury\nClan are permitted to\nenter this place.{end_wait}
+05530	message	However, I sense\nsomething special about\nyou.{page_break}I feel that I\ncan trust you!{end_wait}
 05547	message	So the children\nsurvived Mt. Aleph.{end_wait}
 05548	message	You came this far\nfor {actor_name:6} and Kraden?{end_wait}

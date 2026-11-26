@@ -32,22 +32,22 @@
 10386	message	Thank you for waiting.\nI owe you an explanation\nbefore you go.{end_wait}
 10387	message	There is something\nI must ask you about\nLemuria.{end_wait}
 10388	message	The ancient island\nBabi searched for\nall his life.{end_wait}
-10389	message	We came back from Venus\nwithout {actor_name:6}.\nWe couldn't find her.{end_wait}
-10390	message	And the lower passage\nwas flooded, you say?\nYou couldn't search it?{end_wait}
-10391	message	But we looked out to\nsea. There was a bank\nof mist that wouldn't move.{end_wait}
-10392	message	Babi believed Lemuria\nlay beyond a wall\nof mist.{end_wait}
-10393	message	But we don't know\nwhat lies beyond it.\nEven the maps are blank.{end_wait}
-10394	message	I can't swear it's\nLemuria. But it may\nbe our only lead.{end_wait}
-10395	message	Babi's medicine is\nrunning out. He cannot\nwait much longer.{end_wait}
-10396	message	Then reaching Lemuria\nmay be his only\nchance.{end_wait}
-10397	message	You gave Babi your\nword. I came to ask\nyou to keep it.{end_now}
-10398	message	But Jenna is missing!\nAre we meant to sail\nwithout her?{end_wait}
-10399	message	No one is asking you\nto abandon her.\nHear me out.{end_wait}
-10400	message	I would never ask you\nto abandon {actor_name:6}.\nPlease, hear me out.{end_wait}
-10401	message	If they're at sea,\nwe can't reach them\non foot.{end_wait}
-10402	message	There's a way to\ncross these waters.\nLook closely.{end_wait}
-10403	message	Iodem draws a black\norb from his robes.{end_wait}
-10404	message	The Black Orb!\nDoes that control\nBabi's ship?{end_wait}
+10389	message	When you could not find\n{actor_name:6}, you returned to\nVenus Lighthouse.{end_wait}
+10390	message	Yeah. The base of the\nlighthouse was flooded,\nso we couldn't get out.{end_wait}
+10391	message	And that's when you\ngazed out to sea, as you\npromised Babi you would.{end_wait}
+10392	message	Yes... And we saw an\narea wrapped in mist.{end_wait}
+10393	message	I remembered how Babi\nsaid Lemuria was always\ncovered in mist.{end_wait}
+10394	message	I am not sure, but I\nam beginning to think\nthat may be Lemuria...{end_wait}
+10395	message	If it is, then\nBabi's life...{end_wait}
+10396	message	...could be saved? Yes.{end_wait}
+10397	message	Then I guess we have\nno choice but to go...{end_now}
+10398	message	Good. Then it's settled.\nI'll make arrangements for\nyou to leave at once.{end_wait}
+10399	message	You swore an oath.\nIt is meaningless unless\nyou go immediately.{end_wait}
+10400	message	But...we have to find\n{actor_name:6} first...{end_wait}
+10401	message	That is the other reason\nI wanted to see you...\nto give you this.{end_wait}
+10402	message	Iodem takes out\nthe Black Orb.{end_wait}
+10403	message	Oh, isn't that...{end_wait}
+10404	message	You will need it to\nsail Babi's ship.{end_wait}
 10406	message	Take the ship.\nIt may help you\nfind {actor_name:6}.{end_wait}
 10407	message	Thank you, Iodem.\nWe won't forget this.{end_wait}
 10408	message	Find your friend.\nBut remember Lemuria.\nBabi has little time.{end_wait}

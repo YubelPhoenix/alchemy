@@ -58,8 +58,8 @@
 09996	message	I am{pause_20_skippable} sorry about\n{actor_name:7}...{end_wait}
 09997	message	Why did this have to\nhappen to her?{end_wait}
 09998	message	Are {actor_name:5} and the others\nbeyond this door?{end_wait}
-09999	message	If they passed through,\nthey are beyond it now...{end_wait}
-10000	message	Then we can follow them.\nWe only need a way\nthrough.{end_now}
+09999	message	Yes. Beyond the door\nthat no normal man\ncan open...{end_wait}
+10000	message	If they got through, then\nwe can, too. Right?{end_now}
 10002	message	There is no one else\nwho can go after them.{end_wait}
 10003	message	Iodem, who are these\npeople?{end_wait}
 10004	message	They came from the far\nnorth.{page_break}They followed the ones\nwho took {actor_name:7} all\nthe way here.{end_wait}

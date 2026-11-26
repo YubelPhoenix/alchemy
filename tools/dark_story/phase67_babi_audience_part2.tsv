@@ -1,5 +1,5 @@
 # Babi's audience, part II: the Draught of Lemuria, Babi's failing supply, and the search for the lost city.
-08944	message	The Stone of Sages?{pause_20_skippable}\nA stone that grants\neternal life?{end_wait}
+08944	message	It rules all, can change\nanything into gold, grants\nimmortality.{pause_20_skippable} Ring a bell?{end_wait}
 08945	message	How else could Babi\nhave lived for\nso many years?{end_wait}
 08946	message	I know the stories.\nBut I do not have\nthe Stone of Sages.{end_wait}
 08947	message	The Draught of Lemuria\nhas kept me alive\nall this time.{end_wait}
@@ -11,15 +11,15 @@
 08954	message	Their lives can span\ncenturies, while\ntheir senses fade.{end_wait}
 08955	message	Do Lemurians use\nPsynergy, as we do?{end_wait}
 08956	message	You have the draught,\nBabi. That is how you\nhave lived so long.{end_wait}
-08957	message	With that time,\nI built my fortune\nand came to rule.{end_wait}
+08957	message	And become wealthy\nenough to rule Tolbi.{end_wait}
 08958	message	What are you suggesting?{end_wait}
 08959	message	Then why do you\nhave scholars working\non Alchemy?{end_wait}
 08960	message	I've wondered that\nmyself. What is Babi\nhoping to find?{end_wait}
 08961	message	If I had found a way\nto live forever,\nwould I need them?{end_wait}
 08963	message	I have little draught\nleft. Every drop\nmatters now.{end_wait}
 08964	message	You saw it in the cave.\nOnly a small amount\nremained.{end_wait}
-08965	message	What happens when\nthe last of it\nis gone?{end_wait}
-08966	message	Then I will die.\nI have no reason\nto hide that now.{end_wait}
+08965	message	How long will it last?\nAnd what will happen\nwhen it runs out?{end_wait}
+08966	message	It will run out any day\nnow. And when it does,\nmy life is at its end...{end_wait}
 08967	message	Why didn't you\ntell us sooner?\nWe must act!{end_wait}
 08969	message	What do you mean,\nthere is no point?{end_wait}
 08970	message	I have searched\nfor Lemuria for years.\nStill, nothing.{end_wait}
@@ -36,6 +36,6 @@
 08981	message	Yes. I need you\nto find what\nmy ships could not.{end_wait}
 08982	message	The sea has failed me.\nI hoped a view\nfrom above might help.{end_wait}
 08983	message	That's why I built\nBabi Lighthouse.\nTo search for Lemuria.{end_wait}
-08984	message	You built a lighthouse\njust to search\nthe sea?{end_wait}
+08984	message	What? That's why you're\nbuilding the lighthouse?{end_wait}
 08985	message	There is something\nelse you must hear.{end_wait}
 08986	message	A shape stirred\nsoutheast in the sea...{pause_20_skippable}{pause_20_skippable}\nwhere Lemuria should lie.{end_wait}
