@@ -3,47 +3,47 @@
 # ??? remains unidentified. Mia never calls Alex a cousin.
 N500	MsgDarkRiftFountain001	Stay close, everyone.{end_wait}
 N501	MsgDarkRiftFountain002	We were just outside Vale.{end_wait}
-N502	MsgDarkRiftFountain003	That fountain... It reminds\nme of Mercury Lighthouse.{end_wait}
+N502	MsgDarkRiftFountain003	That fountain...\nIt looks familiar.{end_wait}
 N503	MsgDarkRiftFountain004	The one inside the tower?{end_wait}
 N504	MsgDarkRiftFountain005	Yes. Even the pillars\nlook the same.{end_wait}
-N505	MsgDarkRiftFountain006	But look at the walls.\nIt's as if the color\nhas been drained away.{end_wait}
-N506	MsgDarkRiftFountain007	Wait. We're not alone.{end_wait}
+N505	MsgDarkRiftFountain006	I don't remember it\nlooking like this.{end_wait}
+N506	MsgDarkRiftFountain007	Look. Over there.{end_wait}
 N507	MsgDarkRiftFountain008	They just vanished!{page_break}Were they ghosts?{end_wait}
-N508	MsgDarkRiftFountain009	I don't know. Stay close.\nWe need to find out\nwhat's going on.{end_wait}
+N508	MsgDarkRiftFountain009	I don't know what they are.{end_wait}
 N509	MsgDarkRiftFountain010	Look for a way back.\nWe may need it.{end_wait}
-N510	MsgDarkRiftMaze001	Garet's right. I recognize\nthis place, too.{end_wait}
-N511	MsgDarkRiftMaze002	Isaac, these walls...\nDon't they remind you of\nSol Sanctum?{end_wait}
-N512	MsgDarkRiftMaze003	Sol Sanctum? The place\nyou told us about?{end_wait}
-N513	MsgDarkRiftMaze004	Yeah. We walked through\npassages like these.{end_wait}
-N514	MsgDarkRiftMaze005	But that's beneath\nMt. Aleph, isn't it?{end_wait}
+N510	MsgDarkRiftMaze001	Something's wrong.\nThis shouldn't be here.{end_wait}
+N511	MsgDarkRiftMaze002	Isaac... Sol Sanctum?{end_wait}
+N512	MsgDarkRiftMaze003	How could part of it\nbe down here?{end_wait}
+N513	MsgDarkRiftMaze004	I don't know.{end_wait}
+N514	MsgDarkRiftMaze005	Someone's ahead of us.{end_wait}
 N515	MsgDarkRiftMaze006	I wonder where this leads.{end_wait}
 N516	MsgDarkRiftMaze007	Wait. There's someone\nahead of us.{end_wait}
 N517	MsgDarkRiftMaze008	They vanished!{end_wait}
-N518	MsgDarkRiftMaze009	Leave them for now.\nLet's see where these\npassages lead.{end_wait}
+N518	MsgDarkRiftMaze009	We won't catch them\nlike this.{end_wait}
 N519	MsgDarkRiftMemory001	That's... my house.{end_wait}
 N520	MsgDarkRiftMemory002	Even the layout is\njust like your house.{end_wait}
-N521	MsgDarkRiftMemory003	Isaac... Are you sure?{end_wait}
+N521	MsgDarkRiftMemory003	Those figures...\nThey just disappeared.{end_wait}
 N522	MsgDarkRiftMemory004	I'd know this room\nanywhere. For a moment,\nI expected to see Mom.{end_wait}
-N523	MsgDarkRiftMemory005	Your mother's in Vale.\nWhatever this is,\nit isn't your home.{end_wait}
-N524	MsgDarkRiftMemory006	There's something near\nthe back wall.{end_wait}
-N525	MsgDarkRiftMemory007	That light doesn't\nbelong here.{end_wait}
-N526	MsgDarkRiftMemory008	I can feel Psynergy\ncoming from it.{end_wait}
+N523	MsgDarkRiftMemory005	Your mother's back in Vale.\nBut this isn't your home.{end_wait}
+N524	MsgDarkRiftMemory006	I sense Psynergy nearby.{end_wait}
+N525	MsgDarkRiftMemory007	That light...{end_wait}
+N526	MsgDarkRiftMemory008	It's coming from there.{end_wait}
 N527	MsgDarkRiftOrb001	Did you see that flash?{end_wait}
 N528	MsgDarkRiftOrb002	The light changed when\nyou touched it.{end_wait}
 N529	MsgDarkRiftOrb003	Something shifted.\nI felt it farther away.{end_wait}
-N530	MsgDarkRiftOrb004	Let's check the fountain.\nWe might find another\nway through.{end_wait}
+N530	MsgDarkRiftOrb004	Let's check the fountain\nagain.{end_wait}
 N531	MsgDarkRiftGate001	That light wasn't here\nwhen we first came in.{end_wait}
 N532	MsgDarkRiftGate002	It must be linked to\nthe one in the house.{end_wait}
 N533	MsgDarkRiftGate003	Maybe this is the way\nfarther in.{end_wait}
 N534	MsgDarkRiftGate004	Let's see where it leads.{end_wait}
-N536	MsgDarkRiftCauseway002	I can't see the end\nof this passage.{end_wait}
-N537	MsgDarkRiftCauseway003	There's another light\nbeside the path.{end_wait}
-N538	MsgDarkRiftCauseway004	Let's check it before\nwe go any farther.{end_wait}
+N536	MsgDarkRiftCauseway002	How far does this go?{end_wait}
+N537	MsgDarkRiftCauseway003	I can feel Psynergy\ncoming from that light.{end_wait}
+N538	MsgDarkRiftCauseway004	Let's take a closer look.{end_wait}
 N539	MsgDarkRiftPre001	What are you doing here?{end_wait}
 N540	MsgDarkRiftPre002	Studying this place.{end_wait}
-N541	MsgDarkRiftPre003	Did Ash Jenna use a\npassage like this?{end_wait}
+N541	MsgDarkRiftPre003	Ash Jenna spoke of\nanother world. Did she\ncross through a Rift?{end_wait}
 N542	MsgDarkRiftPre004	You should ask her what\nshe saw when she crossed.{end_wait}
-N543	MsgDarkRiftPre005	Another world?\nYou mean there's more\nthan one Weyard?{end_wait}
+N543	MsgDarkRiftPre005	How much of that world\nis left?{end_wait}
 N544	MsgDarkRiftPre006	What you see here is\nall that remains of some\nplaces in that world.{end_wait}
 N545	MsgDarkRiftPre007	Parts of this place look\nlike places we know.\nHow is that possible?{end_wait}
 N546	MsgDarkRiftPre008	They once existed in\nanother world.{end_wait}
@@ -55,9 +55,9 @@ N551	MsgDarkRiftPre013	You mean it could spread\noutside of here?!{end_wait}
 N552	MsgDarkRiftPre014	What happens to your world\nis of little concern to me.{end_wait}
 N553	MsgDarkRiftPre015	We're going to close\nthat passage.{end_wait}
 N554	MsgDarkRiftPre016	I'm not finished here.{end_wait}
-N555	MsgDarkRiftPre017	Why did you bring Heart?{end_wait}
+N555	MsgDarkRiftPre017	Why is Heart here?{end_wait}
 N556	MsgDarkRiftPre018	A way across worlds.\nMy people once had one.{end_wait}
-N557	MsgDarkRiftPre019	And your companion?{end_wait}
+N557	MsgDarkRiftPre019	Who's your companion?{end_wait}
 N558	MsgDarkRiftPre020	Heart can sense weak\npoints between worlds.\nThat's why she's here.{end_wait}
 N559	MsgDarkRiftPre021	We saw figures that looked\nlike you.{end_wait}
 N560	MsgDarkRiftPre022	Echoes. Nothing more.{end_wait}
@@ -114,7 +114,7 @@ N610	MsgDarkRiftPre072	Alex helped light\nMercury Lighthouse.\nWhat is this Apol
 N611	MsgDarkRiftPre073	What do you know about\nAlex and Kraden?{end_wait}
 N612	MsgDarkRiftPre074	We know nothing\nabout this Apollo Lens.{end_wait}
 N613	MsgDarkRiftPre075	In Vale, you warned me\nabout thirty years.{end_wait}
-N614	MsgDarkRiftPre076	That woman who called\nme her father... Did she\nknow another me?{end_wait}
+N614	MsgDarkRiftPre076	That woman called me Dad.\nDid she know another me?{end_wait}
 N615	MsgDarkRiftPre077	Not every world follows\nthe same road.{end_wait}
 N616	MsgDarkRiftPre078	Then what happened\nto Alex?{end_wait}
 N617	MsgDarkRiftPre079	You've heard more\nthan I intended.{end_wait}
@@ -127,8 +127,8 @@ N623	MsgDarkRiftPre085	Quiet, Heart.\nYou've done enough.{end_wait}
 N624	MsgDarkRiftPre086	...Yes.{end_wait}
 N625	MsgDarkRiftPre087	Mia, we'll have to\nleave that for now.{end_wait}
 N626	MsgDarkRiftPre088	Our families are in Vale.\nWe can't let this spread.{end_wait}
-N627	MsgDarkRiftPre089	I need to learn how to\nopen a passage without\nit collapsing.{end_wait}
-N628	MsgDarkRiftPre090	Then you'll have to find\nanother way. Not here.{end_wait}
+N627	MsgDarkRiftPre089	I still have something\nto find. I need a way\nto reach it.{end_wait}
+N628	MsgDarkRiftPre090	Not at Vale's expense.{end_wait}
 N629	MsgDarkRiftPre091	You won't reach the anchor\nwhile I still stand here.{end_wait}
 N630	MsgDarkRiftPre092	My lady...\nYour orders?{end_wait}
 N631	MsgDarkRiftPre093	Very well. Heart. Stand\nbeside me.{end_wait}
@@ -153,7 +153,7 @@ N649	MsgDarkRiftPost015	Why do you want to know?{end_wait}
 N650	MsgDarkRiftPost016	I want to know what\nhappened. That's all.{end_wait}
 N651	MsgDarkRiftPost017	Then ask the Alex\nin your own world.{end_wait}
 N652	MsgDarkRiftPost018	What do you intend to\ndo with that knowledge?{end_wait}
-N653	MsgDarkRiftPost019	I need to open a passage\nwhere I choose.{page_break}Your Psynergy may be the\nkey to doing that.{end_wait}
+N653	MsgDarkRiftPost019	There is something I need\nthat isn't in this world.{page_break}Your Psynergy may be\nthe key to reaching it.{end_wait}
 N654	MsgDarkRiftPost020	My lady... Your orders?{end_wait}
 N655	MsgDarkRiftPost021	Come, Heart.{end_wait}
 N656	MsgDarkRiftPost022	Yes, my lady.{end_wait}
@@ -170,7 +170,7 @@ N666	MsgDarkRiftSeal006	All right.{end_wait}
 N667	MsgDarkRiftSeal007	It's gone dark!{end_wait}
 N668	MsgDarkRiftSeal008	The light isn't reacting.{end_wait}
 N669	MsgDarkRiftSeal009	The flow has stopped.\nThe room is still here.{end_wait}
-N670	MsgDarkRiftSeal010	At least it shouldn't\nspread any farther.{end_wait}
+N670	MsgDarkRiftSeal010	Then the breach is closed.\nIt shouldn't spread.{end_wait}
 N671	MsgDarkRiftSeal011	I still can't stop\nthinking about Alex\nand Kraden.{end_wait}
 N672	MsgDarkRiftSeal012	I know, Mia.{end_wait}
 N673	MsgDarkRiftSeal013	She spoke of him as if\nall that had happened.{end_wait}
@@ -179,13 +179,13 @@ N675	MsgDarkRiftSeal015	We'll find Kraden.\nMaybe he can help us\nmake sense of 
 N676	MsgDarkRiftSeal016	We should tell the elders\nwhat we've learned.{end_wait}
 N677	MsgDarkRiftSeal017	I need to find Alex.{end_wait}
 N678	MsgDarkRiftSeal018	Come on. Let's get\nback outside.{end_wait}
-N680	MsgDarkRiftBeacon002	Look at that structure.\nIt resembles a lighthouse\nbeacon.{end_wait}
-N681	MsgDarkRiftBeacon003	A beacon? In a place\nlike this?{end_wait}
-N682	MsgDarkRiftBeacon004	There's Psynergy coming\nfrom it, but it feels\ndifferent.{end_wait}
+N680	MsgDarkRiftBeacon002	A lighthouse beacon...{end_wait}
+N681	MsgDarkRiftBeacon003	Can we get through?{end_wait}
+N682	MsgDarkRiftBeacon004	I can feel Psynergy\ncoming from it.{end_wait}
 N683	MsgDarkRiftCross001	Stay close.{end_wait}
-N684	MsgDarkRiftCross002	The Psynergy is gathering\naround the beacon.{end_wait}
+N684	MsgDarkRiftCross002	The Psynergy is stronger\nhere.{end_wait}
 N685	MsgDarkRiftCross003	Let's keep going.{end_wait}
-N686	MsgDarkRiftCross004	Let's see if we can\nget through.{end_wait}
+N686	MsgDarkRiftCross004	Let's go.{end_wait}
 N692	MsgDarkRiftApproachGaret	What is that structure?{end_wait}
 N693	MsgDarkRiftApproachIvan	I can feel Psynergy\ncoming from it.{end_wait}
 N694	MsgDarkRiftApproachIsaac	It's too close to Vale.\nWe should investigate.{end_wait}
