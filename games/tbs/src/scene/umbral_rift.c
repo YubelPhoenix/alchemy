@@ -543,12 +543,12 @@ static void UmbralRift_TalkToMystery(void) {
   UmbralRift_Say(MsgDarkRiftPre070, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre080, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftPre081, ACTOR_RIFT_MYSTERY);
-  UmbralRift_Say(MsgDarkRiftPre087, ACTOR_PARTY_LEADER);
-  UmbralRift_Say(MsgDarkRiftPre088, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftPre011, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftPre012, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre013, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftPre014, ACTOR_RIFT_MYSTERY);
+  UmbralRift_Say(MsgDarkRiftPre087, ACTOR_PARTY_LEADER);
+  UmbralRift_Say(MsgDarkRiftPre088, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftPre015, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre016, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre089, ACTOR_RIFT_MYSTERY);

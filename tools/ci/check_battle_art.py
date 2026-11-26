@@ -42,6 +42,7 @@ SHEETS = [
     ("monster/slime.png", "tools/dark_story/build_ash_jenna_art.py", "sprite/spr_477.tsv"),
     ("monster/kegare.png", "tools/dark_story/build_kegare_art.py", "sprite/spr_487.tsv"),
     ("monster/sarah.png", "tools/dark_story/build_sarah_art.py", "sprite/spr_488.tsv"),
+    ("monster/wraith.png", "tools/dark_story/build_wraith_art.py", "sprite/spr_491.tsv"),
 ]
 for picture, builder, animations in SHEETS:
     sheet = Image.open(GFX / picture)
@@ -62,9 +63,30 @@ for picture, builder, animations in SHEETS:
             fail(f"{animations} names frame {n}, but {picture} has frames 0-{frames - 1} "
                  "and poses sit on even frames")
 
+# Wraith assets are deliberately not rebuilt from the battle poses by CI.
+# Check the committed sheet and the regenerated portrait independently.
+wraith = Image.open(GFX / "monster/wraith.png")
+if wraith.mode != "P":
+    fail("wraith.png must be indexed palette art")
+elif wraith.size == (64, 12 * 64):
+    for n in range(0, 12, 2):
+        frame = wraith.crop((0, n * 64, 64, (n + 1) * 64))
+        if not any(frame.tobytes()):
+            fail(f"wraith.png: frame {n} is entirely transparent")
+        if max(frame.tobytes()) >= 224:
+            fail(f"wraith.png: frame {n} exceeds the shared sprite palette")
+portrait = Image.open(GFX / "ui/icons/icon_69.png")
+if portrait.mode != "P" or portrait.size != (32, 32):
+    fail("icon_69.png must be 32x32 indexed portrait art")
+elif not any(portrait.tobytes()) or max(portrait.tobytes()) > 15:
+    fail("icon_69.png is empty or exceeds the 4-bit palette")
+icons = (GFX / "ui/icons/icons.tsv").read_text().splitlines()
+if len(icons) <= 69 or icons[69] != "ICON_69":
+    fail("Wraith portrait is missing from icon table slot 69")
+
 if problems:
     print("Battle art check failed:")
     for line in problems:
         print(" -", line)
     sys.exit(1)
-print("Battle art check passed: backdrop palette and 4 boss sheets are consistent.")
+print("Battle art check passed: backdrop palette, 5 boss sheets and Wraith portrait are consistent.")

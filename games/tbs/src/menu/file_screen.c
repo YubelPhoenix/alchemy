@@ -572,9 +572,9 @@ menu_top:;
     Event_SetFlag(FLAG_KEEP_PARTY_POSITION);
     state = &gSaveBlock;
     WindowColor_Apply(state->windowColor[0], state->windowColor[1]);
-    // Ashfall: every build carries the same build stamp, so a file always
-    // resumes where it was saved; one saved in a room this build no longer
-    // has (a row past the end of gScenes) resumes at its restart point too.
+    // Ashfall: a changed build stamp resumes a save at its restart point.
+    // A save in a removed room (past the end of gScenes) must also resume
+    // at its restart point, even if the stamp matches.
     if (state->buildStamp != BuildStamp_GetTime() ||
         state->sceneId == (s32)&SceneId_Title ||
         state->sceneId == (s32)&SceneId_FileScreen ||

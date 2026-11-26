@@ -42,7 +42,9 @@ SHIFT = {"cast": (0, -26), "damage": (0, -10)}
 # canvas point kept still (her feet). Shrunk, the attack's end fits the
 # window whole.
 SCALE = {"leap": (18 / 22, (72, 91)), "attack_end": (18 / 21, (68, 106))}
+FRAMES = 12
 LAYOUT = ["idle", "leap", "attack_end", "cast", "damage", "idle2"]
+assert FRAMES == 2 * len(LAYOUT)
 WAIST = 101                    # canvas row: all above it breathes, the tops of
                                # her boots too; only her feet stay planted
 
