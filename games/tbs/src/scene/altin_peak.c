@@ -231,11 +231,7 @@ enum {
 
 enum {
   /// ★ Named from what the player sees: a round brown boulder (its render)
-  ACTOR_JUNCTION_ROOM_BOULDER = ACTOR_FIRST_PLACED,
-  /// A miner (SPRITE_BURLY_MAN_WITH_GREY_HAIR) who begs the party to dig out
-  /// his trapped fellows once Mercury Lighthouse is lit
-  /// (AltinPeak_TalkToTrappedMiner).
-  ACTOR_JUNCTION_ROOM_MINER
+  ACTOR_JUNCTION_ROOM_BOULDER = ACTOR_FIRST_PLACED
 };
 
 /// AltinPeakFallingRocks: the boulder that falls and its shadow, the log that
@@ -416,58 +412,6 @@ const struct SceneExitRegion *Scene_GetExitRegions(void) {
 /// All the rooms share one exit table.
 const u32 *Scene_GetExits(void) { return gAltinPeak_Exits; }
 
-/// The collapsed mine: a miner begs the party to dig out his trapped fellows.
-/// Mia fears another collapse; Garet insists they must try. Isaac decides.
-/// Digging them out earns a loaf of bread, once.
-static void AltinPeak_TalkToTrappedMiner(void) {
-  Event_Start();
-  if (GameFlag_Get(FLAG_DARK_MINERS_FREED) != 0) {
-    Event_SetMessageId(MsgDarkPeakMinerDone);
-    Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
-  } else {
-    Event_SetMessageId(MsgDarkPeakMinerPlea);
-    if (Event_AskYesNo(ACTOR_JUNCTION_ROOM_MINER, 0) == 0) {
-      Event_SetMessageId(MsgDarkPeakMinerYes);
-      Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
-      Event_SetMessageId(MsgDarkPeakMiaDig);
-      GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-      Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-      GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-      Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-      GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-      Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-      GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-      Event_SetMessageId(MsgDarkPeakIvanHears);
-      Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-      Event_SetMessageId(MsgDarkPeakIsaacDig);
-      Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
-      Event_WaitFrames(60);
-      Event_SetMessageId(MsgDarkPeakMinerThanks);
-      Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
-      PartyInventory_Add(ITEM_POWER_BREAD);
-      Event_SetMessageId(MsgDarkPeakMinerAftermath);
-      Event_ShowMessageThenWait(ACTOR_JUNCTION_ROOM_MINER, 0, 20);
-      Event_ShowMessageThenWait(ACTOR_IVAN, 0, 20);
-      Event_ShowMessageThenWait(ACTOR_GARET, 0, 20);
-      Event_SetMessageId(MsgDarkPeakMinerStayAsk);
-      if (Event_AskYesNo(ACTOR_JUNCTION_ROOM_MINER, 0) == 0) {
-        Event_SetMessageId(MsgDarkPeakMinerStay);
-        GameFlag_Set(FLAG_DARK_MINER_STAYED);
-        Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
-      } else {
-        Event_SetMessageId(MsgDarkPeakMinerLeave);
-        GameFlag_Set(FLAG_DARK_MIA_SPEAKING);
-        Event_ShowMessageThenWait(ACTOR_MIA, 0, 20);
-        GameFlag_Clear(FLAG_DARK_MIA_SPEAKING);
-      }
-      GameFlag_Set(FLAG_DARK_MINERS_FREED);
-    } else {
-      Event_SetMessageId(MsgDarkPeakMinerNo);
-      Event_ShowMessageAndWait(ACTOR_JUNCTION_ROOM_MINER, 0);
-    }
-  }
-  Event_End();
-}
 
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
   s16 sceneId = gSaveBlock.sceneId;
@@ -3067,10 +3011,6 @@ struct ActorTemplate gAltinPeak_SpritzActorTemplates[] = {
 struct ActorTemplate gAltinPeak_JunctionActorTemplates[] = {
     {SPRITE_ROUND_BOULDER, CONDITION_ALWAYS, MOVEMENT_TYPE_STAND, PIXELS(536), 0, PIXELS(636), FACING_SOUTH,
         TALK_FACING_KEEP, 0},
-    // On the floor west of the rails, a few steps north of the way in from
-    // Altin (408, 970); at x 352 he stood in the rock wall.
-    {SPRITE_BURLY_MAN_WITH_GREY_HAIR, IF_FLAG_SET(FLAG_MERCURY_LIGHTHOUSE_LIT), MOVEMENT_TYPE_STAND, PIXELS(404), 0,
-        PIXELS(925), FACING_SOUTH, TALK_FACING_PARTY, 0},
     {SCENE_TABLE_END},
 };
 
@@ -3229,8 +3169,6 @@ struct Trigger gAltinPeak_JunctionTriggers[] = {
      FIND_ITEM(ITEM_LUCKY_MEDAL)},
     {PSYNERGY_ON_ACTOR(ABILITY_LIFT), ACTOR_JUNCTION_ROOM_BOULDER,
      CONDITION_ALWAYS, 0},
-    {TRIGGER_TALK, ACTOR_JUNCTION_ROOM_MINER, IF_FLAG_SET(FLAG_MERCURY_LIGHTHOUSE_LIT),
-     EVENT(AltinPeak_TalkToTrappedMiner)},
     {TRIGGERS_END},
 };
 

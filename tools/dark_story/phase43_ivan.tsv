@@ -1,4 +1,4 @@
 # Ivan's observations in Tolbi and Altin; old Mia anger response is retired.
 N154	MsgDarkTolbiIvanJenna	We shouldn't keep\nlistening to her.\nLet's go.{end_wait}
-N158	MsgDarkPeakIvanHears	The water is rising fast.\nWe need to move the rubble\nbefore it reaches them.{end_wait}
-N159	MsgDarkManticoreIvanConcern	We should find shade.\nThe desert is getting\nharder to cross.{end_wait}
+N158	MsgDarkPeakIvanHears	{end_wait}
+N159	MsgDarkManticoreIvanConcern	{end_wait}
