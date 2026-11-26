@@ -12,11 +12,20 @@
 [![Platform](https://img.shields.io/badge/platform-Game%20Boy%20Advance-555555)](#installation)
 [![Distribution](https://img.shields.io/badge/distribution-IPS%20patch-555555)](#download)
 
-**[Releases](https://github.com/YubelPhoenix/alchemy/releases) · [Features](#features) · [Installation](#installation) · [Credits](#credits)**
+**[Releases](#download) · [Features](#features) · [Installation](#installation) · [Credits](#credits)**
 
 </div>
 
 ---
+
+## Download
+
+> [!IMPORTANT]
+> Ashfall is undergoing final gameplay testing. Its first public release has not yet been published.
+
+### [Official releases page →](https://github.com/YubelPhoenix/alchemy/releases)
+
+Published versions will be available here as IPS patch packages with release notes. See the [release notes and readiness checklist](docs/ashfall-release-readiness.md) for the planned first release. Temporary development artifacts may be available through [GitHub Actions](https://github.com/YubelPhoenix/alchemy/actions). They are not a substitute for a tested public release and may expire.
 
 ## Return to Weyard
 
@@ -36,18 +45,9 @@ Ashfall preserves the foundations of the original adventure while exploring the 
 
 ## Gameplay screenshots
 
-A spoiler-free gallery of exploration, story scenes and battles will be added using captures from the tested release candidate.
+A spoiler-free gallery of authentic in-game captures is planned for the first release. The banner above is promotional artwork, not a gameplay screenshot.
 
 <!-- Add verified in-game captures here using relative repository image paths. -->
-
-## Download
-
-> [!IMPORTANT]
-> Ashfall is undergoing final gameplay testing. Its first public release has not yet been published.
-
-### [Official releases page →](https://github.com/YubelPhoenix/alchemy/releases)
-
-Published versions will be available here as IPS patch packages with release notes. Development builds are available through [GitHub Actions](https://github.com/YubelPhoenix/alchemy/actions); these are temporary and are not a substitute for a tested public release.
 
 ## Installation
 
@@ -97,6 +97,6 @@ Ashfall is an unofficial, non-commercial fan project. It is not affiliated with 
 
 <div align="center">
 
-[Releases](https://github.com/YubelPhoenix/alchemy/releases) · [Development builds](https://github.com/YubelPhoenix/alchemy/actions) · [Report an issue](https://github.com/YubelPhoenix/alchemy/issues)
+[Releases](https://github.com/YubelPhoenix/alchemy/releases) · [Development builds](https://github.com/YubelPhoenix/alchemy/actions) · [Release readiness](docs/ashfall-release-readiness.md)
 
 </div>
