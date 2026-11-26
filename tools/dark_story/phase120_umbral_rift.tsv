@@ -1,12 +1,12 @@
 # Golden Sun: Ashfall: Umbral Rift live narrative dialogue.
 # Split into speech turns; each page max three lines, each line max 27 characters.
 # ??? remains unidentified. Mia never calls Alex a cousin.
-N500	MsgDarkRiftFountain001	Where are we?\nThis isn't Vale.{end_wait}
+N500	MsgDarkRiftFountain001	Stay close, everyone.{end_wait}
 N501	MsgDarkRiftFountain002	We were just outside Vale.{end_wait}
 N502	MsgDarkRiftFountain003	That fountain... It reminds\nme of Mercury Lighthouse.{end_wait}
-N503	MsgDarkRiftFountain004	Mercury Lighthouse?{end_wait}
-N504	MsgDarkRiftFountain005	The shape of the fountain\nis almost identical.{end_wait}
-N505	MsgDarkRiftFountain006	Even the walls look wrong.{end_wait}
+N503	MsgDarkRiftFountain004	What's it doing here?{end_wait}
+N504	MsgDarkRiftFountain005	I don't know. But look\nat the stonework.{end_wait}
+N505	MsgDarkRiftFountain006	It's similar, but the\ncolors are all wrong.{end_wait}
 N506	MsgDarkRiftFountain007	Isaac, look over there!{end_wait}
 N507	MsgDarkRiftFountain008	They vanished.\nHow did they do that?{end_wait}
 N508	MsgDarkRiftFountain009	We need to find out\nwhat this place is.{end_wait}

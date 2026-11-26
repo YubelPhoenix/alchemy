@@ -215,7 +215,6 @@ static void UmbralRift_Say(s32 message, s32 actor) {
 }
 
 static void UmbralRift_FountainDialogue(void) {
-  UmbralRift_Say(MsgDarkRiftFountain001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftFountain003, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftFountain004, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftFountain005, ACTOR_MIA);
