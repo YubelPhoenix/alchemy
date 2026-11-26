@@ -922,8 +922,6 @@ static struct Trigger sUmbralRitualTriggers[] = {
 /// The first steps into the Crossbone room.
 static void UmbralRift_SeeCrossbone(void) {
   Event_Start();
-  UmbralRift_Say(MsgDarkRiftCross001, ACTOR_GARET);
-  UmbralRift_Say(MsgDarkRiftCross003, ACTOR_PARTY_LEADER);
   GameFlag_Set(FLAG_DARK_RIFT_CROSSBONE_SEEN);
   Event_End();
 }

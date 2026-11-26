@@ -182,9 +182,9 @@ N678	MsgDarkRiftSeal018	Come on. Let's get\nback outside.{end_wait}
 N680	MsgDarkRiftBeacon002	Look at that structure.\nIt resembles a lighthouse\nbeacon.{end_wait}
 N681	MsgDarkRiftBeacon003	A beacon? In a place\nlike this?{end_wait}
 N682	MsgDarkRiftBeacon004	There's Psynergy coming\nfrom it, but it feels\ndifferent.{end_wait}
-N683	MsgDarkRiftCross001	Spikes... Watch your step.{end_wait}
+N683	MsgDarkRiftCross001	Stay close.{end_wait}
 N684	MsgDarkRiftCross002	The Psynergy is gathering\naround the beacon.{end_wait}
-N685	MsgDarkRiftCross003	We'll find a safe way\nthrough.{end_wait}
+N685	MsgDarkRiftCross003	Let's keep going.{end_wait}
 N686	MsgDarkRiftCross004	Let's see if we can\nget through.{end_wait}
 N692	MsgDarkRiftApproachGaret	What is that structure?{end_wait}
 N693	MsgDarkRiftApproachIvan	I can feel Psynergy\ncoming from it.{end_wait}
