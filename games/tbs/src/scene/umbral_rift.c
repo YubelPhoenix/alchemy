@@ -1,6 +1,6 @@
 /// Umbral Rift: an optional dungeon added by Golden Sun: Ashfall.
 ///
-/// A black monolith that appeared in the fields outside Vale after Colosso.
+/// A dungeon entrance in the fields outside Vale, available after Colosso.
 /// This first version holds only the throne hall (UmbralThrone, map 0xba),
 /// rebuilt from the Hydros statue hall with its pillared approach doubled.
 #include "unit/scene/umbral_rift.h"
@@ -483,7 +483,10 @@ static void UmbralRift_TalkToMystery(void) {
   Event_Start();
   Actor_ConfigureSpriteColor(ACTOR_RIFT_MYSTERY, SPRITE_COLOR_BLACK);
   Actor_ConfigureSpriteColor(ACTOR_RIFT_HEART, SPRITE_COLOR_BLACK);
-  UmbralRift_Say(MsgDarkRiftPre001, ACTOR_PARTY_LEADER);
+  if (GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0)
+    UmbralRift_Say(MsgDarkRiftValeKnown, ACTOR_PARTY_LEADER);
+  else
+    UmbralRift_Say(MsgDarkRiftPre001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre002, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre007, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftPre008, ACTOR_RIFT_MYSTERY);
@@ -491,6 +494,10 @@ static void UmbralRift_TalkToMystery(void) {
   UmbralRift_Say(MsgDarkRiftPre006, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre009, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre010, ACTOR_RIFT_MYSTERY);
+  if (GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0) {
+    UmbralRift_Say(MsgDarkRiftKnownWarning, ACTOR_PARTY_LEADER);
+    UmbralRift_Say(MsgDarkRiftKnownAnswer, ACTOR_RIFT_MYSTERY);
+  }
   UmbralRift_Say(MsgDarkRiftPre019, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre020, ACTOR_RIFT_MYSTERY);
   if (GameFlag_Get(FLAG_DARK_RIFT_PAIR_FOUNTAIN) != 0 ||
@@ -500,7 +507,10 @@ static void UmbralRift_TalkToMystery(void) {
     UmbralRift_Say(MsgDarkRiftPre022, ACTOR_RIFT_MYSTERY);
   }
   UmbralRift_Say(MsgDarkRiftPre023, ACTOR_RIFT_HEART);
-  UmbralRift_Say(MsgDarkRiftPre024, ACTOR_PARTY_LEADER);
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0)
+    UmbralRift_Say(MsgDarkRiftHeartKnown, ACTOR_PARTY_LEADER);
+  else
+    UmbralRift_Say(MsgDarkRiftPre024, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre025, ACTOR_RIFT_HEART);
   UmbralRift_Say(MsgDarkRiftPre028, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre029, ACTOR_RIFT_HEART);
