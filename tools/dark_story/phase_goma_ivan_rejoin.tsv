@@ -5,7 +5,7 @@
 05010	message	Move won't help while\nthose vines hold it.{end_wait}
 05011	message	Wait... I've got it.{end_wait}
 05012	message	I can clear those vines.\nStand back a little.{end_wait}
-05013	message	Go ahead, {actor_name:3}!{end_wait}
+05013	message	You did it, {actor_name:3}!{end_wait}
 05014	message	There. That should do it.{end_wait}
 05015	message	Thanks, {actor_name:3}.{pause_20_skippable}\nBut weren't you going\nto Lunpa?{end_wait}
 05016	message	I tried. But I couldn't\nget past the gates.{end_wait}
