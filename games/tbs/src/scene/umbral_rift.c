@@ -267,7 +267,6 @@ static void UmbralRift_CloseAnchor(void) {
   MapGrid_WaitForShakeToSettle();
   Actor_ConfigureSpriteColor(ACTOR_RIFT_FEATURE, SPRITE_COLOR_BLACK);
   UmbralRift_Say(MsgDarkRiftSeal011, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftSeal014, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftSeal015, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftSeal018, ACTOR_GARET);
   GameFlag_Set(FLAG_DARK_RIFT_ANCHOR_SEALED);
