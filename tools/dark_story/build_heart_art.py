@@ -7,7 +7,7 @@ mirrored).
 Golden Sun's battle engine draws monster frames as 64x64, 8 bits per pixel.
 Every pixel is a raw index into the shared 224-colour sprite palette
 (games/tbs/src/system/memory/basic.png), index 0 is transparent, and the
-frames are packed one under another (64x896 = 14 frames) with no palette of
+frames are packed one under another (64x768 = 12 frames) with no palette of
 their own.  So the sheet must use that exact palette and nothing else; a
 private 16-colour palette makes every index land on the wrong colour.
 
@@ -15,8 +15,6 @@ Frame layout (games/tbs/src/graphics/sprite/spr_484.tsv steps by two, each
 frame is stored twice):
   0-1   idle            2-3   dash / leap (rise)     4-5  lunge (landing)
   6-7   cast            8-9   damage       10-11 idle, breathing in
-  12-13 dive kick, for Vendetta Dive (native 64x64 artwork, original face
-        preserved and a new extended kicking leg)
 """
 from pathlib import Path
 
@@ -30,7 +28,7 @@ DEST = ROOT / "games/tbs/src/graphics/monster/purple_beast.png"
 SHARED_PALETTE = ROOT / "games/tbs/src/system/memory/basic.png"
 
 FRAME = 64
-FRAMES = 14
+FRAMES = 12
 # The supplied poses are drawn at 64x64, the frame's own size, so they are not
 # resampled: the size on screen comes from SPR_484's scale column in
 # sprites.tsv (0xb8, which puts her idle pose, 56 rows, at Menardi's 40 or so).
@@ -42,7 +40,6 @@ LAYOUT = [
     ("cast", False, 0), ("cast", False, 0),
     ("damage", True, 0), ("damage", True, 0),
     ("idle2", True, 0), ("idle2", True, 0),   # breathing in: id 10
-    ("kick", False, 0), ("kick", False, 0),   # Vendetta Dive's kick: id 12
 ]
 
 palette_image = Image.open(SHARED_PALETTE)

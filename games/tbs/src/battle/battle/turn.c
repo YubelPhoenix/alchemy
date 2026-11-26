@@ -425,9 +425,9 @@ s32 BattleTurn_Build(struct BattleAction *request, struct BattleTurn *plan) {
     abilityId = request->parameter;
     if (BattleTurn_SetTargets(abilityId) == TURN_REPORTED)
       return TURN_REPORTED;
-    // Ashfall: Heart screams Matthew's name before Vendetta Dive; the usual
+    // Ashfall: Heart screams Matthew's name before Outer Space; the usual
     // line follows beneath it, as a weapon's howl and its unleash do.
-    if (abilityId == ABILITY_VENDETTA_DIVE) {
+    if (abilityId == ABILITY_HEART_OUTER_SPACE) {
       BattleMessage_ShowAndWaitFar(MsgHeartScreamsMatthew);
       BattlePlayback_MarkMessage();
     }

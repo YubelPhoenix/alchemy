@@ -3,7 +3,6 @@
 // Part of battle_anim.c.
 
 #include "../battle_anim_internal.h"
-#include "enemy_ids.h"
 
 /// The particle streams' modes (BattleAnim_RunParticleStreams).
 enum ParticleStreamsMode {
@@ -66,144 +65,8 @@ void BattleAnim_RunMeteor(struct BattleAnimArgs *args) {
   BattleAnim_RunParticleStreams(args, PARTICLE_STREAMS_METEOR);
 }
 
-/// Heart's two encounter definitions share the dedicated Vendetta Dive.
-#define OUTER_SPACE_HEART_ROW 101
-#define OUTER_SPACE_HEART_RIFT_ROW 165
-#define OUTER_SPACE_HEART_KICK 6
-
-/// Animate the actual battler in field coordinates. Only the effect palette
-/// (64 entries) is loaded; the HUD and remaining palettes stay untouched.
-static void BattleAnim_RunVendettaDive(struct BattleAnimArgs *args) {
-  void **slots;
-  void **cursor;
-  struct BattleAnimWork *work;
-  void *canvas;
-  DrawRectangle draw;
-  u8 *motes;
-  struct Actor *actor;
-  struct Actor *target;
-  struct Sprite *sprite;
-  struct ScreenPoint impact;
-  struct ScreenPoint trail;
-  s32 homeX, homeY, homeZ, hitX, hitY, hitZ;
-  s32 dx, dz, frame, i, t;
-  s32 gravity, bounce;
-  u8 steering;
-  u16 facing;
-
-  if (args->targetCount == 0)
-    return;
-  ANIM_GET_SLOTS(slots, cursor, work, canvas);
-  work->args = args;
-  actor = GetBattleObjectSlotFar(args->user)->actor;
-  target = GetBattleObjectSlotFar(args->targets[0])->actor;
-  sprite = GetMotionRecordFar(actor, 0);
-  homeX = actor->x.fixed;
-  homeY = actor->y.fixed;
-  homeZ = actor->z.fixed;
-  dx = (target->x.fixed - homeX) / 4;
-  dz = (target->z.fixed - homeZ) / 4;
-  hitX = homeX + dx * 3;
-  hitZ = homeZ + dz * 3;
-  hitY = target->groundHeight + (6 << 16);
-  gravity = actor->gravity;
-  bounce = actor->bounce;
-  steering = actor->steeringFlags;
-  facing = actor->facing;
-
-  BattleAnim_StartCanvasLayer(0);
-  Resource_LoadAndDecompress((s32)&ResourceId_FlashBurstSheet, work->sheet,
-                             1, 0);
-  motes = ANIM_SLOT(slots, HEAP_SLOT_BATTLE_SHEET);
-  Resource_LoadAndDecompress((s32)&ResourceId_ParticleSpritesA, motes, 0, 0);
-  Iwram_CopyWords((void *)BG_PLTT,
-                  Resource_GetTableEntry((s32)&ResourceId_RedPaletteA), 128);
-  ANIM_LOAD_BLITTER(HEAP_SLOT_RAM_CODE, ANIM_CLIP_BOUNDS, COMPOSITE_LIGHTEN);
-  draw = (DrawRectangle)ANIM_SLOT(slots, HEAP_SLOT_RAM_CODE);
-  ANIM_START_TRANSFER(work, CANVAS_COPY_AND_FADE, CANVAS_FADE_HALF);
-
-  // The battle motion task continues to run, so clear its destination and
-  // velocities while this animation drives the actor.
-  Actor_StartIdleFar(actor);
-  actor->targetX = ACTOR_NO_TARGET;
-  actor->targetY = ACTOR_NO_TARGET;
-  actor->targetZ = ACTOR_NO_TARGET;
-  actor->arrivalAxis = 0;
-  actor->velocityX = 0;
-  actor->velocityY = 0;
-  actor->velocityZ = 0;
-  actor->gravity = 0;
-  actor->bounce = 0;
-  actor->steeringFlags = 0;
-  Actor_SelectAnimationFar(actor, POSE_LEAP);
-  Sound_PlaySongFar(SE_WHOOSH);
-
-  for (frame = 0; frame != 52; frame++) {
-    if (frame < 12) {
-      // Short ascent, followed by a clear feet-first pose at the apex.
-      actor->x.fixed = homeX + dx * frame / 48;
-      actor->z.fixed = homeZ + dz * frame / 48;
-      actor->y.fixed = homeY + (frame * (28 << 16)) / 12;
-    } else if (frame < 26) {
-      if (frame == 12)
-        Sprite_StartAnimFar(sprite, OUTER_SPACE_HEART_KICK);
-      // Accelerate toward the selected target, stopping short of overlap.
-      t = frame - 11;
-      actor->x.fixed = homeX + dx / 4 +
-          (hitX - homeX - dx / 4) / 196 * t * t;
-      actor->z.fixed = homeZ + dz / 4 +
-          (hitZ - homeZ - dz / 4) / 196 * t * t;
-      actor->y.fixed = homeY + (28 << 16) +
-          (hitY - homeY - (28 << 16)) / 196 * t * t;
-      Projection_Unit(args->user, &trail);
-      ANIM_DRAW_MOTE(draw, canvas, motes, trail.x / 2, trail.y + 8,
-                     2 + (frame & 1));
-    } else if (frame == 26) {
-      SET_ACTOR_POSITION(actor, hitX, hitY, hitZ);
-      Projection_Unit(args->targets[0], &impact);
-      for (i = 0; i < args->targetCount; i++)
-        BattleAnim_TintBattler(args->targets[i], SPRITE_COLOR_WHITE,
-                               POSE_DAMAGE, i, 8);
-      ANIM_SHOW_DAMAGE(SE_HEAVY_IMPACT);
-      work->shakeFrames = 6;
-    } else if (frame >= 29 && frame < 43) {
-      if (frame == 29)
-        Actor_SelectAnimationFar(actor, POSE_LEAP);
-      t = frame - 28;
-      actor->x.fixed = hitX + (homeX - hitX) / 14 * t;
-      actor->z.fixed = hitZ + (homeZ - hitZ) / 14 * t;
-      actor->y.fixed = hitY + (homeY - hitY) / 14 * t +
-          (t * (14 - t) * (1 << 14));
-    } else if (frame == 43) {
-      SET_ACTOR_POSITION(actor, homeX, homeY, homeZ);
-      Actor_SelectAnimationFar(actor, POSE_STANDING);
-    }
-    // One concentrated red burst, synced with the damage playback.
-    if (frame >= 26 && frame < 38) {
-      i = (frame - 26) / 2;
-      draw(canvas, work->sheet + (i << 11), impact.x / 2 - 16,
-           impact.y - 32, 32, 64);
-    }
-    BattleCamera_Shake(6, 6);
-    ANIM_END_FRAME(work);
-  }
-  SET_ACTOR_POSITION(actor, homeX, homeY, homeZ);
-  actor->gravity = gravity;
-  actor->bounce = bounce;
-  actor->steeringFlags = steering;
-  actor->facing = facing;
-  ANIM_FINISH_CANVAS_ONE_BLITTER();
-}
-
-/// Outer Space retains the Fusion Dragon animation; Heart uses her own dive.
+/// Outer Space uses the original shared animation for every battler.
 void BattleAnim_RunOuterSpace(struct BattleAnimArgs *args) {
-  struct Unit *user = Unit_GetFar(args->user);
-
-  if (user->id == ENEMY_ID_FIRST + OUTER_SPACE_HEART_ROW ||
-      user->id == ENEMY_ID_FIRST + OUTER_SPACE_HEART_RIFT_ROW) {
-    BattleAnim_RunVendettaDive(args);
-    return;
-  }
   BattleAnim_RunParticleStreams(args, PARTICLE_STREAMS_OUTER_SPACE);
 }
 
@@ -838,9 +701,6 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
   BattleAnim_EndCanvasLayer();
 }
 
-#undef OUTER_SPACE_HEART_ROW
-#undef OUTER_SPACE_HEART_RIFT_ROW
-#undef OUTER_SPACE_HEART_KICK
 #undef PARTICLE_STREAMS_EMBERS
 #undef PARTICLE_STREAMS_RISE_FRAMES
 #undef PARTICLE_STREAMS_BURST_FRAMES

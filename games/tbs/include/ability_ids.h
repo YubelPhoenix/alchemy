@@ -113,10 +113,10 @@ enum AbilityId {
   /// (FallingWind_RunAfterAction) and nobody learns.
   ABILITY_FALLING_WIND = 0x89,
   ABILITY_FALLING_WIND_REVIVE = 0x8b,
-  /// Vendetta Dive (Ashfall): Heart's own Outer Space, her revenge on Matthew
+  /// Outer Space (Ashfall): Heart's stronger version, her revenge on Matthew
   /// (an empty Psynergy slot). It hits harder than Outer Space and hardest on
   /// Isaac, who has Matthew's face (target_exec.c).
-  ABILITY_VENDETTA_DIVE = 0x97,
+  ABILITY_HEART_OUTER_SPACE = 0x97,
   ABILITY_ASURA = 0xec, ///< the Kikuichimonji's unleash
   /// The last of the Mystery Leader's attacks.
   ABILITY_MYSTERY_LAST = ABILITY_P_STORM,

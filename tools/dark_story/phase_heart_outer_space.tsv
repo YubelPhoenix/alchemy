@@ -1,0 +1,6 @@
+# Outer Space (ability 151, ABILITY_HEART_OUTER_SPACE): Heart's stronger
+# version of the original ability. Name = 819 + id; description = 1338 + id.
+00970	message	Outer Space
+01489	message	Matthew's debt, repaid.
+# Heart's battle cry before her Outer Space.
+N700	MsgHeartScreamsMatthew	Heart: "MATTHEW!!"\n

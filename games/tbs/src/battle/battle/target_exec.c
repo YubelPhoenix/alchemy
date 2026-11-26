@@ -610,10 +610,10 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         if (actor->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH &&
             element == ELEMENT_JUPITER && IS_PARTY_UNIT(targetId))
           power += power / 2;
-        // Vendetta Dive, Heart's revenge on Matthew, must hurt a fully grown
+        // Heart's Outer Space, her revenge on Matthew, must hurt a fully grown
         // party: a fifth of the target's max HP on top, and Isaac, who has
         // Matthew's face, takes a further quarter of the whole.
-        if (abilityId == ABILITY_VENDETTA_DIVE && IS_PARTY_UNIT(targetId)) {
+        if (abilityId == ABILITY_HEART_OUTER_SPACE && IS_PARTY_UNIT(targetId)) {
           power += target->hpMax / 5;
           if (target->id == ISAAC)
             power += power / 4;
