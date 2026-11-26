@@ -1,12 +1,12 @@
 # Ash Jenna's optional post-Colosso Vale super boss and optional Suhalla Gate fight.
 N330	MsgDarkAshValeGreet	I remember these roads.\nI know which door\nyour mother waits behind.{page_break}Strange how much\nhas stayed the same.{end_wait}
 N331	MsgDarkAshValeIsaac	Don't go near her.\nLeave Vale alone.{end_wait}
-N332	MsgDarkAshValeChallenge	I could walk to that door.\nBut first, let's see\nif you can stop me.{end_wait}
-N333	MsgDarkAshValeBeaten	You won. For now.\nI have no reason to\nstay in this village.{end_wait}
+N332	MsgDarkAshValeChallenge	You can't protect\nevery house at once.{page_break}Shall we see how far\nyour strength goes\nwhen it's your home?{end_wait}
+N333	MsgDarkAshValeBeaten	You won. For now.{page_break}Go home, Isaac.\nTell her you're safe.{page_break}I wonder how long\nyou'll keep\nthat promise.{end_wait}
 N334	MsgDarkAshGateGreet	They survived the attack.\nSo I burned the medicine\nthey had left.{page_break}I wanted them to know\nwhat it feels like\nto wait for help.{end_wait}
-N335	MsgDarkAshGateIsaac	You did that to them?\nMove. We need to help\nthose men.{end_wait}
+N335	MsgDarkAshGateIsaac	They needed that medicine.\nMove. We need to help\nthose men.{end_wait}
 N336	MsgDarkAshGateChallenge	I can keep you here.\nEvery moment we fight\nis time they don't have.{page_break}Go on, Isaac.\nLet's see how much\nyour strength is worth.{end_wait}
-N337	MsgDarkAshGateBeaten	You won, Isaac.\nGo tend to your soldiers.\nSee what you can save.{end_wait}
+N337	MsgDarkAshGateBeaten	You won, Isaac.\nThose guards are\nstill waiting.{page_break}I hope you didn't\ntake too long.{end_wait}
 00655	MsgEnemyName	Ash Jenna
 N338	MsgDarkAshValePunish	I know your plan.\nIt won't work.
 N339	MsgDarkAshValePunished	Idiots.\nDid you think I'd miss\nsuch a cheap trick?{page_break}Lean on tricks and\nthis is what you get.
