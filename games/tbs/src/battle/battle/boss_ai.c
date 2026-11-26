@@ -721,20 +721,24 @@ enum WraithSlot {
   WRAITH_IMPACT = 6, WRAITH_BREAK = 7
 };
 #define WRAITH_DEATH_USED_BIT (1u << 6)
+#define WRAITH_UTILITY_USED_BIT (1u << 5)
 // Persistent preference, toggled only when a death strike actually stages.
 #define WRAITH_NEXT_DEATH_SIZE_BIT (1u << 7)
-STATIC_ASSERT(((WRAITH_DEATH_USED_BIT | WRAITH_NEXT_DEATH_SIZE_BIT) &
+STATIC_ASSERT(((WRAITH_DEATH_USED_BIT | WRAITH_UTILITY_USED_BIT |
+                WRAITH_NEXT_DEATH_SIZE_BIT) &
                (BOSS_RESERVED_BITS | BOSS_LAST_AIM_BITS)) == 0);
 
 static void BossAI_WraithBeginRound(void) {
   struct Unit *unit = BossAI_FindRow(ENEMY_ROW_VENGEFUL_WRAITH);
   if (unit != 0)
-    unit->aiActionIndex &= ~WRAITH_DEATH_USED_BIT;
+    unit->aiActionIndex &= ~(WRAITH_DEATH_USED_BIT | WRAITH_UTILITY_USED_BIT);
 }
 
 static void BossAI_WraithNoteTurn(struct Unit *unit,
                                  struct BattleAction *request) {
   s32 slot = BossAI_RequestSlot(unit, request);
+  if (slot == WRAITH_IMPACT || slot == WRAITH_BREAK)
+    unit->aiActionIndex |= WRAITH_UTILITY_USED_BIT;
   if (slot == WRAITH_ANNIHILATION || slot == WRAITH_DEATH_SIZE) {
     unit->aiActionIndex |= WRAITH_DEATH_USED_BIT;
     if (slot == WRAITH_ANNIHILATION)
@@ -767,10 +771,12 @@ static s32 BossAI_WraithChooseSlot(struct Unit *unit, s32 firstPick) {
   if (unit->psySeal != 0)
     return roll < 128 ? WRAITH_ASURA : WRAITH_CYCLONE_SLASH;
   if (view.alive > 1) {
-    if (view.buffed && roll < 64)
-      return WRAITH_BREAK;
-    if (!late && unit->attackStage <= 0 && roll >= 64 && roll < 88)
-      return WRAITH_IMPACT;
+    if (!(memory & WRAITH_UTILITY_USED_BIT)) {
+      if (view.buffed && roll < 64)
+        return WRAITH_BREAK;
+      if (!late && unit->attackStage <= 0 && roll >= 64 && roll < 88)
+        return WRAITH_IMPACT;
+    }
     if (roll < (late ? 112 : 96))
       return WRAITH_THUNDERSTORM;
     if (roll < 176)

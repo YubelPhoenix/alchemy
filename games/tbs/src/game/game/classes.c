@@ -29,7 +29,8 @@ s32 Unit_GetElementLevels(s32 record, const u8 *source, s32 output[4]) {
 
     index = ((const struct EnemyDefinition *)Enemy_GetDefinition(record))
                 ->elementPreset;
-    if (index > 43)
+    if (index > 43 &&
+        !(index == 44 && record == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH))
       index = 0;
 
     i = 0;
@@ -83,7 +84,8 @@ s32 Enemy_GetAttackElement(struct Unit *unit) {
       (const struct EnemyDefinition *)Enemy_GetDefinition(unit->id);
   u8 presetIndex = enemy->elementPreset;
 
-  if (presetIndex > 43)
+  if (presetIndex > 43 &&
+      !(presetIndex == 44 && unit->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH))
     presetIndex = 0;
   return gEnemy_ElementPresetTable[presetIndex].first;
 }
@@ -111,7 +113,8 @@ u32 Unit_CalculateBaseElements(s32 unitId, s16 destination[4][2]) {
   if (state->classId == CLASS_NONE) {
     index = ((const struct EnemyDefinition *)Enemy_GetDefinition(state->id))
                 ->elementPreset;
-    if (index > 43)
+    if (index > 43 &&
+        !(index == 44 && state->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH))
       index = 0;
 
 #ifdef UBFIX

@@ -3225,17 +3225,17 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
     // Dark Dawn's Karis thirty years on, standing in the Umbral Rift's
     // pentagram (formation 390, fought once). A Jupiter Adept with a sword,
     // the Kikuichimonji, whose unleash (Asura) she uses as a move of her own,
-    // acting twice a turn: her name is its own message (BattleUnit_Set).
+    // acting three times a round: her name is its own message (BattleUnit_Set).
     {
         .name = "              ",
         .level = 46,
         .hp = 9000,
         .pp = 999,
-        .atk = 480,
+        .atk = 580,
         .def = 150,
         .agi = 260,
         .luck = 45,
-        .turns = 2,
+        .turns = 3,
         .elementPreset = 44,
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,

@@ -19,10 +19,9 @@ const struct ElementLevelBonus gElement_PowerResistByLevel[16] = {
 };
 
 /// The enemy element presets, by EnemyDefinition.elementPreset.
-// XXX: Ashfall's presets 44 and 45 are never read: Unit_GetElementLevels,
-// Enemy_GetAttackElement and Unit_CalculateBaseElements (classes.c) read any
-// preset past 43 as preset 0, so Heart and the Mystery Leader fight with
-// Power and Resist 100 in every element. Their fights are balanced so.
+// Ashfall: classes.c permits preset 44 specifically for the Vengeful Wraith.
+// Other enemies with presets above 43 retain the legacy preset-0 fallback;
+// their encounters were balanced with that behavior.
 const struct EnemyElementPreset gEnemy_ElementPresetTable[] = {
     {
         .first = ELEMENT_NONE,

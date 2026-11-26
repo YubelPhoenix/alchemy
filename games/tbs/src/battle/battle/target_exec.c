@@ -605,6 +605,11 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         if (actor->id == ENEMY_ID_FIRST + ENEMY_ASH_JENNA_VALE &&
             IS_PARTY_UNIT(targetId))
           power += power / 2;
+        // The Wraith's Jupiter spells need to threaten a full late-game party.
+        // Like Ash Jenna's bonus, this is scoped to the boss, not the ability.
+        if (actor->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH &&
+            element == ELEMENT_JUPITER && IS_PARTY_UNIT(targetId))
+          power += power / 2;
         // Vendetta Dive, Heart's revenge on Matthew, must hurt a fully grown
         // party: a fifth of the target's max HP on top, and Isaac, who has
         // Matthew's face, takes a further quarter of the whole.
