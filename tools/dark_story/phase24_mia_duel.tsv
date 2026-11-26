@@ -4,10 +4,10 @@ N60	MsgDarkDuelIsaacNoTime	We're going after her.{end_wait}
 N61	MsgDarkDuelMiaPlace	Saturos won't let\nall of us pass.{end_wait}
 N62	MsgDarkDuelIsaacRefuse	Then what do you want\nus to do?{end_wait}
 N63	MsgDarkDuelMiaDraw	I'll take the side path.\nKeep Saturos here.{end_wait}
-N64	MsgDarkDuelSaturosAmused	Go on, healer.\nMenardi can handle you.{end_wait}
+N64	MsgDarkDuelSaturosAmused	You alone against Menardi?\nShe needs no help from me.{end_wait}
 N65	MsgDarkDuelMiaLost	There's a path across\nto the far ledge.{end_wait}
 N66	MsgDarkDuelMiaStop	I'll use it before\nMenardi gets away.{end_wait}
 N67	MsgDarkDuelIsaacNotEnemy	Don't let her\ncorner you, Mia.{end_wait}
 N68	MsgDarkDuelMiaTrust	I won't. Just keep\nSaturos here.{end_wait}
 N69	MsgDarkDuelMiaKeepUp	I'll see you again.\nStay alive until then.{end_wait}
-N70	MsgDarkDuelSaturosResumes	I let her go.\nYou three stay here.{end_wait}
+N70	MsgDarkDuelSaturosResumes	That leaves three of you.\nCome. I'll make this quick.{end_wait}
