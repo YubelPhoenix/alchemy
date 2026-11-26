@@ -110,7 +110,7 @@ def check_visual_identity() -> None:
     ids = read("games/tbs/include/sprite_ids.h")
     sprites = read("games/tbs/src/graphics/sprite/sprites.tsv")
     layout = read("games/tbs/src/graphics/sprite/layout.tsv")
-    workflow = read(".github/workflows/build-golden-sun-dialogue.yml")
+    workflow = read(".github/workflows/build-ashfall.yml")
     require("SPRITE_ASH_JENNA = 0x5e" in ids, "Ash Jenna sprite id is missing")
     require(re.search(r"^SPR_094\t32\t32\t", sprites, re.M) is not None,
             "SPR_094 must be a real field sprite")
