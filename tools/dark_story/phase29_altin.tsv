@@ -77,7 +77,7 @@
 06408	MsgAltinOfCourseYouCantGoWest	Silk Road is the\nusual way west\nfrom these mountains.{end_wait}
 06409	MsgAltinIHateSittingAroundLikeThis	I'm tired of waiting.\nI want to go home.{page_break}But there's still\nwater in the street.{end_wait}
 06423	MsgAltinThankYouSoMuchForDefeating	Thank you for defeating\nthe water beasts\nin the mine.{end_wait}
-06424	MsgAltinDidSeeWaterGushingOut	Did the water stop\nwhen the creatures\nwere defeated?{end_now}
+06424	MsgAltinDidSeeWaterGushingOut	Did water pour out\nof those creatures\nwhen you defeated them?{end_now}
 06425	message	Then they must have\nheld that water\ninside them.{end_wait}
 06426	message	No? Then where did\nall that water\ncome from?{end_wait}
 06427	MsgAltinOnceTheMineOpensAgainWell	Once the mine is safe,\nwe can return to work.{page_break}It won't be easy,\nbut we have to try.{end_wait}

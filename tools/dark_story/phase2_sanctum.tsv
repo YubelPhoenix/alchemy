@@ -196,7 +196,7 @@
 04245	message	He said {actor_name:5}.{pause_20_skippable}\nThat's what he said.\nWasn't it?{end_now}
 04246	message	You heard it too?{pause_20_skippable}\n{actor_name:5}? It can't be...{end_wait}
 04247	message	That's what I heard.\n{actor_name:5}? It can't be...{end_wait}
-04248	message	The Boulder took him.\nWe saw it happen.{end_now}
+04248	message	The Boulder took him.\nYou saw it too,\ndidn't you?{end_now}
 04249	message	You remember it too,\n{actor_name:1}?{page_break}Then what kind of\nguarantee is this?{end_wait}
 04250	message	We searched the river.\nThere was no body.{end_wait}
 04251	MsgSolSanctumMenardiDontYouWantThem	What's wrong, {actor_name:5}?\nDon't you want them to\nfeel safe?{end_wait}
@@ -238,11 +238,11 @@
 04287	message	Yes. The last Star.{end_wait}
 04288	message	You said you'd free\n{actor_name:6} once we hand over\nthe Elemental Stars.{page_break}You promised.{end_wait}
 04289	message	We said all four Stars.\nNothing less.{end_wait}
-04290	message	Bring us the last one.\nNow.{end_now}
-04291	MsgSolSanctumDontWantAnything	I don't want anyone hurt.\nDo you?{end_now}
+04290	message	Bring us the last one.\nWill you do it?{end_now}
+04291	MsgSolSanctumDontWantAnything	You don't want anything\nto happen to your\nfriends, do you?{end_now}
 04292	MsgSolSanctumThankCooperation	Thank you.{end_wait}
 04293	message	We'll wait here\nfor the last Star.{end_wait}
-04294	MsgSolSanctumDoubtHowFeel	Think of Jenna and\nKraden. Please.{end_now}
+04294	MsgSolSanctumDoubtHowFeel	Think of Jenna and Kraden.\nI'll ask you again.{page_break}You don't want anything\nto happen to them,\ndo you?{end_now}
 04295	MsgSolSanctumMenardiBringTheFinalGem	What are you waiting for?\nBring us the final gem!{end_wait}
 04296	MsgSolSanctumFelixSilence	......{end_wait}
 04297	MsgSolSanctumJennaMyBrotherIsAlive	Felix is alive.\nWhy didn't he come home?{end_wait}

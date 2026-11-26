@@ -1975,7 +1975,12 @@ static void Kolima_TalkToHeart(void) {
   Event_Start();
   Event_SetMessageId(MsgDarkHeartShock);
   Kolima_HeartSays();
+  if (GameFlag_Get(FLAG_DARK_RIFT_BEATEN) != 0)
+    Event_SetMessageId(MsgDarkHeartRiftRecognition);
+  else
+    Event_SetMessageId(MsgDarkHeartIsaacName);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 2);
+  Event_SetMessageId(MsgDarkHeartSameFace);
   Kolima_HeartSays();
   // Heart continues her accusation; only Isaac responds.
   Kolima_HeartSays();

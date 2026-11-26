@@ -35,7 +35,7 @@
 06527	message	Seeing the future...\nI didn't know Jupiter\ncould do that.{end_wait}
 06532	message	It shows what ordinary\nsight cannot. I have\nwaited to teach it.{end_wait}
 06533	message	You waited here all\nthis time to teach\n{actor_name:3} Reveal?{end_wait}
-06534	message	On the road ahead,\nwhat you cannot see\nmay hurt you most.{end_wait}
+06534	message	You will need Reveal\non the road ahead.{page_break}What you cannot see\nmay put you in danger.{end_wait}
 06535	message	Jupiter Adepts can\nlearn Reveal in time,\neven without a teacher.{end_wait}
 06536	message	But time is something\nyou cannot spare while\nSaturos moves ahead.{end_wait}
 06537	message	Saturos and his\ncompanions blocked\nSilk Road behind them.{end_wait}

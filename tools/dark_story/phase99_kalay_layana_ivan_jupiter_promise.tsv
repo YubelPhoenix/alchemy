@@ -66,7 +66,7 @@
 07031	message	Keep going. You have a\npromise to fulfill. We'll\ntake care of Hammet.{end_wait}
 07032	message	I wish I could tell you\nmore about the Shaman's\nRod, but that's all I know.{end_wait}
 07033	message	You've told us enough.\nThank you.{end_wait}
-07034	message	The rod should lead us to\nwhatever we need for the\njourney. Right?{end_wait}
+07034	message	The Shaman's Rod should\nlead us to what we need\nfor our journey. Right?{end_wait}
 07035	message	Will you look for it?{end_now}
 07036	message	If {actor_name:1} says we'll find\nit, I believe him.{end_wait}
 07037	message	{actor_name:1}, we came this far\nfor a reason. We can't just\nforget it.{end_wait}

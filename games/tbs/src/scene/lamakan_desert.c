@@ -345,6 +345,17 @@ static void LamakanDesert_AshJennaFinale(void) {
   LamakanDesert_SayMia();
   Event_SetMessageId(MsgDarkFinaleJennaThreat);
   Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  // Mia can recognize the thieves' description, but not prove who hired them.
+  if (GameFlag_Get(FLAG_DARK_MIA_THIEVES_DONE) != 0) {
+    Event_SetMessageId(MsgDarkFinaleMiaThieves);
+    LamakanDesert_SayMia();
+    Event_SetMessageId(MsgDarkFinaleJennaThieves);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+    Event_SetMessageId(MsgDarkFinaleMiaThievesQuestion);
+    LamakanDesert_SayMia();
+    Event_SetMessageId(MsgDarkFinaleJennaThievesAnswer);
+    Event_ShowMessageThenWait(ACTOR_LAMAKAN_ASH_JENNA, 0, 20);
+  }
   Event_SetMessageId(MsgDarkFinaleIsaacDemand);
   Event_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
   Event_SetMessageId(MsgDarkFinaleJennaCruel);

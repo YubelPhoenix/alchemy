@@ -1,14 +1,14 @@
-N01	MsgDarkMenardiDuel01	You walk like someone who's\nalready lost somebody.{end_wait}
-N02	MsgDarkMenardiDuel02	Good. Then you know what\nI'm about to ask of you.{end_wait}
-N03	MsgDarkMenardiDuel03	Saturos says you're just\nkids, but I'd like to see\nthat for myself.{end_wait}
-N04	MsgDarkMenardiDuel04	Show me what Vale taught\nyou. Stand your ground.{end_wait}
-N05	MsgDarkMenardiDuel05	Don't hold back, because I\nwon't.{end_wait}
-N06	MsgDarkMenardiDuel06	There. That's the strength\nI was hoping to see.{end_wait}
-N07	MsgDarkMenardiDuel07	Hold on to it. You're going\nto need all of it.{end_wait}
-N08	MsgDarkMenardiDuel08	I didn't want to be the one\nto find out if you'd break.{end_wait}
-N09	MsgDarkMenardiDuel09	Go on up. We'll be waiting\nat the top, by the stars.{end_wait}
-N10	MsgDarkMenardiDuel10	And {protagonist_name}, when we meet\nagain, remember that I let\nyou pass.{end_wait}
-N11	MsgDarkSaturosDuel01	That's enough, Menardi.\nYou've made your point.{end_wait}
-N12	MsgDarkSaturosDuel02	Saturos, they're only\nchildren.{end_wait}
-N13	MsgDarkSaturosDuel03	They came here to stop us.\nThat makes them dangerous.{end_wait}
-N14	MsgDarkSaturosDuel04	Come on. The stars are\nwaiting, and they can\nfollow us if they dare.{end_wait}
+N01	MsgDarkMenardiDuel01	So you've made it\nthis far. I'm impressed.{end_wait}
+N02	MsgDarkMenardiDuel02	Three years ago, we\nfailed to get past\nthese defenses.{end_wait}
+N03	MsgDarkMenardiDuel03	And yet here you are.\nYou've found a way\nthrough.{end_wait}
+N04	MsgDarkMenardiDuel04	I wonder how much\nyou've learned since\nthat night.{end_wait}
+N05	MsgDarkMenardiDuel05	Draw your weapon.\nShow me.{end_wait}
+N06	MsgDarkMenardiDuel06	You've grown stronger\nthan I expected.{end_wait}
+N07	MsgDarkMenardiDuel07	But a little strength\nwon't get you much\nfarther.{end_wait}
+N08	MsgDarkMenardiDuel08	I have seen enough.{end_wait}
+N09	MsgDarkMenardiDuel09	Go on. I won't stand\nin your way.{end_wait}
+N10	MsgDarkMenardiDuel10	We'll meet again,\n{protagonist_name}.{end_wait}
+N11	MsgDarkSaturosDuel01	That's enough, Menardi.\nWe've wasted enough time.{end_wait}
+N12	MsgDarkSaturosDuel02	They're more capable\nthan you gave them\ncredit for.{end_wait}
+N13	MsgDarkSaturosDuel03	Then let them find\nthe way for us.{end_wait}
+N14	MsgDarkSaturosDuel04	Come. We have more\nimportant matters.{end_wait}

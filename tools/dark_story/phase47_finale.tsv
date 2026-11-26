@@ -1,6 +1,6 @@
 # Ash Jenna's automatic post-Manticore confrontation. No recruitment choice.
 N224	MsgDarkFinaleJennaMet	You again, Isaac.\nI'm surprised the desert\ndidn't finish you.{end_wait}
-N225	MsgDarkFinaleIsaacMet	You knew my name before.\nTell me who you are.{end_wait}
+N225	MsgDarkFinaleIsaacMet	You've been watching me.\nTell me who you are.{end_wait}
 N195	MsgDarkFinaleJenna1	Still fighting, Isaac?\nSome things never change.{end_wait}
 N196	MsgDarkFinaleIsaac1	How do you know me?\nYou look just like Jenna.{end_wait}
 N197	MsgDarkFinaleJenna2	My name is Jenna, too.\nCall me Ash Jenna.{end_wait}

@@ -2769,8 +2769,14 @@ static void VenusLighthouse_TalkToMysteryLeader(void) {
       GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0)
     return;
   Event_Start();
-  Event_SetMessageId(MsgDarkMystery01);
+  // The Rift and the solo duel are independently optional.
+  if (GameFlag_Get(FLAG_DARK_RIFT_BEATEN) != 0)
+    Event_SetMessageId(MsgDarkMysteryRiftRecognition);
+  else
+    Event_SetMessageId(MsgDarkMystery01);
   VenusLighthouse_IsaacAnswers();
+  // Resume the original protected sequence after either opening.
+  Event_SetMessageId(MsgDarkMystery02);
   VenusLighthouse_MysterySays();
   VenusLighthouse_IsaacAnswers();
   VenusLighthouse_MysterySays();

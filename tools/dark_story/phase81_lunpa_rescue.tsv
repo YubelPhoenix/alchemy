@@ -45,18 +45,18 @@
 09360	message	Did it break your leg?{end_wait}
 09361	message	No. Give me a moment.\nI'll be fine.{end_wait}
 09362	message	Good. You're alive.{end_wait}
-09363	message	That's all you have\nto say to me?{end_wait}
+09363	message	You're glad he's alive!?{end_wait}
 09364	message	He nearly killed us,\nand you're worried\nabout his leg?{end_wait}
 09365	message	He's helpless now.\nWhat good would hurting\nhim do?{end_wait}
 09366	message	He kept you prisoner,\nHammet!{end_wait}
 09367	message	I know. I haven't\nforgotten.{end_wait}
 09368	message	Then don't pretend\nit was nothing!{end_wait}
-09369	message	I'm alive, and I'm free.\nThat's enough for me.{end_wait}
-09370	message	It isn't enough if\nhe does this again.{end_wait}
-09371	message	No. It isn't.{end_wait}
-09372	message	Dodonpa, listen carefully.{end_wait}
-09373	message	He'll promise anything\nto get out of this.{end_wait}
-09374	message	Of course I will!\nJust let me go!{end_wait}
+09369	message	But Master Hammet\nis safe now.{end_wait}
+09370	message	And what happens if\nhe does this again?{end_wait}
+09371	message	We cannot ignore that.{end_wait}
+09372	message	Dodonpa, will you\nkeep your word?{end_wait}
+09373	message	He has already promised\nnot to do it again.{end_wait}
+09374	message	He'll promise anything\nto get out of this!{end_wait}
 09375	message	What would you do,\n{actor_name:2}?{end_wait}
 09376	message	Put him in the cell.\nLet him see it\nfrom Hammet's side.{end_wait}
 09377	message	No! You can't!{end_wait}

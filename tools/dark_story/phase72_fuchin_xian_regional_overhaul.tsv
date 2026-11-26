@@ -1,9 +1,9 @@
 # Fuchin Temple, Nyunpa's trial and passing, Xian village and martial arts school. Original chronology and branch-specific endings preserved.
 06029	MsgFuchinTempleIBeginningToThinkIllBe	The forest has cut us\noff from the road.{page_break}I fear I may never\nsee home again.{end_wait}
-06030	message	Did you hear how\ndangerous Mogall\nhas become?{end_now}
-06031	message	Travelers lose their way\namong the trees.{page_break}Nyunpa knows\nhow to pass safely.{end_wait}
-06032	message	I saw stones falling\nfrom the night sky.{page_break}Since then, the road\nhas felt less safe.{end_wait}
-06033	MsgFuchinTempleOmOmBlueLightsInThe	Om...{pause_20_skippable} Om...\nThe northern sky\nburned blue.{page_break}Stones fell like rain.\nNow even the woods\nseem restless.{end_wait}
+06030	message	Did you know Mogall\nForest was once\na vast prairie?{end_now}
+06031	message	The forest appeared\novernight.{page_break}Nyunpa alone knows\nhow to pass safely.{end_wait}
+06032	message	I saw stones falling\nfrom the night sky.{page_break}By morning, a forest\nstood where the\nprairie had been.{end_wait}
+06033	MsgFuchinTempleOmOmBlueLightsInThe	Om...{pause_20_skippable} Om...\nThe northern sky\nburned blue.{page_break}Stones fell like rain.\nA forest rose overnight.{end_wait}
 06034	MsgFuchinTempleGemsFromTheSkyBlueLights	The falling stones\nand strange blue light\ntrouble the monks.{page_break}Our oldest scrolls\nspeak of such signs.{end_wait}
 06035	MsgFuchinTempleNyunpaHasNotEatenInDays	Nyunpa has refused\nfood for days.{page_break}His hands tremble.\nHe says he must\ncontinue fasting.{end_wait}
 06036	MsgXianIsntNobleHimTrySave	Is it noble to give\nyour life seeking\nenlightenment?{end_now}
@@ -67,7 +67,7 @@
 06132	MsgXianKungFuStrong	My kung fu improves\na little each day.{page_break}Master Feh says\npatience matters.{end_wait}
 06133	MsgXianDisastersFromTheSkyManyMany	The roads are unsafe.\nStill, I trust\nour fighters.{end_wait}
 06134	MsgXianThisIsTheMulberryOrchardWhen	These mulberry trees\nfeed the silkworms.{page_break}Without them,\nXian would suffer.{end_wait}
-06135	MsgXianWarriorsFromSchoolStrongWarriors	Are you warriors\nfrom Master Feh's\nschool?{end_now}
+06135	MsgXianWarriorsFromSchoolStrongWarriors	You visited Master Feh.\nAre you strong warriors?{end_now}
 06136	message	Then I wish you\nstrength on the\nwestern road.{end_wait}
 06137	message	At least you know\nyour limits.{page_break}That's more than\nmost fighters admit.{end_wait}
 06138	MsgXianDoingMadeMeSpillMy	Watch where you're\nstanding! You made\nme spill the water!{end_wait}

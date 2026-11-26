@@ -1,0 +1,8 @@
+# Optional encounters remain independent; alternatives use only completed encounter flags.
+N950	MsgDarkFinaleMiaThieves	Those men outside Imil...\nThey described someone\nwho looked like you.{end_wait}
+N951	MsgDarkFinaleJennaThieves	Did they now?{end_wait}
+N952	MsgDarkFinaleMiaThievesQuestion	What did you want with me?{end_wait}
+N953	MsgDarkFinaleJennaThievesAnswer	You're still here,\naren't you?{end_wait}
+N954	MsgDarkMysteryRiftRecognition	We meet again.\nWho are you, really?{end_wait}
+N955	MsgDarkHeartRiftRecognition	Heart... We've been\nthrough this before.\nI'm not Matthew.{end_wait}
+N956	MsgDarkRiftHeartHeard	Is that Heart?{end_wait}
