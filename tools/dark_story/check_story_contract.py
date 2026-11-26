@@ -7,6 +7,7 @@ substitute for playing every branch in the built ROM.
 """
 from __future__ import annotations
 
+import hashlib
 import re
 from pathlib import Path
 
@@ -279,6 +280,18 @@ def check_mystery_rescue_encounter() -> None:
     require(defeat.index("Party_AddMember(MIA);")
             < defeat.index("if (result == -1) {"),
             "Restore all companions before loading either destination scene")
+
+    # Author-locked Vale exchange: pin both original Git blobs from a88d3ad.
+    # Editing the reference and the live table together must not bypass this guard.
+    # A new approved revision requires explicit authorization and updated pins.
+    for filename, approved_blob in (
+        ("phase118_mystery_leader.tsv", "1b4e886fa1178952b3bd1a463a7fbc0890728f77"),
+        ("approved_mystery_prebattle.txt", "57c93bfb669016e5b635b2d63c0af05a23cb4109"),
+    ):
+        content = read("tools/dark_story/" + filename).encode("utf-8")
+        header = f"blob {len(content)}\0".encode("ascii")
+        require(hashlib.sha1(header + content).hexdigest() == approved_blob,
+                f"Author-locked Vale dialogue changed without approval: {filename}")
 
     lines = messages("phase118_mystery_leader.tsv")
     require({f"N{i}" for i in range(356, 395)} == set(lines),
