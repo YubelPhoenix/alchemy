@@ -125,10 +125,8 @@ enum {
   UMBRAL_CAUSEWAY_TO_THRONE = 2,
 };
 
-/// The Crossbone room (map row 0xc0): Crossbone Isle's room of spikes and ice
-/// pillars in obsidian, between the Fountain Hall's left arch and the maze.
-/// The party comes in at the left door and leaves by the right one, winding
-/// between the spikes.
+/// The Crossbone room (map row 0xc0) links the Fountain Hall and maze.
+/// The party enters through one door and leaves through the other.
 enum {
   UMBRAL_CROSSBONE_FROM_MAZE = 1,
 };
@@ -216,7 +214,6 @@ static void UmbralRift_Say(s32 message, s32 actor) {
 
 static void UmbralRift_FountainDialogue(void) {
   UmbralRift_Say(MsgDarkRiftFountain003, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftFountain004, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftFountain005, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftFountain006, ACTOR_IVAN);
   UmbralRift_Say(MsgDarkRiftFountain007, ACTOR_PARTY_LEADER);
@@ -226,15 +223,12 @@ static void UmbralRift_MazeDialogue(void) {
   UmbralRift_Say(MsgDarkRiftMaze002, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftMaze001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftMaze003, ACTOR_IVAN);
-  UmbralRift_Say(MsgDarkRiftMaze004, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftMaze005, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftMaze007, ACTOR_PARTY_LEADER);
 }
 
 static void UmbralRift_MemoryDialogue(void) {
   UmbralRift_Say(MsgDarkRiftMemory001, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftMemory002, ACTOR_GARET);
-  UmbralRift_Say(MsgDarkRiftMemory003, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftMemory004, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftMemory005, ACTOR_GARET);
   if (GameFlag_Get(FLAG_DARK_RIFT_SEAL_LIT) == 0) {
@@ -414,6 +408,8 @@ static void UmbralRift_PairEcho(s32 mystery, s32 heart, s32 flag, s32 facing) {
   } else if (flag == FLAG_DARK_RIFT_PAIR_MAZE) {
     UmbralRift_Say(MsgDarkRiftMaze008, ACTOR_GARET);
     UmbralRift_Say(MsgDarkRiftMaze009, ACTOR_PARTY_LEADER);
+  } else if (flag == FLAG_DARK_RIFT_PAIR_MEMORY) {
+    UmbralRift_Say(MsgDarkRiftMemory003, ACTOR_MIA);
   }
   GameFlag_Set(flag);
   Event_End();
@@ -504,7 +500,7 @@ static void UmbralRift_TalkToMystery(void) {
   UmbralRift_Say(MsgDarkRiftPre006, ACTOR_RIFT_MYSTERY);
   UmbralRift_Say(MsgDarkRiftPre009, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre010, ACTOR_RIFT_MYSTERY);
-  if (GameFlag_Get(FLAG_DARK_ASH_JENNA_LAMAKAN_MET) != 0) {
+  if (GameFlag_Get(FLAG_DARK_FINALE_DONE) != 0) {
     UmbralRift_Say(MsgDarkRiftPre003, ACTOR_PARTY_LEADER);
     UmbralRift_Say(MsgDarkRiftPre004, ACTOR_RIFT_MYSTERY);
   }
@@ -516,7 +512,8 @@ static void UmbralRift_TalkToMystery(void) {
     UmbralRift_Say(MsgDarkRiftKnownWarning, ACTOR_PARTY_LEADER);
     UmbralRift_Say(MsgDarkRiftKnownAnswer, ACTOR_RIFT_MYSTERY);
   }
-  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0)
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0 ||
+      GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0)
     UmbralRift_Say(MsgDarkRiftPre017, ACTOR_PARTY_LEADER);
   else
     UmbralRift_Say(MsgDarkRiftPre019, ACTOR_PARTY_LEADER);
@@ -528,7 +525,8 @@ static void UmbralRift_TalkToMystery(void) {
     UmbralRift_Say(MsgDarkRiftPre022, ACTOR_RIFT_MYSTERY);
   }
   UmbralRift_Say(MsgDarkRiftPre023, ACTOR_RIFT_HEART);
-  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0)
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0 ||
+      GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0)
     UmbralRift_Say(MsgDarkRiftHeartKnown, ACTOR_PARTY_LEADER);
   else
     UmbralRift_Say(MsgDarkRiftPre024, ACTOR_PARTY_LEADER);
@@ -959,7 +957,6 @@ static void UmbralRift_SeeBeacon(void) {
   Sound_PlaySong(SE_WARP);
   Event_WaitFrames(20);
   UmbralRift_Say(MsgDarkRiftBeacon002, ACTOR_MIA);
-  UmbralRift_Say(MsgDarkRiftBeacon003, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftBeacon004, ACTOR_IVAN);
   GameFlag_Set(FLAG_DARK_RIFT_BEACON_SEEN);
   Event_End();
