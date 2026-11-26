@@ -714,6 +714,66 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
  return MYSTERY_RANSNETZ;
 }
 
+/// The Wraith fights the full party alone. Slots match enemy row 166.
+enum WraithSlot {
+  WRAITH_SPARK_PLASMA = 0, WRAITH_ASURA = 1, WRAITH_THUNDERSTORM = 2,
+  WRAITH_TEMPEST = 3, WRAITH_SONIC_SLASH = 4, WRAITH_STUN_VOLTAGE = 5,
+  WRAITH_IMPACT = 6, WRAITH_BREAK = 7
+};
+#define WRAITH_WIDE_USED_BIT (1u << 4)
+#define WRAITH_UTILITY_USED_BIT (1u << 5)
+#define WRAITH_BITS (WRAITH_WIDE_USED_BIT | WRAITH_UTILITY_USED_BIT)
+STATIC_ASSERT((WRAITH_BITS & (BOSS_RESERVED_BITS | BOSS_LAST_AIM_BITS)) == 0);
+
+static void BossAI_WraithBeginRound(void) {
+  struct Unit *unit = BossAI_FindRow(ENEMY_ROW_VENGEFUL_WRAITH);
+  if (unit != 0)
+    unit->aiActionIndex &= ~WRAITH_BITS;
+}
+
+static void BossAI_WraithNoteTurn(struct Unit *unit,
+                                 struct BattleAction *request) {
+  s32 slot = BossAI_RequestSlot(unit, request);
+  if (slot == WRAITH_SPARK_PLASMA || slot == WRAITH_THUNDERSTORM ||
+      slot == WRAITH_TEMPEST || slot == WRAITH_SONIC_SLASH)
+    unit->aiActionIndex |= WRAITH_WIDE_USED_BIT;
+  if (slot == WRAITH_IMPACT || slot == WRAITH_BREAK ||
+      slot == WRAITH_STUN_VOLTAGE)
+    unit->aiActionIndex |= WRAITH_UTILITY_USED_BIT;
+}
+
+/// Pressure multiple opponents first, then follow with a sword attack or
+/// situational support. A rejected Psynergy choice falls back to Asura.
+static s32 BossAI_WraithChooseSlot(struct Unit *unit, s32 firstPick) {
+  struct BossPartyView view;
+  u32 memory = unit->aiActionIndex;
+  s32 roll;
+  s32 late = unit->hp * 2 <= unit->hpMax;
+  if (!firstPick || unit->psySeal != 0)
+    return WRAITH_ASURA;
+  BossAI_ViewParty(&view);
+  roll = Battle_RandomFar() & 0xff;
+  if (view.alive > 1 && !(memory & WRAITH_WIDE_USED_BIT)) {
+    if (roll < (late ? 144 : 96))
+      return WRAITH_THUNDERSTORM;
+    if (roll < 224)
+      return WRAITH_SPARK_PLASMA;
+    return WRAITH_TEMPEST;
+  }
+  if (view.alive > 1 && !(memory & WRAITH_UTILITY_USED_BIT)) {
+    if (view.buffed && roll < 56)
+      return WRAITH_BREAK;
+    if (unit->attackStage <= 0 && roll >= 56 && roll < 88)
+      return WRAITH_IMPACT;
+    if (view.unavailable < view.alive + view.down &&
+        roll >= 88 && roll < 112)
+      return WRAITH_STUN_VOLTAGE;
+  }
+  if (view.alive == 1 || roll < 200)
+    return WRAITH_ASURA;
+  return WRAITH_SONIC_SLASH;
+}
+
 /// Starts a round for the bosses: their per-round memory is cleared and their
 /// view of the party brought up to date. Called once a round by
 /// BattleTurnOrder_Sort, before anyone acts.
@@ -722,6 +782,7 @@ void BossAI_BeginRound(void) {
   BossAI_AshBeginRound();
   BossAI_HeartBeginRound();
   BossAI_MysteryBeginRound();
+  BossAI_WraithBeginRound();
 }
 
 /// Records a turn that was really staged (result 0). Called by
@@ -740,6 +801,8 @@ void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
     BossAI_HeartNoteTurn(unit, request);
   else if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)
     BossAI_MysteryNoteTurn(unit, request);
+  else if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH)
+    BossAI_WraithNoteTurn(unit, request);
 }
 
 /// A boss's pick of a place in its action list. Returns slot unchanged for
@@ -755,6 +818,8 @@ s32 BossAI_ChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
     return BossAI_HeartChooseSlot(unit, slot, firstPick);
   if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_MYSTERY_LEADER)
     return BossAI_MysteryChooseSlot(unit, slot, firstPick);
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH)
+    return BossAI_WraithChooseSlot(unit, firstPick);
   return slot;
 }
 
