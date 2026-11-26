@@ -23,6 +23,7 @@ engine steps frames by two (as Heart's, build_heart_art.py):
     sinks a pixel, so she rises and falls as the game swaps the two)
 """
 from pathlib import Path
+import sys
 
 import numpy as np
 from PIL import Image
@@ -57,43 +58,44 @@ def to_lab(rgb):
                      200 * (f[..., 1] - f[..., 2])], -1)
 
 
-palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
-colors = np.array(palette, dtype=float).reshape(-1, 3)
-lab_colors = to_lab(colors[1:])
+if "--portrait-only" not in sys.argv[1:]:
+    palette = Image.open(SHARED_PALETTE).getpalette()[:224 * 3]
+    colors = np.array(palette, dtype=float).reshape(-1, 3)
+    lab_colors = to_lab(colors[1:])
 
-sheet = np.zeros((FRAME * 2 * len(LAYOUT), FRAME), np.uint8)
-for i, name in enumerate(LAYOUT):
-    path = SOURCE / f"{name}.png"
-    if name == "idle2" and not path.exists():
-        canvas = np.asarray(Image.open(SOURCE / "idle.png").convert("RGBA"))
-        breath = canvas.copy()
-        breath[1:WAIST + 1] = canvas[0:WAIST]   # all but her feet sink 1px
-        canvas = breath
-    else:
-        canvas = np.asarray(Image.open(path).convert("RGBA"))
-    if name in SCALE:
-        factor, (ax, ay) = SCALE[name]
-        size = round(canvas.shape[1] * factor), round(canvas.shape[0] * factor)
-        small = Image.fromarray(canvas).resize(size, Image.Resampling.BOX)
-        scaled = Image.new("RGBA", (canvas.shape[1], canvas.shape[0]))
-        scaled.paste(small, (round(ax - ax * factor), round(ay - ay * factor)))
-        canvas = np.asarray(scaled)
-    dx, dy = SHIFT.get(name, (0, 0))
-    x0, y0 = WINDOW[0] + dx, WINDOW[1] + dy
-    src = canvas[y0:y0 + FRAME, x0:x0 + FRAME]
-    assert src.shape[:2] == (FRAME, FRAME), name
-    vis = src[..., 3] >= 128
-    d = ((to_lab(src[vis][:, :3].astype(float))[:, None, :]
-          - lab_colors[None]) ** 2).sum(2)
-    frame = np.zeros((FRAME, FRAME), np.uint8)
-    frame[vis] = d.argmin(1) + 1
-    for k in range(2):
-        sheet[(2 * i + k) * FRAME:(2 * i + k + 1) * FRAME] = frame
+    sheet = np.zeros((FRAME * 2 * len(LAYOUT), FRAME), np.uint8)
+    for i, name in enumerate(LAYOUT):
+        path = SOURCE / f"{name}.png"
+        if name == "idle2" and not path.exists():
+            canvas = np.asarray(Image.open(SOURCE / "idle.png").convert("RGBA"))
+            breath = canvas.copy()
+            breath[1:WAIST + 1] = canvas[0:WAIST]   # all but her feet sink 1px
+            canvas = breath
+        else:
+            canvas = np.asarray(Image.open(path).convert("RGBA"))
+        if name in SCALE:
+            factor, (ax, ay) = SCALE[name]
+            size = round(canvas.shape[1] * factor), round(canvas.shape[0] * factor)
+            small = Image.fromarray(canvas).resize(size, Image.Resampling.BOX)
+            scaled = Image.new("RGBA", (canvas.shape[1], canvas.shape[0]))
+            scaled.paste(small, (round(ax - ax * factor), round(ay - ay * factor)))
+            canvas = np.asarray(scaled)
+        dx, dy = SHIFT.get(name, (0, 0))
+        x0, y0 = WINDOW[0] + dx, WINDOW[1] + dy
+        src = canvas[y0:y0 + FRAME, x0:x0 + FRAME]
+        assert src.shape[:2] == (FRAME, FRAME), name
+        vis = src[..., 3] >= 128
+        d = ((to_lab(src[vis][:, :3].astype(float))[:, None, :]
+              - lab_colors[None]) ** 2).sum(2)
+        frame = np.zeros((FRAME, FRAME), np.uint8)
+        frame[vis] = d.argmin(1) + 1
+        for k in range(2):
+            sheet[(2 * i + k) * FRAME:(2 * i + k + 1) * FRAME] = frame
 
-out = Image.fromarray(sheet, "P")
-out.putpalette(palette + [0] * (256 - 224) * 3)
-out.save(DEST, optimize=False)
-print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
+    out = Image.fromarray(sheet, "P")
+    out.putpalette(palette + [0] * (256 - 224) * 3)
+    out.save(DEST, optimize=False)
+    print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 
 # Her hooded mugshot: portrait icon ICON_69. Index 0 is reserved for
 # transparency; the supplied 32x32 image is opaque, with a flat pink backdrop.
