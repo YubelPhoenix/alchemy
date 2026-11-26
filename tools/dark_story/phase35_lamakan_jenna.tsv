@@ -1,5 +1,5 @@
 # Ash Jenna's optional first sighting in Lamakan, before the Manticore.
-N106	MsgDarkLamakanJennaWatch	You stopped when you saw me.\nWere you expecting\nsomeone else?{end_wait}
+N106	MsgDarkLamakanJennaWatch	You stopped when you saw\nme. Were you expecting\nsomeone else?{end_wait}
 N107	MsgDarkLamakanIsaacWait	Jenna...? No.\nWho are you?{end_wait}
 N108	MsgDarkLamakanJennaUndo	You were ready to follow\nme. I could see it.{page_break}People are easy to lead\nwhen they're afraid\nto lose someone.{end_wait}
 N109	MsgDarkLamakanJennaClimb	Keep looking for her.\nPerhaps you'll make it\nbefore it's too late.{end_wait}

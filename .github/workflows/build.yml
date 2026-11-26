@@ -8,8 +8,7 @@ name: CI
 
 on:
   pull_request:
-  push:
-    branches: [main]
+  # Ashfall main builds use build-golden-sun-dialogue.yml, not retail ROM matching.
   workflow_dispatch:
 
 permissions:

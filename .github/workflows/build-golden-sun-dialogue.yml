@@ -3,7 +3,7 @@ name: Validate Golden Sun dialogue build
 on:
   workflow_dispatch:
   push:
-    branches: [dark-story-rewrite, ash-vale-aftermath, fight-together, integration-fight-together-review, umbral-rift, umbral-rift-narrative-2026-11-21, umbral-rift-opera-house-music-test, ashfall-narrative-cohesion-20261124, umbral-rift-palace-prototype, stabilization/20261125]
+    branches: [main, dark-story-rewrite, ash-vale-aftermath, fight-together, integration-fight-together-review, umbral-rift, umbral-rift-narrative-2026-11-21, umbral-rift-opera-house-music-test, ashfall-narrative-cohesion-20261124, umbral-rift-palace-prototype, stabilization/20261125]
     paths:
       - 'games/tbs/text/en.po'
       - 'games/tbs/src/**'
