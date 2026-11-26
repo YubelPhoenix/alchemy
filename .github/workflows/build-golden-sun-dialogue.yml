@@ -21,6 +21,7 @@ on:
       - 'tools/dark_story/*.tsv'
       - 'tools/dark_story/audit_live_dialogue.py'
       - 'tools/dark_story/build_heart_art.py'
+      - 'tools/dark_story/build_ash_jenna_art.py'
       - 'tools/dark_story/build_wraith_art.py'
       - 'tools/ci/check_battle_art.py'
       - 'assets/wraith/**'

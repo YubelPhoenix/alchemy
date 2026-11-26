@@ -51,6 +51,27 @@ for picture, builder, animations in SHEETS:
         fail(f"{picture} is {sheet.size} but {builder} makes {frames} frames of 64x64 "
              f"({64}, {frames * 64})")
         continue
+    # Retain the indexed-palette guarantees from the retired standalone
+    # Heart artwork workflow, alongside the general animation checks.
+    if picture in ("monster/purple_beast.png", "monster/slime.png"):
+        if sheet.mode != "P":
+            fail(f"{picture} must be indexed palette art")
+        else:
+            shared = Image.open(ROOT / "games/tbs/src/system/memory/basic.png").getpalette()[:224 * 3]
+            palette = sheet.getpalette()[:224 * 3]
+            used = set(sheet.tobytes())
+            if palette != shared:
+                fail(f"{picture}: palette differs from basic.png")
+            if max(used) > 223 or max(used) <= 15:
+                fail(f"{picture}: invalid shared palette indices")
+            if picture == "monster/purple_beast.png":
+                if min(used) != 0 or any(c % 8 for c in palette):
+                    fail(f"{picture}: missing transparency or non-RGB555 palette")
+                for pair in range(frames // 2):
+                    top = sheet.crop((0, pair * 128, 64, pair * 128 + 64)).tobytes()
+                    bottom = sheet.crop((0, pair * 128 + 64, 64, pair * 128 + 128)).tobytes()
+                    if top != bottom:
+                        fail(f"{picture}: indexed pose pair {pair} differs")
     rgba = sheet.convert("RGBA")
     for pair in range(frames // 2):
         top = rgba.crop((0, pair * 128, 64, pair * 128 + 64)).tobytes()
