@@ -66,22 +66,149 @@ void BattleAnim_RunMeteor(struct BattleAnimArgs *args) {
   BattleAnim_RunParticleStreams(args, PARTICLE_STREAMS_METEOR);
 }
 
-/// The user leaps up, and two sprites rise out of a dissolving starfield and
-/// burst into embers and flashes, in the lightning bolt's colours.
-///
-/// Abilities: Outer Space (BATTLE_ANIM_OUTER_SPACE).
+/// Heart's two encounter definitions share the dedicated Vendetta Dive.
+#define OUTER_SPACE_HEART_ROW 101
+#define OUTER_SPACE_HEART_RIFT_ROW 165
+#define OUTER_SPACE_HEART_KICK 6
+
+/// Animate the actual battler in field coordinates. Only the effect palette
+/// (64 entries) is loaded; the HUD and remaining palettes stay untouched.
+static void BattleAnim_RunVendettaDive(struct BattleAnimArgs *args) {
+  void **slots;
+  void **cursor;
+  struct BattleAnimWork *work;
+  void *canvas;
+  DrawRectangle draw;
+  u8 *motes;
+  struct Actor *actor;
+  struct Actor *target;
+  struct Sprite *sprite;
+  struct ScreenPoint impact;
+  struct ScreenPoint trail;
+  s32 homeX, homeY, homeZ, hitX, hitY, hitZ;
+  s32 dx, dz, frame, i, t;
+  s32 gravity, bounce;
+  u8 steering;
+  u16 facing;
+
+  if (args->targetCount == 0)
+    return;
+  ANIM_GET_SLOTS(slots, cursor, work, canvas);
+  work->args = args;
+  actor = GetBattleObjectSlotFar(args->user)->actor;
+  target = GetBattleObjectSlotFar(args->targets[0])->actor;
+  sprite = GetMotionRecordFar(actor, 0);
+  homeX = actor->x.fixed;
+  homeY = actor->y.fixed;
+  homeZ = actor->z.fixed;
+  dx = (target->x.fixed - homeX) / 4;
+  dz = (target->z.fixed - homeZ) / 4;
+  hitX = homeX + dx * 3;
+  hitZ = homeZ + dz * 3;
+  hitY = target->groundHeight + (6 << 16);
+  gravity = actor->gravity;
+  bounce = actor->bounce;
+  steering = actor->steeringFlags;
+  facing = actor->facing;
+
+  BattleAnim_StartCanvasLayer(0);
+  Resource_LoadAndDecompress((s32)&ResourceId_FlashBurstSheet, work->sheet,
+                             1, 0);
+  motes = ANIM_SLOT(slots, HEAP_SLOT_BATTLE_SHEET);
+  Resource_LoadAndDecompress((s32)&ResourceId_ParticleSpritesA, motes, 0, 0);
+  Iwram_CopyWords((void *)BG_PLTT,
+                  Resource_GetTableEntry((s32)&ResourceId_RedPaletteA), 128);
+  ANIM_LOAD_BLITTER(HEAP_SLOT_RAM_CODE, ANIM_CLIP_BOUNDS, COMPOSITE_LIGHTEN);
+  draw = (DrawRectangle)ANIM_SLOT(slots, HEAP_SLOT_RAM_CODE);
+  ANIM_START_TRANSFER(work, CANVAS_COPY_AND_FADE, CANVAS_FADE_HALF);
+
+  // The battle motion task continues to run, so clear its destination and
+  // velocities while this animation drives the actor.
+  Actor_StartIdleFar(actor);
+  actor->targetX = ACTOR_NO_TARGET;
+  actor->targetY = ACTOR_NO_TARGET;
+  actor->targetZ = ACTOR_NO_TARGET;
+  actor->arrivalAxis = 0;
+  actor->velocityX = 0;
+  actor->velocityY = 0;
+  actor->velocityZ = 0;
+  actor->gravity = 0;
+  actor->bounce = 0;
+  actor->steeringFlags = 0;
+  Actor_SelectAnimationFar(actor, POSE_LEAP);
+  Sound_PlaySongFar(SE_WHOOSH);
+
+  for (frame = 0; frame != 52; frame++) {
+    if (frame < 12) {
+      // Short ascent, followed by a clear feet-first pose at the apex.
+      actor->x.fixed = homeX + dx * frame / 48;
+      actor->z.fixed = homeZ + dz * frame / 48;
+      actor->y.fixed = homeY + (frame * (28 << 16)) / 12;
+    } else if (frame < 26) {
+      if (frame == 12)
+        Sprite_StartAnimFar(sprite, OUTER_SPACE_HEART_KICK);
+      // Accelerate toward the selected target, stopping short of overlap.
+      t = frame - 11;
+      actor->x.fixed = homeX + dx / 4 +
+          (hitX - homeX - dx / 4) / 196 * t * t;
+      actor->z.fixed = homeZ + dz / 4 +
+          (hitZ - homeZ - dz / 4) / 196 * t * t;
+      actor->y.fixed = homeY + (28 << 16) +
+          (hitY - homeY - (28 << 16)) / 196 * t * t;
+      Projection_Unit(args->user, &trail);
+      ANIM_DRAW_MOTE(draw, canvas, motes, trail.x / 2, trail.y + 8,
+                     2 + (frame & 1));
+    } else if (frame == 26) {
+      SET_ACTOR_POSITION(actor, hitX, hitY, hitZ);
+      Projection_Unit(args->targets[0], &impact);
+      for (i = 0; i < args->targetCount; i++)
+        BattleAnim_TintBattler(args->targets[i], SPRITE_COLOR_WHITE,
+                               POSE_DAMAGE, i, 8);
+      ANIM_SHOW_DAMAGE(SE_HEAVY_IMPACT);
+      work->shakeFrames = 6;
+    } else if (frame >= 29 && frame < 43) {
+      if (frame == 29)
+        Actor_SelectAnimationFar(actor, POSE_LEAP);
+      t = frame - 28;
+      actor->x.fixed = hitX + (homeX - hitX) / 14 * t;
+      actor->z.fixed = hitZ + (homeZ - hitZ) / 14 * t;
+      actor->y.fixed = hitY + (homeY - hitY) / 14 * t +
+          (t * (14 - t) * (1 << 14));
+    } else if (frame == 43) {
+      SET_ACTOR_POSITION(actor, homeX, homeY, homeZ);
+      Actor_SelectAnimationFar(actor, POSE_STANDING);
+    }
+    // One concentrated red burst, synced with the damage playback.
+    if (frame >= 26 && frame < 38) {
+      i = (frame - 26) / 2;
+      draw(canvas, work->sheet + (i << 11), impact.x / 2 - 16,
+           impact.y - 32, 32, 64);
+    }
+    BattleCamera_Shake(6, 6);
+    ANIM_END_FRAME(work);
+  }
+  SET_ACTOR_POSITION(actor, homeX, homeY, homeZ);
+  actor->gravity = gravity;
+  actor->bounce = bounce;
+  actor->steeringFlags = steering;
+  actor->facing = facing;
+  ANIM_FINISH_CANVAS_ONE_BLITTER();
+}
+
+/// Outer Space retains the Fusion Dragon animation; Heart uses her own dive.
 void BattleAnim_RunOuterSpace(struct BattleAnimArgs *args) {
+  struct Unit *user = Unit_GetFar(args->user);
+
+  if (user->id == ENEMY_ID_FIRST + OUTER_SPACE_HEART_ROW ||
+      user->id == ENEMY_ID_FIRST + OUTER_SPACE_HEART_RIFT_ROW) {
+    BattleAnim_RunVendettaDive(args);
+    return;
+  }
   BattleAnim_RunParticleStreams(args, PARTICLE_STREAMS_OUTER_SPACE);
 }
 
 /// The burst's embers, 512 in PARTICLES after its 128 flashes.
 #define PARTICLE_STREAMS_EMBERS (&PARTICLES[128])
-
-/// Heart's rows in gEnemy_Definitions (ENEMY_ROW_HEART in encounter.c, and
-/// the Umbral Rift's), and her dive kick, SPR_484's animation 6.
-#define OUTER_SPACE_HEART_ROW 101
-#define OUTER_SPACE_HEART_RIFT_ROW 165
-#define OUTER_SPACE_HEART_KICK 6
 
 #define PARTICLE_STREAMS_RISE_FRAMES 192 ///< frames, at most, of the rise
 #define PARTICLE_STREAMS_BURST_FRAMES 54 ///< frames of the burst
@@ -166,11 +293,6 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
   struct SpriteScale scale;
   s32 frame;
   s32 i;
-  // Golden Sun: Ashfall: set when Heart uses Vendetta Dive, her Outer Space.
-  // The Fusion Dragon's formation (SPR_483 and SPR_484) never showed in her
-  // battle, and SPR_484 is now her own sheet: she dives through a red sky in
-  // its place, feet first, and keeps falling into the blast.
-  s32 heartDive = 0;
 
   cache = &gBattleAnimWork[1];
   canvas = cache[0];
@@ -209,19 +331,14 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
   // The rising formation: two animated sprites in Outer Space, otherwise one
   // spawned sprite.
   if (mode == PARTICLE_STREAMS_OUTER_SPACE) {
-    struct Unit *user = Unit_GetFar(work->args->user);
-
-    heartDive = user->id == ENEMY_ID_FIRST + OUTER_SPACE_HEART_ROW ||
-                user->id == ENEMY_ID_FIRST + OUTER_SPACE_HEART_RIFT_ROW;
     for (i = 0; i != 2; i++) {
-      // Heart: both sprites are her dive kick (SPR_484's animation 6).
       struct Sprite *animation =
-          Sprite_CreateFar(heartDive ? 484 : 483 + i * SPRITE_SECOND_PART);
+          Sprite_CreateFar(483 + i * SPRITE_SECOND_PART);
 
       work->animations[i] = animation;
       if (animation != 0) {
         animation->flags = 0;
-        Sprite_StartAnimFar(animation, heartDive ? OUTER_SPACE_HEART_KICK : 2);
+        Sprite_StartAnimFar(animation, 2);
         work->animations[i]->image.priority = 3;
       }
     }
@@ -236,20 +353,6 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
     Iwram_CopyWords(colors,
                     Resource_GetTableEntry((s32)&ResourceId_LightningBoltSheet),
                     128);
-  if (heartDive) {
-    // Vendetta Dive: Heart's sky runs blood red. Each of the bolt's colours
-    // keeps its brightness, its stronger of red and blue going to red.
-    u16 *entry = (u16 *)colors;
-
-    for (i = 2; i != 128; i++) {
-      s32 red = entry[i] & 31;
-      s32 green = (entry[i] >> 5) & 31;
-      s32 blue = (entry[i] >> 10) & 31;
-
-      entry[i] = RGB(red > blue ? red : blue, green / 2,
-                     (red < blue ? red : blue) / 3);
-    }
-  }
   // The map picture, 32x16 tiles of 8x8 pixels (256x128, 0x2000 words), all
   // colour 1; its first BATTLE_BACKGROUND_BYTES are what BG1 shows.
   fill = CANVAS_FILL_WORD(1);
@@ -424,10 +527,7 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
 
         CLAMP(blue, 0, 31);
         CLAMP(green, 0, 31);
-        if (heartDive)
-          *line++ = RGB(blue, green >> 2, green >> 1); // crimson, for Heart
-        else
-          *line++ = RGB(green >> 1, green, blue);
+        *line++ = RGB(green >> 1, green, blue);
       }
       for (; i != 160; i++)
         *line++ = 0;
@@ -436,10 +536,6 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
       else
         x = 64 - frame / 4;
       y = 96 - frame;
-      // Heart comes down the formation's path from the top left, drifting
-      // twice as far across, the way her kick points.
-      if (heartDive)
-        x = 16 + frame / 2;
       // Place the formation (both sprites in Outer Space), drifting with the
       // stream and growing each frame: its 16.16 scale starts at 0.625 in
       // Outer Space and 1 otherwise, and gains 1/256 a frame.
@@ -447,10 +543,6 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
       position.height = 0xff0000;
       if (mode == PARTICLE_STREAMS_OUTER_SPACE) {
         size = angle + 0xa000;
-        // Heart stays near the party's size, not the dragon's: 0.7 growing
-        // to about 0.85.
-        if (heartDive)
-          size = 0xb333 + frame * 0x34;
         scale.x = size;
         scale.y = size;
         position.x = (x << 16) + 0x500000;
@@ -470,12 +562,9 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
       }
       // A new mote rises from a random point on the lower half of a circle
       // of radius 30 * size beneath the formation.
-      // Heart's trail has a mote every eighth frame, so she is not lost in it.
       for (i = 0, y = 32 - y; i != 32; i++) {
         struct Particle *mote = &work->particles[i];
 
-        if (heartDive && (frame & 7) != 0)
-          break;
         if (mote->variant == -1) {
           s32 angle = (Random16() & 0x7fff) + 0x4000;
 
@@ -612,7 +701,7 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
     s32 grow;
 
     if (elapsed > 19)
-      Palette_BrightenBgEntries(heartDive ? 0 : 2, heartDive ? 1 : 2, 2);
+      Palette_BrightenBgEntries(2, 2, 2);
     if (frame == 0)
       Sound_PlaySongFar(SE_SWITCH_MECHANISM);
     if (frame == 40)
@@ -720,13 +809,7 @@ void BattleAnim_RunParticleStreams(struct BattleAnimArgs *args, s32 mode) {
     grow = (frame << 8) + 0x20000;
     position.groundHeight = 0;
     position.height = 0xff0000;
-    if (heartDive) {
-      // Heart keeps falling into the blast where the rise left her, growing:
-      // on across, and down four pixels a frame (96 - y from 160).
-      x = 16 + (PARTICLE_STREAMS_RISE_FRAMES - 1) / 2 - 16 + frame;
-      y = -64 - frame * 4;
-      size = 0xb333 + (PARTICLE_STREAMS_RISE_FRAMES - 1) * 0x34 + frame * 0x40;
-    }
+
     if (mode == PARTICLE_STREAMS_OUTER_SPACE) {
       scale.x = size;
       scale.y = size;
