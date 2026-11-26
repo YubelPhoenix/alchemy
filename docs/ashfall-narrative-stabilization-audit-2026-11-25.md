@@ -62,3 +62,14 @@ Only overlays are removed, so original IDs, control tokens and triggers remain. 
 | Release | NOT ACCEPTED | Remaining contextual and runtime gates |
 
 Do not equate zero formatting errors, a source change, or an automated keyword scan with narrative acceptance.
+
+
+## Follow-up: Imil recovery and central/eastern regional review
+
+Baseline f80498e54c68dd0ec28bb6ef7f204d95d743f1cd. Compared the post-Mercury Imil overlay against original catalogue blob 1cbd1ebc0e0af07dced60cba63d2d877021eb4c5, and checked live post-beacon triggers in imil.c:2127–2195. Removed nine obsolete or unnecessary post-recovery overlays (05690, 05691, 05696, 05704, 05705, 05713, 05718, 05719, 05721). Original text restores the Water of Hermes, the villagers' recovery, Mia's departure without worry, and gratitude toward the party. The original 05713 already mentions Mia's reservations about lighting the beacon; it does not introduce an unspecified cost to the village. Compatible 05720, 05745, 05747 remain. No custom battle or event altered.
+
+Inspected the current Mercury Aerie custom dialogue N37–N58 and the Mia/Menardi confrontation, victory/retry and reunion source (mercury_lighthouse_aerie.c:1200–1345). The visible party and speaker order match the custom dialogue sequence. Preserve the custom duel and reunion; no rewrite authorized. Runtime and map checks remain outstanding.
+
+Targeted original-vs-overlay keyword comparison also covered Goma/McCoy, Imil, Kolima/Tret, Hsu rescue, Xian, Fuchin/Lama, Kalay tour and palace/Hammet/Layana, including the relevant phase10–12, 86–89, 94, 96–100, 103–104 files. This is not full contextual acceptance. Tret 05332 ("Those voices... were mine?") is a candidate for review against the retired voice mythology, not a confirmed leftover: it may refer to his own curse. Kolima's original sentient trees and curse remain canon. Xian's Hsu rescue and Kalay's ordinary merchant/tour dialogue are not discarded storylines. No edits to those scenes.
+
+Remaining: full source-trigger and sequential-message audit, original-game choice verification, final encounter placement and rendered maps. No build requested or triggered by this source-only cleanup.
