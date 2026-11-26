@@ -127,9 +127,72 @@ def audit():
     return report
 
 
+
+def campaign_inventory():
+    """Inventory every base message and custom overlay, with source references.
+
+    A symbol match is not proof of execution or correct speaker attribution.
+    Unnamed/sequential and computed IDs still need event-by-event review.
+    """
+    replacements = read_replacements()
+    references = defaultdict(list)
+    # Include battle and field scripts, not only town scenes.
+    for path in sorted(Path("games/tbs/src").rglob("*")):
+        if path.suffix not in (".c", ".s"):
+            continue
+        source = path.read_text(encoding="utf-8", errors="replace")
+        # Keep physical line numbers when removing block comments.
+        source = BLOCK_COMMENT.sub(lambda m: "\n" * m.group(0).count("\n"), source)
+        for line_no, line in enumerate(source.splitlines(), 1):
+            line = LINE_COMMENT.sub("", line)
+            for symbol in sorted(set(REF.findall(line))):
+                references[symbol].append({"file": str(path), "line": line_no})
+    rows = []
+    for entry in re.split(r"\n\s*\n", CATALOGUE.read_text(encoding="utf-8")):
+        match = ENTRY.search(entry)
+        if not match:
+            continue
+        ctx, msgid = match.groups()
+        body = entry.split('msgstr ', 1)
+        original = "".join(
+            line[1:-1] for line in body[1].splitlines()
+            if line.startswith('"') and line.endswith('"')
+        ) if len(body) == 2 else ""
+        replacement = replacements.get(msgid)
+        rows.append({
+            "id": msgid, "context": ctx,
+            "original": original,
+            "effective": replacement[1] if replacement else original,
+            "replacement_file": replacement[2] if replacement else None,
+            "context_matches": replacement[0] == ctx if replacement else None,
+            "source_refs": references.get(ctx, []) if ctx != "message" else [],
+        })
+    for msgid, (ctx, value, file) in sorted(replacements.items()):
+        if msgid.startswith("N"):
+            rows.append({
+                "id": msgid, "context": ctx, "original": None,
+                "effective": value, "replacement_file": file,
+                "context_matches": None, "source_refs": references.get(ctx, []),
+            })
+    return {
+        "scope": "All parsed base catalogue entries and custom N-series overlays",
+        "warning": "Static inventory only: no proof of event reachability, speaker, map visibility, narrative quality, or runtime rendering.",
+        "counts": {
+            "catalogue_entries": sum(not row["id"].startswith("N") for row in rows),
+            "custom_entries": sum(row["id"].startswith("N") for row in rows),
+            "overlays": len(replacements),
+            "entries_with_explicit_symbol_refs": sum(bool(row["source_refs"]) for row in rows),
+            "entries_without_explicit_symbol_refs": sum(not row["source_refs"] for row in rows),
+            "context_mismatches": sum(row["context_matches"] is False for row in rows),
+        },
+        "entries": rows,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", metavar="FILE", help="Save the complete report")
+    parser.add_argument("--inventory", metavar="FILE", help="Save the full campaign message inventory")
     args = parser.parse_args()
     report = audit()
     for area, entries in sorted(report.items()):
@@ -158,6 +221,13 @@ def main():
             json.dumps(report, indent=2, ensure_ascii=False) + "\n",
             encoding="utf-8"
         )
+
+    if args.inventory:
+        output = Path(args.inventory)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        inventory = campaign_inventory()
+        output.write_text(json.dumps(inventory, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        print("Campaign inventory:", json.dumps(inventory["counts"], sort_keys=True))
 
 
 if __name__ == "__main__":
