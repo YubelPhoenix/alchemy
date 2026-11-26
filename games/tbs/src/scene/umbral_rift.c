@@ -511,8 +511,7 @@ static void UmbralRift_TalkToMystery(void) {
     UmbralRift_Say(MsgDarkRiftKnownWarning, ACTOR_PARTY_LEADER);
     UmbralRift_Say(MsgDarkRiftKnownAnswer, ACTOR_RIFT_MYSTERY);
   }
-  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0 ||
-      GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0)
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0)
     UmbralRift_Say(MsgDarkRiftPre017, ACTOR_PARTY_LEADER);
   else
     UmbralRift_Say(MsgDarkRiftPre019, ACTOR_PARTY_LEADER);
@@ -524,8 +523,7 @@ static void UmbralRift_TalkToMystery(void) {
     UmbralRift_Say(MsgDarkRiftPre022, ACTOR_RIFT_MYSTERY);
   }
   UmbralRift_Say(MsgDarkRiftPre023, ACTOR_RIFT_HEART);
-  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0 ||
-      GameFlag_Get(FLAG_DARK_MYSTERY_DONE) != 0)
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0)
     UmbralRift_Say(MsgDarkRiftHeartKnown, ACTOR_PARTY_LEADER);
   else
     UmbralRift_Say(MsgDarkRiftPre024, ACTOR_PARTY_LEADER);

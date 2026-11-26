@@ -63,7 +63,7 @@
 06565	message	I can try. But I\ncannot promise that\nthe power will take.{end_wait}
 06566	message	In preparation for\nthis day, I tried to\npass a power on{page_break}to a young girl,\nalthough that power\nwas not Reveal.{end_wait}
 06567	message	She was not an Adept.\nI feared I had\nasked too much.{end_wait}
-06568	message	Still, I believed\nthe power might\nbe within her.{end_wait}
+06568	message	But I thought anyone could\nhone a skill he or she\nalready possessed...{end_wait}
 06569	message	For a long time,\nthere was no sign\nof change.{end_wait}
 06571	message	Feizhi? What brings\nyou back here?{end_wait}
 06573	message	What did you sense?{end_wait}
@@ -71,9 +71,9 @@
 06576	message	I know! But he never\nmade it home to Xian.{end_wait}
 06577	message	The boulders in\nthe mountain pass...{end_wait}
 06578	message	I came through\nthe mine to find you.\nPlease, help him!{end_wait}
-06580	message	But why did your\npower awaken only now?{end_wait}
+06580	message	But{pause_20_skippable} why has the power\ncome to you now, after\nall this time?{end_wait}
 06581	message	When the gems fell\nfrom the sky, one\nstruck my head.{end_wait}
-06584	message	Then perhaps the gift\nwas there all along.\nIt needed a spark.{end_wait}
+06584	message	Then{pause_20_skippable} this may work\nafter all.{end_wait}
 06586	message	Yes. We must find\nhim at once.{end_wait}
 06587	message	Wait! What about\nReveal?{end_wait}
 06589	message	It seems I succeeded in\npassing my power to\nFeizhi. You will be fine.{end_wait}
@@ -84,3 +84,6 @@
 06598	message	The desert may have\nslowed them down. But\nwe cannot count on it.{end_wait}
 06599	message	We can't leave\nHsu trapped out there!{end_wait}
 06600	message	Hama and Feizhi\nmight need our help.{end_wait}
+06602	message	I'm more worried about\n{actor_name:5} and the others...{page_break}But I'm not opposed\nto rescuing Hsu.{end_wait}
+06603	message	I am worried about Feizhi\nand Master Hama...{page_break}But I understand why\nyou want to chase\nafter {actor_name:5}.{end_wait}
+06604	message	We'll go with you,\n{actor_name:1}, whatever\nyou decide!{end_wait}

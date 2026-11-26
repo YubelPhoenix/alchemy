@@ -35,7 +35,7 @@
 08980	message	So you called us here\nto find Lemuria\nfor you?{end_wait}
 08981	message	Yes. I need you\nto find what\nmy ships could not.{end_wait}
 08982	message	The sea has failed me.\nI hoped a view\nfrom above might help.{end_wait}
-08983	message	That's why I built\nBabi Lighthouse.\nTo search for Lemuria.{end_wait}
+08983	message	That's why I'm building\nBabi Lighthouse.\nTo search for Lemuria.{end_wait}
 08984	message	What? That's why you're\nbuilding the lighthouse?{end_wait}
 08985	message	There is something\nelse you must hear.{end_wait}
 08986	message	A shape stirred\nsoutheast in the sea...{pause_20_skippable}{pause_20_skippable}\nwhere Lemuria should lie.{end_wait}

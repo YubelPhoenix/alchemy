@@ -1159,6 +1159,9 @@ static void MercuryLighthouseAerie_MiaYields(void) {
   MercuryLighthouseAerie_DarkMiaSays();
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   FieldEvent_ShowMessageThenWait(ACTOR_PARTY_LEADER, 0, 20);
+  // Isaac draws Saturos's attention while Mia takes the stairs.
+  Actor_FaceActor(ACTOR_PARTY_LEADER, ACTOR_SATUROS, 0);
+  Actor_FaceActor(ACTOR_SATUROS, ACTOR_PARTY_LEADER, 0);
   FieldEvent_ShowMessageThenWait(ACTOR_MIA, 0, 20);
   Event_WaitFrames(20);
   MercuryLighthouseAerie_DarkMiaSays();
