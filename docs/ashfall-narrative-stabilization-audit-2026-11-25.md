@@ -73,3 +73,37 @@ Inspected the current Mercury Aerie custom dialogue N37–N58 and the Mia/Menard
 Targeted original-vs-overlay keyword comparison also covered Goma/McCoy, Imil, Kolima/Tret, Hsu rescue, Xian, Fuchin/Lama, Kalay tour and palace/Hammet/Layana, including the relevant phase10–12, 86–89, 94, 96–100, 103–104 files. This is not full contextual acceptance. Tret 05332 ("Those voices... were mine?") is a candidate for review against the retired voice mythology, not a confirmed leftover: it may refer to his own curse. Kolima's original sentient trees and curse remain canon. Xian's Hsu rescue and Kalay's ordinary merchant/tour dialogue are not discarded storylines. No edits to those scenes.
 
 Remaining: full source-trigger and sequential-message audit, original-game choice verification, final encounter placement and rendered maps. No build requested or triggered by this source-only cleanup.
+
+
+## Follow-up: southern Weyard, Babi, Lalivero, and original ending
+
+Baseline fb9dd374c8d75c336bb1a182b4f163402d3ec190. Source-only review; no authorization to rewrite main-story conversations or change builds. Compared the original English catalogue to selected replacements across 27 southern/central overlays (phase90–93, 95, 110–113; phase102, 106–109, 64–67; phase105, 68–70, 56–60). These are targeted text comparisons, not complete per-message contextual acceptance. The missing Karagol ship, Kraken, injured/replacement oarsmen, island landfall, refugees from Lalivero, Babi's illness, and the search for Lemuria all exist in the original narrative and must not be removed as abandoned Ashfall lore. No confirmed retired plotline surfaced in the inspected southern samples. Preserve the current Ash Jenna scenes.
+
+### Confirmed speaker/sequence regressions — awaiting author review
+
+Babi's post-Colosso audience (babi_palace.c:1405 onward, BabiPalace_MeetBabiAfterColosso; phase66/67):
+- 08920 is Iodem's line, original "We intended to thank you and your companions for saving Babi, Isaac." Replacement "We owe you and your companions for bringing me back, Isaac." It incorrectly makes Iodem the person rescued. Restore original.
+- 08957 is Ivan's continuation of his deduction about Babi's draught and wealth, original "And become wealthy enough to rule Tolbi." Replacement "With that time, I built my fortune and came to rule." It makes Ivan speak as Babi. Restore original.
+- 08944 drops the Stone of Sages' gold-transmutation property; 08965–08966 drop the explicit time estimate for the dwindling draught. Recommend original information.
+- 08983 already said "I have built Babi Lighthouse" in the original, so that alone is not an Ashfall defect. 08984's original present-progressive question ("you're building") was changed to completed past tense ("You built"); restoring 08984 alone preserves the original distinction that construction is ongoing.
+
+Lalivero (lalivero.c:543–719, Lalivero_IodemGivesBlackOrb; phase69):
+- 10389 (Iodem): "We came back from Venus without [Jenna]. We couldn't find her." Iodem is addressing the party, not reporting himself as one of its members. Original is second person.
+- 10390 (Garet): "And the lower passage was flooded, you say? You couldn't search it?" Garet witnessed the flooding. Original is first person and explains why they could not exit.
+- 10391 (Iodem): "But we looked out to sea. There was a bank of mist that wouldn't move." The original has Iodem reminding the party of their promise to Babi.
+- 10397 is Garet's Yes/No prompt: original "Then I guess we have no choice but to go..." The replacement "You gave Babi your word. I came to ask you to keep it." speaks as Iodem and no longer invites the same choice.
+- 10398 (Iodem, Yes branch): original accepts the answer and arranges departure. Replacement "But Jenna is missing! Are we meant to sail without her?" incorrectly objects as a party member and hardcodes Jenna.
+- 10399 (Iodem, No branch): replacement is nearly duplicated by the immediately following message.
+- 10400 (Ivan): original "But...we have to find [Jenna] first..." Replacement "I would never ask you to abandon [Jenna]. Please, hear me out." Ivan speaks as Iodem.
+- 10402 is the speakerless narration immediately after Actor_SetPosition(ACTOR_BLACK_ORB,...): original "Iodem takes out the Black Orb." Replacement "There's a way to cross these waters. Look closely." moves spoken dialogue into narration.
+- 10403 (Mia): original "Oh, isn't that..." Replacement "Iodem draws a black orb from his robes." moves narration into Mia's dialogue.
+- 10404 (Iodem): original "You will need it to sail Babi's ship." Replacement "The Black Orb! Does that control Babi's ship?" makes the person presenting it ask the question.
+- Recommendation: restore the entire affected sequential block 10389–10404 from the original catalogue instead of patching individual sentences without their context. Keep all IDs, speaker calls, choices, and Black Orb item presentation intact. No changes made pending author review.
+
+### Final voyage and ending
+
+- lemurian_ship.c:349–476 preserves three original Yes/No questions and their respective Garet/Mia branches. Current phase57 dialogue retains the main objectives of finding Jenna and fulfilling the promise to Babi. Some responses change tone; do not treat as retired lore. Preserve gameplay branches and the original scene.
+- world_map.c:2566–2670 preserves the drifting-island exchange, Alex's appearance and Felix/Sheba recovery. phase58 10534 changed Kraden's question "What is this? Alex, what happened?" to a third statement that Felix and Sheba are alive, after 10532 and 10533 already announce survival. This removes the question that creates the original ending's uncertainty and hardcodes the names; recommend restoring original 10534. No custom ending added.
+- Suhalla 09737 changes "carrying the barrels exhausted us" to "The water ran out"; factual alteration of the soldiers' account, not a confirmed retired storyline. Recommend original if author wants faithful restoration.
+- No new gameplay, character history, or map change. Full rendered-map and runtime verification, original event-by-event review of remaining NPC states, and release acceptance are still outstanding.
+
