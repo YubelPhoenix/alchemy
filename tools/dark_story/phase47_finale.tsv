@@ -1,6 +1,6 @@
 # Ash Jenna's automatic post-Manticore confrontation. No recruitment choice.
-N224	MsgDarkFinaleJennaMet	You survived.\nGood. We have something\nto talk about.{end_wait}
-N225	MsgDarkFinaleIsaacMet	You knew my name before.\nWho are you?{end_wait}
+N224	MsgDarkFinaleJennaMet	You again, Isaac.\nI'm surprised the desert\ndidn't finish you.{end_wait}
+N225	MsgDarkFinaleIsaacMet	You knew my name before.\nTell me who you are.{end_wait}
 N195	MsgDarkFinaleJenna1	Still fighting, Isaac?\nSome things never change.{end_wait}
 N196	MsgDarkFinaleIsaac1	How do you know me?\nYou look just like Jenna.{end_wait}
 N197	MsgDarkFinaleJenna2	My name is Jenna, too.\nCall me Ash Jenna.{end_wait}
@@ -11,11 +11,11 @@ N201	MsgDarkFinaleMia	Then what happened\nto your Vale?{end_wait}
 N203	MsgDarkEchoMiner	You stayed with that\nminer when he was afraid.\nI remember that, Isaac.{end_wait}
 N208	MsgDarkFinaleJennaThreat	The beacons were lit.\nMy world was destroyed.{page_break}I watched it happen.\nI had nowhere left to go.{end_wait}
 N209	MsgDarkFinaleIsaacDemand	Why come to us?\nWhat do you want?{end_wait}
-N210	MsgDarkFinaleJennaCruel	You still have a home.\nYou still have friends.{page_break}I wanted to see how long\nyou could keep them.{end_wait}
+N210	MsgDarkFinaleJennaCruel	You still have a home.\nYou still have friends.{page_break}I wonder how long\nthey'll keep following\nyou, Isaac.{end_wait}
 N211	MsgDarkFinaleIvanLeave	Isaac, she knows things\nshe shouldn't. But that\ndoesn't prove her story.{end_wait}
 N212	MsgDarkFinaleJennaDismiss	Believe what you like.\nI don't need you to.{end_wait}
 N213	MsgDarkFinaleIsaacWarning	We're looking for Jenna.\nHave you seen her?{end_wait}
-N214	MsgDarkFinaleJennaParting	Perhaps I have.\nWhy would I help you\nfind her?{end_wait}
+N214	MsgDarkFinaleJennaParting	You can't watch\nover all of them\nforever.{page_break}Remember that when\none of them is missing.{end_wait}
 N215	MsgDarkFinaleGaretEnough	She's not going to tell us.\nCome on, Isaac.{end_wait}
 N216	MsgDarkFinaleMiaKeepMoving	We still have to find\nJenna and Kraden.{end_wait}
-N221	MsgDarkFinaleHook	Enjoy what you have,\nIsaac. It won't last.{end_wait}
+N221	MsgDarkFinaleHook	Walking away already?\nFine. Go.{page_break}I'll be there when\nsomething finally\nbreaks your little group.{end_wait}
