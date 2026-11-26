@@ -3240,7 +3240,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
         // WraithSlot in boss_ai.c: wide pressure, sword strikes, tactical support.
-        .abilities = {74, ABILITY_ASURA, 190, 80, 178, 513, 102, 127},
+        .abilities = {190, ABILITY_ASURA, 232, 434, 178, 513, 102, 127},
         .weakEffects = {ABILITY_EFFECT_RESISTANCE_DOWN, ABILITY_EFFECT_DRAIN_PP},
         .coins = 5000,
         .item = ITEM_ELIXIR,

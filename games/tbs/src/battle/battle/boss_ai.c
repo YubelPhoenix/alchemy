@@ -716,68 +716,72 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
 
 /// The Wraith fights the full party alone. Slots match enemy row 166.
 enum WraithSlot {
-  WRAITH_SPARK_PLASMA = 0, WRAITH_ASURA = 1, WRAITH_THUNDERSTORM = 2,
-  WRAITH_TEMPEST = 3, WRAITH_ANNIHILATION = 4, WRAITH_DEATH_SIZE = 5,
+  WRAITH_THUNDERSTORM = 0, WRAITH_ASURA = 1, WRAITH_CYCLONE_SLASH = 2,
+  WRAITH_STORM_BLESSING = 3, WRAITH_ANNIHILATION = 4, WRAITH_DEATH_SIZE = 5,
   WRAITH_IMPACT = 6, WRAITH_BREAK = 7
 };
-#define WRAITH_WIDE_USED_BIT (1u << 4)
-#define WRAITH_UTILITY_USED_BIT (1u << 5)
 #define WRAITH_DEATH_USED_BIT (1u << 6)
-#define WRAITH_BITS (WRAITH_WIDE_USED_BIT | WRAITH_UTILITY_USED_BIT | \
-                     WRAITH_DEATH_USED_BIT)
-STATIC_ASSERT((WRAITH_BITS & (BOSS_RESERVED_BITS | BOSS_LAST_AIM_BITS)) == 0);
+// Persistent preference, toggled only when a death strike actually stages.
+#define WRAITH_NEXT_DEATH_SIZE_BIT (1u << 7)
+STATIC_ASSERT(((WRAITH_DEATH_USED_BIT | WRAITH_NEXT_DEATH_SIZE_BIT) &
+               (BOSS_RESERVED_BITS | BOSS_LAST_AIM_BITS)) == 0);
 
 static void BossAI_WraithBeginRound(void) {
   struct Unit *unit = BossAI_FindRow(ENEMY_ROW_VENGEFUL_WRAITH);
   if (unit != 0)
-    unit->aiActionIndex &= ~WRAITH_BITS;
+    unit->aiActionIndex &= ~WRAITH_DEATH_USED_BIT;
 }
 
 static void BossAI_WraithNoteTurn(struct Unit *unit,
                                  struct BattleAction *request) {
   s32 slot = BossAI_RequestSlot(unit, request);
-  if (slot == WRAITH_SPARK_PLASMA || slot == WRAITH_THUNDERSTORM ||
-      slot == WRAITH_TEMPEST)
-    unit->aiActionIndex |= WRAITH_WIDE_USED_BIT;
-  if (slot == WRAITH_IMPACT || slot == WRAITH_BREAK)
-    unit->aiActionIndex |= WRAITH_UTILITY_USED_BIT;
-  if (slot == WRAITH_ANNIHILATION || slot == WRAITH_DEATH_SIZE)
+  if (slot == WRAITH_ANNIHILATION || slot == WRAITH_DEATH_SIZE) {
     unit->aiActionIndex |= WRAITH_DEATH_USED_BIT;
+    if (slot == WRAITH_ANNIHILATION)
+      unit->aiActionIndex |= WRAITH_NEXT_DEATH_SIZE_BIT;
+    else
+      unit->aiActionIndex &= ~WRAITH_NEXT_DEATH_SIZE_BIT;
+  }
 }
 
-/// Pressure multiple opponents first, then follow with a sword attack or
-/// situational support. A rejected Psynergy choice falls back to Asura.
+/// A solo swordswoman must force the party to respond every round.
+/// Prioritize one death strike while multiple opponents stand; alternate
+/// the two strikes across rounds, then use Jupiter attacks or useful support.
 static s32 BossAI_WraithChooseSlot(struct Unit *unit, s32 firstPick) {
   struct BossPartyView view;
   u32 memory = unit->aiActionIndex;
   s32 roll;
   s32 late = unit->hp * 2 <= unit->hpMax;
-  if (!firstPick || unit->psySeal != 0)
+  if (!firstPick)
     return WRAITH_ASURA;
   BossAI_ViewParty(&view);
-  roll = Battle_RandomFar() & 0xff;
-  if (view.alive > 1 && !(memory & WRAITH_WIDE_USED_BIT)) {
-    if (roll < (late ? 144 : 96))
-      return WRAITH_THUNDERSTORM;
-    if (roll < 224)
-      return WRAITH_SPARK_PLASMA;
-    return WRAITH_TEMPEST;
-  }
-  if (view.alive > 1 && !(memory & WRAITH_UTILITY_USED_BIT)) {
-    if (view.buffed && roll < 56)
-      return WRAITH_BREAK;
-    if (unit->attackStage <= 0 && roll >= 56 && roll < 88)
-      return WRAITH_IMPACT;
-  }
-  // Both sword strikes can instantly kill. Use at most one per round,
-  // and never choose either against the last surviving party member.
   if (view.alive > 1 && !(memory & WRAITH_DEATH_USED_BIT)) {
-    if (roll >= (late ? 192 : 224))
-      return WRAITH_ANNIHILATION;
-    if (roll >= 88 && roll < (late ? 128 : 112))
+    // Death Size is an uncosted enemy strike; even when sealed she can
+    // use her sword. Annihilation may be refused while Psynergy is sealed.
+    if (unit->psySeal != 0 || unit->pp < 18 ||
+        (memory & WRAITH_NEXT_DEATH_SIZE_BIT))
       return WRAITH_DEATH_SIZE;
+    return WRAITH_ANNIHILATION;
   }
-  return WRAITH_ASURA;
+  roll = Battle_RandomFar() & 0xff;
+  if (unit->psySeal != 0)
+    return roll < 128 ? WRAITH_ASURA : WRAITH_CYCLONE_SLASH;
+  if (view.alive > 1) {
+    if (view.buffed && roll < 64)
+      return WRAITH_BREAK;
+    if (!late && unit->attackStage <= 0 && roll >= 64 && roll < 88)
+      return WRAITH_IMPACT;
+    if (roll < (late ? 112 : 96))
+      return WRAITH_THUNDERSTORM;
+    if (roll < 176)
+      return WRAITH_STORM_BLESSING;
+    if (roll < 224)
+      return WRAITH_CYCLONE_SLASH;
+    return WRAITH_ASURA;
+  }
+  // Against the last survivor, keep up physical pressure rather than
+  // using instant death or spending a turn on buffs.
+  return roll < 160 ? WRAITH_ASURA : WRAITH_CYCLONE_SLASH;
 }
 
 /// Starts a round for the bosses: their per-round memory is cleared and their
