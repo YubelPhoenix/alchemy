@@ -219,7 +219,7 @@ static void UmbralRift_FountainDialogue(void) {
   UmbralRift_Say(MsgDarkRiftFountain004, ACTOR_GARET);
   UmbralRift_Say(MsgDarkRiftFountain005, ACTOR_MIA);
   UmbralRift_Say(MsgDarkRiftFountain006, ACTOR_IVAN);
-  UmbralRift_Say(MsgDarkRiftFountain007, ACTOR_GARET);
+  UmbralRift_Say(MsgDarkRiftFountain007, ACTOR_PARTY_LEADER);
 }
 
 static void UmbralRift_MazeDialogue(void) {
@@ -405,10 +405,13 @@ static void UmbralRift_PairEcho(s32 mystery, s32 heart, s32 flag, s32 facing) {
   Actor_ConfigureSpriteColor(heart, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(mystery, PIXELS(-9), PIXELS(488));
   Actor_SetPosition(heart, PIXELS(-9), PIXELS(488));
-  if (flag == FLAG_DARK_RIFT_PAIR_FOUNTAIN)
+  if (flag == FLAG_DARK_RIFT_PAIR_FOUNTAIN) {
     UmbralRift_Say(MsgDarkRiftFountain008, ACTOR_GARET);
-  else if (flag == FLAG_DARK_RIFT_PAIR_MAZE)
+    UmbralRift_Say(MsgDarkRiftFountain009, ACTOR_PARTY_LEADER);
+  } else if (flag == FLAG_DARK_RIFT_PAIR_MAZE) {
     UmbralRift_Say(MsgDarkRiftMaze008, ACTOR_GARET);
+    UmbralRift_Say(MsgDarkRiftMaze009, ACTOR_PARTY_LEADER);
+  }
   GameFlag_Set(flag);
   Event_End();
 }
@@ -497,7 +500,10 @@ static void UmbralRift_TalkToMystery(void) {
     UmbralRift_Say(MsgDarkRiftKnownWarning, ACTOR_PARTY_LEADER);
     UmbralRift_Say(MsgDarkRiftKnownAnswer, ACTOR_RIFT_MYSTERY);
   }
-  UmbralRift_Say(MsgDarkRiftPre019, ACTOR_PARTY_LEADER);
+  if (GameFlag_Get(FLAG_DARK_HEART_BEATEN) != 0)
+    UmbralRift_Say(MsgDarkRiftPre017, ACTOR_PARTY_LEADER);
+  else
+    UmbralRift_Say(MsgDarkRiftPre019, ACTOR_PARTY_LEADER);
   UmbralRift_Say(MsgDarkRiftPre020, ACTOR_RIFT_MYSTERY);
   if (GameFlag_Get(FLAG_DARK_RIFT_PAIR_FOUNTAIN) != 0 ||
       GameFlag_Get(FLAG_DARK_RIFT_PAIR_MAZE) != 0 ||
