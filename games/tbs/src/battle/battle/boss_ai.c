@@ -717,12 +717,14 @@ static s32 BossAI_MysteryChooseSlot(struct Unit *unit,s32 slot,s32 firstPick) {
 /// The Wraith fights the full party alone. Slots match enemy row 166.
 enum WraithSlot {
   WRAITH_SPARK_PLASMA = 0, WRAITH_ASURA = 1, WRAITH_THUNDERSTORM = 2,
-  WRAITH_TEMPEST = 3, WRAITH_ANNIHILATION = 4, WRAITH_STUN_VOLTAGE = 5,
+  WRAITH_TEMPEST = 3, WRAITH_ANNIHILATION = 4, WRAITH_DEATH_SIZE = 5,
   WRAITH_IMPACT = 6, WRAITH_BREAK = 7
 };
 #define WRAITH_WIDE_USED_BIT (1u << 4)
 #define WRAITH_UTILITY_USED_BIT (1u << 5)
-#define WRAITH_BITS (WRAITH_WIDE_USED_BIT | WRAITH_UTILITY_USED_BIT)
+#define WRAITH_DEATH_USED_BIT (1u << 6)
+#define WRAITH_BITS (WRAITH_WIDE_USED_BIT | WRAITH_UTILITY_USED_BIT | \
+                     WRAITH_DEATH_USED_BIT)
 STATIC_ASSERT((WRAITH_BITS & (BOSS_RESERVED_BITS | BOSS_LAST_AIM_BITS)) == 0);
 
 static void BossAI_WraithBeginRound(void) {
@@ -737,9 +739,10 @@ static void BossAI_WraithNoteTurn(struct Unit *unit,
   if (slot == WRAITH_SPARK_PLASMA || slot == WRAITH_THUNDERSTORM ||
       slot == WRAITH_TEMPEST)
     unit->aiActionIndex |= WRAITH_WIDE_USED_BIT;
-  if (slot == WRAITH_IMPACT || slot == WRAITH_BREAK ||
-      slot == WRAITH_STUN_VOLTAGE)
+  if (slot == WRAITH_IMPACT || slot == WRAITH_BREAK)
     unit->aiActionIndex |= WRAITH_UTILITY_USED_BIT;
+  if (slot == WRAITH_ANNIHILATION || slot == WRAITH_DEATH_SIZE)
+    unit->aiActionIndex |= WRAITH_DEATH_USED_BIT;
 }
 
 /// Pressure multiple opponents first, then follow with a sword attack or
@@ -765,13 +768,15 @@ static s32 BossAI_WraithChooseSlot(struct Unit *unit, s32 firstPick) {
       return WRAITH_BREAK;
     if (unit->attackStage <= 0 && roll >= 56 && roll < 88)
       return WRAITH_IMPACT;
-    if (view.unavailable < view.alive + view.down &&
-        roll >= 88 && roll < 112)
-      return WRAITH_STUN_VOLTAGE;
   }
-  // Annihilation can instantly kill; reserve it for a multi-member party.
-  if (view.alive > 1 && roll >= (late ? 192 : 224))
-    return WRAITH_ANNIHILATION;
+  // Both sword strikes can instantly kill. Use at most one per round,
+  // and never choose either against the last surviving party member.
+  if (view.alive > 1 && !(memory & WRAITH_DEATH_USED_BIT)) {
+    if (roll >= (late ? 192 : 224))
+      return WRAITH_ANNIHILATION;
+    if (roll >= 88 && roll < (late ? 128 : 112))
+      return WRAITH_DEATH_SIZE;
+  }
   return WRAITH_ASURA;
 }
 
