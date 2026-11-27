@@ -231,6 +231,7 @@ void BattleObject_Make(struct BattleObject *actor, s32 unitId, s32 x, s32 y) {
   case ENEMY_SATUROS_VENUS_LIGHTHOUSE:
   case ENEMY_MYSTERY_WOMAN:
   case ENEMY_MENARDI:
+  case ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS:
     actor->scale = 0xe666;
     break;
   }
@@ -323,6 +324,7 @@ void BattlePlacement_LayoutEnemies(u16 *actorIds, s32 count, s32 *xPositions,
          Unit_GetFar(actorIds[index])->id == ENEMY_RIFT_MYSTERY_LEADER ||
          Unit_GetFar(actorIds[index])->id == ENEMY_ID_FIRST + 165 ||  // Rift Heart
          Unit_GetFar(actorIds[index])->id == ENEMY_ID_FIRST + 166 ||  // Karis
+         Unit_GetFar(actorIds[index])->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS ||
          Unit_GetFar(actorIds[index])->id == 100 ||
          Unit_GetFar(actorIds[index])->id == 8)) {
       xPositions[index] = -62;

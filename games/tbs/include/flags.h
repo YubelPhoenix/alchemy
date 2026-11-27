@@ -2865,5 +2865,8 @@
 #define FLAG_DARK_RIFT_KARIS_BEATEN 0x919
 /// The Vengeful Wraith is speaking: her lines show her own mugshot.
 #define FLAG_DARK_WRAITH_SPEAKING 0x91a
+/// Harmel optional encounter: independent pending and victory flags.
+#define FLAG_DARK_ATROPOS_PENDING 0x91b
+#define FLAG_DARK_ATROPOS_BEATEN 0x91c
 
 #endif

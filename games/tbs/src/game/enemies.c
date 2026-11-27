@@ -3247,6 +3247,28 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .itemChance = 1,
         .experience = 8000,
     },
+    // Row 167: Menardi Atropos, optional Harmel superboss.
+    {
+        .name = "              ",
+        .level = 50,
+        .hp = 10500,
+        .pp = 999,
+        .atk = 620,
+        .def = 175,
+        .agi = 235,
+        .luck = 45,
+        .turns = 3,
+        .elementPreset = 46,
+        .targetStrategy = TARGET_STRATEGY_RANDOM,
+        .actionStrategy = ACTION_STRATEGY_FALLING,
+        // AtroposSlot in boss_ai.c; all abilities are existing stock IDs.
+        .abilities = {513, 178, 517, 102, 127, 53, 512, 59},
+        .weakEffects = {ABILITY_EFFECT_DEFENSE_DOWN, ABILITY_EFFECT_RESISTANCE_DOWN},
+        .coins = 7500,
+        .item = ITEM_CLERICS_RING,
+        .itemChance = 1,
+        .experience = 10000,
+    },
     {
         .name = "\xff",
     },

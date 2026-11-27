@@ -295,12 +295,100 @@ static void UmbralRift_CloseAnchor(void) {
 }
 
 
+/// The native field sprite supplies Menardi's portrait and voice. The normal
+/// event message handler resolves the placed actor's sprite and closes its
+/// portrait; no global portrait override or new mugshot resource is needed.
+static void UmbralRift_AtroposSay(s32 message, s32 actor) {
+  Event_SetMessageId(message);
+  Event_ShowMessageThenWait(actor, 0, 20);
+}
+
+/// An optional, player-initiated encounter, with no main Rift flag changes.
+static void UmbralRift_ChallengeAtropos(void) {
+  if (GameFlag_Get(FLAG_DARK_ATROPOS_BEATEN) != 0)
+    return;
+  Event_Start();
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro001, ACTOR_PARTY_LEADER);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro002, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro003, ACTOR_GARET);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro004, ACTOR_MIA);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro005, ACTOR_IVAN);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro006, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro007, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro008, ACTOR_PARTY_LEADER);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro009, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro010, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro011, ACTOR_GARET);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro012, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro013, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro014, ACTOR_MIA);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro015, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro016, ACTOR_IVAN);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro017, ACTOR_PARTY_LEADER);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro018, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposIntro019, ACTOR_HARMEL_ATROPOS);
+  GameFlag_Set(FLAG_DARK_ATROPOS_PENDING);
+  Event_SetAfterBattleDestination((s32)&SceneId_HarmelChapel, HARMEL_CHAPEL_FROM_ATROPOS);
+  Event_SetDefeatDestination(-1, -1);
+  Battle_SetType(BATTLE_TYPE_SCRIPTED);
+  Field_RequestBattleFromEncounterTable(ENCOUNTER_ZONE_HARMEL_ATROPOS, 0);
+  Event_End();
+}
+
+/// Only called after a solo victory; the actor is still present to speak.
+static void UmbralRift_AtroposAftermath(void) {
+  Event_Start();
+  MapGrid_CenterOnFollowedPoint();
+  WaitFrames(1);
+  Event_StartScreenTransition();
+  Event_WaitTransitionFrames();
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory001, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory002, ACTOR_PARTY_LEADER);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory003, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory004, ACTOR_GARET);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory005, ACTOR_HARMEL_ATROPOS);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory006, ACTOR_MIA);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory007, ACTOR_HARMEL_ATROPOS);
+  Event_WaitFrames(30);
+  Actor_ConfigureSpriteColor(ACTOR_HARMEL_ATROPOS, SPRITE_COLOR_HIDDEN);
+  Actor_SetPosition(ACTOR_HARMEL_ATROPOS, PIXELS(-9), PIXELS(488));
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory008, ACTOR_GARET);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory009, ACTOR_IVAN);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory010, ACTOR_MIA);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory011, ACTOR_IVAN);
+  UmbralRift_AtroposSay(MsgDarkAtroposVictory012, ACTOR_PARTY_LEADER);
+  GameFlag_Set(FLAG_DARK_ATROPOS_BEATEN);
+  GameFlag_Clear(FLAG_DARK_ATROPOS_PENDING);
+  Event_End();
+}
+
 s32 UmbralRift_Initialize(void) {
   if (UMBRAL_SCENE_IS(EditorExportTrial) || UMBRAL_SCENE_IS(HarmelChapel)) {
     GameFlag_Set(FLAG_NO_ENCOUNTERS_IN_AREA);
     GameFlag_Set(FLAG_RETREAT_BLOCKED);
-    if (UMBRAL_SCENE_IS(HarmelChapel)) Sound_PlaySong(MUS_SILENCE);
-    else Sound_PlaySong(MUS_UMBRAL_RIFT);
+    if (UMBRAL_SCENE_IS(HarmelChapel)) {
+      Sound_PlaySong(MUS_SILENCE);
+      if (GameFlag_Get(FLAG_DARK_ATROPOS_BEATEN) == 0) {
+        struct Actor *atropos = Actor_GetById(ACTOR_HARMEL_ATROPOS);
+        if (atropos != NULL) {
+          // The placed actor alone floats. Never change SPRITE_MENARDI data.
+          atropos->y.fixed = PIXELS(6);
+          atropos->velocityY = 0;
+          atropos->bounce = 0;
+          atropos->gravity = Q16_ONE;
+          atropos->motionFlags = ACTOR_FLOATS;
+        }
+        if (gSaveBlock.entrance == HARMEL_CHAPEL_FROM_ATROPOS &&
+            GameFlag_Get(FLAG_DARK_ATROPOS_PENDING) != 0) {
+          // A solo victory returns one defeated enemy; 999 means fled.
+          // Keep the actor visible through her final lines.
+          if (gSaveBlock.sequenceResult == 1)
+            UmbralRift_AtroposAftermath();
+          else
+            GameFlag_Clear(FLAG_DARK_ATROPOS_PENDING);
+        }
+      }
+    } else Sound_PlaySong(MUS_UMBRAL_RIFT);
     return 0;
   }
   // Reaching the Memory Room by its front door (from the maze) opens the
@@ -1053,7 +1141,7 @@ const struct SceneExitRegion *Scene_GetExitRegions(void) {
 }
 const u32 *Scene_GetExits(void) { return sUmbralThroneExits; }
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
-  if (UMBRAL_SCENE_IS(HarmelChapel)) return sEditorTrialActors;
+  if (UMBRAL_SCENE_IS(HarmelChapel)) return sHarmelChapelActors;
   if (UMBRAL_SCENE_IS(EditorExportTrial)) return sEditorTrialActors;
   return UMBRAL_IN_RITUAL()      ? sUmbralRitualActorTemplates
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneActorTemplates

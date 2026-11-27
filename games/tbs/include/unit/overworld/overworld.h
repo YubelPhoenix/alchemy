@@ -109,7 +109,8 @@ enum EncounterZoneId {
   /// Golden Sun: Ashfall: the Umbral Rift's monsters, Venus Lighthouse's.
   ENCOUNTER_ZONE_UMBRAL_RIFT = 106,
   /// Golden Sun: Ashfall: Karis in the Ritual Room's pentagram, slot 0.
-  ENCOUNTER_ZONE_UMBRAL_KARIS = 107
+  ENCOUNTER_ZONE_UMBRAL_KARIS = 107,
+  ENCOUNTER_ZONE_HARMEL_ATROPOS = 108
 };
 
 void Scene_TakeExit(s32 exitId);

@@ -1,0 +1,33 @@
+# Menardi Atropos: approved dialogue and full battle display name.
+N999	MsgEnemyMenardiAtropos	Menardi Atropos
+N960	MsgDarkAtroposIntro001	Menardi? What are you doing\nhere?{end_wait}
+N961	MsgDarkAtroposIntro002	Hmm? How do you know my\nname?{end_wait}
+N962	MsgDarkAtroposIntro003	What do you mean? Don't you\nrecognize us?{end_wait}
+N963	MsgDarkAtroposIntro004	Wait, Garet. Something's\ndifferent about her.{end_wait}
+N964	MsgDarkAtroposIntro005	Perhaps she's another\nMenardi from a different\nworld.{end_wait}
+N965	MsgDarkAtroposIntro006	Another Menardi? How\namusing.{end_wait}
+N966	MsgDarkAtroposIntro007	Oh, well. It makes little\ndifference to me.{end_wait}
+N967	MsgDarkAtroposIntro008	Do you know how you ended\nup here?{end_wait}
+N968	MsgDarkAtroposIntro009	No. I've been wondering\nabout that myself.{end_wait}
+N969	MsgDarkAtroposIntro010	Still, it would be foolish\nto let such an opportunity\ngo to waste.{end_wait}
+N970	MsgDarkAtroposIntro011	What are you talking about?{end_wait}
+N971	MsgDarkAtroposIntro012	An entire world filled with\npeople I've never met...{end_wait}
+N972	MsgDarkAtroposIntro013	I wonder how many\nsacrifices I can gather\ntoday.{end_wait}
+N973	MsgDarkAtroposIntro014	Sacrifices?! You're going\nto take innocent lives?{end_wait}
+N974	MsgDarkAtroposIntro015	Innocent or otherwise,\nthey'll serve the same\npurpose.{end_wait}
+N975	MsgDarkAtroposIntro016	Isaac, we can't let her\nleave this place.{end_wait}
+N976	MsgDarkAtroposIntro017	Agreed. We'll stop her\nhere.{end_wait}
+N977	MsgDarkAtroposIntro018	How considerate of you to\noffer yourselves.{end_wait}
+N978	MsgDarkAtroposIntro019	Four sacrifices will do for\nnow.{end_wait}
+N979	MsgDarkAtroposVictory001	Tch... I underestimated\nyou.{end_wait}
+N980	MsgDarkAtroposVictory002	We won't let you carry out\nyour plans.{end_wait}
+N981	MsgDarkAtroposVictory003	Such a promising world,\ntoo. What a disappointment.{end_wait}
+N982	MsgDarkAtroposVictory004	You're still thinking about\nsacrifices?!{end_wait}
+N983	MsgDarkAtroposVictory005	Did you expect me to change\nmy mind?{end_wait}
+N984	MsgDarkAtroposVictory006	How can someone's life mean\nso little to you?{end_wait}
+N985	MsgDarkAtroposVictory007	You ask such strange\nquestions.{end_wait}
+N986	MsgDarkAtroposVictory008	Hey! Where'd she go?!{end_wait}
+N987	MsgDarkAtroposVictory009	I can't sense her presence\nanymore.{end_wait}
+N988	MsgDarkAtroposVictory010	Do you think she's returned\nto her own world?{end_wait}
+N989	MsgDarkAtroposVictory011	It's possible, but there's\nno way to know for certain.{end_wait}
+N990	MsgDarkAtroposVictory012	We should remain vigilant.\nShe might not be the only\none who's ended up here.{end_wait}

@@ -220,3 +220,8 @@ Monster_MysterySprites:
 	.global Monster_WraithSprites
 Monster_WraithSprites:
 	.incbin "games/tbs/src/graphics/monster/wraith.frames.lz"
+
+	.balign 4, 0
+	.global Monster_MenardiAtroposSprites
+Monster_MenardiAtroposSprites:
+	.incbin "games/tbs/src/graphics/monster/menardi_atropos.frames.lz"

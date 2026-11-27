@@ -790,6 +790,74 @@ static s32 BossAI_WraithChooseSlot(struct Unit *unit, s32 firstPick) {
   return roll < 160 ? WRAITH_ASURA : WRAITH_CYCLONE_SLASH;
 }
 
+/// Menardi Atropos, independent of Wraith; slot order matches row 167.
+enum AtroposSlot {
+  ATROPOS_DEATH_SIZE = 0, ATROPOS_ANNIHILATION, ATROPOS_SEVERE_BLOW,
+  ATROPOS_IMPACT, ATROPOS_BREAK, ATROPOS_PYROCLASM, ATROPOS_HEAT_FLASH,
+  ATROPOS_SUPERNOVA
+};
+#define ATROPOS_DEATH_USED (1u << 6)
+#define ATROPOS_UTILITY_USED (1u << 5)
+#define ATROPOS_NEXT_DEATH_SIZE (1u << 7)
+#define ATROPOS_SEVERE_USED (1u << 8)
+#define ATROPOS_ROUND_BITS (ATROPOS_DEATH_USED | ATROPOS_UTILITY_USED | ATROPOS_SEVERE_USED)
+STATIC_ASSERT(((ATROPOS_ROUND_BITS | ATROPOS_NEXT_DEATH_SIZE) &
+               (BOSS_RESERVED_BITS | BOSS_LAST_AIM_BITS)) == 0);
+
+static void BossAI_AtroposBeginRound(void) {
+  struct Unit *unit = BossAI_FindRow(ENEMY_ROW_MENARDI_ATROPOS);
+  if (unit != 0)
+    unit->aiActionIndex &= ~ATROPOS_ROUND_BITS;
+}
+
+static void BossAI_AtroposNoteTurn(struct Unit *unit, struct BattleAction *request) {
+  s32 slot = BossAI_RequestSlot(unit, request);
+  if (slot == ATROPOS_IMPACT || slot == ATROPOS_BREAK)
+    unit->aiActionIndex |= ATROPOS_UTILITY_USED;
+  if (slot == ATROPOS_SEVERE_BLOW)
+    unit->aiActionIndex |= ATROPOS_SEVERE_USED;
+  if (slot == ATROPOS_ANNIHILATION || slot == ATROPOS_DEATH_SIZE) {
+    unit->aiActionIndex |= ATROPOS_DEATH_USED;
+    if (slot == ATROPOS_ANNIHILATION)
+      unit->aiActionIndex |= ATROPOS_NEXT_DEATH_SIZE;
+    else
+      unit->aiActionIndex &= ~ATROPOS_NEXT_DEATH_SIZE;
+  }
+}
+
+static s32 BossAI_AtroposChooseSlot(struct Unit *unit, s32 firstPick) {
+  struct BossPartyView view;
+  u32 memory = unit->aiActionIndex;
+  s32 roll;
+  s32 late = unit->hp * 2 <= unit->hpMax;
+  // Heat Flash is uncosted and available even when sealed or a pick fails.
+  if (!firstPick)
+    return ATROPOS_HEAT_FLASH;
+  BossAI_ViewParty(&view);
+  if (view.alive > 1 && !(memory & ATROPOS_DEATH_USED)) {
+    if (unit->psySeal || unit->pp < 18 || (memory & ATROPOS_NEXT_DEATH_SIZE))
+      return ATROPOS_DEATH_SIZE;
+    return ATROPOS_ANNIHILATION;
+  }
+  roll = Battle_RandomFar() & 0xff;
+  // Do not reduce the last survivor to 1 HP via a scripted execution chain.
+  if (view.alive > 1 && !(memory & ATROPOS_SEVERE_USED) && roll < 64)
+    return ATROPOS_SEVERE_BLOW;
+  if (unit->psySeal)
+    return ATROPOS_HEAT_FLASH;
+  if (view.alive > 1 && !(memory & ATROPOS_UTILITY_USED)) {
+    if (view.buffed && unit->pp >= 5 && roll >= 64 && roll < 112)
+      return ATROPOS_BREAK;
+    if (!late && unit->attackStage <= 0 && unit->pp >= 7 && roll >= 112 && roll < 136)
+      return ATROPOS_IMPACT;
+  }
+  if (unit->pp >= 29 && roll < (late ? 176 : 160))
+    return ATROPOS_PYROCLASM;
+  if (unit->pp >= 31 && roll < 224)
+    return ATROPOS_SUPERNOVA;
+  return ATROPOS_HEAT_FLASH;
+}
+
 /// Starts a round for the bosses: their per-round memory is cleared and their
 /// view of the party brought up to date. Called once a round by
 /// BattleTurnOrder_Sort, before anyone acts.
@@ -799,6 +867,7 @@ void BossAI_BeginRound(void) {
   BossAI_HeartBeginRound();
   BossAI_MysteryBeginRound();
   BossAI_WraithBeginRound();
+  BossAI_AtroposBeginRound();
 }
 
 /// Records a turn that was really staged (result 0). Called by
@@ -819,6 +888,8 @@ void BossAI_NoteTurn(struct BattleAction *request, s32 result) {
     BossAI_MysteryNoteTurn(unit, request);
   else if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH)
     BossAI_WraithNoteTurn(unit, request);
+  else if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS)
+    BossAI_AtroposNoteTurn(unit, request);
 }
 
 /// A boss's pick of a place in its action list. Returns slot unchanged for
@@ -836,6 +907,8 @@ s32 BossAI_ChooseSlot(struct Unit *unit, s32 slot, s32 firstPick) {
     return BossAI_MysteryChooseSlot(unit, slot, firstPick);
   if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH)
     return BossAI_WraithChooseSlot(unit, firstPick);
+  if (unit->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS)
+    return BossAI_AtroposChooseSlot(unit, firstPick);
   return slot;
 }
 

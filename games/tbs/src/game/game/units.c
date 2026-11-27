@@ -111,7 +111,7 @@ const u8 *Enemy_GetDefinition(s32 selector) {
   // BUG: the table has 165 rows, but only rows past 249 are refused, so 165 to
   // 249 read the tables after it. BattleUnit_Set refuses them itself.
 #ifdef BUGFIX
-  if (recordIndex > 164U) {
+  if (recordIndex > 164U && recordIndex != ENEMY_ROW_MENARDI_ATROPOS) {
 #else
   if (recordIndex > 0xF9U) {
 #endif

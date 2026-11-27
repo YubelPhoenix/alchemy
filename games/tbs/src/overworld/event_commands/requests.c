@@ -42,7 +42,8 @@ void Field_RequestBattleFromEncounterTable(s32 zoneNo, s32 slotNo) {
       gSaveBlock.special = (u16)(s32)&ResourceId_ValeStormBackdrop;
   }
   // Karis in the Umbral Rift's pentagram: the Rift's own background.
-  if (zone == ENCOUNTER_ZONE_UMBRAL_KARIS)
+  if (zone == ENCOUNTER_ZONE_UMBRAL_KARIS ||
+      zone == ENCOUNTER_ZONE_HARMEL_ATROPOS)
     gSaveBlock.special = (u16)(s32)&ResourceId_UmbralRiftBackdrop;
   if (work->mode == ACTOR_SYSTEM_WORLD_MAP) {
     struct Actor *leader = Actor_Lookup(gSaveBlock.leaderActorId);

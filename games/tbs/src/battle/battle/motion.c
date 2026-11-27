@@ -41,6 +41,18 @@ void BattleMotion_ReturnToSpot(s32 unitId) {
   if (z < 0)
     z += 7;
   actor->facing = ArcTan2(z >> 3, battleObject->anchorX) - 0x8000;
+  if (Unit_GetFar(unitId)->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS) {
+    struct Sprite *sprite = GetMotionRecord(actor, 0);
+    // Pose 6 starts at partial hover and loops back into idle. Only a grounded
+    // leap finish takes this path; ordinary hit recovery is not a landing.
+    if (sprite != NULL && sprite->lastNo == POSE_LEAP) {
+      // A cancelled or interrupted approach must not dip toward the ground.
+      // Only the actual finishing frame can trigger the lift-off sequence.
+      s32 grounded = sprite->entries[0] != NULL &&
+                     sprite->entries[0]->frameBase == 8;
+      Actor_SelectAnimationFar(actor, grounded ? 6 : POSE_STANDING);
+    }
+  }
 }
 
 /// Sends unitId running off its side of the battlefield, three times
@@ -206,6 +218,11 @@ void BattleMotion_ApproachTarget(s32 unitId, s32 targetId, s32 travelDivisor,
   s32 cellZ = stepZ >> 8;
   s32 speed;
 
+  s32 atropos = Unit_GetFar(unitId)->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS;
+  // Her normal 19-frame leap ends with a six-frame grounded strike.
+  // Travel during the airborne 13-frame portion, not during the strike.
+  if (atropos && travelDivisor == 19)
+    travelDivisor = 13;
   speed = Iwram_Sqrt(cellX * cellX + cellZ * cellZ);
   speed = (speed << 8) / travelDivisor;
   actor->acceleration = speed;
@@ -223,6 +240,10 @@ void BattleMotion_ApproachTarget(s32 unitId, s32 targetId, s32 travelDivisor,
   Actor_StartIdleFar(actor);
   Actor_SetMoveTargetFar(actor, x, 0, z);
   Actor_SelectAnimationFar(actor, POSE_LEAP);
+  // Annihilation has its own four-frame approach and strikes on frame 8.
+  // Accelerate the same airborne sequence so its finish is visible by impact.
+  if (atropos && travelDivisor == 4)
+    Actor_SetAnimationSpeedFar(actor, 52);
 }
 
 /// Restarts unit id's motion in POSE_LEAP. Nothing in the source calls it.
@@ -339,7 +360,9 @@ s32 BattleMotion_ProjectConditionalPosition(s32 unitId, s32 *projected) {
   BattleCamera_ApplyTransform();
   projectedHeight = Transform_ProjectPoint(&actor->x.fixed, projected);
   spriteScale = Iwram_MulQ16(projectedHeight, record->scale);
-  if (BattleSprite_IsSmall(Unit_GetFar(unitId)->id) != 0)
+  if (Unit_GetFar(unitId)->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS)
+    projectedHeight = Iwram_MulQ16(spriteScale, BattleUnit_GetEffectHeight(unitId) >> 16);
+  else if (BattleSprite_IsSmall(Unit_GetFar(unitId)->id) != 0)
     projectedHeight = Iwram_MulQ16(spriteScale, 24);
   else
     projectedHeight = Iwram_MulQ16(spriteScale, 48);

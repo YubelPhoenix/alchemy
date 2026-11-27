@@ -648,9 +648,11 @@ s32 BattleTarget_RunSelection(s32 selection, s32 mode, u32 spread, u32 kind) {
         BattleMotion_ProjectConditionalPositionFar(
             candidateIds[targetIndex], ScreenPoint_Coordinates(&namePosition));
         namePosition.y += Trig_Sin(gFrameCount << 12) / 32768;
-        if (target->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH) {
-          // Ashfall: her name is longer than a unit's 14 characters.
-          Message_DecodeRaw(MsgEnemyVengefulWraith, targetName, 16);
+        if (target->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH ||
+            target->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS) {
+          Message_DecodeRaw(target->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS
+                                ? MsgEnemyMenardiAtropos : MsgEnemyVengefulWraith,
+                            targetName, 16);
         } else if (target->id == 125 || target->id == 122) {
           width = MsgMysteryPersonName;
           if (target->id == 125)

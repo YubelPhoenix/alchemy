@@ -610,6 +610,11 @@ s32 BattleAbility_ApplyToTarget(struct BattleTurn *plan, s32 slot) {
         if (actor->id == ENEMY_ID_FIRST + ENEMY_ROW_VENGEFUL_WRAITH &&
             element == ELEMENT_JUPITER && IS_PARTY_UNIT(targetId))
           power += power / 2;
+        // Atropos's inherited Mars damage spells: scoped to her only.
+        if (actor->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS &&
+            element == ELEMENT_MARS && IS_PARTY_UNIT(targetId) &&
+            (abilityId == 53 || abilityId == 59))
+          power += power / 2;
         // Heart's Outer Space, her revenge on Matthew, must hurt a fully grown
         // party: a fifth of the target's max HP on top, and Isaac, who has
         // Matthew's face, takes a further quarter of the whole.

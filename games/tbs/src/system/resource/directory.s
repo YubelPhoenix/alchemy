@@ -339,7 +339,8 @@ Resource_DirectoryTable:
 	resource UmbralRitualMap, Field_Map192
 	resource UmbralRitualTilesC, Tileset_UmbralRitualTilesC
 	resource WraithSprites, Monster_WraithSprites
-	unused 2
+	resource MenardiAtroposSprites, Monster_MenardiAtroposSprites
+	unused 1
 
 	resource Field_EditorExportTrial, Field_EditorExportTrial
 	resource Tileset_EditorExportTrialPalette, Tileset_EditorExportTrialPalette

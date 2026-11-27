@@ -736,5 +736,10 @@ const struct EncounterZone gEncounterZones[] = {
         .enemies = {390, 390, 390, 390, 390, 390, 390, 390},
         .weights = {10, 10, 10, 10, 10, 10, 10, 10},
     },
+    // 108: Black Sun Chapel, scripted only.
+    {
+        .enemies = {391, 391, 391, 391, 391, 391, 391, 391},
+        .weights = {10, 10, 10, 10, 10, 10, 10, 10},
+    },
 };
 // clang-format on

@@ -633,6 +633,16 @@ s32 BattleMotion_ProjectPosition(s32 unitId, s32 *projected) {
 
   BattleCamera_ApplyTransform();
   SET_VECTOR(position, actor->x.fixed, actor->y.fixed, actor->z.fixed);
+  if (Unit_GetFar(unitId)->id == ENEMY_ID_FIRST + ENEMY_ROW_MENARDI_ATROPOS &&
+      record != NULL && record->entries[0] != NULL) {
+    // Atropos's body is raised in the packed frames, not in actor->y.
+    // Raw strike projections must follow her feet; leave the shadow and
+    // logical hit/miss calculations on the native ground plane.
+    static const u8 hoverGap[8] = {7, 8, 9, 7, 0, 8, 8, 3};
+    u32 frame = record->entries[0]->frameBase;
+    if (frame < 16)
+      position[1] += Iwram_MulQ16(record->scale, hoverGap[frame >> 1] << 16);
+  }
   projectionScale = Transform_ProjectPoint(position, projected);
   // The sprite's projected scale is worked out and thrown away; compare
   // BattleMotion_ProjectScaledPosition, which keeps it.

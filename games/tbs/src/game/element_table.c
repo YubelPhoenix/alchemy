@@ -485,6 +485,17 @@ const struct EnemyElementPreset gEnemy_ElementPresetTable[] = {
             PRESET_STATS(100, 127),
         },
     },
+    // 46: Menardi Atropos. Venus dominant; Mars retained for her inherited spells.
+    {
+        .first = ELEMENT_VENUS,
+        .digits = {14, 9, 12, 7},
+        .values = {
+            PRESET_STATS(140, 175),
+            PRESET_STATS(100, 127),
+            PRESET_STATS(120, 127),
+            PRESET_STATS(90, 72),
+        },
+    },
 };
 
 const s16 gElement_PowerResistCurve[5][2] = {

@@ -1002,5 +1002,13 @@ const struct BattleSpriteDefinition gBattleSprites[] = {
         .defeatSound = 0, // the human foes' fall, not a beast's cry
         .effectHeight = 42,
     },
+    // Enemy id 175 (row 167): independent Menardi Atropos battle art.
+    {
+        .animation = 492,
+        .attackAnim = 1,
+        .defeatSound = 0,
+        .heavyImpact = 1,
+        .effectHeight = 58,
+    },
 };
 // clang-format on
