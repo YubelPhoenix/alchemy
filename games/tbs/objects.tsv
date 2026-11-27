@@ -650,6 +650,7 @@ main	rom_tail_02	games/tbs/src/graphics/battle_bg/umbral_rift
 main	rom_tail_02	games/tbs/src/battle/battle_sprites
 main	rom_tail_02	games/tbs/src/system/overlay/overlays
 main	rom_tail_03	games/tbs/src/graphics/sprite/sprites	.rodata.c
+main	rom_tail_03	games/tbs/src/field/atropos_aura_data	.rodata
 36f	text	games/tbs/src/menu/entry/title
 36f	text	games/tbs/src/menu/title
 36f	text	games/tbs/src/menu/import/title
