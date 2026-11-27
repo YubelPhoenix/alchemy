@@ -4,6 +4,7 @@
 
 #include "../field_internal.h"
 #include "battle_display.h"
+#include "atropos_aura.h"
 
 /// Draws one anim's frame into a sprite's pixel buffer (Render_DecodeFrame,
 /// run from RAM).
@@ -43,6 +44,8 @@ s32 Sprite_ComposeFrame(struct Sprite *animation, u16 dir) {
   s32 frame;
   u32 facing;
   s32 tile;
+  s32 atroposAura;
+  u32 auraClock;
 
   // The actor system's work and the frame decoder sit in the heap slot
   // table; load the decoder into RAM for this call if no one else has.
@@ -201,6 +204,18 @@ s32 Sprite_ComposeFrame(struct Sprite *animation, u16 dir) {
     }
   }
 
+  // Atropos uses a ten-phase indexed aura independently of pose timing.
+  // Defeat uses GREY; do not force uploads during the native dissolve.
+  layer = animation->entries[0];
+  atroposAura = gBattleCamera != 0 && layer != 0 &&
+      (layer->animationId & 0xfff) == 492 &&
+      layer->colorMode == SPRITE_COLOR_NORMAL && layer->frame < 16 &&
+      animation->width == 64 && animation->height == 64 &&
+      (animation->flags & SPRITE_FLAG_OUTLINED) == 0;
+  auraClock = gFrameCount;
+  if (atroposAura && (auraClock & 7) == 0)
+    animation->dirty = 1;
+
   if (animation->dirty != 0) {
     size = animation->width * animation->height;
     pixels = Alloc(size);
@@ -268,6 +283,8 @@ s32 Sprite_ComposeFrame(struct Sprite *animation, u16 dir) {
       } else {
         decodeFrame(layer->frames[layer->frame], pixels, layer->colorMode);
       }
+      if (atroposAura && layer == animation->entries[0])
+        AtroposAura_Apply(pixels, layer->frame, (auraClock >> 3) % 10);
     }
 
     // Outline: a pixel whose four neighbours are all drawn becomes the fill
