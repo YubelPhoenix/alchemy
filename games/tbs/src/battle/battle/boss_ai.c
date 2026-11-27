@@ -791,6 +791,7 @@ static s32 BossAI_WraithChooseSlot(struct Unit *unit, s32 firstPick) {
 }
 
 /// Menardi Atropos, independent of Wraith; slot order matches row 167.
+/// The English battle bank has extra linker padding reserved for this AI.
 enum AtroposSlot {
   ATROPOS_DEATH_SIZE = 0, ATROPOS_ANNIHILATION, ATROPOS_SEVERE_BLOW,
   ATROPOS_IMPACT, ATROPOS_BREAK, ATROPOS_PYROCLASM, ATROPOS_HEAT_FLASH,
