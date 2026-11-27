@@ -327,6 +327,12 @@ static void UmbralRift_ChallengeAtropos(void) {
   UmbralRift_AtroposSay(MsgDarkAtroposIntro017, ACTOR_PARTY_LEADER);
   UmbralRift_AtroposSay(MsgDarkAtroposIntro018, ACTOR_HARMEL_ATROPOS);
   UmbralRift_AtroposSay(MsgDarkAtroposIntro019, ACTOR_HARMEL_ATROPOS);
+  // Local spectral pulse before the battle; never tint the party or room.
+  Event_PlaySong(SE_WARP);
+  Actor_ConfigureSpriteColor(ACTOR_HARMEL_ATROPOS, SPRITE_COLOR_BLUE_TINT);
+  Event_WaitFrames(12);
+  Actor_ConfigureSpriteColor(ACTOR_HARMEL_ATROPOS, SPRITE_COLOR_NORMAL);
+  Event_WaitFrames(4);
   GameFlag_Set(FLAG_DARK_ATROPOS_PENDING);
   Event_SetAfterBattleDestination((s32)&SceneId_HarmelChapel, HARMEL_CHAPEL_FROM_ATROPOS);
   Event_SetDefeatDestination(-1, -1);
@@ -350,6 +356,12 @@ static void UmbralRift_AtroposAftermath(void) {
   UmbralRift_AtroposSay(MsgDarkAtroposVictory006, ACTOR_MIA);
   UmbralRift_AtroposSay(MsgDarkAtroposVictory007, ACTOR_HARMEL_ATROPOS);
   Event_WaitFrames(30);
+  // Use the native per-actor tint and warp cue; leave the actor hidden.
+  Event_PlaySong(SE_WARP);
+  Actor_ConfigureSpriteColor(ACTOR_HARMEL_ATROPOS, SPRITE_COLOR_BLUE_TINT);
+  Event_WaitFrames(16);
+  Actor_ConfigureSpriteColor(ACTOR_HARMEL_ATROPOS, SPRITE_COLOR_WHITE);
+  Event_WaitFrames(4);
   Actor_ConfigureSpriteColor(ACTOR_HARMEL_ATROPOS, SPRITE_COLOR_HIDDEN);
   Actor_SetPosition(ACTOR_HARMEL_ATROPOS, PIXELS(-9), PIXELS(488));
   UmbralRift_AtroposSay(MsgDarkAtroposVictory008, ACTOR_GARET);
