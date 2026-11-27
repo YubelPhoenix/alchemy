@@ -1,16 +1,17 @@
-/* Ashfall: Atropos aura, generated from the approved ten-frame preview.
+/* Ashfall: Atropos aura, including idle fabric/hair and crimson eyes.
  * Sparse indexed changes: 12-bit pixel offset, expected palette index,
  * replacement palette index. The body sprite is 64 x 64, row-major.
  * Apply after the body and before higher-priority layers. No new OAM,
  * palette, hardware blend register or animation slot is allocated.
- * The table is tied to the approved 16-frame black-scythe sprite. */
+ * The table is tied to the approved 16-frame black-scythe sprite.
+ * Strike aura extents match the original Menardi attack footprints. */
 #ifndef ASHFALL_ATROPOS_AURA_H
 #define ASHFALL_ATROPOS_AURA_H
 
 #define ATROPOS_AURA_PHASES 10
 #define ATROPOS_AURA_POSES 8
 extern const u16 sAtroposAuraOffsets[81];
-extern const u32 sAtroposAuraChanges[52620];
+extern const u32 sAtroposAuraChanges[52415];
 
 static void AtroposAura_Apply(u8 *pixels, u32 frame, u32 phase) {
   u32 table, i, end, change, offset;
