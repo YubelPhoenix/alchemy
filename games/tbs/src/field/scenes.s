@@ -227,6 +227,9 @@ gScenes:
 	scene UmbralCrossbone, 0x3d5, 0x47, 1, 0xc0
 	scene UmbralRitual, 0x3d5, 0x47, 1, 0xc1
 
+	scene EditorExportTrial, 0x3d5, 0x47, 1, 0xc2
+	scene HarmelChapel, 0x3d5, 0x47, 1, 0xc3
+
 @ Ashfall: one past the last row. A save that names a row at or past it (a
 @ room a later build has removed) resumes at its restart point instead
 @ (menu/file_screen.c), as a save made mid-transition does.

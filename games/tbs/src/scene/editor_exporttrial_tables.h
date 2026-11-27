@@ -1,0 +1,32 @@
+/* Harmel test scene: two visible, independent Twin Maze connections. */
+#ifndef ASHFALL_EDITOR_EXPORTTRIAL_TABLES_H
+#define ASHFALL_EDITOR_EXPORTTRIAL_TABLES_H
+#include "scene.h"
+#include "scene_tables.h"
+enum { EDITOR_MAZE_TO_HARMEL_WEST = 4, EDITOR_MAZE_TO_HARMEL_EAST = 5,
+       EDITOR_MAZE_FROM_HARMEL_WEST = 3, EDITOR_MAZE_FROM_HARMEL_EAST = 4,
+       EDITOR_HARMEL_TO_MAZE_WEST = 1, EDITOR_HARMEL_TO_MAZE_EAST = 2,
+       EDITOR_HARMEL_FROM_EAST = 1, EDITOR_HARMEL_FROM_CHAPEL = 2,
+       EDITOR_HARMEL_TO_CHAPEL = 3, EDITOR_CHAPEL_TO_HARMEL = 1 };
+static const struct SceneEntrance sEditorTrialEntrances[] = {
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 104, 0, 184, FACING_NORTH, 0, -1, -1, -1, -1, 0},
+    {EDITOR_HARMEL_FROM_EAST, CONDITION_ALWAYS, 520, 0, 120, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
+    {EDITOR_HARMEL_FROM_CHAPEL, CONDITION_ALWAYS, 88, 0, 136, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
+    {SCENE_TABLE_END},
+};
+static const struct ActorTemplate sEditorTrialActors[] = {{SCENE_TABLE_END}};
+static const struct Trigger sEditorTrialTriggers[] = {
+    {TRIGGER_EXIT, EDITOR_HARMEL_TO_MAZE_WEST, CONDITION_ALWAYS, EDITOR_HARMEL_TO_MAZE_WEST},
+    {TRIGGER_EXIT, EDITOR_HARMEL_TO_MAZE_EAST, CONDITION_ALWAYS, EDITOR_HARMEL_TO_MAZE_EAST},
+    {TRIGGER_EXIT, EDITOR_HARMEL_TO_CHAPEL, CONDITION_ALWAYS, EDITOR_HARMEL_TO_CHAPEL},
+    {TRIGGERS_END},
+};
+static const struct SceneEntrance sHarmelChapelEntrances[] = {
+    {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 120, 0, 248, FACING_NORTH, 0, -1, -1, -1, -1, 0},
+    {SCENE_TABLE_END},
+};
+static const struct Trigger sHarmelChapelTriggers[] = {
+    {TRIGGER_EXIT, EDITOR_CHAPEL_TO_HARMEL, CONDITION_ALWAYS, EDITOR_CHAPEL_TO_HARMEL},
+    {TRIGGERS_END},
+};
+#endif

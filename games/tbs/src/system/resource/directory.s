@@ -341,6 +341,19 @@ Resource_DirectoryTable:
 	resource WraithSprites, Monster_WraithSprites
 	unused 2
 
+	resource Field_EditorExportTrial, Field_EditorExportTrial
+	resource Tileset_EditorExportTrialPalette, Tileset_EditorExportTrialPalette
+	resource Tileset_EditorExportTrialTilesA, Tileset_EditorExportTrialTilesA
+	resource Tileset_EditorExportTrialTilesB, Tileset_EditorExportTrialTilesB
+	resource Tileset_EditorExportTrialTilesC, Tileset_EditorExportTrialTilesC
+	resource Tileset_EditorExportTrialTilesD, Tileset_EditorExportTrialTilesD
+	resource Field_HarmelChapel, Field_HarmelChapel
+	resource Tileset_HarmelChapelPalette, Tileset_HarmelChapelPalette
+	resource Tileset_HarmelChapelTilesA, Tileset_HarmelChapelTilesA
+	resource Tileset_HarmelChapelTilesB, Tileset_HarmelChapelTilesB
+	resource Tileset_HarmelChapelTilesC, Tileset_HarmelChapelTilesC
+	resource Tileset_HarmelChapelTilesD, Tileset_HarmelChapelTilesD
+
 @ Build timestamp: year, month, day, hour, minute and second, two digits each
 	.global Resource_BuildStamp
 Resource_BuildStamp:

@@ -43,6 +43,7 @@
 #include "audio_engine_symbols.h"
 #include "item_ids.h"
 #include "common/actor_facing.h"
+#include "editor_exporttrial_tables.h"
 
 
 enum {
@@ -295,6 +296,13 @@ static void UmbralRift_CloseAnchor(void) {
 
 
 s32 UmbralRift_Initialize(void) {
+  if (UMBRAL_SCENE_IS(EditorExportTrial) || UMBRAL_SCENE_IS(HarmelChapel)) {
+    GameFlag_Set(FLAG_NO_ENCOUNTERS_IN_AREA);
+    GameFlag_Set(FLAG_RETREAT_BLOCKED);
+    if (UMBRAL_SCENE_IS(HarmelChapel)) Sound_PlaySong(MUS_SILENCE);
+    else Sound_PlaySong(MUS_UMBRAL_RIFT);
+    return 0;
+  }
   // Reaching the Memory Room by its front door (from the maze) opens the
   // Fountain Hall's right arch as the way back to it.
   if (UMBRAL_SCENE_IS(UmbralMemory) && gSaveBlock.entrance == ENTRANCE_DEFAULT)
@@ -615,6 +623,8 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXIT(UMBRAL_MAZE_TO_FOUNTAIN, UmbralCrossbone, UMBRAL_CROSSBONE_FROM_MAZE),
     SCENE_EXIT(UMBRAL_MAZE_TO_TOP_DOOR, UmbralMemory, ENTRANCE_DEFAULT),
     SCENE_EXIT(UMBRAL_MAZE_TO_RITUAL, UmbralRitual, ENTRANCE_DEFAULT),
+    SCENE_EXIT(EDITOR_MAZE_TO_HARMEL_WEST, EditorExportTrial, ENTRANCE_DEFAULT),
+    SCENE_EXIT(EDITOR_MAZE_TO_HARMEL_EAST, EditorExportTrial, EDITOR_HARMEL_FROM_EAST),
     SCENE_EXITS(UmbralMemory),
     SCENE_EXIT(UMBRAL_MEMORY_TO_MAZE, UmbralMaze, UMBRAL_MAZE_FROM_TOP_DOOR),
     SCENE_EXIT(UMBRAL_MEMORY_TO_STAIR, UmbralFountain, UMBRAL_FOUNTAIN_FROM_RIGHT_ARCH),
@@ -629,6 +639,12 @@ static u32 sUmbralThroneExits[] = {
     SCENE_EXITS(UmbralBeacon),
     SCENE_EXIT(UMBRAL_BEACON_TO_CAUSEWAY, UmbralCauseway, UMBRAL_CAUSEWAY_FROM_THRONE),
     SCENE_EXIT(UMBRAL_BEACON_TO_THRONE, UmbralThrone, ENTRANCE_DEFAULT),
+    SCENE_EXITS(EditorExportTrial),
+    SCENE_EXIT(EDITOR_HARMEL_TO_MAZE_WEST, UmbralMaze, EDITOR_MAZE_FROM_HARMEL_WEST),
+    SCENE_EXIT(EDITOR_HARMEL_TO_MAZE_EAST, UmbralMaze, EDITOR_MAZE_FROM_HARMEL_EAST),
+    SCENE_EXIT(EDITOR_HARMEL_TO_CHAPEL, HarmelChapel, ENTRANCE_DEFAULT),
+    SCENE_EXITS(HarmelChapel),
+    SCENE_EXIT(EDITOR_CHAPEL_TO_HARMEL, EditorExportTrial, EDITOR_HARMEL_FROM_CHAPEL),
     SCENE_EXITS_END,
 };
 
@@ -771,6 +787,8 @@ static struct SceneEntrance sUmbralMazeEntrances[] = {
     // Back out of the Ritual Room, below the east door.
     {UMBRAL_MAZE_FROM_RITUAL, CONDITION_ALWAYS, 424, 0, 280, FACING_SOUTH, 0,
      -1, -1, -1, -1, 0},
+    {EDITOR_MAZE_FROM_HARMEL_WEST, CONDITION_ALWAYS, 296, 0, 56, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
+    {EDITOR_MAZE_FROM_HARMEL_EAST, CONDITION_ALWAYS, 440, 0, 56, FACING_SOUTH, 0, -1, -1, -1, -1, 0},
     {SCENE_TABLE_END},
 };
 
@@ -781,6 +799,8 @@ static struct Trigger sUmbralMazeTriggers[] = {
      UMBRAL_MAZE_TO_TOP_DOOR},
     {TRIGGER_EXIT, UMBRAL_MAZE_TO_RITUAL, CONDITION_ALWAYS,
      UMBRAL_MAZE_TO_RITUAL},
+    {TRIGGER_EXIT, EDITOR_MAZE_TO_HARMEL_WEST, CONDITION_ALWAYS, EDITOR_MAZE_TO_HARMEL_WEST},
+    {TRIGGER_EXIT, EDITOR_MAZE_TO_HARMEL_EAST, CONDITION_ALWAYS, EDITOR_MAZE_TO_HARMEL_EAST},
     {TRIGGER_STEP, UMBRAL_ECHO_STEP, FLAG_DARK_RIFT_PAIR_MAZE,
      EVENT(UmbralRift_ApproachMazeEcho)},
     {TRIGGERS_END},
@@ -1017,6 +1037,8 @@ static struct Trigger sUmbralBeaconTriggers[] = {
   ((s16)gSaveBlock.sceneId == (s32)&SceneId_UmbralFountain)
 
 const struct SceneEntrance *Scene_GetEntrances(void) {
+  if (UMBRAL_SCENE_IS(HarmelChapel)) return sHarmelChapelEntrances;
+  if (UMBRAL_SCENE_IS(EditorExportTrial)) return sEditorTrialEntrances;
   return UMBRAL_IN_RITUAL()      ? sUmbralRitualEntrances
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneEntrances
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconEntrances
@@ -1026,9 +1048,13 @@ const struct SceneEntrance *Scene_GetEntrances(void) {
          : UMBRAL_IN_FOUNTAIN() ? sUmbralFountainEntrances
                                 : sUmbralThroneEntrances;
 }
-const struct SceneExitRegion *Scene_GetExitRegions(void) { return NULL; }
+const struct SceneExitRegion *Scene_GetExitRegions(void) {
+  return NULL;
+}
 const u32 *Scene_GetExits(void) { return sUmbralThroneExits; }
 const struct ActorTemplate *Scene_GetActorTemplates(void) {
+  if (UMBRAL_SCENE_IS(HarmelChapel)) return sEditorTrialActors;
+  if (UMBRAL_SCENE_IS(EditorExportTrial)) return sEditorTrialActors;
   return UMBRAL_IN_RITUAL()      ? sUmbralRitualActorTemplates
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneActorTemplates
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconActorTemplates
@@ -1039,6 +1065,8 @@ const struct ActorTemplate *Scene_GetActorTemplates(void) {
                                 : sUmbralThroneActorTemplates;
 }
 const struct Trigger *Scene_GetTriggers(void) {
+  if (UMBRAL_SCENE_IS(HarmelChapel)) return sHarmelChapelTriggers;
+  if (UMBRAL_SCENE_IS(EditorExportTrial)) return sEditorTrialTriggers;
   return UMBRAL_IN_RITUAL()      ? sUmbralRitualTriggers
          : UMBRAL_IN_CROSSBONE() ? sUmbralCrossboneTriggers
          : UMBRAL_IN_BEACON()   ? sUmbralBeaconTriggers
