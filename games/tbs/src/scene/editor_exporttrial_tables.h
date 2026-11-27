@@ -23,6 +23,8 @@ static const struct Trigger sEditorTrialTriggers[] = {
 };
 enum { HARMEL_CHAPEL_FROM_ATROPOS = 1, ACTOR_HARMEL_ATROPOS = ACTOR_FIRST_PLACED };
 static void UmbralRift_ChallengeAtropos(void);
+/* Keep Atropos grounded in the chapel; X=128 is the altar axis and
+ * the post-battle entrance uses the same X coordinate. */
 static const struct ActorTemplate sHarmelChapelActors[] = {
     {SPRITE_MENARDI, FLAG_DARK_ATROPOS_BEATEN, MOVEMENT_TYPE_STAND,
      PIXELS(128), 0, PIXELS(120), FACING_SOUTH, TALK_FACING_KEEP, 0},
