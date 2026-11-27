@@ -25,12 +25,12 @@ enum { HARMEL_CHAPEL_FROM_ATROPOS = 1, ACTOR_HARMEL_ATROPOS = ACTOR_FIRST_PLACED
 static void UmbralRift_ChallengeAtropos(void);
 static const struct ActorTemplate sHarmelChapelActors[] = {
     {SPRITE_MENARDI, FLAG_DARK_ATROPOS_BEATEN, MOVEMENT_TYPE_STAND,
-     PIXELS(120), 0, PIXELS(120), FACING_SOUTH, TALK_FACING_KEEP, 0},
+     PIXELS(128), 0, PIXELS(120), FACING_SOUTH, TALK_FACING_KEEP, 0},
     {SCENE_TABLE_END},
 };
 static const struct SceneEntrance sHarmelChapelEntrances[] = {
     {ENTRANCE_DEFAULT, CONDITION_ALWAYS, 120, 0, 248, FACING_NORTH, 0, -1, -1, -1, -1, 0},
-    {HARMEL_CHAPEL_FROM_ATROPOS, CONDITION_ALWAYS, 120, 0, 152, FACING_NORTH, 0, -1, -1, -1, -1, 0},
+    {HARMEL_CHAPEL_FROM_ATROPOS, CONDITION_ALWAYS, 128, 0, 152, FACING_NORTH, 0, -1, -1, -1, -1, 0},
     {SCENE_TABLE_END},
 };
 static const struct Trigger sHarmelChapelTriggers[] = {

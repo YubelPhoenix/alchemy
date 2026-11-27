@@ -369,15 +369,6 @@ s32 UmbralRift_Initialize(void) {
     if (UMBRAL_SCENE_IS(HarmelChapel)) {
       Sound_PlaySong(MUS_SILENCE);
       if (GameFlag_Get(FLAG_DARK_ATROPOS_BEATEN) == 0) {
-        struct Actor *atropos = Actor_GetById(ACTOR_HARMEL_ATROPOS);
-        if (atropos != NULL) {
-          // The placed actor alone floats. Never change SPRITE_MENARDI data.
-          atropos->y.fixed = PIXELS(6);
-          atropos->velocityY = 0;
-          atropos->bounce = 0;
-          atropos->gravity = Q16_ONE;
-          atropos->motionFlags = ACTOR_FLOATS;
-        }
         if (gSaveBlock.entrance == HARMEL_CHAPEL_FROM_ATROPOS &&
             GameFlag_Get(FLAG_DARK_ATROPOS_PENDING) != 0) {
           // A solo victory returns one defeated enemy; 999 means fled.
