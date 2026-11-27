@@ -74,9 +74,14 @@ SECTIONS
                      DEFINED(TBS_EDITION_ES) || DEFINED(TBS_EDITION_FR) ? 0x080b9000 :
                                                                           0x080b5000);
         INCLUDE "rom_main_07.ld"
+        /* Ashfall EN: expanded battle code exceeded the old bank by 0xa0.
+           The last successful linker map had 0xf04 bytes of padding after
+           rom_main_08. Borrow 0x400 from that padding; keep other editions
+           and the following bank's original start unchanged. */
         . = ABSOLUTE(DEFINED(TBS_EDITION_JA)                            ? 0x080c0000 :
                      DEFINED(TBS_EDITION_DE)                            ? 0x080cae00 :
                      DEFINED(TBS_EDITION_ES) || DEFINED(TBS_EDITION_FR) ? 0x080cc800 :
+                     DEFINED(TBS_EDITION_EN)                            ? 0x080c9400 :
                                                                           0x080c9000);
         INCLUDE "rom_main_08.ld"
         . = ABSOLUTE(DEFINED(TBS_EDITION_JA)                            ? 0x080e7000 :
