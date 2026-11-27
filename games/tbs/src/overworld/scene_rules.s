@@ -368,8 +368,9 @@ gScene_BattleBackgroundRules:
 	backdrop GrasslandBackdrop, Vault
 	backdrop DesertBackdrop, Kalay
 	backdrop BeachBackdrop, Tolbi, Lalivero
-	backdrop GomaCaveBackdrop
 	@ Golden Sun: Ashfall: the Umbral Rift's own backdrops (graphics/battle_bg/umbral_rift.s).
 	backdrop UmbralRiftBackdrop, UmbralFountain, UmbralMaze, UmbralBeacon, UmbralCrossbone
 	backdrop UmbralThroneBackdrop, UmbralThrone
+	@ Keep the original fallback last: unlisted scenes use the final backdrop.
+	backdrop GomaCaveBackdrop
 	.4byte 0	@ end
