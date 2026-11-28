@@ -794,7 +794,7 @@ static s32 BossAI_WraithChooseSlot(struct Unit *unit, s32 firstPick) {
 /// The English battle bank has extra linker padding reserved for this AI.
 enum AtroposSlot {
   ATROPOS_DEATH_SIZE = 0, ATROPOS_ANNIHILATION, ATROPOS_SEVERE_BLOW,
-  ATROPOS_IMPACT, ATROPOS_BREAK, ATROPOS_PYROCLASM, ATROPOS_HEAT_FLASH,
+  ATROPOS_IMPACT, ATROPOS_BREAK, ATROPOS_PYROCLASM, ATROPOS_DRAGON_DRIVER,
   ATROPOS_SUPERNOVA
 };
 #define ATROPOS_DEATH_USED (1u << 6)
@@ -831,9 +831,9 @@ static s32 BossAI_AtroposChooseSlot(struct Unit *unit, s32 firstPick) {
   u32 memory = unit->aiActionIndex;
   s32 roll;
   s32 late = unit->hp * 2 <= unit->hpMax;
-  // Heat Flash is uncosted and available even when sealed or a pick fails.
+  // Dragon Driver is the uncosted enemy-ability fallback.
   if (!firstPick)
-    return ATROPOS_HEAT_FLASH;
+    return ATROPOS_DRAGON_DRIVER;
   BossAI_ViewParty(&view);
   if (view.alive > 1 && !(memory & ATROPOS_DEATH_USED)) {
     if (unit->psySeal || unit->pp < 18 || (memory & ATROPOS_NEXT_DEATH_SIZE))
@@ -845,7 +845,7 @@ static s32 BossAI_AtroposChooseSlot(struct Unit *unit, s32 firstPick) {
   if (view.alive > 1 && !(memory & ATROPOS_SEVERE_USED) && roll < 64)
     return ATROPOS_SEVERE_BLOW;
   if (unit->psySeal)
-    return ATROPOS_HEAT_FLASH;
+    return ATROPOS_DRAGON_DRIVER;
   if (view.alive > 1 && !(memory & ATROPOS_UTILITY_USED)) {
     if (view.buffed && unit->pp >= 5 && roll >= 64 && roll < 112)
       return ATROPOS_BREAK;
@@ -856,7 +856,7 @@ static s32 BossAI_AtroposChooseSlot(struct Unit *unit, s32 firstPick) {
     return ATROPOS_PYROCLASM;
   if (unit->pp >= 31 && roll < 224)
     return ATROPOS_SUPERNOVA;
-  return ATROPOS_HEAT_FLASH;
+  return ATROPOS_DRAGON_DRIVER;
 }
 
 /// Starts a round for the bosses: their per-round memory is cleared and their

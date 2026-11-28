@@ -3262,7 +3262,7 @@ const struct EnemyDefinition gEnemy_Definitions[] = {
         .targetStrategy = TARGET_STRATEGY_RANDOM,
         .actionStrategy = ACTION_STRATEGY_FALLING,
         // AtroposSlot in boss_ai.c; all abilities are existing stock IDs.
-        .abilities = {513, 178, 517, 102, 127, 53, 512, 59},
+        .abilities = {513, 178, 517, 102, 127, 53, 515, 59},
         .weakEffects = {ABILITY_EFFECT_DEFENSE_DOWN, ABILITY_EFFECT_RESISTANCE_DOWN},
         .coins = 7500,
         .item = ITEM_CLERICS_RING,
