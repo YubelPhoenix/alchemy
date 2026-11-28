@@ -133,6 +133,33 @@ def check_flags_and_quest_order() -> None:
     require(len(dark) >= 25, "Expected persistent Ashfall flags were removed")
     values = [int(v, 16) for _k, v in dark]
     require(len(set(values)) == len(values), "Two Ashfall flags share the same bit")
+    # Vanilla Crossbone Isle uses contiguous base+offset ranges, not just
+    # the named first flags. A custom event must never mark a guardian beaten,
+    # sink a pillar, remove ivy, or inherit those states in the opposite direction.
+    defs = {name: int(value, 0) for name, value in re.findall(
+        r"^#define\s+(FLAG_\w+)\s+(0x[0-9a-fA-F]+|[0-9]+)\b", flags, re.M)}
+    crossbone_ranges = {
+        "FLAG_CROSSBONE_ISLE_FIRST_IVY_BLOWN_AWAY": (0x8c4, 4),
+        "FLAG_CROSSBONE_ISLE_FIRST_EAST_DOOR_MONSTERS_DEFEATED": (0x8c8, 9),
+        "FLAG_CROSSBONE_ISLE_DEADBEARD_DEFEATED": (0x8d1, 1),
+        "FLAG_CROSSBONE_ISLE_FIRST_PASSAGE_OPENED": (0x8d2, 9),
+    }
+    reserved = set()
+    for name, (base, count) in crossbone_ranges.items():
+        require(defs.get(name) == base, f"Vanilla Crossbone flag moved: {name}")
+        reserved.update(range(base, base + count))
+    custom = {name: value for name, value in defs.items()
+              if name.startswith("FLAG_DARK_") or name == "FLAG_CHEST_UMBRAL_RITUAL"}
+    require(len(set(custom.values())) == len(custom), "Ashfall custom flags overlap")
+    for name, value in custom.items():
+        require(0 <= value < 0x1000, f"Ashfall flag wraps outside save storage: {name}")
+        require(value not in reserved, f"Ashfall flag aliases Crossbone Isle: {name} ({value:#x})")
+    # Also protect the relocated range from named vanilla flags and from reuse.
+    for name, value in defs.items():
+        if 0xa00 <= value <= 0xa0c:
+            require(name in custom, f"Non-Ashfall flag in reserved custom range: {name}")
+    require(sum(0xa00 <= v <= 0xa0c for v in custom.values()) == 13,
+            "Crossbone collision repair must retain 13 independent relocated bits")
     required = {
         "FLAG_DARK_ASH_JENNA_LAMAKAN_MET", "FLAG_DARK_FINALE_DONE",
         "FLAG_DARK_ASH_JENNA_TOLBI", "FLAG_DARK_ASH_JENNA_LALIVERO",

@@ -2695,9 +2695,11 @@
 #define FLAG_AREA_TEMP_FE 0x3fe
 #define FLAG_AREA_TEMP_FF 0x3ff
 
-// The dark story's silent watcher. Each flag is set once the party has seen
-// her at that place, so the glimpse plays a single time. Nothing else uses
-// these numbers.
+// Ashfall persistent flags: 0xa00-0xa0c are dedicated to the custom flags
+// formerly overlapping Crossbone Isle's vanilla 0x8c4-0x8da ranges. Do not
+// reuse vanilla range holes: many flags are addressed as base + scene offset.
+// Existing saves from before this change may contain ambiguous shared bits.
+// The dark story's silent watcher: each glimpse plays a single time.
 /// Sol Sanctum's long passage (SceneId_SolSanctumCorridor).
 #define FLAG_DARK_WATCHER_SANCTUM_CORRIDOR 0x884
 /// Vault's entrance.
@@ -2741,37 +2743,37 @@
 
 /// Heart's battle in Kolima has begun (Kolima_TalkToHeart); set before it, so a
 /// win returns to a Kolima where she speaks her last words (Kolima_HeartAftermath).
-#define FLAG_DARK_HEART_FOUGHT 0x8c6
+#define FLAG_DARK_HEART_FOUGHT 0xa00
 /// Heart has said her last words and gone: she does not return.
-#define FLAG_DARK_HEART_BEATEN 0x8c5
+#define FLAG_DARK_HEART_BEATEN 0xa01
 
 /// Heart is speaking: her message portrait is the dark mugshot
 /// (Portrait_GetForSpeaker). Set around her lines, then cleared.
-#define FLAG_DARK_HEART_SPEAKING 0x8c7
+#define FLAG_DARK_HEART_SPEAKING 0xa02
 
 /// Isaac dug the trapped miners out in Altin Peak's junction room
 /// (AltinPeak_TalkToTrappedMiner).
-#define FLAG_DARK_MINERS_FREED 0x8cb
+#define FLAG_DARK_MINERS_FREED 0xa03
 
 /// The brief post-Manticore party check has played.
-/// Retains its previous save bit for compatibility with earlier test builds.
-#define FLAG_DARK_MANTICORE_RETURN_SEEN 0x8cc
+/// Relocated from its colliding legacy save bit; old saves are not migrated.
+#define FLAG_DARK_MANTICORE_RETURN_SEEN 0xa04
 
 /// Mia rejoined the party on the road south of Imil after Menardi's defeat
 /// (WorldMap_MiaRejoinsParty), so a battle that reloads the entrance does not
 /// replay it.
-#define FLAG_DARK_MIA_REUNITED 0x8cd
+#define FLAG_DARK_MIA_REUNITED 0xa05
 /// Isaac stayed with the injured miner after the Altin Peak rescue.
-#define FLAG_DARK_MINER_STAYED 0x8d3
+#define FLAG_DARK_MINER_STAYED 0xa06
 /// Ash Jenna's Lamakan confrontation has played.
-#define FLAG_DARK_FINALE_DONE 0x8d4
-/// Retired Lamakan choice bits, reserved only for save compatibility.
+#define FLAG_DARK_FINALE_DONE 0xa07
+/// Retired Lamakan choice bits, reserved; do not reuse.
 /// No active scene reads or writes these flags.
-#define FLAG_DARK_ASH_JENNA_ACCEPTED 0x8d6
-#define FLAG_DARK_ASH_JENNA_REFUSED 0x8d7
+#define FLAG_DARK_ASH_JENNA_ACCEPTED 0xa08
+#define FLAG_DARK_ASH_JENNA_REFUSED 0xa09
 /// Ash Jenna's optional closing talk in Lalivero after the Venus Lighthouse
 /// collapse. Set after the scene; hides her on subsequent town entries.
-#define FLAG_DARK_ASH_JENNA_LALIVERO 0x8d8
+#define FLAG_DARK_ASH_JENNA_LALIVERO 0xa0a
 
 /// Ash Jenna's optional super boss in Vale has been fought and won
 /// (ValePlaza_TalkToAshJenna); a defeat clears it so she waits for a retry.
@@ -2818,11 +2820,11 @@
 #define FLAG_DARK_SARAH_LALIVERO_FOUGHT 0x8ee
 
 /// Set from her greeting until Vale's start-up has seen the battle's result.
-#define FLAG_DARK_MYSTERY_PENDING 0x8da
+#define FLAG_DARK_MYSTERY_PENDING 0xa0b
 /// She has been beaten and has gone.
 #define FLAG_DARK_MYSTERY_DONE 0x8db
 // Umbral Rift (optional dungeon): the "???" and Heart battle was started / won.
-#define FLAG_DARK_RIFT_FOUGHT 0x8d9
+#define FLAG_DARK_RIFT_FOUGHT 0xa0c
 #define FLAG_DARK_RIFT_BEATEN 0x8dc
 /// Golden Sun: Ashfall: the dark orb in the Umbral Rift's Memory Room has been
 /// lit, opening the way from the Fountain Hall to the causeway and throne.
