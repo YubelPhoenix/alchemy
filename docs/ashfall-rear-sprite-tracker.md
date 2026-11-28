@@ -1,19 +1,21 @@
-# Ashfall rear-facing battle sprite tracker
+# Ashfall rear-facing sprite tracker
 
-Baseline: 71a1b7626ce3886d4731c000b2de17feb1a1b8f0. This branch is an isolated experiment, not a release build.
+Baseline: 71a1b7626ce3886d4731c000b2de17feb1a1b8f0. Work remains experimental; main is unchanged.
 
-| Boss | Sprite | Asset / implementation | Build | Emulator |
-| --- | ---: | --- | --- | --- |
-| Ash Jenna | 477 | Audit only | Pending | Pending |
-| Heart | 484 | Rear idle frames 1 and 11 prepared; source selector added | Pending | Pending |
-| Kegare | 487 | Audit only | Pending | Pending |
-| Sarah | 488 | Audit only | Pending | Pending |
-| ??? | 489 | Audit only; sequential animation frames need separate mapping | Pending | Pending |
-| Vengeful Wraith | 491 | Audit only | Pending | Pending |
-| Menardi Atropos | 492 | Audit only; orientation-specific aura needed | Pending | Pending |
+| Boss | Sprite | Rear positions | Packed bytes (baseline / revised) | Source | ROM / emulator |
+| --- | ---: | --- | --- | --- | --- |
+| Heart | 484 | 1, 11 (idle) | 13,946 / 14,087 | Integrated | Pending |
+| Ash Jenna | 477 | 5 (slash) | 16,048 / 15,912 | Integrated | Pending |
+| Kegare | 487 | 5 (slash) | 13,850 / 13,737 | Integrated | Pending |
+| Vengeful Wraith | 491 | 7 (cast) | 14,100 / 14,387 | Integrated | Pending |
+| Menardi Atropos | 492 | 11 (cast) | 15,390 / 15,347 | Integrated, exterior aura adaptation | Pending |
+| Sarah | 488 | none | unchanged | Excluded by author | Regression only |
+| ??? | 489 | none | unchanged | Deferred by author | Regression only |
 
-Heart: the author supplied HeartPosing.png and HeartChoke.png. Only HeartPosing is selected for this experiment. The casting candidate has a more frontal torso and a substantially wider silhouette at game resolution; do not install it as a rear cast. The source is stored in assets/heart/rear/HeartPosing.png. The original frame positions 0,2,4,6,8,10 and unused action duplicates 3,5,7,9 are unchanged. Both rear idle positions share one drawing (rear breathing is static). The selected frames use the existing native front/back table for the rear sectors only; all other frames and sprites retain the old Kind 44 behavior. The asset builder regenerates the rear artwork so the official workflow does not overwrite it.
+All prepared frames are conversions of author-supplied artwork, not generated assets. Heart uses the approved refined frame, not the earlier prototype. Ash Jenna and Kegare have image-only anchor corrections of +18 and +8 source pixels before mirroring. Native direction table selects rear poses only where supplied. Unsupported poses retain the old Kind 44 behavior; pose transitions may still show an orientation discontinuity. No animation scripts or battle mechanics were changed. Heart rear breathing is static.
 
-Static validation: exact baseline PNG Git blob 96d0097d5ade5f51e59341d4a699a745c843c58b; replacement PNG blob 99c55053f7118392ca1b67c66dcf2d68ba5e9bfc. The source artwork blob matches the supplied file. A local pixel comparison confirmed only frames 1 and 11 changed; 224-color palette and 64x768 sheet preserved. The zero-run packer calculation including directory is 13,993 bytes (original 13,946; one 16 KiB slot is 16,384). The direction selector model passed 9408 combinations of sprite ID, cache slot, layer, camera, flip flag, base frame and angular sector. This is not execution of the actual game renderer or a ROM build. The full asset builder and toolchain have not been run locally.
+The five baseline sheets were decoded and every nonreplacement frame was compared exactly. All source palette indices and dimensions are retained. PNG round-trip checks passed. Conservative packed-size check counts offset directory, zero runs, literals and terminators; all below 16 KiB. Host C89 test of selector and anchor helper passed 1,179,648 input combinations; this is not an execution of the game renderer. Build-time art generators reapply the indexed rear frames and check the palette, frame layout and memory budget. No full ROM build or full builder execution performed yet.
 
-Acceptance checks: both Heart encounters; normal command camera, rotation past both rear sector boundaries and return, idle-to-dash/lunge/cast/damage/defeat transitions, hit flash, status overlays and normal front idle breathing; mixed Rift battle with ???; ordinary enemies and Saturos/Menardi; frame cache capacity and no visual glitches. Rear action poses retain front artwork and can cause visible orientation discontinuities; do not claim full rear support. No builds triggered by this experiment branch. Do not merge until the ROM is built and tested.
+Atropos uses the original ten-phase cast aura table for the new rear cast only on transparent pixels; front-facing aura, idle hair, fabric, crimson eyes and all strike/dissolve logic remain untouched. Rear cloth/hair are static and the exterior glow may need visual adjustment. Actual rear aura and transitions require emulator testing.
+
+Acceptance: all selected encounters, rear/front camera sectors including command view, returning to normal view, attack and cast transition timing, shadow/feet/weapon placement, damage flash, status overlays, defeat, Atropos exterior aura, mixed Rift encounters, Sarah and ??? untouched, original Menardi/Saturos and regular enemies. Build only after static review; no claim of release readiness.

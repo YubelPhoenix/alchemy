@@ -97,6 +97,8 @@ assert indices.max() > 15, "sheet only uses the first 16 colours"
 assert (indices[~visible] == 0).all() and (indices[visible] != 0).all()
 for n in range(FRAMES):
     assert indices[n * FRAME:(n + 1) * FRAME].any(), f"frame {n} is empty"
+from rear_battle_frames import apply_rear_frames
+indexed = apply_rear_frames(indexed, "kegare_slash", (5,))
 indexed.save(DEST, optimize=False)
 print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, "
       f"{len(set(indices[visible].tolist()))} colours from the shared palette")

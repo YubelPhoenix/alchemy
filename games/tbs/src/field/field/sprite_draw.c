@@ -5,6 +5,7 @@
 #include "../field_internal.h"
 #include "battle_display.h"
 #include "atropos_aura.h"
+#include "ashfall_rear_facing.h"
 
 /// Draws one anim's frame into a sprite's pixel buffer (Render_DecodeFrame,
 /// run from RAM).
@@ -186,21 +187,14 @@ s32 Sprite_ComposeFrame(struct Sprite *animation, u16 dir) {
       break;
     default:
       facing = 0;
-      // Kind 44 (Ash Jenna, Heart, Kegare and Sarah in battle) never mirrors
-      // by itself, only while a camera swing has turned the view round
-      // (BattleCamera_FlipBossesInFrontView).
+      // Retain legacy Kind 44 behavior except for approved rear pose pairs.
       if (layer->kind == 44 && gBattleCamera != 0) {
         if (gBattleCamera->flipCaster == FLIP_CASTER_ON)
           facing = 0x80;
-        // Heart (SPR_484) has a rear idle drawing in the unused odd frames.
-        // Use the camera-relative actor heading, but keep the old behavior
-        // for every unsupported action pose and every other custom sprite.
-        if (i == 0 && (layer->animationId & 0xfff) == 484 &&
-            (frame == 0 || frame == 10)) {
-          u32 nativeFacing = gAnimationFacing_FrontBack[dir >> 13];
-          if (nativeFacing & 1)
-            facing = nativeFacing;
-        }
+        if (i == 0)
+          facing = AshfallRearFacing(layer->animationId, frame,
+                                     gAnimationFacing_FrontBack[dir >> 13],
+                                     facing);
       }
       break;
     }
@@ -558,7 +552,12 @@ void Render_PlaceProjectedSprite(struct Sprite *sprite, s32 *point, s32 *scale,
         scaleX = 0x1f800;
       if (scaleY > 0x1f7ff)
         scaleY = 0x1f800;
-      offsetX = Iwram_MulQ16(sprite->offsetX, scaleX);
+      offsetX = sprite->offsetX;
+      if (gBattleCamera != 0 && sprite->entries[0] != 0 &&
+          sprite->entries[0]->kind == 44)
+        offsetX += AshfallRearOffsetX(sprite->entries[0]->animationId,
+                                    sprite->entries[0]->frame);
+      offsetX = Iwram_MulQ16(offsetX, scaleX);
       offsetY = -Iwram_MulQ16((sprite->height >> 1) - sprite->offsetY, scaleY);
       if (scaleX > Q16_ONE || scaleY > Q16_ONE) {
         affine = 3;

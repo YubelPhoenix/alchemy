@@ -96,6 +96,8 @@ if "--portrait-only" not in sys.argv[1:]:
 
     out = Image.fromarray(sheet, "P")
     out.putpalette(palette + [0] * (256 - 224) * 3)
+    from rear_battle_frames import apply_rear_frames
+    out = apply_rear_frames(out, "wraith_cast", (7,))
     out.save(DEST, optimize=False)
     print(f"Packed {DEST.relative_to(ROOT)}: {2 * len(LAYOUT)} frames")
 

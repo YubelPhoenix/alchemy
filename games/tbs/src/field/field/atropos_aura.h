@@ -23,6 +23,10 @@ static void AtroposAura_Apply(u8 *pixels, u32 frame, u32 phase) {
   for (; i < end; i++) {
     change = sAtroposAuraChanges[i];
     offset = change & 0xfff;
+    /* Frame 11 is the supplied rear cast. Reuse only the existing exterior
+     * aura animation, never the front pose's hair, eye or body changes. */
+    if (frame == 11 && ((change >> 12) & 0xff) != 0)
+      continue;
     if (pixels[offset] == ((change >> 12) & 0xff))
       pixels[offset] = (u8)(change >> 20);
   }
