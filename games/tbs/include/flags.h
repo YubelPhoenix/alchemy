@@ -2695,9 +2695,9 @@
 #define FLAG_AREA_TEMP_FE 0x3fe
 #define FLAG_AREA_TEMP_FF 0x3ff
 
-// Ashfall persistent flags: 0xa00-0xa0c are dedicated to the custom flags
-// formerly overlapping Crossbone Isle's vanilla 0x8c4-0x8da ranges. Do not
-// reuse vanilla range holes: many flags are addressed as base + scene offset.
+// Ashfall persistent flags: 0xa00-0xa0c are reserved for the Crossbone repair.
+// Retired slots 0xa03, 0xa06, 0xa08 and 0xa09 must stay unused.
+// Never reuse vanilla range holes: flags can be addressed as base + scene offset.
 // Existing saves from before this change may contain ambiguous shared bits.
 // The dark story's silent watcher: each glimpse plays a single time.
 /// Sol Sanctum's long passage (SceneId_SolSanctumCorridor).
@@ -2751,10 +2751,6 @@
 /// (Portrait_GetForSpeaker). Set around her lines, then cleared.
 #define FLAG_DARK_HEART_SPEAKING 0xa02
 
-/// Isaac dug the trapped miners out in Altin Peak's junction room
-/// (AltinPeak_TalkToTrappedMiner).
-#define FLAG_DARK_MINERS_FREED 0xa03
-
 /// The brief post-Manticore party check has played.
 /// Relocated from its colliding legacy save bit; old saves are not migrated.
 #define FLAG_DARK_MANTICORE_RETURN_SEEN 0xa04
@@ -2763,14 +2759,8 @@
 /// (WorldMap_MiaRejoinsParty), so a battle that reloads the entrance does not
 /// replay it.
 #define FLAG_DARK_MIA_REUNITED 0xa05
-/// Isaac stayed with the injured miner after the Altin Peak rescue.
-#define FLAG_DARK_MINER_STAYED 0xa06
 /// Ash Jenna's Lamakan confrontation has played.
 #define FLAG_DARK_FINALE_DONE 0xa07
-/// Retired Lamakan choice bits, reserved; do not reuse.
-/// No active scene reads or writes these flags.
-#define FLAG_DARK_ASH_JENNA_ACCEPTED 0xa08
-#define FLAG_DARK_ASH_JENNA_REFUSED 0xa09
 /// Ash Jenna's optional closing talk in Lalivero after the Venus Lighthouse
 /// collapse. Set after the scene; hides her on subsequent town entries.
 #define FLAG_DARK_ASH_JENNA_LALIVERO 0xa0a

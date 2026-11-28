@@ -2,6 +2,8 @@
 
 > Status as of 3 November 2026. See the **current pre-play audit** at [Ashfall Pre-play Audit](ashfall-preplay-audit-2026-11-03.md), including the world-map A-button freeze and the dormant palette-cache cleanup. Static source/dialogue inspection is **not** a substitute for playing the patched ROM. An item marked PENDING is not accepted, even if compilation succeeds.
 
+**Historical checklist, not current acceptance authority:** the custom Altin miner rescue, stay choice, reward and Lamakan callback are retired. Do not implement or test the old choices as active. Follow [current canon](ashfall-current-canon.md).
+
 ## The narrative contract
 
 1. The first Golden Sun adventure is the spine: Vale and Sol Sanctum; Mercury/Imil; Kolima; Fuchin/Xian; Altin; Lamakan; Kalay/Tolbi/Colosso; Venus; Lalivero; Babi's ship; and the original post-clear Jenna/Kraden reveal. Optional encounters do not displace the rescue mission, the Elemental Stars or the later beacons.

@@ -7,6 +7,8 @@
 
 This report is the current pre-play authority alongside `tools/dark_story/CONTINUITY_LEDGER.md` and `docs/ashfall-final-story-acceptance-matrix.md`. Historical reset documents are not a source for the discarded Bloom, awakened/sleeper faction, phantom Ivan voices, custom caravan choice, or harbor-child plots.
 
+**Superseded:** the custom miner rescue/stay and Ash Jenna recruitment branches are retired. Earlier checklist entries are historical, not instructions to restore them. See [current canon](ashfall-current-canon.md).
+
 ## Scope and evidence
 
 - The active dialogue replacement inventory contains **77 TSV files and 4,235 ID/context/text entries**. All four batches were inspected for direct references to discarded plot threads. No surviving *active custom* Bloom/sleeper/harbor-child/ghost storyline appeared in that text search. Matches needing interpretation were (a) Hammet's **original** caravan in Vault, (b) Feizhi's established Psynergy development, (c) Feizhi physically calling to Hsu near the landslide, and (d) a character waking in Babi Palace. Those are not evidence the abandoned custom cosmology was restored.

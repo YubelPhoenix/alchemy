@@ -8,7 +8,7 @@ N198	MsgDarkFinaleGaret	What? That's impossible.\nWe grew up with Jenna.{end_wai
 N199	MsgDarkFinaleJenna3	I grew up in Vale, too.\nI knew an Isaac and\na Garet.{page_break}Not you two.\nThe ones from my world.{end_wait}
 N200	MsgDarkFinaleIvan	Your world?\nYou mean there's\nanother one like ours?{end_wait}
 N201	MsgDarkFinaleMia	Then what happened\nto your Vale?{end_wait}
-N203	MsgDarkEchoMiner	{end_wait}
+N203	MsgReservedAshfallN203	{end_wait}
 N208	MsgDarkFinaleJennaThreat	The beacons were lit.\nMy world was destroyed.{page_break}I watched it happen.\nI had nowhere left to go.{end_wait}
 N209	MsgDarkFinaleIsaacDemand	Why come to us?\nWhat do you want?{end_wait}
 N210	MsgDarkFinaleJennaCruel	You still have a home.\nYou still have friends.{page_break}I wonder how long\nthey'll keep following\nyou, Isaac.{end_wait}

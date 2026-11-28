@@ -1,10 +1,10 @@
 # Retired scene: inert reserved message slots. Keep IDs stable; do not restore.
-N140	MsgDarkPeakMinerPlea	{end_now}
-N141	MsgDarkPeakMinerYes	{end_wait}
-N142	MsgDarkPeakMinerNo	{end_wait}
-N143	MsgDarkPeakMiaDig	{end_wait}
-N144	MsgDarkPeakGaretDig	{end_wait}
-N145	MsgDarkPeakMiaAlex	{end_wait}
-N146	MsgDarkPeakIsaacDig	{end_wait}
-N147	MsgDarkPeakMinerThanks	{end_wait}
-N148	MsgDarkPeakMinerDone	{end_wait}
+N140	MsgReservedAshfallN140	{end_now}
+N141	MsgReservedAshfallN141	{end_wait}
+N142	MsgReservedAshfallN142	{end_wait}
+N143	MsgReservedAshfallN143	{end_wait}
+N144	MsgReservedAshfallN144	{end_wait}
+N145	MsgReservedAshfallN145	{end_wait}
+N146	MsgReservedAshfallN146	{end_wait}
+N147	MsgReservedAshfallN147	{end_wait}
+N148	MsgReservedAshfallN148	{end_wait}

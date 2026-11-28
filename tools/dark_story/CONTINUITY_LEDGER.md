@@ -2,6 +2,8 @@
 
 > **Historical working record.** For the current author decisions, protected dialogue, retired material and unresolved design questions, consult [Ashfall current canon](../../docs/ashfall-current-canon.md) first. Earlier entries below document development history and must not be used to resurrect abandoned storylines or override later author decisions.
 
+**Superseded miner material:** The rescue, stay choice, reward and Lamakan callback are retired. Any earlier entries describing these as active are historical only. Their former flags are removed and their message slots are inert. Do not restore them.
+
 Status: working audit document  
 Branch: `dark-story-rewrite`  
 Scope: narrative chronology, story-state dependencies, and rewrite coverage  

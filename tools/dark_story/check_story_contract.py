@@ -158,13 +158,41 @@ def check_flags_and_quest_order() -> None:
     for name, value in defs.items():
         if 0xa00 <= value <= 0xa0c:
             require(name in custom, f"Non-Ashfall flag in reserved custom range: {name}")
-    require(sum(0xa00 <= v <= 0xa0c for v in custom.values()) == 13,
-            "Crossbone collision repair must retain 13 independent relocated bits")
+    retired_bits = {0xa03, 0xa06, 0xa08, 0xa09}
+    require(not retired_bits.intersection(defs.values()),
+            "A retired Ashfall save bit was reused")
+    require({v for v in custom.values() if 0xa00 <= v <= 0xa0c} ==
+            set(range(0xa00, 0xa0d)) - retired_bits,
+            "Crossbone repair must preserve its nine active relocated bits")
+    retired_names = ("FLAG_DARK_MINERS_FREED", "FLAG_DARK_MINER_STAYED",
+                     "FLAG_DARK_ASH_JENNA_ACCEPTED", "FLAG_DARK_ASH_JENNA_REFUSED",
+                     "AltinPeak_TalkToTrappedMiner", "MsgDarkPeakMiner",
+                     "MsgDarkPeakMiaDig", "MsgDarkPeakGaretDig", "MsgDarkPeakMiaAlex",
+                     "MsgDarkPeakIsaacDig", "MsgDarkPeakIvanHears", "MsgDarkEchoMiner")
+    for root in (ROOT / "games/tbs/src", ROOT / "games/tbs/include"):
+        for source in root.rglob("*"):
+            if source.suffix in (".c", ".h", ".s", ".inc"):
+                content = source.read_text(encoding="utf-8")
+                for name in retired_names:
+                    if name in content:
+                        require(False, f"Retired story symbol {name} in {source.relative_to(ROOT)}")
+    slots = {f"N{n}" for n in (*range(140, 149), 158, *range(169, 175), 203)}
+    found = set()
+    for file in STORY.glob("*.tsv"):
+        for line in file.read_text(encoding="utf-8").splitlines():
+            fields = line.split("\t")
+            if fields[0] in slots:
+                key, context, value = fields
+                require(key not in found and context == "MsgReservedAshfall" + key and
+                        value == ("{end_now}" if key in ("N140", "N172") else "{end_wait}"),
+                        f"Retired miner message slot was changed or reactivated: {key}")
+                found.add(key)
+    require(found == slots, "Retired message slots must not shift later message IDs")
     required = {
         "FLAG_DARK_ASH_JENNA_LAMAKAN_MET", "FLAG_DARK_FINALE_DONE",
         "FLAG_DARK_ASH_JENNA_TOLBI", "FLAG_DARK_ASH_JENNA_LALIVERO",
         "FLAG_DARK_MANTICORE_RETURN_SEEN", "FLAG_DARK_ASH_GATE_FOUGHT",
-        "FLAG_DARK_MINER_STAYED", "FLAG_DARK_HEART_BEATEN",
+        "FLAG_DARK_HEART_BEATEN",
         "FLAG_DARK_KEGARE_BEATEN",
     }
     require(required.issubset({k for k, _v in dark}), "An Ashfall story flag is missing")

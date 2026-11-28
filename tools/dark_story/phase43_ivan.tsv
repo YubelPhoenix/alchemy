@@ -1,4 +1,4 @@
 # Ivan's observations in Tolbi and Altin; old Mia anger response is retired.
 N154	MsgDarkTolbiIvanJenna	We shouldn't keep\nlistening to her.\nLet's go.{end_wait}
-N158	MsgDarkPeakIvanHears	{end_wait}
+N158	MsgReservedAshfallN158	{end_wait}
 N159	MsgDarkManticoreIvanConcern	{end_wait}

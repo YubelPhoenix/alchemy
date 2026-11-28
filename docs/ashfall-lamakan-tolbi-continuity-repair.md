@@ -6,6 +6,8 @@ Branch: `dark-story-rewrite`
 **Reading note:** the numbered findings and immediate blockers below record the pre-repair state. The harbor-child decision in the canonical correction section and the caravan-removal decision at the end supersede all earlier references to those storylines.  
 Scope: the post-Manticore Lamakan sequence, Ash Jenna's later Tolbi encounter, and Kegare.
 
+**Superseded author decision:** the custom miner rescue, stay choice, reward and Lamakan callback were subsequently removed, as was Ash Jenna recruitment. Earlier descriptions below are historical only. See [current canon](ashfall-current-canon.md).
+
 ## Finding
 
 The initial audit found more than isolated awkward lines: several concepts arrived without a clear causal order, and some dialogue contradicted the player's earlier knowledge. It also found a branch-state mismatch in the former Ondra/Kegare introduction. Those findings are retained below as the pre-repair record.

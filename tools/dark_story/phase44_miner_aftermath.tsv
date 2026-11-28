@@ -1,7 +1,7 @@
 # Retired scene: inert reserved message slots. Keep IDs stable; do not restore.
-N169	MsgDarkPeakMinerAftermath	{end_wait}
-N170	MsgDarkPeakMinerShockIvan	{end_wait}
-N171	MsgDarkPeakMinerShockGaret	{end_wait}
-N172	MsgDarkPeakMinerStayAsk	{end_now}
-N173	MsgDarkPeakMinerStay	{end_wait}
-N174	MsgDarkPeakMinerLeave	{end_wait}
+N169	MsgReservedAshfallN169	{end_wait}
+N170	MsgReservedAshfallN170	{end_wait}
+N171	MsgReservedAshfallN171	{end_wait}
+N172	MsgReservedAshfallN172	{end_now}
+N173	MsgReservedAshfallN173	{end_wait}
+N174	MsgReservedAshfallN174	{end_wait}
