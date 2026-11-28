@@ -11,10 +11,12 @@ frames are packed one under another (64x768 = 12 frames) with no palette of
 their own.  So the sheet must use that exact palette and nothing else; a
 private 16-colour palette makes every index land on the wrong colour.
 
-Frame layout (games/tbs/src/graphics/sprite/spr_484.tsv steps by two, each
-frame is stored twice):
-  0-1   idle            2-3   dash / leap (rise)     4-5  lunge (landing)
-  6-7   cast            8-9   damage       10-11 idle, breathing in
+Frame layout (games/tbs/src/graphics/sprite/spr_484.tsv steps by two):
+  0,1   front idle / rear idle   2-3   dash / leap (rise)
+  4-5   lunge (landing)           6-7   cast           8-9   damage
+  10,11 front breathing / rear idle
+The supplied rear idle is used only for camera-relative rear idle poses.
+Unsupported action poses retain their existing duplicate frames.
 """
 from pathlib import Path
 
@@ -99,6 +101,25 @@ for index, (name, mirror, rise) in enumerate(LAYOUT):
     frame.alpha_composite(art, (x, FRAME - height - rise))
     sheet.alpha_composite(frame, (0, index * FRAME))
 
+# The original 128x128 rear idle artwork is supplied by Ashfall's author.
+# Match the existing front idle's 56-pixel height, preserve its aspect ratio
+# and ground anchor, and replace only the otherwise-unused odd idle frames.
+rear = Image.open(ROOT / "assets/heart/rear/HeartPosing.png").convert("RGBA")
+bounds = rear.getchannel("A").getbbox()
+if not bounds:
+    raise ValueError("Heart rear idle is empty")
+rear = rear.crop(bounds)
+scale = min(56 / rear.height, FRAME / rear.width)
+rear = rear.resize((round(rear.width * scale), round(rear.height * scale)),
+                   Image.Resampling.NEAREST)
+mask = np.asarray(rear)[..., 3] >= 128
+cx = np.nonzero(mask)[1].mean()
+x = max(0, min(FRAME - rear.width, round(FRAME / 2 - cx)))
+rear_frame = Image.new("RGBA", (FRAME, FRAME), (0, 0, 0, 0))
+rear_frame.alpha_composite(rear, (x, FRAME - rear.height))
+for index in (1, 11):
+    sheet.paste(rear_frame, (0, index * FRAME))
+
 # Quantize each visible pixel to the nearest colour of the shared palette.
 data = np.asarray(sheet)
 visible = data[..., 3] >= 128
@@ -121,6 +142,35 @@ for n in range(FRAMES):
     assert f.any(), f"frame {n} is empty"
     ys, xs = np.nonzero(f)
     assert ys.max() <= FRAME - 1 and xs.min() >= 0 and xs.max() < FRAME
+# The native frame packer stores nonzero pixels as literals, zero runs in
+# chunks of at most 32 and a terminator per frame; the outer LZ stream expands
+# into this representation in the enemy cache, including its offset table.
+# Use the stricter one-slot (16 KiB) limit even though Heart occupies two.
+def packed_frame_size(frame):
+    pixels = frame.ravel()
+    i = 0
+    size = 1
+    while i < len(pixels):
+        if pixels[i]:
+            i += 1
+        else:
+            run = 1
+            while run < 32 and i + run < len(pixels) and not pixels[i + run]:
+                run += 1
+            i += run
+        size += 1
+    return size
+
+packed_size = 4 * (FRAMES + 1) + sum(
+    packed_frame_size(indices[n * FRAME:(n + 1) * FRAME])
+    for n in range(FRAMES)
+)
+if packed_size > 16 * 1024:
+    raise ValueError(f"Heart sprite cache overflow: {packed_size} bytes")
+assert np.array_equal(indices[FRAME:2 * FRAME], indices[11 * FRAME:12 * FRAME])
+for n in (2, 4, 6, 8):
+    assert np.array_equal(indices[n * FRAME:(n + 1) * FRAME],
+                          indices[(n + 1) * FRAME:(n + 2) * FRAME])
 indexed.save(DEST, optimize=False)
 print(f"Rebuilt {DEST.relative_to(ROOT)}: {FRAMES} frames, "
       f"{len(set(indices[visible].tolist()))} colours from the shared palette")

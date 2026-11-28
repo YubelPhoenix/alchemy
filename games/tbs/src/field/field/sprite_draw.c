@@ -189,9 +189,19 @@ s32 Sprite_ComposeFrame(struct Sprite *animation, u16 dir) {
       // Kind 44 (Ash Jenna, Heart, Kegare and Sarah in battle) never mirrors
       // by itself, only while a camera swing has turned the view round
       // (BattleCamera_FlipBossesInFrontView).
-      if (layer->kind == 44 && gBattleCamera != 0 &&
-          gBattleCamera->flipCaster == FLIP_CASTER_ON)
-        facing = 0x80;
+      if (layer->kind == 44 && gBattleCamera != 0) {
+        if (gBattleCamera->flipCaster == FLIP_CASTER_ON)
+          facing = 0x80;
+        // Heart (SPR_484) has a rear idle drawing in the unused odd frames.
+        // Use the camera-relative actor heading, but keep the old behavior
+        // for every unsupported action pose and every other custom sprite.
+        if (i == 0 && (layer->animationId & 0xfff) == 484 &&
+            (frame == 0 || frame == 10)) {
+          u32 nativeFacing = gAnimationFacing_FrontBack[dir >> 13];
+          if (nativeFacing & 1)
+            facing = nativeFacing;
+        }
+      }
       break;
     }
     frame += facing & 7;
