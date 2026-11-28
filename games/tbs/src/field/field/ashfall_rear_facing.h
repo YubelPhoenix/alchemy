@@ -8,6 +8,9 @@ static u32 AshfallRearFacing(u32 animationId, s32 frame, u32 nativeFacing,
                             u32 fallback) {
   if ((nativeFacing & 1) == 0)
     return fallback;
+  // Approved rear artwork uses the opposite horizontal convention.
+  // Invert only the mirror bit, never the rear frame index.
+  nativeFacing ^= 0x80;
   switch (animationId & 0xfff) {
   case 477: /* Ash Jenna */
   case 487: /* Kegare */
