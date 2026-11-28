@@ -1,6 +1,6 @@
 # Ashfall rear-facing sprite tracker
 
-Baseline: 71a1b7626ce3886d4731c000b2de17feb1a1b8f0. Work remains experimental; main is unchanged.
+Baseline: 71a1b7626ce3886d4731c000b2de17feb1a1b8f0. Source integration candidate; ROM build and emulator verification remain pending.
 
 | Boss | Sprite | Rear positions | Packed bytes (baseline / revised) | Source | ROM / emulator |
 | --- | ---: | --- | --- | --- | --- |
@@ -19,3 +19,5 @@ The five baseline sheets were decoded and every nonreplacement frame was compare
 Atropos uses the original ten-phase cast aura table for the new rear cast only on transparent pixels; front-facing aura, idle hair, fabric, crimson eyes and all strike/dissolve logic remain untouched. Rear cloth/hair are static and the exterior glow may need visual adjustment. Actual rear aura and transitions require emulator testing.
 
 Acceptance: all selected encounters, rear/front camera sectors including command view, returning to normal view, attack and cast transition timing, shadow/feet/weapon placement, damage flash, status overlays, defeat, Atropos exterior aura, mixed Rift encounters, Sarah and ??? untouched, original Menardi/Saturos and regular enemies. Build only after static review; no claim of release readiness.
+
+Pre-merge CI audit: the artwork validator now recognizes only the explicit approved rear pairs and checks their exact indexed pixels against the supplied-art conversions. All other duplicate-pair checks remain in effect. Build triggers also cover rear assets and the shared overlay helper. Full CI execution is pending.

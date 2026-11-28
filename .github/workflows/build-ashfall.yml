@@ -30,6 +30,9 @@ on:
       - 'tools/dark_story/check_story_contract.py'
       - '.github/workflows/build-ashfall.yml'
       - 'assets/heart/**'
+      - 'assets/rear_battle/**'
+      - 'tools/dark_story/rear_battle_frames.py'
+      - 'tools/dark_story/build_kegare_art.py'
 
 # Stabilization candidate 2: Rift dialogue and Wraith combat validation.
 # One primary Ashfall build at a time; newer pushes replace pending runs.
